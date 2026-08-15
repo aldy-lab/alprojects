@@ -318,59 +318,90 @@ CAREERS = """
 
 # ============================================================
 # NEWS ARTICLES
-# Written from ALprojects Group's own LinkedIn posts (retrieved
-# 15 Aug 2026). ⚠️ Dates are APPROXIMATE — LinkedIn reports posts
-# as "2 days ago" / "3 weeks ago", not as calendar dates. The
-# wording is derived from those posts, not quoted verbatim.
-# Have the client verify both before launch.
+# Written from ALprojects Group's own LinkedIn carousels, supplied by
+# the client. The first three follow the slides closely; the last three
+# came from post summaries and are less exact. Dates: LinkedIn reports
+# posts relatively ("2d", "1w"), so those are derived from 15 Aug 2026 —
+# verify before promoting. The award date is the certificate's own.
 # ============================================================
 ARTICLES = [
-    dict(slug="ndt-independent-verification",
+    dict(slug="we-do-not-certify-our-own-welds",
          num="01", date="13 Aug 2026", iso="2026-08-13", cat="Quality Control",
          img="news-3.webp", w=1000, h=562,
-         alt="Precision welding inspected on a workshop bench",
-         title="Why we verify welds we did not make",
-         lead="Non-destructive testing only means something when the party inspecting the weld is not the party being graded on it.",
+         alt="Weld profile gauge measuring a fillet weld",
+         title="We do not certify our own welds",
+         lead="Our NDT does not replace your inspector. We use it to catch our own mistakes first.",
          body=[
-           "Our NDT work is built around independent verification. When we inspect a weld, our job is to find the defect — not to certify our own workmanship. That separation is the entire value of the inspection.",
-           "The practical effect is that defects surface before client sign-off rather than after it. A weld rejected at inspection is a repair; the same weld found after handover is a warranty claim, a delay, and in the wrong environment a safety event.",
-           "It is a slower way to work and occasionally an uncomfortable one. It is also the only version of quality control that is worth paying for.",
-         ]),
-    dict(slug="engine-room-piping-installation",
+           "<strong>Where the line sits.</strong> Nobody should be signing off their own work, and we do not try to. Independent verification stays where the contract puts it, normally with the client or the class surveyor, and nothing we do changes that.",
+           "Our own technicians come in before that. They go over the joint while the crew is still on the job, and if something has to come out, it comes out before anyone else is invited to look at it.",
+           "<strong>Measured against the criteria.</strong> Cap height, width, undercut, profile. Each one is checked against the acceptance criteria for the job, and the joint is not presented until the numbers sit inside the limits.",
+           "<strong>What the eye cannot pick up.</strong> Clean the weld, apply the penetrant, let the developer draw it back out. Surface cracks and porosity that nobody would catch by eye show up in red, and anything outside the limits is repaired on the spot.",
+           "So there are two different things with the same equipment behind them. On our own jobs it is internal quality control, and it never counts as sign-off. On somebody else's welds it is independent NDT, because we did not weld it.",
+         ],
+         facts=[("On our own jobs", "Internal quality control", "It never counts as sign off"),
+                ("On somebody else's welds", "Independent NDT", "We did not weld it")],
+         cta="Send us the scope and we will come back with a price and crew dates."),
+
+    dict(slug="piping-installation-engine-room",
          num="02", date="08 Aug 2026", iso="2026-08-08", cat="Shipbuilding",
          img="news-1.webp", w=831, h=554,
-         alt="Welder performing mechanical installation works",
-         title="Engine room piping on vessels under construction",
-         lead="Seawater, bilge and fuel systems, installed in the most congested compartment on the ship.",
+         alt="Engine room piping installation on board",
+         title="Piping installation in the engine room",
+         lead="Sea water, bilge, ballast and fuel lines going in on board right now.",
          body=[
-           "Engine room piping is unforgiving work. Seawater, bilge and fuel systems all have to be routed through a compartment that is already full of machinery, structure and other trades — and each system carries its own material, pressure and testing requirements.",
-           "Our teams handle prefabrication and installation together, which matters more here than almost anywhere else on a vessel: a spool that is fabricated to drawing but not to the as-built compartment is scrap.",
-           "The work is carried out on vessels under construction, alongside the yard's own schedule.",
-         ]),
-    dict(slug="transformer-mechanical-package",
-         num="03", date="01 Aug 2026", iso="2026-08-01", cat="Industrial Projects",
+           "Our crew is installing engine room systems on vessels under construction: seawater, bilge, ballast, fuel and service lines running from small bore up to DN200 around the main engine foundations.",
+           "<strong>Drawn first, then built.</strong> Isometrics are checked before anything is cut. Spools are prefabricated in the shop, fitted on board and hung so the line can move without loading the welds.",
+           "<strong>Manifolds, sea chests, tank connections.</strong> Gate valves, strainers and remote operated units set out and aligned on the tank top. Flange faces stay capped until the system is closed.",
+           "<strong>Welded, tested, then closed.</strong> Welding under ISO 3834. Every joint is documented, and NDT and pressure testing are done before insulation and final coating go on.",
+           "The order of work stays the same on every job. Most of the time in a machinery space goes on getting the routing right, not on the welding itself.",
+         ],
+         facts=[("Certified to", "ISO 3834", "Welding quality requirements"),
+                ("Working from", "Lithuania, Belgium, Norway", "Offshore, shipbuilding and industry")],
+         cta="Send us the drawings and we will come back with a price and crew dates."),
+
+    dict(slug="strongest-in-lithuania-2025-2026",
+         num="03", date="23 Jun 2026", iso="2026-06-23", cat="Company",
          img="news-2.webp", w=1000, h=750,
-         alt="Port infrastructure at sunset",
+         alt="ALPROJECTS Group project site",
+         title="Among the strongest companies in Lithuania",
+         lead="UAB \u201cALprojects\u201d has been awarded the Strongest in Lithuania 2025\u20132026 certificate by Creditinfo.",
+         body=[
+           "The certificate recognises companies with a high credit score and a proven record of financial stability. It is issued by Creditinfo Group and was awarded on 23 June 2026 for the 2025\u20132026 period.",
+           "<strong>A stable partner is a safer project.</strong> In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through.",
+           "That matters more than a logo on a wall. It is the difference between a contractor who can carry a scope to completion and one who cannot.",
+         ],
+         facts=[("Award", "Strongest in Lithuania", "2025\u20132026"),
+                ("Issued by", "Creditinfo Group", "23 June 2026")],
+         cta="Planning a project across shipbuilding, piping or industrial services? Let us talk."),
+
+    dict(slug="transformer-mechanical-package",
+         num="04", date="01 Aug 2026", iso="2026-08-01", cat="Industrial Projects",
+         img="news-2.webp", w=1000, h=750,
+         alt="Industrial installation works",
          title="A transformer mechanical package across five countries",
-         lead="Stainless steel piping, cooling systems and precision installation — repeated across five European sites.",
+         lead="Stainless steel piping, cooling systems and precision installation \u2014 repeated across five European sites.",
          body=[
            "A transformer mechanical package covers the stainless steel piping and cooling systems that keep the unit within its operating envelope. The tolerances are tight and the commissioning window is usually short.",
            "What made this scope demanding was not any single site but the repetition: the same package delivered across five European countries, each with its own site conditions, inspection regime and local requirements.",
-           "Consistency across borders is a documentation problem as much as a fabrication one — which is where certified personnel and a single quality system earn their place.",
-         ]),
+           "Consistency across borders is a documentation problem as much as a fabrication one \u2014 which is where certified personnel and a single quality system earn their place.",
+         ],
+         facts=[], cta="Send us the scope and we will come back with a price and crew dates."),
+
     dict(slug="fuel-loading-terminal-completed",
-         num="04", date="25 Jul 2026", iso="2026-07-25", cat="Energy Projects",
+         num="05", date="25 Jul 2026", iso="2026-07-25", cat="Energy Projects",
          img="news-2.webp", w=1000, h=750,
-         alt="Port infrastructure at sunset",
+         alt="Port and terminal infrastructure",
          title="Fuel loading terminal completed",
          lead="September 2025 to April 2026. Twelve specialists. Over 11,000 hours on site.",
          body=[
            "The scope ran from September 2025 to April 2026 and was delivered by a team of twelve specialists, accumulating more than 11,000 hours on site.",
-           "Fuel handling infrastructure concentrates every discipline we work in — mechanical installation, pipe fitting, welding, and the inspection and documentation that has to accompany all three when the medium is flammable.",
+           "Fuel handling infrastructure concentrates every discipline we work in \u2014 mechanical installation, pipe fitting, welding, and the inspection and documentation that has to accompany all three when the medium is flammable.",
            "Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.",
-         ]),
+         ],
+         facts=[], cta="Send us the scope and we will come back with a price and crew dates."),
+
     dict(slug="europe-tig-welder-shortage",
-         num="05", date="25 Jul 2026", iso="2026-07-25", cat="Industry",
+         num="06", date="25 Jul 2026", iso="2026-07-25", cat="Industry",
          img="news-3.webp", w=1000, h=562,
          alt="Precision welding on a workshop bench",
          title="We needed 30 certified TIG welders. Europe could not supply them.",
@@ -379,7 +410,8 @@ ARTICLES = [
            "Recruiting thirty certified TIG welders for a single scope of work turned out to be materially harder than the engineering it supported.",
            "The shortage is discussed across European industry in general terms. It becomes concrete when a project is resourced, scheduled and funded, and the constraint is simply the number of people who hold the certification and are willing to travel.",
            "It is worth being direct about this, because the answer is not a recruitment campaign. It is training, certification pathways, and treating the trades as a career rather than a stopgap.",
-         ]),
+         ],
+         facts=[], cta="If you hold the ticket and you are willing to travel, we would like to hear from you."),
 ]
 
 ARTICLE_BODY = """
@@ -394,14 +426,31 @@ ARTICLE_BODY = """
     </div>
 
     <div class="container prose">
-      <!-- NOTE(ALPROJECTS): written from your LinkedIn post of approximately this
-           date. The date is approximate and the wording is ours, not a verbatim
-           quote of the post. Please verify both before promoting this page. -->
+      <!-- NOTE(ALPROJECTS): written from your own LinkedIn carousel. Relative
+           post dates ("2d", "1w") were resolved against 15 Aug 2026 — check them.
+           The photo is stock from the original design, not the post's image. -->
       <p class="article-lead">{lead}</p>
 {paras}
-      <p class="back"><a class="btn-bracket" href="/news/">All news</a></p>
+{factblock}
+      <p class="article-cta">{cta}</p>
+      <p class="back">
+        <a class="btn-bracket" href="/contacts.html">Start a project</a>
+        <a class="btn-bracket" href="/news/">All news</a>
+      </p>
     </div>
 """
+
+def facts_html(facts):
+    if not facts:
+        return ""
+    cells = "\n".join(
+        """        <div class="fact">
+          <p class="fact-label">%s</p>
+          <p class="fact-value">%s</p>
+          <p class="fact-note">%s</p>
+        </div>""" % f for f in facts)
+    return '      <div class="fact-strip">\n%s\n      </div>' % cells
+
 
 def news_index():
     cards = []
@@ -455,10 +504,25 @@ COMPANY = """
       </ul>
 
       <h2>Certification</h2>
-      <p>ALPROJECTS Group holds ISO 9001, ISO 14001 and ISO 45001 certification, covering
-      quality management, environmental management and occupational health and safety.
-      Certification is what allows a client to accept our documentation without re-doing
-      the inspection themselves.</p>
+      <p>ALPROJECTS Group holds <strong>ISO 3834</strong> for welding quality requirements,
+      alongside ISO 9001, ISO 14001 and ISO 45001 covering quality, environmental and
+      occupational health and safety management. Certification is what allows a client to
+      accept our documentation without re-doing the inspection themselves.</p>
+
+      <h2>Strongest in Lithuania, 2025&ndash;2026</h2>
+      <p>UAB &ldquo;ALprojects&rdquo; holds the <strong>Strongest in Lithuania</strong>
+      certificate, awarded by Creditinfo Group on 23 June 2026 to companies with a high
+      credit score and a proven record of financial stability.</p>
+      <p>In heavy industry, projects run for months and commitments run for years.
+      Independent proof of financial stability is proof that we will be there to see the
+      work through &mdash; which is a different question from whether the welding is any
+      good, and worth answering separately.
+      <a href="/news/strongest-in-lithuania-2025-2026.html">More on the award</a>.</p>
+
+      <h2>Where we work from</h2>
+      <p>Head office in Klaipeda, Lithuania, with operations in <strong>Belgium</strong>
+      and <strong>Norway</strong>, serving offshore, shipbuilding and industry across
+      Northern and Western Europe.</p>
 
       <h2>Scale</h2>
       <p>The company employs between 51 and 200 people and works across multiple European
@@ -491,9 +555,26 @@ SERVICES = """
     <div class="container prose">
       <h2>Non-destructive testing (NDT)</h2>
       <p>We inspect welds, materials and structures without interrupting operations, so
-      defects are identified early rather than at handover. Our NDT is deliberately
-      independent of the work being inspected — see
-      <a href="/news/ndt-independent-verification.html">why we verify welds we did not make</a>.</p>
+      defects are identified early rather than at handover. Cap height, width, undercut and
+      profile are checked against the acceptance criteria for the job; penetrant goes on the
+      butt welds to find surface cracks and porosity no one would catch by eye.</p>
+      <p>There are two different things here, and we keep them apart deliberately:</p>
+      <div class="fact-strip">
+        <div class="fact">
+          <p class="fact-label">On our own jobs</p>
+          <p class="fact-value">Internal quality control</p>
+          <p class="fact-note">It never counts as sign off</p>
+        </div>
+        <div class="fact">
+          <p class="fact-label">On somebody else's welds</p>
+          <p class="fact-value">Independent NDT</p>
+          <p class="fact-note">We did not weld it</p>
+        </div>
+      </div>
+      <p>Nobody should be signing off their own work, and we do not try to. Independent
+      verification stays where the contract puts it — normally with the client or the
+      class surveyor. Our technicians simply get there first, while the crew is still on the
+      job. See <a href="/news/we-do-not-certify-our-own-welds.html">we do not certify our own welds</a>.</p>
       <p class="svc-industries">Offshore oil &amp; gas · Wind energy · Industrial facilities · Steel structures</p>
 
       <h2>Rope access services</h2>
@@ -598,6 +679,10 @@ CONTACTS = """
       LT-91110 Klaipeda<br>
       Lithuania</p>
 
+      <h2>Where we work from</h2>
+      <p>Lithuania &middot; Belgium &middot; Norway &mdash; serving offshore, shipbuilding and
+      industry across Northern and Western Europe.</p>
+
       <h2>Email</h2>
       <p><a href="mailto:info@alprojects.eu">info@alprojects.eu</a></p>
 
@@ -608,9 +693,10 @@ CONTACTS = """
       </ul>
 
       <h2>What to include</h2>
-      <p>For a project enquiry, the fastest route to a useful answer is the scope, the
-      location, the standards that apply and the window you are working to. For personnel
-      requests, tell us the disciplines, certifications and headcount.</p>
+      <p>Send us the scope or the drawings and we will come back with a price and crew
+      dates. The fastest route to a useful answer is the scope, the location, the standards
+      that apply and the window you are working to. For personnel requests, tell us the
+      disciplines, certifications and headcount.</p>
 
       <p class="back">
         <a class="btn-bracket" href="mailto:info@alprojects.eu?subject=Project%20enquiry">Email us</a>
@@ -651,6 +737,7 @@ write("news/index.html", page("News",
 for a in ARTICLES:
     body = dict(a)
     body["paras"] = "\n".join("      <p>%s</p>" % p for p in a["body"])
+    body["factblock"] = facts_html(a.get("facts"))
     write("news/%s.html" % a["slug"],
           page(a["title"][:60], a["lead"], ARTICLE_BODY.format(**body),
                canonical="/news/%s.html" % a["slug"]))

@@ -210,12 +210,18 @@ LinkedIn post and should be removed once it is filled.
       scan reads ISO 9001, while the cards are labelled 9001 / 14001 / 45001.
       As published this claims certifications the artwork does not evidence.
       Swap in the real 14001 / 45001 scans, or drop those two cards.
-- [ ] **News articles** — ⚠️ five articles written from ALprojects Group's own
-      LinkedIn posts (retrieved 15 Aug 2026). **Dates are approximate** — LinkedIn
-      reports posts as "2 days ago" / "3 weeks ago", not calendar dates — and the
-      wording is ours, derived from those posts rather than quoted. Verify both
-      before promoting the pages. Article photos are reused stock from the
-      original design and do not depict the projects described.
+- [ ] **News articles** — six articles. The first three follow ALprojects Group's
+      own LinkedIn carousels closely (client-supplied screenshots): the NDT /
+      "we do not certify our own welds" post, the engine-room piping post, and the
+      Strongest in Lithuania award. The last three came from post summaries and
+      are less exact. ⚠️ **Dates**: LinkedIn reports posts relatively ("2d", "1w"),
+      so those are derived from 15 Aug 2026 — verify. The award date (23 June 2026)
+      is the certificate's own and is solid. ⚠️ **Photos** are reused stock from
+      the original design and do not depict the work described — swap in the real
+      carousel images when you have the files.
+- [ ] **Award artwork** — the Strongest in Lithuania badge is rendered
+      typographically because the image file wasn't supplied. Drop in the badge
+      and I'll use it.
 - [x] **Privacy Policy** — `privacy.html` is live and linked from the footer.
       ⚠️ Written from what the site technically does; **not reviewed by a
       lawyer** — have it checked against your internal processes.
