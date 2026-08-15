@@ -5,11 +5,34 @@ Static site (HTML/CSS/JS, no build step). Built from the Figma design. Made by A
 ## Structure
 
 ```
-index.html      — the whole homepage (all sections)
-css/style.css   — design tokens + all styles, responsive down to mobile
-js/main.js      — nav, reveals, counters, loadbars, team headline, newsletter
-assets/         — optimized images extracted from the design (1.6 MB total)
+index.html         — the homepage (all sections)
+careers.html       — careers / open application
+privacy.html       — privacy policy
+404.html           — custom not-found page (GitHub Pages serves it automatically)
+news/*.html        — article pages (drafts: noindex, not yet linked)
+css/style.css      — design tokens + all styles, responsive down to mobile
+css/fonts.css      — self-hosted Montserrat @font-face
+js/main.js         — config block, nav, reveals, counters, newsletter
+assets/            — images (WebP) and fonts
+tools/build-pages.py — regenerates the sub-pages from index.html's header/footer
 ```
+
+The sub-pages are committed as plain HTML — nothing needs to run to serve the
+site. Re-run `python3 tools/build-pages.py` only after editing the header or
+footer in `index.html`, so the copies don't drift.
+
+## Performance notes
+
+- All photographs are WebP (37% smaller than the original JPEGs: 1.39 MB → 875 KB).
+  `assets/hero-bg.jpg` is kept **only** as the `og:image`, since some social
+  scrapers still handle WebP poorly.
+- Montserrat is self-hosted from `assets/fonts/` as a variable font (two subset
+  files, latin + latin-ext). This removes the render-blocking round trip to
+  fonts.googleapis.com *and* the disclosure of visitor IPs to Google — which is
+  why the privacy policy can state the site loads no third-party resources.
+- HTML/CSS/JS are served gzipped by GitHub Pages (7.4 / 6.8 / 3.2 KB).
+- `cache-control: max-age=600` is GitHub Pages' fixed default and cannot be
+  changed on this host. A CDN in front would be the only way to improve it.
 
 ## Deploy (GitHub Pages)
 
@@ -90,12 +113,17 @@ var FORM_ENDPOINT = "";             // newsletter POST target
       scan reads ISO 9001, while the cards are labelled 9001 / 14001 / 45001.
       As published this claims certifications the artwork does not evidence.
       Swap in the real 14001 / 45001 scans, or drop those two cards.
-- [ ] **News articles** — cards link to `#news`; point them at real article
-      pages when they exist. Cards 01 and 03 are currently the same headline
-      and date with different photos.
-- [ ] **Privacy Policy** — footer link points at `#contacts`; needs a real page
-      (required if the newsletter starts collecting addresses in the EU).
-- [ ] Nav "Careers" anchors to the team section (no careers page yet).
+- [ ] **News articles** — page shells exist under `news/` with the headline,
+      date and image, but no article text, so they are `noindex` and the
+      homepage cards still point at `#news`. Send the copy and I'll fill them in
+      and switch the three card links over. Cards 01 and 03 are also currently
+      the same headline and date with different photos.
+- [x] **Privacy Policy** — `privacy.html` is live and linked from the footer.
+      ⚠️ Written from what the site technically does; **not reviewed by a
+      lawyer** — have it checked against your internal processes.
+- [x] **Careers** — `careers.html` is live and linked from the nav and footer.
+      It invites open applications and deliberately lists no vacancies,
+      salaries or benefits; send real openings to add them.
 - [ ] Contact email is `info@alprojects.eu` while the site is on alprojects.co —
       intentional, .eu redirects to .co.
 
