@@ -21,6 +21,16 @@ The sub-pages are committed as plain HTML — nothing needs to run to serve the
 site. Re-run `python3 tools/build-pages.py` only after editing the header or
 footer in `index.html`, so the copies don't drift.
 
+## Viewport notes
+
+The hero's vertical rhythm comes from the 1920x1200 Figma frame. On a laptop
+that is taller than the fold, so `css/style.css` ends with two short-viewport
+blocks (`max-height: 920px` and `max-height: 700px`) that compress the hero
+spacing, title size and card height. Measured overflow is 0 at 1920x1113,
+1512x773 (MacBook Pro 14"), 1512x613, 1440x693 and 1280x713. Below roughly
+560px of viewport height the hero no longer fits and the page scrolls, which
+is expected.
+
 ## Performance notes
 
 - All photographs are WebP (37% smaller than the original JPEGs: 1.39 MB → 875 KB).
