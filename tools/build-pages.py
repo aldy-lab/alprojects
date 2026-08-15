@@ -8,7 +8,7 @@ editing the header or footer in index.html:
 
     python3 tools/build-pages.py
 """
-import io, os, re
+import datetime, io, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 src = io.open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -39,7 +39,7 @@ def rootify(html):
 HEADER_R, FOOTER_R, SPRITE_R = rootify(HEADER), rootify(FOOTER), rootify(SPRITE)
 
 
-def page(title, description, body, noindex=False, canonical=None):
+def page(title, description, body, noindex=False, canonical=None, head_extra="", og="home"):
     robots = ('  <meta name="robots" content="noindex, follow">\n' if noindex
               else '  <meta name="robots" content="index, follow">\n')
     canon = ('  <link rel="canonical" href="https://alprojects.co%s">\n' % canonical
@@ -56,12 +56,17 @@ def page(title, description, body, noindex=False, canonical=None):
   <meta property="og:title" content="{title} — ALPROJECTS Group">
   <meta property="og:description" content="{description}">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://alprojects.co/assets/og/{og}.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://alprojects.co/assets/og/{og}.jpg">
   <link rel="icon" type="image/png" href="/assets/logo.png">
   <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/style.css">
-</head>
+{head_extra}</head>
 <body>
 
 {header}
@@ -78,7 +83,12 @@ def page(title, description, body, noindex=False, canonical=None):
 </body>
 </html>
 """.format(title=title, description=description, canon=canon, robots=robots,
-           header=HEADER_R, footer=FOOTER_R, sprite=SPRITE_R, body=body)
+           header=HEADER_R, footer=FOOTER_R, sprite=SPRITE_R, body=body,
+           head_extra=head_extra, og=og)
+
+
+# Stamped into <lastmod> in the sitemap on every build.
+LASTMOD = datetime.date.today().isoformat()
 
 
 def write(path, html):
@@ -134,6 +144,16 @@ PRIVACY = """
       <p>This site loads no third-party scripts, fonts, analytics or embeds. The
       typeface is served from our own domain, so browsing this site does not disclose
       your IP address to any advertising or analytics company.</p>
+      <!-- If ANALYTICS_DOMAIN is switched on in js/main.js, delete the paragraph
+           above, and uncomment the list item and paragraph below.
+        <li><strong>Plausible Analytics</strong> — anonymous, cookieless visitor
+        statistics.</li>
+        <p>We use Plausible Analytics to count page views. It sets no cookies,
+        collects no personal data and does not track visitors across websites or
+        over time. No data is shared with advertising networks. The typeface is
+        served from our own domain, so browsing this site does not disclose your
+        IP address to any other company.</p>
+      -->
 
       <h2>4. Legal basis</h2>
       <ul>
@@ -175,11 +195,17 @@ PRIVACY = """
 # ============================================================
 POSITIONS = [
     dict(id="tig-welder",
-         title="Certified TIG Welders",
+         title="Certified TIG Welder",
          count="30 positions",
          location="Project sites across Europe",
          contract="Project-based",
          open=True,
+         # --- Google for Jobs fields ---
+         posted="2026-07-25",           # keep current; stale posts get demoted
+         valid_through="2026-12-31",
+         employment_type="CONTRACTOR",
+         vacancies=30,
+         countries=["LT", "BE", "NO"],
          summary="We are recruiting thirty certified TIG welders for upcoming project "
                  "scopes. This is the constraint on our current pipeline, so applications "
                  "are reviewed quickly.",
@@ -705,6 +731,97 @@ CONTACTS = """
     </div>
 """
 
+
+# ============================================================
+# STRUCTURED DATA
+# JobPosting puts open roles into Google for Jobs at no cost —
+# the point of it here is the TIG welder shortage. Article and
+# BreadcrumbList help the news pages surface properly.
+# ============================================================
+import json
+
+ORG = {
+    "@type": "Organization",
+    "name": "ALPROJECTS Group",
+    "sameAs": "https://alprojects.co/",
+    "logo": "https://alprojects.co/assets/logo.png",
+}
+
+def _strip(o):
+    """Google rejects null-valued properties — drop them rather than emit null."""
+    if isinstance(o, dict):
+        return {k: _strip(v) for k, v in o.items() if v is not None and v != []}
+    if isinstance(o, list):
+        return [_strip(v) for v in o]
+    return o
+
+def jsonld(obj):
+    obj = _strip(obj)
+    return ('  <script type="application/ld+json">\n  %s\n  </script>\n'
+            % json.dumps(obj, indent=2, ensure_ascii=False).replace("\n", "\n  "))
+
+def job_postings_ld():
+    out = []
+    for p in POSITIONS:
+        if not p.get("open"):
+            continue
+        desc = ("<p>%s</p><p>What we need:</p><ul>%s</ul>"
+                % (p["summary"], "".join("<li>%s</li>" % n for n in p["needs"])))
+        out.append(jsonld({
+            "@context": "https://schema.org",
+            "@type": "JobPosting",
+            "title": p["title"],
+            "description": desc,
+            "identifier": {"@type": "PropertyValue", "name": "ALPROJECTS Group", "value": p["id"]},
+            "datePosted": p["posted"],
+            "validThrough": p["valid_through"] + "T23:59",
+            "employmentType": p["employment_type"],
+            "totalJobOpenings": p.get("vacancies"),
+            "hiringOrganization": ORG,
+            "jobLocation": [{
+                "@type": "Place",
+                "address": {"@type": "PostalAddress",
+                            "addressLocality": "Klaipeda",
+                            "postalCode": "LT-91110",
+                            "streetAddress": "Silutes av. 2-536",
+                            "addressCountry": "LT"},
+            }],
+            "applicantLocationRequirements": [
+                {"@type": "Country", "name": c} for c in p.get("countries", [])
+            ],
+            "directApply": True,
+            "industry": "Industrial services, shipbuilding, offshore",
+        }))
+    return "".join(out)
+
+def article_ld(a):
+    return jsonld({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": a["title"],
+        "description": a["lead"],
+        "image": "https://alprojects.co/assets/" + a["img"],
+        "datePublished": a["iso"],
+        "dateModified": a["iso"],
+        "author": ORG,
+        "publisher": ORG,
+        "mainEntityOfPage": "https://alprojects.co/news/%s.html" % a["slug"],
+    })
+
+def breadcrumb_ld(trail):
+    return jsonld({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": n,
+             "item": "https://alprojects.co" + u}
+            for i, (n, u) in enumerate(trail)
+        ],
+    })
+
+OG_CARDS = {"we-do-not-certify-our-own-welds", "piping-installation-engine-room",
+            "strongest-in-lithuania-2025-2026"}
+
 # ---------------- write everything ----------------
 write("privacy.html", page("Privacy Policy",
       "How ALPROJECTS Group handles personal data collected through this website.",
@@ -712,27 +829,29 @@ write("privacy.html", page("Privacy Policy",
 
 write("careers.html", page("Careers",
       "Work with ALPROJECTS Group — welding, pipe fitting, NDT, rope access and mechanical contracting on industrial and offshore projects across Europe.",
-      CAREERS, canonical="/careers.html"))
+      CAREERS, canonical="/careers.html", og="careers",
+      head_extra=job_postings_ld() +
+                 breadcrumb_ld([("Home", "/"), ("Careers", "/careers.html")])))
 
 write("company.html", page("Company",
       "ALPROJECTS Group is a European provider of industrial services for the shipbuilding, offshore, industrial and energy sectors.",
-      COMPANY, canonical="/company.html"))
+      COMPANY, canonical="/company.html", og="company"))
 
 write("services.html", page("Services",
       "NDT, rope access, 3D laser scanning, quality control and rigging for industrial and offshore projects across Europe.",
-      SERVICES, canonical="/services.html"))
+      SERVICES, canonical="/services.html", og="services"))
 
 write("projects.html", page("Projects",
       "Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.",
-      PROJECTS, canonical="/projects.html"))
+      PROJECTS, canonical="/projects.html", og="projects"))
 
 write("contacts.html", page("Contacts",
       "Contact ALPROJECTS Group — Silutes av. 2-536, Klaipeda, Lithuania. Project enquiries and personnel requests.",
-      CONTACTS, canonical="/contacts.html"))
+      CONTACTS, canonical="/contacts.html", og="contacts"))
 
 write("news/index.html", page("News",
       "Project updates and engineering insights from ALPROJECTS Group.",
-      news_index(), canonical="/news/"))
+      news_index(), canonical="/news/", og="news"))
 
 for a in ARTICLES:
     body = dict(a)
@@ -740,4 +859,38 @@ for a in ARTICLES:
     body["factblock"] = facts_html(a.get("facts"))
     write("news/%s.html" % a["slug"],
           page(a["title"][:60], a["lead"], ARTICLE_BODY.format(**body),
-               canonical="/news/%s.html" % a["slug"]))
+               canonical="/news/%s.html" % a["slug"],
+               og=(a["slug"] if a["slug"] in OG_CARDS else "news"),
+               head_extra=article_ld(a) + breadcrumb_ld(
+                   [("Home", "/"), ("News", "/news/"),
+                    (a["title"], "/news/%s.html" % a["slug"])])))
+
+
+# ---------------- sitemap ----------------
+# Generated from the same page list that writes the HTML, so a renamed or
+# added article can never leave a dead URL behind in the sitemap.
+SITEMAP = [
+    ("/",              "monthly", "1.0"),
+    ("/services.html", "monthly", "0.9"),
+    ("/projects.html", "monthly", "0.9"),
+    ("/company.html",  "monthly", "0.8"),
+    ("/news/",         "weekly",  "0.8"),
+    ("/contacts.html", "yearly",  "0.7"),
+    ("/careers.html",  "monthly", "0.6"),
+    ("/privacy.html",  "yearly",  "0.2"),
+] + [("/news/%s.html" % a["slug"], "yearly", "0.6") for a in ARTICLES]
+
+def sitemap():
+    urls = "\n".join(
+        '  <url>\n'
+        '    <loc>https://alprojects.co%s</loc>\n'
+        '    <lastmod>%s</lastmod>\n'
+        '    <changefreq>%s</changefreq>\n'
+        '    <priority>%s</priority>\n'
+        '  </url>' % (loc, LASTMOD, freq, pri)
+        for loc, freq, pri in SITEMAP)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            + urls + '\n</urlset>\n')
+
+write("sitemap.xml", sitemap())

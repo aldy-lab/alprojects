@@ -49,13 +49,19 @@
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://alprojects.co/news/ndt-independent-verification.html</loc>
+    <loc>https://alprojects.co/news/we-do-not-certify-our-own-welds.html</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://alprojects.co/news/engine-room-piping-installation.html</loc>
+    <loc>https://alprojects.co/news/piping-installation-engine-room.html</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alprojects.co/news/strongest-in-lithuania-2025-2026.html</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>

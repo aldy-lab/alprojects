@@ -36,7 +36,21 @@
     "sergej-andrejev":    { instagram: "", linkedin: "" }
   };
 
+  /* Cookieless analytics. Leave "" and no third-party request is made at all —
+     nothing to disclose, no consent banner needed. Set it to the domain you
+     registered with Plausible (self-hosted or plausible.io) to switch it on;
+     if you do, add the disclosure paragraph to privacy.html — see README. */
+  var ANALYTICS_DOMAIN = ""; // e.g. "alprojects.co"
+
   /* ---------- apply config ---------- */
+  if (ANALYTICS_DOMAIN) {
+    var an = document.createElement("script");
+    an.defer = true;
+    an.setAttribute("data-domain", ANALYTICS_DOMAIN);
+    an.src = "https://plausible.io/js/script.js";
+    document.head.appendChild(an);
+  }
+
   /* there is a booking button in the header and another in the mobile menu */
   if (BOOKING_URL) {
     document.querySelectorAll("[data-booking]").forEach(function (b) {
