@@ -390,6 +390,7 @@ ARTICLES = [
          img="news-2.webp", w=1000, h=750,
          alt="ALPROJECTS Group project site",
          title="Among the strongest companies in Lithuania",
+         seo="Among Lithuania's strongest companies",
          lead="UAB \u201cALprojects\u201d has been awarded the Strongest in Lithuania 2025\u20132026 certificate by Creditinfo.",
          body=[
            "The certificate recognises companies with a high credit score and a proven record of financial stability. It is issued by Creditinfo Group and was awarded on 23 June 2026 for the 2025\u20132026 period.",
@@ -405,6 +406,7 @@ ARTICLES = [
          img="news-2.webp", w=1000, h=750,
          alt="Industrial installation works",
          title="A transformer mechanical package across five countries",
+         seo="Transformer package, five countries",
          lead="Stainless steel piping, cooling systems and precision installation \u2014 repeated across five European sites.",
          body=[
            "A transformer mechanical package covers the stainless steel piping and cooling systems that keep the unit within its operating envelope. The tolerances are tight and the commissioning window is usually short.",
@@ -431,6 +433,7 @@ ARTICLES = [
          img="news-3.webp", w=1000, h=562,
          alt="Precision welding on a workshop bench",
          title="We needed 30 certified TIG welders. Europe could not supply them.",
+         seo="We needed 30 certified TIG welders",
          lead="The skilled trades shortage is not an abstraction when it is your project that cannot start.",
          body=[
            "Recruiting thirty certified TIG welders for a single scope of work turned out to be materially harder than the engineering it supported.",
@@ -480,12 +483,17 @@ def facts_html(facts):
 
 def news_index():
     cards = []
-    for a in ARTICLES:
+    for i, a in enumerate(ARTICLES):
+        # The first row sits above the fold, so lazy-loading it delays the LCP
+        # by a round trip. Everything from row two down stays lazy.
+        eager = i < 3
+        card = dict(a, loading="eager" if eager else "lazy",
+                    prio=' fetchpriority="high"' if i == 0 else "")
         cards.append("""        <a class="news-card" href="/news/{slug}.html">
           <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8599;</span></span>
-          <span class="thumb"><img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}" loading="lazy"></span>
+          <span class="thumb"><img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}" loading="{loading}"{prio}></span>
           <h2>{title}</h2>
-        </a>""".format(**a))
+        </a>""".format(**card))
     return """
     <div class="container page-head">
       <p class="eyebrow">Our news</p>
@@ -858,7 +866,7 @@ for a in ARTICLES:
     body["paras"] = "\n".join("      <p>%s</p>" % p for p in a["body"])
     body["factblock"] = facts_html(a.get("facts"))
     write("news/%s.html" % a["slug"],
-          page(a["title"][:60], a["lead"], ARTICLE_BODY.format(**body),
+          page(a.get("seo", a["title"]), a["lead"], ARTICLE_BODY.format(**body),
                canonical="/news/%s.html" % a["slug"],
                og=(a["slug"] if a["slug"] in OG_CARDS else "news"),
                head_extra=article_ld(a) + breadcrumb_ld(

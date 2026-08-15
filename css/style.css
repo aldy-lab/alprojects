@@ -11,7 +11,12 @@
   --white:    #ffffff;
   --gray-50:  #b9c4d8;
   --gray-100: #8e97ab;
-  --gray-150: #5f5e70;
+  /* Lifted from the sampled #5f5e70, which sat at 2.9-3.2:1 on the dark
+     grounds — under the 4.5:1 WCAG AA minimum for text this size, and the
+     source of every contrast failure on the site. Same hue and saturation,
+     raised until it clears 4.5:1 on the darkest panel with margin (4.8:1).
+     Still clearly quieter than --muted (6.2:1), so the hierarchy is intact. */
+  --gray-150: #828195;
   --gray-200: #4e4e5a;
   --black:    #05060f;
   --blue:     #12294b;
@@ -804,6 +809,43 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: 0.14em;
   color: var(--muted);
   text-transform: uppercase;
+}
+/* Stands in for a certificate scan we don't hold artwork for. Matches the
+   scan's footprint so the three cards stay on one baseline, and reads as a
+   drawing plate rather than pretending to be a document. */
+.cert-plate {
+  width: min(100%, 190px);
+  aspect-ratio: 300 / 424;
+  margin: 0 auto 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--line-strong);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(255, 255, 255, 0.05) 27px 28px),
+    repeating-linear-gradient(90deg, transparent 0 27px, rgba(255, 255, 255, 0.05) 27px 28px);
+}
+.cert-plate-org {
+  font-size: var(--tag);
+  letter-spacing: 0.3em;
+  color: var(--muted-2);
+}
+.cert-plate-num {
+  font-size: clamp(26px, 2.6vw, 34px);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1;
+}
+.cert-plate-label {
+  font-size: var(--tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.7;
 }
 .certs-caption {
   position: relative;
