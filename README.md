@@ -26,6 +26,26 @@ The sub-pages are committed as plain HTML — nothing needs to run to serve the
 site. Re-run `python3 tools/build-pages.py` only after editing the header or
 footer in `index.html`, so the copies don't drift.
 
+## No horizontal scrolling — how it's enforced
+
+`overflow-x` lives on `<html>`, not `<body>`. Setting it on `<body>` makes body a
+scroll container, which changes how `position: sticky` resolves in the services
+section. `overflow-x: clip` is used where supported (it clips without creating a
+scroll container) with `hidden` as the fallback for older Safari.
+
+That is the safety net, not the fix. The actual guarantee comes from:
+
+- grid/flex children get `min-width: 0` — they default to `min-width: auto` and
+  refuse to shrink below their content, which is the usual cause of sideways
+  scroll on narrow screens;
+- `overflow-wrap: break-word` on body, so a long email or URL can't push the
+  layout wider;
+- no `100vw` anywhere (it includes the scrollbar and overflows by its width).
+
+Measured at 500/768/1024/1440/1920: `document.scrollWidth` equals the viewport
+and **zero elements extend past the right edge**. Before this change the partner
+marquee put 16–20 elements past it, hidden only by the clip.
+
 ## Viewport notes
 
 The hero's vertical rhythm comes from the 1920x1200 Figma frame. On a laptop
@@ -130,8 +150,10 @@ var FORM_ENDPOINT = "";             // newsletter POST target
 - [ ] **Newsletter backend** — set `FORM_ENDPOINT` (Formspree, Buttondown,
       Mailerlite…). Without it the form opens the visitor's mail app with a
       pre-filled request to info@alprojects.eu.
-- [ ] **Partner logos** — the design only contained LVEA; it is repeated in the
-      marquee. Add real partner logos as more come in (`.partner-card` blocks).
+- [ ] **Partner logos** — the design only contained LVEA. The auto-scrolling
+      marquee (which repeated that one logo ten times) is gone; partners are now
+      a static centred grid that looks right with 1, 3 or 8 logos. Add one
+      `.partner-card` per real partner as they come in.
 - [ ] **Certificates** — ⚠️ all three cards show the *same* DNV scan, and that
       scan reads ISO 9001, while the cards are labelled 9001 / 14001 / 45001.
       As published this claims certifications the artwork does not evidence.

@@ -56,7 +56,20 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* Grid and flex items default to min-width/min-height:auto, so a long word or
+   a wide child can force its track wider than the viewport. Opting them out is
+   what makes horizontal overflow structurally impossible rather than clipped. */
+.stats-grid > *, .adv-grid > *, .team-grid > *, .news-grid > *,
+.certs-grid > *, .directions > *, .footer-grid > *, .partners-grid > *,
+.service-body > *, .service-meta > *, .hero-bottom > * { min-width: 0; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;            /* fallback: older Safari */
+}
+@supports (overflow: clip) {
+  html { overflow-x: clip; }     /* clips without becoming a scroll container */
+}
 
 body {
   background: var(--bg);
@@ -65,7 +78,11 @@ body {
   font-size: var(--text-l);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* long unbroken strings (emails, URLs) must never push the layout wider */
+  overflow-wrap: break-word;
+  /* no overflow-x here on purpose — it belongs on <html>. Setting it on <body>
+     makes body a scroll container, which changes how position: sticky resolves
+     in the services section. */
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -640,23 +657,15 @@ button { font-family: inherit; cursor: pointer; }
    PARTNERS
    ============================================================ */
 .partners { padding-bottom: clamp(70px, 9vw, 130px); }
-.marquee {
-  overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-.marquee-track {
-  display: flex;
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 240px));
   gap: 14px;
-  width: max-content;
-  animation: marquee 32s linear infinite;
+  justify-content: center;
 }
-.marquee:hover .marquee-track { animation-play-state: paused; }
-@keyframes marquee { to { transform: translateX(-50%); } }
 .partner-card {
-  width: 300px;
+  width: 100%;
   height: 150px;
-  flex: none;
   background: var(--panel);
   border: 1px solid var(--line);
   display: grid;
