@@ -37,11 +37,13 @@
   };
 
   /* ---------- apply config ---------- */
-  var booking = document.querySelector("[data-booking]");
-  if (booking && BOOKING_URL) {
-    booking.setAttribute("href", BOOKING_URL);
-    booking.setAttribute("target", "_blank");
-    booking.setAttribute("rel", "noopener");
+  /* there is a booking button in the header and another in the mobile menu */
+  if (BOOKING_URL) {
+    document.querySelectorAll("[data-booking]").forEach(function (b) {
+      b.setAttribute("href", BOOKING_URL);
+      b.setAttribute("target", "_blank");
+      b.setAttribute("rel", "noopener");
+    });
   }
 
   document.querySelectorAll("[data-social]").forEach(function (a) {

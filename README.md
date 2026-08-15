@@ -26,6 +26,34 @@ The sub-pages are committed as plain HTML — nothing needs to run to serve the
 site. Re-run `python3 tools/build-pages.py` only after editing the header or
 footer in `index.html`, so the copies don't drift.
 
+## Mobile
+
+Audited with real device emulation (Playwright, DPR 3, touch) at 360x740,
+375x667, 390x844, 412x915 and 430x932 — Chrome's headless window clamps at
+500px, so these widths could not be tested any other way.
+
+Every page reports zero horizontal overflow, no tap target under the 24px
+WCAG 2.2 minimum, and no text-entry field under 16px. That last one is
+functional, not typographic: iOS Safari zooms the page when a focused input is
+smaller than 16px.
+
+What the audit changed:
+
+- form fields to 16px on mobile (the desktop rules use `input[type=...]`
+  selectors, so the mobile override has to match that specificity or it loses);
+- 44px burger with `flex: none`, since a flex item shrinks below its width;
+- vertical padding on inline links, which were 15-20px tall;
+- the header "Book a call" wrapped to two lines and crowded the logo on a
+  phone, so below 560px it moves into the menu as a full-width action;
+- `scroll-margin-top` on anchor targets — `#apply` and friends were landing
+  underneath the fixed header, on desktop as well;
+- crosshairs and card corner brackets are hidden on touch: they are hover-only
+  decoration and were the last thing extending past their parent's box.
+
+Verified by driving the phone, not just measuring it: the menu opens and
+closes, `aria-expanded` toggles, body scroll locks and restores, all seven
+links navigate, and the careers form validates.
+
 ## Accessibility
 
 Audited across every page with a headless probe: one `<h1>` per page, no

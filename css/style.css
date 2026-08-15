@@ -66,6 +66,10 @@
 .certs-grid > *, .directions > *, .footer-grid > *, .partners-grid > *,
 .service-body > *, .service-meta > *, .hero-bottom > * { min-width: 0; }
 
+/* Anchor targets must clear the fixed header, or jumping to #apply (or any
+   in-page id) lands the heading underneath it. */
+:target, [id] { scroll-margin-top: calc(var(--nav-h) + 18px); }
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;            /* fallback: older Safari */
@@ -1609,3 +1613,94 @@ html.blueprint .position, html.blueprint .partner-card {
 html.blueprint, html.blueprint body { cursor: crosshair; }
 html.blueprint a, html.blueprint button,
 html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: pointer; }
+
+/* ============================================================
+   MOBILE — touch targets and iOS input behaviour
+   Verified with real device emulation (360-430px, DPR 3, touch).
+   ============================================================ */
+@media (max-width: 980px) {
+  /* iOS Safari zooms the page when a focused field is under 16px.
+     16px here is a functional requirement, not a type choice. */
+  .apply-form input[type="text"],
+  .apply-form input[type="email"],
+  .apply-form input[type="tel"],
+  .apply-form select,
+  .apply-form textarea,
+  .newsletter input[type="email"] {
+    font-size: 16px;   /* matches the desktop rule's specificity, or it loses */
+  }
+
+  /* comfortable touch targets (Apple HIG: 44px) */
+  .burger { width: 44px; height: 44px; flex: none; }  /* flex item would shrink */
+  .logo { display: inline-flex; align-items: center; min-height: 44px; }
+  .socials a { width: 44px; height: 44px; }
+  .socials svg { width: 16px; height: 16px; }
+
+  .hero-scroll { padding: 14px 0; }
+  .btn-solid { padding: 15px 26px; }
+  .btn-bracket { padding: 15px 22px; }
+
+  .apply-form input,
+  .apply-form select,
+  .apply-form .btn-solid { min-height: 48px; }
+  .apply-form .field-check input { min-height: 0; width: 24px; height: 24px; }
+
+  /* footer and prose link lists get real hit areas without loosening the look */
+  .footer-col li a { display: block; padding: 9px 0; }
+  .mobile-menu a { padding: 16px 0; }   /* keep display:flex so the gap survives */
+  .footer-contacts .big { display: inline-block; padding: 6px 0; }
+
+  /* stacked panels shouldn't keep desktop padding on a phone */
+  .apply-panel { padding: clamp(20px, 5vw, 32px); }
+  .position { padding: clamp(18px, 4.5vw, 26px); }
+}
+
+  /* inline text links sat at 15-20px tall — under the 24px WCAG 2.2 minimum.
+     Vertical padding gives them a real hit area without changing the type. */
+  .prose a,
+  .footer-bottom a,
+  /* a.current carries padding: 2px 6px at higher specificity — match it */
+  .service-list a,
+  .service-list a.current { display: inline-block; padding: 6px 0; }
+  .service-list a.current { padding: 6px 6px; margin: 0 -6px; }
+  .apply-form .field-check label a { display: inline-block; padding: 4px 0; }
+  .industry-tags span { font-size: 11px; }
+  .apply-form .field-check input { font-size: 16px; }
+}
+
+/* Decoration that only makes sense with a cursor, or with room to breathe.
+   Both sit outside their parent's box and were the only remaining source of
+   inner scrollWidth on phones. */
+@media (hover: none) {
+  .dir-card .corners { display: none !important; }
+}
+@media (max-width: 700px) {
+  .xhair { display: none; }
+  .dir-card .corners { display: none !important; }
+}
+
+@media (max-width: 560px) {
+  /* the fact strip reads as a list, not two cramped columns */
+  .fact-strip { grid-template-columns: 1fr; gap: 20px; }
+  .article-hero { aspect-ratio: 4 / 3; }
+  .page-head { padding-top: clamp(44px, 12vw, 70px); }
+}
+
+/* The header CTA wrapped to two lines on a phone and crowded the logo and
+   burger. Below 560px it moves into the menu as a full-width primary action. */
+.menu-cta { display: none; }
+@media (max-width: 980px) {
+  .site-header .btn-solid { white-space: nowrap; padding: 13px 18px; }
+}
+@media (max-width: 560px) {
+  .site-header .btn-solid:not(.menu-cta) { display: none; }
+  .mobile-menu a.menu-cta {
+    display: block;
+    margin-top: 26px;
+    padding: 17px 26px;
+    text-align: center;
+    color: var(--black);          /* .mobile-menu a would otherwise force white */
+    background: var(--white);
+    border-bottom: 0;
+  }
+}
