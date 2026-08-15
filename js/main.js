@@ -143,7 +143,9 @@
     if (on) measure();
     try { sessionStorage.setItem(BLUEPRINT_KEY, on ? "1" : "0"); } catch (e) {}
     if (announce) {
-      flag.textContent = on ? "Blueprint mode on — press B to exit" : "Blueprint mode off";
+      flag.textContent = on
+        ? "Blueprint mode — drag to measure · B to exit"
+        : "Blueprint mode off";
       flag.classList.add("show");
       clearTimeout(flagTimer);
       flagTimer = setTimeout(function () { flag.classList.remove("show"); }, 2600);
@@ -167,11 +169,78 @@
     if (document.documentElement.classList.contains("blueprint")) measure();
   }, { passive: true });
 
+
+  /* ---------- hidden, part two: drag to measure ----------
+     Inside blueprint mode, dragging draws a dimension line with a live
+     readout — the drafting tool the rest of the motif implies. Pointer
+     events only, so it never interferes with touch scrolling or links. */
+  var mLayer = document.createElement("div");
+  mLayer.className = "measure-layer";
+  mLayer.setAttribute("aria-hidden", "true");
+  mLayer.innerHTML =
+    '<span class="m-line"></span><span class="m-cap m-a"></span>' +
+    '<span class="m-cap m-b"></span><span class="m-read"></span>';
+  document.body.appendChild(mLayer);
+  var mLine = mLayer.querySelector(".m-line"),
+      mCapA = mLayer.querySelector(".m-a"),
+      mCapB = mLayer.querySelector(".m-b"),
+      mRead = mLayer.querySelector(".m-read"),
+      mFrom = null, mFade;
+
+  function drawMeasure(x, y) {
+    var dx = x - mFrom.x, dy = y - mFrom.y;
+    var len = Math.sqrt(dx * dx + dy * dy);
+    var ang = Math.atan2(dy, dx) * 180 / Math.PI;
+    mLine.style.transform =
+      "translate(" + mFrom.x + "px," + mFrom.y + "px) rotate(" + ang + "deg)";
+    mLine.style.width = len + "px";
+    mCapA.style.transform =
+      "translate(" + mFrom.x + "px," + mFrom.y + "px) rotate(" + ang + "deg)";
+    mCapB.style.transform =
+      "translate(" + x + "px," + y + "px) rotate(" + ang + "deg)";
+    mRead.textContent = Math.round(len) + " px";
+    mRead.style.transform =
+      "translate(" + (mFrom.x + dx / 2) + "px," + (mFrom.y + dy / 2) + "px)";
+  }
+
+  function measuring() {
+    return document.documentElement.classList.contains("blueprint");
+  }
+
+  document.addEventListener("pointerdown", function (ev) {
+    if (!measuring() || ev.pointerType !== "mouse" || ev.button !== 0) return;
+    /* ev.target can be a non-element (document, SVG in older engines) — guard
+       before calling closest(), or the whole handler throws. */
+    var t = ev.target;
+    if (t && typeof t.closest === "function" &&
+        t.closest("a, button, input, textarea, select, label")) return;
+    ev.preventDefault();
+    clearTimeout(mFade);
+    mFrom = { x: ev.clientX, y: ev.clientY };
+    mLayer.classList.add("on");
+    drawMeasure(ev.clientX, ev.clientY);
+  });
+
+  document.addEventListener("pointermove", function (ev) {
+    if (mFrom) drawMeasure(ev.clientX, ev.clientY);
+  });
+
+  function endMeasure() {
+    if (!mFrom) return;
+    mFrom = null;
+    mFade = setTimeout(function () { mLayer.classList.remove("on"); }, 1800);
+  }
+  document.addEventListener("pointerup", endMeasure);
+  document.addEventListener("pointercancel", endMeasure);
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape") { mFrom = null; mLayer.classList.remove("on"); }
+  });
+
   /* a note for whoever opens the console */
   if (window.console && console.log) {
     console.log(
       "%cALPROJECTS GROUP%c\nIntegrated engineering for industry & offshore." +
-      "\nPress B for blueprint mode.\nBuilt by ALDY — https://aldystudio.com",
+      "\nPress B for blueprint mode, then drag to measure.\nBuilt by ALDY — https://aldystudio.com",
       "font:600 14px/1.4 system-ui;letter-spacing:.14em",
       "font:12px/1.6 system-ui;color:#8e97ab"
     );

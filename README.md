@@ -66,7 +66,12 @@ Press **B** anywhere on the site to overlay the full drafting sheet — stronger
 grid, registration marks, dashed outlines, and the real pixel size of each card
 rendered as a dimension label, in the spirit of the `200x200` annotation in the
 design. Press B again to exit; the state is remembered for the tab only, and the
-key is ignored while typing in a form field. There is also a short console note
+key is ignored while typing in a form field.
+
+**Then drag anywhere to measure.** A dimension line with end caps and a live
+pixel readout follows the cursor — the drafting tool the rest of the motif
+implies. Mouse only (never interferes with touch scrolling), suppressed over
+links and form fields, cleared with Escape. There is also a short console note
 for anyone who opens dev tools.
 
 It is deliberately undiscoverable by accident: nothing on the page advertises it,
@@ -158,9 +163,11 @@ Two notes on adopting the scale:
   `--h2` (52px), and the one off-scale 14px body size became `--text-l` (15px).
   That is the point of the scale, but it does mean a few headings shifted a
   couple of pixels from the original Figma frame.
-- `BLUE` and `BEIGE` were unused before. Beige is now the accent (eyebrow
-  labels, lit loading-bar segments, the featured hero card's corner marks);
-  blue tints the certifications panel glow.
+- `BLUE` tints the certifications panel glow. **`BEIGE` is deliberately unused**:
+  it was tried as the accent and read cheap against this palette — ALPROJECTS'
+  own LinkedIn carousels use white and cool light steel on deep navy and never a
+  warm accent for text. `--accent` is `--gray-50`; the beige token stays defined
+  in case it is wanted for print.
 
 ## Configuration
 
