@@ -6,6 +6,57 @@
 (function () {
   "use strict";
 
+  /* ============================================================
+     CONFIG — the only block that needs editing to go live.
+     Fill in a URL to switch a link on; leave it "" and the link
+     is removed from the page entirely, so nothing dead ships.
+     ============================================================ */
+
+  /* Header "Book a call" button. Falls back to #contacts while empty. */
+  var BOOKING_URL = ""; // e.g. "https://calendly.com/alprojects/30min"
+
+  /* Company profiles — used in the header and the footer. */
+  var SOCIAL = {
+    instagram: "",
+    linkedin: "",
+    x: ""
+  };
+
+  /* Per-person profiles on the team cards. Keys match data-member in the HTML. */
+  var MEMBER_SOCIAL = {
+    "aleksandr-vasiljev": { instagram: "", linkedin: "" },
+    "alex-stepanenko":    { instagram: "", linkedin: "" },
+    "viktor-margus":      { instagram: "", linkedin: "" },
+    "goda-budaviciute":   { instagram: "", linkedin: "" },
+    "sergej-andrejev":    { instagram: "", linkedin: "" }
+  };
+
+  /* ---------- apply config ---------- */
+  var booking = document.querySelector("[data-booking]");
+  if (booking && BOOKING_URL) {
+    booking.setAttribute("href", BOOKING_URL);
+    booking.setAttribute("target", "_blank");
+    booking.setAttribute("rel", "noopener");
+  }
+
+  document.querySelectorAll("[data-social]").forEach(function (a) {
+    var member = a.getAttribute("data-member");
+    var set = member ? MEMBER_SOCIAL[member] || {} : SOCIAL;
+    var url = set[a.getAttribute("data-social")];
+    if (url) {
+      a.setAttribute("href", url);
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
+    } else {
+      a.remove();
+    }
+  });
+
+  /* Drop any socials row left empty, so the gap collapses cleanly. */
+  document.querySelectorAll(".socials, .member .links").forEach(function (row) {
+    if (!row.querySelector("a")) row.remove();
+  });
+
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- header state ---------- */

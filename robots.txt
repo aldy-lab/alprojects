@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alprojects.co/sitemap.xml

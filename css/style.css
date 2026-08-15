@@ -36,8 +36,40 @@ body {
   overflow-x: hidden;
 }
 
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
+
+/* ---------- accessibility ---------- */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 200;
+  padding: 12px 22px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 0 0 4px 4px;
+  transition: transform 0.2s var(--ease);
+}
+.skip-link:focus { transform: translate(-50%, 0); }
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; }
 
@@ -918,6 +950,14 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   .stats-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
   .stats-photo { grid-column: 1 / -1; grid-row: auto; order: -1; }
   .service-slide { position: relative; top: auto; height: auto; min-height: 0; padding-top: clamp(180px, 34vh, 300px); }
+  /* the slide is auto-height here, so text rides up out of the bottom
+     gradient — darken the overlay so it stays legible over the photo */
+  .service-slide::after {
+    background: linear-gradient(to top,
+      rgba(8, 8, 15, 0.95) 0%,
+      rgba(8, 8, 15, 0.9) 50%,
+      rgba(8, 8, 15, 0.55) 100%);
+  }
   .service-body, .service-meta { grid-template-columns: 1fr; gap: 18px; }
   .service-col-label { color: var(--muted-2); }
   .cta-panel { grid-template-columns: 1fr; justify-items: start; }
