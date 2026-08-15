@@ -12,7 +12,7 @@
      is removed from the page entirely, so nothing dead ships.
      ============================================================ */
 
-  /* Header "Book a call" button. Falls back to #contacts while empty. */
+  /* Header "Book a call" button. Falls back to /contacts.html while empty. */
   var BOOKING_URL = ""; // e.g. "https://calendly.com/alprojects/30min"
 
   /* Company profiles — used in the header and the footer. */

@@ -5,11 +5,16 @@ Static site (HTML/CSS/JS, no build step). Built from the Figma design. Made by A
 ## Structure
 
 ```
-index.html         — the homepage (all sections)
+index.html         — the homepage (all sections, matching the Figma frame)
+company.html       — about the company
+services.html      — the five service lines in depth
+projects.html      — shipbuilding / offshore / industrial / renewable
+contacts.html      — address, email, both phone numbers
 careers.html       — careers / open application
 privacy.html       — privacy policy
 404.html           — custom not-found page (GitHub Pages serves it automatically)
-news/*.html        — article pages (drafts: noindex, not yet linked)
+news/index.html    — news listing
+news/*.html        — five article pages
 css/style.css      — design tokens + all styles, responsive down to mobile
 css/fonts.css      — self-hosted Montserrat @font-face
 js/main.js         — config block, nav, reveals, counters, newsletter
@@ -131,11 +136,12 @@ var FORM_ENDPOINT = "";             // newsletter POST target
       scan reads ISO 9001, while the cards are labelled 9001 / 14001 / 45001.
       As published this claims certifications the artwork does not evidence.
       Swap in the real 14001 / 45001 scans, or drop those two cards.
-- [ ] **News articles** — page shells exist under `news/` with the headline,
-      date and image, but no article text, so they are `noindex` and the
-      homepage cards still point at `#news`. Send the copy and I'll fill them in
-      and switch the three card links over. Cards 01 and 03 are also currently
-      the same headline and date with different photos.
+- [ ] **News articles** — ⚠️ five articles written from ALprojects Group's own
+      LinkedIn posts (retrieved 15 Aug 2026). **Dates are approximate** — LinkedIn
+      reports posts as "2 days ago" / "3 weeks ago", not calendar dates — and the
+      wording is ours, derived from those posts rather than quoted. Verify both
+      before promoting the pages. Article photos are reused stock from the
+      original design and do not depict the projects described.
 - [x] **Privacy Policy** — `privacy.html` is live and linked from the footer.
       ⚠️ Written from what the site technically does; **not reviewed by a
       lawyer** — have it checked against your internal processes.

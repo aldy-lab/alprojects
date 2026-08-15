@@ -30,7 +30,9 @@ def rootify(html):
     """Relative paths -> root-relative, and same-page anchors -> homepage anchors."""
     html = re.sub(r'(src|href)="(assets|css|js)/', r'\1="/\2/', html)
     html = html.replace('href="#top"', 'href="/"')
-    html = re.sub(r'href="#(?!main\b)([a-z-]+)"', r'href="/#\1"', html)
+    # NB: skip #main (skip-link) and #i-* (SVG sprite <use> refs) — rewriting
+    # the sprite refs to /#i-* silently breaks every icon on the page.
+    html = re.sub(r'href="#(?!main\b)(?!i-)([a-z-]+)"', r'href="/#\1"', html)
     return html
 
 
@@ -218,24 +220,69 @@ CAREERS = """
 """
 
 # ============================================================
-# NEWS ARTICLES  (structure only — real copy still to come)
+# NEWS ARTICLES
+# Written from ALprojects Group's own LinkedIn posts (retrieved
+# 15 Aug 2026). ⚠️ Dates are APPROXIMATE — LinkedIn reports posts
+# as "2 days ago" / "3 weeks ago", not as calendar dates. The
+# wording is derived from those posts, not quoted verbatim.
+# Have the client verify both before launch.
 # ============================================================
 ARTICLES = [
-    dict(slug="mechanical-installation-europe",
-         num="01", date="26 Feb 2025", iso="2025-02-26", cat="Shipbuilding",
+    dict(slug="ndt-independent-verification",
+         num="01", date="13 Aug 2026", iso="2026-08-13", cat="Quality Control",
+         img="news-3.webp", w=1000, h=562,
+         alt="Precision welding inspected on a workshop bench",
+         title="Why we verify welds we did not make",
+         lead="Non-destructive testing only means something when the party inspecting the weld is not the party being graded on it.",
+         body=[
+           "Our NDT work is built around independent verification. When we inspect a weld, our job is to find the defect — not to certify our own workmanship. That separation is the entire value of the inspection.",
+           "The practical effect is that defects surface before client sign-off rather than after it. A weld rejected at inspection is a repair; the same weld found after handover is a warranty claim, a delay, and in the wrong environment a safety event.",
+           "It is a slower way to work and occasionally an uncomfortable one. It is also the only version of quality control that is worth paying for.",
+         ]),
+    dict(slug="engine-room-piping-installation",
+         num="02", date="08 Aug 2026", iso="2026-08-08", cat="Shipbuilding",
          img="news-1.webp", w=831, h=554,
          alt="Welder performing mechanical installation works",
-         title="AL Projects delivers mechanical installation services for large-scale industrial facilities in Europe"),
-    dict(slug="offshore-welding-pipe-fitting",
-         num="02", date="05 Mar 2025", iso="2025-03-05", cat="Offshore",
+         title="Engine room piping on vessels under construction",
+         lead="Seawater, bilge and fuel systems, installed in the most congested compartment on the ship.",
+         body=[
+           "Engine room piping is unforgiving work. Seawater, bilge and fuel systems all have to be routed through a compartment that is already full of machinery, structure and other trades — and each system carries its own material, pressure and testing requirements.",
+           "Our teams handle prefabrication and installation together, which matters more here than almost anywhere else on a vessel: a spool that is fabricated to drawing but not to the as-built compartment is scrap.",
+           "The work is carried out on vessels under construction, alongside the yard's own schedule.",
+         ]),
+    dict(slug="transformer-mechanical-package",
+         num="03", date="01 Aug 2026", iso="2026-08-01", cat="Industrial Projects",
          img="news-2.webp", w=1000, h=750,
-         alt="Port cranes at sunset",
-         title="Certified welding and pipe fitting specialists support complex offshore operations across Europe"),
-    dict(slug="industrial-facilities-installation",
-         num="03", date="26 Feb 2025", iso="2025-02-26", cat="Shipbuilding",
+         alt="Port infrastructure at sunset",
+         title="A transformer mechanical package across five countries",
+         lead="Stainless steel piping, cooling systems and precision installation — repeated across five European sites.",
+         body=[
+           "A transformer mechanical package covers the stainless steel piping and cooling systems that keep the unit within its operating envelope. The tolerances are tight and the commissioning window is usually short.",
+           "What made this scope demanding was not any single site but the repetition: the same package delivered across five European countries, each with its own site conditions, inspection regime and local requirements.",
+           "Consistency across borders is a documentation problem as much as a fabrication one — which is where certified personnel and a single quality system earn their place.",
+         ]),
+    dict(slug="fuel-loading-terminal-completed",
+         num="04", date="25 Jul 2026", iso="2026-07-25", cat="Energy Projects",
+         img="news-2.webp", w=1000, h=750,
+         alt="Port infrastructure at sunset",
+         title="Fuel loading terminal completed",
+         lead="September 2025 to April 2026. Twelve specialists. Over 11,000 hours on site.",
+         body=[
+           "The scope ran from September 2025 to April 2026 and was delivered by a team of twelve specialists, accumulating more than 11,000 hours on site.",
+           "Fuel handling infrastructure concentrates every discipline we work in — mechanical installation, pipe fitting, welding, and the inspection and documentation that has to accompany all three when the medium is flammable.",
+           "Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.",
+         ]),
+    dict(slug="europe-tig-welder-shortage",
+         num="05", date="25 Jul 2026", iso="2026-07-25", cat="Industry",
          img="news-3.webp", w=1000, h=562,
          alt="Precision welding on a workshop bench",
-         title="AL Projects delivers mechanical installation services for large-scale industrial facilities in Europe"),
+         title="We needed 30 certified TIG welders. Europe could not supply them.",
+         lead="The skilled trades shortage is not an abstraction when it is your project that cannot start.",
+         body=[
+           "Recruiting thirty certified TIG welders for a single scope of work turned out to be materially harder than the engineering it supported.",
+           "The shortage is discussed across European industry in general terms. It becomes concrete when a project is resourced, scheduled and funded, and the constraint is simply the number of people who hold the certification and are willing to travel.",
+           "It is worth being direct about this, because the answer is not a recruitment campaign. It is training, certification pathways, and treating the trades as a career rather than a stopgap.",
+         ]),
 ]
 
 ARTICLE_BODY = """
@@ -250,18 +297,232 @@ ARTICLE_BODY = """
     </div>
 
     <div class="container prose">
-      <div class="notice">
-        <p><strong>Draft — not published.</strong> This page carries the headline, date and
-        image already shown on the homepage. The article text has not been written yet, so
-        the page is marked <code>noindex</code> and is not linked from the news cards.</p>
-      </div>
-
-      <!-- TODO(ALPROJECTS): replace this block with the real article copy. -->
-
-      <p class="back"><a class="btn-bracket" href="/#news">Back to news</a></p>
+      <!-- NOTE(ALPROJECTS): written from your LinkedIn post of approximately this
+           date. The date is approximate and the wording is ours, not a verbatim
+           quote of the post. Please verify both before promoting this page. -->
+      <p class="article-lead">{lead}</p>
+{paras}
+      <p class="back"><a class="btn-bracket" href="/news/">All news</a></p>
     </div>
 """
 
+def news_index():
+    cards = []
+    for a in ARTICLES:
+        cards.append("""        <a class="news-card" href="/news/{slug}.html">
+          <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8599;</span></span>
+          <span class="thumb"><img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}" loading="lazy"></span>
+          <h4>{title}</h4>
+        </a>""".format(**a))
+    return """
+    <div class="container page-head">
+      <p class="eyebrow">Our news</p>
+      <h1 class="page-title">Project Updates &amp; Engineering Insights</h1>
+      <p class="page-lead">Work in progress, completed scopes, and what we are learning across
+      shipbuilding, offshore, industrial and energy projects.</p>
+    </div>
+
+    <div class="container">
+      <div class="news-grid">
+%s
+      </div>
+    </div>
+""" % "\n".join(cards)
+
+
+# ============================================================
+# COMPANY
+# ============================================================
+COMPANY = """
+    <div class="container page-head">
+      <p class="eyebrow">Company</p>
+      <h1 class="page-title">A European provider of industrial services</h1>
+      <p class="page-lead">ALPROJECTS Group serves the shipbuilding, offshore, industrial and
+      energy sectors, from a head office in Klaipeda, Lithuania.</p>
+    </div>
+
+    <div class="container prose">
+      <h2>What we do</h2>
+      <p>We specialise in piping prefabrication and installation, steel fabrication and
+      mechanical installation, and we provide certified technical personnel to projects
+      across Europe. In practice that means we are engaged either to deliver a defined
+      mechanical scope, or to supply the qualified people a project is short of &mdash;
+      often both on the same site.</p>
+
+      <h2>Sectors</h2>
+      <ul>
+        <li><strong>Shipbuilding</strong> — piping and mechanical installation on vessels under construction.</li>
+        <li><strong>Offshore</strong> — inspection, access and mechanical works on offshore facilities.</li>
+        <li><strong>Industrial</strong> — plant installation, transformer packages, process piping.</li>
+        <li><strong>Energy and renewables</strong> — fuel handling infrastructure and wind energy support.</li>
+      </ul>
+
+      <h2>Certification</h2>
+      <p>ALPROJECTS Group holds ISO 9001, ISO 14001 and ISO 45001 certification, covering
+      quality management, environmental management and occupational health and safety.
+      Certification is what allows a client to accept our documentation without re-doing
+      the inspection themselves.</p>
+
+      <h2>Scale</h2>
+      <p>The company employs between 51 and 200 people and works across multiple European
+      countries. Projects are resourced from a pool of certified specialists rather than
+      subcontracted on, which is what keeps the quality system meaningful.</p>
+
+      <h2>Head office</h2>
+      <p>ALPROJECTS, UAB<br>Silutes av. 2-536, LT-91110 Klaipeda, Lithuania<br>
+      <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot;
+      <a href="tel:+37063663744">+370 636 63 744</a></p>
+
+      <p class="back">
+        <a class="btn-bracket" href="/services.html">Our services</a>
+        <a class="btn-bracket" href="/#team">Meet the team</a>
+      </p>
+    </div>
+"""
+
+# ============================================================
+# SERVICES
+# ============================================================
+SERVICES = """
+    <div class="container page-head">
+      <p class="eyebrow">Services</p>
+      <h1 class="page-title">Integrated Inspection &amp; Access Services</h1>
+      <p class="page-lead">Five service lines that are usually bought separately and work
+      better together — inspection, access, measurement, control and lifting.</p>
+    </div>
+
+    <div class="container prose">
+      <h2>Non-destructive testing (NDT)</h2>
+      <p>We inspect welds, materials and structures without interrupting operations, so
+      defects are identified early rather than at handover. Our NDT is deliberately
+      independent of the work being inspected — see
+      <a href="/news/ndt-independent-verification.html">why we verify welds we did not make</a>.</p>
+      <p class="svc-industries">Offshore oil &amp; gas · Wind energy · Industrial facilities · Steel structures</p>
+
+      <h2>Rope access services</h2>
+      <p>Certified rope access lets inspection and mechanical work reach locations that
+      would otherwise need scaffolding or a shutdown. It is faster to mobilise, cheaper
+      than staging, and in many offshore situations the only practical option.</p>
+      <p class="svc-industries">Offshore · Wind energy · Industrial plants · Marine facilities</p>
+
+      <h2>3D laser scanning</h2>
+      <p>We capture precise as-built geometry of structures and piping systems. The point
+      cloud supports dimensional control, clash detection and retrofit engineering &mdash;
+      which is what stops a perfectly fabricated spool from arriving at a compartment it
+      does not fit.</p>
+      <p class="svc-industries">Industrial plants · Offshore structures · Wind energy · Infrastructure</p>
+
+      <h2>Quality control and QAQC</h2>
+      <p>Quality control for piping and steel structures: inspection and verification
+      against WPS, drawings and applicable standards, with traceability and documentation
+      maintained throughout. Certification is only worth what the paperwork behind it can
+      demonstrate.</p>
+      <p class="svc-industries">Offshore &amp; marine · Energy · Heavy industry · Steel fabrication</p>
+
+      <h2>Rigging and technical support</h2>
+      <p>Lifting, rigging and installation works for industrial and offshore projects,
+      including the planning, coordination and supervision that makes them safe. Work is
+      performed under controlled procedures with safety compliance at every stage.</p>
+      <p class="svc-industries">Offshore · Industrial construction · Energy projects · Marine facilities</p>
+
+      <h2>Mechanical scopes</h2>
+      <p>Alongside the inspection and access lines, we deliver piping prefabrication and
+      installation, steel fabrication and mechanical installation as complete scopes, and
+      supply certified technical personnel to projects that need them.</p>
+
+      <p class="back">
+        <a class="btn-bracket" href="/projects.html">Where we work</a>
+        <a class="btn-bracket" href="/contacts.html">Discuss a project</a>
+      </p>
+    </div>
+"""
+
+# ============================================================
+# PROJECTS
+# ============================================================
+PROJECTS = """
+    <div class="container page-head">
+      <p class="eyebrow">Projects</p>
+      <h1 class="page-title">Where we work</h1>
+      <p class="page-lead">Four project types, one set of disciplines. The engineering is
+      largely the same; the environment, the standards and the consequences of getting it
+      wrong are not.</p>
+    </div>
+
+    <div class="container prose">
+      <h2>Shipbuilding</h2>
+      <p>Piping and mechanical installation on vessels under construction — seawater,
+      bilge and fuel systems routed through compartments that are already full of
+      machinery, structure and other trades. Prefabrication and installation are handled
+      together, because a spool built to drawing but not to the as-built compartment is
+      scrap.</p>
+
+      <h2>Offshore</h2>
+      <p>Inspection, access and mechanical works on offshore facilities, where mobilising
+      a team is expensive and a shutdown is more expensive still. Rope access and NDT
+      carry most of this work; visual inspection plays a central role in confirming the
+      safety and operational integrity of oil, gas and wind energy assets.</p>
+
+      <h2>Industrial projects</h2>
+      <p>Plant installation, process piping and mechanical packages. A recent example is a
+      transformer mechanical package — stainless steel piping and cooling systems &mdash;
+      <a href="/news/transformer-mechanical-package.html">delivered across five European
+      countries</a>, where consistency across borders was as much a documentation problem
+      as a fabrication one.</p>
+
+      <h2>Renewable and energy projects</h2>
+      <p>Fuel handling infrastructure and wind energy support. Our
+      <a href="/news/fuel-loading-terminal-completed.html">fuel loading terminal scope</a>
+      ran from September 2025 to April 2026 with twelve specialists and over 11,000 hours
+      on site — a useful figure for anyone planning work of that size.</p>
+
+      <p class="back">
+        <a class="btn-bracket" href="/services.html">Our services</a>
+        <a class="btn-bracket" href="/contacts.html">Start a project</a>
+      </p>
+    </div>
+"""
+
+# ============================================================
+# CONTACTS
+# ============================================================
+CONTACTS = """
+    <div class="container page-head">
+      <p class="eyebrow">Contacts</p>
+      <h1 class="page-title">Talk to us</h1>
+      <p class="page-lead">Project enquiries, personnel requests and open applications all
+      reach the same inbox — it is read by people who can answer technical questions.</p>
+    </div>
+
+    <div class="container prose">
+      <h2>Head office</h2>
+      <p>ALPROJECTS, UAB<br>
+      Silutes av. 2-536<br>
+      LT-91110 Klaipeda<br>
+      Lithuania</p>
+
+      <h2>Email</h2>
+      <p><a href="mailto:info@alprojects.eu">info@alprojects.eu</a></p>
+
+      <h2>Phone</h2>
+      <ul>
+        <li><a href="tel:+37063663744">+370 636 63 744</a></li>
+        <li><a href="tel:+37067020654">+370 670 20654</a></li>
+      </ul>
+
+      <h2>What to include</h2>
+      <p>For a project enquiry, the fastest route to a useful answer is the scope, the
+      location, the standards that apply and the window you are working to. For personnel
+      requests, tell us the disciplines, certifications and headcount.</p>
+
+      <p class="back">
+        <a class="btn-bracket" href="mailto:info@alprojects.eu?subject=Project%20enquiry">Email us</a>
+        <a class="btn-bracket" href="/careers.html">Careers</a>
+      </p>
+    </div>
+"""
+
+# ---------------- write everything ----------------
 write("privacy.html", page("Privacy Policy",
       "How ALPROJECTS Group handles personal data collected through this website.",
       PRIVACY, canonical="/privacy.html"))
@@ -270,6 +531,29 @@ write("careers.html", page("Careers",
       "Work with ALPROJECTS Group — welding, pipe fitting, NDT, rope access and mechanical contracting on industrial and offshore projects across Europe.",
       CAREERS, canonical="/careers.html"))
 
+write("company.html", page("Company",
+      "ALPROJECTS Group is a European provider of industrial services for the shipbuilding, offshore, industrial and energy sectors.",
+      COMPANY, canonical="/company.html"))
+
+write("services.html", page("Services",
+      "NDT, rope access, 3D laser scanning, quality control and rigging for industrial and offshore projects across Europe.",
+      SERVICES, canonical="/services.html"))
+
+write("projects.html", page("Projects",
+      "Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.",
+      PROJECTS, canonical="/projects.html"))
+
+write("contacts.html", page("Contacts",
+      "Contact ALPROJECTS Group — Silutes av. 2-536, Klaipeda, Lithuania. Project enquiries and personnel requests.",
+      CONTACTS, canonical="/contacts.html"))
+
+write("news/index.html", page("News",
+      "Project updates and engineering insights from ALPROJECTS Group.",
+      news_index(), canonical="/news/"))
+
 for a in ARTICLES:
+    body = dict(a)
+    body["paras"] = "\n".join("      <p>%s</p>" % p for p in a["body"])
     write("news/%s.html" % a["slug"],
-          page(a["title"][:60], a["title"], ARTICLE_BODY.format(**a), noindex=True))
+          page(a["title"][:60], a["lead"], ARTICLE_BODY.format(**body),
+               canonical="/news/%s.html" % a["slug"]))

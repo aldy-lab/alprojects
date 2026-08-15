@@ -1156,3 +1156,20 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   .dir-card img { height: clamp(60px, 5.6vw, 88px); }
   .hero-tags { padding: 10px 22px; }
 }
+
+/* article lead + service industry lines on the sub-pages */
+.article-lead {
+  font-size: var(--text-xl);
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 26px;
+  max-width: 64ch;
+}
+.svc-industries {
+  font-size: var(--tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-top: 10px;
+}
+.page .news-grid { padding-bottom: clamp(60px, 9vw, 120px); }
