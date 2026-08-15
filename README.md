@@ -46,6 +46,32 @@ Measured at 500/768/1024/1440/1920: `document.scrollWidth` equals the viewport
 and **zero elements extend past the right edge**. Before this change the partner
 marquee put 16–20 elements past it, hidden only by the clip.
 
+## Technical drawing motif
+
+The grid and "+" registration marks from the Figma frame are a reusable system
+rather than hero-only decoration:
+
+- `.tech-grid` paints the drafting grid on a section and fades it in when the
+  section scrolls into view;
+- `.xhair` corner marks are injected by JS into panels that can carry them.
+
+Both are applied from `js/main.js` (`GRID_SECTIONS` / `CROSSHAIR_TARGETS`), so
+the generated sub-pages pick them up with no markup changes — edit those two
+arrays to change where the motif appears. Everything respects
+`prefers-reduced-motion`.
+
+### Hidden: blueprint mode
+
+Press **B** anywhere on the site to overlay the full drafting sheet — stronger
+grid, registration marks, dashed outlines, and the real pixel size of each card
+rendered as a dimension label, in the spirit of the `200x200` annotation in the
+design. Press B again to exit; the state is remembered for the tab only, and the
+key is ignored while typing in a form field. There is also a short console note
+for anyone who opens dev tools.
+
+It is deliberately undiscoverable by accident: nothing on the page advertises it,
+so it reads as a detail for people who go looking rather than a gimmick.
+
 ## Hero spacing
 
 The hero is `100vh` with the bottom bar pinned by `margin-top: auto`, which used

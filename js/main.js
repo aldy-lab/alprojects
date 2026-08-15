@@ -64,6 +64,119 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+
+  /* ============================================================
+     TECHNICAL DRAWING MOTIF
+     Applies the grid + crosshair language from the design to the
+     sections that can carry it, and reveals each as it scrolls in.
+     Injected here so the generated sub-pages need no markup changes.
+     ============================================================ */
+  var GRID_SECTIONS = [
+    ".hero", ".advantages", ".partners", ".team",
+    ".certifications", ".news", ".cta", ".page-head", ".apply-panel"
+  ];
+  var CROSSHAIR_TARGETS = [
+    ".certs-panel", ".cta-panel", ".apply-panel", ".hero-tags", ".position"
+  ];
+
+  function addCrosshairs(el) {
+    if (el.querySelector(":scope > .xhair")) return;
+    if (getComputedStyle(el).position === "static") el.style.position = "relative";
+    ["tl", "tr", "bl", "br"].forEach(function (corner) {
+      var m = document.createElement("span");
+      m.className = "xhair " + corner;
+      m.setAttribute("aria-hidden", "true");
+      el.appendChild(m);
+    });
+  }
+
+  var gridEls = [];
+  GRID_SECTIONS.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      /* .hero already paints its own grid — don't double it up */
+      if (!el.classList.contains("hero")) el.classList.add("tech-grid");
+      gridEls.push(el);
+    });
+  });
+  CROSSHAIR_TARGETS.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(addCrosshairs);
+  });
+
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var gio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("grid-in");
+          gio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    gridEls.forEach(function (el) { gio.observe(el); });
+  } else {
+    gridEls.forEach(function (el) { el.classList.add("grid-in"); });
+  }
+
+  /* ---------- hidden: blueprint mode ----------
+     Press B to overlay the drafting sheet — grid everywhere, corner
+     registration marks, and the real pixel size of each card, in the
+     spirit of the "200x200" annotation in the design. Off by default,
+     remembered for the tab only. Ignored while typing in a field. */
+  var BLUEPRINT_KEY = "alp-blueprint";
+  var flag = document.createElement("div");
+  flag.className = "blueprint-flag";
+  flag.setAttribute("role", "status");
+  flag.setAttribute("aria-live", "polite");
+  document.body.appendChild(flag);
+  var flagTimer;
+
+  function measure() {
+    document.querySelectorAll(
+      ".dir-card, .adv-card, .member, .news-card, .partner-card, .cert-card"
+    ).forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      el.setAttribute("data-dim", Math.round(r.width) + "×" + Math.round(r.height));
+    });
+  }
+
+  function setBlueprint(on, announce) {
+    document.documentElement.classList.toggle("blueprint", on);
+    if (on) measure();
+    try { sessionStorage.setItem(BLUEPRINT_KEY, on ? "1" : "0"); } catch (e) {}
+    if (announce) {
+      flag.textContent = on ? "Blueprint mode on — press B to exit" : "Blueprint mode off";
+      flag.classList.add("show");
+      clearTimeout(flagTimer);
+      flagTimer = setTimeout(function () { flag.classList.remove("show"); }, 2600);
+    }
+  }
+
+  try {
+    if (sessionStorage.getItem(BLUEPRINT_KEY) === "1") setBlueprint(true, false);
+  } catch (e) {}
+
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key !== "b" && ev.key !== "B") return;
+    if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+    var t = ev.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" ||
+              t.tagName === "SELECT" || t.isContentEditable)) return;
+    setBlueprint(!document.documentElement.classList.contains("blueprint"), true);
+  });
+
+  window.addEventListener("resize", function () {
+    if (document.documentElement.classList.contains("blueprint")) measure();
+  }, { passive: true });
+
+  /* a note for whoever opens the console */
+  if (window.console && console.log) {
+    console.log(
+      "%cALPROJECTS GROUP%c\nIntegrated engineering for industry & offshore." +
+      "\nPress B for blueprint mode.\nBuilt by ALDY — https://aldystudio.com",
+      "font:600 14px/1.4 system-ui;letter-spacing:.14em",
+      "font:12px/1.6 system-ui;color:#8e97ab"
+    );
+  }
+
   /* ---------- header state ---------- */
   var header = document.querySelector(".site-header");
   function onScrollHeader() {
