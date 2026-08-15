@@ -1063,7 +1063,11 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 @media (max-width: 980px) {
   .main-nav, .site-header .socials { display: none; }
   .burger { display: block; }
-  .directions { grid-template-columns: repeat(2, 1fr); }
+  /* max-height:360px and flex-grow exist only to distribute leftover height in
+     the desktop 4-across hero. Once the cards wrap they need 630-900px, so the
+     cap made the grid overflow its own box and the next section rendered
+     straight through the cards. */
+  .directions { grid-template-columns: repeat(2, 1fr); max-height: none; flex: none; }
   .hero-bottom { grid-template-columns: 1fr; justify-items: center; gap: 26px; }
   .hero-bottom .btn-bracket { justify-self: center; }
   .loadbar { display: none; }
