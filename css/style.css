@@ -5,16 +5,48 @@
    ============================================================ */
 
 :root {
-  --bg: #0a0a12;
-  --bg-2: #0d0d16;
-  --panel: #12121d;
-  --panel-2: #161624;
+  /* ---------- brand palette (Figma › Colors) ----------
+     Sampled from the style sheet; swap in the exact Figma
+     values here and the whole site follows.               */
+  --white:    #ffffff;
+  --gray-50:  #b9c4d8;
+  --gray-100: #8e97ab;
+  --gray-150: #5f5e70;
+  --gray-200: #4e4e5a;
+  --black:    #05060f;
+  --blue:     #12294b;
+  --beige:    #fadacb;
+
+  /* ---------- semantic roles ---------- */
+  --bg: var(--black);
+  --bg-2: #0a0b16;
+  --panel: #10111d;
+  --panel-2: #141525;
   --line: rgba(255, 255, 255, 0.07);
   --line-strong: rgba(255, 255, 255, 0.14);
-  --text: #f2f4f8;
-  --muted: #8b93a5;
-  --muted-2: #5e6577;
-  --grid: rgba(139, 147, 165, 0.07);
+  --text: var(--white);
+  --muted: var(--gray-100);
+  --muted-2: var(--gray-150);
+  --accent: var(--beige);       /* warm accent on dark */
+  --accent-deep: var(--blue);   /* panel / gradient tint */
+  --grid: rgba(142, 151, 171, 0.07);
+
+  /* ---------- type scale (Figma › Typography, Desktop) ----------
+     Sizes are the ones the site already renders, now named to match
+     the design system so there is a single place to change them.   */
+  --h1: clamp(32px, 4.6vw, 74px);
+  --h2: clamp(26px, 3.2vw, 52px);
+  --h3: clamp(24px, 2.4vw, 38px);
+  --h4: clamp(20px, 1.8vw, 30px);
+  --h5: clamp(17px, 1.4vw, 21px);
+  --h6: 15px;
+  --text-xl: 18px;
+  --text-l: 15px;
+  --text-m: 13px;
+  --text-s: 12px;
+  --tag: 11px;
+  --numbers: 11px;
+
   --font: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
   --container: 1760px;
   --pad: clamp(20px, 2.9vw, 56px);
@@ -30,7 +62,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
-  font-size: 15px;
+  font-size: var(--text-l);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -49,7 +81,7 @@ a { color: inherit; text-decoration: none; }
   padding: 12px 22px;
   background: var(--text);
   color: var(--bg);
-  font-size: 13px;
+  font-size: var(--text-m);
   font-weight: 600;
   letter-spacing: 0.02em;
   border-radius: 0 0 4px 4px;
@@ -82,10 +114,10 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- utility type ---------- */
 .eyebrow {
-  font-size: 11px;
+  font-size: var(--tag);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted-2);
+  color: var(--accent);
   margin-bottom: 22px;
 }
 
@@ -95,7 +127,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .section-head .eyebrow { margin-bottom: 26px; }
 .section-title {
-  font-size: clamp(28px, 3.4vw, 56px);
+  font-size: var(--h2);
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -110,7 +142,7 @@ button { font-family: inherit; cursor: pointer; }
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--line);
   color: var(--text);
-  font-size: 12px;
+  font-size: var(--text-s);
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -126,9 +158,9 @@ button { font-family: inherit; cursor: pointer; }
 
 .btn-solid {
   display: inline-block;
-  background: #fff;
-  color: #0a0a12;
-  font-size: 12px;
+  background: var(--white);
+  color: var(--black);
+  font-size: var(--text-s);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -185,7 +217,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .main-nav ul { display: flex; gap: clamp(14px, 1.8vw, 34px); }
 .main-nav a {
-  font-size: 13px;
+  font-size: var(--text-m);
   font-weight: 500;
   color: var(--muted);
   display: inline-flex;
@@ -259,7 +291,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--text);
   display: flex; align-items: baseline; gap: 12px;
 }
-.mobile-menu a .n { font-size: 11px; color: var(--muted-2); }
+.mobile-menu a .n { font-size: var(--numbers); color: var(--muted-2); }
 
 /* ============================================================
    HERO
@@ -306,7 +338,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .hero-title {
   text-align: center;
-  font-size: clamp(32px, 4.6vw, 74px);
+  font-size: var(--h1);
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -329,7 +361,7 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 720px;
 }
 .hero-tags span {
-  font-size: 11px;
+  font-size: var(--tag);
   letter-spacing: 0.12em;
   color: var(--muted);
   text-transform: uppercase;
@@ -356,6 +388,7 @@ button { font-family: inherit; cursor: pointer; }
 .dir-card:hover { transform: translateY(-6px); border-color: var(--line-strong); }
 .dir-card .corners { position: absolute; inset: -5px; pointer-events: none; opacity: 0; transition: opacity 0.35s; }
 .dir-card:hover .corners, .dir-card.marked .corners { opacity: 1; }
+.dir-card.marked .corners i { border-color: var(--accent); }
 .corners i {
   position: absolute;
   width: 16px; height: 16px;
@@ -367,9 +400,9 @@ button { font-family: inherit; cursor: pointer; }
 .corners i:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; }
 
 .dir-top { display: flex; align-items: center; gap: 26px; }
-.dir-top .num { font-size: 11px; color: var(--muted-2); }
+.dir-top .num { font-size: var(--numbers); color: var(--muted-2); }
 .dir-top .name {
-  font-size: 12px;
+  font-size: var(--text-s);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -377,7 +410,7 @@ button { font-family: inherit; cursor: pointer; }
 .dir-top .arr {
   margin-left: auto;
   color: var(--text);
-  font-size: 15px;
+  font-size: var(--text-l);
   transition: transform 0.3s var(--ease);
 }
 .dir-card:hover .arr { transform: translate(3px, -3px); }
@@ -405,7 +438,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hero-scroll {
   justify-self: center;
-  font-size: 11px;
+  font-size: var(--tag);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -423,14 +456,14 @@ button { font-family: inherit; cursor: pointer; }
   width: 7px; height: 22px;
   background: rgba(255, 255, 255, 0.08);
 }
-.loadbar i.on { background: #fff; }
+.loadbar i.on { background: var(--accent); }
 
 /* ============================================================
    WHY CHOOSE  (Company)
    ============================================================ */
 .why { padding: clamp(70px, 9vw, 130px) 0 0; }
 .why h2 {
-  font-size: clamp(26px, 3.2vw, 52px);
+  font-size: var(--h2);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -457,7 +490,7 @@ button { font-family: inherit; cursor: pointer; }
   min-height: 190px;
 }
 .stat-card .value { font-size: clamp(30px, 2.6vw, 44px); font-weight: 500; }
-.stat-card .label { font-size: 13px; color: var(--muted); max-width: 24ch; }
+.stat-card .label { font-size: var(--text-m); color: var(--muted); max-width: 24ch; }
 .stats-photo {
   grid-column: 2;
   grid-row: 1 / span 2;
@@ -491,7 +524,7 @@ button { font-family: inherit; cursor: pointer; }
 .adv-card:hover { transform: translateY(-5px); border-color: var(--line-strong); }
 .adv-card img { width: 74px; height: 74px; object-fit: contain; }
 .adv-card p {
-  font-size: 11px;
+  font-size: var(--tag);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -540,12 +573,12 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: clamp(24px, 4vh, 56px);
 }
 .service-top h3 {
-  font-size: clamp(26px, 2.9vw, 48px);
+  font-size: var(--h2);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
-.service-top .count { font-size: clamp(20px, 1.8vw, 30px); font-weight: 400; }
+.service-top .count { font-size: var(--h4); font-weight: 400; }
 
 .service-body {
   display: grid;
@@ -554,7 +587,7 @@ button { font-family: inherit; cursor: pointer; }
   padding: 0 clamp(20px, 2.6vw, 44px) clamp(24px, 4vh, 48px);
 }
 .service-col-label {
-  font-size: 11px;
+  font-size: var(--tag);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -562,7 +595,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .service-list { display: flex; flex-direction: column; gap: 12px; }
 .service-list a {
-  font-size: 12px;
+  font-size: var(--text-s);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text);
@@ -576,7 +609,7 @@ button { font-family: inherit; cursor: pointer; }
   padding: 2px 6px;
   margin: -2px -6px;
 }
-.service-desc { font-size: 14px; color: var(--text); max-width: 52ch; }
+.service-desc { font-size: var(--text-l); color: var(--text); max-width: 52ch; }
 
 .service-meta {
   display: grid;
@@ -631,7 +664,7 @@ button { font-family: inherit; cursor: pointer; }
    ============================================================ */
 .team { padding-bottom: clamp(70px, 9vw, 120px); }
 .team-headline {
-  font-size: clamp(26px, 3.2vw, 52px);
+  font-size: var(--h2);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -665,12 +698,12 @@ button { font-family: inherit; cursor: pointer; }
 }
 .member .photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .member h4 {
-  font-size: 13px;
+  font-size: var(--text-m);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
-.member .role { font-size: 12px; color: var(--muted); margin: 6px 0 14px; }
+.member .role { font-size: var(--text-s); color: var(--muted); margin: 6px 0 14px; }
 .member .links { display: flex; gap: 8px; }
 .member .links a {
   width: 30px; height: 30px;
@@ -691,8 +724,8 @@ button { font-family: inherit; cursor: pointer; }
   position: relative;
   border: 1px solid var(--line);
   background:
-    radial-gradient(900px 480px at 12% 10%, rgba(74, 104, 146, 0.4), transparent 60%),
-    radial-gradient(700px 420px at 88% 90%, rgba(60, 80, 120, 0.25), transparent 60%),
+    radial-gradient(900px 480px at 12% 10%, rgba(18, 41, 75, 0.85), transparent 60%),
+    radial-gradient(700px 420px at 88% 90%, rgba(18, 41, 75, 0.55), transparent 60%),
     var(--panel);
   overflow: hidden;
   padding: clamp(44px, 5vw, 80px) clamp(20px, 3vw, 60px);
@@ -727,7 +760,7 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
 }
 .cert-card .iso {
-  font-size: 12px;
+  font-size: var(--text-s);
   letter-spacing: 0.14em;
   color: var(--muted);
   text-transform: uppercase;
@@ -736,7 +769,7 @@ button { font-family: inherit; cursor: pointer; }
   position: relative;
   text-align: center;
   margin-top: clamp(30px, 4vw, 52px);
-  font-size: 12px;
+  font-size: var(--text-s);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text);
@@ -765,19 +798,19 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   gap: 26px;
   margin-bottom: 22px;
-  font-size: 11px;
+  font-size: var(--tag);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
 .news-top .num { color: var(--muted-2); }
-.news-top .arr { margin-left: auto; color: var(--text); font-size: 15px; transition: transform 0.3s var(--ease); }
+.news-top .arr { margin-left: auto; color: var(--text); font-size: var(--text-l); transition: transform 0.3s var(--ease); }
 .news-card:hover .arr { transform: translate(3px, -3px); }
 .news-card .thumb { overflow: hidden; margin: 0 auto 24px; width: min(100%, 420px); }
 .news-card .thumb img { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; transition: transform 0.6s var(--ease); }
 .news-card:hover .thumb img { transform: scale(1.04); }
 .news-card h4 {
-  font-size: 13px;
+  font-size: var(--text-m);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -813,7 +846,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .cta-panel > * { position: relative; }
 .cta-title {
-  font-size: clamp(24px, 2.4vw, 38px);
+  font-size: var(--h3);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -828,14 +861,14 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 480px;
 }
 .terminal .t-title {
-  font-size: 13px;
+  font-size: var(--text-m);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 14px;
 }
 .terminal .t-line {
-  font-size: 11px;
+  font-size: var(--tag);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -859,13 +892,13 @@ button { font-family: inherit; cursor: pointer; }
   gap: clamp(30px, 4vw, 70px);
 }
 .newsletter h4 {
-  font-size: 13px;
+  font-size: var(--text-m);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 16px;
 }
-.newsletter p { font-size: 13px; color: var(--muted); max-width: 30ch; margin-bottom: 22px; }
+.newsletter p { font-size: var(--text-m); color: var(--muted); max-width: 30ch; margin-bottom: 22px; }
 .newsletter form { display: flex; max-width: 300px; }
 .newsletter input {
   flex: 1;
@@ -875,7 +908,7 @@ button { font-family: inherit; cursor: pointer; }
   border-right: 0;
   color: var(--text);
   font-family: inherit;
-  font-size: 13px;
+  font-size: var(--text-m);
   padding: 13px 14px;
   outline: none;
 }
@@ -886,22 +919,22 @@ button { font-family: inherit; cursor: pointer; }
   border: 1px solid var(--line);
   color: var(--text);
   width: 46px;
-  font-size: 15px;
+  font-size: var(--text-l);
   transition: background 0.25s;
 }
 .newsletter button:hover { background: rgba(255, 255, 255, 0.12); }
-.newsletter .form-note { font-size: 12px; color: var(--muted); margin-top: 12px; display: none; }
+.newsletter .form-note { font-size: var(--text-s); color: var(--muted); margin-top: 12px; display: none; }
 .newsletter .form-note.show { display: block; }
 
 .footer-col h5 {
-  font-size: 13px;
+  font-size: var(--text-m);
   font-weight: 400;
   color: var(--muted-2);
   margin-bottom: 22px;
 }
 .footer-col ul { display: flex; flex-direction: column; gap: 13px; }
 .footer-col a {
-  font-size: 12px;
+  font-size: var(--text-s);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text);
@@ -910,9 +943,9 @@ button { font-family: inherit; cursor: pointer; }
 .footer-col a:hover { color: var(--muted); }
 
 .footer-contacts .group { margin-bottom: 22px; }
-.footer-contacts .g-label { font-size: 12px; color: var(--muted-2); margin-bottom: 8px; }
-.footer-contacts .addr { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.8; }
-.footer-contacts .big { font-size: clamp(17px, 1.4vw, 21px); font-weight: 500; }
+.footer-contacts .g-label { font-size: var(--text-s); color: var(--muted-2); margin-bottom: 8px; }
+.footer-contacts .addr { font-size: var(--text-s); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.8; }
+.footer-contacts .big { font-size: var(--h5); font-weight: 500; }
 .footer-contacts .big:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 .footer-bottom {
@@ -922,7 +955,7 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  font-size: 11px;
+  font-size: var(--tag);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted-2);
@@ -939,7 +972,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1250px) {
-  .main-nav a span.txt { font-size: 12px; }
+  .main-nav a span.txt { font-size: var(--text-s); }
   .adv-grid { grid-template-columns: repeat(3, 1fr); }
   .team-grid { grid-template-columns: repeat(3, 1fr); }
   .service-body, .service-meta { grid-template-columns: 120px 1fr 1.2fr; }

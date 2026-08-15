@@ -35,6 +35,33 @@ root tells Pages about it — don't delete it, or the custom domain resets.
 
 Any static host works the same way (Netlify/Cloudflare Pages: drag the folder in).
 
+## Design system
+
+`css/style.css` opens with the Figma style sheet as CSS custom properties —
+the palette, the semantic roles built on it, and the type scale. Change a
+value there and the whole site follows.
+
+```
+Colors      --white --gray-50 --gray-100 --gray-150 --gray-200
+            --black --blue --beige
+Roles       --bg --text --muted --muted-2 --accent (beige) --accent-deep (blue)
+Typography  --h1 … --h6, --text-xl/l/m/s, --tag, --numbers
+```
+
+⚠️ The colour values were **sampled by eye from the style-sheet image**, not
+exported from Figma. They are close but not guaranteed exact — paste the real
+hex codes into the palette block before launch.
+
+Two notes on adopting the scale:
+
+- Three near-identical heading sizes (max 56/52/48px) were unified to a single
+  `--h2` (52px), and the one off-scale 14px body size became `--text-l` (15px).
+  That is the point of the scale, but it does mean a few headings shifted a
+  couple of pixels from the original Figma frame.
+- `BLUE` and `BEIGE` were unused before. Beige is now the accent (eyebrow
+  labels, lit loading-bar segments, the featured hero card's corner marks);
+  blue tints the certifications panel glow.
+
 ## Configuration
 
 All go-live values live in one block at the top of `js/main.js`. Fill a URL in
