@@ -382,7 +382,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 .dir-card:hover .arr { transform: translate(3px, -3px); }
 .dir-card img {
-  width: min(68%, 260px);
+  /* renders are normalised to a 560x360 canvas with the subject filling 94%,
+     so a single width here gives all four cards a consistent visual size */
+  width: min(94%, 320px);
   margin: auto;
   filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
   transition: transform 0.5s var(--ease);
