@@ -1047,6 +1047,13 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 @media (max-width: 640px) {
   .directions { grid-template-columns: 1fr; }
   .dir-card { min-height: 210px; }
+  /* Stacked in one column, an auto-height image left the four cards ragged
+     (210-257px) because every render has its own aspect ratio. A fixed box
+     with object-fit: contain equalises them without cropping or distorting. */
+  .dir-card img { height: 160px; max-height: none; flex: none; }
+  /* 26px between the number and the label pushed "Industrial Projects" onto a
+     second line at 320px, making two of the four cards taller than the rest. */
+  .dir-top { gap: 14px; }
   .adv-grid { grid-template-columns: repeat(2, 1fr); }
   .team-grid { grid-template-columns: 1fr 1fr; }
   .news-grid { grid-template-columns: 1fr; }
@@ -1653,7 +1660,6 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   /* stacked panels shouldn't keep desktop padding on a phone */
   .apply-panel { padding: clamp(20px, 5vw, 32px); }
   .position { padding: clamp(18px, 4.5vw, 26px); }
-}
 
   /* inline text links sat at 15-20px tall — under the 24px WCAG 2.2 minimum.
      Vertical padding gives them a real hit area without changing the type. */
