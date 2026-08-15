@@ -17,9 +17,9 @@
 
   /* Company profiles — used in the header and the footer. */
   var SOCIAL = {
-    instagram: "",
-    linkedin: "",
-    x: ""
+    instagram: "https://www.instagram.com/alprojectsgroup",
+    linkedin:  "https://www.linkedin.com/company/alprojects-group",
+    facebook:  "https://www.facebook.com/alprojectsgroup"
   };
 
   /* Per-person profiles on the team cards. Keys match data-member in the HTML. */

@@ -93,7 +93,7 @@ entirely**, so no dead `href="#"` links ever ship.
 
 ```js
 var BOOKING_URL = "";               // header "Book a call" button
-var SOCIAL       = { instagram, linkedin, x };        // header + footer
+var SOCIAL       = { instagram, linkedin, facebook }; // header + footer (filled in)
 var MEMBER_SOCIAL = { "aleksandr-vasiljev": {...}, … } // team cards
 var FORM_ENDPOINT = "";             // newsletter POST target
 ```
@@ -102,8 +102,16 @@ var FORM_ENDPOINT = "";             // newsletter POST target
 
 - [ ] **Calendly** — set `BOOKING_URL`. Until then the button reads "Book a call"
       and scrolls to the contact section, which is a valid destination.
-- [ ] **Social links** — set `SOCIAL` / `MEMBER_SOCIAL`. Currently all blank, so
-      the social rows are removed at runtime rather than linking nowhere.
+- [x] **Company social links** — LinkedIn, Instagram and Facebook are wired up,
+      taken from the Wayback snapshot of the old alprojects.eu (which is now a
+      "coming soon" placeholder). The design's X/Twitter slot became Facebook,
+      as no X account exists.
+- [ ] **Team member links** — `MEMBER_SOCIAL` is still blank, so the per-person
+      Instagram/LinkedIn icons stay hidden. A likely match for Aleksandr is
+      linkedin.com/in/aleksandr-vasiljev-067549aa (listed as ALprojects Norge
+      AS) — unconfirmed, so not wired in.
+- [ ] **Second phone number** — the old site also listed +370 670 20654 next to
+      +370 636 63744. Only the latter is on the new site.
 - [ ] **Newsletter backend** — set `FORM_ENDPOINT` (Formspree, Buttondown,
       Mailerlite…). Without it the form opens the visitor's mail app with a
       pre-filled request to info@alprojects.eu.
