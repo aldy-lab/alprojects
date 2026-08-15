@@ -46,6 +46,22 @@ Measured at 500/768/1024/1440/1920: `document.scrollWidth` equals the viewport
 and **zero elements extend past the right edge**. Before this change the partner
 marquee put 16–20 elements past it, hidden only by the clip.
 
+## Hero spacing
+
+The hero is `100vh` with the bottom bar pinned by `margin-top: auto`, which used
+to pool every pixel of leftover height into one gap under the project cards
+(209px at 1512x895). Three changes distribute it instead:
+
+- the cards grid flex-grows into the spare height (capped, so it keeps roughly
+  the design's proportion), and the renders scale with it rather than sitting
+  small in a tall box;
+- `.hero-tags` carries `margin-bottom: auto` as well, so two auto margins split
+  the remaining slack evenly above and below the cards instead of one pooling it;
+- the hero's bottom padding scales with viewport height.
+
+Measured gap under the cards: 0-15px at 1024x681, 1440x813, 1512x895, 1920x993
+and 1920x1113 — down from 209px at the worst size.
+
 ## Viewport notes
 
 The hero's vertical rhythm comes from the 1920x1200 Figma frame. On a laptop

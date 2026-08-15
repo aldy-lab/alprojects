@@ -317,7 +317,7 @@ button { font-family: inherit; cursor: pointer; }
   position: relative;
   min-height: 100vh;
   padding-top: calc(var(--nav-h) + clamp(40px, 6vh, 80px));
-  padding-bottom: 40px;
+  padding-bottom: clamp(16px, 2vh, 40px);
   display: flex;
   flex-direction: column;
   background:
@@ -365,7 +365,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .hero-tags {
-  margin: clamp(28px, 4.5vh, 56px) auto 0;
+  margin: clamp(28px, 4.5vh, 56px) auto auto;
   background: rgba(13, 13, 24, 0.55);
   border: 1px solid var(--line);
   backdrop-filter: blur(6px);
@@ -391,6 +391,12 @@ button { font-family: inherit; cursor: pointer; }
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
   margin-top: clamp(40px, 7vh, 90px);
+  /* The hero is 100vh with the bottom bar pinned by margin-top:auto, so any
+     leftover height used to collect as one gap under the cards. Letting the
+     grid grow puts that space inside the cards instead; the max-height stops
+     them becoming absurd on very tall screens. */
+  flex: 1 1 auto;
+  max-height: 360px;
 }
 .dir-card {
   position: relative;
@@ -435,7 +441,10 @@ button { font-family: inherit; cursor: pointer; }
      its own aspect ratio. Fitting them into one box equalises how big they
      look without resampling the artwork. */
   width: 100%;
-  height: clamp(92px, 9.6vw, 160px);
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 84px;
+  max-height: 200px;
   object-fit: contain;
   margin: auto;
   filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
@@ -1150,10 +1159,11 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   }
   .directions { margin-top: 26px; }
   .dir-card {
-    min-height: 230px;
+    min-height: 200px;
     padding: 18px 18px 8px;
   }
-  .dir-card img { height: clamp(72px, 7.2vw, 112px); }
+  .directions { max-height: 340px; }
+  .dir-card img { max-height: 150px; }
   .hero-bottom { padding-top: 24px; }
 }
 
@@ -1161,8 +1171,9 @@ a:focus-visible, button:focus-visible, input:focus-visible {
    window). Tighten one step further so the hero still lands above the fold. */
 @media (max-height: 700px) and (min-width: 981px) {
   .hero-title { font-size: clamp(28px, 3vw, 44px); }
-  .dir-card { min-height: 168px; }
-  .dir-card img { height: clamp(60px, 5.6vw, 88px); }
+  .dir-card { min-height: 160px; }
+  .directions { max-height: 260px; }
+  .dir-card img { max-height: 110px; }
   .hero-tags { padding: 10px 22px; }
 }
 
