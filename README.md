@@ -131,7 +131,17 @@ var BOOKING_URL = "";               // header "Book a call" button
 var SOCIAL       = { instagram, linkedin, facebook }; // header + footer (filled in)
 var MEMBER_SOCIAL = { "aleksandr-vasiljev": {...}, … } // team cards
 var FORM_ENDPOINT = "";             // newsletter POST target
+var CAREERS_ENDPOINT = "";          // job application POST target
 ```
+
+**Open positions** live in `POSITIONS` at the top of `tools/build-pages.py` —
+one dict per role. Set `open=False` to take a role off the live page without
+deleting it; when none are open the page shows an "open applications welcome"
+notice instead. Edit the list, run `python3 tools/build-pages.py`, commit.
+
+⚠️ Only list roles the company is actually recruiting for. The one role
+currently listed (30 certified TIG welders) comes from ALprojects Group's own
+LinkedIn post and should be removed once it is filled.
 
 ## TODO before go-live (client input needed)
 
@@ -167,9 +177,14 @@ var FORM_ENDPOINT = "";             // newsletter POST target
 - [x] **Privacy Policy** — `privacy.html` is live and linked from the footer.
       ⚠️ Written from what the site technically does; **not reviewed by a
       lawyer** — have it checked against your internal processes.
-- [x] **Careers** — `careers.html` is live and linked from the nav and footer.
-      It invites open applications and deliberately lists no vacancies,
-      salaries or benefits; send real openings to add them.
+- [x] **Careers** — `careers.html` has an open-positions list and an application
+      form. Positions are edited in `POSITIONS` (see Configuration above).
+- [ ] **Application form backend** — set `CAREERS_ENDPOINT` in `js/main.js`.
+      Until then the form validates in the browser and hands off to the
+      applicant's mail client with every field pre-filled, so the CV can be
+      attached there. **A static site cannot accept file uploads** — if you want
+      CVs submitted through the page rather than by email, that needs a form
+      service (Formspree, Netlify Forms) or a small backend.
 - [ ] Contact email is `info@alprojects.eu` while the site is on alprojects.co —
       intentional, .eu redirects to .co.
 

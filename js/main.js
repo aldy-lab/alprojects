@@ -22,6 +22,11 @@
     facebook:  "https://www.facebook.com/alprojectsgroup"
   };
 
+  /* Careers application form. Set to a Formspree/Netlify/etc endpoint to receive
+     applications directly; while empty the form opens the applicant's mail client
+     with everything pre-filled, so it works either way. */
+  var CAREERS_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
+
   /* Per-person profiles on the team cards. Keys match data-member in the HTML. */
   var MEMBER_SOCIAL = {
     "aleksandr-vasiljev": { instagram: "", linkedin: "" },
@@ -205,6 +210,97 @@
       window.addEventListener("resize", updateHeadline);
       updateHeadline();
     }
+  }
+
+  /* ---------- careers application form ---------- */
+  var applyForm = document.getElementById("applyForm");
+  if (applyForm) {
+    var applyNote = document.getElementById("applyNote");
+    var roleSelect = document.getElementById("apRole");
+
+    /* "Apply for this role" preselects that position and moves focus into the form */
+    document.querySelectorAll("[data-apply]").forEach(function (a) {
+      a.addEventListener("click", function () {
+        var role = a.getAttribute("data-apply");
+        if (roleSelect) {
+          Array.prototype.forEach.call(roleSelect.options, function (o) {
+            if (o.value === role) roleSelect.value = role;
+          });
+        }
+        var first = document.getElementById("apName");
+        if (first) setTimeout(function () { first.focus(); }, 400);
+      });
+    });
+
+    applyForm.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var f = applyForm;
+      var data = {
+        name: f.name.value.trim(),
+        email: f.email.value.trim(),
+        phone: f.phone.value.trim(),
+        role: f.role.value,
+        certifications: f.certifications.value.trim(),
+        message: f.message.value.trim()
+      };
+
+      function fail(msg, field) {
+        applyNote.textContent = msg;
+        applyNote.classList.add("show", "is-error");
+        if (field) field.focus();
+      }
+      applyNote.classList.remove("is-error");
+
+      if (!data.name) return fail("Please enter your name.", f.name);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
+        return fail("Please enter a valid email address.", f.email);
+      if (!data.message) return fail("Please describe your experience and availability.", f.message);
+      if (!f.consent.checked) return fail("Please confirm the privacy notice to continue.", f.consent);
+
+      if (CAREERS_ENDPOINT) {
+        applyNote.textContent = "Sending…";
+        applyNote.classList.add("show");
+        fetch(CAREERS_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(data)
+        })
+          .then(function (r) {
+            if (r.ok) {
+              applyNote.textContent = "Application sent. We will be in touch.";
+              f.reset();
+            } else {
+              fail("Could not send. Please email info@alprojects.eu instead.");
+            }
+          })
+          .catch(function () {
+            fail("Could not send. Please email info@alprojects.eu instead.");
+          });
+        return;
+      }
+
+      /* No endpoint configured: hand off to the applicant's mail client with a
+         pre-filled message, so the CV can be attached there. */
+      var body = [
+        "Position: " + data.role,
+        "Name: " + data.name,
+        "Email: " + data.email,
+        "Phone: " + (data.phone || "—"),
+        "Certifications: " + (data.certifications || "—"),
+        "",
+        "Experience and availability:",
+        data.message,
+        "",
+        "(Please attach your CV and certificates to this email.)"
+      ].join("\n");
+      window.location.href =
+        "mailto:info@alprojects.eu?subject=" +
+        encodeURIComponent("Application — " + data.role) +
+        "&body=" + encodeURIComponent(body);
+      applyNote.textContent =
+        "Your mail app opened with the details filled in — attach your CV and send.";
+      applyNote.classList.add("show");
+    });
   }
 
   /* ---------- newsletter (no backend: opens mail client) ----------

@@ -74,17 +74,35 @@
       <h1 class="page-title">Work with ALPROJECTS</h1>
       <p class="page-lead">We deliver mechanical contracting, welding, inspection and access
       services on industrial and offshore projects across Europe. The work is technical,
-      certified and often on site.</p>
+      certified and mostly on site.</p>
     </div>
 
     <div class="container prose">
-      <h2>Disciplines we work in</h2>
-      <p>Our project teams are built from these areas. We are always interested in
-      qualified specialists in any of them:</p>
+      <h2>Open positions</h2>
+      <article class="position" id="tig-welder">
+        <div class="position-head">
+          <h3>Certified TIG Welders</h3>
+          <p class="position-meta"><span>30 positions</span><span>Project sites across Europe</span><span>Project-based</span></p>
+        </div>
+        <p>We are recruiting thirty certified TIG welders for upcoming project scopes. This is the constraint on our current pipeline, so applications are reviewed quickly.</p>
+        <p class="position-label">What we need</p>
+        <ul>
+          <li>Valid TIG welding certification with supporting documentation</li>
+          <li>Willingness to travel and work on site across several countries</li>
+          <li>Experience with pipe and steel structure welding</li>
+          <li>Working English</li>
+        </ul>
+        <p><a class="btn-bracket" href="#apply" data-apply="Certified TIG Welders">Apply for this role</a></p>
+      </article>
+
+      <h2>We recruit regularly in these disciplines</h2>
+      <p>Even when a role is not advertised, we keep qualified specialists on file and
+      make contact when a project matches. These are the areas our project teams are
+      built from:</p>
       <ul>
-        <li>Welding services</li>
-        <li>Pipe fitting</li>
-        <li>Mechanical contracting</li>
+        <li>Welding services (TIG, MIG/MAG)</li>
+        <li>Pipe fitting and piping prefabrication</li>
+        <li>Mechanical contracting and installation</li>
         <li>Non-destructive testing (NDT)</li>
         <li>Rope access services</li>
         <li>Quality control and QAQC</li>
@@ -95,25 +113,65 @@
       <h2>What matters to us</h2>
       <ul>
         <li>Valid certification for your discipline, and the documentation to support it.</li>
-        <li>Willingness to travel — our projects run in several countries.</li>
+        <li>Willingness to travel &mdash; our projects run in several countries.</li>
         <li>A serious approach to safety in complex and confined environments.</li>
         <li>Working English; Lithuanian, Russian or Polish are useful additions.</li>
       </ul>
+    </div>
 
-      <h2>Open application</h2>
-      <p>We do not always advertise individual vacancies. Send your CV and certificates
-      and we will keep them on file and contact you when a project matches your profile.</p>
-      <p>Email <a href="mailto:info@alprojects.eu?subject=Open%20application%20%E2%80%94%20careers">info@alprojects.eu</a>
-      with your CV, your certifications and the disciplines you work in.</p>
+    <div class="container" id="apply">
+      <div class="apply-panel">
+        <div class="apply-intro">
+          <p class="eyebrow">Apply</p>
+          <h2>Send us your details</h2>
+          <p>Tell us your discipline and certifications. We read every application and
+          reply when a project matches your profile.</p>
+          <p class="apply-note">Attach your CV and certificates to the email that opens
+          when you submit &mdash; we do not accept file uploads through this page.</p>
+        </div>
 
-      <!-- NOTE(ALPROJECTS): this page invites open applications and deliberately
-           lists no specific vacancies, salaries or benefits. Add real openings here
-           when there are some. -->
-
-      <p class="back">
-        <a class="btn-bracket" href="mailto:info@alprojects.eu?subject=Open%20application%20%E2%80%94%20careers">Send your CV</a>
-        <a class="btn-bracket" href="/#team">Meet the team</a>
-      </p>
+        <form id="applyForm" class="apply-form" novalidate>
+          <div class="field">
+            <label for="apName">Full name</label>
+            <input id="apName" name="name" type="text" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="apEmail">Email</label>
+            <input id="apEmail" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="apPhone">Phone <span class="opt">(optional)</span></label>
+            <input id="apPhone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="apRole">Position</label>
+            <select id="apRole" name="role">
+              <option value="Open application">Open application</option>
+              <option value="Certified TIG Welders">Certified TIG Welders</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="apCerts">Certifications <span class="opt">(optional)</span></label>
+            <input id="apCerts" name="certifications" type="text"
+                   placeholder="e.g. TIG 141, IRATA Level 2, VT/PT Level 2">
+          </div>
+          <div class="field field-wide">
+            <label for="apMsg">Experience and availability</label>
+            <textarea id="apMsg" name="message" rows="5" required
+                      placeholder="Disciplines you work in, years of experience, and when you could start."></textarea>
+          </div>
+          <div class="field field-wide field-check">
+            <input id="apConsent" name="consent" type="checkbox" required>
+            <label for="apConsent">I agree that ALPROJECTS may store these details to
+            consider me for current and future roles, as described in the
+            <a href="/privacy.html">privacy policy</a>.</label>
+          </div>
+          <div class="field field-wide">
+            <button type="submit" class="btn-solid">Send application</button>
+            <p class="form-note" id="applyNote" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
     </div>
 
   </main>

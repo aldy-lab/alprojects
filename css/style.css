@@ -1182,3 +1182,150 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   margin-top: 10px;
 }
 .page .news-grid { padding-bottom: clamp(60px, 9vw, 120px); }
+
+/* ============================================================
+   CAREERS — open positions + application form
+   ============================================================ */
+.position {
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  background: rgba(255, 255, 255, 0.02);
+  padding: clamp(20px, 2.4vw, 30px);
+  margin-bottom: 18px;
+}
+.position-head { margin-bottom: 14px; }
+.position h3 {
+  font-size: var(--h5);
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.position-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 10px;
+  font-size: var(--tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.position-meta span { position: relative; }
+.position-meta span + span::before {
+  content: "";
+  position: absolute;
+  left: -10px; top: 50%;
+  width: 1px; height: 10px;
+  margin-top: -5px;
+  background: var(--line-strong);
+}
+.position-label {
+  margin-top: 18px;
+  font-size: var(--tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+/* ---------- application form ---------- */
+.apply-panel {
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(900px 500px at 10% 0%, rgba(18, 41, 75, 0.55), transparent 60%),
+    var(--panel);
+  padding: clamp(26px, 4vw, 56px);
+  margin-bottom: clamp(60px, 9vw, 120px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(26px, 4vw, 56px);
+  align-items: start;
+}
+.apply-intro h2 {
+  font-size: var(--h3);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+.apply-intro p { color: var(--muted); max-width: 42ch; margin-bottom: 12px; }
+.apply-intro .apply-note {
+  font-size: var(--text-m);
+  color: var(--muted-2);
+  border-left: 1px solid var(--line-strong);
+  padding-left: 14px;
+}
+
+.apply-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.apply-form .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.apply-form .field-wide { grid-column: 1 / -1; }
+.apply-form label {
+  font-size: var(--tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.apply-form label .opt { text-transform: none; letter-spacing: 0; color: var(--muted-2); }
+.apply-form input[type="text"],
+.apply-form input[type="email"],
+.apply-form input[type="tel"],
+.apply-form select,
+.apply-form textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  font-family: inherit;
+  font-size: var(--text-m);
+  padding: 12px 14px;
+  border-radius: 2px;
+  transition: border-color 0.2s var(--ease);
+}
+.apply-form textarea { resize: vertical; line-height: 1.6; }
+.apply-form input:focus, .apply-form select:focus, .apply-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.apply-form ::placeholder { color: var(--muted-2); }
+.apply-form select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 52%, calc(100% - 13px) 52%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 38px;
+}
+.apply-form option { background: var(--panel); color: var(--text); }
+
+.apply-form .field-check {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+.apply-form .field-check input { width: 16px; height: 16px; margin-top: 3px; flex: none; accent-color: var(--accent); }
+.apply-form .field-check label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--text-s);
+  color: var(--muted);
+  line-height: 1.6;
+}
+.apply-form .field-check label a { color: var(--text); border-bottom: 1px solid var(--line-strong); }
+
+.apply-form .btn-solid { border: 0; cursor: pointer; align-self: flex-start; }
+.apply-form .form-note {
+  margin-top: 12px;
+  font-size: var(--text-s);
+  color: var(--muted);
+  display: none;
+}
+.apply-form .form-note.show { display: block; }
+.apply-form .form-note.is-error { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .apply-panel { grid-template-columns: 1fr; }
+  .apply-form { grid-template-columns: 1fr; }
+}
