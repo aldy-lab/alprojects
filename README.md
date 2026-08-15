@@ -162,6 +162,21 @@ is expected.
 - `cache-control: max-age=600` is GitHub Pages' fixed default and cannot be
   changed on this host. A CDN in front would be the only way to improve it.
 
+## Cache busting
+
+GitHub Pages serves CSS and JS with `max-age=600` and no fingerprint in the
+filename, so a browser can keep using an old stylesheet after a deploy. On iOS
+Safari this is stubborn enough that a fixed layout can still look broken on a
+phone while it is provably correct on the server — which reads as "the fix
+didn't work" and costs a debugging round trip.
+
+`tools/build-pages.py` therefore stamps `?v=<first 8 of the file's sha256>` onto
+every reference to `css/style.css`, `css/fonts.css` and `js/main.js`, in the
+generated pages *and* in the two hand-maintained ones (`index.html`, `404.html`).
+Change the CSS, re-run the generator, and every page points at a URL the browser
+has never seen. **Re-run `python3 tools/build-pages.py` after editing CSS or JS**,
+or the stamp goes stale and the old file keeps being served.
+
 ## Deploy (GitHub Pages)
 
 Repo: `git@github.com:aldy-lab/alprojects.git` — the `main` branch is the site.

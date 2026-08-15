@@ -8,7 +8,7 @@ editing the header or footer in index.html:
 
     python3 tools/build-pages.py
 """
-import datetime, io, os, re
+import datetime, hashlib, io, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 src = io.open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -91,7 +91,33 @@ def page(title, description, body, noindex=False, canonical=None, head_extra="",
 LASTMOD = datetime.date.today().isoformat()
 
 
+# ---------------- cache busting ----------------
+# GitHub Pages serves CSS with max-age=600 and no fingerprint, so a browser --
+# iOS Safari especially -- can keep showing an old stylesheet long after a
+# deploy, which reads as "the fix didn't work". Stamping the content hash into
+# the URL makes every deploy a new URL, so a stale file can never win.
+VERSIONED = ("css/style.css", "css/fonts.css", "js/main.js")
+_hashes = {}
+
+
+def asset_version(rel):
+    if rel not in _hashes:
+        blob = io.open(os.path.join(ROOT, rel), "rb").read()
+        _hashes[rel] = hashlib.sha256(blob).hexdigest()[:8]
+    return _hashes[rel]
+
+
+def stamp(html):
+    """Add or refresh ?v=<hash> on every versioned asset reference."""
+    for rel in VERSIONED:
+        pat = re.compile(r'(?<=["\'])(/?%s)(\?v=[0-9a-f]+)?(?=["\'])' % re.escape(rel))
+        html = pat.sub(lambda m: m.group(1) + "?v=" + asset_version(rel), html)
+    return html
+
+
 def write(path, html):
+    if path.endswith(".html"):
+        html = stamp(html)
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     io.open(full, "w", encoding="utf-8").write(html)
@@ -902,3 +928,14 @@ def sitemap():
             + urls + '\n</urlset>\n')
 
 write("sitemap.xml", sitemap())
+
+
+# index.html and 404.html are hand-maintained rather than generated, so stamp
+# them in place -- otherwise they would be the pages that still serve stale CSS.
+for _name in ("index.html", "404.html"):
+    _path = os.path.join(ROOT, _name)
+    _before = io.open(_path, encoding="utf-8").read()
+    _after = stamp(_before)
+    if _after != _before:
+        io.open(_path, "w", encoding="utf-8").write(_after)
+        print("stamped %s" % _name)
