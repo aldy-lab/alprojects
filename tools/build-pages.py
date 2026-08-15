@@ -458,7 +458,7 @@ def news_index():
         cards.append("""        <a class="news-card" href="/news/{slug}.html">
           <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8599;</span></span>
           <span class="thumb"><img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}" loading="lazy"></span>
-          <h4>{title}</h4>
+          <h2>{title}</h2>
         </a>""".format(**a))
     return """
     <div class="container page-head">

@@ -26,6 +26,14 @@ The sub-pages are committed as plain HTML — nothing needs to run to serve the
 site. Re-run `python3 tools/build-pages.py` only after editing the header or
 footer in `index.html`, so the copies don't drift.
 
+## Accessibility
+
+Audited across every page with a headless probe: one `<h1>` per page, no
+heading-level jumps, no images without `alt`, no links without an accessible
+name, no duplicate `id`s, and no JavaScript errors. Card, team-member and footer
+headings are levelled to keep the outline continuous — the CSS targets those
+levels directly, so changing a heading level means changing both.
+
 ## No horizontal scrolling — how it's enforced
 
 `overflow-x` lives on `<html>`, not `<body>`. Setting it on `<body>` makes body a
