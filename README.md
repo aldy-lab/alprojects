@@ -260,6 +260,25 @@ motion stands down along with the entrance animations.
 blocked or failed `main.js` left 47 of 50 blocks invisible — a blank page. Keep
 that script first in `<head>` on any new page.
 
+## Europe map
+
+`assets/europe-outline.png` is traced from the client's own Company Profile map
+(page 3). That artwork had four countries filled solid white, so the fills were
+removed morphologically and each filled country's border rebuilt from the edge
+of its own fill — otherwise Norway, Germany, Poland and Lithuania came back with
+no outline at all.
+
+⚠️ **Countries are marked, not shaded, and that is deliberate.** In the source
+artwork Poland and Lithuania are a single shape with no border drawn between
+them, and so are Belgium and the Netherlands. Shading could not be limited to
+the countries ALPROJECTS actually operates in, and drawing a national border by
+hand onto a client's map is not something to guess at. If a proper vector map
+arrives, the five countries can be filled directly and the markers dropped.
+
+Marker positions are percentages verified against the measured region bounding
+boxes of the outline itself (`Germany x[253-338] y[295-411]`, `UK x[133-212]
+y[217-348]`, `Norway x[265-352] y[102-243]`), not eyeballed.
+
 ## Client logos
 
 The "Trusted by industry leaders" wall renders a typographic wordmark per client

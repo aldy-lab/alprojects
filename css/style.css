@@ -2541,3 +2541,85 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 
 @media (max-width: 1300px) { .sheet-block { display: none; } }
 @media (max-width: 900px)  { .sheet-rule, .sheet-reg { display: none; } }
+
+/* ============================================================
+   EUROPE MAP
+   Outline traced from the client's own Company Profile map, with
+   its fills removed and each filled country's border rebuilt from
+   the edge of its fill. Markers rather than shaded countries: in
+   that artwork Poland/Lithuania and Belgium/Netherlands are each a
+   single shape with no border drawn between them, so shading could
+   not be limited to the countries we actually operate in.
+   ============================================================ */
+.euromap {
+  position: relative;
+  margin: 0 0 clamp(28px, 4vw, 52px);
+  max-width: 940px;
+  margin-inline: auto;
+}
+.euromap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.42;
+}
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.pin::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--accent);
+  transform: rotate(45deg);
+  margin-bottom: 5px;
+}
+.pin::after {
+  content: "";
+  position: absolute;
+  top: 6px; left: 50%;
+  width: 3px; height: 3px;
+  margin-left: -2px;
+  background: var(--accent);
+}
+.pin b {
+  font-size: var(--text-m);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  text-shadow: 0 0 10px var(--bg), 0 0 4px var(--bg);
+}
+.pin i {
+  font-style: normal;
+  font-size: var(--tag);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  text-shadow: 0 0 10px var(--bg), 0 0 4px var(--bg);
+}
+.pin-hq::before { background: var(--accent); }
+/* The countries cluster on this projection, so labels are offset rather than
+   all sitting under their marker. Cities live on the cards below, not here. */
+.pin-above { flex-direction: column-reverse; }
+.pin-above::before { margin: 5px 0 0; }
+.pin-above::after { top: auto; bottom: 6px; }
+.pin-left { flex-direction: row-reverse; align-items: center; gap: 7px; }
+.pin-left::before { margin: 0; }
+.pin-left::after { top: 50%; left: auto; right: 5px; margin: -2px 0 0; }
+
+@media (max-width: 760px) {
+  /* the labels collide at this width; the country cards below carry the detail */
+  .pin i { display: none; }
+  .pin b { font-size: var(--text-s); }
+  .pin::before { width: 11px; height: 11px; }
+}
+@media (max-width: 520px) {
+  .euromap { display: none; }
+}
