@@ -480,18 +480,24 @@
   }
 
   /* ---------- segmented loading bars ---------- */
+  /* Fills once and stops. This used to setInterval forever: the bar filled,
+     snapped back to the start and refilled, over and over, which is a blinking
+     element sitting in the hero permanently -- and a timer that never clears. */
   function runLoadbar(id, interval) {
     var bar = document.getElementById(id);
-    if (!bar || reduceMotion) return;
+    if (!bar) return;
     var segs = bar.querySelectorAll("i");
+    if (reduceMotion) {
+      segs.forEach(function (s) { s.classList.add("on"); });
+      return;
+    }
     var lit = 0;
     segs.forEach(function (s, i) { if (s.classList.contains("on")) lit = Math.max(lit, i + 1); });
-    var base = lit || 1;
-    var pos = base;
-    setInterval(function () {
+    var pos = lit || 1;
+    var t = setInterval(function () {
       pos += 1;
-      if (pos > segs.length) pos = base;
       segs.forEach(function (s, i) { s.classList.toggle("on", i < pos); });
+      if (pos >= segs.length) clearInterval(t);
     }, interval);
   }
   runLoadbar("heroLoadbar", 420);

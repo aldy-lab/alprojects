@@ -124,10 +124,8 @@ a[href^="mailto:"] {
 .news-card,
 .adv-card { position: relative; }
 
-.dir-card::before,
 .news-card::before,
 .adv-card::before,
-.doc-card::before,
 .shot::before {
   content: "";
   position: absolute;
@@ -574,8 +572,8 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
   transition: opacity var(--dur-3) var(--ease);
 }
-.dir-card:hover::after { opacity: 0.82; }
-.dir-card:hover { transform: translateY(var(--lift)); border-color: var(--line-strong); }
+.dir-card:hover::after { opacity: 0.9; }
+.dir-card:hover { border-color: var(--line-strong); }
 .dir-card .corners { position: absolute; inset: -5px; pointer-events: none; opacity: 0; transition: opacity var(--dur-3); }
 .dir-card:hover .corners { opacity: 1; }
 .corners i {
@@ -1201,13 +1199,15 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--muted-2);
   margin-bottom: 8px;
 }
-.footer-contacts .addr { font-size: var(--text-s); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.8; }
+.footer-contacts .addr,
 .footer-contacts .big {
-  display: inline-block;
-  font-size: var(--h5);
-  font-weight: 500;
-  padding-block: 3px;
+  font-size: var(--text-s);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.8;
 }
+.footer-contacts .big { display: inline-block; padding-block: 3px; }
 .footer-contacts .big:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 .footer-bottom a { display: inline-block; padding-block: 5px; }
@@ -2074,7 +2074,6 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 }
 .doc-card {
   display: grid;
-  transition: border-color var(--dur-2) var(--ease), transform var(--dur-3) var(--ease);
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
   gap: clamp(18px, 2vw, 34px);
   align-items: start;
@@ -2084,7 +2083,8 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   border: 1px solid var(--line);
   transition: border-color var(--dur-3) var(--ease);
 }
-.doc-card:hover { transform: translateY(var(--lift)); border-color: var(--line-strong); }
+/* No hover state on the card. The card is a container, not a control;
+   only the cover and the two actions inside it respond. */
 .doc-cover {
   position: relative;
   display: block;
@@ -2190,12 +2190,64 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
    FOOTPRINT
    ============================================================ */
 .footprint { padding-bottom: clamp(70px, 9vw, 120px); }
-.fp-wrap {
+.fp-wrap { display: block; }
+.fp-intro { max-width: 74ch; margin-bottom: clamp(30px, 4vw, 54px); }
+.fp-cards {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(30px, 5vw, 90px);
-  align-items: start;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
 }
+.fp-card {
+  position: relative;
+  background: var(--bg);
+  padding: 26px 22px 30px;
+  transition: background var(--dur-2) var(--ease);
+}
+.fp-card:hover { background: var(--panel); }
+.fp-card .corners { position: absolute; inset: 8px; opacity: 0; transition: opacity var(--dur-2) var(--ease); pointer-events: none; }
+.fp-card:hover .corners { opacity: 1; }
+.fp-card .corners i { width: 10px; height: 10px; border-color: var(--line-strong); }
+.fp-num { font-size: var(--numbers); letter-spacing: 0.16em; color: var(--muted-2); }
+.fp-name {
+  margin: 12px 0 10px;
+  font-size: var(--h5);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+.fp-badge {
+  display: inline-block;
+  font-size: var(--tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  border: 1px solid var(--line);
+  padding: 4px 9px;
+  margin-bottom: 16px;
+}
+.fp-city { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 14px; }
+.fp-city span {
+  position: relative;
+  padding-left: 13px;
+  font-size: var(--text-m);
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.fp-city span::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 7px; height: 7px;
+  margin-top: -4px;
+  border: 1px solid var(--accent);
+  transform: rotate(45deg);
+}
+.fp-desc { font-size: var(--text-m); line-height: 1.7; color: var(--muted-2); }
+@media (max-width: 1180px) { .fp-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 720px)  { .fp-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px)  { .fp-cards { grid-template-columns: 1fr; } }
 .fp-intro p {
   font-size: var(--text-xl);
   font-weight: 300;

@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css?v=c620da95">
-  <link rel="stylesheet" href="css/style.css?v=c45fb96e">
+  <link rel="stylesheet" href="css/style.css?v=4243d185">
   <link rel="preload" as="image" href="assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
@@ -413,33 +413,48 @@
               <div><p class="fp-num" data-count="7">7</p><p class="fp-num-label">Project bases</p></div>
             </div>
           </div>
-          <ul class="fp-list">
-          <li class="fp-row reveal">
-            <span class="fp-country">Lithuania</span>
-            <span class="fp-tag">HQ</span>
-            <span class="fp-cities">Klaipėda</span>
-          </li>
-          <li class="fp-row reveal">
-            <span class="fp-country">Germany</span>
-            <span class="fp-tag">3 locations</span>
-            <span class="fp-cities">Rostock · Frankfurt · Hamburg</span>
-          </li>
-          <li class="fp-row reveal">
-            <span class="fp-country">Netherlands</span>
-            <span class="fp-tag">Offshore</span>
-            <span class="fp-cities">North Sea projects</span>
-          </li>
-          <li class="fp-row reveal">
-            <span class="fp-country">United Kingdom</span>
-            <span class="fp-tag">1 location</span>
-            <span class="fp-cities">Newcastle</span>
-          </li>
-          <li class="fp-row reveal">
-            <span class="fp-country">Norway</span>
-            <span class="fp-tag">2 locations</span>
-            <span class="fp-cities">Ålesund · Orkanger</span>
-          </li>
-          </ul>
+          <div class="fp-cards">
+          <article class="fp-card reveal">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <p class="fp-num">01</p>
+            <h3 class="fp-name">Lithuania</h3>
+            <p class="fp-badge">Headquarters</p>
+            <p class="fp-city"><span>Klaipėda</span></p>
+            <p class="fp-desc">Head office, offshore reel manufacturing, ship repair and industrial maintenance.</p>
+          </article>
+          <article class="fp-card reveal">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <p class="fp-num">02</p>
+            <h3 class="fp-name">Germany</h3>
+            <p class="fp-badge">3 locations</p>
+            <p class="fp-city"><span>Rostock</span><span>Frankfurt</span><span>Hamburg</span></p>
+            <p class="fp-desc">Cruise and river vessels, railway bridges, industrial and hydro-turbine maintenance.</p>
+          </article>
+          <article class="fp-card reveal">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <p class="fp-num">03</p>
+            <h3 class="fp-name">Netherlands</h3>
+            <p class="fp-badge">Offshore</p>
+            <p class="fp-city"><span>North Sea</span></p>
+            <p class="fp-desc">Offshore commissioning and installation support, gas pipeline fabrication, jack-up maintenance.</p>
+          </article>
+          <article class="fp-card reveal">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <p class="fp-num">04</p>
+            <h3 class="fp-name">United Kingdom</h3>
+            <p class="fp-badge">1 location</p>
+            <p class="fp-city"><span>Newcastle</span></p>
+            <p class="fp-desc">Jack-up structures, steel erection, welding and offshore support.</p>
+          </article>
+          <article class="fp-card reveal">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <p class="fp-num">05</p>
+            <h3 class="fp-name">Norway</h3>
+            <p class="fp-badge">2 locations</p>
+            <p class="fp-city"><span>Ålesund</span><span>Orkanger</span></p>
+            <p class="fp-desc">Spool base and offshore platforms, pipeline welding, refrigeration systems.</p>
+          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -550,28 +565,16 @@
                  label, which presented evidence the artwork did not support.
                  They state the certification instead. Swap in the real scans
                  (same markup as the 9001 card above) when they arrive. -->
-            <div class="cert-card cert-card-pending">
-              <div class="cert-plate" aria-hidden="true">
-                <span class="cert-plate-org">DNV</span>
-                <span class="cert-plate-num">14001</span>
-                <span class="cert-plate-label">Environmental<br>management</span>
-              </div>
+            <div class="cert-card">
+              <img src="assets/cert-iso-14001.webp" alt="ISO 14001 environmental management certificate placeholder" loading="lazy" width="600" height="848">
               <p class="iso">ISO:14001</p>
             </div>
-            <div class="cert-card cert-card-pending">
-              <div class="cert-plate" aria-hidden="true">
-                <span class="cert-plate-org">DNV</span>
-                <span class="cert-plate-num">45001</span>
-                <span class="cert-plate-label">Occupational health<br>&amp; safety</span>
-              </div>
+            <div class="cert-card">
+              <img src="assets/cert-iso-45001.webp" alt="ISO 45001 occupational health and safety certificate placeholder" loading="lazy" width="600" height="848">
               <p class="iso">ISO:45001</p>
             </div>
-            <div class="cert-card cert-card-pending">
-              <div class="cert-plate" aria-hidden="true">
-                <span class="cert-plate-org">DNV</span>
-                <span class="cert-plate-num">3834</span>
-                <span class="cert-plate-label">Welding<br>quality</span>
-              </div>
+            <div class="cert-card">
+              <img src="assets/cert-iso-3834.webp" alt="ISO 3834 welding quality certificate placeholder" loading="lazy" width="600" height="848">
               <p class="iso">ISO:3834</p>
             </div>
           </div>
@@ -807,6 +810,6 @@
     </defs>
   </svg>
 
-  <script src="js/main.js?v=c9311984"></script>
+  <script src="js/main.js?v=b5c5e003"></script>
 </body>
 </html>
