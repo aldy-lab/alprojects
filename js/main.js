@@ -337,6 +337,31 @@
   window.addEventListener("scroll", onScrollHeader, { passive: true });
   onScrollHeader();
 
+  /* ---------- footprint: map markers linked to the country rows ----------
+     Both the map and the list already carry every country, so this only
+     connects them; nothing is revealed by the interaction. */
+  var euromap = document.querySelector(".euromap");
+  var fpRows = document.querySelectorAll(".fp-row[data-country]");
+  if (euromap && fpRows.length) {
+    var setCountry = function (key, on) {
+      var pin = euromap.querySelector('[data-pin="' + key + '"]');
+      var row = document.querySelector('.fp-row[data-country="' + key + '"]');
+      if (pin) pin.classList.toggle("is-active", on);
+      if (row) row.classList.toggle("is-active", on);
+      euromap.classList.toggle("has-active", on);
+    };
+    var bind = function (el, key) {
+      el.addEventListener("mouseenter", function () { setCountry(key, true); });
+      el.addEventListener("mouseleave", function () { setCountry(key, false); });
+      el.addEventListener("focus", function () { setCountry(key, true); });
+      el.addEventListener("blur", function () { setCountry(key, false); });
+    };
+    fpRows.forEach(function (row) { bind(row, row.getAttribute("data-country")); });
+    euromap.querySelectorAll("[data-pin]").forEach(function (pin) {
+      bind(pin, pin.getAttribute("data-pin"));
+    });
+  }
+
   /* ---------- suppress hover motion while dragging ----------
      Sweeping the pointer across a row of cards fired each hover in turn, so
      the cards lifted and dropped one after another. That is read as blinking,

@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css?v=c620da95">
-  <link rel="stylesheet" href="css/style.css?v=769cf983">
+  <link rel="stylesheet" href="css/style.css?v=bef6a1f0">
   <link rel="preload" as="image" href="assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
@@ -413,55 +413,47 @@
               <div><p class="fp-num" data-count="7">7</p><p class="fp-num-label">Project bases</p></div>
             </div>
           </div>
-          <figure class="euromap reveal">
-            <img src="assets/europe-outline.png" alt="Outline map of Europe marking the five countries ALPROJECTS Group operates in: Norway, the United Kingdom, the Netherlands, Germany and Lithuania" width="1460" height="1228" loading="lazy" decoding="async">
-            <span class="pin" style="left:39.0%; top:31.0%"><b>Norway</b></span>
-            <span class="pin pin-left" style="left:21.5%; top:47.0%"><b>United Kingdom</b></span>
-            <span class="pin pin-above" style="left:34.0%; top:54.5%"><b>Netherlands</b></span>
-            <span class="pin" style="left:41.5%; top:60.5%"><b>Germany</b></span>
-            <span class="pin pin-hq" style="left:58.5%; top:47.2%"><b>Lithuania</b></span>
-          </figure>
-          <div class="fp-cards">
-          <article class="fp-card reveal">
-            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <p class="fp-num">01</p>
-            <h3 class="fp-name">Lithuania</h3>
-            <p class="fp-badge">Headquarters</p>
-            <p class="fp-city"><span>Klaipėda</span></p>
-            <p class="fp-desc">Head office, offshore reel manufacturing, ship repair and industrial maintenance.</p>
-          </article>
-          <article class="fp-card reveal">
-            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <p class="fp-num">02</p>
-            <h3 class="fp-name">Germany</h3>
-            <p class="fp-badge">3 locations</p>
-            <p class="fp-city"><span>Rostock</span><span>Frankfurt</span><span>Hamburg</span></p>
-            <p class="fp-desc">Cruise and river vessels, railway bridges, industrial and hydro-turbine maintenance.</p>
-          </article>
-          <article class="fp-card reveal">
-            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <p class="fp-num">03</p>
-            <h3 class="fp-name">Netherlands</h3>
-            <p class="fp-badge">Offshore</p>
-            <p class="fp-city"><span>North Sea</span></p>
-            <p class="fp-desc">Offshore commissioning and installation support, gas pipeline fabrication, jack-up maintenance.</p>
-          </article>
-          <article class="fp-card reveal">
-            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <p class="fp-num">04</p>
-            <h3 class="fp-name">United Kingdom</h3>
-            <p class="fp-badge">1 location</p>
-            <p class="fp-city"><span>Newcastle</span></p>
-            <p class="fp-desc">Jack-up structures, steel erection, welding and offshore support.</p>
-          </article>
-          <article class="fp-card reveal">
-            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <p class="fp-num">05</p>
-            <h3 class="fp-name">Norway</h3>
-            <p class="fp-badge">2 locations</p>
-            <p class="fp-city"><span>Ålesund</span><span>Orkanger</span></p>
-            <p class="fp-desc">Spool base and offshore platforms, pipeline welding, refrigeration systems.</p>
-          </article>
+          <div class="fp-main">
+            <figure class="euromap reveal">
+              <img src="assets/europe-outline.png" alt="Outline map of Europe marking the five countries ALPROJECTS Group operates in: Norway, the United Kingdom, the Netherlands, Germany and Lithuania" width="1460" height="1228" loading="lazy" decoding="async">
+              <span class="pin" data-pin="norway" style="left:39.0%; top:31.0%"><b>Norway</b></span>
+              <span class="pin pin-left" data-pin="uk" style="left:21.5%; top:47.0%"><b>United Kingdom</b></span>
+              <span class="pin pin-above" data-pin="netherlands" style="left:34.0%; top:54.5%"><b>Netherlands</b></span>
+              <span class="pin" data-pin="germany" style="left:41.5%; top:60.5%"><b>Germany</b></span>
+              <span class="pin pin-hq" data-pin="lithuania" style="left:58.5%; top:47.2%"><b>Lithuania</b></span>
+            </figure>
+            <ul class="fp-list reveal reveal-d1">
+              <li class="fp-row" data-country="norway" tabindex="0">
+                <span class="fp-idx">01</span>
+                <span class="fp-name">Norway</span>
+                <span class="fp-badge">2 locations</span>
+                <span class="fp-city">Ålesund · Orkanger</span>
+              </li>
+              <li class="fp-row" data-country="uk" tabindex="0">
+                <span class="fp-idx">02</span>
+                <span class="fp-name">United Kingdom</span>
+                <span class="fp-badge">1 location</span>
+                <span class="fp-city">Newcastle</span>
+              </li>
+              <li class="fp-row" data-country="netherlands" tabindex="0">
+                <span class="fp-idx">03</span>
+                <span class="fp-name">Netherlands</span>
+                <span class="fp-badge">Offshore</span>
+                <span class="fp-city">North Sea</span>
+              </li>
+              <li class="fp-row" data-country="germany" tabindex="0">
+                <span class="fp-idx">04</span>
+                <span class="fp-name">Germany</span>
+                <span class="fp-badge">3 locations</span>
+                <span class="fp-city">Rostock · Hamburg · Frankfurt</span>
+              </li>
+              <li class="fp-row" data-country="lithuania" tabindex="0">
+                <span class="fp-idx">05</span>
+                <span class="fp-name">Lithuania</span>
+                <span class="fp-badge">Headquarters</span>
+                <span class="fp-city">Klaipėda</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -818,6 +810,6 @@
     </defs>
   </svg>
 
-  <script src="js/main.js?v=b5c5e003"></script>
+  <script src="js/main.js?v=ca85066a"></script>
 </body>
 </html>

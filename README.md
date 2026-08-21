@@ -275,6 +275,12 @@ the countries ALPROJECTS actually operates in, and drawing a national border by
 hand onto a client's map is not something to guess at. If a proper vector map
 arrives, the five countries can be filled directly and the markers dropped.
 
+The map sits beside the country list rather than above it. Stacked, the
+footprint section ran 1995px — 2.1 screens — with the map alone taking 791px;
+it is 1160px now. Hovering or focusing a country row lifts its marker and dims
+the others, and hovering a marker highlights its row. Both carry the same
+information independently, so the link is enhancement only.
+
 Marker positions are percentages verified against the measured region bounding
 boxes of the outline itself (`Germany x[253-338] y[295-411]`, `UK x[133-212]
 y[217-348]`, `Norway x[265-352] y[102-243]`), not eyeballed.
