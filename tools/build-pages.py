@@ -144,7 +144,7 @@ PRIVACY = """
       <p>ALPROJECTS, UAB (&ldquo;ALPROJECTS Group&rdquo;, &ldquo;we&rdquo;) is the controller of personal
       data collected through alprojects.co.</p>
       <ul>
-        <li>ALPROJECTS, UAB — Silutes av. 2-536, LT-91110 Klaipeda, Lithuania</li>
+        <li>ALPROJECTS, UAB — Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania</li>
         <li>Email: <a href="mailto:info@alprojects.eu">info@alprojects.eu</a></li>
         <li>Phone: <a href="tel:+37063663744">+370 636 63 744</a></li>
       </ul>
@@ -379,8 +379,8 @@ CAREERS = """
 ARTICLES = [
     dict(slug="we-do-not-certify-our-own-welds",
          num="01", date="13 Aug 2026", iso="2026-08-13", cat="Quality Control",
-         img="news-3.webp", w=1000, h=562,
-         alt="Weld profile gauge measuring a fillet weld",
+         img="projects/welding-tig-pipe-1200.webp", w=900, h=1200,
+         alt="TIG root pass being welded on a prefabricated pipe spool",
          title="We do not certify our own welds",
          lead="Our NDT does not replace your inspector. We use it to catch our own mistakes first.",
          body=[
@@ -396,8 +396,8 @@ ARTICLES = [
 
     dict(slug="piping-installation-engine-room",
          num="02", date="08 Aug 2026", iso="2026-08-08", cat="Shipbuilding",
-         img="news-1.webp", w=831, h=554,
-         alt="Engine room piping installation on board",
+         img="projects/sector-shipbuilding-1200.webp", w=1200, h=1017,
+         alt="Fitters working inside a hull block under construction",
          title="Piping installation in the engine room",
          lead="Sea water, bilge, ballast and fuel lines going in on board right now.",
          body=[
@@ -413,8 +413,8 @@ ARTICLES = [
 
     dict(slug="strongest-in-lithuania-2025-2026",
          num="03", date="23 Jun 2026", iso="2026-06-23", cat="Company",
-         img="news-2.webp", w=1000, h=750,
-         alt="ALPROJECTS Group project site",
+         img="projects/engineer-drawings-1200.webp", w=1200, h=954,
+         alt="ALPROJECTS engineer working from isometric drawings on site",
          title="Among the strongest companies in Lithuania",
          seo="Among Lithuania's strongest companies",
          lead="UAB \u201cALprojects\u201d has been awarded the Strongest in Lithuania 2025\u20132026 certificate by Creditinfo.",
@@ -429,8 +429,8 @@ ARTICLES = [
 
     dict(slug="transformer-mechanical-package",
          num="04", date="01 Aug 2026", iso="2026-08-01", cat="Industrial Projects",
-         img="news-2.webp", w=1000, h=750,
-         alt="Industrial installation works",
+         img="projects/transformer-overhead-1200.webp", w=1200, h=900,
+         alt="Stainless pipework and transformer package installed at a substation",
          title="A transformer mechanical package across five countries",
          seo="Transformer package, five countries",
          lead="Stainless steel piping, cooling systems and precision installation \u2014 repeated across five European sites.",
@@ -443,8 +443,8 @@ ARTICLES = [
 
     dict(slug="fuel-loading-terminal-completed",
          num="05", date="25 Jul 2026", iso="2026-07-25", cat="Energy Projects",
-         img="news-2.webp", w=1000, h=750,
-         alt="Port and terminal infrastructure",
+         img="projects/terminal-rack-tanks-1200.webp", w=1200, h=900,
+         alt="Completed pipe rack running to storage tanks at a fuel loading terminal",
          title="Fuel loading terminal completed",
          lead="September 2025 to April 2026. Twelve specialists. Over 11,000 hours on site.",
          body=[
@@ -456,8 +456,8 @@ ARTICLES = [
 
     dict(slug="europe-tig-welder-shortage",
          num="06", date="25 Jul 2026", iso="2026-07-25", cat="Industry",
-         img="news-3.webp", w=1000, h=562,
-         alt="Precision welding on a workshop bench",
+         img="projects/sector-industry-1200.webp", w=1200, h=1017,
+         alt="TIG welder working on a large-diameter stainless pipe",
          title="We needed 30 certified TIG welders. Europe could not supply them.",
          seo="We needed 30 certified TIG welders",
          lead="The skilled trades shortage is not an abstraction when it is your project that cannot start.",
@@ -544,7 +544,7 @@ COMPANY = """
       <p class="eyebrow">Company</p>
       <h1 class="page-title">A European provider of industrial services</h1>
       <p class="page-lead">ALPROJECTS Group serves the shipbuilding, offshore, industrial and
-      energy sectors, from a head office in Klaipeda, Lithuania.</p>
+      energy sectors, from a head office in Klaipėda, Lithuania.</p>
     </div>
 
     <div class="container prose">
@@ -580,7 +580,7 @@ COMPANY = """
       <a href="/news/strongest-in-lithuania-2025-2026.html">More on the award</a>.</p>
 
       <h2>Where we work from</h2>
-      <p>Head office in Klaipeda, Lithuania, with operations in <strong>Belgium</strong>
+      <p>Head office in Klaipėda, Lithuania, with operations in <strong>Belgium</strong>
       and <strong>Norway</strong>, serving offshore, shipbuilding and industry across
       Northern and Western Europe.</p>
 
@@ -590,7 +590,7 @@ COMPANY = """
       subcontracted on, which is what keeps the quality system meaningful.</p>
 
       <h2>Head office</h2>
-      <p>ALPROJECTS, UAB<br>Silutes av. 2-536, LT-91110 Klaipeda, Lithuania<br>
+      <p>ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania<br>
       <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot;
       <a href="tel:+37063663744">+370 636 63 744</a></p>
 
@@ -735,8 +735,8 @@ CONTACTS = """
     <div class="container prose">
       <h2>Head office</h2>
       <p>ALPROJECTS, UAB<br>
-      Silutes av. 2-536<br>
-      LT-91110 Klaipeda<br>
+      Šilutės av. 2-536<br>
+      LT-91110 Klaipėda<br>
       Lithuania</p>
 
       <h2>Where we work from</h2>
@@ -815,9 +815,9 @@ def job_postings_ld():
             "jobLocation": [{
                 "@type": "Place",
                 "address": {"@type": "PostalAddress",
-                            "addressLocality": "Klaipeda",
+                            "addressLocality": "Klaipėda",
                             "postalCode": "LT-91110",
-                            "streetAddress": "Silutes av. 2-536",
+                            "streetAddress": "Šilutės av. 2-536",
                             "addressCountry": "LT"},
             }],
             "applicantLocationRequirements": [
@@ -880,7 +880,7 @@ write("projects.html", page("Projects",
       PROJECTS, canonical="/projects.html", og="projects"))
 
 write("contacts.html", page("Contacts",
-      "Contact ALPROJECTS Group — Silutes av. 2-536, Klaipeda, Lithuania. Project enquiries and personnel requests.",
+      "Contact ALPROJECTS Group — Šilutės av. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.",
       CONTACTS, canonical="/contacts.html", og="contacts"))
 
 write("news/index.html", page("News",
