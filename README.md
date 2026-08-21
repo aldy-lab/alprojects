@@ -230,6 +230,36 @@ Two notes on adopting the scale:
   warm accent for text. `--accent` is `--gray-50`; the beige token stays defined
   in case it is wanted for print.
 
+## Motion and controls
+
+Both were ad-hoc and are now tokenised in `:root`.
+
+```css
+--dur-1: 150ms;  /* colour, border, opacity        */
+--dur-2: 260ms;  /* buttons, links, small moves    */
+--dur-3: 420ms;  /* card lifts, image zoom         */
+--dur-4: 700ms;  /* entrances and reveals          */
+--btn-h: 48px;   /* every button, no exceptions    */
+--lift: -5px;    /* every card hover               */
+--zoom: 1.04;    /* every image hover              */
+```
+
+There were **fourteen** different transition durations before; 50 declarations
+now resolve to those four. Button height varied by *context* rather than by
+kind — `.btn-bracket` measured 49px on the homepage but 51px inside `.prose`,
+`.btn-solid` 45px in the header but 41px on the careers form — because both
+inherited line-height from their wrapper. They share a base rule with
+`line-height: 1` and `min-height: var(--btn-h)`, so the box no longer depends on
+what wraps it. ⚠️ `.menu-cta` is excluded: it is a menu row, not a button.
+
+`--lift` and `--zoom` become `0` / `1` under `prefers-reduced-motion`, so hover
+motion stands down along with the entrance animations.
+
+**Reveals are progressive, not load-bearing.** An inline script in `<head>` adds
+`js` to `<html>`, and only `.js .reveal` starts at `opacity: 0`. Without it a
+blocked or failed `main.js` left 47 of 50 blocks invisible — a blank page. Keep
+that script first in `<head>` on any new page.
+
 ## Configuration
 
 All go-live values live in one block at the top of `js/main.js`. Fill a URL in

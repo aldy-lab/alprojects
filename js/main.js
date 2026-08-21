@@ -167,7 +167,7 @@
           gio.unobserve(e.target);
         }
       });
-    }, { threshold: 0.05 });
+    }, { threshold: 0, rootMargin: "0px 0px -5% 0px" });
     gridEls.forEach(function (el) { gio.observe(el); });
   } else {
     gridEls.forEach(function (el) { el.classList.add("grid-in"); });
@@ -315,19 +315,50 @@
   var burger = document.querySelector(".burger");
   var mobileMenu = document.getElementById("mobileMenu");
   if (burger && mobileMenu) {
-    burger.addEventListener("click", function () {
-      var open = mobileMenu.classList.toggle("open");
+    var setMenu = function (open) {
+      mobileMenu.classList.toggle("open", open);
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
       document.body.style.overflow = open ? "hidden" : "";
-    });
+      if (open) {
+        /* Move focus into the panel, otherwise a keyboard user opens the menu
+           and their focus is still behind it on the page. */
+        var first = mobileMenu.querySelector("a, button");
+        if (first) first.focus();
+      } else {
+        burger.focus();
+      }
+    };
+    var isOpen = function () { return mobileMenu.classList.contains("open"); };
+
+    burger.addEventListener("click", function () { setMenu(!isOpen()); });
     mobileMenu.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () {
+        /* Navigating away: close without stealing focus back to the burger. */
         mobileMenu.classList.remove("open");
         burger.classList.remove("open");
         burger.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";
       });
+    });
+
+    document.addEventListener("keydown", function (ev) {
+      if (!isOpen()) return;
+      if (ev.key === "Escape") { ev.preventDefault(); setMenu(false); return; }
+      if (ev.key !== "Tab") return;
+      /* Keep Tab inside the open panel — without this the focus ring walks off
+         behind the overlay and the visitor cannot see where they are. */
+      var items = Array.prototype.slice
+        .call(mobileMenu.querySelectorAll('a[href], button:not([disabled])'))
+        .filter(function (el) { return el.offsetParent !== null; });
+      items.unshift(burger);
+      if (!items.length) return;
+      var firstEl = items[0], lastEl = items[items.length - 1];
+      if (ev.shiftKey && document.activeElement === firstEl) {
+        ev.preventDefault(); lastEl.focus();
+      } else if (!ev.shiftKey && document.activeElement === lastEl) {
+        ev.preventDefault(); firstEl.focus();
+      }
     });
   }
 
@@ -365,7 +396,7 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add("in"); });

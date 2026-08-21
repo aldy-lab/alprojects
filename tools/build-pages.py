@@ -47,6 +47,9 @@ def page(title, description, body, noindex=False, canonical=None, head_extra="",
     return """<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Marks that scripting is available. The reveal animations start from
+       opacity:0, so without this a JS failure would leave the page blank. -->
+  <script>document.documentElement.className += " js";</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} — ALPROJECTS Group</title>
