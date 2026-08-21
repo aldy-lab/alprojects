@@ -102,6 +102,17 @@ html.dragging .shot:hover img,
 html.dragging .doc-cover:hover img { transform: none; }
 html.dragging .dir-card:hover::after { opacity: 1; }
 
+/* Tiles whose text is a label rather than content. Dragging across them
+   selected the wording and painted a highlight over the card, which reads as
+   the card flickering rather than as selecting anything useful. */
+.doc-card,
+.client-card,
+.adv-card,
+.cert-card {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 /* Photographs inside links start a native HTML5 drag on mousedown, which
    trails a ghost image and fires pointercancel. Neither is wanted here. */
 .dir-card img, .news-card img, .shot img, .doc-cover img, .member .photo img {
@@ -1077,13 +1088,7 @@ button { font-family: inherit; cursor: pointer; }
   grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
   gap: clamp(30px, 4vw, 70px);
 }
-.newsletter h2 {
-  font-size: var(--text-m);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
+.newsletter h2 { margin-bottom: 16px; }
 .newsletter p { font-size: var(--text-m); color: var(--muted); max-width: 30ch; margin-bottom: 22px; }
 .newsletter form { display: flex; max-width: 300px; }
 .newsletter input {
@@ -1112,9 +1117,14 @@ button { font-family: inherit; cursor: pointer; }
 .newsletter .form-note { font-size: var(--text-s); color: var(--muted); margin-top: 12px; display: none; }
 .newsletter .form-note.show { display: block; }
 
-.footer-col h2 {
-  font-size: var(--text-m);
+/* Every column heading in the footer, newsletter included. Matches the
+   .eyebrow language used everywhere else on the site. */
+.footer-col h2,
+.newsletter h2 {
+  font-size: var(--text-s);
   font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--muted-2);
   margin-bottom: 22px;
 }
@@ -1129,7 +1139,13 @@ button { font-family: inherit; cursor: pointer; }
 .footer-col a:hover { color: var(--muted); }
 
 .footer-contacts .group { margin-bottom: 22px; }
-.footer-contacts .g-label { font-size: var(--text-s); color: var(--muted-2); margin-bottom: 8px; }
+.footer-contacts .g-label {
+  font-size: var(--text-s);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 8px;
+}
 .footer-contacts .addr { font-size: var(--text-s); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.8; }
 .footer-contacts .big { font-size: var(--h5); font-weight: 500; }
 .footer-contacts .big:hover { text-decoration: underline; text-underline-offset: 4px; }
