@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=c620da95">
-  <link rel="stylesheet" href="/css/style.css?v=35fa419e">
+  <link rel="stylesheet" href="/css/style.css?v=1d1a7f6f">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -213,11 +213,11 @@
         <form id="applyForm" class="apply-form" novalidate>
           <div class="field">
             <label for="apName">Full name</label>
-            <input id="apName" name="name" type="text" required autocomplete="name">
+            <input id="apName" name="name" type="text" required aria-required="true" autocomplete="name">
           </div>
           <div class="field">
             <label for="apEmail">Email</label>
-            <input id="apEmail" name="email" type="email" required autocomplete="email">
+            <input id="apEmail" name="email" type="email" required aria-required="true" autocomplete="email">
           </div>
           <div class="field">
             <label for="apPhone">Phone <span class="opt">(optional)</span></label>
@@ -237,11 +237,11 @@
           </div>
           <div class="field field-wide">
             <label for="apMsg">Experience and availability</label>
-            <textarea id="apMsg" name="message" rows="5" required
+            <textarea id="apMsg" name="message" rows="5" required aria-required="true"
                       placeholder="Disciplines you work in, years of experience, and when you could start."></textarea>
           </div>
           <div class="field field-wide field-check">
-            <input id="apConsent" name="consent" type="checkbox" required>
+            <input id="apConsent" name="consent" type="checkbox" required aria-required="true">
             <label for="apConsent">I agree that ALPROJECTS may store these details to
             consider me for current and future roles, as described in the
             <a href="/privacy.html">privacy policy</a>.</label>
@@ -264,10 +264,10 @@
           <p>Subscribe to receive company news and project updates.</p>
           <form id="newsletterForm" novalidate>
             <label class="visually-hidden" for="nlEmail" style="position:absolute;left:-9999px">Email</label>
-            <input id="nlEmail" type="email" name="email" placeholder="Enter Your Email" required autocomplete="email">
+            <input id="nlEmail" type="email" name="email" placeholder="Enter Your Email" required aria-required="true" autocomplete="email">
             <button type="submit" aria-label="Subscribe">↗</button>
           </form>
-          <p class="form-note" id="formNote"></p>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
         </div>
 
         <div class="footer-col">

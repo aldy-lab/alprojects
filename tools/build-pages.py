@@ -330,11 +330,11 @@ CAREERS = """
         <form id="applyForm" class="apply-form" novalidate>
           <div class="field">
             <label for="apName">Full name</label>
-            <input id="apName" name="name" type="text" required autocomplete="name">
+            <input id="apName" name="name" type="text" required aria-required="true" autocomplete="name">
           </div>
           <div class="field">
             <label for="apEmail">Email</label>
-            <input id="apEmail" name="email" type="email" required autocomplete="email">
+            <input id="apEmail" name="email" type="email" required aria-required="true" autocomplete="email">
           </div>
           <div class="field">
             <label for="apPhone">Phone <span class="opt">(optional)</span></label>
@@ -353,11 +353,11 @@ CAREERS = """
           </div>
           <div class="field field-wide">
             <label for="apMsg">Experience and availability</label>
-            <textarea id="apMsg" name="message" rows="5" required
+            <textarea id="apMsg" name="message" rows="5" required aria-required="true"
                       placeholder="Disciplines you work in, years of experience, and when you could start."></textarea>
           </div>
           <div class="field field-wide field-check">
-            <input id="apConsent" name="consent" type="checkbox" required>
+            <input id="apConsent" name="consent" type="checkbox" required aria-required="true">
             <label for="apConsent">I agree that ALPROJECTS may store these details to
             consider me for current and future roles, as described in the
             <a href="/privacy.html">privacy policy</a>.</label>
