@@ -842,6 +842,20 @@ PROJECTS = """
           <figcaption>Mechanical package installed beneath the bushings</figcaption>
         </figure>
         <figure class="shot">
+          <img src="/assets/projects/transformer-plant-1200.webp"
+               srcset="/assets/projects/transformer-plant-600.webp 600w, /assets/projects/transformer-plant-1200.webp 1200w"
+               sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+               alt="Cooling and process lines at the transformer plant" width="1200" height="900" loading="lazy" decoding="async">
+          <figcaption>Cooling and process lines at the transformer plant</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/assets/projects/facade-tank-pipe-1200.webp"
+               srcset="/assets/projects/facade-tank-pipe-600.webp 600w, /assets/projects/facade-tank-pipe-1200.webp 1200w"
+               sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+               alt="Vessel and pipe run carried along the building line" width="1200" height="900" loading="lazy" decoding="async">
+          <figcaption>Vessel and pipe run carried along the building line</figcaption>
+        </figure>
+        <figure class="shot">
           <img src="/assets/projects/terminal-rack-tanks-1200.webp"
                srcset="/assets/projects/terminal-rack-tanks-600.webp 600w, /assets/projects/terminal-rack-tanks-1200.webp 1200w"
                sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"

@@ -260,6 +260,19 @@ motion stands down along with the entrance animations.
 blocked or failed `main.js` left 47 of 50 blocks invisible — a blank page. Keep
 that script first in `<head>` on any new page.
 
+## Client logos
+
+The "Trusted by industry leaders" wall renders a typographic wordmark per client
+by default. Drop a file into `assets/clients/` and point the matching key in
+`CLIENT_LOGOS` (top of `js/main.js`) at it, and the card swaps the wordmark for
+the logo. If the file is missing the wordmark stays, so the wall can never show
+a broken image. Supplied logos are rendered `brightness(0) invert(1)` — flat
+white at one optical weight — so a row of mismatched brand colours still reads
+as one set.
+
+⚠️ **Only add a logo you have that client's written permission to display.**
+The company profile lists these as names, which is why the default is text.
+
 ## Configuration
 
 All go-live values live in one block at the top of `js/main.js`. Fill a URL in

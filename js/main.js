@@ -36,6 +36,17 @@
     "sergej-andrejev":    { instagram: "", linkedin: "" }
   };
 
+  /* Client logos for the "Trusted by industry leaders" wall. Drop a file into
+     assets/clients/ and point the key at it; the card swaps the wordmark for
+     the logo automatically. Leave "" and the typographic wordmark stays, so
+     the wall never shows a broken image or an empty box.
+     ⚠️ Only add a logo you have the client's permission to display. */
+  var CLIENT_LOGOS = {
+    "smulders": "", "meyer-turku": "", "neptune-werft": "", "petrofac": "",
+    "axess-group": "", "blrt-group": "", "seafox": "", "ge-renewable": "",
+    "vattenfall": "", "tennet": ""
+  };
+
   /* Cookieless analytics. Leave "" and no third-party request is made at all —
      nothing to disclose, no consent banner needed. Set it to the domain you
      registered with Plausible (self-hosted or plausible.io) to switch it on;
@@ -71,6 +82,21 @@
     } else {
       a.remove();
     }
+  });
+
+  document.querySelectorAll("[data-client]").forEach(function (card) {
+    var src = CLIENT_LOGOS[card.getAttribute("data-client")];
+    if (!src) return;
+    var mark = card.querySelector(".client-mark");
+    var img = document.createElement("img");
+    img.src = src;
+    img.alt = mark ? mark.textContent : "";
+    img.loading = "lazy";
+    img.decoding = "async";
+    /* If the file is missing the wordmark stays rather than a broken icon. */
+    img.addEventListener("error", function () { img.remove(); if (mark) mark.hidden = false; });
+    if (mark) mark.hidden = true;
+    card.appendChild(img);
   });
 
   /* Drop any socials row left empty, so the gap collapses cleanly. */
@@ -310,6 +336,26 @@
   }
   window.addEventListener("scroll", onScrollHeader, { passive: true });
   onScrollHeader();
+
+  /* ---------- suppress hover motion while dragging ----------
+     Sweeping the pointer across a row of cards fired each hover in turn, so
+     the cards lifted and dropped one after another. That is read as blinking,
+     not as hover, so the motion stands down until the pointer is released. */
+  var dragDoc = document.documentElement;
+  document.addEventListener("pointerdown", function (ev) {
+    if (ev.pointerType === "mouse" && ev.button === 0) dragDoc.classList.add("dragging");
+  }, true);
+  ["pointerup", "pointercancel", "blur"].forEach(function (evt) {
+    window.addEventListener(evt, function () { dragDoc.classList.remove("dragging"); }, true);
+  });
+  /* Belt and braces for engines that ignore -webkit-user-drag: without this the
+     native drag fires pointercancel mid-sweep and the suppression is dropped
+     exactly when it is needed. */
+  document.addEventListener("dragstart", function (ev) {
+    var t = ev.target;
+    if (t && typeof t.closest === "function" &&
+        t.closest(".dir-card, .news-card, .shot, .doc-cover, .member")) ev.preventDefault();
+  });
 
   /* ---------- mobile menu ---------- */
   var burger = document.querySelector(".burger");

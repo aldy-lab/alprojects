@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css?v=c620da95">
-  <link rel="stylesheet" href="css/style.css?v=b034e336">
+  <link rel="stylesheet" href="css/style.css?v=17c6c21f">
   <link rel="preload" as="image" href="assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
@@ -121,6 +121,22 @@
       <span class="cross" style="top:40%; right:15%"></span>
       <span class="cross" style="top:62%; left:2%"></span>
       <span class="cross" style="top:66%; right:2%"></span>
+
+      <!-- Drawing-sheet furniture: measurement rules down each margin, corner
+           registration marks, a datum line and a title block. Decorative, so
+           hidden from assistive tech and dropped on small screens. -->
+      <span class="sheet-rule sheet-rule-l" aria-hidden="true"></span>
+      <span class="sheet-rule sheet-rule-r" aria-hidden="true"></span>
+      <span class="sheet-reg tl" aria-hidden="true"></span>
+      <span class="sheet-reg tr" aria-hidden="true"></span>
+      <span class="sheet-reg bl" aria-hidden="true"></span>
+      <span class="sheet-reg br" aria-hidden="true"></span>
+      <span class="sheet-block" aria-hidden="true">
+        <b>ALPROJECTS GROUP</b>
+        <i>SHEET 01 / 07</i>
+        <i>SCALE 1:1</i>
+        <i>REV 2026.08</i>
+      </span>
 
       <div class="container">
         <h1 class="hero-title reveal in">Integrated Engineering for&nbsp;Industry &amp;&nbsp;Offshore</h1>
@@ -428,16 +444,46 @@
       </div>
       <div class="container">
         <div class="clients-grid">
-          <div class="client-card reveal"><span>Smulders</span></div>
-          <div class="client-card reveal"><span>MEYER Turku</span></div>
-          <div class="client-card reveal"><span>Neptune Werft</span></div>
-          <div class="client-card reveal"><span>Petrofac</span></div>
-          <div class="client-card reveal"><span>Axess Group</span></div>
-          <div class="client-card reveal"><span>BLRT Group</span></div>
-          <div class="client-card reveal"><span>Seafox</span></div>
-          <div class="client-card reveal"><span>GE Renewable Energy</span></div>
-          <div class="client-card reveal"><span>Vattenfall</span></div>
-          <div class="client-card reveal"><span>TenneT</span></div>
+          <div class="client-card reveal" data-client="smulders">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">Smulders</span>
+          </div>
+          <div class="client-card reveal" data-client="meyer-turku">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">MEYER Turku</span>
+          </div>
+          <div class="client-card reveal" data-client="neptune-werft">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">Neptune Werft</span>
+          </div>
+          <div class="client-card reveal" data-client="petrofac">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">Petrofac</span>
+          </div>
+          <div class="client-card reveal" data-client="axess-group">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">Axess Group</span>
+          </div>
+          <div class="client-card reveal" data-client="blrt-group">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">BLRT Group</span>
+          </div>
+          <div class="client-card reveal" data-client="seafox">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">Seafox</span>
+          </div>
+          <div class="client-card reveal" data-client="ge-renewable">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">GE Renewable Energy</span>
+          </div>
+          <div class="client-card reveal" data-client="vattenfall">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">Vattenfall</span>
+          </div>
+          <div class="client-card reveal" data-client="tennet">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="client-mark">TenneT</span>
+          </div>
         </div>
         <p class="clients-note reveal">Shipyards, offshore contractors and energy operators across five countries.
         Membership: <strong>LVEA</strong> &mdash; Lietuvos v&#279;jo elektrini&#371; asociacija.</p>
@@ -523,6 +569,8 @@
           </div>
           <p class="certs-caption">Certified to deliver safety, quality and compliance &mdash;
           <span class="certs-body">independently certified by DNV</span></p>
+          <p class="certs-note">Certificates are held on file. Full scans are issued on request
+          with any tender submission.</p>
           <p class="certs-extra">Welding is carried out under <strong>ISO 3834</strong>. Every joint is
           documented, and NDT and pressure testing are done before insulation and final coating go on.</p>
 
@@ -751,6 +799,6 @@
     </defs>
   </svg>
 
-  <script src="js/main.js?v=d66faee8"></script>
+  <script src="js/main.js?v=c9311984"></script>
 </body>
 </html>
