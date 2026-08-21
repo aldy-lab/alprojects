@@ -264,6 +264,23 @@ notice instead. Edit the list, run `python3 tools/build-pages.py`, commit.
 currently listed (30 certified TIG welders) comes from ALprojects Group's own
 LinkedIn post and should be removed once it is filled.
 
+## Content source: the client's presentations
+
+`assets/downloads/` holds the two PDFs the client supplied — the Company
+Profile (16pp) and Reference Projects (8pp). They are the authority for company
+facts, and most of the homepage now mirrors their priorities: the four sector
+photographs, the five-country footprint, the ten named clients, the "qualified
+specialists" personnel split, ISO 3834 alongside 9001/14001/45001, and the named
+offshore projects on `projects.html`.
+
+The photography on the site is extracted from those PDFs and from the 14 site
+photographs the client sent — `tools/` has no extractor script because it was a
+one-off, but the method was: JPEGs inside the Reference Projects PDF are plain
+`DCTDecode` streams (scan for `FFD8...FFD9`), while the Company Profile wraps
+them as `[/FlateDecode /DCTDecode]`, so those need a `zlib.decompress` first.
+⚠️ **Caption honestly.** Photographs are captioned by what is visibly happening,
+not by the client or project name, unless the profile actually evidences it.
+
 ## Search & sharing
 
 - **Structured data** (JSON-LD, generated in `tools/build-pages.py`):
@@ -323,16 +340,20 @@ Already at or above retina, leave alone: all five team photos, `news-2`,
 - [ ] **Newsletter backend** — set `FORM_ENDPOINT` (Formspree, Buttondown,
       Mailerlite…). Without it the form opens the visitor's mail app with a
       pre-filled request to info@alprojects.eu.
-- [ ] **Partner logos** — the design only contained LVEA. The auto-scrolling
-      marquee (which repeated that one logo ten times) is gone; partners are now
-      a static centred grid that looks right with 1, 3 or 8 logos. Add one
-      `.partner-card` per real partner as they come in.
+- [x] **Clients** — the partners grid (one logo + a TODO) is now "Selected
+      clients", carrying the ten names the Company Profile lists: Smulders,
+      MEYER Turku, Neptune Werft, Petrofac, Axess Group, BLRT Group, Seafox,
+      GE Renewable Energy, Vattenfall, TenneT. Rendered as text plates because
+      the profile lists them as text — ⚠️ do not substitute logo artwork you
+      have not been given permission to use.
 - [ ] **Certificates** — the 9001 card shows the real DNV scan. The 14001 and
       45001 cards previously showed that *same* scan under a different label,
       which presented evidence the artwork did not support; they are now
       typographic plates that state the certification without a document image.
       Send the real 14001 / 45001 scans and they become normal cards again —
       the markup to copy is the 9001 card directly above them in `index.html`.
+- [x] **News photography** — the stock images are gone; each article now
+      carries a real photograph matched to what the article actually claims.
 - [ ] **News articles** — six articles. The first three follow ALprojects Group's
       own LinkedIn carousels closely (client-supplied screenshots): the NDT /
       "we do not certify our own welds" post, the engine-room piping post, and the
@@ -356,10 +377,15 @@ Already at or above retina, leave alone: all five team photos, `news-2`,
       attached there. **A static site cannot accept file uploads** — if you want
       CVs submitted through the page rather than by email, that needs a form
       service (Formspree, Netlify Forms) or a small backend.
-- [ ] **Certificates page with downloadable PDFs** — not built: the only
-      certificate file in the repo is one DNV scan (`assets/cert-dnv.webp`).
-      Send the PDFs (ISO 9001 / 14001 / 45001, ISO 3834, the award) and it
-      becomes a page worth having; without them there is nothing to download.
+- [x] **Company documents** — both presentations are downloadable from the
+      homepage (`#downloads`) with rendered covers, page count, format and size.
+- [ ] **Certificate PDFs** — still only one DNV scan (`assets/cert-dnv.webp`).
+      The 14001 / 45001 / 3834 cards state the certification rather than showing
+      artwork that does not evidence it. Send the real scans and they drop in.
+- [ ] **Team section** — ⚠️ the client struck the five management headshots out.
+      That block is now "Qualified specialists" (the profile's own personnel
+      split and 100+ figure). If the intent was only "fix the photo quality",
+      the previous block is in git at `abaec6e` and restores cleanly.
 - [ ] **Analytics** — decide whether you want visitor stats. If yes, register at
       plausible.io, set `ANALYTICS_DOMAIN`, and update the privacy policy as
       described under Configuration.

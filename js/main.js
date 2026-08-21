@@ -88,12 +88,53 @@
      Injected here so the generated sub-pages need no markup changes.
      ============================================================ */
   var GRID_SECTIONS = [
-    ".hero", ".advantages", ".partners", ".team",
-    ".certifications", ".news", ".cta", ".page-head", ".apply-panel"
+    ".hero", ".advantages", ".partners", ".team", ".people", ".footprint",
+    ".downloads", ".certifications", ".news", ".cta", ".page-head", ".apply-panel"
   ];
   var CROSSHAIR_TARGETS = [
-    ".certs-panel", ".cta-panel", ".apply-panel", ".hero-tags", ".position"
+    ".certs-panel", ".cta-panel", ".apply-panel", ".hero-tags", ".position",
+    ".doc-card", ".people-figure", ".shot-grid"
   ];
+  /* Dimension callouts: a drawing rule with end caps and the measured width,
+     the way a general arrangement drawing dimensions a run. The number is read
+     off the live element, so it is a real measurement, not decoration. */
+  /* Target only elements whose parent lays out in normal flow -- inserting the
+     rule as a sibling inside a grid container would make it a grid item and
+     push the real content into the wrong column. */
+  var DIMENSION_TARGETS = [".footprint .fp-wrap", ".downloads .docs-grid",
+                           ".people .people-grid", ".shot-grid"];
+
+  function addDimension(el) {
+    if (el.previousElementSibling && el.previousElementSibling.classList.contains("dim")) return;
+    var d = document.createElement("span");
+    d.className = "dim";
+    d.setAttribute("aria-hidden", "true");
+    d.innerHTML = '<i></i><s></s><b></b><s></s><i></i>';
+    el.parentNode.insertBefore(d, el);
+    return d;
+  }
+
+  var dims = [];
+  DIMENSION_TARGETS.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      var d = addDimension(el);
+      if (d) dims.push([d, el]);
+    });
+  });
+  /* NB: named measureDimensions, not measure -- blueprint mode already
+     declares a measure(), and the later declaration would win the hoist and
+     silently leave every dimension label empty. */
+  function measureDimensions() {
+    dims.forEach(function (pair) {
+      var w = Math.round(pair[1].getBoundingClientRect().width);
+      if (w) pair[0].querySelector("b").textContent = w + " mm";
+    });
+  }
+  measureDimensions();
+  var mt;
+  window.addEventListener("resize", function () {
+    clearTimeout(mt); mt = setTimeout(measureDimensions, 160);
+  });
 
   function addCrosshairs(el) {
     if (el.querySelector(":scope > .xhair")) return;
