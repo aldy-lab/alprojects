@@ -2619,3 +2619,9 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 @media (max-width: 900px) {
   .euromap { max-width: 400px; }
 }
+
+/* The country list fades in without sliding. It is a hover target, and a row
+   that travels 18px on entrance slides out from under a parked cursor --
+   mouseenter fires, then mouseleave immediately, and the highlight blinks
+   once. Fading only removes the movement. Must sit after `.js .reveal`. */
+.js .fp-list.reveal { transform: none; }
