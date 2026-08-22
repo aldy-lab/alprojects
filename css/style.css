@@ -3672,21 +3672,24 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(38% 40% at 24% 26%, rgba(13, 39, 72, 0.95) 0%, transparent 68%),
-    radial-gradient(32% 36% at 76% 68%, rgba(255, 222, 210, 0.075) 0%, transparent 66%),
-    radial-gradient(30% 32% at 64% 14%, rgba(13, 39, 72, 0.68) 0%, transparent 70%);
-  animation: ground-drift 44s ease-in-out infinite alternate;
+    radial-gradient(44% 46% at 22% 24%, rgba(62, 86, 120, 0.95) 0%, transparent 64%),
+    radial-gradient(36% 40% at 80% 72%, rgba(255, 222, 210, 0.15) 0%, transparent 62%),
+    radial-gradient(34% 36% at 68% 10%, rgba(62, 86, 120, 0.80) 0%, transparent 66%);
+  animation: ground-drift 40s ease-in-out infinite alternate;
   will-change: transform;
 }
-/* Amplitude chosen by measurement, not by eye. At 5%/1.24 the ground moved by
-   0.7 of 255 across 90% of the screen -- animating on paper, invisible in
-   practice. This spreads roughly twice that, which reads as the light breathing
-   rather than as anything happening. Tightening the gradient falloff instead
-   made the change larger but concentrated it in a small area, which looked
-   like a screensaver; the soft falloff keeps it ambient. */
+/* Strength and travel chosen by measurement, not by eye -- the first two
+   attempts were the same mistake twice. At 5%/1.24 the ground moved 0.7 of 255
+   across 90% of the screen; at 12%/1.35 with the darker blue it was 7. Both
+   were animating on paper and invisible on screen.
+
+   This is at the same magnitude as the hero's own glow, which does read: 22 of
+   255 across 90% of the screen over half a cycle. The blue is deliberately
+   desaturated -- a saturated version measured identically (22.0 vs 21.7) and
+   read as colour rather than as light. */
 @keyframes ground-drift {
-  from { transform: translate3d(-9%, -6%, 0) scale(1); }
-  to   { transform: translate3d(12%, 9%, 0) scale(1.35); }
+  from { transform: translate3d(-14%, -9%, 0) scale(1); }
+  to   { transform: translate3d(18%, 13%, 0) scale(1.45); }
 }
 @media (prefers-reduced-motion: reduce) {
   body::after { animation: none; }
