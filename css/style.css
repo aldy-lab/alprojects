@@ -3226,37 +3226,9 @@ h1, h2, h3, h4, h5, h6,
    Type per §2.3, content left-aligned, four facts above the
    lower edge, the brand drafting layer over the grid.
    ============================================================ */
-.hero {
-  position: relative;
-  min-height: 660px;              /* §4.1 */
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: #070b12;            /* variant C ground */
-}
 /* the technical grid: 96px module, 1px lines, well under the 0.12 cap */
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  opacity: 0.5;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
-  background-size: 96px 96px;
-  pointer-events: none;
-}
-.hero-scrim {
-  position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(0deg, rgba(7,11,18,0.9) 0%, rgba(7,11,18,0) 46%);
-}
 /* The brand gradient's warm glow, top right. The brand document states it is
    part of the identity and is not to be removed. */
-.hero-scrim::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(60% 54% at 84% 2%,
-    rgba(255,218,206,0.16) 0%, rgba(255,218,206,0.06) 42%, transparent 72%);
-}
 /* §2.3 — H1 first screen: Montserrat Light, 1.05, −0.5%. Variant C sets 56. */
 .hero-title {
   font-size: clamp(30px, 6.2vw, 56px);
@@ -3452,3 +3424,134 @@ html.blueprint .bp-sheet { opacity: 1; }
   .bp-frame { inset: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .bp-sheet { transition: none; } }
+
+/* ============================================================
+   THE DRAWING SHEET
+   Built from the brand artwork: a navy-to-black gradient with the
+   cool glow top left and the warm one top right, a fine module,
+   long-dash rules over it, outline circles, crosshair marks at the
+   intersections and dimension labels. All vector, so it stays
+   crisp at any size and weighs nothing.
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 660px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  /* the two corner glows over a navy body, exactly as the brand sheet */
+  background:
+    /* centred low enough to clear the fixed header, which was covering it */
+    radial-gradient(58% 62% at 94% 6%,
+      rgba(255, 222, 210, 0.86) 0%, rgba(255, 222, 210, 0.42) 24%,
+      rgba(255, 222, 210, 0.12) 48%, transparent 74%),
+    radial-gradient(46% 54% at -6% 2%,
+      rgba(200, 212, 230, 0.38) 0%, rgba(200, 212, 230, 0.13) 32%, transparent 66%),
+    radial-gradient(78% 82% at 18% 16%, #0d2748 0%, #081a30 46%, transparent 74%),
+    linear-gradient(180deg, #0a1322 0%, #070a12 56%, #05070c 100%);
+}
+
+/* fine module + long-dash rules, one element */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    /* long-dash horizontal rule */
+    repeating-linear-gradient(90deg,
+      rgba(207, 208, 215, 0.30) 0 26px, transparent 26px 42px),
+    /* long-dash vertical rule */
+    repeating-linear-gradient(180deg,
+      rgba(207, 208, 215, 0.30) 0 26px, transparent 26px 42px),
+    /* the fine module underneath */
+    linear-gradient(rgba(207, 208, 215, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(207, 208, 215, 0.055) 1px, transparent 1px);
+  background-size:
+    100% 1px,
+    1px 100%,
+    104px 104px,
+    104px 104px;
+  background-position:
+    0 17%,
+    72% 0,
+    0 0,
+    0 0;
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
+}
+/* a second pair of rules, lower and further left, as on the artwork */
+.hero-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(207,208,215,0.22) 0 26px, transparent 26px 42px),
+    repeating-linear-gradient(180deg, rgba(207,208,215,0.22) 0 26px, transparent 26px 42px);
+  background-size: 100% 1px, 1px 100%;
+  background-position: 0 84%, 8% 0;
+  background-repeat: no-repeat;
+}
+
+/* outline circles, top left */
+.sheet-circles {
+  position: absolute;
+  top: -16%;
+  left: -6%;
+  width: 44vw;
+  max-width: 620px;
+  aspect-ratio: 1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.sheet-circles span {
+  position: absolute;
+  border: 1px solid rgba(207, 208, 215, 0.4);
+  border-radius: 50%;
+}
+.sheet-circles span:nth-child(1) { inset: 0 34% 34% 0; }
+.sheet-circles span:nth-child(2) { inset: 6% 0 46% 44%; }
+
+/* crosshair marks on the intersections */
+.sheet-plus {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  pointer-events: none;
+  opacity: 0.65;
+}
+.sheet-plus::before, .sheet-plus::after {
+  content: "";
+  position: absolute;
+  background: rgba(207, 208, 215, 0.75);
+}
+.sheet-plus::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+.sheet-plus::after { top: 50%; left: 0; right: 0; height: 1px; }
+
+/* dimension labels, as on the artwork */
+.sheet-dim {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: rgba(207, 208, 215, 0.42);
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+/* the plate number */
+.sheet-no {
+  position: absolute;
+  right: 5.5%;
+  top: 26%;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+}
+
+@media (max-width: 1000px) {
+  .sheet-circles { width: 70vw; top: -10%; }
+  .sheet-no { font-size: 26px; right: 22px; bottom: auto; top: calc(var(--nav-h) + 16px); }
+  .hero-grid::after { display: none; }
+}
+@media (max-width: 640px) { .sheet-dim { display: none; } }
