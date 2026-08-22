@@ -1313,13 +1313,84 @@ for a in ARTICLES:
                     (a["title"], "/news/%s.html" % a["slug"])])))
 
 
+
+# ---------------- sector pages (TZ §4.2: each card its own page) ----------------
+SECTOR_PAGES = [
+    ("shipbuilding", "Shipbuilding", "sector-shipbuilding",
+     "Yard schedules do not move. Our crews slot into them and take engine room "
+     "piping, structural steel and outfitting, on newbuilds and on repair.",
+     ["welding-services", "pipe-fitting", "shipbuilding", "ship-repair", "quality-control"]),
+    ("offshore", "Offshore", "sector-offshore",
+     "Mobilising a team offshore is expensive and a shutdown is more expensive still. "
+     "Rope access and NDT carry most of this work, with mechanical scopes alongside.",
+     ["rope-access-services", "non-destructive-testing", "rigging-technical-support",
+      "welding-services", "quality-control"]),
+    ("industrial", "Industrial", "sector-industry",
+     "Plant installation, process piping and mechanical packages, delivered as a whole "
+     "scope with our own supervisors and our own QA on site.",
+     ["mechanical-contracting", "pipe-fitting", "heavy-equipment-relocation",
+      "mobile-repair-teams", "3d-laser-scanning"]),
+    ("renewables", "Renewables", "sector-wind",
+     "Cable installation, rigging and offshore support on wind farms, plus the fuel "
+     "handling infrastructure that sits behind them.",
+     ["rigging-technical-support", "welding-services", "rope-access-services",
+      "mechanical-contracting", "non-destructive-testing"]),
+]
+
+
+def sector_body(slug, name, img, lead, service_slugs):
+    by_slug = {sv["slug"]: sv for sv in SERVICES_FLAT}
+    links = "\n".join(
+        '            <li><a href="/services/%s.html">%s</a></li>' % (s, by_slug[s]["nav"])
+        for s in service_slugs if s in by_slug)
+    return """
+    <section class="sector-hero">
+      <img class="sector-hero-img" src="/assets/projects/%(img)s-1200.webp"
+           alt="" width="1204" height="1017" fetchpriority="high" decoding="async">
+      <span class="sector-hero-scrim" aria-hidden="true"></span>
+      <div class="container sector-hero-in">
+        <p class="eyebrow">Sector</p>
+        <h1 class="sector-hero-title">%(name)s</h1>
+        <p class="sector-hero-lead">%(lead)s</p>
+      </div>
+    </section>
+
+    <div class="container sector-body">
+      <div class="sector-cols">
+        <div>
+          <h2 class="sub-head">What we do here</h2>
+          <ul class="sector-services">
+%(links)s
+          </ul>
+        </div>
+        <div class="sector-aside">
+          <p>Send the drawings or the scope and we will come back with a price and crew
+          dates. If it is a shutdown, tell us the window.</p>
+          <p class="back">
+            <a class="btn-solid" href="/contacts.html">Send us the scope</a>
+            <a class="btn-outline" href="/projects.html">See our projects</a>
+          </p>
+        </div>
+      </div>
+    </div>
+""" % dict(img=img, name=name, lead=lead, links=links)
+
+
+for _slug, _name, _img, _lead, _svcs in SECTOR_PAGES:
+    write("sectors/%s.html" % _slug,
+          page(_name, _lead[:150], sector_body(_slug, _name, _img, _lead, _svcs),
+               canonical="/sectors/%s.html" % _slug, og="projects",
+               head_extra=breadcrumb_ld([("Home", "/"), ("Projects", "/projects.html"),
+                                         (_name, "/sectors/%s.html" % _slug)])))
+
 # ---------------- sitemap ----------------
 # Generated from the same page list that writes the HTML, so a renamed or
 # added article can never leave a dead URL behind in the sitemap.
 SITEMAP = [
     ("/",              "monthly", "1.0"),
     ("/services.html", "monthly", "0.9"),
-] + [("/services/%s.html" % sv["slug"], "monthly", "0.7") for sv in SERVICES_FLAT] + [
+] + [("/services/%s.html" % sv["slug"], "monthly", "0.7") for sv in SERVICES_FLAT] \
+  + [("/sectors/%s.html" % s0, "monthly", "0.7") for s0, _n, _i, _l, _v in SECTOR_PAGES] + [
     ("/projects.html", "monthly", "0.9"),
     ("/company.html",  "monthly", "0.8"),
     ("/news/",         "weekly",  "0.8"),
