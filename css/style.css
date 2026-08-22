@@ -2632,3 +2632,181 @@ a.cert-card:hover img { border-color: var(--accent); }
   place-items: center;
   padding: 0;
 }
+
+/* ============================================================
+   SERVICES — twelve services, three groups.
+   Navigation left, one service open on the right. Columns are
+   38.2 / 61.8, per the client's brief.
+   ============================================================ */
+.srv-shell {
+  position: relative;
+  padding: clamp(40px, 6vw, 90px) 0 clamp(60px, 8vw, 110px);
+  background: url("../assets/services-bg.webp") center / cover no-repeat, var(--bg);
+}
+/* The list used to sit on the bright part of the photograph. This darkens the
+   left side so type never competes with the image behind it. */
+.srv-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5,6,15,0.97) 0%, rgba(5,6,15,0.9) 42%, rgba(5,6,15,0.72) 100%),
+    linear-gradient(180deg, var(--bg) 0%, rgba(5,6,15,0) 22%, rgba(5,6,15,0) 78%, var(--bg) 100%);
+  pointer-events: none;
+}
+.srv {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38.2% 1fr;
+  gap: clamp(28px, 5vw, 90px);
+  align-items: start;
+}
+
+/* ---------- left: the twelve ---------- */
+.srv-nav .eyebrow { margin-bottom: clamp(22px, 3vw, 38px); }
+.srv-group + .srv-group { margin-top: clamp(24px, 3vw, 38px); }
+.srv-group-label {
+  font-size: var(--tag);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 10px;
+}
+.srv-list { list-style: none; margin: 0; padding: 0; }
+.srv-link {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: baseline;
+  gap: 12px;
+  padding: 13px 0 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  transition: color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+.srv-n {
+  font-size: var(--numbers);
+  letter-spacing: 0.12em;
+  color: var(--muted-2);
+  transition: color var(--dur-2) var(--ease);
+}
+.srv-name {
+  font-size: var(--text-s);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color var(--dur-2) var(--ease);
+}
+.srv-link:hover { color: var(--text); border-color: var(--line-strong); }
+.srv-link:hover .srv-n { color: var(--muted); }
+/* The active item is the highest-contrast thing in the column. It read as
+   disabled before, which is the opposite of what it means. */
+.srv-link.is-active {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+.srv-link.is-active .srv-name { font-weight: 600; color: var(--text); }
+.srv-link.is-active .srv-n { color: var(--text); }
+
+/* ---------- right: the open service ---------- */
+.srv-panel { padding-top: 4px; }
+.srv-count {
+  font-size: var(--numbers);
+  letter-spacing: 0.2em;
+  color: var(--muted-2);
+  margin-bottom: 16px;
+}
+.srv-title {
+  font-size: var(--h2);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  max-width: 14ch;
+}
+.srv-lead {
+  margin-top: clamp(18px, 2vw, 26px);
+  font-size: var(--text-xl);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 54ch;
+}
+.srv-points { list-style: none; margin: clamp(24px, 3vw, 38px) 0 0; padding: 0; max-width: 60ch; }
+.srv-points li {
+  position: relative;
+  padding: 0 0 0 26px;
+  margin-bottom: 12px;
+  font-size: var(--text-l);
+  line-height: 1.6;
+  color: var(--muted);
+}
+.srv-points li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.72em;
+  width: 12px; height: 1px;
+  background: var(--muted-2);
+}
+.srv-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: clamp(26px, 3vw, 40px);
+  padding-bottom: 6px;
+  font-size: var(--text-s);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  border-bottom: 1px solid var(--line-strong);
+  transition: border-color var(--dur-2) var(--ease);
+}
+.srv-cta:hover { border-bottom-color: var(--text); }
+.srv-cta span { transition: transform var(--dur-2) var(--ease); }
+.srv-cta:hover span { transform: translateX(4px); }
+
+/* ---------- prev / next ---------- */
+.srv-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(34px, 4vw, 56px);
+}
+.srv-arrow {
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 15px;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+.srv-arrow:hover { background: rgba(255,255,255,0.07); border-color: var(--line-strong); }
+.srv-pos {
+  margin-left: 8px;
+  font-size: var(--numbers);
+  letter-spacing: 0.2em;
+  color: var(--muted-2);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  /* One column: the list, then the open service. Twelve items beside a panel
+     is not a phone layout. */
+  .srv { grid-template-columns: 1fr; gap: 34px; }
+  .srv-shell::before {
+    background:
+      linear-gradient(180deg, rgba(5,6,15,0.94) 0%, rgba(5,6,15,0.9) 60%, var(--bg) 100%);
+  }
+  .srv-title { max-width: none; font-size: var(--h3); }
+  .srv-panel {
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+  }
+  .srv-link { padding: 14px 0 13px; }
+}
+@media (max-width: 560px) {
+  .srv-lead { font-size: var(--text-l); }
+  .srv-controls { margin-top: 30px; }
+}

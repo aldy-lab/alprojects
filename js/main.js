@@ -360,6 +360,101 @@
         t.closest(".dir-card, .news-card, .shot, .doc-cover, .member")) ev.preventDefault();
   });
 
+  /* ---------- services: switch without a reload ----------
+     Every service has a real URL and a real page, so this works with JS off
+     and the links are ordinary links. With JS on, the panel is re-rendered
+     from the embedded JSON and the URL is updated, so switching is instant
+     and the address bar still points at something you can send to someone. */
+  var srvData = document.getElementById("srv-data");
+  var srvPanel = document.querySelector(".srv-panel");
+  if (srvData && srvPanel) {
+    var services = [];
+    try { services = JSON.parse(srvData.textContent); } catch (e) { services = []; }
+    var indexOfSlug = function (slug) {
+      for (var i = 0; i < services.length; i++) if (services[i].slug === slug) return i;
+      return -1;
+    };
+    var currentSlug = function () {
+      var a = document.querySelector(".srv-link.is-active");
+      return a ? a.getAttribute("data-service") : (services[0] && services[0].slug);
+    };
+
+    var renderService = function (slug, push) {
+      var i = indexOfSlug(slug);
+      if (i < 0) return;
+      var sv = services[i];
+      var art = srvPanel.querySelector(".srv-item");
+      if (!art) return;
+
+      art.setAttribute("data-panel", sv.slug);
+      art.querySelector(".srv-count").textContent = sv.num + " / 12";
+      art.querySelector(".srv-title").textContent = sv.h1;
+      art.querySelector(".srv-lead").innerHTML = sv.lead;
+      var ul = art.querySelector(".srv-points");
+      ul.innerHTML = "";
+      sv.points.forEach(function (p) {
+        var li = document.createElement("li");
+        li.innerHTML = p;
+        ul.appendChild(li);
+      });
+      var pos = srvPanel.querySelector(".srv-pos");
+      if (pos) pos.textContent = sv.num + " / 12";
+
+      document.querySelectorAll(".srv-link").forEach(function (a) {
+        var on = a.getAttribute("data-service") === sv.slug;
+        a.classList.toggle("is-active", on);
+        if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+      });
+
+      document.title = sv.h1 + " — ALPROJECTS Group";
+      if (push && window.history && history.pushState) {
+        history.pushState({ srv: sv.slug }, "", "/services/" + sv.slug + ".html");
+      }
+      /* the panel is what changed, so that is what should be announced */
+      art.setAttribute("tabindex", "-1");
+      if (push) {
+        art.focus({ preventScroll: true });
+        /* stacked on a phone the panel sits below twelve list items, so a tap
+           would otherwise look like nothing happened */
+        if (window.matchMedia("(max-width: 900px)").matches) {
+          art.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        }
+      }
+    };
+
+    document.querySelectorAll(".srv-link").forEach(function (a) {
+      a.addEventListener("click", function (ev) {
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button !== 0) return;
+        ev.preventDefault();
+        renderService(a.getAttribute("data-service"), true);
+      });
+    });
+
+    var step = function (delta) {
+      var i = indexOfSlug(currentSlug());
+      if (i < 0) return;
+      var next = (i + delta + services.length) % services.length;
+      renderService(services[next].slug, true);
+    };
+    var prev = srvPanel.querySelector("[data-srv-prev]");
+    var next = srvPanel.querySelector("[data-srv-next]");
+    if (prev) prev.addEventListener("click", function () { step(-1); });
+    if (next) next.addEventListener("click", function () { step(1); });
+
+    document.addEventListener("keydown", function (ev) {
+      if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+      var t = ev.target;
+      if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+      if (ev.key === "ArrowLeft") step(-1);
+      else if (ev.key === "ArrowRight") step(1);
+    });
+
+    window.addEventListener("popstate", function () {
+      var m = location.pathname.match(/\/services\/([a-z0-9-]+)\.html$/);
+      renderService(m ? m[1] : services[0].slug, false);
+    });
+  }
+
   /* ---------- mobile menu ---------- */
   var burger = document.querySelector(".burger");
   var mobileMenu = document.getElementById("mobileMenu");

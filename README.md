@@ -230,6 +230,35 @@ Two notes on adopting the scale:
   warm accent for text. `--accent` is `--gray-50`; the beige token stays defined
   in case it is wanted for print.
 
+## Services
+
+Twelve services in three groups, from the client's brief of 22 Aug 2026. The
+data lives in `SERVICE_GROUPS` in `tools/build-pages.py`; the copy there is
+theirs, verbatim.
+
+**Every service has its own URL** — `/services/welding-services.html` and so on
+— and `/services.html` is the index, opening on the first. Only the open
+service is rendered as HTML, so each page has one `h1` and there is no
+twelve-fold duplicate content across twelve URLs; the other eleven travel as
+JSON in `#srv-data` and the panel is re-rendered client-side with `pushState`.
+With JavaScript off the links are ordinary links to real pages and everything
+still works.
+
+⚠️ **Their own brief ends: "All technical standards and process numbers to be
+confirmed by QA before publishing."** Three specific items are unresolved:
+
+- The ISO 4063 process numbers (141 / 131 / 135) are live because the final
+  copy carries them, but the accompanying rationale said they had been removed.
+  One of the two documents is out of date.
+- The welding copy states work is done "under an ISO 3834 quality system".
+  There is still no ISO 3834 certificate among the three DNV documents.
+- Rope access claims "IRATA and SOFT certified technicians" — unverified.
+
+Also unresolved from the brief itself: it flags that **Heavy Equipment
+Relocation (04) and Rigging (12) overlap** and must be separated, but the copy
+supplied still describes both with overlapping scope. That is a decision for
+the client, not a copy edit.
+
 ## Motion and controls
 
 Both were ad-hoc and are now tokenised in `:root`.

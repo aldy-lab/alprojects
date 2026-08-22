@@ -8,7 +8,7 @@ editing the header or footer in index.html:
 
     python3 tools/build-pages.py
 """
-import datetime, hashlib, io, os, re
+import datetime, hashlib, io, json as _json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 src = io.open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -1064,6 +1064,194 @@ def breadcrumb_ld(trail):
 OG_CARDS = {"we-do-not-certify-our-own-welds", "piping-installation-engine-room",
             "strongest-in-lithuania-2025-2026"}
 
+
+# ============================================================
+# SERVICES — 12 services in 3 groups.
+# Copy supplied by the client, 22 Aug 2026, used verbatim.
+# ⚠️ Their own brief closes with: "All technical standards and
+# process numbers to be confirmed by QA before publishing."
+# Outstanding: the ISO 4063 numbers (141/131/135) are kept here
+# because the final copy carries them, though the rationale note
+# said they had been removed; ISO 3834 has no certificate on file;
+# IRATA/SOFT unverified.
+# ============================================================
+SERVICE_GROUPS = [
+    ("Mechanical & Industrial", [
+        dict(slug="welding-services", nav="Welding Services", h1="Welding services",
+             lead="A weld is only as good as the paperwork behind it. We weld structural steel "
+                  "and piping systems in TIG, MIG and semi-automatic processes, under an ISO 3834 "
+                  "quality system. The welders hold current qualifications and the procedure is "
+                  "approved before the first arc is struck.",
+             points=["TIG (141) for piping, root runs and stainless work",
+                     "MIG (131) and semi-automatic MAG (135) for structural steel and fill passes",
+                     "Structural steel, pressure retaining piping and pipe supports",
+                     "Welder qualifications to EN ISO 9606, verified before mobilisation",
+                     "WPS and WPQR to EN ISO 15614, written for the project standard",
+                     "Welding coordination and traceability under ISO 3834"]),
+        dict(slug="pipe-fitting", nav="Pipe Fitting", h1="Pipe fitting",
+             lead="Most delays in piping start with a bad fit-up. We supply fitters for process, "
+                  "utility and engine room systems, instrument fitters for small bore work, and "
+                  "workshop crews who build spools straight from the isometrics. The dimensions "
+                  "are checked before the welder arrives, not after.",
+             points=["Process and utility piping: carbon steel, stainless, large bore",
+                     "Instrument pipe fitters: small bore, tubing, impulse lines and instrument hook-ups",
+                     "Marine pipe fitters: engine room and system piping on newbuilds and repair",
+                     "Spool prefabrication from isometrics, marked and traceable to the drawing",
+                     "Fit-up, alignment and dimensional control before welding",
+                     "Site installation, flange assembly and support during pressure testing"]),
+        dict(slug="mechanical-contracting", nav="Mechanical Contracting", h1="Mechanical contracting",
+             lead="Some clients need the whole scope taken off their hands. We install plant and "
+                  "equipment, fabricate steel and build transformer packages, with our own "
+                  "supervisors on site.",
+             points=["Steel fabrication and mechanical installation",
+                     "Transformer packages and plant equipment",
+                     "Equipment alignment and mechanical completion",
+                     "One contract, one schedule, one point of contact",
+                     "Our supervisors and our QA on site"]),
+        dict(slug="heavy-equipment-relocation", nav="Heavy Equipment Relocation",
+             h1="Heavy equipment relocation",
+             lead="Moving a production line is a scheduling problem before it is a lifting problem. "
+                  "We dismantle, move, re-install and align it, inside a running plant or between "
+                  "two countries.",
+             points=["Dismantling, skidding, jacking, positioning",
+                     "Disconnection and reconnection of piping and utilities",
+                     "Foundation fit-up and final alignment",
+                     "Site to site moves across Europe"]),
+        dict(slug="mobile-repair-teams", nav="Mobile Repair Teams",
+             h1="Mobile repair teams for refineries",
+             lead="Every hour a unit stays down has a price. Our crews mobilise at short notice for "
+                  "turnarounds, shutdowns and breakdowns, and they carry welding, fitting and "
+                  "mechanical skills in the same team.",
+             points=["Short notice mobilisation",
+                     "One crew, several trades",
+                     "Turnarounds, shutdowns and breakdown repair",
+                     "Work under the plant&rsquo;s permit and safety regime"]),
+    ]),
+    ("Marine", [
+        dict(slug="shipbuilding", nav="Shipbuilding", h1="Shipbuilding",
+             lead="Yard schedules do not move. Our crews slot into them and take engine room piping, "
+                  "structural steel and outfitting.",
+             points=["Engine room and system piping",
+                     "Structural fitting and welding",
+                     "Outfitting and mechanical installation",
+                     "Teams that follow the yard&rsquo;s plan"]),
+        dict(slug="ship-repair", nav="Ship Repair", h1="Ship repair",
+             lead="Repair work is decided in days, not months. We take steel renewal, piping "
+                  "replacement and mechanical repairs, to class and to the owner&rsquo;s requirements.",
+             points=["Steel renewal and piping replacement",
+                     "Mechanical repair on board",
+                     "Dry dock and quayside scopes",
+                     "Fast mobilisation to the vessel"]),
+    ]),
+    ("Inspection & Access", [
+        dict(slug="non-destructive-testing", nav="Non-Destructive Testing",
+             h1="Non-destructive testing",
+             lead="Nobody should be signing off their own work. We inspect welds, materials and "
+                  "structures without stopping production, and we report to the client, not to the "
+                  "contractor who did the welding.",
+             points=["Independent third party verification",
+                     "Weld, material and structural inspection",
+                     "No interruption to production",
+                     "Reporting in the client&rsquo;s format"]),
+        dict(slug="rope-access-services", nav="Rope Access Services", h1="Rope access services",
+             lead="Scaffolding costs more in downtime than in steel. Certified technicians reach the "
+                  "same place on rope, inspect it and repair it while the plant keeps running.",
+             points=["IRATA and SOFT certified technicians",
+                     "Inspection and mechanical work at height",
+                     "Rescue plan and supervision on every job",
+                     "No scaffolding, no shutdown"]),
+        dict(slug="3d-laser-scanning", nav="3D Laser Scanning", h1="3D laser scanning",
+             lead="Old drawings lie. We measure what is really there and hand the data to your "
+                  "engineers, so the clash shows up on a screen instead of on site.",
+             points=["As-built survey of existing installations",
+                     "Dimensional control of structures and piping",
+                     "Clash detection before fabrication",
+                     "Data in the client&rsquo;s CAD format"]),
+        dict(slug="quality-control", nav="Quality Control / QA-QC", h1="Quality control and QA-QC",
+             lead="Quality is what you can prove afterwards. We inspect piping and steel structures "
+                  "and leave documentation that holds up when the client, the surveyor or the "
+                  "auditor asks for it.",
+             points=["Piping and steel structure verification",
+                     "Traceability down to the individual weld",
+                     "Support at client and third party witness points",
+                     "Handover dossier assembled as the work goes, not at the end"]),
+        dict(slug="rigging-technical-support", nav="Rigging &amp; Technical Support",
+             h1="Rigging and technical support",
+             lead="Lifts go wrong at the planning stage. We plan them, and we send the people who "
+                  "run them on site.",
+             points=["Lift planning and execution",
+                     "Load handling and installation support",
+                     "Site coordination and supervision",
+                     "Offshore and industrial projects"]),
+    ]),
+]
+
+SERVICES_FLAT = [sv for _, group in SERVICE_GROUPS for sv in group]
+for _i, _sv in enumerate(SERVICES_FLAT, 1):
+    _sv["num"] = "%02d" % _i
+
+
+
+def service_nav(active_slug):
+    """Left column: the twelve services in their three groups."""
+    out = ['        <p class="eyebrow">All services</p>']
+    for label, group in SERVICE_GROUPS:
+        out.append('        <div class="srv-group">')
+        out.append('          <p class="srv-group-label">%s</p>' % label)
+        out.append('          <ul class="srv-list">')
+        for sv in group:
+            cls = "srv-link is-active" if sv["slug"] == active_slug else "srv-link"
+            aria = ' aria-current="page"' if sv["slug"] == active_slug else ''
+            out.append('            <li><a class="%s" href="/services/%s.html" data-service="%s"%s>'
+                       '<span class="srv-n">%s</span><span class="srv-name">%s</span></a></li>'
+                       % (cls, sv["slug"], sv["slug"], aria, sv["num"], sv["nav"]))
+        out.append('          </ul>')
+        out.append('        </div>')
+    return "\n".join(out)
+
+
+def service_panel(sv):
+    points = "\n".join('            <li>%s</li>' % p for p in sv["points"])
+    return ('        <article class="srv-item" data-panel="{slug}">\n'
+            '          <p class="srv-count">{num} / 12</p>\n'
+            '          <h1 class="srv-title">{h1}</h1>\n'
+            '          <p class="srv-lead">{lead}</p>\n'
+            '          <ul class="srv-points">\n{points}\n          </ul>\n'
+            '          <a class="srv-cta" href="/contacts.html">Discuss a project '
+            '<span aria-hidden="true">&rarr;</span></a>\n'
+            '        </article>').format(slug=sv["slug"], num=sv["num"],
+                                        h1=sv["h1"], lead=sv["lead"], points=points)
+
+
+def service_page_body(sv):
+    """The two-column block with one service open. Only the active service is
+    rendered as HTML -- one h1 per page, and no twelve-fold duplicate content
+    across twelve URLs. The rest travel as JSON so switching is instant."""
+    payload = _json.dumps(
+        [{k: x[k] for k in ("slug", "num", "h1", "lead", "points")} for x in SERVICES_FLAT],
+        ensure_ascii=False, separators=(",", ":"))
+    return ('\n    <section class="srv-shell">\n'
+            '      <div class="container srv">\n'
+            '        <nav class="srv-nav" aria-label="Services">\n'
+            '{nav}\n'
+            '        </nav>\n'
+            '        <div class="srv-panel">\n'
+            '{panel}\n'
+            '          <div class="srv-controls">\n'
+            '            <button class="srv-arrow" type="button" data-srv-prev '
+            'aria-label="Previous service">&larr;</button>\n'
+            '            <button class="srv-arrow" type="button" data-srv-next '
+            'aria-label="Next service">&rarr;</button>\n'
+            '            <span class="srv-pos" aria-live="polite">{num} / 12</span>\n'
+            '          </div>\n'
+            '        </div>\n'
+            '      </div>\n'
+            '    </section>\n'
+            '    <script type="application/json" id="srv-data">{payload}</script>\n'
+            ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
+                     num=sv["num"], payload=payload)
+
+
 # ---------------- write everything ----------------
 write("privacy.html", page("Privacy Policy",
       "How ALPROJECTS Group handles personal data collected through this website.",
@@ -1079,9 +1267,24 @@ write("company.html", page("Company",
       "ALPROJECTS Group is a European provider of industrial services for the shipbuilding, offshore, industrial and energy sectors.",
       COMPANY, canonical="/company.html", og="company"))
 
+# --- services: one URL per service, plus /services.html as the index ---
+def _service_desc(sv):
+    d = re.sub(r"<[^>]+>", "", sv["lead"]).replace("&rsquo;", "'")
+    return (d[:152].rsplit(" ", 1)[0] + "...") if len(d) > 155 else d
+
+
+for _sv in SERVICES_FLAT:
+    write("services/%s.html" % _sv["slug"],
+          page(_sv["h1"], _service_desc(_sv), service_page_body(_sv),
+               canonical="/services/%s.html" % _sv["slug"], og="services",
+               head_extra=breadcrumb_ld([("Home", "/"), ("Services", "/services.html"),
+                                         (_sv["h1"], "/services/%s.html" % _sv["slug"])])))
+
+# /services.html shows the first service, and is the entry point people link to
 write("services.html", page("Services",
-      "NDT, rope access, 3D laser scanning, quality control and rigging for industrial and offshore projects across Europe.",
-      SERVICES, canonical="/services.html", og="services"))
+      "Welding, pipe fitting, mechanical contracting, marine works, NDT, rope access and "
+      "quality control for industrial and offshore projects across Europe.",
+      service_page_body(SERVICES_FLAT[0]), canonical="/services.html", og="services"))
 
 write("projects.html", page("Projects",
       "Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.",
@@ -1114,6 +1317,7 @@ for a in ARTICLES:
 SITEMAP = [
     ("/",              "monthly", "1.0"),
     ("/services.html", "monthly", "0.9"),
+] + [("/services/%s.html" % sv["slug"], "monthly", "0.7") for sv in SERVICES_FLAT] + [
     ("/projects.html", "monthly", "0.9"),
     ("/company.html",  "monthly", "0.8"),
     ("/news/",         "weekly",  "0.8"),
