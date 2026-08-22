@@ -165,15 +165,29 @@ PRIVACY = """
         <li><strong>Server logs.</strong> The site is hosted on GitHub Pages. GitHub
         records technical request data, including IP address and browser user-agent,
         for security and reliability.</li>
+        <li><strong>Booking a call.</strong> If you open the scheduling calendar on the
+        contacts page and book a slot, Calendly receives the name, email address and any
+        notes you enter, together with your IP address and time zone.</li>
       </ul>
 
       <h2>3. Third parties that receive data</h2>
       <ul>
-        <li><strong>GitHub, Inc.</strong> — website hosting and request logs.</li>
+        <li><strong>GitHub, Inc.</strong> &mdash; website hosting and request logs.</li>
+        <li><strong>Calendly LLC</strong> &mdash; the scheduling calendar on the contacts
+        page, and only if you choose to open it.</li>
       </ul>
-      <p>This site loads no third-party scripts, fonts, analytics or embeds. The
-      typeface is served from our own domain, so browsing this site does not disclose
-      your IP address to any advertising or analytics company.</p>
+      <p>Simply browsing this site loads no third-party scripts, fonts, analytics or
+      embeds. The typeface is served from our own domain, so reading these pages does not
+      disclose your IP address to any advertising or analytics company.</p>
+      <p>The one exception is the scheduling calendar on the contacts page. It is supplied
+      by Calendly LLC and is <strong>not loaded until you press &ldquo;Open the
+      calendar&rdquo;</strong>. Until you do, no request is made to Calendly and they
+      receive nothing about you. Once you open it, Calendly receives your IP address and
+      sets its own cookies in order to run the calendar, and the details you submit if you
+      book a slot. Calendly is a US company and transfers are covered by the EU
+      Standard Contractual Clauses; see
+      <a href="https://calendly.com/privacy" target="_blank" rel="noopener">calendly.com/privacy</a>.
+      You can book a call by email instead if you prefer not to use it.</p>
       <!-- If ANALYTICS_DOMAIN is switched on in js/main.js, delete the paragraph
            above, and uncomment the list item and paragraph below.
         <li><strong>Plausible Analytics</strong> — anonymous, cookieless visitor
@@ -187,8 +201,9 @@ PRIVACY = """
 
       <h2>4. Legal basis</h2>
       <ul>
-        <li><strong>Consent</strong> (GDPR Art. 6(1)(a)) — newsletter subscription. You
-        may withdraw it at any time.</li>
+        <li><strong>Consent</strong> (GDPR Art. 6(1)(a)) — newsletter subscription, and
+        loading the scheduling calendar, which happens only when you press the button.
+        You may withdraw it at any time.</li>
         <li><strong>Legitimate interest</strong> (Art. 6(1)(f)) — responding to enquiries,
         and keeping the site secure and available.</li>
       </ul>
@@ -939,6 +954,25 @@ CONTACTS = """
       <h1 class="page-title">Talk to us</h1>
       <p class="page-lead">Project enquiries, personnel requests and open applications all
       reach the same inbox — it is read by people who can answer technical questions.</p>
+    </div>
+
+    <div class="container">
+      <!-- Filled in from BOOKING_URL in js/main.js. Stays hidden while that is
+           empty, so an unconfigured calendar never ships as a dead panel. -->
+      <section class="booking" data-booking-embed hidden aria-labelledby="booking-h">
+        <span class="booking-corner" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <div class="booking-in">
+          <p class="eyebrow">Book a call</p>
+          <h2 id="booking-h">Take a 30-minute slot</h2>
+          <p class="booking-lead">Straight into the diary of someone who can answer
+          technical questions — scope, standards, crew dates.</p>
+          <p class="booking-note">The calendar is hosted by Calendly. It loads only when
+          you press the button, so nothing reaches them before you ask for it.</p>
+          <button class="btn-bracket" type="button" data-booking-load>Open the calendar</button>
+        </div>
+        <p class="booking-alt">Or write to
+        <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>.</p>
+      </section>
     </div>
 
     <div class="container prose">

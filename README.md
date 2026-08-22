@@ -330,7 +330,8 @@ and the link switches on; **leave it `""` and the link is removed from the page
 entirely**, so no dead `href="#"` links ever ship.
 
 ```js
-var BOOKING_URL = "";               // header "Book a call" button
+var BOOKING_URL = "https://calendly.com/aleksandr-alprojects/30min";
+                                    // header "Book a call" + the contacts calendar
 var SOCIAL       = { instagram, linkedin, facebook }; // header + footer (filled in)
 var MEMBER_SOCIAL = { "aleksandr-vasiljev": {...}, … } // team cards
 var FORM_ENDPOINT = "";             // newsletter POST target
@@ -418,8 +419,17 @@ Already at or above retina, leave alone: all five team photos, `news-2`,
 
 ## TODO before go-live (client input needed)
 
-- [ ] **Calendly** — set `BOOKING_URL`. Until then the button reads "Book a call"
-      and scrolls to the contact section, which is a valid destination.
+- [x] **Calendly** — `BOOKING_URL` is set to
+      `https://calendly.com/aleksandr-alprojects/30min`. It drives both the header
+      "Book a call" button and the calendar panel on `/contacts.html`.
+
+      **The calendar is click-to-load and must stay that way.** Calendly's embed
+      sets cookies and sees the visitor's IP, so loading it on every page view
+      would put the site into consent-banner territory. Nothing is requested from
+      `calendly.com` until the visitor presses "Open the calendar" — verified: 0
+      requests before the click, 16 after. Section 3 of `privacy.html` discloses
+      Calendly on exactly those terms, so if the embed is ever changed to load
+      automatically, that section has to be rewritten and a consent banner added.
 - [x] **Company social links** — LinkedIn, Instagram and Facebook are wired up,
       taken from the Wayback snapshot of the old alprojects.eu (which is now a
       "coming soon" placeholder). The design's X/Twitter slot became Facebook,

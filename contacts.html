@@ -25,7 +25,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=f9a21e21">
+  <link rel="stylesheet" href="/css/style.css?v=edb9bce4">
 </head>
 <body>
 
@@ -84,6 +84,25 @@
       <h1 class="page-title">Talk to us</h1>
       <p class="page-lead">Project enquiries, personnel requests and open applications all
       reach the same inbox — it is read by people who can answer technical questions.</p>
+    </div>
+
+    <div class="container">
+      <!-- Filled in from BOOKING_URL in js/main.js. Stays hidden while that is
+           empty, so an unconfigured calendar never ships as a dead panel. -->
+      <section class="booking" data-booking-embed hidden aria-labelledby="booking-h">
+        <span class="booking-corner" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <div class="booking-in">
+          <p class="eyebrow">Book a call</p>
+          <h2 id="booking-h">Take a 30-minute slot</h2>
+          <p class="booking-lead">Straight into the diary of someone who can answer
+          technical questions — scope, standards, crew dates.</p>
+          <p class="booking-note">The calendar is hosted by Calendly. It loads only when
+          you press the button, so nothing reaches them before you ask for it.</p>
+          <button class="btn-bracket" type="button" data-booking-load>Open the calendar</button>
+        </div>
+        <p class="booking-alt">Or write to
+        <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>.</p>
+      </section>
     </div>
 
     <div class="container prose">
@@ -253,6 +272,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=94124a2b"></script>
+  <script src="/js/main.js?v=9c2bc69b"></script>
 </body>
 </html>

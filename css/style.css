@@ -3439,16 +3439,34 @@ html.blueprint .bp-sheet { opacity: 1; }
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  /* the two corner glows over a navy body, exactly as the brand sheet */
+  /* the body of the sheet; the two corner glows live on ::before so they can
+     drift independently */
   background:
-    /* centred low enough to clear the fixed header, which was covering it */
-    radial-gradient(58% 62% at 94% 6%,
-      rgba(255, 222, 210, 0.86) 0%, rgba(255, 222, 210, 0.42) 24%,
-      rgba(255, 222, 210, 0.12) 48%, transparent 74%),
-    radial-gradient(46% 54% at -6% 2%,
-      rgba(200, 212, 230, 0.38) 0%, rgba(200, 212, 230, 0.13) 32%, transparent 66%),
     radial-gradient(78% 82% at 18% 16%, #0d2748 0%, #081a30 46%, transparent 74%),
     linear-gradient(180deg, #0a1322 0%, #070a12 56%, #05070c 100%);
+}
+/* The brand glows. Animated slowly and only here, as asked — a drift measured
+   in tens of seconds, so it reads as light moving rather than as motion. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 62% at 94% 18%,
+      rgba(255, 222, 210, 0.86) 0%, rgba(255, 222, 210, 0.42) 24%,
+      rgba(255, 222, 210, 0.12) 48%, transparent 74%),
+    radial-gradient(46% 54% at -6% 14%,
+      rgba(200, 212, 230, 0.38) 0%, rgba(200, 212, 230, 0.13) 32%, transparent 66%);
+  animation: sheet-drift 34s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes sheet-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-2.2%, 1.6%, 0) scale(1.07); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; }
 }
 
 /* fine module + long-dash rules, one element */
@@ -3543,3 +3561,215 @@ html.blueprint .bp-sheet { opacity: 1; }
   .hero-grid::after { display: none; }
 }
 @media (max-width: 640px) { .sheet-dim { display: none; } }
+
+/* ---------- sector cards: the corner selection, as before ----------
+   Four corner marks that draw in on hover, plus a rule top and bottom, so
+   picking a card reads as framing it rather than just brightening it. */
+.sector-card .corners {
+  position: absolute;
+  inset: 10px;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease);
+}
+.sector-card .corners i {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  transform: scale(0.55);
+  transition: transform var(--dur-3) var(--ease);
+}
+.sector-card .corners i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; transform-origin: top left; }
+.sector-card .corners i:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; transform-origin: top right; }
+.sector-card .corners i:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; transform-origin: bottom left; }
+.sector-card .corners i:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; transform-origin: bottom right; }
+.sector-card:hover .corners, .sector-card:focus-visible .corners { opacity: 1; }
+.sector-card:hover .corners i, .sector-card:focus-visible .corners i { transform: scale(1); }
+/* the measuring rules that ran with the corners */
+.sector-card .corners::before,
+.sector-card .corners::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.28);
+  transform: scaleX(0);
+  transition: transform var(--dur-3) var(--ease);
+}
+.sector-card .corners::before { top: 0; transform-origin: left; }
+.sector-card .corners::after { bottom: 0; transform-origin: right; }
+.sector-card:hover .corners::before,
+.sector-card:hover .corners::after { transform: scaleX(1); }
+@media (hover: none) { .sector-card .corners { display: none; } }
+
+/* ---------- services: the box follows the cursor, not just the click ---------- */
+.srv-link:hover:not(.is-active) {
+  background: rgba(255, 255, 255, 0.028);
+  outline: 1px solid rgba(255, 255, 255, 0.10);
+  outline-offset: -1px;
+  padding-left: 14px;
+  padding-right: 14px;
+  margin-left: -14px;
+  margin-right: -14px;
+}
+.srv-link:hover:not(.is-active)::before,
+.srv-link:hover:not(.is-active)::after {
+  content: "";
+  position: absolute;
+  width: 9px; height: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+.srv-link:hover:not(.is-active)::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.srv-link:hover:not(.is-active)::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+/* ============================================================
+   SHEET GROUND
+   The hero's gradient, at lower strength, so the sections below
+   sit on the same paper instead of on flat black.
+   ============================================================ */
+.footprint,
+.certifications,
+.downloads {
+  position: relative;
+  background:
+    radial-gradient(60% 70% at 12% 0%, rgba(13, 39, 72, 0.55) 0%, rgba(8, 26, 48, 0.22) 45%, transparent 72%),
+    radial-gradient(48% 60% at 96% 4%, rgba(255, 222, 210, 0.10) 0%, rgba(255, 222, 210, 0.03) 38%, transparent 68%),
+    var(--bg);
+}
+/* alternate the corner the light comes from, so consecutive sections do not
+   read as one long gradient */
+.certifications {
+  background:
+    radial-gradient(58% 68% at 88% 0%, rgba(13, 39, 72, 0.5) 0%, rgba(8, 26, 48, 0.2) 45%, transparent 72%),
+    radial-gradient(46% 58% at 4% 6%, rgba(255, 222, 210, 0.08) 0%, transparent 62%),
+    var(--bg);
+}
+
+/* The map was too small to read. It grows and the column proportion shifts to
+   give it the room, while the section still has to settle inside one screen. */
+.footprint .fp-main { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; }
+.footprint .euromap { max-width: 620px; }
+.footprint .euromap img { opacity: 0.5; }
+.footprint .pin b { font-size: var(--text-s); }
+.footprint .fp-intro { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; }
+.footprint .fp-row { padding: 8px 12px 7px 0; }
+.footprint .fp-name { font-size: var(--text-l); }
+.footprint .fp-city { font-size: var(--text-m); }
+.footprint .fp-badge { padding: 3px 8px; }
+@media (max-width: 900px) {
+  .footprint .fp-main { grid-template-columns: 1fr; }
+  .footprint .euromap { max-width: 420px; margin-inline: auto; }
+}
+
+/* This block has to hold the map, the list and its heading inside one screen,
+   and the head was the tallest part of it at 366px. Compact here only. */
+.footprint .section-head {
+  margin-bottom: clamp(14px, 1.6vw, 22px);
+  padding-top: 0;
+}
+.footprint .section-title {
+  font-size: clamp(24px, 2.5vw, 38px);
+  line-height: 1.12;
+}
+.footprint .section-head .eyebrow { margin-bottom: 10px; }
+
+/* ---------- the hint for blueprint mode ----------
+   The mode was undiscoverable, so it gets a legend on the eyebrow line —
+   in the drawing's own vocabulary, a keycap and a micro-caps note. It is a
+   real button as well as a hint, which is the only way a phone (no B key)
+   can reach the feature at all. */
+.hero-note {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px 24px; flex-wrap: wrap;
+}
+.hero-note .hero-eyebrow { margin-bottom: 0; }
+.hero-note { margin-bottom: 24px; }
+.bp-hint {
+  display: inline-flex; align-items: center; gap: 9px;
+  min-height: 32px; padding: 5px 12px 5px 6px;
+  background: transparent; border: 1px solid rgba(255,255,255,.14);
+  border-radius: 2px; color: var(--gray-100); cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  opacity: 0; transform: translateY(4px);
+  transition: opacity var(--dur-3) ease, transform var(--dur-3) ease,
+              color var(--dur-2) ease, border-color var(--dur-2) ease;
+}
+/* It arrives after the headline has been read, not with it. */
+.js .bp-hint { animation: bp-hint-in var(--dur-4) ease 2.6s forwards; }
+.no-js .bp-hint, html:not(.js) .bp-hint { opacity: 1; transform: none; }
+@keyframes bp-hint-in { to { opacity: 1; transform: translateY(0); } }
+.bp-hint:hover, .bp-hint:focus-visible {
+  color: var(--white); border-color: rgba(255,255,255,.4);
+}
+.bp-hint:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+.bp-key {
+  display: grid; place-items: center;
+  width: 20px; height: 20px; flex: none;
+  border: 1px solid rgba(255,255,255,.32); border-radius: 2px;
+  font-size: 10px; letter-spacing: 0; line-height: 1; color: var(--white);
+}
+.bp-hint:hover .bp-key, .bp-hint:focus-visible .bp-key { border-color: rgba(255,255,255,.6); }
+/* Once the mode is on the label tells you how to leave. */
+.blueprint .bp-hint { color: var(--white); border-color: rgba(255,255,255,.45); }
+@media (prefers-reduced-motion: reduce) {
+  .js .bp-hint { animation: none; opacity: 1; transform: none; }
+}
+@media (max-width: 700px) {
+  .hero-note { gap: 14px; margin-bottom: 30px; }
+  .bp-hint { font-size: 9px; letter-spacing: .14em; }
+}
+
+/* ---------- booking panel (contacts) ----------
+   A drawing-frame panel rather than a plain card, so the third-party
+   calendar lands inside the site's own vocabulary. */
+.booking {
+  position: relative;
+  margin: clamp(28px, 4vw, 48px) 0 clamp(30px, 4vw, 52px);
+  padding: clamp(28px, 3.4vw, 44px);
+  border: 1px solid rgba(255,255,255,.1);
+  background:
+    radial-gradient(120% 140% at 88% 8%, rgba(255,222,210,.07) 0%, transparent 58%),
+    rgba(255,255,255,.018);
+}
+.booking[hidden] { display: none; }
+.booking-corner i {
+  position: absolute; width: 11px; height: 11px;
+  border: 0 solid rgba(255,255,255,.34);
+}
+.booking-corner i:nth-child(1) { top: -1px; left: -1px;  border-top-width: 1px; border-left-width: 1px; }
+.booking-corner i:nth-child(2) { top: -1px; right: -1px; border-top-width: 1px; border-right-width: 1px; }
+.booking-corner i:nth-child(3) { bottom: -1px; left: -1px;  border-bottom-width: 1px; border-left-width: 1px; }
+.booking-corner i:nth-child(4) { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
+.booking-in { max-width: 60ch; }
+.booking-in h2 { margin: 0 0 12px; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.15; }
+.booking-lead { color: var(--gray-50); margin: 0 0 12px; }
+.booking-note { color: var(--gray-100); font-size: var(--text-s); margin: 0 0 22px; }
+.booking-note a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+.booking-alt { color: var(--gray-100); font-size: var(--text-s); margin: 18px 0 0; }
+.booking-alt a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+/* Once the calendar is in, the pitch above it is redundant. */
+.booking.is-loaded .booking-lead,
+.booking.is-loaded .booking-note,
+.booking.is-loaded [data-booking-load] { display: none; }
+.booking-widget {
+  min-width: 0; width: 100%; height: 700px; margin-top: 20px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+@media (max-width: 700px) {
+  .booking { padding: 24px 20px; }
+  .booking-widget { height: 940px; }
+}
+
+/* .booking-in h2 was falling through to the browser's bold default; the site's
+   headings are 500. And once the calendar is in, the email fallback belongs
+   under it rather than between the heading and the widget. */
+.booking-in h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.01em; }
+.booking.is-loaded { display: flex; flex-direction: column; }
+.booking.is-loaded .booking-in    { order: 1; }
+.booking.is-loaded .booking-widget { order: 2; }
+.booking.is-loaded .booking-alt   { order: 3; margin-top: 16px; }

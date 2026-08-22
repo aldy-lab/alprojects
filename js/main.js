@@ -12,8 +12,9 @@
      is removed from the page entirely, so nothing dead ships.
      ============================================================ */
 
-  /* Header "Book a call" button. Falls back to /contacts.html while empty. */
-  var BOOKING_URL = ""; // e.g. "https://calendly.com/alprojects/30min"
+  /* Header "Book a call" button, and the calendar panel on the contacts page.
+     Falls back to /contacts.html, and hides the panel, while empty. */
+  var BOOKING_URL = "https://calendly.com/aleksandr-alprojects/30min";
 
   /* Company profiles — used in the header and the footer. */
   var SOCIAL = {
@@ -58,6 +59,75 @@
       b.setAttribute("target", "_blank");
       b.setAttribute("rel", "noopener");
     });
+  }
+
+  /* ---------- the calendar panel on /contacts.html ----------
+     Click-to-load on purpose. Calendly's embed script sets cookies and sees the
+     visitor's IP, so loading it on every page view would put the site into
+     consent-banner territory. Nothing is requested from calendly.com until the
+     visitor presses the button, which keeps the privacy story the same as the
+     rest of the site. */
+  var bookingPanel = document.querySelector("[data-booking-embed]");
+  if (bookingPanel && BOOKING_URL) {
+    bookingPanel.removeAttribute("hidden");
+    var loadBtn = bookingPanel.querySelector("[data-booking-load]");
+    var calendly = /(^|\.)calendly\.com$/i.test(
+      (function () { try { return new URL(BOOKING_URL).hostname; } catch (e) { return ""; } })()
+    );
+
+    if (!calendly) {
+      /* Not a Calendly link — send them straight out rather than embedding
+         something we cannot style or vouch for. */
+      loadBtn.parentNode.replaceChild((function () {
+        var a = document.createElement("a");
+        a.className = "btn-bracket";
+        a.href = BOOKING_URL;
+        a.target = "_blank"; a.rel = "noopener";
+        a.textContent = "Open the calendar";
+        return a;
+      })(), loadBtn);
+    } else if (loadBtn) {
+      loadBtn.addEventListener("click", function () {
+        loadBtn.disabled = true;
+        loadBtn.textContent = "Loading\u2026";
+
+        /* Calendly reads the theme off the query string, so the embed comes up
+           in the site's palette instead of its own white default. */
+        var url = BOOKING_URL +
+          (BOOKING_URL.indexOf("?") === -1 ? "?" : "&") +
+          "hide_gdpr_banner=1&background_color=0b0f16&text_color=e8eaf0&primary_color=ffffff";
+
+        var mount = document.createElement("div");
+        mount.className = "calendly-inline-widget booking-widget";
+        mount.setAttribute("data-url", url);
+        mount.setAttribute("data-resize", "true");
+
+        var css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = "https://assets.calendly.com/assets/external/widget.css";
+        document.head.appendChild(css);
+
+        var js = document.createElement("script");
+        js.src = "https://assets.calendly.com/assets/external/widget.js";
+        js.async = true;
+        js.onerror = function () {
+          /* Blocked by an extension or offline — never leave a dead panel. */
+          bookingPanel.classList.remove("is-loaded");
+          loadBtn.disabled = false;
+          loadBtn.textContent = "Open the calendar";
+          var msg = bookingPanel.querySelector(".booking-note");
+          if (msg) {
+            msg.innerHTML = "The calendar could not load. " +
+              '<a href="' + BOOKING_URL + '" target="_blank" rel="noopener">' +
+              "Open it in a new tab</a> instead.";
+          }
+        };
+
+        bookingPanel.classList.add("is-loaded");
+        bookingPanel.appendChild(mount);
+        document.body.appendChild(js);
+      });
+    }
   }
 
   document.querySelectorAll("[data-social]").forEach(function (a) {
@@ -261,8 +331,16 @@
     });
   }
 
+  /* The hero's legend button — the only route into this on a phone. */
+  var bpHint = document.querySelector(".bp-hint");
+  var bpHintLabel = bpHint && bpHint.querySelector(".bp-hint-label");
+
   function setBlueprint(on, announce) {
     document.documentElement.classList.toggle("blueprint", on);
+    if (bpHint) {
+      bpHint.setAttribute("aria-pressed", on ? "true" : "false");
+      if (bpHintLabel) bpHintLabel.textContent = on ? "Exit drawing mode" : "Drawing mode";
+    }
     if (on) buildSheet();
     if (on) measure();
     try { sessionStorage.setItem(BLUEPRINT_KEY, on ? "1" : "0"); } catch (e) {}
@@ -288,6 +366,14 @@
               t.tagName === "SELECT" || t.isContentEditable)) return;
     setBlueprint(!document.documentElement.classList.contains("blueprint"), true);
   });
+
+  if (bpHint) {
+    bpHint.addEventListener("click", function () {
+      setBlueprint(!document.documentElement.classList.contains("blueprint"), true);
+      /* Keeping focus here would swallow the next B press into the button. */
+      bpHint.blur();
+    });
+  }
 
   window.addEventListener("resize", function () {
     if (document.documentElement.classList.contains("blueprint")) measure();
