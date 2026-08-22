@@ -105,8 +105,8 @@ html.dragging .dir-card:hover::after { opacity: 1; }
 /* Phone and email are the actions people actually come to a contacts page to
    perform. WCAG exempts links inside a sentence from the 24px minimum, but
    these are worth enlarging anyway -- they are tapped, not read. */
-a[href^="tel:"],
-a[href^="mailto:"] {
+a[href^="tel:"]:not([class*="btn-"]),
+a[href^="mailto:"]:not([class*="btn-"]) {
   display: inline-block;
   padding-block: 3px;
 }
@@ -1867,8 +1867,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   .socials svg { width: 16px; height: 16px; }
 
   .hero-scroll { padding: 14px 0; }
-  .btn-solid { padding: 15px 26px; }
-  .btn-bracket { padding: 15px 22px; }
+  /* height comes from --btn-h now; vertical padding here fought it */
 
   .apply-form input,
   .apply-form select,
