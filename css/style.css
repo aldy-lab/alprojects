@@ -60,8 +60,8 @@
   --numbers: 11px;
 
   --font: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --container: 1360px;   /* TZ §2.1 */
-  --pad: 40px;           /* TZ §2.1; 22px under 1000px */
+  --container: 1760px;
+  --pad: clamp(20px, 2.9vw, 56px);
   --nav-h: 78px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -1843,7 +1843,10 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   .site-header .btn-solid { white-space: nowrap; padding: 13px 18px; }
 }
 @media (max-width: 560px) {
-  .site-header .btn-solid:not(.menu-cta) { display: none; }
+  /* Book a call is outlined now, so this has to name both -- with only
+     .btn-solid it reappeared in the phone header and crowded out the burger. */
+  .site-header .btn-solid:not(.menu-cta),
+  .site-header .btn-outline:not(.menu-cta) { display: none; }
   .mobile-menu a.menu-cta {
     display: block;
     margin-top: 26px;
@@ -2762,46 +2765,14 @@ a.cert-card:hover img { border-color: var(--accent); }
   .srv-controls { margin-top: 30px; }
 }
 
-/* Narrower side padding on small screens, per TZ §2.1. */
-@media (max-width: 1000px) { :root { --pad: 22px; } }
 
 /* ============================================================
    HERO — TZ §4.1, variant A.
    Photograph from site, content bottom-left, four facts above the
    lower edge. The six-service strip and the centring are gone.
    ============================================================ */
-.hero {
-  position: relative;
-  min-height: 660px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: var(--bg);
-}
-.hero-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
 /* Darkest at the left, where the type sits. Measured at the brightest point
    of the photograph, per §10.1. */
-.hero-scrim {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(7,7,8,0.95) 0%, rgba(7,7,8,0.84) 42%, rgba(7,7,8,0.34) 100%),
-    linear-gradient(0deg, rgba(7,7,8,0.86) 0%, rgba(7,7,8,0.26) 55%);
-  pointer-events: none;
-}
-.hero-in {
-  position: relative;
-  width: 100%;
-  padding-top: calc(var(--nav-h) + 96px);
-  padding-bottom: 0;
-}
 /* The one warm element on this layout, per §2.2. */
 .hero-eyebrow {
   font-size: 10px;
@@ -2811,21 +2782,6 @@ a.cert-card:hover img { border-color: var(--accent); }
   margin-bottom: 22px;
 }
 .hero-eyebrow span { color: var(--muted-2); margin: 0 4px; }
-.hero-title {
-  font-size: clamp(30px, 3.6vw, 52px);
-  line-height: 1.05;
-  font-weight: 300;
-  letter-spacing: -0.005em;
-  max-width: 17ch;          /* §4.1: 17 characters per line */
-  margin-bottom: 22px;
-}
-.hero-sub {
-  font-size: var(--text-xl);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.78);
-  max-width: 52ch;          /* §4.1 */
-  margin-bottom: 34px;
-}
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 56px; }
 .hero-proof {
   display: grid;
@@ -3020,109 +2976,20 @@ a.cert-card:hover img { border-color: var(--accent); }
    0.60–0.75 opacity, secondary 0.28–0.45; numbers 10–11px with
    1.2px tracking; centre line dashed 18-5-3-5.
    ============================================================ */
-.draft {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  color: var(--gray-50);
-}
 /* corner frame: four corners, 30px inset, 26px arms */
-.draft-corner {
-  position: absolute;
-  width: 26px; height: 26px;
-  border: 1px solid currentColor;
-  opacity: 0.62;
-}
-.draft-corner.tl { top: 30px; left: 30px; border-right: 0; border-bottom: 0; }
-.draft-corner.tr { top: 30px; right: 30px; border-left: 0; border-bottom: 0; }
-.draft-corner.bl { bottom: 30px; left: 30px; border-right: 0; border-top: 0; }
-.draft-corner.br { bottom: 30px; right: 30px; border-left: 0; border-top: 0; }
 
 /* horizontal dimension across the top zone */
-.draft-dim-h {
-  position: absolute;
-  top: 92px; left: 34%; right: 76px;
-  display: flex; align-items: center; gap: 10px;
-  opacity: 0.55;
-}
-.draft-dim-h i { flex: 1 1 auto; height: 1px; background: currentColor; }
-.draft-dim-h i::before, .draft-dim-h i::after {
-  content: ""; position: absolute; width: 1px; height: 7px; background: currentColor;
-}
-.draft-dim-h b, .draft-dim-v b {
-  font-size: 10px; font-weight: 400; letter-spacing: 1.2px;
-  font-variant-numeric: tabular-nums; white-space: nowrap;
-}
 
 /* vertical dimension down the right edge */
-.draft-dim-v {
-  position: absolute;
-  right: 76px; top: 150px; bottom: 190px;
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  opacity: 0.5;
-}
-.draft-dim-v i { flex: 1 1 auto; width: 1px; background: currentColor; }
-.draft-dim-v b { writing-mode: vertical-rl; }
 
 /* centre line, dash-dot 18-5-3-5 */
-.draft-axis {
-  position: absolute;
-  /* starts right of the text block: the rules forbid the drawing layer and the
-     text from overlapping, and at 30% it ran through the headline */
-  left: 54%; right: 8%; top: 46%;
-  height: 1px;
-  opacity: 0.34;
-  background-image: repeating-linear-gradient(to right,
-    currentColor 0 18px, transparent 18px 23px,
-    currentColor 23px 26px, transparent 26px 31px);
-}
 
 /* target — on the object, not the geometric centre */
-.draft-target {
-  position: absolute;
-  right: 20%; top: 38%;
-  width: 64px; height: 64px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
-  opacity: 0.6;
-}
 
 /* numeric marks — the only warm elements the layer is allowed */
-.draft-mark {
-  position: absolute;
-  display: flex; align-items: center; gap: 10px;
-  opacity: 0.85;
-}
-.draft-mark b {
-  width: 26px; height: 26px;
-  display: grid; place-items: center;
-  border: 1px solid var(--warm);
-  border-radius: 50%;
-  color: var(--warm);
-  font-size: 10px; font-weight: 400; letter-spacing: 0.06em;
-  font-variant-numeric: tabular-nums;
-}
-.draft-mark i {
-  font-style: normal;
-  font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--muted);
-}
-.draft-mark.m1 { top: 132px; right: 21%; }
-.draft-mark.m2 { top: 178px; right: 21%; }
 
 /* The brand gradient's warm glow, top right. The brand rules state it is part
    of the identity and is not to be removed. */
-.hero-scrim::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(58% 52% at 88% 6%,
-    rgba(255, 218, 206, 0.20) 0%, rgba(255, 218, 206, 0.07) 42%, transparent 72%);
-  mix-blend-mode: screen;
-}
 
 /* Below 1000px the frame has no spare margin: corners and one mark only, per
    "На малых форматах остаются только углы и одна отметка". */
@@ -3131,3 +2998,124 @@ a.cert-card:hover img { border-color: var(--accent); }
   .draft-mark.m1 { top: 96px; right: 24px; }
 }
 @media (max-width: 640px) { .draft-mark.m1 i { display: none; } }
+
+/* ============================================================
+   HERO — the drawing sheet, as originally designed.
+   The client's content changes are kept: four facts instead of the
+   six-service strip, and the two calls to action. The treatment is
+   the site's own — dark ground, technical grid, Montserrat set in
+   caps, centred.
+   ============================================================ */
+.hero {
+  position: relative;
+  /* 100vh was right when the sector cards filled the lower half. They sit in
+     their own section now, so a full viewport leaves a void under the buttons.
+     660px is the client's own minimum. */
+  min-height: 660px;
+  padding-top: calc(var(--nav-h) + clamp(30px, 5vh, 64px));
+  padding-bottom: clamp(24px, 4vh, 56px);
+  display: flex;
+  flex-direction: column;
+  background:
+    url("../assets/hero-bg.webp") top center / cover no-repeat,
+    var(--bg);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 110px 110px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.25) 75%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.25) 75%, transparent);
+  pointer-events: none;
+}
+.hero-in {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+/* The one warm element on the layout, per the brandbook. */
+.hero-eyebrow {
+  font-size: var(--tag);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--warm);
+  margin-bottom: clamp(18px, 3vh, 30px);
+}
+.hero-eyebrow span { color: var(--muted-2); margin: 0 4px; }
+
+/* Montserrat in caps, 500, letter-spaced — the site's own voice. */
+.hero-title {
+  font-size: var(--h1);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  max-width: 26ch;
+}
+.hero-sub {
+  margin-top: clamp(16px, 2.6vh, 28px);
+  font-size: var(--text-xl);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 56ch;
+}
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: clamp(24px, 4vh, 40px);
+}
+.hero-proof {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: clamp(24px, 4vh, 44px);
+  border-top: 1px solid var(--line);
+  text-align: left;
+}
+.hero-proof b {
+  display: block;
+  font-size: clamp(20px, 1.7vw, 24px);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 7px;
+}
+.hero-proof span {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  color: var(--muted-2);
+}
+
+/* ---------- hero on smaller screens ----------
+   These rules were lost with the photo-hero block. Without them the facts
+   strip stayed at four columns on a phone and the headline could not wrap. */
+@media (max-width: 1000px) {
+  .hero { min-height: 560px; padding-top: calc(var(--nav-h) + 34px); }
+  .hero-proof { grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+}
+@media (max-width: 700px) {
+  .hero-title { max-width: 18ch; }
+  .hero-sub { font-size: var(--text-l); }
+  .hero-ctas { width: 100%; }
+  .hero-ctas a { flex: 1 1 100%; }
+}
+@media (max-width: 420px) {
+  .hero-proof { grid-template-columns: 1fr; gap: 16px; }
+  .hero-proof > div { display: flex; align-items: baseline; gap: 10px; }
+  .hero-proof b { margin-bottom: 0; }
+}
