@@ -3903,3 +3903,41 @@ body .calendly-overlay .calendly-popup {
   .mobile-menu a { padding: 11px 0; font-size: 20px; }
   .mobile-menu a.menu-cta { margin-top: 18px; padding: 15px 26px; }
 }
+
+/* ---------- language switcher ----------
+   Rendered by tools/i18n_build.py into the [data-langs] slots. It is empty
+   until at least two languages are published, and an empty flex box with a
+   gap would still push the socials over -- hence :empty. */
+.langs { display: flex; align-items: center; gap: 2px; }
+.langs:empty { display: none; }
+.langs a {
+  display: grid; place-items: center;
+  min-width: 34px; height: 34px; padding: 0 6px;
+  font-family: var(--font-display);
+  font-size: 10px; font-weight: 500; letter-spacing: .12em;
+  color: var(--gray-100);
+  border: 1px solid transparent; border-radius: 2px;
+  transition: color var(--dur-2) ease, border-color var(--dur-2) ease;
+}
+.langs a:hover, .langs a:focus-visible { color: var(--white); border-color: rgba(255,255,255,.22); }
+.langs a[aria-current="true"] { color: var(--white); border-color: rgba(255,255,255,.34); }
+.langs a:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+
+/* In the mobile menu it is a row of full-height buttons, not a tight cluster:
+   34px is under the 44px tap target the rest of the menu keeps to. */
+.langs-menu { gap: 8px; margin: 22px 0 4px; }
+.langs-menu a {
+  flex: 1; min-width: 0; height: 46px;
+  border-color: rgba(255,255,255,.16); font-size: 12px;
+}
+
+/* Visually hidden, still read aloud: the switcher's links say "EN" on screen
+   and "English" to a screen reader. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+@media (max-width: 560px) {
+  .site-header .langs { display: none; }   /* it lives in the menu on phones */
+}

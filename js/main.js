@@ -43,6 +43,78 @@
      if you do, add the disclosure paragraph to privacy.html — see README. */
   var ANALYTICS_DOMAIN = ""; // e.g. "alprojects.co"
 
+  /* ============================================================
+     LANGUAGE
+     <html lang> is set per tree by tools/i18n_build.py. PREFIX comes from it
+     too, because pushState below writes a path: without the prefix a French
+     visitor clicking a service would be silently moved to the English URL.
+     Strings here are the ones JavaScript writes; everything in the HTML is
+     translated at build time.
+     ============================================================ */
+  var LANG = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+  var PREFIX = ["fr", "de", "it"].indexOf(LANG) >= 0 ? "/" + LANG : "";
+
+  var TXT = (function () {
+    var T = {};
+    T.en = {
+      cal_open: "Open the calendar", cal_loading: "Loading\u2026",
+      cal_failed: 'The calendar could not load. <a href="%s" target="_blank" rel="noopener">Open it in a new tab</a> instead.',
+      home: "Home", title_suffix: " \u2014 ALPROJECTS Group",
+      bp_on: "Exit drawing mode", bp_off: "Drawing mode",
+      bp_flag_on: "Blueprint mode \u2014 drag to measure \u00b7 B to exit",
+      bp_flag_off: "Blueprint mode off",
+      apply_sending: "Sending\u2026",
+      apply_sent: "Application sent. We will be in touch.",
+      apply_fail: "Could not send. Please email info@alprojects.eu instead.",
+      sub_invalid: "Enter a valid email address to subscribe.",
+      sub_fail: "Subscription failed. Email us at info@alprojects.eu.",
+      sub_mail: "Your mail app opened with a pre-filled subscription request."
+    };
+    T.fr = {
+      cal_open: "Ouvrir le calendrier", cal_loading: "Chargement\u2026",
+      cal_failed: 'Le calendrier n\u2019a pas pu se charger. <a href="%s" target="_blank" rel="noopener">Ouvrez-le dans un nouvel onglet</a>.',
+      home: "Accueil", title_suffix: " \u2014 ALPROJECTS Group",
+      bp_on: "Quitter le mode dessin", bp_off: "Mode dessin",
+      bp_flag_on: "Mode plan \u2014 glissez pour mesurer \u00b7 B pour quitter",
+      bp_flag_off: "Mode plan d\u00e9sactiv\u00e9",
+      apply_sending: "Envoi\u2026",
+      apply_sent: "Candidature envoy\u00e9e. Nous vous recontacterons.",
+      apply_fail: "Envoi impossible. \u00c9crivez-nous \u00e0 info@alprojects.eu.",
+      sub_invalid: "Saisissez une adresse e-mail valide pour vous abonner.",
+      sub_fail: "\u00c9chec de l\u2019abonnement. \u00c9crivez-nous \u00e0 info@alprojects.eu.",
+      sub_mail: "Votre messagerie s\u2019est ouverte avec une demande d\u2019abonnement pr\u00e9-remplie."
+    };
+    T.de = {
+      cal_open: "Kalender \u00f6ffnen", cal_loading: "Wird geladen\u2026",
+      cal_failed: 'Der Kalender konnte nicht geladen werden. <a href="%s" target="_blank" rel="noopener">In neuem Tab \u00f6ffnen</a>.',
+      home: "Startseite", title_suffix: " \u2014 ALPROJECTS Group",
+      bp_on: "Zeichnungsmodus beenden", bp_off: "Zeichnungsmodus",
+      bp_flag_on: "Zeichnungsmodus \u2014 zum Messen ziehen \u00b7 B zum Beenden",
+      bp_flag_off: "Zeichnungsmodus aus",
+      apply_sending: "Wird gesendet\u2026",
+      apply_sent: "Bewerbung gesendet. Wir melden uns.",
+      apply_fail: "Senden nicht m\u00f6glich. Bitte schreiben Sie an info@alprojects.eu.",
+      sub_invalid: "Bitte geben Sie eine g\u00fcltige E-Mail-Adresse ein.",
+      sub_fail: "Anmeldung fehlgeschlagen. Schreiben Sie an info@alprojects.eu.",
+      sub_mail: "Ihr E-Mail-Programm wurde mit einer vorausgef\u00fcllten Anmeldung ge\u00f6ffnet."
+    };
+    T.it = {
+      cal_open: "Apri il calendario", cal_loading: "Caricamento\u2026",
+      cal_failed: 'Impossibile caricare il calendario. <a href="%s" target="_blank" rel="noopener">Aprilo in una nuova scheda</a>.',
+      home: "Home", title_suffix: " \u2014 ALPROJECTS Group",
+      bp_on: "Esci dalla modalit\u00e0 disegno", bp_off: "Modalit\u00e0 disegno",
+      bp_flag_on: "Modalit\u00e0 disegno \u2014 trascina per misurare \u00b7 B per uscire",
+      bp_flag_off: "Modalit\u00e0 disegno disattivata",
+      apply_sending: "Invio\u2026",
+      apply_sent: "Candidatura inviata. Vi ricontatteremo.",
+      apply_fail: "Invio non riuscito. Scriveteci a info@alprojects.eu.",
+      sub_invalid: "Inserisci un indirizzo e-mail valido per iscriverti.",
+      sub_fail: "Iscrizione non riuscita. Scriveteci a info@alprojects.eu.",
+      sub_mail: "Il programma di posta si \u00e8 aperto con una richiesta di iscrizione precompilata."
+    };
+    return T[LANG] || T.en;
+  })();
+
   /* ---------- apply config ---------- */
   if (ANALYTICS_DOMAIN) {
     var an = document.createElement("script");
@@ -137,12 +209,12 @@
       out.className = "btn-bracket";
       out.href = BOOKING_URL;
       out.target = "_blank"; out.rel = "noopener";
-      out.textContent = "Open the calendar";
+      out.textContent = TXT.cal_open;
       loadBtn.parentNode.replaceChild(out, loadBtn);
     } else if (loadBtn) {
       loadBtn.addEventListener("click", function () {
         loadBtn.disabled = true;
-        loadBtn.textContent = "Loading\u2026";
+        loadBtn.textContent = TXT.cal_loading;
         loadCalendly().then(function () {
           var mount = document.createElement("div");
           mount.className = "booking-widget";
@@ -156,12 +228,10 @@
           /* Blocked by an extension or offline -- never leave a dead panel. */
           bookingPanel.classList.remove("is-loaded");
           loadBtn.disabled = false;
-          loadBtn.textContent = "Open the calendar";
+          loadBtn.textContent = TXT.cal_open;
           var msg = bookingPanel.querySelector(".booking-note");
           if (msg) {
-            msg.innerHTML = "The calendar could not load. " +
-              '<a href="' + BOOKING_URL + '" target="_blank" rel="noopener">' +
-              "Open it in a new tab</a> instead.";
+            msg.innerHTML = TXT.cal_failed.replace("%s", BOOKING_URL);
           }
         });
       });
@@ -326,7 +396,7 @@
     var page = (document.title || "").split("—")[0].trim();
     if (!page || /^ALPROJECTS/i.test(page)) {
       var h1 = document.querySelector("h1");
-      page = h1 ? h1.textContent.trim() : "Home";
+      page = h1 ? h1.textContent.trim() : TXT.home;
     }
     if (page.length > 30) page = page.slice(0, 29).trim() + "…";
     var d = new Date();
@@ -377,15 +447,15 @@
     document.documentElement.classList.toggle("blueprint", on);
     if (bpHint) {
       bpHint.setAttribute("aria-pressed", on ? "true" : "false");
-      if (bpHintLabel) bpHintLabel.textContent = on ? "Exit drawing mode" : "Drawing mode";
+      if (bpHintLabel) bpHintLabel.textContent = on ? TXT.bp_on : TXT.bp_off;
     }
     if (on) buildSheet();
     if (on) measure();
     try { sessionStorage.setItem(BLUEPRINT_KEY, on ? "1" : "0"); } catch (e) {}
     if (announce) {
       flag.textContent = on
-        ? "Blueprint mode — drag to measure · B to exit"
-        : "Blueprint mode off";
+        ? TXT.bp_flag_on
+        : TXT.bp_flag_off;
       flag.classList.add("show");
       clearTimeout(flagTimer);
       flagTimer = setTimeout(function () { flag.classList.remove("show"); }, 2600);
@@ -601,9 +671,9 @@
         if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
       });
 
-      document.title = sv.h1 + " — ALPROJECTS Group";
+      document.title = sv.h1 + TXT.title_suffix;
       if (push && window.history && history.pushState) {
-        history.pushState({ srv: sv.slug }, "", "/services/" + sv.slug + ".html");
+        history.pushState({ srv: sv.slug }, "", PREFIX + "/services/" + sv.slug + ".html");
       }
       /* the panel is what changed, so that is what should be announced */
       art.setAttribute("tabindex", "-1");
@@ -887,7 +957,7 @@
       if (!f.consent.checked) return fail("Please confirm the privacy notice to continue.", f.consent);
 
       if (CAREERS_ENDPOINT) {
-        applyNote.textContent = "Sending…";
+        applyNote.textContent = TXT.apply_sending;
         applyNote.classList.add("show");
         fetch(CAREERS_ENDPOINT, {
           method: "POST",
@@ -896,10 +966,10 @@
         })
           .then(function (r) {
             if (r.ok) {
-              applyNote.textContent = "Application sent. We will be in touch.";
+              applyNote.textContent = TXT.apply_sent;
               f.reset();
             } else {
-              fail("Could not send. Please email info@alprojects.eu instead.");
+              fail(TXT.apply_fail);
             }
           })
           .catch(function () {
@@ -944,7 +1014,7 @@
       var email = form.email.value.trim();
       var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       if (!valid) {
-        note.textContent = "Enter a valid email address to subscribe.";
+        note.textContent = TXT.sub_invalid;
         note.classList.add("show");
         return;
       }
@@ -962,7 +1032,7 @@
             if (r.ok) form.reset();
           })
           .catch(function () {
-            note.textContent = "Subscription failed. Email us at info@alprojects.eu.";
+            note.textContent = TXT.sub_fail;
             note.classList.add("show");
           });
       } else {
@@ -971,7 +1041,7 @@
           encodeURIComponent("Newsletter subscription") +
           "&body=" +
           encodeURIComponent("Please subscribe this address to company updates: " + email);
-        note.textContent = "Your mail app opened with a pre-filled subscription request.";
+        note.textContent = TXT.sub_mail;
         note.classList.add("show");
       }
     });

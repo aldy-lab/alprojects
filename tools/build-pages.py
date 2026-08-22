@@ -8,8 +8,9 @@ editing the header or footer in index.html:
 
     python3 tools/build-pages.py
 """
-import datetime, hashlib, io, json as _json, os, re
+import datetime, hashlib, io, json as _json, os, re, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 src = io.open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
 lines = src.split("\n")
@@ -26,14 +27,9 @@ FOOTER = block(r'<footer class="site-footer"', r'^\s*</footer>\s*$')
 SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 
 
-def rootify(html):
-    """Relative paths -> root-relative, and same-page anchors -> homepage anchors."""
-    html = re.sub(r'(src|href)="(assets|css|js)/', r'\1="/\2/', html)
-    html = html.replace('href="#top"', 'href="/"')
-    # NB: skip #main (skip-link) and #i-* (SVG sprite <use> refs) — rewriting
-    # the sprite refs to /#i-* silently breaks every icon on the page.
-    html = re.sub(r'href="#(?!main\b)(?!i-)([a-z-]+)"', r'href="/#\1"', html)
-    return html
+# rootify now lives in tools/paths.py: the translation build needs the same
+# rewriting for the language trees, and two copies would drift.
+from paths import rootify  # noqa: E402
 
 
 HEADER_R, FOOTER_R, SPRITE_R = rootify(HEADER), rootify(FOOTER), rootify(SPRITE)

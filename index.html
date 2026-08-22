@@ -26,13 +26,13 @@
   <meta name="twitter:description" content="Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.">
   <meta name="twitter:image" content="https://alprojects.co/assets/og/home.jpg">
 
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="alternate icon" type="image/png" href="assets/logo.png">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-latin.woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="css/style.css?v=6ab3ab25">
-  <link rel="preload" as="image" href="assets/hero-bg.webp" fetchpriority="high">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
+  <link rel="stylesheet" href="/css/style.css?v=a154c5f4">
+  <link rel="preload" as="image" href="/assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
   {
@@ -70,7 +70,7 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="logo" href="/" aria-label="ALPROJECTS Group — home">
-        <img src="assets/logo.svg" alt="ALPROJECTS Group" width="144" height="30">
+        <img src="/assets/logo.svg" alt="ALPROJECTS Group" width="144" height="30">
       </a>
 
       <nav class="main-nav" aria-label="Main navigation">
@@ -86,6 +86,9 @@
       </nav>
 
       <div class="header-right">
+        <!-- Filled in by tools/build-pages.py, once per language. Empty here so
+             a language that is not published yet cannot leave a dead link. -->
+        <div class="langs" data-langs role="group" aria-label="Language"></div>
         <div class="socials">
           <!-- hrefs are filled in from the SOCIAL config at the top of js/main.js;
                any profile left blank there is removed from the page automatically. -->
@@ -109,6 +112,7 @@
     <a href="/careers.html">Careers</a>
     <a href="/contacts.html">Contacts</a>
     <a href="/news/">News</a>
+    <div class="langs langs-menu" data-langs role="group" aria-label="Language"></div>
     <a class="btn-solid menu-cta" data-booking href="/contacts.html">Book a call</a>
   </nav>
 
@@ -177,7 +181,7 @@
           </div>
           <div class="fp-main">
             <figure class="euromap reveal">
-              <img src="assets/europe-outline.png" alt="Outline map of Europe marking the five countries ALPROJECTS Group operates in: Norway, the United Kingdom, the Netherlands, Germany and Lithuania" width="1460" height="1228" loading="lazy" decoding="async">
+              <img src="/assets/europe-outline.png" alt="Outline map of Europe marking the five countries ALPROJECTS Group operates in: Norway, the United Kingdom, the Netherlands, Germany and Lithuania" width="1460" height="1228" loading="lazy" decoding="async">
               <span class="cshape" data-shape="norway" aria-hidden="true"></span>
               <span class="cshape" data-shape="uk" aria-hidden="true"></span>
               <span class="cshape" data-shape="netherlands" aria-hidden="true"></span>
@@ -234,8 +238,8 @@
       <div class="container">
         <div class="sector-grid">
           <a class="sector-card" data-corners href="/sectors/shipbuilding.html">
-            <img src="assets/projects/sector-shipbuilding-1200.webp"
-                 srcset="assets/projects/sector-shipbuilding-600.webp 600w, assets/projects/sector-shipbuilding-900.webp 900w, assets/projects/sector-shipbuilding-1200.webp 1200w"
+            <img src="/assets/projects/sector-shipbuilding-1200.webp"
+                 srcset="/assets/projects/sector-shipbuilding-600.webp 600w, /assets/projects/sector-shipbuilding-900.webp 900w, /assets/projects/sector-shipbuilding-1200.webp 1200w"
                  sizes="(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 23vw"
                  alt="Hull block under construction with fitters working inside the scaffolded section" width="1204" height="1017" loading="lazy" decoding="async">
             <span class="sector-cap">
@@ -246,8 +250,8 @@
             <span class="sector-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a class="sector-card" data-corners href="/sectors/offshore.html">
-            <img src="assets/projects/sector-offshore-1200.webp"
-                 srcset="assets/projects/sector-offshore-600.webp 600w, assets/projects/sector-offshore-900.webp 900w, assets/projects/sector-offshore-1200.webp 1200w"
+            <img src="/assets/projects/sector-offshore-1200.webp"
+                 srcset="/assets/projects/sector-offshore-600.webp 600w, /assets/projects/sector-offshore-900.webp 900w, /assets/projects/sector-offshore-1200.webp 1200w"
                  sizes="(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 23vw"
                  alt="Rope access technician working beneath an offshore platform walkway" width="1204" height="1017" loading="lazy" decoding="async">
             <span class="sector-cap">
@@ -258,8 +262,8 @@
             <span class="sector-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a class="sector-card" data-corners href="/sectors/industrial.html">
-            <img src="assets/projects/sector-industry-1200.webp"
-                 srcset="assets/projects/sector-industry-600.webp 600w, assets/projects/sector-industry-900.webp 900w, assets/projects/sector-industry-1200.webp 1200w"
+            <img src="/assets/projects/sector-industry-1200.webp"
+                 srcset="/assets/projects/sector-industry-600.webp 600w, /assets/projects/sector-industry-900.webp 900w, /assets/projects/sector-industry-1200.webp 1200w"
                  sizes="(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 23vw"
                  alt="Welder running a TIG root pass on a large-diameter stainless pipe" width="1204" height="1017" loading="lazy" decoding="async">
             <span class="sector-cap">
@@ -270,8 +274,8 @@
             <span class="sector-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a class="sector-card" data-corners href="/sectors/renewables.html">
-            <img src="assets/projects/sector-wind-1200.webp"
-                 srcset="assets/projects/sector-wind-600.webp 600w, assets/projects/sector-wind-900.webp 900w, assets/projects/sector-wind-1200.webp 1200w"
+            <img src="/assets/projects/sector-wind-1200.webp"
+                 srcset="/assets/projects/sector-wind-600.webp 600w, /assets/projects/sector-wind-900.webp 900w, /assets/projects/sector-wind-1200.webp 1200w"
                  sizes="(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 23vw"
                  alt="Wind turbine technicians on site at an onshore wind farm" width="1204" height="1017" loading="lazy" decoding="async">
             <span class="sector-cap">
@@ -297,7 +301,7 @@
             <span class="label">Early risk detection by certified specialists</span>
           </div>
           <div class="stats-photo reveal reveal-d1">
-            <img src="assets/photo-welding.webp" alt="Certified specialist performing welding works" loading="lazy" width="1200" height="800">
+            <img src="/assets/photo-welding.webp" alt="Certified specialist performing welding works" loading="lazy" width="1200" height="800">
           </div>
           <div class="stat-card reveal reveal-d2">
             <span class="value" data-count="40" data-suffix="%">0%</span>
@@ -341,7 +345,7 @@
 
         <!-- 1 / 5 -->
         <article class="service-slide" id="service-ndt">
-          <div class="bg" style="background-image:url('assets/service-ndt.webp')"></div>
+          <div class="bg" style="background-image:url('/assets/service-ndt.webp')"></div>
           <div class="service-top">
             <h3>Non-Destructive Testing</h3>
             <span class="count">1/5</span>
@@ -368,7 +372,7 @@
 
         <!-- 2 / 5 -->
         <article class="service-slide" id="service-rope">
-          <div class="bg" style="background-image:url('assets/service-rope.webp')"></div>
+          <div class="bg" style="background-image:url('/assets/service-rope.webp')"></div>
           <div class="service-top">
             <h3>Rope Access Services</h3>
             <span class="count">2/5</span>
@@ -395,7 +399,7 @@
 
         <!-- 3 / 5 -->
         <article class="service-slide" id="service-laser">
-          <div class="bg" style="background-image:url('assets/service-laser.webp')"></div>
+          <div class="bg" style="background-image:url('/assets/service-laser.webp')"></div>
           <div class="service-top">
             <h3>3D Laser Scanning</h3>
             <span class="count">3/5</span>
@@ -422,7 +426,7 @@
 
         <!-- 4 / 5 -->
         <article class="service-slide" id="service-qc">
-          <div class="bg" style="background-image:url('assets/service-qc.webp')"></div>
+          <div class="bg" style="background-image:url('/assets/service-qc.webp')"></div>
           <div class="service-top">
             <h3>Quality Control</h3>
             <span class="count">4/5</span>
@@ -449,7 +453,7 @@
 
         <!-- 5 / 5 -->
         <article class="service-slide" id="service-rigging">
-          <div class="bg" style="background-image:url('assets/service-rigging.webp')"></div>
+          <div class="bg" style="background-image:url('/assets/service-rigging.webp')"></div>
           <div class="service-top">
             <h3>Rigging &amp; Technical Support</h3>
             <span class="count">5/5</span>
@@ -523,21 +527,21 @@
           <div class="certs-grid certs-grid-3">
             <a class="cert-card" href="/assets/certificates/alprojects-iso-9001.pdf" target="_blank" rel="noopener"
                aria-label="Open the ISO 9001:2015 certificate as a PDF, certificate number C760290">
-              <img src="assets/cert-iso-9001.webp" alt="DNV management system certificate — ISO 9001:2015, certificate C760290"
+              <img src="/assets/cert-iso-9001.webp" alt="DNV management system certificate — ISO 9001:2015, certificate C760290"
                    loading="lazy" width="636" height="900">
               <p class="iso">ISO:9001</p>
               <p class="cert-meta"><span>Cert. C760290</span><span>Valid to 28.07.2028</span></p>
             </a>
             <a class="cert-card" href="/assets/certificates/alprojects-iso-14001.pdf" target="_blank" rel="noopener"
                aria-label="Open the ISO 14001:2015 certificate as a PDF, certificate number C550875">
-              <img src="assets/cert-iso-14001.webp" alt="DNV management system certificate — ISO 14001:2015, certificate C550875"
+              <img src="/assets/cert-iso-14001.webp" alt="DNV management system certificate — ISO 14001:2015, certificate C550875"
                    loading="lazy" width="636" height="900">
               <p class="iso">ISO:14001</p>
               <p class="cert-meta"><span>Cert. C550875</span><span>Valid to 07.08.2028</span></p>
             </a>
             <a class="cert-card" href="/assets/certificates/alprojects-iso-45001.pdf" target="_blank" rel="noopener"
                aria-label="Open the ISO 45001:2018 certificate as a PDF, certificate number C550877">
-              <img src="assets/cert-iso-45001.webp" alt="DNV management system certificate — ISO 45001:2018, certificate C550877"
+              <img src="/assets/cert-iso-45001.webp" alt="DNV management system certificate — ISO 45001:2018, certificate C550877"
                    loading="lazy" width="636" height="900">
               <p class="iso">ISO:45001</p>
               <p class="cert-meta"><span>Cert. C550877</span><span>Valid to 07.08.2028</span></p>
@@ -574,17 +578,17 @@
         <div class="news-grid">
           <a class="news-card reveal" href="/news/we-do-not-certify-our-own-welds.html">
             <span class="news-top"><span class="num">01</span><span>13 Aug 2026 &middot; Quality Control</span><span class="arr">↗</span></span>
-            <span class="thumb"><img src="assets/projects/welding-tig-pipe-1200.webp" alt="TIG root pass being welded on a prefabricated pipe spool" width="900" height="1200" loading="lazy"></span>
+            <span class="thumb"><img src="/assets/projects/welding-tig-pipe-1200.webp" alt="TIG root pass being welded on a prefabricated pipe spool" width="900" height="1200" loading="lazy"></span>
             <h3>We do not certify our own welds</h3>
           </a>
           <a class="news-card reveal reveal-d1" href="/news/piping-installation-engine-room.html">
             <span class="news-top"><span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">↗</span></span>
-            <span class="thumb"><img src="assets/projects/sector-shipbuilding-1200.webp" alt="Fitters working inside a hull block under construction" width="1200" height="1017" loading="lazy"></span>
+            <span class="thumb"><img src="/assets/projects/sector-shipbuilding-1200.webp" alt="Fitters working inside a hull block under construction" width="1200" height="1017" loading="lazy"></span>
             <h3>Piping installation in the engine room</h3>
           </a>
           <a class="news-card reveal reveal-d2" href="/news/strongest-in-lithuania-2025-2026.html">
             <span class="news-top"><span class="num">03</span><span>23 Jun 2026 &middot; Company</span><span class="arr">↗</span></span>
-            <span class="thumb"><img src="assets/news-2.webp" alt="ALPROJECTS Group project site" width="1000" height="750" loading="lazy"></span>
+            <span class="thumb"><img src="/assets/news-2.webp" alt="ALPROJECTS Group project site" width="1000" height="750" loading="lazy"></span>
             <h3>Among the strongest companies in Lithuania</h3>
           </a>
         </div>
@@ -606,7 +610,7 @@
             <a class="doc-cover" href="/assets/downloads/alprojects-company-profile.pdf" target="_blank" rel="noopener"
                aria-label="Open the Company Profile as a PDF in a new tab">
               <span class="corners"><i></i><i></i><i></i><i></i></span>
-              <img src="assets/downloads/company-profile-cover.webp" alt="Cover of the ALPROJECTS Company Profile"
+              <img src="/assets/downloads/company-profile-cover.webp" alt="Cover of the ALPROJECTS Company Profile"
                    width="1000" height="562" loading="lazy" decoding="async">
             </a>
             <div class="doc-body">
@@ -624,7 +628,7 @@
             <a class="doc-cover" href="/assets/downloads/alprojects-reference-projects.pdf" target="_blank" rel="noopener"
                aria-label="Open the Reference Projects as a PDF in a new tab">
               <span class="corners"><i></i><i></i><i></i><i></i></span>
-              <img src="assets/downloads/reference-projects-cover.webp" alt="Cover of the ALPROJECTS Reference Projects"
+              <img src="/assets/downloads/reference-projects-cover.webp" alt="Cover of the ALPROJECTS Reference Projects"
                    width="1000" height="562" loading="lazy" decoding="async">
             </a>
             <div class="doc-body">
@@ -800,6 +804,6 @@
     </defs>
   </svg>
 
-  <script src="js/main.js?v=4c75160e"></script>
+  <script src="/js/main.js?v=20daf19b"></script>
 </body>
 </html>
