@@ -3791,13 +3791,58 @@ body::before {
    specificity -- these need !important to land. Only the scrim and the frame
    are touched; the calendar itself is themed via the URL parameters. */
 .calendly-overlay { background: rgba(4, 6, 10, .78) !important; }
-.calendly-overlay .calendly-popup {
-  border: 1px solid rgba(255,255,255,.12) !important;
-  border-radius: 0 !important;
-  box-shadow: 0 40px 90px rgba(0,0,0,.6) !important;
+
+/* Sizing it to the window.
+   Calendly ships `height:90%; max-height:700px!important; width:80%;
+   max-width:1000px` on `.calendly-overlay .calendly-popup`. Their booking card
+   lives inside the iframe and has its own maximum of 800x700, reached only when
+   the frame is at least ~1038 wide and ~796 tall -- and their 1000x700 box is
+   under both. So the card came up at 800x604 with the form pushed into an
+   internal scroll while the window still had room. That is what read as "not
+   adjusted for the window size".
+
+   Sized here so the card can reach its full 800x700, and no larger: past that
+   it stops growing and the extra is only padding. Below ~1038 of frame width
+   they switch to a stacked 680-wide layout, which is why the width floor
+   matters. The box itself stays transparent and unbordered, so what the visitor
+   sees is their card and nothing around it.
+
+   Their selector is (0,2,0) and carries !important, and their file loads after
+   this one, so an override needs !important AND more specificity -- hence the
+   leading `body`. */
+body .calendly-overlay .calendly-popup {
+  width: min(1040px, calc(100vw - 40px)) !important;
+  max-width: min(1040px, calc(100vw - 40px)) !important;
+  height: min(800px, calc(100vh - 48px)) !important;
+  max-height: min(800px, calc(100vh - 48px)) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
-.calendly-popup-close { opacity: .8; }
-.calendly-popup-close:hover { opacity: 1; }
+@media (max-width: 975px) {
+  /* Their own breakpoint turns it into a sheet pinned 50px from the top, which
+     lands halfway across our header. Full screen reads better and gives the
+     form the whole phone. */
+  body .calendly-overlay .calendly-popup {
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  /* Their "powered by" ribbon sits in the card's top-right corner, and with
+     the sheet now full-screen the close button landed on top of it and both
+     became unreadable. Top-left is clear, and is where a full-screen sheet's
+     dismiss belongs anyway. */
+  body .calendly-overlay .calendly-popup-close {
+    top: calc(14px + env(safe-area-inset-top, 0px)) !important;
+    left: 14px !important;
+    right: auto !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
 /* the header button while the widget is being fetched */
 [data-booking].is-loading { opacity: .6; pointer-events: none; }
 
