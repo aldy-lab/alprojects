@@ -24,7 +24,10 @@
      eyebrows, one element per layout. Set --warm to transparent to remove it
      everywhere in one line. */
   --beige:    #FFDACE;
-  --warm:     var(--beige);
+  /* The brandbook specifies #FFDACE as a warm accent. Switched to the cool
+     accent at the designer's direction -- warm reads as downmarket on this
+     ground. One line to put back: --warm: var(--beige). */
+  --warm:     var(--gray-50);
 
   /* ---------- semantic roles ---------- */
   --bg: var(--black);
@@ -3315,3 +3318,137 @@ html.blueprint .draft-axis { opacity: 0.7; }
 html.blueprint .draft-target { opacity: 1; }
 /* the services list is a drawing too */
 html.blueprint .srv-link { border-bottom-color: rgba(207, 208, 215, 0.28); }
+
+/* ============================================================
+   SECTION RHYTHM
+   Measured against a 900px viewport, .sectors came to 0.45 of a
+   screen and .advantages to 0.50 — scrolling landed you in the
+   middle of a section with nothing above or below it. Both are
+   given the height to read as a block in their own right.
+   ============================================================ */
+
+/* Operating across Europe, now the second block: it has to settle inside one
+   screen, so the map and the list tighten rather than stack. */
+.footprint { padding-top: clamp(44px, 5vw, 70px); padding-bottom: clamp(44px, 5vw, 72px); }
+.footprint .fp-intro { margin-bottom: clamp(20px, 2.4vw, 32px); }
+.footprint .fp-intro p { font-size: var(--text-l); line-height: 1.7; }
+.footprint .fp-figures { gap: clamp(22px, 3vw, 42px); }
+.footprint .fp-num { font-size: clamp(30px, 3.2vw, 44px); }
+.footprint .euromap { max-width: 460px; }
+.footprint .fp-row { padding: 11px 14px 10px 0; }
+.footprint .fp-name { font-size: var(--h6); }
+.footprint .dim { display: none; }
+
+/* Sectors: a titled block, and cards with enough height to carry a photograph */
+.sectors { padding: clamp(56px, 7vw, 96px) 0; }
+.sectors .section-head { margin-bottom: clamp(28px, 3.4vw, 48px); }
+.sector-card { aspect-ratio: 3 / 4; }
+
+/* Advantages: six items in two rows rather than one thin band */
+.advantages { padding: clamp(56px, 7vw, 96px) 0; }
+.advantages .adv-grid { grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.8vw, 26px); }
+.adv-card { padding: clamp(26px, 3vw, 40px) clamp(18px, 2vw, 28px); }
+
+@media (max-width: 1000px) {
+  .sector-card { aspect-ratio: 4 / 3; }
+  .advantages .adv-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .advantages .adv-grid { grid-template-columns: 1fr; }
+}
+
+/* One screen for the Europe block, measured rather than guessed: the section
+   head, intro, map and five rows all have to sit inside the viewport. */
+.footprint { padding-top: clamp(36px, 4vw, 56px); padding-bottom: clamp(36px, 4vw, 58px); }
+.footprint .section-head { margin-bottom: clamp(18px, 2vw, 26px); }
+.footprint .fp-intro { margin-bottom: clamp(16px, 1.8vw, 24px); }
+.footprint .fp-intro p { max-width: 66ch; }
+.footprint .fp-figures { margin-top: 20px; }
+.footprint .euromap { max-width: 400px; }
+.footprint .fp-main { gap: clamp(22px, 3vw, 54px); align-items: center; }
+.footprint .fp-row { padding: 9px 14px 8px 0; }
+.footprint .fp-city { font-size: var(--text-s); }
+
+/* the closing band was thin enough to read as a stray strip */
+.cta { padding-top: clamp(50px, 6vw, 80px); padding-bottom: clamp(50px, 6vw, 80px); }
+
+/* ============================================================
+   BLUEPRINT — the drawing sheet.
+   A frame, zone letters and numbers down the margins, and a title
+   block that reads off the page it is on. Fixed to the viewport,
+   so it behaves like a sheet the page is drawn on rather than
+   something that scrolls with the content.
+   ============================================================ */
+.bp-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--ease);
+  color: var(--gray-50);
+  font-family: var(--font-display);
+}
+html.blueprint .bp-sheet { opacity: 1; }
+
+.bp-frame {
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(207, 208, 215, 0.42);
+}
+.bp-frame::before {
+  /* the inner rule, as on a drawing border */
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(207, 208, 215, 0.16);
+}
+.bp-zone {
+  position: absolute;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: rgba(207, 208, 215, 0.65);
+  font-variant-numeric: tabular-nums;
+}
+.bp-zone-top    { top: 20px;    transform: translateX(-50%); }
+.bp-zone-bottom { bottom: 20px; transform: translateX(-50%); }
+.bp-zone-left   { left: 21px;   transform: translateY(-50%); }
+.bp-zone-right  { right: 21px;  transform: translateY(-50%); }
+
+.bp-title {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  min-width: 232px;
+  padding: 12px 14px;
+  border: 1px solid rgba(207, 208, 215, 0.42);
+  background: rgba(7, 7, 8, 0.86);
+  backdrop-filter: blur(3px);
+}
+.bp-title b {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(207, 208, 215, 0.28);
+}
+.bp-title i {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  line-height: 1.9;
+}
+.bp-title s { text-decoration: none; color: rgba(207, 208, 215, 0.5); }
+.bp-title em { font-style: normal; color: var(--text); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 700px) {
+  /* the margins are too narrow for zones and a title block on a phone */
+  .bp-zone, .bp-title { display: none; }
+  .bp-frame { inset: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .bp-sheet { transition: none; } }

@@ -173,6 +173,70 @@
     gridEls.forEach(function (el) { el.classList.add("grid-in"); });
   }
 
+
+  /* ---------- blueprint: the drawing sheet ----------
+     Pressing B used to brighten the grid and label the cards. It now lays a
+     real sheet over the viewport: frame, zone letters and numbers down the
+     margins, registration marks and a title block that reads off the page it
+     is actually on. Built once, on first use. */
+  var sheet = null;
+  function buildSheet() {
+    if (sheet) return sheet;
+    sheet = document.createElement("div");
+    sheet.className = "bp-sheet";
+    sheet.setAttribute("aria-hidden", "true");
+
+    var frame = document.createElement("span");
+    frame.className = "bp-frame";
+    sheet.appendChild(frame);
+
+    /* zones: 1..8 across, A..E down, as on a general arrangement sheet */
+    var cols = 8, rows = 5, i;
+    for (i = 1; i <= cols; i++) {
+      ["top", "bottom"].forEach(function (side) {
+        var z = document.createElement("span");
+        z.className = "bp-zone bp-zone-" + side;
+        z.style.left = ((i - 0.5) / cols * 100) + "%";
+        z.textContent = i;
+        sheet.appendChild(z);
+      });
+    }
+    for (i = 0; i < rows; i++) {
+      ["left", "right"].forEach(function (side) {
+        var z = document.createElement("span");
+        z.className = "bp-zone bp-zone-" + side;
+        z.style.top = ((i + 0.5) / rows * 100) + "%";
+        z.textContent = String.fromCharCode(65 + i);
+        sheet.appendChild(z);
+      });
+    }
+
+    var title = document.createElement("div");
+    title.className = "bp-title";
+    /* name the drawing after the page, not the company: on the homepage the
+       title is just the company name, so fall back to the H1 and then to Home */
+    var page = (document.title || "").split("—")[0].trim();
+    if (!page || /^ALPROJECTS/i.test(page)) {
+      var h1 = document.querySelector("h1");
+      page = h1 ? h1.textContent.trim() : "Home";
+    }
+    if (page.length > 30) page = page.slice(0, 29).trim() + "…";
+    var d = new Date();
+    var stamp = d.getFullYear() + "." +
+                ("0" + (d.getMonth() + 1)).slice(-2) + "." +
+                ("0" + d.getDate()).slice(-2);
+    title.innerHTML =
+      '<b>ALPROJECTS GROUP</b>' +
+      '<i><s>DRAWING</s><em>' + page + '</em></i>' +
+      '<i><s>SCALE</s><em>1:1</em></i>' +
+      '<i><s>UNITS</s><em>px</em></i>' +
+      '<i><s>DATE</s><em>' + stamp + '</em></i>';
+    sheet.appendChild(title);
+
+    document.body.appendChild(sheet);
+    return sheet;
+  }
+
   /* ---------- hidden: blueprint mode ----------
      Press B to overlay the drafting sheet — grid everywhere, corner
      registration marks, and the real pixel size of each card, in the
@@ -199,6 +263,7 @@
 
   function setBlueprint(on, announce) {
     document.documentElement.classList.toggle("blueprint", on);
+    if (on) buildSheet();
     if (on) measure();
     try { sessionStorage.setItem(BLUEPRINT_KEY, on ? "1" : "0"); } catch (e) {}
     if (announce) {
