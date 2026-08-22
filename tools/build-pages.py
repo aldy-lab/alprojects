@@ -64,8 +64,9 @@ def page(title, description, body, noindex=False, canonical=None, head_extra="",
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://alprojects.co/assets/og/{og}.jpg">
-  <link rel="icon" type="image/png" href="/assets/logo.png">
-  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/style.css">
@@ -986,7 +987,7 @@ ORG = {
     "@type": "Organization",
     "name": "ALPROJECTS Group",
     "sameAs": "https://alprojects.co/",
-    "logo": "https://alprojects.co/assets/logo.png",
+    "logo": "https://alprojects.co/assets/logo-1200.png",
 }
 
 def _strip(o):
