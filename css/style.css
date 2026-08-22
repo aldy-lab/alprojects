@@ -405,7 +405,10 @@ button { font-family: inherit; cursor: pointer; }
   transition: background var(--dur-2);
 }
 .socials a:hover { background: rgba(255, 255, 255, 0.14); }
-.socials svg { width: 14px; height: 14px; fill: var(--text); }
+/* The three marks are drawn as outlines now -- LinkedIn and Facebook used to
+   be solid blocks next to an outlined Instagram, which read as three different
+   icon sets. Colour comes from `color` so currentColor resolves inside <use>. */
+.socials svg { width: 15px; height: 15px; fill: none; color: var(--text); }
 
 /* burger */
 .burger {
@@ -2543,7 +2546,12 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 .pin {
   position: absolute;
   transition: transform var(--dur-2) var(--ease);
-  transform: translate(-50%, -50%);
+  /* The marker, not the whole label+marker box, sits on the co-ordinate.
+     Centring the box put the UK marker in the North Sea because its label
+     is to the left and drags the box centre with it. */
+  --tx: -50%;
+  --ty: -50%;
+  transform: translate(var(--tx), var(--ty));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2567,13 +2575,20 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   margin-left: -2px;
   background: var(--accent);
 }
+/* The names live in the list beside the map, so the map only labels the
+   country you are pointing at. Statically, "United Kingdom", "Netherlands"
+   and "Germany" collide on this projection at any size that fits the layout. */
 .pin b {
   font-size: var(--text-m);
   font-weight: 500;
   letter-spacing: 0.06em;
   color: var(--text);
-  text-shadow: 0 0 10px var(--bg), 0 0 4px var(--bg);
+  text-shadow: 0 0 10px var(--bg), 0 0 6px var(--bg), 0 0 3px var(--bg);
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease);
+  white-space: nowrap;
 }
+.pin.is-active b { opacity: 1; }
 .pin i {
   font-style: normal;
   font-size: var(--tag);
@@ -2590,16 +2605,19 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 .pin { pointer-events: auto; cursor: default; }
 .pin b { transition: color var(--dur-2) var(--ease); }
 .pin::before { transition: background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease); }
-.pin.is-active { transform: translate(-50%, -50%) scale(1.18); z-index: 3; }
+.pin.is-active { transform: translate(var(--tx), var(--ty)) scale(1.18); z-index: 3; }
 .pin.is-active::before { background: var(--accent); border-color: var(--accent); }
 .pin.is-active b { color: var(--text); }
 .euromap.has-active .pin:not(.is-active) b { color: var(--muted-2); }
 /* The countries cluster on this projection, so labels are offset rather than
    all sitting under their marker. Cities live on the cards below, not here. */
-.pin-above { flex-direction: column-reverse; }
+.pin-above { flex-direction: column-reverse; --ty: calc(-100% + 8px); }
 .pin-above::before { margin: 5px 0 0; }
 .pin-above::after { top: auto; bottom: 6px; }
-.pin-left { flex-direction: row-reverse; align-items: center; gap: 7px; }
+.pin-left { flex-direction: row-reverse; align-items: center; gap: 7px; --tx: calc(-100% + 8px); }
+.pin-right { flex-direction: row; align-items: center; gap: 7px; --tx: -8px; }
+.pin-right::before { margin: 0; }
+.pin-right::after { top: 50%; left: 5px; margin: -2px 0 0; }
 .pin-left::before { margin: 0; }
 .pin-left::after { top: 50%; left: auto; right: 5px; margin: -2px 0 0; }
 
@@ -2625,3 +2643,32 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
    mouseenter fires, then mouseleave immediately, and the highlight blinks
    once. Fading only removes the movement. Must sit after `.js .reveal`. */
 .js .fp-list.reveal { transform: none; }
+
+/* ------------------------------------------------------------
+   Country highlight on the map.
+   Silhouettes are alpha masks, so the colour lives in CSS and can
+   follow the palette. Four countries only: in the source artwork
+   Poland and Lithuania are one shape with no border between them,
+   so Lithuania cannot be filled without also filling Poland.
+   ------------------------------------------------------------ */
+:root { --map-blue: #3d6ea8; }
+
+.cshape {
+  position: absolute;
+  inset: 0;
+  background: var(--map-blue);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease);
+  pointer-events: none;
+}
+.cshape[data-shape="norway"]      { -webkit-mask-image: url("../assets/map/norway.png");      mask-image: url("../assets/map/norway.png"); }
+.cshape[data-shape="uk"]          { -webkit-mask-image: url("../assets/map/uk.png");          mask-image: url("../assets/map/uk.png"); }
+.cshape[data-shape="netherlands"] { -webkit-mask-image: url("../assets/map/netherlands.png"); mask-image: url("../assets/map/netherlands.png"); }
+.cshape[data-shape="germany"]     { -webkit-mask-image: url("../assets/map/germany.png");     mask-image: url("../assets/map/germany.png"); }
+.cshape.is-active { opacity: 0.85; }

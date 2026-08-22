@@ -346,8 +346,12 @@
     var setCountry = function (key, on) {
       var pin = euromap.querySelector('[data-pin="' + key + '"]');
       var row = document.querySelector('.fp-row[data-country="' + key + '"]');
+      /* Not every country has a shape: Poland and Lithuania are a single
+         shape in the source map, so Lithuania is marker-only. */
+      var shape = euromap.querySelector('[data-shape="' + key + '"]');
       if (pin) pin.classList.toggle("is-active", on);
       if (row) row.classList.toggle("is-active", on);
+      if (shape) shape.classList.toggle("is-active", on);
       euromap.classList.toggle("has-active", on);
     };
     var bind = function (el, key) {

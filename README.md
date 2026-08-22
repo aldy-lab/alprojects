@@ -268,12 +268,21 @@ removed morphologically and each filled country's border rebuilt from the edge
 of its own fill — otherwise Norway, Germany, Poland and Lithuania came back with
 no outline at all.
 
-⚠️ **Countries are marked, not shaded, and that is deliberate.** In the source
-artwork Poland and Lithuania are a single shape with no border drawn between
-them, and so are Belgium and the Netherlands. Shading could not be limited to
-the countries ALPROJECTS actually operates in, and drawing a national border by
-hand onto a client's map is not something to guess at. If a proper vector map
-arrives, the five countries can be filled directly and the markers dropped.
+Hovering a country fills it blue, from a per-country alpha mask in `assets/map/`.
+The masks come from labelling the enclosed regions of the outline; each was
+confirmed by checking whether that region was filled white in the original
+artwork (only Norway, Lithuania, Poland and Germany were).
+
+⚠️ **Four of the five countries fill; Lithuania is marker-only.** In the source
+artwork Poland and Lithuania are one shape with no border drawn between them —
+proven, not assumed: no binarisation threshold separates them, and reinstating
+the internal seams recovered Germany but never split those two. Filling
+"Lithuania" would fill Poland with it. Send a country-level vector map (SVG or
+GeoJSON) and all five can fill properly.
+
+Marker labels only show for the country being pointed at: statically, "United
+Kingdom", "Netherlands" and "Germany" collide on this projection at any map size
+that fits the layout. The list beside the map names them all anyway.
 
 The map sits beside the country list rather than above it. Stacked, the
 footprint section ran 1995px — 2.1 screens — with the map alone taking 791px;
