@@ -2600,3 +2600,18 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 .cshape[data-shape="netherlands"] { -webkit-mask-image: url("../assets/map/netherlands.png"); mask-image: url("../assets/map/netherlands.png"); }
 .cshape[data-shape="germany"]     { -webkit-mask-image: url("../assets/map/germany.png");     mask-image: url("../assets/map/germany.png"); }
 .cshape.is-active { opacity: 0.85; }
+
+/* Three certificates now, not four — ISO 3834 has no certificate on file. */
+.certs-grid-3 { grid-template-columns: repeat(3, minmax(0, 260px)); }
+.cert-card { display: block; text-decoration: none; }
+a.cert-card { transition: border-color var(--dur-2) var(--ease); }
+a.cert-card:hover img { border-color: var(--accent); }
+.cert-meta {
+  margin-top: 6px;
+  font-size: var(--tag);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+@media (max-width: 900px) { .certs-grid-3 { grid-template-columns: repeat(2, minmax(0, 260px)); } }
+@media (max-width: 560px) { .certs-grid-3 { grid-template-columns: 1fr; } }

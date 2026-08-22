@@ -444,9 +444,19 @@ Already at or above retina, leave alone: all five team photos, `news-2`,
       service (Formspree, Netlify Forms) or a small backend.
 - [x] **Company documents** — both presentations are downloadable from the
       homepage (`#downloads`) with rendered covers, page count, format and size.
-- [ ] **Certificate PDFs** — still only one DNV scan (`assets/cert-dnv.webp`).
-      The 14001 / 45001 / 3834 cards state the certification rather than showing
-      artwork that does not evidence it. Send the real scans and they drop in.
+- [x] **Certificate PDFs** — the real DNV certificates for ISO 9001 (C760290),
+      14001 (C550875) and 45001 (C550877) arrived 22 Aug 2026 and are live in
+      `assets/certificates/`. Each card shows the scan, its number and expiry,
+      and opens the PDF.
+- [ ] **ISO 3834** — ⚠️ **no certificate supplied.** The company profile lists
+      it and three pages state welding is carried out under ISO 3834, but it was
+      not among the three DNV certificates. Its card has been removed rather
+      than shown as a placeholder beside three real scans. Get the document, or
+      the claim is unevidenced if a tender asks.
+- [ ] **Registered address** — ⚠️ the certificates read **Šilutės pl. 2, 521
+      kab.**; the site says **Šilutės av. 2-536**. Different street type and
+      different room number. The certificate is the legal document — confirm
+      which is right and make them match.
 - [ ] **Team section** — ⚠️ the client struck the five management headshots out.
       That block is now "Qualified specialists" (the profile's own personnel
       split and 100+ figure). If the intent was only "fix the photo quality",
