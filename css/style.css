@@ -3053,34 +3053,8 @@ h1, h2, h3, h4, h5, h6,
    Photograph graded per §2.4, content bottom-left, four facts
    above the lower edge, type per §2.3.
    ============================================================ */
-.hero {
-  position: relative;
-  min-height: 660px;              /* §4.1 */
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: var(--bg);
-}
-.hero-photo {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: 62% center;
-}
-.hero-scrim {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(7,7,8,0.93) 0%, rgba(7,7,8,0.78) 44%, rgba(7,7,8,0.30) 100%),
-    linear-gradient(0deg, rgba(7,7,8,0.92) 0%, rgba(7,7,8,0.28) 52%, rgba(7,7,8,0.55) 100%);
-}
 /* The brand gradient's warm glow, top right. The brand document states it is
    part of the identity and is not to be removed. */
-.hero-scrim::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(56% 50% at 86% 4%,
-    rgba(255,218,206,0.22) 0%, rgba(255,218,206,0.08) 40%, transparent 70%);
-  mix-blend-mode: screen;
-}
 .hero-in {
   position: relative;
   width: 100%;
@@ -3098,14 +3072,6 @@ h1, h2, h3, h4, h5, h6,
 }
 .hero-eyebrow span { color: var(--muted-2); margin: 0 5px; }
 /* §2.3 — H1 first screen: 50–52 / 1.05 / Montserrat Light / −0.5% */
-.hero-title {
-  font-size: clamp(31px, 3.7vw, 52px);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.005em;
-  max-width: 17ch;                /* §4.1 */
-  margin-bottom: 24px;
-}
 /* §2.3 — body: 15.5–17 / 1.65–1.75 / Poppins Regular */
 .hero-sub {
   font-size: 16.5px;
@@ -3251,3 +3217,82 @@ h1, h2, h3, h4, h5, h6,
   .draft-mark.m1 { top: 92px; right: 22px; }
 }
 @media (max-width: 640px) { .draft-mark.m1 i { display: none; } }
+
+/* ============================================================
+   HERO — TZ §4.1 variant C: no photograph, technical grid.
+   Type per §2.3, content left-aligned, four facts above the
+   lower edge, the brand drafting layer over the grid.
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 660px;              /* §4.1 */
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #070b12;            /* variant C ground */
+}
+/* the technical grid: 96px module, 1px lines, well under the 0.12 cap */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 96px 96px;
+  pointer-events: none;
+}
+.hero-scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(0deg, rgba(7,11,18,0.9) 0%, rgba(7,11,18,0) 46%);
+}
+/* The brand gradient's warm glow, top right. The brand document states it is
+   part of the identity and is not to be removed. */
+.hero-scrim::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(60% 54% at 84% 2%,
+    rgba(255,218,206,0.16) 0%, rgba(255,218,206,0.06) 42%, transparent 72%);
+}
+/* §2.3 — H1 first screen: Montserrat Light, 1.05, −0.5%. Variant C sets 56. */
+.hero-title {
+  font-size: clamp(30px, 6.2vw, 56px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  max-width: 19ch;                /* variant C */
+  margin-bottom: 24px;
+}
+
+/* ---------- hero on tablets and phones ----------
+   The 96px module is drawn for a desktop frame. On a 320px screen it shows
+   three columns and stops reading as a grid, so the module steps down with
+   the viewport. */
+@media (max-width: 1000px) {
+  .hero { min-height: 580px; }
+  .hero-grid { background-size: 72px 72px; }
+  .hero-in { padding-top: calc(var(--nav-h) + 48px); }
+  .hero-title { max-width: 22ch; margin-bottom: 20px; }
+  .hero-sub { margin-bottom: 30px; }
+  .hero-ctas { margin-bottom: 38px; }
+}
+@media (max-width: 700px) {
+  .hero { min-height: 540px; }
+  .hero-grid { background-size: 56px 56px; opacity: 0.42; }
+  .hero-eyebrow {
+    /* five country names wrap to three lines at this width and push the
+       headline down the screen */
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .hero-title { max-width: none; }
+  .hero-sub { font-size: 15.5px; line-height: 1.65; }
+  .hero-ctas a { flex: 1 1 100%; }
+  .hero-proof { padding: 20px 0 22px; }
+}
+@media (max-width: 420px) {
+  .hero-grid { background-size: 48px 48px; }
+  .hero-in { padding-top: calc(var(--nav-h) + 36px); }
+}
