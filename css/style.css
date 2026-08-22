@@ -675,7 +675,9 @@ button { font-family: inherit; cursor: pointer; }
 /* ============================================================
    SERVICES — stacked sticky slides
    ============================================================ */
-.services { background: var(--bg-2); }
+/* was background: var(--bg-2) -- a flat step against the body colour, which
+   read as a border at both of its edges. The page field carries it now. */
+.services { background: transparent; }
 .services-stack { display: flex; flex-direction: column; gap: 18px; padding-bottom: clamp(60px, 8vw, 110px); }
 .service-slide {
   position: sticky;
@@ -3443,7 +3445,7 @@ html.blueprint .bp-sheet { opacity: 1; }
      drift independently */
   background:
     radial-gradient(78% 82% at 18% 16%, #0d2748 0%, #081a30 46%, transparent 74%),
-    linear-gradient(180deg, #0a1322 0%, #070a12 56%, #05070c 100%);
+    linear-gradient(180deg, #0a1322 0%, #080c16 52%, var(--bg) 100%);
 }
 /* The brand glows. Animated slowly and only here, as asked — a drift measured
    in tens of seconds, so it reads as light moving rather than as motion. */
@@ -3628,26 +3630,36 @@ html.blueprint .bp-sheet { opacity: 1; }
 
 /* ============================================================
    SHEET GROUND
-   The hero's gradient, at lower strength, so the sections below
-   sit on the same paper instead of on flat black.
+   One field behind the whole document, not one per section.
+
+   The first attempt gave .footprint, .certifications and .downloads a
+   gradient each. Every one of them restarted its glow at its own top edge,
+   which drew a visible line at each section boundary -- the seams ALDY saw.
+   A single layer spanning the full page has no boundaries to draw, so the
+   light passes through the sections instead of stopping at them.
+
+   Positioned on body (height = the whole document), so the glows sit at
+   percentages of the page and drift by as you scroll.
    ============================================================ */
+body { position: relative; }
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(46% 16% at 84% 13%, rgba(255, 222, 210, 0.055) 0%, transparent 70%),
+    radial-gradient(52% 20% at  8% 27%, rgba(13,  39,  72, 0.50)  0%, transparent 72%),
+    radial-gradient(44% 14% at 92% 44%, rgba(13,  39,  72, 0.38)  0%, transparent 70%),
+    radial-gradient(50% 16% at 14% 62%, rgba(255, 222, 210, 0.04) 0%, transparent 72%),
+    radial-gradient(46% 18% at 88% 79%, rgba(13,  39,  72, 0.42)  0%, transparent 70%),
+    radial-gradient(52% 16% at 20% 94%, rgba(13,  39,  72, 0.30)  0%, transparent 72%);
+}
+/* These no longer paint their own ground; they let the page field through. */
 .footprint,
 .certifications,
-.downloads {
-  position: relative;
-  background:
-    radial-gradient(60% 70% at 12% 0%, rgba(13, 39, 72, 0.55) 0%, rgba(8, 26, 48, 0.22) 45%, transparent 72%),
-    radial-gradient(48% 60% at 96% 4%, rgba(255, 222, 210, 0.10) 0%, rgba(255, 222, 210, 0.03) 38%, transparent 68%),
-    var(--bg);
-}
-/* alternate the corner the light comes from, so consecutive sections do not
-   read as one long gradient */
-.certifications {
-  background:
-    radial-gradient(58% 68% at 88% 0%, rgba(13, 39, 72, 0.5) 0%, rgba(8, 26, 48, 0.2) 45%, transparent 72%),
-    radial-gradient(46% 58% at 4% 6%, rgba(255, 222, 210, 0.08) 0%, transparent 62%),
-    var(--bg);
-}
+.downloads { position: relative; background: transparent; }
 
 /* The map was too small to read. It grows and the column proportion shifts to
    give it the room, while the section still has to settle inside one screen. */
@@ -3773,3 +3785,37 @@ html.blueprint .bp-sheet { opacity: 1; }
 .booking.is-loaded .booking-in    { order: 1; }
 .booking.is-loaded .booking-widget { order: 2; }
 .booking.is-loaded .booking-alt   { order: 3; margin-top: 16px; }
+
+/* ---------- Calendly popup ----------
+   Their widget.css is appended to <head> after this file, so it wins at equal
+   specificity -- these need !important to land. Only the scrim and the frame
+   are touched; the calendar itself is themed via the URL parameters. */
+.calendly-overlay { background: rgba(4, 6, 10, .78) !important; }
+.calendly-overlay .calendly-popup {
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 40px 90px rgba(0,0,0,.6) !important;
+}
+.calendly-popup-close { opacity: .8; }
+.calendly-popup-close:hover { opacity: 1; }
+/* the header button while the widget is being fetched */
+[data-booking].is-loading { opacity: .6; pointer-events: none; }
+
+/* ---------- mobile menu had to be able to reach its own last item ----------
+   .mobile-menu is a fixed panel below the header, so its height is the
+   viewport's. On an iPhone 15 the six links plus the CTA come to 660px inside
+   a 581px panel, and overflow-y was visible -- so "Book a call" sat 11px past
+   the bottom edge with no way to scroll to it. It was unreachable on a phone. */
+.mobile-menu {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+}
+.mobile-menu > * { flex: none; }
+/* Short viewports: buy the room back from the padding before scrolling. */
+@media (max-height: 720px) {
+  .mobile-menu { padding-top: 22px; }
+  .mobile-menu a { padding: 11px 0; font-size: 20px; }
+  .mobile-menu a.menu-cta { margin-top: 18px; padding: 15px 26px; }
+}

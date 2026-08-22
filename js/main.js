@@ -52,66 +52,108 @@
     document.head.appendChild(an);
   }
 
+  /* ---------- booking ----------
+     Calendly, loaded once and shared by the header button and the panel on
+     the contacts page.
+
+     The buttons stay plain links to Calendly, so they work with JavaScript
+     off, with the script blocked, and on cmd-click. On a normal click we
+     upgrade to Calendly's own popup -- the visitor picks a slot without ever
+     leaving the tab -- but the widget is fetched ONLY AT THAT MOMENT.
+
+     That ordering is the point. Embedding on page load would hand every
+     visitor's IP to Calendly whether or not they ever book, and the rest of
+     this site makes no third-party request at all. Loading on the click keeps
+     that true for everyone who does not book. If the fetch fails, nothing is
+     trapped: the original link is followed instead. */
+  var CALENDLY_CSS = "https://assets.calendly.com/assets/external/widget.css";
+  var CALENDLY_JS  = "https://assets.calendly.com/assets/external/widget.js";
+  var calendlyLoading = null;
+
+  /* Calendly reads the theme off the query string, so it opens in the site's
+     palette instead of its own white default. */
+  function calendlyUrl(url) {
+    return url + (url.indexOf("?") === -1 ? "?" : "&") +
+      "hide_gdpr_banner=1&background_color=0b0f16&text_color=e8eaf0&primary_color=ffffff";
+  }
+
+  function loadCalendly() {
+    if (window.Calendly) return Promise.resolve();
+    if (calendlyLoading) return calendlyLoading;
+    calendlyLoading = new Promise(function (resolve, reject) {
+      var css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = CALENDLY_CSS;
+      document.head.appendChild(css);
+
+      var js = document.createElement("script");
+      js.src = CALENDLY_JS;
+      js.async = true;
+      js.onload = function () { window.Calendly ? resolve() : reject(); };
+      js.onerror = reject;
+      document.head.appendChild(js);
+
+      /* a blocker can leave onerror unfired -- do not hang on the click */
+      setTimeout(function () { window.Calendly ? resolve() : reject(); }, 6000);
+    });
+    return calendlyLoading;
+  }
+
   /* there is a booking button in the header and another in the mobile menu */
   if (BOOKING_URL) {
     document.querySelectorAll("[data-booking]").forEach(function (b) {
       b.setAttribute("href", BOOKING_URL);
-      b.setAttribute("target", "_blank");
       b.setAttribute("rel", "noopener");
+      b.addEventListener("click", function (ev) {
+        /* let a modifier open it in a tab, as any link would */
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button) return;
+        ev.preventDefault();
+        b.classList.add("is-loading");
+        loadCalendly().then(function () {
+          window.Calendly.initPopupWidget({ url: calendlyUrl(BOOKING_URL) });
+        })["catch"](function () {
+          window.open(BOOKING_URL, "_blank", "noopener");
+        }).then(function () { b.classList.remove("is-loading"); });
+      });
     });
   }
 
   /* ---------- the calendar panel on /contacts.html ----------
-     Click-to-load on purpose. Calendly's embed script sets cookies and sees the
-     visitor's IP, so loading it on every page view would put the site into
-     consent-banner territory. Nothing is requested from calendly.com until the
-     visitor presses the button, which keeps the privacy story the same as the
-     rest of the site. */
+     A dedicated booking section gets the widget inline rather than in an
+     overlay -- there is nothing to return to behind it. Same click-to-load
+     rule, same shared loader. */
   var bookingPanel = document.querySelector("[data-booking-embed]");
   if (bookingPanel && BOOKING_URL) {
     bookingPanel.removeAttribute("hidden");
     var loadBtn = bookingPanel.querySelector("[data-booking-load]");
-    var calendly = /(^|\.)calendly\.com$/i.test(
+    var isCalendly = /(^|\.)calendly\.com$/i.test(
       (function () { try { return new URL(BOOKING_URL).hostname; } catch (e) { return ""; } })()
     );
 
-    if (!calendly) {
-      /* Not a Calendly link — send them straight out rather than embedding
-         something we cannot style or vouch for. */
-      loadBtn.parentNode.replaceChild((function () {
-        var a = document.createElement("a");
-        a.className = "btn-bracket";
-        a.href = BOOKING_URL;
-        a.target = "_blank"; a.rel = "noopener";
-        a.textContent = "Open the calendar";
-        return a;
-      })(), loadBtn);
+    if (!isCalendly && loadBtn) {
+      /* Not a Calendly link -- send them out rather than embedding something
+         we cannot style or vouch for. */
+      var out = document.createElement("a");
+      out.className = "btn-bracket";
+      out.href = BOOKING_URL;
+      out.target = "_blank"; out.rel = "noopener";
+      out.textContent = "Open the calendar";
+      loadBtn.parentNode.replaceChild(out, loadBtn);
     } else if (loadBtn) {
       loadBtn.addEventListener("click", function () {
         loadBtn.disabled = true;
         loadBtn.textContent = "Loading\u2026";
-
-        /* Calendly reads the theme off the query string, so the embed comes up
-           in the site's palette instead of its own white default. */
-        var url = BOOKING_URL +
-          (BOOKING_URL.indexOf("?") === -1 ? "?" : "&") +
-          "hide_gdpr_banner=1&background_color=0b0f16&text_color=e8eaf0&primary_color=ffffff";
-
-        var mount = document.createElement("div");
-        mount.className = "calendly-inline-widget booking-widget";
-        mount.setAttribute("data-url", url);
-        mount.setAttribute("data-resize", "true");
-
-        var css = document.createElement("link");
-        css.rel = "stylesheet";
-        css.href = "https://assets.calendly.com/assets/external/widget.css";
-        document.head.appendChild(css);
-
-        var js = document.createElement("script");
-        js.src = "https://assets.calendly.com/assets/external/widget.js";
-        js.async = true;
-        js.onerror = function () {
-          /* Blocked by an extension or offline — never leave a dead panel. */
+        loadCalendly().then(function () {
+          var mount = document.createElement("div");
+          mount.className = "booking-widget";
+          bookingPanel.classList.add("is-loaded");
+          bookingPanel.appendChild(mount);
+          window.Calendly.initInlineWidget({
+            url: calendlyUrl(BOOKING_URL),
+            parentElement: mount
+          });
+        })["catch"](function () {
+          /* Blocked by an extension or offline -- never leave a dead panel. */
           bookingPanel.classList.remove("is-loaded");
           loadBtn.disabled = false;
           loadBtn.textContent = "Open the calendar";
@@ -121,11 +163,7 @@
               '<a href="' + BOOKING_URL + '" target="_blank" rel="noopener">' +
               "Open it in a new tab</a> instead.";
           }
-        };
-
-        bookingPanel.classList.add("is-loaded");
-        bookingPanel.appendChild(mount);
-        document.body.appendChild(js);
+        });
       });
     }
   }

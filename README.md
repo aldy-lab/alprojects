@@ -423,13 +423,23 @@ Already at or above retina, leave alone: all five team photos, `news-2`,
       `https://calendly.com/aleksandr-alprojects/30min`. It drives both the header
       "Book a call" button and the calendar panel on `/contacts.html`.
 
+      The header button opens Calendly's **popup** over the page
+      (`Calendly.initPopupWidget`), so nobody leaves the tab; the contacts panel
+      uses the inline widget, since there is nothing behind it to return to.
+      Both share one loader. Same pattern as the litprofit repo.
+
       **The calendar is click-to-load and must stay that way.** Calendly's embed
       sets cookies and sees the visitor's IP, so loading it on every page view
       would put the site into consent-banner territory. Nothing is requested from
-      `calendly.com` until the visitor presses "Open the calendar" — verified: 0
-      requests before the click, 16 after. Section 3 of `privacy.html` discloses
-      Calendly on exactly those terms, so if the embed is ever changed to load
+      `calendly.com` until the visitor presses the button — verified: 0 requests
+      before the click, 17 after. Section 3 of `privacy.html` discloses Calendly
+      on exactly those terms, so if the embed is ever changed to load
       automatically, that section has to be rewritten and a consent banner added.
+
+      The buttons stay plain `href` links to Calendly with no `target`, so they
+      work with JavaScript off, with the script blocked, and on cmd-click. If the
+      fetch fails the original link is followed instead — nothing is ever
+      trapped behind a script that did not load.
 - [x] **Company social links** — LinkedIn, Instagram and Facebook are wired up,
       taken from the Wayback snapshot of the old alprojects.eu (which is now a
       "coming soon" placeholder). The design's X/Twitter slot became Facebook,
