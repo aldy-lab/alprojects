@@ -187,8 +187,10 @@
   var flagTimer;
 
   function measure() {
+    /* Kept in step with the markup: .dir-card, .member, .partner-card and
+       .position no longer exist, and half the site's cards are new. */
     document.querySelectorAll(
-      ".dir-card, .adv-card, .member, .news-card, .partner-card, .cert-card"
+      ".sector-card, .adv-card, .news-card, .cert-card, .doc-card, .shot, .fp-card"
     ).forEach(function (el) {
       var r = el.getBoundingClientRect();
       el.setAttribute("data-dim", Math.round(r.width) + "×" + Math.round(r.height));

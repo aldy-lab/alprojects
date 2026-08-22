@@ -1606,9 +1606,9 @@ html.blueprint [data-dim]::after {
   pointer-events: none;
 }
 html.blueprint [data-dim] { position: relative; }
-html.blueprint .dir-card, html.blueprint .adv-card,
-html.blueprint .member, html.blueprint .news-card,
-html.blueprint .position, html.blueprint .partner-card {
+html.blueprint .sector-card, html.blueprint .adv-card,
+html.blueprint .news-card, html.blueprint .cert-card,
+html.blueprint .doc-card, html.blueprint .shot, html.blueprint .fp-card {
   outline: 1px dashed rgba(185, 196, 216, 0.28);
   outline-offset: 2px;
 }
@@ -3296,3 +3296,22 @@ h1, h2, h3, h4, h5, h6,
   .hero-grid { background-size: 48px 48px; }
   .hero-in { padding-top: calc(var(--nav-h) + 36px); }
 }
+
+/* Blueprint mode on the new hero. The hero draws its own grid rather than
+   using the --grid token, so brightening the token alone left the first
+   screen -- the one you are looking at when you press B -- unchanged. */
+html.blueprint .hero-grid {
+  opacity: 1;
+  background-image:
+    linear-gradient(rgba(207, 208, 215, 0.20) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(207, 208, 215, 0.20) 1px, transparent 1px);
+}
+/* the drafting layer is the drawing; in blueprint mode it comes forward */
+html.blueprint .draft { color: var(--gray-50); }
+html.blueprint .draft-corner { opacity: 1; }
+html.blueprint .draft-dim-h,
+html.blueprint .draft-dim-v { opacity: 0.9; }
+html.blueprint .draft-axis { opacity: 0.7; }
+html.blueprint .draft-target { opacity: 1; }
+/* the services list is a drawing too */
+html.blueprint .srv-link { border-bottom-color: rgba(207, 208, 215, 0.28); }
