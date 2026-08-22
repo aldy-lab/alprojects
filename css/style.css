@@ -2606,12 +2606,19 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 .cert-card { display: block; text-decoration: none; }
 a.cert-card { transition: border-color var(--dur-2) var(--ease); }
 a.cert-card:hover img { border-color: var(--accent); }
+/* Set as two explicit lines. As one sentence it measured 210px inside a
+   212px box, so it wrapped -- and wrapped in a different place on each card
+   ("valid to 07 / August 2028"). */
 .cert-meta {
-  margin-top: 6px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   font-size: var(--tag);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted-2);
+  font-variant-numeric: tabular-nums;
 }
 @media (max-width: 900px) { .certs-grid-3 { grid-template-columns: repeat(2, minmax(0, 260px)); } }
 @media (max-width: 560px) { .certs-grid-3 { grid-template-columns: 1fr; } }
