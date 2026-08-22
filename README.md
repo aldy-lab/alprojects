@@ -294,19 +294,6 @@ Marker positions are percentages verified against the measured region bounding
 boxes of the outline itself (`Germany x[253-338] y[295-411]`, `UK x[133-212]
 y[217-348]`, `Norway x[265-352] y[102-243]`), not eyeballed.
 
-## Client logos
-
-The "Trusted by industry leaders" wall renders a typographic wordmark per client
-by default. Drop a file into `assets/clients/` and point the matching key in
-`CLIENT_LOGOS` (top of `js/main.js`) at it, and the card swaps the wordmark for
-the logo. If the file is missing the wordmark stays, so the wall can never show
-a broken image. Supplied logos are rendered `brightness(0) invert(1)` — flat
-white at one optical weight — so a row of mismatched brand colours still reads
-as one set.
-
-⚠️ **Only add a logo you have that client's written permission to display.**
-The company profile lists these as names, which is why the default is text.
-
 ## Configuration
 
 All go-live values live in one block at the top of `js/main.js`. Fill a URL in
@@ -417,12 +404,13 @@ Already at or above retina, leave alone: all five team photos, `news-2`,
 - [ ] **Newsletter backend** — set `FORM_ENDPOINT` (Formspree, Buttondown,
       Mailerlite…). Without it the form opens the visitor's mail app with a
       pre-filled request to info@alprojects.eu.
-- [x] **Clients** — the partners grid (one logo + a TODO) is now "Selected
-      clients", carrying the ten names the Company Profile lists: Smulders,
-      MEYER Turku, Neptune Werft, Petrofac, Axess Group, BLRT Group, Seafox,
-      GE Renewable Energy, Vattenfall, TenneT. Rendered as text plates because
-      the profile lists them as text — ⚠️ do not substitute logo artwork you
-      have not been given permission to use.
+- [ ] **Clients** — the "Trusted by industry leaders" section was removed at
+      the client's request (22 Aug 2026). The ten names the Company Profile
+      lists — Smulders, MEYER Turku, Neptune Werft, Petrofac, Axess Group,
+      BLRT Group, Seafox, GE Renewable Energy, Vattenfall, TenneT — are no
+      longer anywhere on the site. ⚠️ That is the strongest third-party proof
+      the company has; worth re-proposing as a single line under the hero
+      rather than a full section. Logos would need each client's permission.
 - [ ] **Certificates** — the 9001 card shows the real DNV scan. The 14001 and
       45001 cards previously showed that *same* scan under a different label,
       which presented evidence the artwork did not support; they are now

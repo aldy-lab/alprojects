@@ -144,7 +144,6 @@ a[href^="mailto:"]:not([class*="btn-"]) {
    selected the wording and painted a highlight over the card, which reads as
    the card flickering rather than as selecting anything useful. */
 .doc-card,
-.client-card,
 .adv-card,
 .cert-card {
   user-select: none;
@@ -1934,73 +1933,6 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 }
 
 
-/* ============================================================
-   SELECTED CLIENTS
-   Text plates rather than logos: the company profile lists these
-   as names, and inventing logo artwork would misrepresent them.
-   ============================================================ */
-.clients-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-.client-card {
-  position: relative;
-  background: var(--bg);
-  min-height: 150px;
-  display: grid;
-  place-items: center;
-  padding: 20px 16px;
-  text-align: center;
-  transition: background var(--dur-2) var(--ease);
-}
-.client-card::before {
-  /* faint drafting cross, so an empty-looking cell still reads as drawn */
-  content: "";
-  position: absolute;
-  left: 50%; top: 50%;
-  width: 7px; height: 7px;
-  margin: -4px 0 0 -4px;
-  border-left: 1px solid var(--line-strong);
-  border-top: 1px solid var(--line-strong);
-  opacity: 0;
-  transition: opacity var(--dur-2) var(--ease);
-}
-.client-card:hover { background: var(--panel); }
-.client-card:hover::before { opacity: 1; }
-.client-card .corners { position: absolute; inset: 7px; opacity: 0; transition: opacity var(--dur-2) var(--ease); pointer-events: none; }
-.client-card:hover .corners { opacity: 1; }
-.client-card .corners i { width: 10px; height: 10px; border-color: var(--line-strong); }
-.client-mark {
-  font-size: var(--text-l);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  transition: color var(--dur-2) var(--ease);
-}
-.client-card:hover .client-mark { color: var(--text); }
-/* Any supplied logo is rendered as flat white at the same optical weight, so a
-   wall of mismatched brand colours still reads as one monochrome set. */
-.client-card img {
-  max-width: min(150px, 76%);
-  max-height: 46px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.62;
-  transition: opacity var(--dur-2) var(--ease);
-}
-.client-card:hover img { opacity: 1; }
-.clients-note {
-  margin-top: 24px;
-  font-size: var(--text-m);
-  color: var(--muted-2);
-  text-align: center;
-}
-.clients-note strong { color: var(--muted); font-weight: 500; }
 
 /* ============================================================
    OUR PEOPLE
@@ -2158,13 +2090,10 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   .docs-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 980px) {
-  .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .people-grid { grid-template-columns: 1fr 1fr; }
   .people-figure { grid-column: 1 / -1; padding-left: 0; }
 }
 @media (max-width: 640px) {
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .client-card { min-height: 96px; }
   .people-grid { grid-template-columns: 1fr; }
   .doc-card { grid-template-columns: 1fr; }
   .doc-cover { max-width: 420px; }
