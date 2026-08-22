@@ -3656,6 +3656,42 @@ body::before {
     radial-gradient(46% 18% at 88% 79%, rgba(13,  39,  72, 0.42)  0%, transparent 70%),
     radial-gradient(52% 16% at 20% 94%, rgba(13,  39,  72, 0.30)  0%, transparent 72%);
 }
+/* ---------- and a moving light over it ----------
+   The field above is one layer the height of the whole document (13,652px on
+   the homepage). Animating that would hand the compositor a ~20M-pixel layer,
+   which is not worth it on a phone. So the motion lives on a second layer that
+   is fixed and therefore only ever one screen big, drifting slowly across
+   everything. The two together read as one ground that is quietly alive.
+
+   Very low alpha on purpose -- this has to stay under the type, not compete
+   with it. inset:-25% so no edge of the layer can ever scroll into view. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 40% at 24% 26%, rgba(13, 39, 72, 0.95) 0%, transparent 68%),
+    radial-gradient(32% 36% at 76% 68%, rgba(255, 222, 210, 0.075) 0%, transparent 66%),
+    radial-gradient(30% 32% at 64% 14%, rgba(13, 39, 72, 0.68) 0%, transparent 70%);
+  animation: ground-drift 44s ease-in-out infinite alternate;
+  will-change: transform;
+}
+/* Amplitude chosen by measurement, not by eye. At 5%/1.24 the ground moved by
+   0.7 of 255 across 90% of the screen -- animating on paper, invisible in
+   practice. This spreads roughly twice that, which reads as the light breathing
+   rather than as anything happening. Tightening the gradient falloff instead
+   made the change larger but concentrated it in a small area, which looked
+   like a screensaver; the soft falloff keeps it ambient. */
+@keyframes ground-drift {
+  from { transform: translate3d(-9%, -6%, 0) scale(1); }
+  to   { transform: translate3d(12%, 9%, 0) scale(1.35); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+}
+
 /* These no longer paint their own ground; they let the page field through. */
 .footprint,
 .certifications,
