@@ -2622,3 +2622,13 @@ a.cert-card:hover img { border-color: var(--accent); }
 }
 @media (max-width: 900px) { .certs-grid-3 { grid-template-columns: repeat(2, minmax(0, 260px)); } }
 @media (max-width: 560px) { .certs-grid-3 { grid-template-columns: 1fr; } }
+
+/* The social tiles sit inside .footer-col, and `.footer-col a` (further down
+   the file, same specificity) replaced their `display: grid` with
+   inline-block -- which made place-items:center inert and left the icons
+   pinned to one corner. Higher specificity, so it cannot be lost again. */
+.footer-col .socials a {
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
