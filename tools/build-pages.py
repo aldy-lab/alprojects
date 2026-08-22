@@ -1070,10 +1070,12 @@ OG_CARDS = {"we-do-not-certify-our-own-welds", "piping-installation-engine-room"
 # Copy supplied by the client, 22 Aug 2026, used verbatim.
 # ⚠️ Their own brief closes with: "All technical standards and
 # process numbers to be confirmed by QA before publishing."
-# Outstanding: the ISO 4063 numbers (141/131/135) are kept here
-# because the final copy carries them, though the rationale note
-# said they had been removed; ISO 3834 has no certificate on file;
-# IRATA/SOFT unverified.
+# ISO 4063 process numbers (141/131/135) are deliberately absent:
+# the copy file in the client's own handover pack
+# (04_Teksty/alprojects-services-copy.md, 22 Aug 2026) drops them,
+# which settles the contradiction with the earlier paste.
+# Still unconfirmed: ISO 3834 has no certificate on file, and
+# IRATA/SOFT are unverified.
 # ============================================================
 SERVICE_GROUPS = [
     ("Mechanical & Industrial", [
@@ -1082,8 +1084,8 @@ SERVICE_GROUPS = [
                   "and piping systems in TIG, MIG and semi-automatic processes, under an ISO 3834 "
                   "quality system. The welders hold current qualifications and the procedure is "
                   "approved before the first arc is struck.",
-             points=["TIG (141) for piping, root runs and stainless work",
-                     "MIG (131) and semi-automatic MAG (135) for structural steel and fill passes",
+             points=["TIG for piping, root runs and stainless work",
+                     "MIG and semi-automatic MAG for structural steel and fill passes",
                      "Structural steel, pressure retaining piping and pipe supports",
                      "Welder qualifications to EN ISO 9606, verified before mobilisation",
                      "WPS and WPQR to EN ISO 15614, written for the project standard",
