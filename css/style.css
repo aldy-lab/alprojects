@@ -3537,21 +3537,9 @@ html.blueprint .bp-sheet { opacity: 1; }
   font-variant-numeric: tabular-nums;
 }
 /* the plate number */
-.sheet-no {
-  position: absolute;
-  right: 5.5%;
-  top: 26%;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 3.4vw, 46px);
-  font-weight: 300;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.9);
-  pointer-events: none;
-}
 
 @media (max-width: 1000px) {
   .sheet-circles { width: 70vw; top: -10%; }
-  .sheet-no { font-size: 26px; right: 22px; bottom: auto; top: calc(var(--nav-h) + 16px); }
   .hero-grid::after { display: none; }
 }
 @media (max-width: 640px) { .sheet-dim { display: none; } }
