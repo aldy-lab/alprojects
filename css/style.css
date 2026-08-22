@@ -408,7 +408,7 @@ button { font-family: inherit; cursor: pointer; }
 /* The three marks are drawn as outlines now -- LinkedIn and Facebook used to
    be solid blocks next to an outlined Instagram, which read as three different
    icon sets. Colour comes from `color` so currentColor resolves inside <use>. */
-.socials svg { width: 15px; height: 15px; fill: none; color: var(--text); }
+.socials svg { width: 17px; height: 17px; fill: none; color: var(--text); }
 
 /* burger */
 .burger {

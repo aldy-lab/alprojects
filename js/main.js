@@ -509,26 +509,40 @@
   }
 
   /* ---------- segmented loading bars ---------- */
-  /* Fills once and stops. This used to setInterval forever: the bar filled,
-     snapped back to the start and refilled, over and over, which is a blinking
-     element sitting in the hero permanently -- and a timer that never clears. */
+  /* Fills, holds, empties, holds, repeats -- a continuous cycle rather than
+     filling and snapping back to the start, which was the part that read as
+     flashing. Pauses while the tab is hidden so it is not burning frames in
+     the background. */
   function runLoadbar(id, interval) {
     var bar = document.getElementById(id);
     if (!bar) return;
     var segs = bar.querySelectorAll("i");
+    if (!segs.length) return;
     if (reduceMotion) {
       segs.forEach(function (s) { s.classList.add("on"); });
       return;
     }
-    var lit = 0;
-    segs.forEach(function (s, i) { if (s.classList.contains("on")) lit = Math.max(lit, i + 1); });
-    var pos = lit || 1;
-    var t = setInterval(function () {
-      pos += 1;
-      segs.forEach(function (s, i) { s.classList.toggle("on", i < pos); });
-      if (pos >= segs.length) clearInterval(t);
-    }, interval);
+    var pos = 0, dir = 1, timer = null;
+    var paint = function () { segs.forEach(function (s, i) { s.classList.toggle("on", i < pos); }); };
+    var step = function () {
+      pos += dir;
+      if (pos >= segs.length) { pos = segs.length; dir = -1; hold(900); }
+      else if (pos <= 0)      { pos = 0;           dir = 1;  hold(500); }
+      paint();
+    };
+    var hold = function (ms) {
+      clearInterval(timer);
+      setTimeout(function () { timer = setInterval(step, interval); }, ms);
+    };
+    var start = function () { clearInterval(timer); timer = setInterval(step, interval); };
+    var stop  = function () { clearInterval(timer); };
+    paint();
+    start();
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else start();
+    });
   }
+
   runLoadbar("heroLoadbar", 420);
   runLoadbar("ctaLoadbar", 240);
 
