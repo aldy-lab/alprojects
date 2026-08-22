@@ -29,8 +29,8 @@
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-latin.woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css?v=c620da95">
-  <link rel="stylesheet" href="css/style.css?v=84768359">
+  <link rel="stylesheet" href="css/fonts.css?v=6a29218c">
+  <link rel="stylesheet" href="css/style.css?v=f8645093">
   <link rel="preload" as="image" href="assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
@@ -115,41 +115,37 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <span class="cross" style="top:22%; left:4%"></span>
-      <span class="cross" style="top:18%; right:6%"></span>
-      <span class="cross" style="top:44%; left:12%"></span>
-      <span class="cross" style="top:40%; right:15%"></span>
-      <span class="cross" style="top:62%; left:2%"></span>
-      <span class="cross" style="top:66%; right:2%"></span>
+      <img class="hero-photo" src="assets/hero-site.webp"
+           srcset="assets/hero-site-1100.webp 1100w, assets/hero-site.webp 1700w"
+           sizes="100vw" alt="" width="1700" height="729" fetchpriority="high" decoding="async">
+      <span class="hero-scrim" aria-hidden="true"></span>
 
-      <!-- Drawing-sheet furniture: measurement rules down each margin, corner
-           registration marks and a title block. Decorative, so hidden from
-           assistive tech and dropped on small screens. -->
-      <span class="sheet-rule sheet-rule-l" aria-hidden="true"></span>
-      <span class="sheet-rule sheet-rule-r" aria-hidden="true"></span>
-      <span class="sheet-reg tl" aria-hidden="true"></span>
-      <span class="sheet-reg tr" aria-hidden="true"></span>
-      <span class="sheet-reg bl" aria-hidden="true"></span>
-      <span class="sheet-reg br" aria-hidden="true"></span>
-      <span class="sheet-block" aria-hidden="true">
-        <b>ALPROJECTS GROUP</b>
-        <i>SHEET 01 / 07</i>
-        <i>SCALE 1:1</i>
-        <i>REV 2026.08</i>
-      </span>
+      <!-- Drafting layer, brand library: corner frame, horizontal and vertical
+           dimension, centre line, target, two numeric marks. Six elements, held
+           clear of the text block. -->
+      <div class="draft" aria-hidden="true">
+        <span class="draft-corner tl"></span><span class="draft-corner tr"></span>
+        <span class="draft-corner bl"></span><span class="draft-corner br"></span>
+        <span class="draft-dim-h"><i></i><b>HULL SECTION</b><i></i></span>
+        <span class="draft-dim-v"><i></i><b>SCOPE</b><i></i></span>
+        <span class="draft-axis"></span>
+        <svg class="draft-target" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="19"/><circle cx="32" cy="32" r="9"/>
+          <path d="M32 4v16M32 44v16M4 32h16M44 32h16"/>
+        </svg>
+        <span class="draft-mark m1"><b>01</b><i>MECHANICAL SCOPES</i></span>
+        <span class="draft-mark m2"><b>02</b><i>INDEPENDENT INSPECTION</i></span>
+      </div>
 
       <div class="container hero-in">
         <p class="hero-eyebrow">ALPROJECTS GROUP <span>&middot;</span> KLAIP&#278;DA, LITHUANIA</p>
         <h1 class="hero-title">Mechanical scopes and independent inspection</h1>
         <p class="hero-sub">Welding, piping and mechanical works across Northern Europe.
         Inspected by people who did not do the welding.</p>
-
         <div class="hero-ctas">
           <a class="btn-solid" href="/contacts.html">Send us the scope</a>
           <a class="btn-outline" href="/projects.html">See our projects</a>
         </div>
-
-        <!-- Client's change: the six-service strip became four facts. -->
         <div class="hero-proof">
           <div><b>300</b><span>certified specialists</span></div>
           <div><b>5</b><span>countries, 7 project bases</span></div>
