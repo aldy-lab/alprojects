@@ -387,6 +387,10 @@
       if (!art) return;
 
       art.setAttribute("data-panel", sv.slug);
+      /* restart the entrance animation on every switch */
+      art.classList.remove("is-switching");
+      void art.offsetWidth;
+      art.classList.add("is-switching");
       art.querySelector(".srv-count").textContent = sv.num + " / 12";
       art.querySelector(".srv-title").textContent = sv.h1;
       art.querySelector(".srv-lead").innerHTML = sv.lead;

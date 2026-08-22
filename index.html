@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css?v=c620da95">
-  <link rel="stylesheet" href="css/style.css?v=e5f60cf9">
+  <link rel="stylesheet" href="css/style.css?v=c96af938">
   <link rel="preload" as="image" href="assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
@@ -119,6 +119,27 @@
            srcset="assets/hero-site-1100.webp 1100w, assets/hero-site.webp 1700w"
            sizes="100vw" alt="" width="1700" height="728" fetchpriority="high" decoding="async">
       <span class="hero-scrim" aria-hidden="true"></span>
+
+      <!-- Drafting layer, per the brand library: six elements on the frame —
+           corner frame, horizontal and vertical dimension, centre line, target
+           and two numeric marks. It sits in the upper and right zones so it
+           never overlaps the text block, as the rules require. -->
+      <div class="draft" aria-hidden="true">
+        <span class="draft-corner tl"></span><span class="draft-corner tr"></span>
+        <span class="draft-corner bl"></span><span class="draft-corner br"></span>
+
+        <span class="draft-dim-h"><i></i><b>HULL SECTION</b><i></i></span>
+        <span class="draft-dim-v"><i></i><b>SCOPE</b><i></i></span>
+        <span class="draft-axis"></span>
+
+        <svg class="draft-target" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="19"/><circle cx="32" cy="32" r="9"/>
+          <path d="M32 4v16M32 44v16M4 32h16M44 32h16"/>
+        </svg>
+
+        <span class="draft-mark m1"><b>01</b><i>MECHANICAL SCOPES</i></span>
+        <span class="draft-mark m2"><b>02</b><i>INDEPENDENT INSPECTION</i></span>
+      </div>
 
       <div class="container hero-in">
         <p class="hero-eyebrow">ALPROJECTS GROUP <span>&middot;</span> KLAIP&#278;DA, LITHUANIA</p>
@@ -776,6 +797,6 @@
     </defs>
   </svg>
 
-  <script src="js/main.js?v=5b8d1313"></script>
+  <script src="js/main.js?v=d6c1f54a"></script>
 </body>
 </html>

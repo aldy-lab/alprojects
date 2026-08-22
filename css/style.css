@@ -2620,17 +2620,45 @@ a.cert-card:hover img { border-color: var(--accent); }
 }
 .srv-link:hover { color: var(--text); border-color: var(--line-strong); }
 .srv-link:hover .srv-n { color: var(--muted); }
-/* The active item is the highest-contrast thing in the column. It read as
-   disabled before, which is the opposite of what it means. */
+
+/* The active service is a box, not an underline -- and the box is built from
+   four corner marks, which is the brandbook's "угловая рамка": four corners
+   instead of a solid frame, so the item is framed without being boxed in. */
 .srv-link.is-active {
   color: var(--text);
-  border-bottom-color: var(--text);
+  border-bottom-color: transparent;
+  background: rgba(255, 255, 255, 0.045);
+  padding-left: 14px;
+  padding-right: 14px;
+  margin-left: -14px;
+  margin-right: -14px;
+  outline: 1px solid rgba(255, 255, 255, 0.16);
+  outline-offset: -1px;
 }
 .srv-link.is-active .srv-name { font-weight: 600; color: var(--text); }
-.srv-link.is-active .srv-n { color: var(--text); }
+.srv-link.is-active .srv-n { color: var(--warm); }   /* the one warm mark, §2.2 */
+.srv-link.is-active::before,
+.srv-link.is-active::after {
+  content: "";
+  position: absolute;
+  width: 9px; height: 9px;
+  border: 1px solid var(--text);
+  pointer-events: none;
+}
+.srv-link.is-active::before { top: -1px;  left: -1px;  border-right: 0; border-bottom: 0; }
+.srv-link.is-active::after  { bottom: -1px; right: -1px; border-left: 0;  border-top: 0; }
+.srv-link { position: relative; }
 
 /* ---------- right: the open service ---------- */
-.srv-panel { padding-top: 4px; }
+.srv-panel { padding-top: 4px; min-height: 520px; }   /* §4.3: height must not jump */
+/* Content change is animated so the switch reads as a movement rather than a
+   flicker. 260ms, the standard step on the motion scale. */
+@keyframes srv-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+.srv-item.is-switching { animation: srv-in var(--dur-2) var(--ease); }
+@media (prefers-reduced-motion: reduce) { .srv-item.is-switching { animation: none; } }
 .srv-count {
   font-size: var(--numbers);
   letter-spacing: 0.2em;
@@ -2985,3 +3013,121 @@ a.cert-card:hover img { border-color: var(--accent); }
 .sector-aside p { font-size: var(--text-l); line-height: 1.75; color: var(--muted); }
 .sector-aside .back { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
 @media (max-width: 1000px) { .sector-cols { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   DRAFTING LAYER — brand library, "Первый экран сайта".
+   Six elements. Line weight 1px at every size; main lines
+   0.60–0.75 opacity, secondary 0.28–0.45; numbers 10–11px with
+   1.2px tracking; centre line dashed 18-5-3-5.
+   ============================================================ */
+.draft {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  color: var(--gray-50);
+}
+/* corner frame: four corners, 30px inset, 26px arms */
+.draft-corner {
+  position: absolute;
+  width: 26px; height: 26px;
+  border: 1px solid currentColor;
+  opacity: 0.62;
+}
+.draft-corner.tl { top: 30px; left: 30px; border-right: 0; border-bottom: 0; }
+.draft-corner.tr { top: 30px; right: 30px; border-left: 0; border-bottom: 0; }
+.draft-corner.bl { bottom: 30px; left: 30px; border-right: 0; border-top: 0; }
+.draft-corner.br { bottom: 30px; right: 30px; border-left: 0; border-top: 0; }
+
+/* horizontal dimension across the top zone */
+.draft-dim-h {
+  position: absolute;
+  top: 92px; left: 34%; right: 76px;
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0.55;
+}
+.draft-dim-h i { flex: 1 1 auto; height: 1px; background: currentColor; }
+.draft-dim-h i::before, .draft-dim-h i::after {
+  content: ""; position: absolute; width: 1px; height: 7px; background: currentColor;
+}
+.draft-dim-h b, .draft-dim-v b {
+  font-size: 10px; font-weight: 400; letter-spacing: 1.2px;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* vertical dimension down the right edge */
+.draft-dim-v {
+  position: absolute;
+  right: 76px; top: 150px; bottom: 190px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  opacity: 0.5;
+}
+.draft-dim-v i { flex: 1 1 auto; width: 1px; background: currentColor; }
+.draft-dim-v b { writing-mode: vertical-rl; }
+
+/* centre line, dash-dot 18-5-3-5 */
+.draft-axis {
+  position: absolute;
+  /* starts right of the text block: the rules forbid the drawing layer and the
+     text from overlapping, and at 30% it ran through the headline */
+  left: 54%; right: 8%; top: 46%;
+  height: 1px;
+  opacity: 0.34;
+  background-image: repeating-linear-gradient(to right,
+    currentColor 0 18px, transparent 18px 23px,
+    currentColor 23px 26px, transparent 26px 31px);
+}
+
+/* target — on the object, not the geometric centre */
+.draft-target {
+  position: absolute;
+  right: 20%; top: 38%;
+  width: 64px; height: 64px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.6;
+}
+
+/* numeric marks — the only warm elements the layer is allowed */
+.draft-mark {
+  position: absolute;
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0.85;
+}
+.draft-mark b {
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border: 1px solid var(--warm);
+  border-radius: 50%;
+  color: var(--warm);
+  font-size: 10px; font-weight: 400; letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+.draft-mark i {
+  font-style: normal;
+  font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted);
+}
+.draft-mark.m1 { top: 132px; right: 21%; }
+.draft-mark.m2 { top: 178px; right: 21%; }
+
+/* The brand gradient's warm glow, top right. The brand rules state it is part
+   of the identity and is not to be removed. */
+.hero-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(58% 52% at 88% 6%,
+    rgba(255, 218, 206, 0.20) 0%, rgba(255, 218, 206, 0.07) 42%, transparent 72%);
+  mix-blend-mode: screen;
+}
+
+/* Below 1000px the frame has no spare margin: corners and one mark only, per
+   "На малых форматах остаются только углы и одна отметка". */
+@media (max-width: 1000px) {
+  .draft-dim-h, .draft-dim-v, .draft-axis, .draft-target, .draft-mark.m2 { display: none; }
+  .draft-mark.m1 { top: 96px; right: 24px; }
+}
+@media (max-width: 640px) { .draft-mark.m1 i { display: none; } }
