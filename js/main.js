@@ -956,14 +956,21 @@
   function animateCounter(el) {
     var target = parseInt(el.getAttribute("data-count"), 10);
     var suffix = el.getAttribute("data-suffix") || "";
-    if (reduceMotion) { el.textContent = target + suffix; return; }
+    /* 11000 has to read as 11,000 -- and as 11.000 in German, 11 000 in
+       French. The page's own lang attribute picks the separator, so the
+       figure is grouped correctly in all four languages without a table. */
+    function fmt(n) {
+      try { return n.toLocaleString(document.documentElement.lang || "en"); }
+      catch (e) { return String(n); }
+    }
+    if (reduceMotion) { el.textContent = fmt(target) + suffix; return; }
     var dur = 1400;
     var start = null;
     function step(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      el.textContent = fmt(Math.round(target * eased)) + suffix;
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);

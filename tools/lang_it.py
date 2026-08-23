@@ -1406,4 +1406,18 @@ S = {
         '<span>Cantieristica navale</span><span>Impianti di processo</span><span>Sale macchine</span><span>Utenze</span>',
     '<span>Industrial Facilities</span><span>Energy Projects</span><span>Offshore</span><span>Steel Structures</span>':
         '<span>Impianti industriali</span><span>Progetti energetici</span><span>Offshore</span><span>Strutture in acciaio</span>',
+
+    # --- homepage facts block (evidence set) ---
+    'Numbers you can check':
+        'Numeri verificabili',
+    '<span class="value" data-count="11000" data-suffix="+">0+</span> <span class="label">Hours on one scope &mdash; fuel terminal, September 2025 to April 2026</span>':
+        '<span class="value" data-count="11000" data-suffix="+">0+</span> <span class="label">Ore su un solo intervento &mdash; terminale di carico, da settembre 2025 ad aprile 2026</span>',
+    '<span class="value" data-count="12">0</span> <span class="label">Specialists on that scope, one crew from start to handover</span>':
+        '<span class="value" data-count="12">0</span> <span class="label">Specialisti su quell’intervento, una sola squadra dall’inizio alla consegna</span>',
+    '<span class="value" data-count="4">0</span> <span class="label">Offshore and wind projects delivered &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>':
+        '<span class="value" data-count="4">0</span> <span class="label">Progetti offshore ed eolici realizzati &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>',
+    '<span class="value" data-count="3">0</span> <span class="label">ISO management systems, certified independently by DNV</span>':
+        '<span class="value" data-count="3">0</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>',
+    'Every figure points to a project, a client or a certificate':
+        'Ogni numero rimanda a un progetto, a un cliente o a un certificato',
 }
