@@ -76,7 +76,8 @@
      to different sites. Everything now picks one of these four. */
   --dur-1: 150ms;   /* micro-feedback: colour, border, opacity */
   --dur-2: 260ms;   /* standard: buttons, links, small moves */
-  --dur-3: 420ms;   /* card lifts, image scale */
+  --dur-3: 420ms;   /* image scale, decorative motion */
+  --dur-hover: 180ms; /* hover feedback: fast, because it happens constantly */
   --dur-4: 700ms;   /* entrances and reveals */
 
   /* Control size. One height for every button so they cannot land on
@@ -231,10 +232,17 @@ a { color: inherit; text-decoration: none; }
   html { scroll-behavior: auto; }
   /* the lift and zoom are motion too, not just the entrance animations */
   :root { --lift: 0px; --zoom: 1; }
+  /* Reduced motion means less movement, NOT no response. This used to force
+     transition-duration to 0.01ms on everything, which also killed the colour
+     and opacity changes that tell you a link or a field reacted to you --
+     removing information rather than motion. Now the properties that move are
+     dropped and the ones that only change appearance are kept, quickly. */
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-property: color, background-color, border-color, outline-color,
+                         opacity, fill, stroke, box-shadow, text-decoration-color !important;
+    transition-duration: var(--dur-1) !important;
   }
 }
 ul { list-style: none; }
@@ -583,7 +591,6 @@ button { font-family: inherit; cursor: pointer; }
 .dir-card:hover img { transform: scale(var(--zoom)); }
 
 /* hero bottom row */
-@keyframes chev { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
 /* segmented loading bar */
 .loadbar { display: flex; gap: 4px; padding: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--line); width: max-content; }
@@ -654,7 +661,7 @@ button { font-family: inherit; cursor: pointer; }
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  transition: transform var(--dur-3) var(--ease), border-color var(--dur-2);
+  transition: transform var(--dur-hover) var(--ease), border-color var(--dur-2);
 }
 .adv-card:hover { transform: translateY(var(--lift)); border-color: var(--line-strong); }
 .adv-card img {
@@ -822,7 +829,7 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--panel);
   border: 1px solid var(--line);
   padding: 14px 16px 18px;
-  transition: transform var(--dur-3) var(--ease), border-color var(--dur-2);
+  transition: transform var(--dur-hover) var(--ease), border-color var(--dur-2);
 }
 .member:hover { transform: translateY(var(--lift)); border-color: var(--line-strong); }
 .member .photo {
@@ -971,7 +978,7 @@ button { font-family: inherit; cursor: pointer; }
   padding: 22px;
   display: flex;
   flex-direction: column;
-  transition: transform var(--dur-3) var(--ease), border-color var(--dur-2);
+  transition: transform var(--dur-hover) var(--ease), border-color var(--dur-2);
 }
 .news-card:hover { transform: translateY(var(--lift)); border-color: var(--line-strong); }
 .news-top {
@@ -1599,7 +1606,7 @@ button { font-family: inherit; cursor: pointer; }
 /* corner brackets draw themselves rather than just fading */
 .corners i {
   transform-origin: center;
-  transition: transform var(--dur-3) var(--ease), border-color var(--dur-2);
+  transition: transform var(--dur-hover) var(--ease), border-color var(--dur-2);
 }
 .dir-card .corners i { transform: scale(0.4); }
 .dir-card:hover .corners i { transform: scale(1); }
@@ -2218,7 +2225,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   position: relative;
   border: 1px solid var(--line);
   background: var(--panel);
-  transition: border-color var(--dur-2) var(--ease), transform var(--dur-3) var(--ease);
+  transition: border-color var(--dur-2) var(--ease), transform var(--dur-hover) var(--ease);
 }
 .shot:hover { transform: translateY(var(--lift)); border-color: var(--line-strong); }
 .shot-media { display: block; overflow: hidden; }
@@ -2670,13 +2677,31 @@ a.cert-card:hover img { border-color: var(--accent); }
 /* ---------- right: the open service ---------- */
 .srv-panel { padding-top: 4px; min-height: 520px; }   /* §4.3: height must not jump */
 /* Content change is animated so the switch reads as a movement rather than a
-   flicker. 260ms, the standard step on the motion scale. */
-@keyframes srv-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
+   flicker. 260ms, the standard step on the motion scale.
+
+   A transition, not @keyframes. Keyframes restart from frame zero every time
+   they are retriggered, and this is retriggered every time somebody clicks
+   another service -- twelve of them in a list, so it is clicked in bursts.
+   Measured on the old version: opacity 0.97, one click later 0. A transition
+   retargets from wherever it currently is, so a fast second click continues
+   from the middle instead of flashing back to invisible. */
+.srv-item {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
 }
-.srv-item.is-switching { animation: srv-in var(--dur-2) var(--ease); }
-@media (prefers-reduced-motion: reduce) { .srv-item.is-switching { animation: none; } }
+/* The out state is applied with the transition switched off, so it lands
+   instantly; removing the class on the next frame runs the transition back to
+   rest. That is the same "enter" the keyframes gave, but as a transition -- so
+   when it is interrupted it continues from where it is. */
+.srv-item.is-entering {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .srv-item, .srv-item.is-entering { transform: none; }
+}
 .srv-count {
   font-size: var(--numbers);
   letter-spacing: 0.2em;
@@ -4330,4 +4355,76 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   .lb-prev { left: 10px; }
   .lb-next { right: 10px; }
   .lb-fig img { max-height: calc(100vh - 190px); }
+}
+
+/* ============================================================
+   TOUCH: no hover motion
+   A touch tap fires the hover state and it never leaves, so every card on the
+   site sat permanently lifted -5px after being tapped once. Measured: transform
+   none -> matrix(1,0,0,1,0,-5) with no way back.
+
+   Neutralising the two tokens covers everything that lifts or zooms in one
+   place; the handful of hover transforms that do not use them are listed
+   after it.
+   ============================================================ */
+@media (hover: none) {
+  :root { --lift: 0px; --zoom: 1; }
+  .dir-card:hover .arr,
+  .news-card:hover .arr,
+  .adv-card:hover .adv-icon,
+  .srv-link:hover .srv-name { transform: none; }
+}
+
+/* ============================================================
+   PRESS FEEDBACK
+   Two elements on the whole site acknowledged a press. Everything else --
+   every chip, the drop zone, the viewer controls, the service list, the
+   language switcher -- went from hover straight to the result with nothing in
+   between, which on a phone (where there is no hover at all) means a tap gets
+   no acknowledgement whatsoever until the page changes.
+
+   translateY(1px), matching the two buttons that already had it, rather than
+   introducing a second press idiom alongside them. The chips scale instead:
+   they are small and a 1px nudge on a 36px control is invisible.
+   ============================================================ */
+.btn-outline:active,
+.srv-link:active,
+.doc-view:active,
+.lb-btn:active,
+.file-x:active,
+.bp-hint:active,
+.made-by:active { transform: translateY(1px); }
+
+.chip:active,
+.shot-open:active,
+.langs a:active { transform: scale(0.97); }
+.drop:active { transform: scale(0.995); }
+
+/* The press must land immediately; only the release is worth easing. */
+.btn-outline, .srv-link, .doc-view, .lb-btn, .file-x, .bp-hint, .made-by,
+.chip, .shot-open, .langs a, .drop {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-duration: var(--dur-hover);
+  transition-timing-function: var(--ease);
+}
+/* ...but the corner marks inside a shot keep their own slower reveal */
+.shot-open .corners i { transition: transform var(--dur-3) var(--ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-outline:active, .srv-link:active, .doc-view:active, .lb-btn:active,
+  .file-x:active, .bp-hint:active, .made-by:active,
+  .chip:active, .shot-open:active, .langs a:active, .drop:active { transform: none; }
+}
+
+/* Arrowing between photographs was a hard cut: one image replaced by another
+   in a single frame, which reads as a glitch rather than as navigation. The
+   neighbours are already preloaded, so a short fade is free. */
+.lb-fig img { transition: opacity 140ms var(--ease); }
+/* transition:none so the out state lands instantly -- the neighbours are
+   preloaded, so fading the OLD frame out first would only add dead time
+   before the new one appears. It goes straight to invisible and fades in. */
+.lb-fig img.is-swapping { opacity: 0; transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .lb-fig img { transition: none; }
+  .lb-fig img.is-swapping { opacity: 1; }
 }

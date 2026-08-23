@@ -689,9 +689,13 @@
 
       art.setAttribute("data-panel", sv.slug);
       /* restart the entrance animation on every switch */
-      art.classList.remove("is-switching");
-      void art.offsetWidth;
-      art.classList.add("is-switching");
+      /* Reset to the out state only if the panel is at rest. Clicking a second
+         service while the first is still fading in should let that fade carry
+         on to the new content, not snap back to invisible -- which is exactly
+         what the old @keyframes did: measured opacity 0.97, then 0 one click
+         later. */
+      var settled = parseFloat(getComputedStyle(art).opacity) > 0.99;
+      if (settled) art.classList.add("is-entering");
       art.querySelector(".srv-count").textContent = sv.num + " / 12";
       art.querySelector(".srv-title").textContent = sv.h1;
       art.querySelector(".srv-lead").innerHTML = sv.lead;
@@ -715,6 +719,14 @@
       if (push && window.history && history.pushState) {
         history.pushState({ srv: sv.slug }, "", PREFIX + "/services/" + sv.slug + ".html");
       }
+      /* Release on the next frame: the browser has to paint the out state once
+         before the transition back to rest will run. */
+      if (settled) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { art.classList.remove("is-entering"); });
+        });
+      }
+
       /* the panel is what changed, so that is what should be announced */
       art.setAttribute("tabindex", "-1");
       if (push) {
@@ -980,11 +992,27 @@
       };
     });
 
-    function show(i) {
+    function show(i, instant) {
       lbIndex = (i + shots.length) % shots.length;
       var sh = shots[lbIndex];
+      /* Fade the old frame out, swap, fade in. Without it the photograph is
+         replaced in a single frame, which reads as a glitch rather than as
+         moving to the next one. Neighbours are preloaded below, so the new
+         image is decoded and the fade is the only cost. */
+      if (!instant) lbImg.classList.add("is-swapping");
       lbImg.src = sh.src;
       lbImg.alt = sh.alt;
+      if (!instant) {
+        var clear = function () {
+          /* the browser has to paint the invisible frame once before the
+             transition back to full opacity will run */
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { lbImg.classList.remove("is-swapping"); });
+          });
+        };
+        if (lbImg.decode) lbImg.decode().then(clear, clear);
+        else lbImg.addEventListener("load", clear, { once: true });
+      }
       lbCap.textContent = sh.caption;
       lbCount.textContent = (lbIndex + 1) + " / " + shots.length;
       /* Preload the neighbours so arrowing through does not flash. */
@@ -997,7 +1025,7 @@
 
     function openLb(i) {
       lastFocus = document.activeElement;
-      show(i);
+      show(i, true);      /* the panel itself is appearing; no crossfade */
       lb.hidden = false;
       document.documentElement.classList.add("lb-open");
       lbClose.focus();
