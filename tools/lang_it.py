@@ -1398,4 +1398,12 @@ S = {
         'Nome dell’azienda',
     'Scope, location, standards and dates.':
         'Perimetro, luogo, norme e date.',
+
+    # --- homepage service slider ---
+    '<span>Shipbuilding</span><span>Offshore</span><span>Industrial Facilities</span><span>Steel Structures</span>':
+        '<span>Cantieristica navale</span><span>Offshore</span><span>Impianti industriali</span><span>Strutture in acciaio</span>',
+    '<span>Shipbuilding</span><span>Process Plant</span><span>Engine Rooms</span><span>Utilities</span>':
+        '<span>Cantieristica navale</span><span>Impianti di processo</span><span>Sale macchine</span><span>Utenze</span>',
+    '<span>Industrial Facilities</span><span>Energy Projects</span><span>Offshore</span><span>Steel Structures</span>':
+        '<span>Impianti industriali</span><span>Progetti energetici</span><span>Offshore</span><span>Strutture in acciaio</span>',
 }

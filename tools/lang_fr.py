@@ -1426,4 +1426,12 @@ S = {
         'Nom de la société',
     'Scope, location, standards and dates.':
         'Périmètre, lieu, normes et dates.',
+
+    # --- homepage service slider ---
+    '<span>Shipbuilding</span><span>Offshore</span><span>Industrial Facilities</span><span>Steel Structures</span>':
+        '<span>Construction navale</span><span>Offshore</span><span>Sites industriels</span><span>Charpente métallique</span>',
+    '<span>Shipbuilding</span><span>Process Plant</span><span>Engine Rooms</span><span>Utilities</span>':
+        '<span>Construction navale</span><span>Unités de process</span><span>Salles des machines</span><span>Utilités</span>',
+    '<span>Industrial Facilities</span><span>Energy Projects</span><span>Offshore</span><span>Steel Structures</span>':
+        '<span>Sites industriels</span><span>Projets énergie</span><span>Offshore</span><span>Charpente métallique</span>',
 }
