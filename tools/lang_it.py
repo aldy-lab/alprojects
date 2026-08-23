@@ -720,8 +720,6 @@ S = {
         'TIG per tubazioni, passate di radice e inox',
     '<span class="step-n">04</span> Your documents':
         '<span class="step-n">04</span> I tuoi documenti',
-    'Certified specialist performing welding works':
-        'Specialista certificato durante lavori di saldatura',
     'Equipment alignment and mechanical completion':
         'Allineamento delle apparecchiature e completamento meccanico',
     'Heavy equipment relocation — ALPROJECTS Group':
@@ -1110,8 +1108,8 @@ S = {
         '<span class="sector-name">CANTIERISTICA NAVALE</span> <span class="sector-fact">Tubazioni di sala macchine, carpenteria e allestimento</span>',
     'Lithuania &middot; Belgium &middot; Norway &mdash; serving offshore, shipbuilding and industry across Northern and Western Europe.':
         'Lituania &middot; Belgio &middot; Norvegia &mdash; al servizio di offshore, cantieristica navale e industria nell’Europa settentrionale e occidentale.',
-    '<span class="value" data-count="10" data-suffix="+">0+</span> <span class="label">Projects delivered across multiple countries</span>':
-        '<span class="value" data-count="10" data-suffix="+">0+</span> <span class="label">Progetti realizzati in più Paesi</span>',
+    '<span class="value" data-count="90" data-suffix="+">0+</span> <span class="label">Projects delivered across multiple countries</span>':
+        '<span class="value" data-count="90" data-suffix="+">0+</span> <span class="label">Progetti realizzati in più Paesi</span>',
     '<span class="value" data-count="98" data-suffix="%">0%</span> <span class="label">Early risk detection by certified specialists</span>':
         '<span class="value" data-count="98" data-suffix="%">0%</span> <span class="label">Individuazione precoce dei rischi da parte di specialisti certificati</span>',
     'ALPROJECTS, UAB (&ldquo;ALPROJECTS Group&rdquo;, &ldquo;we&rdquo;) is the controller of personal data collected through alprojects.co.':
