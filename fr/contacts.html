@@ -110,6 +110,96 @@
       </section>
     </div>
 
+
+    <div class="container" id="enquiry">
+      <div class="apply-panel">
+        <div class="apply-intro">
+          <p class="eyebrow">Demandes</p>
+          <h2>Envoyez-nous un message</h2>
+          <p>Envoyez-nous le périmètre ou les plans et nous reviendrons avec un prix et des dates d’équipe. Le chemin le plus court vers une réponse utile : le périmètre, le lieu, les normes applicables et la fenêtre d’intervention.</p>
+          <p>Pour les demandes de personnel, indiquez-nous les métiers, les certifications et les effectifs.</p>
+          <p class="apply-note">Vous postulez à un poste ? Le formulaire de la <a href="/fr/careers.html">page carrières</a> accepte votre CV et vos certificats.</p>
+          <div class="apply-alt">
+            <p class="eyebrow">Vous préférez ne pas remplir de formulaire</p>
+            <a href="mailto:info@alprojects.eu?subject=Project%20enquiry">info@alprojects.eu</a>
+            <a href="tel:+37063663744">Appeler le +370 636 63 744</a>
+            <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp +370 636 63 744</a>
+          </div>
+        </div>
+
+        <form id="contactForm" class="apply-form" novalidate>
+          <fieldset class="step">
+            <div class="field">
+              <label for="ctGroup">Domaine de services</label>
+              <select id="ctGroup" name="group" required aria-required="true">
+                <option value="">Choisissez un domaine</option>
+                <option>Mécanique & industrie</option>
+                <option>Naval</option>
+                <option>Inspection & accès</option>
+                <option>Je ne sais pas encore</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="ctTopic">Type de demande</label>
+              <select id="ctTopic" name="topic" required aria-required="true">
+                <option value="">Choisissez un type de demande</option>
+                <option>Demande de projet</option>
+                <option>Demande de personnel</option>
+                <option>Inspection, CND ou travaux sur cordes</option>
+                <option>Facturation ou administration</option>
+                <option>Autre sujet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="ctFirst">Prénom</label>
+              <input id="ctFirst" name="first" type="text" required aria-required="true"
+                     autocomplete="given-name" placeholder="Prénom">
+            </div>
+            <div class="field">
+              <label for="ctLast">Nom</label>
+              <input id="ctLast" name="last" type="text" required aria-required="true"
+                     autocomplete="family-name" placeholder="Nom">
+            </div>
+            <div class="field">
+              <label for="ctEmail">E-mail</label>
+              <input id="ctEmail" name="email" type="email" required aria-required="true"
+                     autocomplete="email" placeholder="name@company.com">
+            </div>
+            <div class="field">
+              <label for="ctPhone">Téléphone <span class="opt">(facultatif)</span></label>
+              <input id="ctPhone" name="phone" type="tel" autocomplete="tel"
+                     placeholder="+370 ...">
+            </div>
+            <div class="field field-wide">
+              <label for="ctCompany">Société <span class="opt">(facultatif)</span></label>
+              <input id="ctCompany" name="company" type="text" autocomplete="organization"
+                     placeholder="Nom de la société">
+            </div>
+            <div class="field field-wide">
+              <label for="ctMessage">Comment pouvons-nous vous aider ?</label>
+              <textarea id="ctMessage" name="message" rows="6" required aria-required="true"
+                        placeholder="Périmètre, lieu, normes et dates."></textarea>
+            </div>
+          </fieldset>
+
+          <div class="field field-check">
+            <input id="ctConsent" name="consent" type="checkbox" required aria-required="true">
+            <label for="ctConsent">J’accepte qu’ALPROJECTS, UAB conserve ces informations afin de répondre à ma demande. Voir la <a href="/fr/privacy.html">politique de confidentialité</a>.</label>
+          </div>
+          <!-- Spam trap: a real visitor never sees this, a bot fills it in. Named
+               "website" and not "company" because company is a real field here. -->
+          <div class="hp" aria-hidden="true">
+            <label for="ctWebsite">Site web</label>
+            <input id="ctWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="field">
+            <button type="submit" class="btn-solid">Envoyer la demande</button>
+            <p class="form-note" id="contactNote" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="container prose">
       <h2>Siège social</h2>
       <p>ALPROJECTS, UAB<br> Šilutės av. 2-536<br> LT-91110 Klaipėda<br> Lituanie</p>
@@ -128,9 +218,6 @@
         <li><a href="tel:+37063663744">+370 636 63 744</a></li>
         <li><a href="tel:+37067020654">+370 670 20654</a></li>
       </ul>
-
-      <h2>Ce qu’il faut nous transmettre</h2>
-      <p>Envoyez-nous le périmètre ou les plans et nous reviendrons avec un prix et des dates d’équipe. Le chemin le plus court vers une réponse utile : le périmètre, le lieu, les normes applicables et la fenêtre d’intervention. Pour un besoin en personnel, précisez les métiers, les certifications et l’effectif.</p>
 
       <p class="back">
         <a class="btn-bracket" href="mailto:info@alprojects.eu?subject=Project%20enquiry">Nous écrire</a>
@@ -272,6 +359,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=570dea16"></script>
+  <script src="/js/main.js?v=381f5803"></script>
 </body>
 </html>

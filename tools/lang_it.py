@@ -1348,4 +1348,54 @@ S = {
         'Montaggio di impianti, tubazioni di processo e pacchetti meccanici. Un esempio recente è un pacchetto meccanico per trasformatore — tubazioni in acciaio inox e sistemi di raffreddamento &mdash; <a href="/news/transformer-mechanical-package.html">realizzato in cinque Paesi europei</a>, dove la coerenza tra Paesi era tanto un problema di documentazione quanto di fabbricazione.',
     'The one exception is the scheduling calendar on the contacts page. It is supplied by Calendly LLC and is <strong>not loaded until you press &ldquo;Open the calendar&rdquo;</strong>. Until you do, no request is made to Calendly and they receive nothing about you. Once you open it, Calendly receives your IP address and sets its own cookies in order to run the calendar, and the details you submit if you book a slot. Calendly is a US company and transfers are covered by the EU Standard Contractual Clauses; see <a href="https://calendly.com/privacy" target="_blank" rel="noopener">calendly.com/privacy</a>. You can book a call by email instead if you prefer not to use it.':
         'L’unica eccezione è il calendario appuntamenti nella pagina contatti. È fornito da Calendly LLC e <strong>non viene caricato finché non premete &ldquo;Apri il calendario&rdquo;</strong>. Fino a quel momento non viene inviata alcuna richiesta a Calendly, che non riceve nulla su di voi. Una volta aperto, Calendly riceve il vostro indirizzo IP e imposta cookie propri per far funzionare il calendario, oltre ai dati che inserite se prenotate un orario. Calendly è una società statunitense e i trasferimenti sono coperti dalle clausole contrattuali tipo dell’UE; si veda <a href="https://calendly.com/privacy" target="_blank" rel="noopener">calendly.com/privacy</a>. Se preferite non usarlo, potete prenotare una call via e-mail.',
+
+    # --- contact form (contacts.html) ---
+    'Enquiries':
+        'Richieste',
+    'Send us a message':
+        'Scriveteci un messaggio',
+    'Send us the scope or the drawings and we will come back with a price and crew dates. The fastest route to a useful answer is the scope, the location, the standards that apply and the window you are working to.':
+        'Inviateci il perimetro o i disegni e vi risponderemo con un prezzo e le date delle squadre. La via più rapida a una risposta utile: perimetro, luogo, norme applicabili e finestra di intervento.',
+    'For personnel requests, tell us the disciplines, the certifications and the headcount.':
+        'Per le richieste di personale, indicateci le specializzazioni, le certificazioni e il numero di persone.',
+    'Applying for a job? The application form on the <a href="/careers.html">careers page</a> takes your CV and certificates with it.':
+        'Vi state candidando? Il modulo nella <a href="/careers.html">pagina lavora con noi</a> accetta anche CV e certificati.',
+    'Service group':
+        'Area di servizio',
+    'Select a service group':
+        'Scegliete un’area',
+    'Not sure yet':
+        'Non ancora definito',
+    'Type of enquiry':
+        'Tipo di richiesta',
+    'Select a type of enquiry':
+        'Scegliete il tipo di richiesta',
+    'Project enquiry':
+        'Richiesta di progetto',
+    'Request for personnel':
+        'Richiesta di personale',
+    'Inspection, NDT or rope access':
+        'Ispezione, CND o accesso su fune',
+    'Invoicing or administration':
+        'Fatturazione o amministrazione',
+    'Something else':
+        'Altro',
+    'First name':
+        'Nome',
+    'Last name':
+        'Cognome',
+    'Company <span class="opt">(optional)</span>':
+        'Azienda <span class="opt">(facoltativo)</span>',
+    'How can we help?':
+        'Come possiamo aiutarvi?',
+    'I agree that ALPROJECTS, UAB may store these details in order to answer my enquiry. See the <a href="/privacy.html">privacy policy</a>.':
+        'Acconsento che ALPROJECTS, UAB conservi questi dati per rispondere alla mia richiesta. Vedi l’<a href="/privacy.html">informativa sulla privacy</a>.',
+    'Website':
+        'Sito web',
+    'Send the enquiry':
+        'Invia la richiesta',
+    'Company name':
+        'Nome dell’azienda',
+    'Scope, location, standards and dates.':
+        'Perimetro, luogo, norme e date.',
 }

@@ -27,6 +27,10 @@
      applications directly; while empty the form opens the applicant's mail client
      with everything pre-filled, so it works either way. */
   var CAREERS_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
+  /* Contact form on /contacts.html. Empty -> the form opens the visitor's
+     mail client with every answer filled in, so an enquiry is never lost
+     to a POST that goes nowhere. */
+  var CONTACT_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
 
   /* Per-person profiles on the team cards. Keys match data-member in the HTML. */
   var MEMBER_SOCIAL = {
@@ -75,6 +79,13 @@
       need_role: "Please choose your discipline.",
       need_available: "Please say when you are available from.",
       need_consent: "Please confirm the privacy notice to continue.",
+      need_group: "Please choose a service group.",
+      need_topic: "Please choose a type of enquiry.",
+      need_first: "Please enter your first name.",
+      need_last: "Please enter your last name.",
+      need_message: "Please tell us how we can help.",
+      contact_sent: "Message sent. We will be in touch.",
+      contact_mail: "Your mail app opened with the enquiry filled in — press send.",
       apply_mail: "Your mail app opened with the details filled in — attach your CV and send.",
       file_remove: "Remove",
       file_too_big: "Too large (10 MB maximum):",
@@ -100,6 +111,13 @@
       need_role: "Veuillez choisir votre métier.",
       need_available: "Veuillez indiquer votre date de disponibilité.",
       need_consent: "Veuillez accepter la notice de confidentialité pour continuer.",
+      need_group: "Veuillez choisir un domaine de services.",
+      need_topic: "Veuillez choisir un type de demande.",
+      need_first: "Veuillez saisir votre prénom.",
+      need_last: "Veuillez saisir votre nom.",
+      need_message: "Veuillez nous indiquer comment nous pouvons vous aider.",
+      contact_sent: "Message envoyé. Nous vous recontacterons.",
+      contact_mail: "Votre messagerie s’est ouverte avec la demande préremplie — cliquez sur envoyer.",
       apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez.",
       file_remove: "Retirer",
       file_too_big: "Trop volumineux (10 Mo maximum) :",
@@ -125,6 +143,13 @@
       need_role: "Bitte wählen Sie Ihr Gewerk.",
       need_available: "Bitte geben Sie an, ab wann Sie verfügbar sind.",
       need_consent: "Bitte bestätigen Sie den Datenschutzhinweis, um fortzufahren.",
+      need_group: "Bitte wählen Sie einen Leistungsbereich.",
+      need_topic: "Bitte wählen Sie eine Art der Anfrage.",
+      need_first: "Bitte geben Sie Ihren Vornamen ein.",
+      need_last: "Bitte geben Sie Ihren Nachnamen ein.",
+      need_message: "Bitte teilen Sie uns mit, wie wir helfen können.",
+      contact_sent: "Nachricht gesendet. Wir melden uns.",
+      contact_mail: "Ihr E-Mail-Programm wurde mit der ausgefüllten Anfrage geöffnet — bitte absenden.",
       apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie.",
       file_remove: "Entfernen",
       file_too_big: "Zu groß (maximal 10 MB):",
@@ -150,6 +175,13 @@
       need_role: "Seleziona il tuo mestiere.",
       need_available: "Indica da quando sei disponibile.",
       need_consent: "Conferma l’informativa sulla privacy per continuare.",
+      need_group: "Scegli un’area di servizio.",
+      need_topic: "Scegli un tipo di richiesta.",
+      need_first: "Inserisci il tuo nome.",
+      need_last: "Inserisci il tuo cognome.",
+      need_message: "Indicaci come possiamo aiutarti.",
+      contact_sent: "Messaggio inviato. Vi ricontatteremo.",
+      contact_mail: "Il programma di posta si è aperto con la richiesta compilata — premi invia.",
       apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia.",
       file_remove: "Rimuovi",
       file_too_big: "Troppo grande (massimo 10 MB):",
@@ -1368,6 +1400,84 @@
         ? TXT.apply_mail_files + " " + picked.map(function (f) { return f.name; }).join(", ")
         : TXT.apply_mail;
       applyNote.classList.add("show");
+    });
+  }
+
+
+  /* ---------- contact form (/contacts.html) ----------
+     Mirrors the careers form: validate, drop bots on the honeypot, POST to
+     CONTACT_ENDPOINT when one is configured and otherwise hand the whole
+     enquiry to the visitor's mail client. */
+  var contactForm = document.getElementById("contactForm");
+  var contactNote = document.getElementById("contactNote");
+  if (contactForm && contactNote) {
+    contactForm.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var f = contactForm;
+      var data = {
+        group: f.group.value,
+        topic: f.topic.value,
+        first: f.first.value.trim(),
+        last: f.last.value.trim(),
+        email: f.email.value.trim(),
+        phone: f.phone.value.trim(),
+        company: f.company.value.trim(),
+        message: f.message.value.trim()
+      };
+
+      function fail(msg, field) {
+        contactNote.textContent = msg;
+        contactNote.classList.add("show", "is-error");
+        if (field) field.focus();
+      }
+      contactNote.classList.remove("is-error");
+
+      /* invisible to a person; anything in it is a bot */
+      if (f.website && f.website.value) return;
+
+      if (!data.group) return fail(TXT.need_group, f.group);
+      if (!data.topic) return fail(TXT.need_topic, f.topic);
+      if (!data.first) return fail(TXT.need_first, f.first);
+      if (!data.last) return fail(TXT.need_last, f.last);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return fail(TXT.need_email, f.email);
+      if (!data.message) return fail(TXT.need_message, f.message);
+      if (!f.consent.checked) return fail(TXT.need_consent, f.consent);
+
+      if (CONTACT_ENDPOINT) {
+        contactNote.textContent = TXT.apply_sending;
+        contactNote.classList.add("show");
+        var fd = new FormData();
+        Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
+        fetch(CONTACT_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: fd })
+          .then(function (r) {
+            if (r.ok) {
+              contactNote.textContent = TXT.contact_sent;
+              contactNote.classList.remove("is-error");
+              f.reset();
+            } else { fail(TXT.apply_fail); }
+          })
+          .catch(function () { fail(TXT.apply_fail); });
+        return;
+      }
+
+      function line(label, v) { return label + ": " + (v || "\u2014"); }
+      var body = [
+        line("Service group", data.group),
+        line("Type of enquiry", data.topic),
+        line("Name", data.first + " " + data.last),
+        line("Company", data.company),
+        line("Email", data.email),
+        line("Phone", data.phone),
+        "",
+        data.message
+      ].join("\n");
+      window.location.href =
+        "mailto:info@alprojects.eu?subject=" +
+        encodeURIComponent(data.topic + " \u2014 " + (data.company || data.last)) +
+        "&body=" + encodeURIComponent(body);
+      contactNote.textContent = TXT.contact_mail;
+      contactNote.classList.remove("is-error");
+      contactNote.classList.add("show");
     });
   }
 

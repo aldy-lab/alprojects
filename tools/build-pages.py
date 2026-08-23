@@ -1073,6 +1073,101 @@ CONTACTS = """
       </section>
     </div>
 
+
+    <div class="container" id="enquiry">
+      <div class="apply-panel">
+        <div class="apply-intro">
+          <p class="eyebrow">Enquiries</p>
+          <h2>Send us a message</h2>
+          <p>Send us the scope or the drawings and we will come back with a price and crew
+          dates. The fastest route to a useful answer is the scope, the location, the
+          standards that apply and the window you are working to.</p>
+          <p>For personnel requests, tell us the disciplines, the certifications and the
+          headcount.</p>
+          <p class="apply-note">Applying for a job? The application form on the
+          <a href="/careers.html">careers page</a> takes your CV and certificates with it.</p>
+          <div class="apply-alt">
+            <p class="eyebrow">Prefer not to fill a form</p>
+            <a href="mailto:info@alprojects.eu?subject=Project%20enquiry">info@alprojects.eu</a>
+            <a href="tel:+37063663744">Call +370 636 63 744</a>
+            <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp +370 636 63 744</a>
+          </div>
+        </div>
+
+        <form id="contactForm" class="apply-form" novalidate>
+          <fieldset class="step">
+            <div class="field">
+              <label for="ctGroup">Service group</label>
+              <select id="ctGroup" name="group" required aria-required="true">
+                <option value="">Select a service group</option>
+                <option>Mechanical & Industrial</option>
+                <option>Marine</option>
+                <option>Inspection & Access</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="ctTopic">Type of enquiry</label>
+              <select id="ctTopic" name="topic" required aria-required="true">
+                <option value="">Select a type of enquiry</option>
+                <option>Project enquiry</option>
+                <option>Request for personnel</option>
+                <option>Inspection, NDT or rope access</option>
+                <option>Invoicing or administration</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="ctFirst">First name</label>
+              <input id="ctFirst" name="first" type="text" required aria-required="true"
+                     autocomplete="given-name" placeholder="First name">
+            </div>
+            <div class="field">
+              <label for="ctLast">Last name</label>
+              <input id="ctLast" name="last" type="text" required aria-required="true"
+                     autocomplete="family-name" placeholder="Last name">
+            </div>
+            <div class="field">
+              <label for="ctEmail">Email</label>
+              <input id="ctEmail" name="email" type="email" required aria-required="true"
+                     autocomplete="email" placeholder="name@company.com">
+            </div>
+            <div class="field">
+              <label for="ctPhone">Phone <span class="opt">(optional)</span></label>
+              <input id="ctPhone" name="phone" type="tel" autocomplete="tel"
+                     placeholder="+370 ...">
+            </div>
+            <div class="field field-wide">
+              <label for="ctCompany">Company <span class="opt">(optional)</span></label>
+              <input id="ctCompany" name="company" type="text" autocomplete="organization"
+                     placeholder="Company name">
+            </div>
+            <div class="field field-wide">
+              <label for="ctMessage">How can we help?</label>
+              <textarea id="ctMessage" name="message" rows="6" required aria-required="true"
+                        placeholder="Scope, location, standards and dates."></textarea>
+            </div>
+          </fieldset>
+
+          <div class="field field-check">
+            <input id="ctConsent" name="consent" type="checkbox" required aria-required="true">
+            <label for="ctConsent">I agree that ALPROJECTS, UAB may store these details in
+            order to answer my enquiry. See the <a href="/privacy.html">privacy policy</a>.</label>
+          </div>
+          <!-- Spam trap: a real visitor never sees this, a bot fills it in. Named
+               "website" and not "company" because company is a real field here. -->
+          <div class="hp" aria-hidden="true">
+            <label for="ctWebsite">Website</label>
+            <input id="ctWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="field">
+            <button type="submit" class="btn-solid">Send the enquiry</button>
+            <p class="form-note" id="contactNote" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="container prose">
       <h2>Head office</h2>
       <p>ALPROJECTS, UAB<br>
@@ -1097,12 +1192,6 @@ CONTACTS = """
         <li><a href="tel:+37063663744">+370 636 63 744</a></li>
         <li><a href="tel:+37067020654">+370 670 20654</a></li>
       </ul>
-
-      <h2>What to include</h2>
-      <p>Send us the scope or the drawings and we will come back with a price and crew
-      dates. The fastest route to a useful answer is the scope, the location, the standards
-      that apply and the window you are working to. For personnel requests, tell us the
-      disciplines, certifications and headcount.</p>
 
       <p class="back">
         <a class="btn-bracket" href="mailto:info@alprojects.eu?subject=Project%20enquiry">Email us</a>
