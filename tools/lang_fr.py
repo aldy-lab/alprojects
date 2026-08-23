@@ -1028,8 +1028,6 @@ S = {
         'Demandes de projet, besoins en personnel et candidatures spontanées arrivent dans la même boîte — lue par des personnes capables de répondre aux questions techniques.',
     'The scope ran from September 2025 to April 2026 and was delivered by a team of twelve specialists, accumulating more than 11,000 hours on site.':
         'Le chantier s’est déroulé de septembre 2025 à avril 2026 et a été réalisé par une équipe de douze spécialistes, totalisant plus de 11 000 heures sur site.',
-    '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <a href="https://aldystudio.com" target="_blank" rel="noopener">Made by ALDY</a>':
-        '<span>© 2019–2026 ALPROJECTS GROUP. Tous droits réservés.</span> <a href="https://aldystudio.com" target="_blank" rel="noopener">Réalisé par ALDY</a>',
     'Outline map of Europe marking the five countries ALPROJECTS Group operates in: Norway, the United Kingdom, the Netherlands, Germany and Lithuania':
         'Carte de l’Europe indiquant les cinq pays où opère ALPROJECTS Group : Norvège, Royaume-Uni, Pays-Bas, Allemagne et Lituanie',
     'The order of work stays the same on every job. Most of the time in a machinery space goes on getting the routing right, not on the welding itself.':
@@ -1098,6 +1096,8 @@ S = {
         'ALPROJECTS GROUP <span>&middot;</span> NORVÈGE <span>&middot;</span> ROYAUME-UNI <span>&middot;</span> PAYS-BAS <span>&middot;</span> ALLEMAGNE <span>&middot;</span> LITUANIE',
     'We perform NDT inspections of welds, materials and structures without interrupting operations. Defects are identified at early stages to ensure safety and compliance.':
         'Nous réalisons des contrôles non destructifs sur les soudures, les matériaux et les structures sans interrompre l’exploitation. Les défauts sont détectés au plus tôt, pour garantir la sécurité et la conformité.',
+    '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
+        '<span>© 2019–2026 ALPROJECTS GROUP. Tous droits réservés.</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Réalisé par <b>ALDY</b></a>',
     '<span class="fp-idx">04</span> <span class="fp-name">Germany</span> <span class="fp-badge">3 locations</span> <span class="fp-city">Rostock · Hamburg · Frankfurt</span>':
         '<span class="fp-idx">04</span> <span class="fp-name">Allemagne</span> <span class="fp-badge">3 sites</span> <span class="fp-city">Rostock · Hambourg · Francfort</span>',
     '<strong>Direct contact.</strong> If you email or call us, we receive whatever you choose to send — typically your name, contact details and the content of your enquiry.':

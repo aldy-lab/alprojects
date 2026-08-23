@@ -3971,3 +3971,37 @@ body .calendly-overlay .calendly-popup {
   :lang(de) .hero-title,
   :lang(it) .hero-title { max-width: 24ch; }
 }
+
+/* ---------- the studio credit ----------
+   The mark comes in as a CSS mask rather than an <img> or inline <svg>: a mask
+   takes `currentColor`, so it dims with the rest of the footer and brightens
+   on hover with no second rule, and it keeps the markup free of a 400-byte
+   path that would otherwise land inside the translation unit and have to be
+   carried, verbatim, through French, German and Italian.
+
+   This line drops the footer's uppercasing so the wordmark reads as itself. */
+.footer-bottom .made-by {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: var(--text-s);
+}
+.footer-bottom .made-by::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: url("/assets/aldy.svg") center / contain no-repeat;
+  mask: url("/assets/aldy.svg") center / contain no-repeat;
+}
+.footer-bottom .made-by b {
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--gray-50);
+  transition: color var(--dur-2) ease;
+}
+.footer-bottom .made-by:hover b,
+.footer-bottom .made-by:focus-visible b { color: var(--white); }
