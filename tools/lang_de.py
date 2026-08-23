@@ -71,6 +71,8 @@ S = {
         'Unternehmen',
     'Denmark':
         'Dänemark',
+    'General':
+        'Allgemein',
     'Germany':
         'Deutschland',
     'Hamburg':
@@ -341,6 +343,8 @@ S = {
         'Kalender öffnen',
     'Phone or WhatsApp':
         'Telefon oder WhatsApp',
+    'Project enquiries':
+        'Projektanfragen',
     'Send us the scope':
         'Senden Sie uns den Leistungsumfang',
     'Welding (MIG/MAG)':
@@ -1043,6 +1047,8 @@ S = {
         'Wird diese Erklärung geändert, erscheint die überarbeitete Fassung mit neuem Datum auf dieser Seite.',
     'Qualified specialists, available for project-based, short-term and long-term assignments across Europe.':
         'Qualifizierte Fachkräfte für projektbezogene, kurz- und langfristige Einsätze in ganz Europa.',
+    '<span class="contact-label">General</span> <a href="mailto:office@alprojects.eu">office@alprojects.eu</a>':
+        '<span class="contact-label">Allgemein</span> <a href="mailto:office@alprojects.eu">office@alprojects.eu</a>',
     '<span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">&#8599;</span>':
         '<span class="num">02</span><span>08. Aug. 2026 &middot; Schiffbau</span><span class="arr">&#8599;</span>',
     'Six fields are required. Everything else helps us match you faster, but you can send the form without it.':
@@ -1065,6 +1071,8 @@ S = {
         '<span>Offshore &amp; Schiffbau</span><span>Energie</span><span>Schwerindustrie</span><span>Stahlbaufertigung</span>',
     'This website has no user accounts, no analytics and sets no cookies of its own. Data reaches us in three ways:':
         'Diese Website hat keine Benutzerkonten, keine Reichweitenmessung und setzt keine eigenen Cookies. Daten erreichen uns auf drei Wegen:',
+    '<span class="contact-label">Project enquiries</span> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>':
+        '<span class="contact-label">Projektanfragen</span> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>',
     '<span class="num">04</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8599;</span>':
         '<span class="num">04</span><span>01. Aug. 2026 &middot; Industrieprojekte</span><span class="arr">&#8599;</span>',
     '<span>Industrial Plants</span><span>Offshore Structures</span><span>Wind Energy</span><span>Infrastructure</span>':

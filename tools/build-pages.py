@@ -1090,7 +1090,12 @@ CONTACTS = """
       industry across Northern and Western Europe.</p>
 
       <h2>Email</h2>
-      <p><a href="mailto:info@alprojects.eu">info@alprojects.eu</a></p>
+      <ul class="contact-emails">
+        <li><span class="contact-label">Project enquiries</span>
+        <a href="mailto:info@alprojects.eu">info@alprojects.eu</a></li>
+        <li><span class="contact-label">General</span>
+        <a href="mailto:office@alprojects.eu">office@alprojects.eu</a></li>
+      </ul>
 
       <h2>Phone</h2>
       <ul>

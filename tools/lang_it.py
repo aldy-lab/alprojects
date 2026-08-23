@@ -68,6 +68,8 @@ S = {
         'Azienda',
     'Denmark':
         'Danimarca',
+    'General':
+        'Generale',
     'Germany':
         'Germania',
     'Hamburg':
@@ -338,6 +340,8 @@ S = {
         'Apri il calendario',
     'Phone or WhatsApp':
         'Telefono o WhatsApp',
+    'Project enquiries':
+        'Richieste di progetto',
     'Send us the scope':
         'Inviateci l’ambito dei lavori',
     'Welding (MIG/MAG)':
@@ -1040,6 +1044,8 @@ S = {
         'In caso di modifica della presente informativa, la versione aggiornata sarà pubblicata su questa pagina con una nuova data in testa.',
     'Qualified specialists, available for project-based, short-term and long-term assignments across Europe.':
         'Specialisti qualificati, disponibili per incarichi a progetto, di breve e lungo periodo in tutta Europa.',
+    '<span class="contact-label">General</span> <a href="mailto:office@alprojects.eu">office@alprojects.eu</a>':
+        '<span class="contact-label">Generale</span> <a href="mailto:office@alprojects.eu">office@alprojects.eu</a>',
     '<span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">&#8599;</span>':
         '<span class="num">02</span><span>08 ago 2026 &middot; Cantieristica navale</span><span class="arr">&#8599;</span>',
     'Six fields are required. Everything else helps us match you faster, but you can send the form without it.':
@@ -1062,6 +1068,8 @@ S = {
         '<span>Offshore &amp; navale</span><span>Energia</span><span>Industria pesante</span><span>Carpenteria metallica</span>',
     'This website has no user accounts, no analytics and sets no cookies of its own. Data reaches us in three ways:':
         'Questo sito non prevede account utente, non usa strumenti di analisi e non imposta cookie propri. I dati ci arrivano in tre modi:',
+    '<span class="contact-label">Project enquiries</span> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>':
+        '<span class="contact-label">Richieste di progetto</span> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>',
     '<span class="num">04</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8599;</span>':
         '<span class="num">04</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">&#8599;</span>',
     '<span>Industrial Plants</span><span>Offshore Structures</span><span>Wind Energy</span><span>Infrastructure</span>':
