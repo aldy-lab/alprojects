@@ -725,6 +725,8 @@ S = {
         'Großstillstände, Anlagenstillstände und Störungsbehebung',
     'Dimensional control of structures and piping':
         'Maßkontrolle von Konstruktionen und Rohrleitungen',
+    'Mechanical scopes and independent inspection':
+        'Mechanische Gewerke und unabhängige Prüfung',
     'Quality control and QA-QC — ALPROJECTS Group':
         'Qualitätskontrolle und QA-QC — ALPROJECTS Group',
     'TIG for piping, root runs and stainless work':
@@ -741,8 +743,6 @@ S = {
         'Projektberichte &amp;<br>technische Einblicke',
     'Steel fabrication and mechanical installation':
         'Stahlbaufertigung und mechanische Montage',
-    'We take the scope.<br>We also prove the work.':
-        'Wir übernehmen den Umfang.<br>Wir belegen die Ausführung.',
     '<time datetime="2026-06-23">23 Jun 2026</time>':
         '<time datetime="2026-06-23">23. Juni 2026</time>',
     '<time datetime="2026-07-25">25 Jul 2026</time>':
@@ -861,6 +861,8 @@ S = {
         '<span>Zert. C550877</span><span>Gültig bis 07.08.2028</span>',
     '<span>Cert. C760290</span><span>Valid to 28.07.2028</span>':
         '<span>Zert. C760290</span><span>Gültig bis 28.07.2028</span>',
+    'ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITHUANIA':
+        'ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITAUEN',
     'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110<br>Klaipėda':
         'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110<br>Klaipėda',
     'ALPROJECTS engineer working from isometric drawings on site':
@@ -1065,6 +1067,8 @@ S = {
         'Kontakt zu ALPROJECTS Group — Šilutės av. 2-536, Klaipėda, Litauen. Projektanfragen und Personalanfragen.',
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
         'Anlagenmontage, Rohrleitungsbau, Schweißtechnik, QA-QC, Seilzugangstechnik und ZfP für Industrie und Offshore.',
+    'Welding, piping and mechanical works across Northern Europe. Inspected by people who did not do the welding.':
+        'Schweißen, Rohrleitungsbau und mechanische Arbeiten in ganz Nordeuropa. Geprüft von Menschen, die nicht geschweißt haben.',
     'Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.':
         'Projekte in Schiffbau, Offshore, Industrie und erneuerbaren Energien, ausgeführt von ALPROJECTS Group in ganz Europa.',
     '<span>Offshore &amp; Marine</span><span>Energy</span><span>Heavy Industry</span><span>Steel Fabrication</span>':
@@ -1163,8 +1167,6 @@ S = {
         '<span class="fp-idx">05</span> <span class="fp-name">Litauen</span> <span class="fp-badge">Hauptsitz</span> <span class="fp-city">Klaipėda</span>',
     'Mobilising a team offshore is expensive and a shutdown is more expensive still. Rope access and NDT carry most of this work, with mechanical scopes al':
         'Ein Team offshore zu mobilisieren ist teuer, ein Stillstand noch teurer. Seilzugangstechnik und ZfP tragen den größten Teil dieser Arbeit, ergänzt um',
-    'Welding, piping and mechanical contracting for shipbuilding, offshore, industry and energy. With our own inspectors, who never sign off our own welds.':
-        'Schweißtechnik, Rohrleitungsbau und Anlagenmontage für Schiffbau, Offshore, Industrie und Energie. Mit eigenen Prüfern, die unsere eigenen Nähte nie freigeben.',
     '<span class="fp-idx">03</span> <span class="fp-name">Netherlands</span> <span class="fp-badge">1 location</span> <span class="fp-city">Rotterdam</span>':
         '<span class="fp-idx">03</span> <span class="fp-name">Niederlande</span> <span class="fp-badge">1 Standort</span> <span class="fp-city">Rotterdam</span>',
     "Repair work is decided in days, not months. We take steel renewal, piping replacement and mechanical repairs, to class and to the owner's requirements.":
@@ -1269,8 +1271,6 @@ S = {
         'Unser Team montiert Maschinenraumsysteme auf Schiffen im Bau: Seewasser-, Bilge-, Ballast-, Kraftstoff- und Versorgungsleitungen von kleinen Nennweiten bis DN200 rund um die Hauptmaschinenfundamente.',
     '<strong>Manifolds, sea chests, tank connections.</strong> Gate valves, strainers and remote operated units set out and aligned on the tank top. Flange faces stay capped until the system is closed.':
         '<strong>Verteiler, Seekästen, Tankanschlüsse.</strong> Absperrschieber, Schmutzfänger und fernbetätigte Armaturen werden auf der Tankdecke ausgelegt und ausgerichtet. Flanschflächen bleiben verschlossen, bis das System geschlossen ist.',
-    'ALPROJECTS GROUP <span>&middot;</span> NORWAY <span>&middot;</span> UK <span>&middot;</span> NETHERLANDS <span>&middot;</span> BELGIUM <span>&middot;</span> GERMANY <span>&middot;</span> LITHUANIA':
-        'ALPROJECTS GROUP <span>&middot;</span> NORWEGEN <span>&middot;</span> UK <span>&middot;</span> NIEDERLANDE <span>&middot;</span> BELGIEN <span>&middot;</span> DEUTSCHLAND <span>&middot;</span> LITAUEN',
     'The certificate recognises companies with a high credit score and a proven record of financial stability. It is issued by Creditinfo Group and was awarded on 23 June 2026 for the 2025–2026 period.':
         'Das Zertifikat zeichnet Unternehmen mit hoher Bonität und nachgewiesener finanzieller Stabilität aus. Es wird von der Creditinfo Group ausgestellt und wurde am 23. Juni 2026 für den Zeitraum 2025–2026 verliehen.',
     '<strong>Drawn first, then built.</strong> Isometrics are checked before anything is cut. Spools are prefabricated in the shop, fitted on board and hung so the line can move without loading the welds.':

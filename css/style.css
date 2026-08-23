@@ -3173,7 +3173,12 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
   font-weight: 300;
   line-height: 1.05;
   letter-spacing: -0.005em;
-  max-width: 19ch;                /* variant C */
+  /* 17ch, not 19: at 19 the headline broke after "and", stranding the
+     conjunction at the end of a line. 17 puts the break after
+     "Mechanical scopes", which is where the mock-up has it and where the
+     sense divides. The :lang() override further down keeps the longer
+     translations on their own measure. */
+  max-width: 17ch;
   margin-bottom: 24px;
 }
 
