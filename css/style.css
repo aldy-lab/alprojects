@@ -4370,3 +4370,22 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   .bp-hint { min-height: 44px; padding: 8px 14px 8px 8px; }
   .bp-key { width: 24px; height: 24px; }
 }
+
+/* The homepage shows five services, all from the Inspection & Access group,
+   under a column headed "All services" — so the block read as though that was
+   the whole offering. The label now says which group these are, and this is
+   the route to the other seven. */
+.service-nav { min-width: 0; }
+.service-all {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 4px 0;
+  font-size: var(--tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-50);
+  border-bottom: 1px solid rgba(255,255,255,.28);
+  transition: color var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease);
+}
+.service-all::after { content: " \2192"; }
+.service-all:hover, .service-all:focus-visible { color: var(--white); border-color: var(--white); }

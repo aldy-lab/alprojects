@@ -367,6 +367,8 @@ S = {
         'Von wo aus wir arbeiten',
     '03 &middot; Company':
         '03 &middot; Unternehmen',
+    'All twelve services':
+        'Alle zwölf Leistungen',
     'Apply for this role':
         'Auf diese Stelle bewerben',
     'Industrial projects':
@@ -433,6 +435,8 @@ S = {
         'ALPROJECTS Group — Startseite',
     'Head Office (Lithuania)':
         'Hauptsitz (Litauen)',
+    'Inspection &amp; access':
+        'Prüfung &amp; Zugangstechnik',
     'Instrument pipe fitting':
         'Instrumentenrohrleitungsbau',
     'Mechanical & Industrial':
@@ -745,12 +749,12 @@ S = {
         '<time datetime="2026-08-08">08. Aug. 2026</time>',
     '<time datetime="2026-08-13">13 Aug 2026</time>':
         '<time datetime="2026-08-13">13. Aug. 2026</time>',
-    'Integrated Inspection<br>&amp; Access Services':
-        'Integrierte Prüf-<br>&amp; Zugangsleistungen',
     'Open the Company Profile as a PDF in a new tab':
         'Unternehmensprofil als PDF in neuem Tab öffnen',
     'Process lines run alongside insulated ductwork':
         'Prozessleitungen neben isolierten Kanälen verlegt',
+    'Mechanical, marine<br>&amp; inspection services':
+        'Montage, Schiffbau<br>&amp; Prüfung',
     'Pipe rack and cable trays on the loading gantry':
         'Rohrbrücke und Kabeltrassen am Verladeportal',
     'Stainless pipework around a transformer package':
