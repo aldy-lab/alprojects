@@ -858,6 +858,8 @@ S = {
         'Ingegnere ALPROJECTS al lavoro su isometrici in cantiere',
     'Handover dossier assembled as the work goes, not at the end':
         'Dossier di consegna costruito durante i lavori, non alla fine',
+    'Welder running a TIG root pass on a prefabricated pipe spool':
+        'Saldatore esegue una passata di radice TIG su uno spool di tubazione prefabbricato',
     'Countries you can work in <span class="opt">(optional)</span>':
         'Paesi in cui puoi lavorare <span class="opt">(facoltativo)</span>',
     'Structural steel, pressure retaining piping and pipe supports':

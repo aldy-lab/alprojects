@@ -876,6 +876,8 @@ S = {
         'Ingénieur ALPROJECTS travaillant d’après des isométriques sur site',
     'Handover dossier assembled as the work goes, not at the end':
         'Dossier des ouvrages exécutés constitué au fil du chantier, pas à la fin',
+    'Welder running a TIG root pass on a prefabricated pipe spool':
+        'Soudeur réalisant une passe de racine TIG sur un tronçon de tuyauterie préfabriqué',
     'Countries you can work in <span class="opt">(optional)</span>':
         'Pays où vous pouvez travailler <span class="opt">(facultatif)</span>',
     'Structural steel, pressure retaining piping and pipe supports':

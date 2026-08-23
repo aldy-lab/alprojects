@@ -861,6 +861,8 @@ S = {
         'ALPROJECTS Ingenieur arbeitet vor Ort nach Isometrien',
     'Handover dossier assembled as the work goes, not at the end':
         'Abnahmedokumentation entsteht laufend, nicht erst am Ende',
+    'Welder running a TIG root pass on a prefabricated pipe spool':
+        'Schweißer bei der WIG-Wurzellage an einem vorgefertigten Rohrspool',
     'Countries you can work in <span class="opt">(optional)</span>':
         'Länder, in denen Sie arbeiten können <span class="opt">(optional)</span>',
     'Structural steel, pressure retaining piping and pipe supports':
