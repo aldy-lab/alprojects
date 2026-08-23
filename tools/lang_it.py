@@ -1242,8 +1242,6 @@ S = {
         'Realizziamo montaggi meccanici, saldatura, ispezioni e servizi di accesso su progetti industriali e offshore in tutta Europa. Un lavoro tecnico, certificato e in gran parte in cantiere.',
     '<strong>Server logs.</strong> The site is hosted on GitHub Pages. GitHub records technical request data, including IP address and browser user-agent, for security and reliability.':
         '<strong>Log del server.</strong> Il sito è ospitato su GitHub Pages. GitHub registra dati tecnici delle richieste, compresi indirizzo IP e user-agent del browser, per sicurezza e affidabilità.',
-    '<span class="kp-num">05</span> <span class="kp-name">GE Renewable Energy — MERCUR</span> <span class="kp-scope">Deployment of 30 TIG welders for nacelle reinforcement works.</span>':
-        '<span class="kp-num">05</span> <span class="kp-name">GE Renewable Energy — MERCUR</span> <span class="kp-scope">Impiego di 30 saldatori TIG per lavori di rinforzo delle navicelle.</span>',
     'Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.':
         'Numeri come 11.000 ore vanno detti chiaramente: sono ciò che un progetto di queste dimensioni costa davvero in manodopera qualificata, e pianificare su una cifra più bassa è il modo in cui i programmi saltano.',
     'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':

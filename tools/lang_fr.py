@@ -1270,8 +1270,6 @@ S = {
         'Nous réalisons des travaux de montage mécanique, de soudage, d’inspection et d’accès sur des projets industriels et offshore partout en Europe. Un travail technique, certifié et majoritairement sur chantier.',
     '<strong>Server logs.</strong> The site is hosted on GitHub Pages. GitHub records technical request data, including IP address and browser user-agent, for security and reliability.':
         '<strong>Journaux serveur.</strong> Le site est hébergé sur GitHub Pages. GitHub enregistre des données techniques de requête, dont l’adresse IP et l’agent utilisateur du navigateur, à des fins de sécurité et de fiabilité.',
-    '<span class="kp-num">05</span> <span class="kp-name">GE Renewable Energy — MERCUR</span> <span class="kp-scope">Deployment of 30 TIG welders for nacelle reinforcement works.</span>':
-        '<span class="kp-num">05</span> <span class="kp-name">GE Renewable Energy — MERCUR</span> <span class="kp-scope">Déploiement de 30 soudeurs TIG pour le renforcement de nacelles.</span>',
     'Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.':
         'Un chiffre comme 11 000 heures mérite d’être donné tel quel : c’est ce qu’un chantier de cette taille coûte réellement en main-d’œuvre qualifiée, et planifier sur une base plus basse est la manière dont les plannings dérapent.',
     'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':

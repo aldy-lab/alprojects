@@ -1245,8 +1245,6 @@ S = {
         'Wir erbringen Anlagenmontage, Schweißtechnik, Prüf- und Zugangsleistungen auf Industrie- und Offshore-Projekten in ganz Europa. Die Arbeit ist technisch, zertifiziert und überwiegend vor Ort.',
     '<strong>Server logs.</strong> The site is hosted on GitHub Pages. GitHub records technical request data, including IP address and browser user-agent, for security and reliability.':
         '<strong>Server-Protokolle.</strong> Die Website wird auf GitHub Pages gehostet. GitHub erfasst technische Zugriffsdaten, darunter IP-Adresse und Browserkennung, zu Zwecken der Sicherheit und Verfügbarkeit.',
-    '<span class="kp-num">05</span> <span class="kp-name">GE Renewable Energy — MERCUR</span> <span class="kp-scope">Deployment of 30 TIG welders for nacelle reinforcement works.</span>':
-        '<span class="kp-num">05</span> <span class="kp-name">GE Renewable Energy — MERCUR</span> <span class="kp-scope">Einsatz von 30 WIG-Schweißern für Verstärkungsarbeiten an Gondeln.</span>',
     'Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.':
         'Zahlen wie 11.000 Stunden gehören klar benannt: So viel kostet ein Projekt dieser Größe tatsächlich an Facharbeit, und mit einer niedrigeren Annahme zu planen ist der Weg zu gerissenen Terminen.',
     'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
