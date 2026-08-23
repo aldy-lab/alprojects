@@ -3382,7 +3382,14 @@ html.blueprint .bp-sheet { opacity: 1; }
      drift independently */
   background:
     radial-gradient(78% 82% at 18% 16%, #0d2748 0%, #081a30 46%, transparent 74%),
-    linear-gradient(180deg, #0a1322 0%, #080c16 52%, var(--bg) 100%);
+    /* Ends transparent, not on var(--bg). Opaque to the last pixel meant the
+       hero hid the page-wide light field for its whole height and then handed
+       it back all at once at its bottom edge -- a straight line across the
+       page, +8.9/255 on the right where that field is strongest. Fading out
+       over the last third lets the field come back through gradually, so
+       there is no edge to see. */
+    linear-gradient(180deg, #0a1322 0%, #080c16 48%, rgba(6, 9, 15, 0.82) 66%,
+                    rgba(6, 9, 15, 0.30) 86%, rgba(6, 9, 15, 0) 100%);
 }
 /* The brand glows. Animated slowly and only here, as asked — a drift measured
    in tens of seconds, so it reads as light moving rather than as motion. */
@@ -3413,6 +3420,11 @@ html.blueprint .bp-sheet { opacity: 1; }
   position: absolute;
   inset: 0;
   pointer-events: none;
+  /* Texture has to end the way the light does. Cut off square, the grid drew a
+     visible rule across the page at the hero's bottom edge -- the eye reads the
+     end of a pattern as a line even where the luminance on both sides matches. */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 97%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 97%);
   background-image:
     /* long-dash horizontal rule */
     repeating-linear-gradient(90deg,
@@ -3582,12 +3594,12 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(46% 16% at 84% 13%, rgba(255, 222, 210, 0.055) 0%, transparent 70%),
-    radial-gradient(52% 20% at  8% 27%, rgba(13,  39,  72, 0.50)  0%, transparent 72%),
-    radial-gradient(44% 14% at 92% 44%, rgba(13,  39,  72, 0.38)  0%, transparent 70%),
-    radial-gradient(50% 16% at 14% 62%, rgba(255, 222, 210, 0.04) 0%, transparent 72%),
-    radial-gradient(46% 18% at 88% 79%, rgba(13,  39,  72, 0.42)  0%, transparent 70%),
-    radial-gradient(52% 16% at 20% 94%, rgba(13,  39,  72, 0.30)  0%, transparent 72%);
+    radial-gradient(46% 16% at 84% 13%, rgba(255, 222, 210, 0.045) 0%, transparent 70%),
+    radial-gradient(52% 20% at  8% 27%, rgba(16,  34,  58, 0.30)  0%, transparent 76%),
+    radial-gradient(44% 14% at 92% 44%, rgba(16,  34,  58, 0.24)  0%, transparent 74%),
+    radial-gradient(50% 16% at 14% 62%, rgba(255, 222, 210, 0.03) 0%, transparent 76%),
+    radial-gradient(46% 18% at 88% 79%, rgba(16,  34,  58, 0.26)  0%, transparent 74%),
+    radial-gradient(52% 16% at 20% 94%, rgba(16,  34,  58, 0.20)  0%, transparent 76%);
 }
 /* ---------- and a moving light over it ----------
    The field above is one layer the height of the whole document (13, 652px on
@@ -3604,9 +3616,9 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(44% 46% at 22% 24%, rgba(62, 86, 120, 0.95) 0%, transparent 64%),
-    radial-gradient(36% 40% at 80% 72%, rgba(255, 222, 210, 0.15) 0%, transparent 62%),
-    radial-gradient(34% 36% at 68% 10%, rgba(62, 86, 120, 0.80) 0%, transparent 66%);
+    radial-gradient(46% 48% at 22% 24%, rgba(74, 90, 112, 0.62) 0%, transparent 68%),
+    radial-gradient(38% 42% at 80% 72%, rgba(255, 222, 210, 0.11) 0%, transparent 64%),
+    radial-gradient(36% 38% at 68% 10%, rgba(74, 90, 112, 0.50) 0%, transparent 70%);
   animation: ground-drift 40s ease-in-out infinite alternate;
   will-change: transform;
 }
