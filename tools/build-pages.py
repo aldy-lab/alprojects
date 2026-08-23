@@ -763,9 +763,10 @@ COMPANY = """
       Northern and Western Europe.</p>
 
       <h2>Scale</h2>
-      <p>The company employs between 51 and 200 people and works across multiple European
-      countries. Projects are resourced from a pool of certified specialists rather than
-      subcontracted on, which is what keeps the quality system meaningful.</p>
+      <p>The company employs between 51 and 200 people directly and draws on a roster of
+      more than 300 certified specialists across Europe. Projects are resourced from that
+      roster rather than subcontracted on, which is what keeps the quality system
+      meaningful.</p>
 
       <h2>Head office</h2>
       <p>ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania<br>
