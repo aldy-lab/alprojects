@@ -3027,7 +3027,11 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
   position: relative;
   width: 100%;
   padding-top: calc(var(--nav-h) + 120px);
-  padding-bottom: 0;
+  /* was 0 -- fine when the hero was only as tall as its copy, but with a full
+     viewport the buttons would sit flush on the fold. Scaled to viewport
+     height, not a fixed floor: at 8vh a phone spent 53px of a 659px screen on
+     padding and pushed the call-to-action under the fold. */
+  padding-bottom: clamp(12px, 4.5vh, 110px);
   z-index: 2;
 }
 /* §2.3 — надзаголовок: 10 / uppercase / 0.30em. The one warm element. */
@@ -3374,22 +3378,29 @@ html.blueprint .bp-sheet { opacity: 1; }
    ============================================================ */
 .hero {
   position: relative;
+  /* The header is fixed and overlays the hero, so a full viewport here lands
+     the next section exactly on the fold. Before this it was 774px against a
+     900px screen and the footprint sat half-visible under the buttons -- 340px
+     of it on a 1280x1000 window. svh, not vh: on a phone vh is the viewport
+     with the browser chrome HIDDEN, which is not the viewport you land on.
+     min-height, so the hero still grows if the copy ever needs more room. */
   min-height: 660px;
+  min-height: 100svh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
   /* the body of the sheet; the two corner glows live on ::before so they can
      drift independently */
   background:
-    radial-gradient(78% 82% at 18% 16%, #0d2748 0%, #081a30 46%, transparent 74%),
+    radial-gradient(84% 86% at 18% 16%, #15355f 0%, #0d2647 46%, transparent 78%),
     /* Ends transparent, not on var(--bg). Opaque to the last pixel meant the
        hero hid the page-wide light field for its whole height and then handed
        it back all at once at its bottom edge -- a straight line across the
        page, +8.9/255 on the right where that field is strongest. Fading out
        over the last third lets the field come back through gradually, so
        there is no edge to see. */
-    linear-gradient(180deg, #0a1322 0%, #080c16 48%, rgba(6, 9, 15, 0.82) 66%,
-                    rgba(6, 9, 15, 0.30) 86%, rgba(6, 9, 15, 0) 100%);
+    linear-gradient(180deg, #0d1b33 0%, #0a1424 48%, rgba(8, 16, 30, 0.82) 66%,
+                    rgba(8, 16, 30, 0.30) 86%, rgba(8, 16, 30, 0) 100%);
 }
 /* The brand glows. Animated slowly and only here, as asked — a drift measured
    in tens of seconds, so it reads as light moving rather than as motion. */
@@ -3400,10 +3411,10 @@ html.blueprint .bp-sheet { opacity: 1; }
   pointer-events: none;
   background:
     radial-gradient(58% 62% at 94% 18%,
-      rgba(255, 222, 210, 0.86) 0%, rgba(255, 222, 210, 0.42) 24%,
-      rgba(255, 222, 210, 0.12) 48%, transparent 74%),
-    radial-gradient(46% 54% at -6% 14%,
-      rgba(200, 212, 230, 0.38) 0%, rgba(200, 212, 230, 0.13) 32%, transparent 66%);
+      rgba(255, 222, 210, 0.62) 0%, rgba(255, 222, 210, 0.30) 24%,
+      rgba(255, 222, 210, 0.09) 48%, transparent 74%),
+    radial-gradient(52% 58% at -6% 14%,
+      rgba(150, 186, 240, 0.44) 0%, rgba(150, 186, 240, 0.16) 32%, transparent 70%);
   animation: sheet-drift 34s ease-in-out infinite alternate;
   will-change: transform;
 }
