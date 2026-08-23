@@ -3739,6 +3739,13 @@ body::after {
 .footprint .euromap img { opacity: 0.5; }
 .footprint .pin b { font-size: var(--text-s); }
 .footprint .fp-intro { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; }
+/* (0,2,0) beat the mobile `.fp-intro { grid-template-columns: 1fr }` at (0,1,0),
+   so the two-column intro survived onto phones and squeezed the paragraph into
+   a 55px column 893px tall -- one word per line. The stats sit under the text
+   on a phone. */
+@media (max-width: 900px) {
+  .footprint .fp-intro { grid-template-columns: 1fr; align-items: start; gap: 18px; }
+}
 .footprint .fp-row { padding: 8px 12px 7px 0; }
 .footprint .fp-name { font-size: var(--text-l); }
 .footprint .fp-city { font-size: var(--text-m); }
@@ -4427,4 +4434,75 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .lb-fig img { transition: none; }
   .lb-fig img.is-swapping { opacity: 1; }
+}
+
+/* ============================================================
+   PHONE LAYOUT
+   The homepage came to 19,367px on a 393px screen -- 22.7 screens, and 41%
+   TALLER than the same page on a desktop. Everything had collapsed to one
+   column, so cards drawn for a 400px desktop column became 393px-wide slabs
+   and the page simply got longer. Measured per section before touching it:
+   advantages 1.86x its desktop height, certifications 1.78x, services 5.9
+   screens on its own.
+   ============================================================ */
+@media (max-width: 700px) {
+  /* Each of the five service slides carried the full list of all five
+     services. On desktop that column is navigation; stacked, it is the same
+     five links repeated five times -- about 1,000px of the page spent saying
+     nothing. The slides are their own navigation when you are scrolling. */
+  .service-slide .service-list,
+  .service-slide .service-col-label { display: none; }
+  .service-body, .service-meta { gap: 14px; }
+  .service-slide h3 { font-size: clamp(22px, 7vw, 30px); }
+}
+
+@media (max-width: 640px) {
+  /* An icon and one line of text does not need the whole screen width. Six of
+     them in a single column was 948px; two-up is less than half that. */
+  .advantages .adv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .adv-card { padding: 20px 12px; }
+  .adv-card .adv-icon { width: 30px; height: 30px; }
+  .adv-card h3, .adv-card p { font-size: var(--tag); line-height: 1.4; }
+
+  /* Two document cards at 599px each, because the card stacked internally and
+     the cover went full width. Two cards side by side is too tight for a cover
+     plus two buttons at 393px -- 164px each -- so the cards stay one per row
+     and stop stacking inside instead: cover beside the text, as on desktop. */
+  .docs-grid { grid-template-columns: 1fr; }
+  .doc-card {
+    grid-template-columns: minmax(0, 118px) minmax(0, 1fr);
+    gap: 16px; align-items: start;
+  }
+  .doc-card > * { min-width: 0; }
+  .doc-meta { flex-wrap: wrap; }
+}
+
+@media (max-width: 560px) {
+  /* Three certificate scans at full width, 378px each. The scan is
+     unreadable at any size on a phone -- it is a token that opens the PDF, so
+     it works as a thumbnail and the three fit on one row. */
+  .certs-grid, .certs-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px; justify-items: stretch;
+  }
+  .cert-card { padding: 10px 6px; }
+  .cert-card img { max-height: 130px; width: auto; margin-inline: auto; }
+  .cert-card figcaption, .cert-meta { font-size: 9px; letter-spacing: .06em; }
+}
+
+/* Below ~400px the cover-beside-text card leaves too little room for the two
+   download buttons and they push past the viewport. The cover goes back above
+   the text, but capped small so the card does not balloon the way it did at
+   full width. */
+@media (max-width: 400px) {
+  .doc-card { grid-template-columns: 1fr; gap: 14px; }
+  .doc-cover { max-width: 132px; }
+  .doc-actions .btn-bracket { width: 100%; text-align: center; }
+}
+
+/* The drawing-mode badge is the only way into blueprint mode on a phone --
+   there is no B key -- so it has to be a real tap target. */
+@media (hover: none) {
+  .bp-hint { min-height: 44px; padding: 8px 14px 8px 8px; }
+  .bp-key { width: 24px; height: 24px; }
 }

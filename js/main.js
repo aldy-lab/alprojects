@@ -78,7 +78,8 @@
       apply_mail: "Your mail app opened with the details filled in — attach your CV and send.",
       file_remove: "Remove",
       file_too_big: "Too large (10 MB maximum):",
-      apply_mail_files: "Your mail app opened — now attach:"
+      apply_mail_files: "Your mail app opened — now attach:",
+      bp_flag_on_touch: "Blueprint mode \u2014 tap two points to measure \u00b7 tap the badge to exit"
     };
     T.fr = {
       cal_open: "Ouvrir le calendrier", cal_loading: "Chargement\u2026",
@@ -102,7 +103,8 @@
       apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez.",
       file_remove: "Retirer",
       file_too_big: "Trop volumineux (10 Mo maximum) :",
-      apply_mail_files: "Votre messagerie s’est ouverte — joignez maintenant :"
+      apply_mail_files: "Votre messagerie s’est ouverte — joignez maintenant :",
+      bp_flag_on_touch: "Mode plan \u2014 touchez deux points pour mesurer \u00b7 touchez le badge pour quitter"
     };
     T.de = {
       cal_open: "Kalender \u00f6ffnen", cal_loading: "Wird geladen\u2026",
@@ -126,7 +128,8 @@
       apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie.",
       file_remove: "Entfernen",
       file_too_big: "Zu groß (maximal 10 MB):",
-      apply_mail_files: "Ihr E-Mail-Programm wurde geöffnet — hängen Sie jetzt an:"
+      apply_mail_files: "Ihr E-Mail-Programm wurde geöffnet — hängen Sie jetzt an:",
+      bp_flag_on_touch: "Zeichnungsmodus \u2014 zwei Punkte antippen zum Messen \u00b7 Badge antippen zum Beenden"
     };
     T.it = {
       cal_open: "Apri il calendario", cal_loading: "Caricamento\u2026",
@@ -150,7 +153,8 @@
       apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia.",
       file_remove: "Rimuovi",
       file_too_big: "Troppo grande (massimo 10 MB):",
-      apply_mail_files: "Il programma di posta si è aperto — ora allega:"
+      apply_mail_files: "Il programma di posta si è aperto — ora allega:",
+      bp_flag_on_touch: "Modalit\u00e0 disegno \u2014 tocca due punti per misurare \u00b7 tocca il badge per uscire"
     };
     return T[LANG] || T.en;
   })();
@@ -493,8 +497,10 @@
     if (on) measure();
     try { sessionStorage.setItem(BLUEPRINT_KEY, on ? "1" : "0"); } catch (e) {}
     if (announce) {
+      /* "B to exit" is wrong advice on a device with no B key. */
+      var touch = window.matchMedia("(hover: none)").matches;
       flag.textContent = on
-        ? TXT.bp_flag_on
+        ? (touch ? TXT.bp_flag_on_touch : TXT.bp_flag_on)
         : TXT.bp_flag_off;
       flag.classList.add("show");
       clearTimeout(flagTimer);
@@ -590,6 +596,56 @@
   }
   document.addEventListener("pointerup", endMeasure);
   document.addEventListener("pointercancel", endMeasure);
+
+  /* ---------- measuring by touch ----------
+     Dragging is how you scroll a phone, so the mouse gesture cannot simply be
+     reused -- the handler above ignores anything that is not a mouse for that
+     reason, which left blueprint mode on a phone as a picture you could not
+     use. Tapping two points does the same job and cannot be confused with a
+     scroll: first tap plants the origin, second draws the dimension, third
+     starts again.
+
+     A tap is distinguished from a scroll by how far the finger travelled, not
+     by how long it was down -- a slow scroll is still a scroll. */
+  var tapStart = null, tapMoved = false, tapOrigin = null;
+
+  document.addEventListener("pointerdown", function (ev) {
+    if (!measuring() || ev.pointerType === "mouse") return;
+    tapStart = { x: ev.clientX, y: ev.clientY };
+    tapMoved = false;
+  }, { passive: true });
+
+  document.addEventListener("pointermove", function (ev) {
+    if (!tapStart || ev.pointerType === "mouse") return;
+    if (Math.abs(ev.clientX - tapStart.x) > 10 || Math.abs(ev.clientY - tapStart.y) > 10) {
+      tapMoved = true;
+    }
+  }, { passive: true });
+
+  document.addEventListener("pointerup", function (ev) {
+    if (!measuring() || ev.pointerType === "mouse") return;
+    var wasTap = tapStart && !tapMoved;
+    tapStart = null;
+    if (!wasTap) return;
+    var t = ev.target;
+    if (t && typeof t.closest === "function" &&
+        t.closest("a, button, input, textarea, select, label")) return;
+
+    clearTimeout(mFade);
+    if (!tapOrigin) {
+      tapOrigin = { x: ev.clientX, y: ev.clientY };
+      mFrom = tapOrigin;
+      mLayer.classList.add("on");
+      drawMeasure(ev.clientX, ev.clientY);
+    } else {
+      mFrom = tapOrigin;
+      drawMeasure(ev.clientX, ev.clientY);
+      mFrom = null;
+      tapOrigin = null;
+      /* left on screen long enough to read the number */
+      mFade = setTimeout(function () { mLayer.classList.remove("on"); }, 3200);
+    }
+  });
   document.addEventListener("keydown", function (ev) {
     if (ev.key === "Escape") { mFrom = null; mLayer.classList.remove("on"); }
   });
