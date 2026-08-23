@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <!-- Marks that scripting is available. The reveal animations start from
+       opacity:0, so without this a JS failure would leave the page blank. -->
+  <script>document.documentElement.className += " js";</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekte — ALPROJECTS Group</title>
+  <meta name="description" content="Projekte in Schiffbau, Offshore, Industrie und erneuerbaren Energien, ausgeführt von ALPROJECTS Group in ganz Europa.">
+  <link rel="canonical" href="https://alprojects.co/de/projects.html">
+  <link rel="alternate" hreflang="en" href="https://alprojects.co/projects.html">
+  <link rel="alternate" hreflang="fr" href="https://alprojects.co/fr/projects.html">
+  <link rel="alternate" hreflang="de" href="https://alprojects.co/de/projects.html">
+  <link rel="alternate" hreflang="x-default" href="https://alprojects.co/projects.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#05060f">
+  <meta property="og:site_name" content="ALPROJECTS Group">
+  <meta property="og:title" content="Projekte — ALPROJECTS Group">
+  <meta property="og:description" content="Projekte in Schiffbau, Offshore, Industrie und erneuerbaren Energien, ausgeführt von ALPROJECTS Group in ganz Europa.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://alprojects.co/assets/og/projects.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://alprojects.co/assets/og/projects.jpg">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
+  <link rel="stylesheet" href="/css/style.css?v=39d05e75">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="logo" href="/de/" aria-label="ALPROJECTS Group — Startseite">
+        <img src="/assets/logo.svg" alt="ALPROJECTS Group" width="144" height="30">
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="/de/" class="active"><span class="txt">Startseite</span></a></li>
+          <li><a href="/de/company.html"><span class="txt">Unternehmen</span></a></li>
+          <li><a href="/de/services.html"><span class="txt">Leistungen</span></a></li>
+          <li><a href="/de/projects.html"><span class="txt">Projekte</span></a></li>
+          <li><a href="/de/careers.html"><span class="txt">Karriere</span></a></li>
+          <li><a href="/de/contacts.html"><span class="txt">Kontakt</span></a></li>
+          <li><a href="/de/news/"><span class="txt">Aktuelles</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <!-- Filled in by tools/build-pages.py, once per language. Empty here so
+             a language that is not published yet cannot leave a dead link. -->
+        <div class="langs" data-langs role="group" aria-label="Sprache"><a href="/projects.html" hreflang="en" lang="en"><span class="sr-only">English</span><span aria-hidden="true">EN</span></a><a href="/fr/projects.html" hreflang="fr" lang="fr"><span class="sr-only">Français</span><span aria-hidden="true">FR</span></a><a href="/de/projects.html" hreflang="de" lang="de" aria-current="true"><span class="sr-only">Deutsch</span><span aria-hidden="true">DE</span></a></div>
+        <div class="socials">
+          <!-- hrefs are filled in from the SOCIAL config at the top of js/main.js;
+               any profile left blank there is removed from the page automatically. -->
+          <a data-social="instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
+          <a data-social="linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+          <a data-social="facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
+        </div>
+        <!-- TODO(ALDY): set BOOKING_URL at the top of js/main.js to the client's real
+             Calendly link. Until then this button falls back to the contact section. -->
+        <a class="btn-outline" data-booking href="/de/contacts.html">Termin buchen</a>
+        <button class="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation">
+    <a href="/de/">Startseite</a>
+    <a href="/de/company.html">Unternehmen</a>
+    <a href="/de/services.html">Leistungen</a>
+    <a href="/de/projects.html">Projekte</a>
+    <a href="/de/careers.html">Karriere</a>
+    <a href="/de/contacts.html">Kontakt</a>
+    <a href="/de/news/">Aktuelles</a>
+    <div class="langs langs-menu" data-langs role="group" aria-label="Sprache"><a href="/projects.html" hreflang="en" lang="en"><span class="sr-only">English</span><span aria-hidden="true">EN</span></a><a href="/fr/projects.html" hreflang="fr" lang="fr"><span class="sr-only">Français</span><span aria-hidden="true">FR</span></a><a href="/de/projects.html" hreflang="de" lang="de" aria-current="true"><span class="sr-only">Deutsch</span><span aria-hidden="true">DE</span></a></div>
+    <a class="btn-solid menu-cta" data-booking href="/de/contacts.html">Termin buchen</a>
+  </nav>
+
+  <main id="main" class="page">
+
+    <div class="container page-head">
+      <p class="eyebrow">Projekte</p>
+      <h1 class="page-title">Wo wir arbeiten</h1>
+      <p class="page-lead">Vier Projektarten, ein Satz an Gewerken. Die Technik ist weitgehend dieselbe; die Umgebung, die Normen und die Folgen eines Fehlers sind es nicht.</p>
+    </div>
+
+    <div class="container prose">
+      <h2>Schiffbau</h2>
+      <p>Rohrleitungs- und Maschinenmontage auf Schiffen im Bau — Seewasser-, Bilge- und Kraftstoffsysteme, geführt durch Räume, die bereits voller Maschinen, Struktur und anderer Gewerke sind. Vorfertigung und Montage laufen zusammen, denn ein Spool, der zur Zeichnung, aber nicht zum realen Raum passt, ist Ausschuss.</p>
+
+      <h2>Offshore</h2>
+      <p>Prüf-, Zugangs- und Montagearbeiten an Offshore-Anlagen, wo die Mobilisierung eines Teams teuer und ein Stillstand noch teurer ist. Seilzugangstechnik und ZfP tragen den größten Teil dieser Arbeit; die Sichtprüfung ist zentral für den Nachweis von Sicherheit und Betriebsintegrität von Öl-, Gas- und Windenergieanlagen.</p>
+
+      <h2>Industrieprojekte</h2>
+      <p>Anlagenmontage, Prozessrohrleitungen und mechanische Pakete. Ein aktuelles Beispiel ist ein mechanisches Transformatorenpaket — Edelstahlrohrleitungen und Kühlsysteme &mdash; <a href="/de/news/transformer-mechanical-package.html">in fünf europäischen Ländern ausgeführt</a>, wo gleichbleibende Qualität über Ländergrenzen hinweg ebenso eine Frage der Dokumentation wie der Fertigung war.</p>
+
+      <h2>Projekte für erneuerbare Energien</h2>
+      <p>Infrastruktur für den Kraftstoffumschlag und Unterstützung der Windenergie. Unser <a href="/de/news/fuel-loading-terminal-completed.html">Auftrag am Kraftstoff-Verladeterminal</a> lief von September 2025 bis April 2026 mit zwölf Fachkräften und über 11.000 Stunden vor Ort — ein nützlicher Anhaltspunkt für alle, die Arbeiten dieser Größenordnung planen.</p>
+
+    </div>
+
+    <div class="container">
+      <h2 class="sub-head">Ausgewählte Schlüsselprojekte</h2>
+      <p class="sub-lead">Offshore und erneuerbare Energien.</p>
+      <ul class="kp-list">
+        <li class="kp-row">
+          <span class="kp-num">01</span> <span class="kp-name">Konverterplattform SylWin Alpha</span> <span class="kp-scope">Instandsetzung von Offshore-Brücken, Stahlbaumontage und Konstruktionsschweißen.</span>
+        </li>
+        <li class="kp-row">
+          <span class="kp-num">02</span> <span class="kp-name">Offshore-Windpark Thor</span> <span class="kp-scope">Kabelverlegung, Hebetechnik und Offshore-Unterstützung.</span>
+        </li>
+        <li class="kp-row">
+          <span class="kp-num">03</span> <span class="kp-name">Offshore-Windpark Ostwind</span> <span class="kp-scope">Kabelmonteure, Kabelhelfer und Unterstützung bei der Hebetechnik.</span>
+        </li>
+        <li class="kp-row">
+          <span class="kp-num">04</span> <span class="kp-name">Hywind Tampen</span> <span class="kp-scope">Teams im Rotationseinsatz zur Unterstützung von Offshore-Einzugsarbeiten.</span>
+        </li>
+        <li class="kp-row">
+          <span class="kp-num">05</span> <span class="kp-name">GE Renewable Energy — MERCUR</span> <span class="kp-scope">Einsatz von 30 WIG-Schweißern für Verstärkungsarbeiten an Gondeln.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <h2 class="sub-head">In fünf Ländern ausgeführt</h2>
+      <p class="sub-lead">Erfahrung aus Onshore-Projekten.</p>
+      <div class="on-grid">
+        <div class="on-col">
+          <p class="on-country">Deutschland</p>
+          <p class="on-tag">3 Standorte</p>
+          <div class="on-item"><p class="on-site">Rostock</p><p class="on-scope">Kreuzfahrt- &amp; Flussschiffe · Rohrleitungssysteme · Druckprüfung · Konstruktionsschweißen</p></div>
+          <div class="on-item"><p class="on-site">Frankfurt</p><p class="on-scope">Eisenbahnbrücken · Stahlbaumontage · Instandsetzung · Schweißen in Position 5G</p></div>
+          <div class="on-item"><p class="on-site">Hamburg</p><p class="on-scope">Industrieinstandhaltung · Reparatur von Anlagen &amp; Wasserturbinen</p></div>
+        </div>
+        <div class="on-col">
+          <p class="on-country">Niederlande</p>
+          <p class="on-tag">Offshore / Nordsee</p>
+          <div class="on-item"><p class="on-site">HKZ Alpha &amp; Beta — Petrofac</p><p class="on-scope">Offshore-Inbetriebnahme &amp; Montageunterstützung</p></div>
+          <div class="on-item"><p class="on-site">Thermo Fisher</p><p class="on-scope">Fertigung &amp; Montage von Gasleitungen</p></div>
+          <div class="on-item"><p class="on-site">Seafox</p><p class="on-scope">Wartungs- &amp; Reparaturarbeiten an Hubschiffen</p></div>
+        </div>
+        <div class="on-col">
+          <p class="on-country">Vereinigtes Königreich</p>
+          <p class="on-tag">1 Standort</p>
+          <div class="on-item"><p class="on-site">Newcastle</p><p class="on-scope">Hubinselstrukturen · Stahlmontage · Schweißen · Offshore-Unterstützung</p></div>
+        </div>
+        <div class="on-col">
+          <p class="on-country">Litauen</p>
+          <p class="on-tag">Hauptsitz</p>
+          <div class="on-item"><p class="on-site">BLRT Group · Klaipėda</p><p class="on-scope">Fertigung von Offshore-Trommeln · Schiffsreparatur · Rohrleitungssysteme · Industrieinstandhaltung</p></div>
+        </div>
+        <div class="on-col">
+          <p class="on-country">Norwegen</p>
+          <p class="on-tag">2 Standorte</p>
+          <div class="on-item"><p class="on-site">Ålesund</p><p class="on-scope">Kälteanlagen · industrielle Umbauten</p></div>
+          <div class="on-item"><p class="on-site">Orkanger</p><p class="on-scope">Spoolbase &amp; Offshore-Plattformen · Pipelineschweißen · Fertigung · Offshore-Unterstützung</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2 class="sub-head">Von der Baustelle</h2>
+      <p class="sub-lead">Aufnahmen aus abgeschlossenen und laufenden Projekten.</p>
+      <div class="shot-grid">
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/welding-tig-pipe-1200.webp"
+                 srcset="/assets/projects/welding-tig-pipe-600.webp 600w, /assets/projects/welding-tig-pipe-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="WIG-Wurzellage an einem vorgefertigten Rohrspool" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>WIG-Wurzellage an einem vorgefertigten Rohrspool</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/piping-roof-crew-1200.webp"
+                 srcset="/assets/projects/piping-roof-crew-600.webp 600w, /assets/projects/piping-roof-crew-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Kohlenstoffstahlleitungen auf einem Anlagendach ausgelegt" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Kohlenstoffstahlleitungen auf einem Anlagendach ausgelegt</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/piping-roof-duct-1200.webp"
+                 srcset="/assets/projects/piping-roof-duct-600.webp 600w, /assets/projects/piping-roof-duct-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Prozessleitungen neben isolierten Kanälen verlegt" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Prozessleitungen neben isolierten Kanälen verlegt</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/transformer-overhead-1200.webp"
+                 srcset="/assets/projects/transformer-overhead-600.webp 600w, /assets/projects/transformer-overhead-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Edelstahlrohrleitungen um ein Transformatorenpaket" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Edelstahlrohrleitungen um ein Transformatorenpaket</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/substation-sky-1200.webp"
+                 srcset="/assets/projects/substation-sky-600.webp 600w, /assets/projects/substation-sky-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Fertiggestellte Rohrleitungen an einem Umspannwerk" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Fertiggestellte Rohrleitungen an einem Umspannwerk</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/facade-pipe-crane-1200.webp"
+                 srcset="/assets/projects/facade-pipe-crane-600.webp 600w, /assets/projects/facade-pipe-crane-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Rohrleitungen entlang einer Anlagenfassade montiert" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Rohrleitungen entlang einer Anlagenfassade montiert</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/transformer-bushing-1200.webp"
+                 srcset="/assets/projects/transformer-bushing-600.webp 600w, /assets/projects/transformer-bushing-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Mechanisches Paket unterhalb der Durchführungen montiert" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Mechanisches Paket unterhalb der Durchführungen montiert</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/transformer-plant-1200.webp"
+                 srcset="/assets/projects/transformer-plant-600.webp 600w, /assets/projects/transformer-plant-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Kühl- und Prozessleitungen im Transformatorenwerk" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Kühl- und Prozessleitungen im Transformatorenwerk</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/facade-tank-pipe-1200.webp"
+                 srcset="/assets/projects/facade-tank-pipe-600.webp 600w, /assets/projects/facade-tank-pipe-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Behälter und Rohrleitung entlang der Gebäudeflucht geführt" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Behälter und Rohrleitung entlang der Gebäudeflucht geführt</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-rack-tanks-1200.webp"
+                 srcset="/assets/projects/terminal-rack-tanks-600.webp 600w, /assets/projects/terminal-rack-tanks-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Rohrbrücke zu den Lagertanks eines Kraftstoffterminals" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Rohrbrücke zu den Lagertanks eines Kraftstoffterminals</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-pumps-1200.webp"
+                 srcset="/assets/projects/terminal-pumps-600.webp 600w, /assets/projects/terminal-pumps-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Pumpenskids und Armaturenstationen im Verladebereich" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Pumpenskids und Armaturenstationen im Verladebereich</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-rack-trays-1200.webp"
+                 srcset="/assets/projects/terminal-rack-trays-600.webp 600w, /assets/projects/terminal-rack-trays-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Rohrbrücke und Kabeltrassen am Verladeportal" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Rohrbrücke und Kabeltrassen am Verladeportal</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-valves-1200.webp"
+                 srcset="/assets/projects/terminal-valves-600.webp 600w, /assets/projects/terminal-valves-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Armaturenverteiler über der Auffangwanne" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Armaturenverteiler über der Auffangwanne</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-tankfarm-1200.webp"
+                 srcset="/assets/projects/terminal-tankfarm-600.webp 600w, /assets/projects/terminal-tankfarm-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Fertiggestellte Rohrbrücken im Tanklager" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Fertiggestellte Rohrbrücken im Tanklager</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="container prose">
+      <p class="back">
+        <a class="btn-bracket" href="/de/services.html">Unsere Leistungen</a>
+        <a class="btn-bracket" href="/de/contacts.html">Projekt starten</a>
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="newsletter">
+          <h2>Newsletter</h2>
+          <p>Abonnieren Sie Unternehmensnachrichten und Projektberichte.</p>
+          <form id="newsletterForm" novalidate>
+            <label class="visually-hidden" for="nlEmail" style="position:absolute;left:-9999px">E-Mail</label>
+            <input id="nlEmail" type="email" name="email" placeholder="E-Mail-Adresse eingeben" required aria-required="true" autocomplete="email">
+            <button type="submit" aria-label="Abonnieren">↗</button>
+          </form>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="footer-col">
+          <h2>Leistungen</h2>
+          <ul>
+            <li><a href="/de/services/welding-services.html">Schweißtechnik</a></li>
+            <li><a href="/de/services/pipe-fitting.html">Rohrleitungsbau</a></li>
+            <li><a href="/de/services/mechanical-contracting.html">Anlagenmontage</a></li>
+            <li><a href="/de/services/heavy-equipment-relocation.html">Umsetzung schwerer Anlagen</a></li>
+            <li><a href="/de/services/mobile-repair-teams.html">Mobile Reparaturteams</a></li>
+            <li><a href="/de/services/shipbuilding.html">Schiffbau</a></li>
+            <li><a href="/de/services/ship-repair.html">Schiffsreparatur</a></li>
+            <li><a href="/de/services/non-destructive-testing.html">Zerstörungsfreie Prüfung</a></li>
+            <li><a href="/de/services/rope-access-services.html">Seilzugangstechnik</a></li>
+            <li><a href="/de/services/3d-laser-scanning.html">3D-Laserscanning</a></li>
+            <li><a href="/de/services/quality-control.html">Qualitätskontrolle / QA-QC</a></li>
+            <li><a href="/de/services/rigging-technical-support.html">Hebetechnik &amp; technische Unterstützung</a></li>
+</ul>
+        </div>
+
+        <div class="footer-col">
+          <h2>Unternehmen</h2>
+          <ul>
+            <li><a href="/de/company.html">Über uns</a></li>
+            <li><a href="/de/services.html">Unsere Leistungen</a></li>
+            <li><a href="/de/#certifications">Zertifizierungen</a></li>
+            <li><a href="/de/#downloads">Unternehmensprofil (PDF)</a></li>
+            <li><a href="/de/careers.html">Karriere</a></li>
+            <li><a href="/de/news/">Aktuelles</a></li>
+            <li><a href="/de/contacts.html">Kontakt</a></li>
+            <li><a href="/de/privacy.html">Datenschutzerklärung</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contacts">
+          <h2>Kontakt</h2>
+          <div class="group">
+            <p class="g-label">Hauptsitz (Litauen)</p>
+            <p class="addr">ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110<br>Klaipėda</p>
+          </div>
+          <div class="group">
+            <p class="g-label">E-Mail</p>
+            <a class="big" href="mailto:info@alprojects.eu">info@alprojects.eu</a>
+          </div>
+          <div class="group">
+            <p class="g-label">Telefon</p>
+            <a class="big" href="tel:+37063663744">+370 636 63 744</a>
+          </div>
+          <div class="socials">
+            <a data-social="instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
+            <a data-social="linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+            <a data-social="facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2019–2026 ALPROJECTS GROUP. Alle Rechte vorbehalten.</span> <a href="https://aldystudio.com" target="_blank" rel="noopener">Umgesetzt von ALDY</a>
+      </div>
+    </div>
+  </footer>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="i-x" d="M17.7 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L2 3h6.4l4.4 5.9L17.7 3zm-1.1 16.1h1.7L7.5 4.7H5.7l10.9 14.4z"/>
+      <path id="i-mail" d="M2 5.5c0-.8.7-1.5 1.5-1.5h17c.8 0 1.5.7 1.5 1.5v13c0 .8-.7 1.5-1.5 1.5h-17C2.7 20 2 19.3 2 18.5v-13zM4 7l8 5.5L20 7v-.9l-8 5.4-8-5.4V7z"/>
+      <path id="i-tel" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/>
+      <symbol id="ic-decisions" viewBox="0 0 48 48">
+        <circle cx="24" cy="10" r="3"/><path d="M22.6 12.8 14 38M25.4 12.8 34 38"/>
+        <path d="M18.4 27h11.2"/><path d="M14 38h-3M34 38h3"/>
+      </symbol>
+      <symbol id="ic-control" viewBox="0 0 48 48">
+        <path d="M8 12h22M8 22h30M8 32h16"/>
+        <path d="M30 12v-3M38 22v-3M24 32v-3"/>
+        <circle cx="34" cy="34" r="6"/><path d="M34 30.5v7M30.5 34h7"/>
+      </symbol>
+      <symbol id="ic-cross-industry" viewBox="0 0 48 48">
+        <rect x="7" y="7" width="12" height="12"/><rect x="29" y="7" width="12" height="12"/>
+        <rect x="7" y="29" width="12" height="12"/><rect x="29" y="29" width="12" height="12"/>
+        <path d="M19 13h10M13 19v10M35 19v10M19 35h10"/>
+      </symbol>
+      <symbol id="ic-scalable" viewBox="0 0 48 48">
+        <rect x="7" y="30" width="10" height="11"/><rect x="19" y="21" width="10" height="20"/>
+        <rect x="31" y="12" width="10" height="29"/>
+        <path d="M7 8h34M7 6v4M41 6v4"/>
+      </symbol>
+      <symbol id="ic-standards" viewBox="0 0 48 48">
+        <path d="M24 6 39 11v13c0 8-6.6 14.4-15 18-8.4-3.6-15-10-15-18V11z"/>
+        <path d="M17.5 23.5 22 28l9-9"/>
+      </symbol>
+      <symbol id="ic-workflow" viewBox="0 0 48 48">
+        <circle cx="11" cy="24" r="4"/><circle cx="24" cy="11" r="4"/>
+        <circle cx="24" cy="37" r="4"/><circle cx="37" cy="24" r="4"/>
+        <path d="M14 21.2 21.2 14M26.8 14 34 21.2M34 26.8 26.8 34M21.2 34 14 26.8"/>
+      </symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24">
+        <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4.8"
+              style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="12" cy="12" r="3.9" style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="16.6" cy="7.4" r="1.05" style="fill:currentColor"/>
+      </symbol>
+      <symbol id="i-in" viewBox="0 0 24 24">
+        <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="3.6"
+              style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="8.1" cy="8.4" r="1.05" style="fill:currentColor"/>
+        <path d="M8.1 11.1v5.7"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round"/>
+        <path d="M12 16.8v-5.7M12 13.8c0-1.5 1-2.5 2.35-2.5s2.35 1 2.35 2.5v3"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"/>
+      </symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.6" style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <path d="M14.2 7.9h-1.1c-1.15 0-2.05.9-2.05 2.05v7.5"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"/>
+        <path d="M9.9 12.3h4.1"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="/js/main.js?v=20daf19b"></script>
+</body>
+</html>
