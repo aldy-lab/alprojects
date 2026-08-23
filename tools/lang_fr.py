@@ -32,6 +32,8 @@ S = {
         'Postuler',
     'Award':
         'Distinction',
+    'Close':
+        'Fermer',
     'Email':
         'E-mail',
     'Legal':
@@ -278,6 +280,8 @@ S = {
         'MIG/MAG 131/135',
     'Main navigation':
         'Navigation principale',
+    'Next photograph':
+        'Photo suivante',
     'On our own jobs':
         'Sur nos propres chantiers',
     'Quality Control':
@@ -352,6 +356,8 @@ S = {
         'Local, sans rotation',
     'More than 10 years':
         'Plus de 10 ans',
+    'Project photograph':
+        'Photo de chantier',
     'Reference Projects':
         'Projets de référence',
     'See open positions':
@@ -376,6 +382,8 @@ S = {
         'Certificat médical',
     'Mobile Repair Teams':
         'Équipes d’intervention mobiles',
+    'Previous photograph':
+        'Photo précédente',
     'Technical personnel':
         'Personnel technique',
     '06 &middot; Industry':

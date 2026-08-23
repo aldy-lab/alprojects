@@ -952,6 +952,114 @@
   }
 
   /* ---------- careers application form ---------- */
+  /* ---------- gallery viewer ----------
+     The thumbnails are buttons in the markup, so with JavaScript off they are
+     simply figures and nothing is broken. Here they open the full photograph:
+     an industrial portfolio is evidence, and evidence you cannot see at size
+     is decoration. */
+  var lb = document.getElementById("lightbox");
+  var shotBtns = [].slice.call(document.querySelectorAll(".shot-open"));
+  if (lb && shotBtns.length) {
+    var lbImg = document.getElementById("lbImage");
+    var lbCap = document.getElementById("lbCaption");
+    var lbCount = document.getElementById("lbCount");
+    var lbPrev = document.getElementById("lbPrev");
+    var lbNext = document.getElementById("lbNext");
+    var lbClose = document.getElementById("lbClose");
+    var lbIndex = 0;
+    var lastFocus = null;
+
+    var shots = shotBtns.map(function (btn) {
+      var img = btn.querySelector("img");
+      var cap = btn.parentNode.querySelector("figcaption");
+      return {
+        src: img.getAttribute("src"),
+        alt: img.getAttribute("alt") || "",
+        caption: cap ? cap.textContent.trim() : "",
+        btn: btn
+      };
+    });
+
+    function show(i) {
+      lbIndex = (i + shots.length) % shots.length;
+      var sh = shots[lbIndex];
+      lbImg.src = sh.src;
+      lbImg.alt = sh.alt;
+      lbCap.textContent = sh.caption;
+      lbCount.textContent = (lbIndex + 1) + " / " + shots.length;
+      /* Preload the neighbours so arrowing through does not flash. */
+      [lbIndex - 1, lbIndex + 1].forEach(function (n) {
+        var t = shots[(n + shots.length) % shots.length];
+        var pre = new Image();
+        pre.src = t.src;
+      });
+    }
+
+    function openLb(i) {
+      lastFocus = document.activeElement;
+      show(i);
+      lb.hidden = false;
+      document.documentElement.classList.add("lb-open");
+      lbClose.focus();
+    }
+
+    function closeLb() {
+      lb.hidden = true;
+      document.documentElement.classList.remove("lb-open");
+      lbImg.removeAttribute("src");   /* not src="" -- see the markup note */
+      /* Back to the thumbnail that was opened, not the top of the page. */
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    shotBtns.forEach(function (btn, i) {
+      btn.addEventListener("click", function () { openLb(i); });
+    });
+    lbPrev.addEventListener("click", function () { show(lbIndex - 1); });
+    lbNext.addEventListener("click", function () { show(lbIndex + 1); });
+    [].slice.call(lb.querySelectorAll("[data-lb-close]")).forEach(function (el) {
+      el.addEventListener("click", closeLb);
+    });
+
+    document.addEventListener("keydown", function (ev) {
+      if (lb.hidden) return;
+      if (ev.key === "Escape") { ev.preventDefault(); closeLb(); }
+      else if (ev.key === "ArrowLeft") { ev.preventDefault(); show(lbIndex - 1); }
+      else if (ev.key === "ArrowRight") { ev.preventDefault(); show(lbIndex + 1); }
+      else if (ev.key === "Tab") {
+        /* Keep Tab inside the dialog, or the focus ring walks off into the page
+           behind the scrim where nothing is visible.
+
+           This takes over every Tab rather than only the ones that fall off the
+           end. Deferring to the browser in the middle of the cycle assumed my
+           array was in DOM order, and it is not -- the buttons are prev, next,
+           close in the markup -- so Tab from the close button went straight out
+           to a link behind the scrim. */
+        var f = [lbPrev, lbNext, lbClose];
+        var at = f.indexOf(document.activeElement);
+        var next = at === -1 ? 0 : (at + (ev.shiftKey ? -1 : 1) + f.length) % f.length;
+        ev.preventDefault();
+        f[next].focus();
+      }
+    });
+
+    /* Swipe, because on a phone this is the obvious gesture. Horizontal only,
+       so it never fights the vertical scroll. */
+    var sx = 0, sy = 0, tracking = false;
+    lb.addEventListener("touchstart", function (ev) {
+      if (ev.touches.length !== 1) return;
+      sx = ev.touches[0].clientX; sy = ev.touches[0].clientY; tracking = true;
+    }, { passive: true });
+    lb.addEventListener("touchend", function (ev) {
+      if (!tracking) return;
+      tracking = false;
+      var t = ev.changedTouches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        show(lbIndex + (dx < 0 ? 1 : -1));
+      }
+    }, { passive: true });
+  }
+
   /* ---------- careers: chips ----------
      Toggle buttons instead of free text. The applicant taps rather than types,
      and what arrives is structured enough to filter on. aria-pressed carries

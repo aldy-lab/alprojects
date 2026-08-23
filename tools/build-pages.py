@@ -847,6 +847,51 @@ SERVICES = """
     </div>
 """
 
+SHOTS = [
+    ("welding-tig-pipe", 'TIG root pass on a prefabricated spool', 900, 1200),
+    ("piping-roof-crew", 'Carbon steel lines being set out on a plant roof', 900, 1200),
+    ("piping-roof-duct", 'Process lines run alongside insulated ductwork', 900, 1200),
+    ("transformer-overhead", 'Stainless pipework around a transformer package', 1200, 900),
+    ("substation-sky", 'Completed pipe runs at a substation', 1200, 900),
+    ("facade-pipe-crane", 'Pipe runs erected along a plant facade', 900, 1200),
+    ("transformer-bushing", 'Mechanical package installed beneath the bushings', 1200, 900),
+    ("transformer-plant", 'Cooling and process lines at the transformer plant', 1200, 900),
+    ("facade-tank-pipe", 'Vessel and pipe run carried along the building line', 1200, 900),
+    ("terminal-rack-tanks", 'Pipe rack running to storage tanks at a fuel terminal', 1200, 900),
+    ("terminal-pumps", 'Pump skids and valve stations, terminal loading area', 900, 1200),
+    ("terminal-rack-trays", 'Pipe rack and cable trays on the loading gantry', 900, 1200),
+    ("terminal-valves", 'Valve manifolds over the bund', 1200, 900),
+    ("terminal-tankfarm", 'Completed tank farm pipe racks', 900, 1200),
+]
+
+
+def shots_html():
+    """The site gallery.
+
+    Every image keeps its own aspect ratio. They were all forced into a
+    300px-tall landscape box before, and seven of the fourteen are 900x1200 --
+    a portrait of a welder cropped to 45% of its frame, which is most of the
+    subject. The layout is CSS columns rather than a row grid, so a tall
+    photograph simply takes more column and nothing is cut.
+    """
+    out = []
+    for n, (slug, alt, w, h) in enumerate(SHOTS, 1):
+        tall = " shot-tall" if int(h) > int(w) else ""
+        a = _html.escape(alt, quote=True)
+        out.append(
+            '        <figure class="shot%s">\n'
+            '          <button type="button" class="shot-open" data-shot="%d">\n'
+            '            <img src="/assets/projects/%s-1200.webp"\n'
+            '                 srcset="/assets/projects/%s-600.webp 600w, /assets/projects/%s-1200.webp 1200w"\n'
+            '                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"\n'
+            '                 alt="%s" width="%s" height="%s" loading="lazy" decoding="async">\n'
+            '            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>\n'
+            '          </button>\n'
+            '          <figcaption>%s</figcaption>\n'
+            '        </figure>' % (tall, n, slug, slug, slug, a, w, h, _html.escape(alt)))
+    return "\n".join(out)
+
+
 # ============================================================
 # PROJECTS
 # ============================================================
@@ -961,132 +1006,30 @@ PROJECTS = """
       <h2 class="sub-head">From site</h2>
       <p class="sub-lead">Photographs from delivered and in-progress scopes.</p>
       <div class="shot-grid">
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/welding-tig-pipe-1200.webp"
-                 srcset="/assets/projects/welding-tig-pipe-600.webp 600w, /assets/projects/welding-tig-pipe-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="TIG root pass on a prefabricated spool" width="900" height="1200" loading="lazy" decoding="async">
-          </span>
-          <figcaption>TIG root pass on a prefabricated spool</figcaption>
+""" + shots_html() + """
+      </div>
+    </div>
+
+    <!-- The gallery viewer. Inert markup: js/main.js wires it, and with no
+         JavaScript the thumbnails stay ordinary figures. -->
+    <div class="lb" id="lightbox" hidden>
+      <div class="lb-scrim" data-lb-close></div>
+      <div class="lb-panel" role="dialog" aria-modal="true" aria-label="Project photograph">
+        <figure class="lb-fig">
+          <!-- no src= until a photograph is chosen: src="" makes some
+               browsers re-request the page itself -->
+          <img id="lbImage" alt="">
+          <figcaption><span id="lbCaption"></span><span class="lb-count" id="lbCount"></span></figcaption>
         </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/piping-roof-crew-1200.webp"
-                 srcset="/assets/projects/piping-roof-crew-600.webp 600w, /assets/projects/piping-roof-crew-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Carbon steel lines being set out on a plant roof" width="900" height="1200" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Carbon steel lines being set out on a plant roof</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/piping-roof-duct-1200.webp"
-                 srcset="/assets/projects/piping-roof-duct-600.webp 600w, /assets/projects/piping-roof-duct-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Process lines run alongside insulated ductwork" width="900" height="1200" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Process lines run alongside insulated ductwork</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/transformer-overhead-1200.webp"
-                 srcset="/assets/projects/transformer-overhead-600.webp 600w, /assets/projects/transformer-overhead-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Stainless pipework around a transformer package" width="1200" height="900" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Stainless pipework around a transformer package</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/substation-sky-1200.webp"
-                 srcset="/assets/projects/substation-sky-600.webp 600w, /assets/projects/substation-sky-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Completed pipe runs at a substation" width="1200" height="900" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Completed pipe runs at a substation</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/facade-pipe-crane-1200.webp"
-                 srcset="/assets/projects/facade-pipe-crane-600.webp 600w, /assets/projects/facade-pipe-crane-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Pipe runs erected along a plant facade" width="900" height="1200" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Pipe runs erected along a plant facade</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/transformer-bushing-1200.webp"
-                 srcset="/assets/projects/transformer-bushing-600.webp 600w, /assets/projects/transformer-bushing-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Mechanical package installed beneath the bushings" width="1200" height="900" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Mechanical package installed beneath the bushings</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/transformer-plant-1200.webp"
-                 srcset="/assets/projects/transformer-plant-600.webp 600w, /assets/projects/transformer-plant-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Cooling and process lines at the transformer plant" width="1200" height="900" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Cooling and process lines at the transformer plant</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/facade-tank-pipe-1200.webp"
-                 srcset="/assets/projects/facade-tank-pipe-600.webp 600w, /assets/projects/facade-tank-pipe-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Vessel and pipe run carried along the building line" width="1200" height="900" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Vessel and pipe run carried along the building line</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/terminal-rack-tanks-1200.webp"
-                 srcset="/assets/projects/terminal-rack-tanks-600.webp 600w, /assets/projects/terminal-rack-tanks-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Pipe rack running to storage tanks at a fuel terminal" width="1200" height="900" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Pipe rack running to storage tanks at a fuel terminal</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/terminal-pumps-1200.webp"
-                 srcset="/assets/projects/terminal-pumps-600.webp 600w, /assets/projects/terminal-pumps-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Pump skids and valve stations, terminal loading area" width="900" height="1200" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Pump skids and valve stations, terminal loading area</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/terminal-rack-trays-1200.webp"
-                 srcset="/assets/projects/terminal-rack-trays-600.webp 600w, /assets/projects/terminal-rack-trays-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Pipe rack and cable trays on the loading gantry" width="900" height="1200" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Pipe rack and cable trays on the loading gantry</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/terminal-valves-1200.webp"
-                 srcset="/assets/projects/terminal-valves-600.webp 600w, /assets/projects/terminal-valves-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Valve manifolds over the bund" width="1200" height="900" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Valve manifolds over the bund</figcaption>
-        </figure>
-        <figure class="shot">
-          <span class="shot-media">
-            <img src="/assets/projects/terminal-tankfarm-1200.webp"
-                 srcset="/assets/projects/terminal-tankfarm-600.webp 600w, /assets/projects/terminal-tankfarm-1200.webp 1200w"
-                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-                 alt="Completed tank farm pipe racks" width="900" height="1200" loading="lazy" decoding="async">
-          </span>
-          <figcaption>Completed tank farm pipe racks</figcaption>
-        </figure>
+        <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photograph">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next photograph">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close" data-lb-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
       </div>
     </div>
 
