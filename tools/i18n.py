@@ -56,7 +56,7 @@ LANG_GROUP = {"en": "Language", "fr": "Langue", "de": "Sprache", "it": "Lingua"}
 # Flip to True once coverage reports 100% for that language. Anything False is
 # not written, not linked, and not in the sitemap -- so a partial translation
 # cannot reach a visitor.
-PUBLISH = {"en": True, "fr": True, "de": True, "it": False}
+PUBLISH = {"en": True, "fr": True, "de": True, "it": True}
 
 # Paths that exist once and are shared by every language: never prefixed.
 # 404.html is here because GitHub Pages serves the host's single /404.html for

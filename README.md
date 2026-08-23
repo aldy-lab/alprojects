@@ -417,6 +417,54 @@ Fixing it needs fresh exports:
 Already at or above retina, leave alone: all five team photos, `news-2`,
 `news-3`, `photo-welding`.
 
+## Languages
+
+English at the root; French, German and Italian each get their own directory
+of real static pages. No client-side switching: these are industrial buyers
+arriving from search, and a page that is English until JavaScript rewrites it
+is a page Google indexes in English.
+
+```
+python3 tools/build-pages.py && python3 tools/i18n_build.py
+```
+
+| file | what it is |
+|---|---|
+| `tools/i18n_extract.py` | reads the **built** site and lists every translatable unit |
+| `tools/i18n.py` | languages, locales, and `PUBLISH` |
+| `tools/lang_{fr,de,it}.py` | the strings, one file per language |
+| `tools/i18n_build.py` | builds the language trees from the English output |
+| `tools/paths.py` | path rewriting both builds share |
+
+**A language ships only at 100% coverage.** Below that it is not written, not
+linked, not in the sitemap, and any stale tree is deleted. Coverage is
+measured against the built HTML, so it cannot drift from what shipped. After
+editing copy, re-run the build: any new or changed English string appears as
+missing, and that language stops shipping until it is translated. That is the
+intended behaviour, not a failure.
+
+The unit of translation is an element's inner HTML, inline tags included, not
+a text node — German puts words in a different order and a translator working
+on fragments cannot move them. The build rejects a translation that does not
+carry the same tags as its source. Links keep English paths in the language
+files; the build prefixes them, so no translation can hard-code `/de/`.
+
+`js/main.js` takes its language from `<html lang>` and carries the ~14 strings
+it writes at runtime in all four languages.
+
+⚠️ **The translations need a native review before go-live.** The trade
+vocabulary is the part that matters — welding processes, NDT methods,
+certification scopes and the inspection-independence wording are terms of art
+in each market, and one wrong term is a credibility problem with exactly the
+buyers this site is for. Terminology notes are at the top of each language
+file. The privacy policy is a legal text and should be reviewed by whoever
+signs it off.
+
+To add a language: add it to `LANGS`, `LOCALE`, `LABEL`, `LANG_NAME` and
+`LANG_GROUP` in `tools/i18n.py`, create `tools/lang_xx.py`, and run the build
+to get the list of what is missing.
+
+
 ## TODO before go-live (client input needed)
 
 - [x] **Calendly** — `BOOKING_URL` is set to
