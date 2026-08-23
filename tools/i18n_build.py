@@ -39,7 +39,7 @@ from html.parser import HTMLParser
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import i18n
-from i18n_extract import BLOCKS, INLINE, ATTRS, skip
+from i18n_extract import unit_spans, meta_units, skip
 from paths import rootify_assets
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -57,45 +57,6 @@ def source_pages():
             continue
         keep.append(rel.replace(os.sep, "/"))
     return keep
-
-
-# ============================================================
-# finding the translatable units, with their offsets
-# ============================================================
-class Locator(HTMLParser):
-    """Records (start, end) source offsets of every block's inner HTML."""
-
-    def __init__(self, src):
-        super().__init__(convert_charrefs=False)
-        self.src = src
-        # offset of the first character of each line
-        self.line_start = [0]
-        for line in src.splitlines(keepends=True):
-            self.line_start.append(self.line_start[-1] + len(line))
-        self.spans = []          # (start, end, inner_html)
-        self._open = []          # [tag, depth, content_start]
-        self._depth = 0
-
-    def _off(self):
-        ln, col = self.getpos()
-        return self.line_start[ln - 1] + col
-
-    def handle_starttag(self, tag, attrs):
-        self._depth += 1
-        if tag in BLOCKS:
-            start = self._off() + len(self.get_starttag_text() or "")
-            self._open.append([tag, self._depth, start])
-
-    def handle_startendtag(self, tag, attrs):
-        pass  # self-closing: no inner html, and depth is unchanged
-
-    def handle_endtag(self, tag):
-        if self._open and self._open[-1][0] == tag and \
-                self._open[-1][1] == self._depth:
-            _, _, start = self._open.pop()
-            end = self._off()
-            self.spans.append((start, end, self.src[start:end]))
-        self._depth -= 1
 
 
 TAG_RE = re.compile(r"<\s*([a-zA-Z][a-zA-Z0-9]*)")
@@ -231,66 +192,61 @@ def fix_head(body, lang, rel):
 def translate_page(src, lang, rel, stats):
     body = src
 
-    # 1. block units, spliced back to front so offsets stay valid
-    loc = Locator(body)
-    loc.feed(body)
-    for start, end, inner in sorted(loc.spans, key=lambda s: -s[0]):
-        key = norm(inner)
-        if skip(key):
-            continue
-        stats["units"].add(key)
-        if lang == i18n.DEFAULT:
-            continue
-        dst = i18n.t(lang, key)
-        if dst is None:
-            stats["missing"].add(key)
-            continue
-        a, b = tag_bag(key), tag_bag(dst)
-        if a != b:
-            stats["tag_mismatch"].append((key, dst, a, b))
-            continue
-        # keep the source's leading/trailing whitespace so indentation survives
-        lead = inner[:len(inner) - len(inner.lstrip())]
-        trail = inner[len(inner.rstrip()):]
-        body = body[:start] + lead + dst + trail + body[end:]
-        stats["done"] += 1
+    # 1-4. Everything that is a source range -- text units, <title>, meta copy
+    # and translatable attributes -- is collected first and spliced in ONE pass
+    # from the end of the document backwards. Doing them in separate passes
+    # meant the second pass held offsets into a string the first pass had
+    # already changed.
+    spans, attr_spans = unit_spans(body)
+    edits = []   # (start, end, key, preserve_ws, escape)
 
-    # 2. <title>
+    for start, end in spans:
+        edits.append((start, end, norm(body[start:end]), True, False))
+
+    # an attribute inside a unit is part of that unit's markup and is the
+    # translator's business there, not a separate string
+    def inside_unit(a, b):
+        return any(s0 <= a and b <= e0 for s0, e0 in spans)
+
+    for a0, b0, name, val in attr_spans:
+        if not inside_unit(a0, b0):
+            edits.append((a0, b0, norm(_html.unescape(val)), False, True))
+
     m = re.search(r"<title>(.*?)</title>", body, re.S)
     if m:
-        key = norm(m.group(1))
-        if not skip(key):
-            stats["units"].add(key)
-            if lang != i18n.DEFAULT:
-                dst = i18n.t(lang, key)
-                if dst is None:
-                    stats["missing"].add(key)
-                else:
-                    body = body[:m.start(1)] + dst + body[m.end(1):]
-                    stats["done"] += 1
+        edits.append((m.start(1), m.end(1), norm(m.group(1)), False, False))
 
-    # 3. translatable attributes
-    attr_re = re.compile(
-        r'\b(%s)="([^"]*)"' % "|".join(sorted(ATTRS, key=len, reverse=True)))
+    for ms, me, tag, val in meta_units(body):
+        i = tag.find('content="')
+        if i >= 0:
+            a0 = ms + i + len('content="')
+            edits.append((a0, a0 + len(val), norm(_html.unescape(val)),
+                          False, True))
 
-    def attr_repl(m):
-        name, val = m.group(1), m.group(2)
-        key = norm(_html.unescape(val))
+    for start, end, key, keep_ws, esc in sorted(edits, key=lambda e: -e[0]):
         if skip(key):
-            return m.group(0)
+            continue
         stats["units"].add(key)
         if lang == i18n.DEFAULT:
-            return m.group(0)
+            continue
         dst = i18n.t(lang, key)
         if dst is None:
             stats["missing"].add(key)
-            return m.group(0)
+            continue
+        src_bag, dst_bag = tag_bag(key), tag_bag(dst)
+        if src_bag != dst_bag:
+            stats["tag_mismatch"].append((key, dst, src_bag, dst_bag))
+            continue
+        out = _html.escape(dst, quote=True) if esc else dst
+        if keep_ws:
+            raw = body[start:end]
+            lead = raw[:len(raw) - len(raw.lstrip())]
+            trail = raw[len(raw.rstrip()):]
+            out = lead + out + trail
+        body = body[:start] + out + body[end:]
         stats["done"] += 1
-        return '%s="%s"' % (name, _html.escape(dst, quote=True))
 
-    body = attr_re.sub(attr_repl, body)
-
-    # 4. head, links, switcher
+    # 5. head, links, switcher
     body = fix_head(body, lang, rel)
     # index.html is hand-authored with relative asset paths (assets/logo.svg).
     # At the root they resolve; under /fr/ they become /fr/assets/... and every
@@ -357,10 +313,18 @@ def main():
             print("  en  %d units  (source)" % total)
             continue
 
-        ok = (missing == 0 and not stats["tag_mismatch"])
+        complete = (missing == 0 and not stats["tag_mismatch"])
+        # Two separate gates: the translation has to be finished, AND somebody
+        # has to have turned the language on. Checking PUBLISH here rather than
+        # after writing -- the first version wrote the tree and then the
+        # cleanup below deleted it again, which looked like a build failure.
+        ok = complete and i18n.PUBLISH.get(lang)
         if not (ok or force):
-            print("  %s  %5.1f%%  %d/%d translated  -- NOT written%s"
-                  % (lang, cov, total - missing, total,
+            why = ("ready -- set PUBLISH[%r] = True to ship it" % lang
+                   if complete else
+                   "%d/%d translated" % (total - missing, total))
+            print("  %s  %5.1f%%  %s  -- NOT written%s"
+                  % (lang, cov, why,
                      "  (%d tag mismatches)" % len(stats["tag_mismatch"])
                      if stats["tag_mismatch"] else ""))
             continue

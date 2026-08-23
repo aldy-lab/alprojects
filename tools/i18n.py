@@ -56,7 +56,7 @@ LANG_GROUP = {"en": "Language", "fr": "Langue", "de": "Sprache", "it": "Lingua"}
 # Flip to True once coverage reports 100% for that language. Anything False is
 # not written, not linked, and not in the sitemap -- so a partial translation
 # cannot reach a visitor.
-PUBLISH = {"en": True, "fr": False, "de": False, "it": False}
+PUBLISH = {"en": True, "fr": True, "de": False, "it": False}
 
 # Paths that exist once and are shared by every language: never prefixed.
 # 404.html is here because GitHub Pages serves the host's single /404.html for
@@ -70,20 +70,22 @@ SHARED_PREFIXES = ("/assets/", "/css/", "/js/", "/sitemap.xml", "/robots.txt",
 # Populate with tools/i18n_extract.py --dump as the checklist.
 # ============================================================
 
-S = {
-    "fr": {
-        # --- probe set, to prove the machinery before the bulk goes in ---
-        '<a href="/company.html"><span class="txt">Company</span></a>':
-            '<a href="/company.html"><span class="txt">Entreprise</span></a>',
-        'We take the scope.<br>We also prove the work.':
-            'Nous prenons le lot.<br>Nous prouvons aussi le travail.',
-        'Open menu': 'Ouvrir le menu',
-        'ALPROJECTS Group — home': 'ALPROJECTS Group — accueil',
-        'Main navigation': 'Navigation principale',
-    },
-    "de": {},
-    "it": {},
-}
+# One module per language, so a 500-entry dict does not sit in the middle of
+# the configuration and each language can be reviewed on its own.
+try:
+    from lang_fr import S as _FR
+except ImportError:
+    _FR = {}
+try:
+    from lang_de import S as _DE
+except ImportError:
+    _DE = {}
+try:
+    from lang_it import S as _IT
+except ImportError:
+    _IT = {}
+
+S = {"fr": _FR, "de": _DE, "it": _IT}
 
 
 def t(lang, unit):

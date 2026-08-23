@@ -3941,3 +3941,33 @@ body .calendly-overlay .calendly-popup {
 @media (max-width: 560px) {
   .site-header .langs { display: none; }   /* it lives in the menu on phones */
 }
+
+/* ---------- longer languages ----------
+   French, German and Italian run 15-30% longer than English for the same
+   sentence, and the headline measures are set in `ch` tuned to the English.
+   The hero headline went from two lines to four in French and the section
+   grew 118px. Relaxing the measure, rather than shrinking the type, keeps the
+   headline at the size the design was drawn at.
+
+   :lang() matches on <html lang>, which the build sets per tree, so the
+   English tree is untouched. */
+:lang(fr) .hero-title,
+:lang(de) .hero-title,
+:lang(it) .hero-title { max-width: 28ch; }
+
+:lang(fr) .section-title,
+:lang(de) .section-title,
+:lang(it) .section-title { max-width: none; }
+
+/* German compounds do not break: Zeichnungsmodus, Betriebsbedingungen. Without
+   this one long word can push a card wider than its column. */
+:lang(de) body { hyphens: auto; }
+:lang(de) .hero-title,
+:lang(de) .section-title,
+:lang(de) .srv-title { hyphens: manual; overflow-wrap: break-word; }
+
+@media (max-width: 1000px) {
+  :lang(fr) .hero-title,
+  :lang(de) .hero-title,
+  :lang(it) .hero-title { max-width: 24ch; }
+}

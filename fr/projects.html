@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Marks that scripting is available. The reveal animations start from
+       opacity:0, so without this a JS failure would leave the page blank. -->
+  <script>document.documentElement.className += " js";</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets — ALPROJECTS Group</title>
+  <meta name="description" content="Projets de construction navale, offshore, industriels et d’énergies renouvelables réalisés par ALPROJECTS Group partout en Europe.">
+  <link rel="canonical" href="https://alprojects.co/fr/projects.html">
+  <link rel="alternate" hreflang="en" href="https://alprojects.co/projects.html">
+  <link rel="alternate" hreflang="fr" href="https://alprojects.co/fr/projects.html">
+  <link rel="alternate" hreflang="x-default" href="https://alprojects.co/projects.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#05060f">
+  <meta property="og:site_name" content="ALPROJECTS Group">
+  <meta property="og:title" content="Projets — ALPROJECTS Group">
+  <meta property="og:description" content="Projets de construction navale, offshore, industriels et d’énergies renouvelables réalisés par ALPROJECTS Group partout en Europe.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://alprojects.co/assets/og/projects.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://alprojects.co/assets/og/projects.jpg">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
+  <link rel="stylesheet" href="/css/style.css?v=39d05e75">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="logo" href="/fr/" aria-label="ALPROJECTS Group — accueil">
+        <img src="/assets/logo.svg" alt="ALPROJECTS Group" width="144" height="30">
+      </a>
+
+      <nav class="main-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="/fr/" class="active"><span class="txt">Accueil</span></a></li>
+          <li><a href="/fr/company.html"><span class="txt">Entreprise</span></a></li>
+          <li><a href="/fr/services.html"><span class="txt">Services</span></a></li>
+          <li><a href="/fr/projects.html"><span class="txt">Projets</span></a></li>
+          <li><a href="/fr/careers.html"><span class="txt">Carrières</span></a></li>
+          <li><a href="/fr/contacts.html"><span class="txt">Contact</span></a></li>
+          <li><a href="/fr/news/"><span class="txt">Actualités</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <!-- Filled in by tools/build-pages.py, once per language. Empty here so
+             a language that is not published yet cannot leave a dead link. -->
+        <div class="langs" data-langs role="group" aria-label="Langue"><a href="/projects.html" hreflang="en" lang="en"><span class="sr-only">English</span><span aria-hidden="true">EN</span></a><a href="/fr/projects.html" hreflang="fr" lang="fr" aria-current="true"><span class="sr-only">Français</span><span aria-hidden="true">FR</span></a></div>
+        <div class="socials">
+          <!-- hrefs are filled in from the SOCIAL config at the top of js/main.js;
+               any profile left blank there is removed from the page automatically. -->
+          <a data-social="instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
+          <a data-social="linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+          <a data-social="facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
+        </div>
+        <!-- TODO(ALDY): set BOOKING_URL at the top of js/main.js to the client's real
+             Calendly link. Until then this button falls back to the contact section. -->
+        <a class="btn-outline" data-booking href="/fr/contacts.html">Réserver un appel</a>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Navigation mobile">
+    <a href="/fr/">Accueil</a>
+    <a href="/fr/company.html">Entreprise</a>
+    <a href="/fr/services.html">Services</a>
+    <a href="/fr/projects.html">Projets</a>
+    <a href="/fr/careers.html">Carrières</a>
+    <a href="/fr/contacts.html">Contact</a>
+    <a href="/fr/news/">Actualités</a>
+    <div class="langs langs-menu" data-langs role="group" aria-label="Langue"><a href="/projects.html" hreflang="en" lang="en"><span class="sr-only">English</span><span aria-hidden="true">EN</span></a><a href="/fr/projects.html" hreflang="fr" lang="fr" aria-current="true"><span class="sr-only">Français</span><span aria-hidden="true">FR</span></a></div>
+    <a class="btn-solid menu-cta" data-booking href="/fr/contacts.html">Réserver un appel</a>
+  </nav>
+
+  <main id="main" class="page">
+
+    <div class="container page-head">
+      <p class="eyebrow">Projets</p>
+      <h1 class="page-title">Où nous intervenons</h1>
+      <p class="page-lead">Quatre types de projets, un même socle de métiers. L’ingénierie est en grande partie la même ; l’environnement, les normes et les conséquences d’une erreur ne le sont pas.</p>
+    </div>
+
+    <div class="container prose">
+      <h2>Construction navale</h2>
+      <p>Tuyauterie et montage mécanique sur navires en construction — circuits d’eau de mer, de cale et de combustible cheminant dans des compartiments déjà encombrés de machines, de structure et d’autres corps de métier. Préfabrication et montage sont traités ensemble, car un tronçon conforme au plan mais pas au compartiment réel part à la ferraille.</p>
+
+      <h2>Offshore</h2>
+      <p>Inspection, accès et travaux mécaniques sur installations offshore, où mobiliser une équipe coûte cher et un arrêt coûte plus cher encore. Les travaux sur cordes et les CND portent l’essentiel de ces prestations ; le contrôle visuel joue un rôle central pour confirmer la sécurité et l’intégrité opérationnelle des actifs pétroliers, gaziers et éoliens.</p>
+
+      <h2>Projets industriels</h2>
+      <p>Installation d’unités, tuyauterie process et ensembles mécaniques. Exemple récent : un ensemble mécanique de transformateur — tuyauterie inox et circuits de refroidissement &mdash; <a href="/fr/news/transformer-mechanical-package.html">livré dans cinq pays européens</a>, où la constance d’un pays à l’autre relevait autant de la documentation que de la fabrication.</p>
+
+      <h2>Projets énergies renouvelables</h2>
+      <p>Infrastructures de manutention de carburant et assistance à l’éolien. Notre <a href="/fr/news/fuel-loading-terminal-completed.html">chantier de terminal de chargement</a> s’est déroulé de septembre 2025 à avril 2026 avec douze spécialistes et plus de 11 000 heures sur site — un repère utile pour qui planifie un chantier de cette taille.</p>
+
+    </div>
+
+    <div class="container">
+      <h2 class="sub-head">Projets clés sélectionnés</h2>
+      <p class="sub-lead">Offshore et énergies renouvelables.</p>
+      <ul class="kp-list">
+        <li class="kp-row">
+          <span class="kp-num">01</span> <span class="kp-name">Plateforme de conversion SylWin Alpha</span> <span class="kp-scope">Réparation de passerelles offshore, montage métallique et soudage structurel.</span>
+        </li>
+        <li class="kp-row">
+          <span class="kp-num">02</span> <span class="kp-name">Parc éolien offshore Thor</span> <span class="kp-scope">Pose de câbles, levage et services d’assistance offshore.</span>
+        </li>
+        <li class="kp-row">
+          <span class="kp-num">03</span> <span class="kp-name">Parc éolien offshore Ostwind</span> <span class="kp-scope">Jointeurs de câbles, aides-câbliers et appui levage.</span>
+        </li>
+        <li class="kp-row">
+          <span class="kp-num">04</span> <span class="kp-name">Hywind Tampen</span> <span class="kp-scope">Équipes en rotation en appui des opérations de tirage offshore.</span>
+        </li>
+        <li class="kp-row">
+          <span class="kp-num">05</span> <span class="kp-name">GE Renewable Energy — MERCUR</span> <span class="kp-scope">Déploiement de 30 soudeurs TIG pour le renforcement de nacelles.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <h2 class="sub-head">Réalisé dans cinq pays</h2>
+      <p class="sub-lead">Expérience de projets terrestres.</p>
+      <div class="on-grid">
+        <div class="on-col">
+          <p class="on-country">Allemagne</p>
+          <p class="on-tag">3 sites</p>
+          <div class="on-item"><p class="on-site">Rostock</p><p class="on-scope">Navires de croisière &amp; fluviaux · réseaux de tuyauterie · épreuves de pression · soudage structurel</p></div>
+          <div class="on-item"><p class="on-site">Francfort</p><p class="on-scope">Ponts ferroviaires · montage métallique · réparations structurelles · soudage 5G</p></div>
+          <div class="on-item"><p class="on-site">Hambourg</p><p class="on-scope">Maintenance industrielle · réparation d’équipements &amp; de turbines hydrauliques</p></div>
+        </div>
+        <div class="on-col">
+          <p class="on-country">Pays-Bas</p>
+          <p class="on-tag">Offshore / Mer du Nord</p>
+          <div class="on-item"><p class="on-site">HKZ Alpha &amp; Beta — Petrofac</p><p class="on-scope">Mise en service offshore &amp; assistance au montage</p></div>
+          <div class="on-item"><p class="on-site">Thermo Fisher</p><p class="on-scope">Fabrication &amp; pose de canalisations de gaz</p></div>
+          <div class="on-item"><p class="on-site">Seafox</p><p class="on-scope">Maintenance &amp; réparation de navires auto-élévateurs</p></div>
+        </div>
+        <div class="on-col">
+          <p class="on-country">Royaume-Uni</p>
+          <p class="on-tag">1 site</p>
+          <div class="on-item"><p class="on-site">Newcastle</p><p class="on-scope">Structures auto-élévatrices · montage métallique · soudage · assistance offshore</p></div>
+        </div>
+        <div class="on-col">
+          <p class="on-country">Lituanie</p>
+          <p class="on-tag">Siège</p>
+          <div class="on-item"><p class="on-site">BLRT Group · Klaipėda</p><p class="on-scope">Fabrication de touret offshore · réparation navale · réseaux de tuyauterie · maintenance industrielle</p></div>
+        </div>
+        <div class="on-col">
+          <p class="on-country">Norvège</p>
+          <p class="on-tag">2 sites</p>
+          <div class="on-item"><p class="on-site">Ålesund</p><p class="on-scope">Installations frigorifiques · modifications industrielles</p></div>
+          <div class="on-item"><p class="on-site">Orkanger</p><p class="on-scope">Base de tronçons &amp; plateformes offshore · soudage de pipelines · fabrication · assistance offshore</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2 class="sub-head">Depuis le chantier</h2>
+      <p class="sub-lead">Photographies de chantiers livrés et en cours.</p>
+      <div class="shot-grid">
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/welding-tig-pipe-1200.webp"
+                 srcset="/assets/projects/welding-tig-pipe-600.webp 600w, /assets/projects/welding-tig-pipe-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Passe de racine TIG sur un tronçon préfabriqué" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Passe de racine TIG sur un tronçon préfabriqué</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/piping-roof-crew-1200.webp"
+                 srcset="/assets/projects/piping-roof-crew-600.webp 600w, /assets/projects/piping-roof-crew-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Lignes en acier carbone implantées en toiture d’usine" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Lignes en acier carbone implantées en toiture d’usine</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/piping-roof-duct-1200.webp"
+                 srcset="/assets/projects/piping-roof-duct-600.webp 600w, /assets/projects/piping-roof-duct-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Lignes process cheminant le long de gaines calorifugées" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Lignes process cheminant le long de gaines calorifugées</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/transformer-overhead-1200.webp"
+                 srcset="/assets/projects/transformer-overhead-600.webp 600w, /assets/projects/transformer-overhead-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Tuyauterie inox autour d’un ensemble transformateur" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Tuyauterie inox autour d’un ensemble transformateur</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/substation-sky-1200.webp"
+                 srcset="/assets/projects/substation-sky-600.webp 600w, /assets/projects/substation-sky-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Réseaux de tuyauterie achevés sur un poste électrique" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Réseaux de tuyauterie achevés sur un poste électrique</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/facade-pipe-crane-1200.webp"
+                 srcset="/assets/projects/facade-pipe-crane-600.webp 600w, /assets/projects/facade-pipe-crane-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Réseaux de tuyauterie montés le long d’une façade d’usine" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Réseaux de tuyauterie montés le long d’une façade d’usine</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/transformer-bushing-1200.webp"
+                 srcset="/assets/projects/transformer-bushing-600.webp 600w, /assets/projects/transformer-bushing-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Ensemble mécanique installé sous les traversées" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Ensemble mécanique installé sous les traversées</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/transformer-plant-1200.webp"
+                 srcset="/assets/projects/transformer-plant-600.webp 600w, /assets/projects/transformer-plant-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Lignes de refroidissement et process à l’usine de transformateurs" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Lignes de refroidissement et process à l’usine de transformateurs</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/facade-tank-pipe-1200.webp"
+                 srcset="/assets/projects/facade-tank-pipe-600.webp 600w, /assets/projects/facade-tank-pipe-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Capacité et tuyauterie acheminées le long du bâtiment" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Capacité et tuyauterie acheminées le long du bâtiment</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-rack-tanks-1200.webp"
+                 srcset="/assets/projects/terminal-rack-tanks-600.webp 600w, /assets/projects/terminal-rack-tanks-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Rack à tuyauterie desservant les réservoirs d’un terminal carburant" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Rack à tuyauterie desservant les réservoirs d’un terminal carburant</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-pumps-1200.webp"
+                 srcset="/assets/projects/terminal-pumps-600.webp 600w, /assets/projects/terminal-pumps-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Skids de pompage et postes de vannes, zone de chargement du terminal" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Skids de pompage et postes de vannes, zone de chargement du terminal</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-rack-trays-1200.webp"
+                 srcset="/assets/projects/terminal-rack-trays-600.webp 600w, /assets/projects/terminal-rack-trays-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Rack à tuyauterie et chemins de câbles sur le portique de chargement" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Rack à tuyauterie et chemins de câbles sur le portique de chargement</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-valves-1200.webp"
+                 srcset="/assets/projects/terminal-valves-600.webp 600w, /assets/projects/terminal-valves-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Collecteurs de vannes au-dessus de la rétention" width="1200" height="900" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Collecteurs de vannes au-dessus de la rétention</figcaption>
+        </figure>
+        <figure class="shot">
+          <span class="shot-media">
+            <img src="/assets/projects/terminal-tankfarm-1200.webp"
+                 srcset="/assets/projects/terminal-tankfarm-600.webp 600w, /assets/projects/terminal-tankfarm-1200.webp 1200w"
+                 sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                 alt="Racks à tuyauterie achevés sur un parc de stockage" width="900" height="1200" loading="lazy" decoding="async">
+          </span>
+          <figcaption>Racks à tuyauterie achevés sur un parc de stockage</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="container prose">
+      <p class="back">
+        <a class="btn-bracket" href="/fr/services.html">Nos services</a>
+        <a class="btn-bracket" href="/fr/contacts.html">Démarrer un projet</a>
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="newsletter">
+          <h2>Newsletter</h2>
+          <p>Abonnez-vous pour recevoir nos actualités et l’avancement de nos projets.</p>
+          <form id="newsletterForm" novalidate>
+            <label class="visually-hidden" for="nlEmail" style="position:absolute;left:-9999px">E-mail</label>
+            <input id="nlEmail" type="email" name="email" placeholder="Saisissez votre e-mail" required aria-required="true" autocomplete="email">
+            <button type="submit" aria-label="S’abonner">↗</button>
+          </form>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul>
+            <li><a href="/fr/services/welding-services.html">Soudage</a></li>
+            <li><a href="/fr/services/pipe-fitting.html">Tuyauterie</a></li>
+            <li><a href="/fr/services/mechanical-contracting.html">Montage mécanique</a></li>
+            <li><a href="/fr/services/heavy-equipment-relocation.html">Transfert d’équipements lourds</a></li>
+            <li><a href="/fr/services/mobile-repair-teams.html">Équipes d’intervention mobiles</a></li>
+            <li><a href="/fr/services/shipbuilding.html">Construction navale</a></li>
+            <li><a href="/fr/services/ship-repair.html">Réparation navale</a></li>
+            <li><a href="/fr/services/non-destructive-testing.html">Contrôle non destructif</a></li>
+            <li><a href="/fr/services/rope-access-services.html">Travaux sur cordes</a></li>
+            <li><a href="/fr/services/3d-laser-scanning.html">Scan laser 3D</a></li>
+            <li><a href="/fr/services/quality-control.html">Contrôle qualité / QA-QC</a></li>
+            <li><a href="/fr/services/rigging-technical-support.html">Levage &amp; assistance technique</a></li>
+</ul>
+        </div>
+
+        <div class="footer-col">
+          <h2>Entreprise</h2>
+          <ul>
+            <li><a href="/fr/company.html">À propos</a></li>
+            <li><a href="/fr/services.html">Nos services</a></li>
+            <li><a href="/fr/#certifications">Certifications</a></li>
+            <li><a href="/fr/#downloads">Présentation de l’entreprise (PDF)</a></li>
+            <li><a href="/fr/careers.html">Carrières</a></li>
+            <li><a href="/fr/news/">Actualités</a></li>
+            <li><a href="/fr/contacts.html">Contact</a></li>
+            <li><a href="/fr/privacy.html">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contacts">
+          <h2>Contact</h2>
+          <div class="group">
+            <p class="g-label">Siège social (Lituanie)</p>
+            <p class="addr">ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110<br>Klaipėda</p>
+          </div>
+          <div class="group">
+            <p class="g-label">E-mail</p>
+            <a class="big" href="mailto:info@alprojects.eu">info@alprojects.eu</a>
+          </div>
+          <div class="group">
+            <p class="g-label">Téléphone</p>
+            <a class="big" href="tel:+37063663744">+370 636 63 744</a>
+          </div>
+          <div class="socials">
+            <a data-social="instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
+            <a data-social="linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+            <a data-social="facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2019–2026 ALPROJECTS GROUP. Tous droits réservés.</span> <a href="https://aldystudio.com" target="_blank" rel="noopener">Réalisé par ALDY</a>
+      </div>
+    </div>
+  </footer>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="i-x" d="M17.7 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L2 3h6.4l4.4 5.9L17.7 3zm-1.1 16.1h1.7L7.5 4.7H5.7l10.9 14.4z"/>
+      <path id="i-mail" d="M2 5.5c0-.8.7-1.5 1.5-1.5h17c.8 0 1.5.7 1.5 1.5v13c0 .8-.7 1.5-1.5 1.5h-17C2.7 20 2 19.3 2 18.5v-13zM4 7l8 5.5L20 7v-.9l-8 5.4-8-5.4V7z"/>
+      <path id="i-tel" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/>
+      <symbol id="ic-decisions" viewBox="0 0 48 48">
+        <circle cx="24" cy="10" r="3"/><path d="M22.6 12.8 14 38M25.4 12.8 34 38"/>
+        <path d="M18.4 27h11.2"/><path d="M14 38h-3M34 38h3"/>
+      </symbol>
+      <symbol id="ic-control" viewBox="0 0 48 48">
+        <path d="M8 12h22M8 22h30M8 32h16"/>
+        <path d="M30 12v-3M38 22v-3M24 32v-3"/>
+        <circle cx="34" cy="34" r="6"/><path d="M34 30.5v7M30.5 34h7"/>
+      </symbol>
+      <symbol id="ic-cross-industry" viewBox="0 0 48 48">
+        <rect x="7" y="7" width="12" height="12"/><rect x="29" y="7" width="12" height="12"/>
+        <rect x="7" y="29" width="12" height="12"/><rect x="29" y="29" width="12" height="12"/>
+        <path d="M19 13h10M13 19v10M35 19v10M19 35h10"/>
+      </symbol>
+      <symbol id="ic-scalable" viewBox="0 0 48 48">
+        <rect x="7" y="30" width="10" height="11"/><rect x="19" y="21" width="10" height="20"/>
+        <rect x="31" y="12" width="10" height="29"/>
+        <path d="M7 8h34M7 6v4M41 6v4"/>
+      </symbol>
+      <symbol id="ic-standards" viewBox="0 0 48 48">
+        <path d="M24 6 39 11v13c0 8-6.6 14.4-15 18-8.4-3.6-15-10-15-18V11z"/>
+        <path d="M17.5 23.5 22 28l9-9"/>
+      </symbol>
+      <symbol id="ic-workflow" viewBox="0 0 48 48">
+        <circle cx="11" cy="24" r="4"/><circle cx="24" cy="11" r="4"/>
+        <circle cx="24" cy="37" r="4"/><circle cx="37" cy="24" r="4"/>
+        <path d="M14 21.2 21.2 14M26.8 14 34 21.2M34 26.8 26.8 34M21.2 34 14 26.8"/>
+      </symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24">
+        <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4.8"
+              style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="12" cy="12" r="3.9" style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="16.6" cy="7.4" r="1.05" style="fill:currentColor"/>
+      </symbol>
+      <symbol id="i-in" viewBox="0 0 24 24">
+        <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="3.6"
+              style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="8.1" cy="8.4" r="1.05" style="fill:currentColor"/>
+        <path d="M8.1 11.1v5.7"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round"/>
+        <path d="M12 16.8v-5.7M12 13.8c0-1.5 1-2.5 2.35-2.5s2.35 1 2.35 2.5v3"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"/>
+      </symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.6" style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <path d="M14.2 7.9h-1.1c-1.15 0-2.05.9-2.05 2.05v7.5"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"/>
+        <path d="M9.9 12.3h4.1"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="/js/main.js?v=20daf19b"></script>
+</body>
+</html>
