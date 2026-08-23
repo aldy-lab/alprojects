@@ -424,15 +424,25 @@ chip pickers for discipline / certificates / rotation / countries, six required
 fields, and a GDPR consent naming a 24-month retention that `privacy.html`
 section 3a now actually states.
 
-**File upload is wired but switched off, and that is deliberate.** GitHub Pages
-cannot receive a file. With `CAREERS_ENDPOINT` empty, step 04 tells the
-applicant where to send documents; set the endpoint and `js/main.js` builds a
-real drop zone and posts the whole form as `multipart/form-data` with the files
-attached. A drop zone with nothing behind it would take a welder's CV and drop
-it on the floor, which is worse than the page saying plainly where to send it.
+**The drop zone is always there. Where the files go depends on
+`CAREERS_ENDPOINT`:**
 
-Verified with a stubbed endpoint: `POST multipart/form-data`, all eleven fields
-plus both attachments, success message, form and chips reset.
+| | |
+|---|---|
+| endpoint set | the form posts as `multipart/form-data` with the files attached |
+| endpoint empty | `mailto:` opens and the note names the exact files to attach |
+
+GitHub Pages cannot receive a file, and `mailto:` cannot carry an attachment.
+So with no endpoint the drop zone still earns its place: it checks the size,
+rejects duplicates, and tells the applicant precisely which files to attach —
+"Your mail app opened — now attach: cv.pdf, irata-l2.jpg", and the same list
+goes in the email body. **What it never does is accept a file and quietly lose
+it.**
+
+Verified both ways: with a stubbed endpoint, `POST multipart/form-data` with
+all eleven fields and both attachments, then form, chips and file list reset;
+without one, an 11 MB file refused by name, a duplicate ignored, removal
+working, and the file names reaching both the note and the email.
 
 To switch it on you need a form service that accepts file uploads — Formspree
 (paid), Basin, Netlify Forms, or a small serverless function. **This is the one

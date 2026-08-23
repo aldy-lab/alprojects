@@ -344,13 +344,23 @@
 
           <fieldset class="step" id="docsStep">
             <legend><span class="step-n">04</span> I tuoi documenti</legend>
-            <!-- Replaced at runtime by js/main.js. With CAREERS_ENDPOINT set it
-                 becomes a real upload; without one it stays as written, because a
-                 drop zone that quietly discards the file is worse than saying so. -->
-            <div class="docs-alt" id="docsAlt">
-              <p>Invia il CV e i certificati a <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> oppure via <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>, con lo stesso nome indicato sopra.</p>
-              <p class="hint">Vanno bene anche fotografie dei certificati scattate con il telefono.</p>
-            </div>
+            <!-- The drop zone is always here. What happens to the files depends on
+                 CAREERS_ENDPOINT: with one set they are uploaded with the form;
+                 without one js/main.js names them in the email it opens, so the
+                 applicant knows exactly what to attach. It never accepts a file
+                 and then quietly loses it. -->
+            <button type="button" class="drop" id="dropZone">
+              <b>Allega il CV e i certificati</b> <span>Scegli i file o trascinali qui. PDF, JPG o PNG, fino a 10 MB ciascuno.</span>
+            </button>
+            <!-- The real control is the button above, which is focusable and
+                 opens this input. Leaving the input in the accessibility tree
+                 gave a screen reader a second, unlabelled file control. -->
+            <input type="file" id="apFiles" name="files" multiple class="hp"
+                   tabindex="-1" aria-hidden="true"
+                   accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+            <ul class="files" id="fileList"></ul>
+            <p class="hint">Vanno bene anche fotografie dei certificati scattate con il telefono.</p>
+            <p class="hint" id="docsAlt">Puoi anche inviarli a <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> oppure via <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>.</p>
           </fieldset>
 
           <div class="field field-wide field-check">
@@ -504,6 +514,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=5d7f7a13"></script>
+  <script src="/js/main.js?v=cabb60ee"></script>
 </body>
 </html>

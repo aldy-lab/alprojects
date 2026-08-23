@@ -1073,6 +1073,8 @@ S = {
         '<span>Offshore-Plattformen</span><span>Windkraftanlagen</span><span>Industrietürme</span><span>Maritime Strukturen</span>',
     '<strong>Calendly LLC</strong> &mdash; the scheduling calendar on the contacts page, and only if you choose to open it.':
         '<strong>Calendly LLC</strong> &mdash; der Terminkalender auf der Kontaktseite, und nur wenn Sie ihn selbst öffnen.',
+    '<b>Attach your CV and certificates</b> <span>Choose files, or drag them here. PDF, JPG or PNG, up to 10 MB each.</span>':
+        '<b>Lebenslauf und Zeugnisse anhängen</b> <span>Dateien auswählen oder hierher ziehen. PDF, JPG oder PNG, je bis 10 MB.</span>',
     '<span class="sector-name">INDUSTRIAL</span> <span class="sector-fact">Plant installation and transformer packages</span>':
         '<span class="sector-name">INDUSTRIE</span> <span class="sector-fact">Anlagenmontage und Transformatorenpakete</span>',
     '<span class="sector-name">OFFSHORE</span> <span class="sector-fact">Rope access, NDT and mechanical works offshore</span>':
@@ -1257,6 +1259,8 @@ S = {
         '<strong>Erst gezeichnet, dann gebaut.</strong> Isometrien werden geprüft, bevor etwas geschnitten wird. Spools werden in der Werkstatt vorgefertigt, an Bord eingepasst und so aufgehängt, dass sich die Leitung bewegen kann, ohne die Nähte zu belasten.',
     'If you believe we have handled your data improperly, you may lodge a complaint with the Lithuanian State Data Protection Inspectorate (Valstybine duomenu apsaugos inspekcija), L. Sapiegos g. 17, Vilnius.':
         'Wenn Sie der Ansicht sind, dass wir Ihre Daten unrechtmäßig verarbeitet haben, können Sie Beschwerde bei der litauischen Datenschutzaufsicht (Valstybine duomenu apsaugos inspekcija), L. Sapiegos g. 17, Vilnius, einlegen.',
+    'You can also send them to <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> or by <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>.':
+        'Sie können sie auch an <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> oder per <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a> senden.',
     '<strong>Consent</strong> (GDPR Art. 6(1)(a)) — newsletter subscription, job applications, and loading the scheduling calendar, which happens only when you press the button. You may withdraw it at any time.':
         '<strong>Einwilligung</strong> (DSGVO Art. 6 Abs. 1 lit. a) — Newsletter-Anmeldung, Bewerbungen und das Laden des Terminkalenders, das nur nach Klick auf die Schaltfläche erfolgt. Sie können sie jederzeit widerrufen.',
     'A transformer mechanical package covers the stainless steel piping and cooling systems that keep the unit within its operating envelope. The tolerances are tight and the commissioning window is usually short.':
@@ -1289,8 +1293,6 @@ S = {
         '<strong>Wo die Grenze liegt.</strong> Niemand sollte die eigene Arbeit freigeben, und wir versuchen es auch nicht. Die unabhängige Prüfung bleibt dort, wo der Vertrag sie vorsieht, in der Regel beim Kunden oder beim Besichtiger der Klassifikationsgesellschaft — daran ändern wir nichts.',
     'The shortage is discussed across European industry in general terms. It becomes concrete when a project is resourced, scheduled and funded, and the constraint is simply the number of people who hold the certification and are willing to travel.':
         'In der europäischen Industrie wird der Mangel allgemein diskutiert. Konkret wird er, wenn ein Projekt besetzt, terminiert und finanziert ist und der Engpass schlicht die Zahl der Menschen ist, die die Qualifikation haben und reisen wollen.',
-    'Send your CV and certificates to <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> or by <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>, with the same name you give above.':
-        'Senden Sie Lebenslauf und Zeugnisse an <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> oder per <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>, unter demselben Namen wie oben angegeben.',
     '<strong>Job applications.</strong> If you send the careers form we receive the details you enter &mdash; name, contact details, discipline, certificates, availability and any notes &mdash; together with any CV or certificate documents you attach.':
         '<strong>Bewerbungen.</strong> Wenn Sie das Bewerbungsformular absenden, erhalten wir die eingegebenen Angaben &mdash; Name, Kontaktdaten, Gewerk, Zertifikate, Verfügbarkeit und Bemerkungen &mdash; sowie die von Ihnen angehängten Lebenslauf- und Zeugnisunterlagen.',
     '<strong>What the eye cannot pick up.</strong> Clean the weld, apply the penetrant, let the developer draw it back out. Surface cracks and porosity that nobody would catch by eye show up in red, and anything outside the limits is repaired on the spot.':

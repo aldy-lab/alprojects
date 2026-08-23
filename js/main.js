@@ -75,7 +75,10 @@
       need_role: "Please choose your discipline.",
       need_available: "Please say when you are available from.",
       need_consent: "Please confirm the privacy notice to continue.",
-      apply_mail: "Your mail app opened with the details filled in — attach your CV and send."
+      apply_mail: "Your mail app opened with the details filled in — attach your CV and send.",
+      file_remove: "Remove",
+      file_too_big: "Too large (10 MB maximum):",
+      apply_mail_files: "Your mail app opened — now attach:"
     };
     T.fr = {
       cal_open: "Ouvrir le calendrier", cal_loading: "Chargement\u2026",
@@ -96,7 +99,10 @@
       need_role: "Veuillez choisir votre métier.",
       need_available: "Veuillez indiquer votre date de disponibilité.",
       need_consent: "Veuillez accepter la notice de confidentialité pour continuer.",
-      apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez."
+      apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez.",
+      file_remove: "Retirer",
+      file_too_big: "Trop volumineux (10 Mo maximum) :",
+      apply_mail_files: "Votre messagerie s’est ouverte — joignez maintenant :"
     };
     T.de = {
       cal_open: "Kalender \u00f6ffnen", cal_loading: "Wird geladen\u2026",
@@ -117,7 +123,10 @@
       need_role: "Bitte wählen Sie Ihr Gewerk.",
       need_available: "Bitte geben Sie an, ab wann Sie verfügbar sind.",
       need_consent: "Bitte bestätigen Sie den Datenschutzhinweis, um fortzufahren.",
-      apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie."
+      apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie.",
+      file_remove: "Entfernen",
+      file_too_big: "Zu groß (maximal 10 MB):",
+      apply_mail_files: "Ihr E-Mail-Programm wurde geöffnet — hängen Sie jetzt an:"
     };
     T.it = {
       cal_open: "Apri il calendario", cal_loading: "Caricamento\u2026",
@@ -138,7 +147,10 @@
       need_role: "Seleziona il tuo mestiere.",
       need_available: "Indica da quando sei disponibile.",
       need_consent: "Conferma l’informativa sulla privacy per continuare.",
-      apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia."
+      apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia.",
+      file_remove: "Rimuovi",
+      file_too_big: "Troppo grande (massimo 10 MB):",
+      apply_mail_files: "Il programma di posta si è aperto — ora allega:"
     };
     return T[LANG] || T.en;
   })();
@@ -1005,67 +1017,73 @@
     });
 
     /* ---------- documents ----------
-       The upload control is BUILT ONLY IF there is somewhere to upload to.
-       A static site cannot receive a file; a drop zone with no endpoint behind
-       it would take the CV and drop it on the floor, which is worse than the
-       page saying plainly where to send it. With CAREERS_ENDPOINT set, the
-       whole form posts as multipart and the files ride along. */
+       The drop zone is in the markup, so it is there with or without a backend
+       and it is translated with everything else. What differs is where the
+       files go:
+         CAREERS_ENDPOINT set   -> uploaded with the form as multipart
+         CAREERS_ENDPOINT empty -> named in the email that opens, so the
+                                   applicant knows exactly what to attach
+       What it never does is accept a file and quietly lose it. */
     var picked = [];
-    var docsStep = document.getElementById("docsStep");
-    if (docsStep && CAREERS_ENDPOINT) {
-      var alt = document.getElementById("docsAlt");
-      if (alt) alt.parentNode.removeChild(alt);
-      docsStep.insertAdjacentHTML("beforeend",
-        '<button type="button" class="drop" id="dropZone">' +
-        '<b>Attach your CV and certificates</b>' +
-        '<span>Choose files, or drag them here. PDF, JPG or PNG, up to 10 MB each.</span>' +
-        '</button>' +
-        '<input type="file" id="apFiles" name="files" multiple class="hp" ' +
-        'accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">' +
-        '<ul class="files" id="fileList"></ul>' +
-        '<p class="hint">Photographs of certificates taken with a phone are fine.</p>');
+    var dz = document.getElementById("dropZone");
+    var fileInput = document.getElementById("apFiles");
+    var fileList = document.getElementById("fileList");
+    var MAX = 10 * 1024 * 1024;
 
-      var dz = document.getElementById("dropZone");
-      var fileInput = document.getElementById("apFiles");
-      var fileList = document.getElementById("fileList");
-      var MAX = 10 * 1024 * 1024;
-
-      function render() {
-        fileList.innerHTML = "";
-        picked.forEach(function (f, i) {
-          var li = document.createElement("li");
-          li.innerHTML = '<span>' + f.name.replace(/[<>&]/g, "") + '</span>' +
-            '<span>' + Math.max(1, Math.round(f.size / 1024)) + ' KB</span>';
-          var rm = document.createElement("button");
-          rm.type = "button"; rm.className = "file-x";
-          rm.setAttribute("aria-label", "Remove " + f.name);
-          rm.textContent = "×";
-          rm.addEventListener("click", function () { picked.splice(i, 1); render(); });
-          li.appendChild(rm);
-          fileList.appendChild(li);
+    function renderFiles() {
+      if (!fileList) return;
+      fileList.innerHTML = "";
+      picked.forEach(function (f, i) {
+        var li = document.createElement("li");
+        var nm = document.createElement("span");
+        nm.textContent = f.name;
+        var sz = document.createElement("span");
+        sz.textContent = Math.max(1, Math.round(f.size / 1024)) + " KB";
+        var rm = document.createElement("button");
+        rm.type = "button";
+        rm.className = "file-x";
+        rm.setAttribute("aria-label", TXT.file_remove + " " + f.name);
+        rm.textContent = "\u00d7";
+        rm.addEventListener("click", function () {
+          picked.splice(i, 1);
+          renderFiles();
+          if (dz) dz.focus();
         });
-      }
-      function take(list) {
+        li.appendChild(nm); li.appendChild(sz); li.appendChild(rm);
+        fileList.appendChild(li);
+      });
+    }
+
+    if (dz && fileInput) {
+      var takeFiles = function (list) {
         var over = [];
         [].slice.call(list).forEach(function (f) {
           if (f.size > MAX) { over.push(f.name); return; }
-          picked.push(f);
+          /* the same file twice is a mis-click, not an intention */
+          var dup = picked.some(function (x) { return x.name === f.name && x.size === f.size; });
+          if (!dup) picked.push(f);
         });
-        if (over.length) {
-          applyNote.textContent = "Too large (10 MB max): " + over.join(", ");
+        if (over.length && applyNote) {
+          applyNote.textContent = TXT.file_too_big + " " + over.join(", ");
           applyNote.classList.add("show", "is-error");
         }
-        render();
-      }
+        renderFiles();
+      };
       dz.addEventListener("click", function () { fileInput.click(); });
-      fileInput.addEventListener("change", function () { take(fileInput.files); fileInput.value = ""; });
+      fileInput.addEventListener("change", function () {
+        takeFiles(fileInput.files);
+        fileInput.value = "";     /* so re-picking the same file still fires change */
+      });
       ["dragenter", "dragover"].forEach(function (e) {
         dz.addEventListener(e, function (ev) { ev.preventDefault(); dz.classList.add("is-over"); });
       });
       ["dragleave", "drop"].forEach(function (e) {
         dz.addEventListener(e, function (ev) { ev.preventDefault(); dz.classList.remove("is-over"); });
       });
-      dz.addEventListener("drop", function (ev) { take(ev.dataTransfer.files); });
+      dz.addEventListener("drop", function (ev) {
+        ev.preventDefault();
+        takeFiles(ev.dataTransfer.files);
+      });
     }
 
     applyForm.addEventListener("submit", function (ev) {
@@ -1142,13 +1160,20 @@
         "",
         data.message || "",
         "",
-        "(Please attach your CV and certificates to this email.)"
+        picked.length
+          ? "(Please attach to this email: " +
+            picked.map(function (f) { return f.name; }).join(", ") + ")"
+          : "(Please attach your CV and certificates to this email.)"
       ].join("\n");
       window.location.href =
         "mailto:info@alprojects.eu?subject=" +
         encodeURIComponent("Application — " + data.role) +
         "&body=" + encodeURIComponent(body);
-      applyNote.textContent = TXT.apply_mail;
+      /* mailto cannot carry an attachment, so say which files to attach rather
+         than letting the applicant assume the ones they chose went with it. */
+      applyNote.textContent = picked.length
+        ? TXT.apply_mail_files + " " + picked.map(function (f) { return f.name; }).join(", ")
+        : TXT.apply_mail;
       applyNote.classList.add("show");
     });
   }

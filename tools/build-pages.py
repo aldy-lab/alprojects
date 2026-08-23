@@ -497,16 +497,26 @@ CAREERS = """
 
           <fieldset class="step" id="docsStep">
             <legend><span class="step-n">04</span> Your documents</legend>
-            <!-- Replaced at runtime by js/main.js. With CAREERS_ENDPOINT set it
-                 becomes a real upload; without one it stays as written, because a
-                 drop zone that quietly discards the file is worse than saying so. -->
-            <div class="docs-alt" id="docsAlt">
-              <p>Send your CV and certificates to
-              <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a>
-              or by <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>,
-              with the same name you give above.</p>
-              <p class="hint">Photographs of certificates taken with a phone are fine.</p>
-            </div>
+            <!-- The drop zone is always here. What happens to the files depends on
+                 CAREERS_ENDPOINT: with one set they are uploaded with the form;
+                 without one js/main.js names them in the email it opens, so the
+                 applicant knows exactly what to attach. It never accepts a file
+                 and then quietly loses it. -->
+            <button type="button" class="drop" id="dropZone">
+              <b>Attach your CV and certificates</b>
+              <span>Choose files, or drag them here. PDF, JPG or PNG, up to 10 MB each.</span>
+            </button>
+            <!-- The real control is the button above, which is focusable and
+                 opens this input. Leaving the input in the accessibility tree
+                 gave a screen reader a second, unlabelled file control. -->
+            <input type="file" id="apFiles" name="files" multiple class="hp"
+                   tabindex="-1" aria-hidden="true"
+                   accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+            <ul class="files" id="fileList"></ul>
+            <p class="hint">Photographs of certificates taken with a phone are fine.</p>
+            <p class="hint" id="docsAlt">You can also send them to
+            <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a>
+            or by <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>.</p>
           </fieldset>
 
           <div class="field field-wide field-check">
