@@ -502,16 +502,22 @@ CAREERS = """
                  without one js/main.js names them in the email it opens, so the
                  applicant knows exactly what to attach. It never accepts a file
                  and then quietly loses it. -->
-            <button type="button" class="drop" id="dropZone">
+            <!-- A real <input> with a <label for> pointing at it, not a button
+                 calling input.click(). The scripted click opens the picker in
+                 Chrome and in headless WebKit but is at the mercy of each
+                 browser's user-gesture rules; a label is how the platform does
+                 it, needs no JavaScript at all, and cannot be blocked.
+
+                 The input comes first so the label can be styled from its
+                 focus state with a sibling selector -- it is visually hidden
+                 but still focusable, so the drop zone shows a focus ring when
+                 tabbed to. -->
+            <input type="file" id="apFiles" name="files" multiple class="sr-file"
+                   accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+            <label class="drop" id="dropZone" for="apFiles">
               <b>Attach your CV and certificates</b>
               <span>Choose files, or drag them here. PDF, JPG or PNG, up to 10 MB each.</span>
-            </button>
-            <!-- The real control is the button above, which is focusable and
-                 opens this input. Leaving the input in the accessibility tree
-                 gave a screen reader a second, unlabelled file control. -->
-            <input type="file" id="apFiles" name="files" multiple class="hp"
-                   tabindex="-1" aria-hidden="true"
-                   accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+            </label>
             <ul class="files" id="fileList"></ul>
             <p class="hint">Photographs of certificates taken with a phone are fine.</p>
             <p class="hint" id="docsAlt">You can also send them to

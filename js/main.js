@@ -1155,7 +1155,7 @@
         rm.addEventListener("click", function () {
           picked.splice(i, 1);
           renderFiles();
-          if (dz) dz.focus();
+          if (fileInput) fileInput.focus();
         });
         li.appendChild(nm); li.appendChild(sz); li.appendChild(rm);
         fileList.appendChild(li);
@@ -1177,7 +1177,8 @@
         }
         renderFiles();
       };
-      dz.addEventListener("click", function () { fileInput.click(); });
+      /* No click handler on the drop zone: it is a <label for>, so the browser
+         opens the picker itself. JavaScript only adds drag-and-drop. */
       fileInput.addEventListener("change", function () {
         takeFiles(fileInput.files);
         fileInput.value = "";     /* so re-picking the same file still fires change */

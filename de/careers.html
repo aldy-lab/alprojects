@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=591fd3dd">
+  <link rel="stylesheet" href="/css/style.css?v=e3f3ee52">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -349,15 +349,21 @@
                  without one js/main.js names them in the email it opens, so the
                  applicant knows exactly what to attach. It never accepts a file
                  and then quietly loses it. -->
-            <button type="button" class="drop" id="dropZone">
-              <b>Lebenslauf und Zeugnisse anhängen</b> <span>Dateien auswählen oder hierher ziehen. PDF, JPG oder PNG, je bis 10 MB.</span>
-            </button>
-            <!-- The real control is the button above, which is focusable and
-                 opens this input. Leaving the input in the accessibility tree
-                 gave a screen reader a second, unlabelled file control. -->
-            <input type="file" id="apFiles" name="files" multiple class="hp"
-                   tabindex="-1" aria-hidden="true"
+            <!-- A real <input> with a <label for> pointing at it, not a button
+                 calling input.click(). The scripted click opens the picker in
+                 Chrome and in headless WebKit but is at the mercy of each
+                 browser's user-gesture rules; a label is how the platform does
+                 it, needs no JavaScript at all, and cannot be blocked.
+
+                 The input comes first so the label can be styled from its
+                 focus state with a sibling selector -- it is visually hidden
+                 but still focusable, so the drop zone shows a focus ring when
+                 tabbed to. -->
+            <input type="file" id="apFiles" name="files" multiple class="sr-file"
                    accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+            <label class="drop" id="dropZone" for="apFiles">
+              <b>Lebenslauf und Zeugnisse anhängen</b> <span>Dateien auswählen oder hierher ziehen. PDF, JPG oder PNG, je bis 10 MB.</span>
+            </label>
             <ul class="files" id="fileList"></ul>
             <p class="hint">Mit dem Handy fotografierte Zeugnisse sind völlig ausreichend.</p>
             <p class="hint" id="docsAlt">Sie können sie auch an <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> oder per <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a> senden.</p>
@@ -514,6 +520,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=b1e71d09"></script>
+  <script src="/js/main.js?v=21537440"></script>
 </body>
 </html>
