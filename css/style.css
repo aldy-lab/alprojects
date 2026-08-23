@@ -101,23 +101,14 @@
 /* Dragging across a row of cards used to fire each card's hover in turn --
    lift, scrim, zoom, then drop -- which reads as flicker rather than as
    hover. While a pointer is down, hover motion is suppressed. */
-html.dragging .dir-card:hover,
-html.dragging .adv-card:hover,
-html.dragging .news-card:hover,
-html.dragging .doc-card:hover,
-html.dragging .shot:hover,
-html.dragging .member:hover { transform: none; }
-html.dragging .dir-card:hover img,
-html.dragging .news-card:hover .thumb img,
-html.dragging .shot:hover img,
-html.dragging .doc-cover:hover img { transform: none; }
+html.dragging .dir-card:hover, html.dragging .adv-card:hover, html.dragging .news-card:hover, html.dragging .doc-card:hover, html.dragging .shot:hover, html.dragging .member:hover { transform: none; }
+html.dragging .dir-card:hover img, html.dragging .news-card:hover .thumb img, html.dragging .shot:hover img, html.dragging .doc-cover:hover img { transform: none; }
 html.dragging .dir-card:hover::after { opacity: 1; }
 
 /* Phone and email are the actions people actually come to a contacts page to
    perform. WCAG exempts links inside a sentence from the 24px minimum, but
    these are worth enlarging anyway -- they are tapped, not read. */
-a[href^="tel:"]:not([class*="btn-"]),
-a[href^="mailto:"]:not([class*="btn-"]) {
+a[href^="tel:"]:not([class*="btn-"]), a[href^="mailto:"]:not([class*="btn-"]) {
   display: inline-block;
   padding-block: 3px;
 }
@@ -132,12 +123,9 @@ a[href^="mailto:"]:not([class*="btn-"]) {
    This transparent strip re-covers the space the card vacates, so
    the pointer stays inside the element throughout the movement.
    ------------------------------------------------------------ */
-.news-card,
-.adv-card { position: relative; }
+.news-card, .adv-card { position: relative; }
 
-.news-card::before,
-.adv-card::before,
-.shot::before {
+.news-card::before, .adv-card::before, .shot::before {
   content: "";
   position: absolute;
   left: 0;
@@ -154,9 +142,7 @@ a[href^="mailto:"]:not([class*="btn-"]) {
 /* Tiles whose text is a label rather than content. Dragging across them
    selected the wording and painted a highlight over the card, which reads as
    the card flickering rather than as selecting anything useful. */
-.doc-card,
-.adv-card,
-.cert-card {
+.doc-card, .adv-card, .cert-card {
   user-select: none;
   -webkit-user-select: none;
 }
@@ -172,9 +158,7 @@ a[href^="mailto:"]:not([class*="btn-"]) {
 /* Grid and flex items default to min-width/min-height:auto, so a long word or
    a wide child can force its track wider than the viewport. Opting them out is
    what makes horizontal overflow structurally impossible rather than clipped. */
-.stats-grid > *, .adv-grid > *, .team-grid > *, .news-grid > *,
-.certs-grid > *, .directions > *, .footer-grid > *, .partners-grid > *,
-.service-body > *, .service-meta > *, .hero-bottom > * { min-width: 0; }
+.stats-grid > *, .adv-grid > *, .team-grid > *, .news-grid > *, .certs-grid > *, .directions > *, .footer-grid > *, .partners-grid > *, .service-body > *, .service-meta > *, .hero-bottom > * { min-width: 0; }
 
 /* Anchor targets must clear the fixed header, or jumping to #apply (or any
    in-page id) lands the heading underneath it. */
@@ -292,8 +276,7 @@ button { font-family: inherit; cursor: pointer; }
    51px inside .prose; btn-solid 45px in the header but 41px on the careers
    form) because both inherited their line-height from whatever wrapped them.
    line-height:1 + a min-height makes the box independent of context. */
-.btn-bracket,
-.btn-solid:not(.menu-cta) {
+.btn-bracket, .btn-solid:not(.menu-cta) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -489,8 +472,6 @@ button { font-family: inherit; cursor: pointer; }
 }
 .cross::before { left: 50%; top: 0; bottom: 0; width: 1px; }
 .cross::after { top: 50%; left: 0; right: 0; height: 1px; }
-
-
 
 /* direction cards */
 .directions {
@@ -903,8 +884,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 /* The real scan and the three plates share one frame, so a bright white
    document does not jump out of a row of dark cards. */
-.cert-card img,
-.cert-plate {
+.cert-card img, .cert-plate {
   width: min(100%, 176px);
   aspect-ratio: 300 / 424;
   margin: 0 auto 18px;
@@ -1110,8 +1090,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* Every column heading in the footer, newsletter included. Matches the
    .eyebrow language used everywhere else on the site. */
-.footer-col h2,
-.newsletter h2 {
+.footer-col h2, .newsletter h2 {
   font-size: var(--text-s);
   font-weight: 400;
   letter-spacing: 0.16em;
@@ -1139,8 +1118,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--muted-2);
   margin-bottom: 8px;
 }
-.footer-contacts .addr,
-.footer-contacts .big {
+.footer-contacts .addr, .footer-contacts .big {
   font-size: var(--text-s);
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -1485,9 +1463,7 @@ button { font-family: inherit; cursor: pointer; }
    it inherited 13.3px and iOS Safari zoomed the page whenever it was focused --
    the one thing the 16px floor exists to prevent. Selecting on :not() instead
    of naming each type means the next input added cannot repeat it. */
-.apply-form input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
-.apply-form select,
-.apply-form textarea {
+.apply-form input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), .apply-form select, .apply-form textarea {
   width: 100%;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid var(--line-strong);
@@ -1597,7 +1573,7 @@ button { font-family: inherit; cursor: pointer; }
 .grid-in > .xhair, .xhair.on { opacity: 0.3; }
 .xhair::before, .xhair::after { content: ""; position: absolute; background: var(--muted); }
 .xhair::before { left: 50%; top: 0; bottom: 0; width: 1px; }
-.xhair::after  { top: 50%; left: 0; right: 0; height: 1px; }
+.xhair::after { top: 50%; left: 0; right: 0; height: 1px; }
 .xhair.tl { top: -6px; left: -6px; }
 .xhair.tr { top: -6px; right: -6px; }
 .xhair.bl { bottom: -6px; left: -6px; }
@@ -1629,9 +1605,7 @@ html.blueprint [data-dim]::after {
   pointer-events: none;
 }
 html.blueprint [data-dim] { position: relative; }
-html.blueprint .sector-card, html.blueprint .adv-card,
-html.blueprint .news-card, html.blueprint .cert-card,
-html.blueprint .doc-card, html.blueprint .shot, html.blueprint .fp-card {
+html.blueprint .sector-card, html.blueprint .adv-card, html.blueprint .news-card, html.blueprint .cert-card, html.blueprint .doc-card, html.blueprint .shot, html.blueprint .fp-card {
   outline: 1px dashed rgba(185, 196, 216, 0.28);
   outline-offset: 2px;
 }
@@ -1789,8 +1763,7 @@ html.blueprint .doc-card, html.blueprint .shot, html.blueprint .fp-card {
   font-weight: 600;
 }
 html.blueprint, html.blueprint body { cursor: crosshair; }
-html.blueprint a, html.blueprint button,
-html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: pointer; }
+html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: pointer; }
 
 /* ============================================================
    MOBILE — touch targets and iOS input behaviour
@@ -1812,9 +1785,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   .hero-scroll { padding: 14px 0; }
   /* height comes from --btn-h now; vertical padding here fought it */
 
-  .apply-form input,
-  .apply-form select,
-  .apply-form .btn-solid { min-height: 48px; }
+  .apply-form input, .apply-form select, .apply-form .btn-solid { min-height: 48px; }
   .apply-form .field-check input { min-height: 0; width: 24px; height: 24px; }
 
   /* footer and prose link lists get real hit areas without loosening the look */
@@ -1828,11 +1799,8 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 
   /* inline text links sat at 15-20px tall — under the 24px WCAG 2.2 minimum.
      Vertical padding gives them a real hit area without changing the type. */
-  .prose a,
-  .footer-bottom a,
-  /* a.current carries padding: 2px 6px at higher specificity — match it */
-  .service-list a,
-  .service-list a.current { display: inline-block; padding: 6px 0; }
+  .prose a, .footer-bottom a, /* a.current carries padding: 2px 6px at higher specificity — match it */
+  .service-list a, .service-list a.current { display: inline-block; padding: 6px 0; }
   .service-list a.current { padding: 6px 6px; margin: 0 -6px; }
   .apply-form .field-check label a { display: inline-block; padding: 4px 0; }
   .industry-tags span { font-size: 11px; }
@@ -1866,8 +1834,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 @media (max-width: 560px) {
   /* Book a call is outlined now, so this has to name both -- with only
      .btn-solid it reappeared in the phone header and crowded out the burger. */
-  .site-header .btn-solid:not(.menu-cta),
-  .site-header .btn-outline:not(.menu-cta) { display: none; }
+  .site-header .btn-solid:not(.menu-cta), .site-header .btn-outline:not(.menu-cta) { display: none; }
   .mobile-menu a.menu-cta {
     display: block;
     margin-top: 26px;
@@ -1878,8 +1845,6 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
     border-bottom: 0;
   }
 }
-
-
 
 /* ============================================================
    OUR PEOPLE
@@ -2271,8 +2236,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   transition: opacity var(--dur-4) var(--ease), transform var(--dur-4) var(--ease);
   pointer-events: none;
 }
-.tech-grid.grid-in .dim,
-.page .dim { opacity: 0.55; transform: none; }
+.tech-grid.grid-in .dim, .page .dim { opacity: 0.55; transform: none; }
 .dim i {
   flex: none;
   width: 1px;
@@ -2308,10 +2272,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
    All decorative: aria-hidden, and withdrawn below 900px where
    the hero has no spare margin to draw them in.
    ============================================================ */
-.sheet-rule,
-.sheet-reg,
-.sheet-datum,
-.sheet-block { position: absolute; pointer-events: none; z-index: 1; }
+.sheet-rule, .sheet-reg, .sheet-datum, .sheet-block { position: absolute; pointer-events: none; z-index: 1; }
 
 /* measurement rules down the left and right margins */
 .sheet-rule {
@@ -2341,8 +2302,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 
 /* corner registration marks */
 .sheet-reg { width: 26px; height: 26px; opacity: 0.5; }
-.sheet-reg::before,
-.sheet-reg::after { content: ""; position: absolute; background: var(--muted-2); }
+.sheet-reg::before, .sheet-reg::after { content: ""; position: absolute; background: var(--muted-2); }
 .sheet-reg::before { left: 0; right: 0; height: 1px; top: 50%; }
 .sheet-reg::after { top: 0; bottom: 0; width: 1px; left: 50%; }
 .sheet-reg.tl { top: calc(var(--nav-h) + 16px); left: 40px; }
@@ -2384,8 +2344,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   border: 1px solid var(--line);
   opacity: 0.55;
 }
-.sheet-block b,
-.sheet-block i {
+.sheet-block b, .sheet-block i {
   font-style: normal;
   font-size: 9px;
   letter-spacing: 0.2em;
@@ -2524,8 +2483,7 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
    Country highlight on the map.
    Silhouettes are alpha masks, so the colour lives in CSS and can
    follow the palette. Four countries only: in the source artwork
-   Poland and Lithuania are one shape with no border between them,
-   so Lithuania cannot be filled without also filling Poland.
+   Poland and Lithuania are one shape with no border between them, so Lithuania cannot be filled without also filling Poland.
    ------------------------------------------------------------ */
 :root { --map-blue: #3d6ea8; }
 
@@ -2543,10 +2501,10 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
   transition: opacity var(--dur-2) var(--ease);
   pointer-events: none;
 }
-.cshape[data-shape="norway"]      { -webkit-mask-image: url("../assets/map/norway.png");      mask-image: url("../assets/map/norway.png"); }
-.cshape[data-shape="uk"]          { -webkit-mask-image: url("../assets/map/uk.png");          mask-image: url("../assets/map/uk.png"); }
+.cshape[data-shape="norway"] { -webkit-mask-image: url("../assets/map/norway.png");      mask-image: url("../assets/map/norway.png"); }
+.cshape[data-shape="uk"] { -webkit-mask-image: url("../assets/map/uk.png");          mask-image: url("../assets/map/uk.png"); }
 .cshape[data-shape="netherlands"] { -webkit-mask-image: url("../assets/map/netherlands.png"); mask-image: url("../assets/map/netherlands.png"); }
-.cshape[data-shape="germany"]     { -webkit-mask-image: url("../assets/map/germany.png");     mask-image: url("../assets/map/germany.png"); }
+.cshape[data-shape="germany"] { -webkit-mask-image: url("../assets/map/germany.png");     mask-image: url("../assets/map/germany.png"); }
 .cshape.is-active { opacity: 0.85; }
 
 /* Three certificates now, not four — ISO 3834 has no certificate on file. */
@@ -2662,8 +2620,7 @@ a.cert-card:hover img { border-color: var(--accent); }
 }
 .srv-link.is-active .srv-name { font-weight: 600; color: var(--text); }
 .srv-link.is-active .srv-n { color: var(--warm); }   /* the one warm mark, §2.2 */
-.srv-link.is-active::before,
-.srv-link.is-active::after {
+.srv-link.is-active::before, .srv-link.is-active::after {
   content: "";
   position: absolute;
   width: 9px; height: 9px;
@@ -2671,7 +2628,7 @@ a.cert-card:hover img { border-color: var(--accent); }
   pointer-events: none;
 }
 .srv-link.is-active::before { top: -1px;  left: -1px;  border-right: 0; border-bottom: 0; }
-.srv-link.is-active::after  { bottom: -1px; right: -1px; border-left: 0;  border-top: 0; }
+.srv-link.is-active::after { bottom: -1px; right: -1px; border-left: 0;  border-top: 0; }
 .srv-link { position: relative; }
 
 /* ---------- right: the open service ---------- */
@@ -2805,7 +2762,6 @@ a.cert-card:hover img { border-color: var(--accent); }
   .srv-controls { margin-top: 30px; }
 }
 
-
 /* ============================================================
    HERO — TZ §4.1, variant A.
    Photograph from site, content bottom-left, four facts above the
@@ -2837,11 +2793,9 @@ a.cert-card:hover img { border-color: var(--accent); }
 
 @media (max-width: 900px) {
   .hero-in { padding-top: calc(var(--nav-h) + 60px); }
-  .hero-proof { grid-template-columns: 1fr 1fr; gap: 18px 24px; }
   .hero-ctas { margin-bottom: 38px; }
 }
 @media (max-width: 520px) {
-  .hero-proof { grid-template-columns: 1fr 1fr; }
   .hero-ctas a { flex: 1 1 100%; }
 }
 
@@ -2873,7 +2827,7 @@ a.cert-card:hover img { border-color: var(--accent); }
   object-fit: cover;
   transition: transform var(--dur-3) var(--ease);
 }
-/* §4.2 specifies rgba(5,9,16,.94) fading out at 45%. Measured against §10.1
+/* §4.2 specifies rgba(5, 9, 16, .94) fading out at 45%. Measured against §10.1
    that left the caption at 2.01:1 on the brightest frame -- the exact fault
    §4.2 set out to fix. The stop positions are held denser through the caption
    band so it clears 4.5:1 on all four photographs; the colour is unchanged. */
@@ -3027,7 +2981,7 @@ a.cert-card:hover img { border-color: var(--accent); }
 }
 .hero-eyebrow span { color: var(--muted-2); margin: 0 4px; }
 
-/* Montserrat in caps, 500, letter-spaced — the site's own voice. */.hero-proof {
+/* Montserrat in caps, 500 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
@@ -3037,27 +2991,12 @@ a.cert-card:hover img { border-color: var(--accent); }
   border-top: 1px solid var(--line);
   text-align: left;
 }
-.hero-proof b {
-  display: block;
-  font-size: clamp(20px, 1.7vw, 24px);
-  font-weight: 300;
-  line-height: 1;
-  margin-bottom: 7px;
-}
-.hero-proof span {
-  display: block;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  line-height: 1.4;
-  color: var(--muted-2);
-}
 
 /* ---------- hero on smaller screens ----------
    These rules were lost with the photo-hero block. Without them the facts
    strip stayed at four columns on a phone and the headline could not wrap. */
 @media (max-width: 1000px) {
   .hero { min-height: 560px; padding-top: calc(var(--nav-h) + 34px); }
-  .hero-proof { grid-template-columns: 1fr 1fr; gap: 20px 24px; }
 }
 @media (max-width: 700px) {
   .hero-title { max-width: 18ch; }
@@ -3066,22 +3005,14 @@ a.cert-card:hover img { border-color: var(--accent); }
   .hero-ctas a { flex: 1 1 100%; }
 }
 @media (max-width: 420px) {
-  .hero-proof { grid-template-columns: 1fr; gap: 16px; }
-  .hero-proof > div { display: flex; align-items: baseline; gap: 10px; }
-  .hero-proof b { margin-bottom: 0; }
 }
-
 
 /* ============================================================
    TYPE — TZ §2.3.
    Montserrat carries headings, numbers and drawing stamps.
    Poppins carries body text and captions.
    ============================================================ */
-h1, h2, h3, h4, h5, h6,
-.hero-title, .section-title, .srv-title, .sector-hero-title, .page-title,
-.hero-proof b, .fp-num, .people-num, .srv-count, .srv-n, .num, .numbers,
-.dim b, .sheet-block, .draft-mark b, .cert-meta, .srv-pos, .doc-num,
-.hero-eyebrow, .eyebrow, .srv-group-label, .btn-solid, .btn-outline, .btn-bracket {
+h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-title, .page-title, .fp-num, .people-num, .srv-count, .srv-n, .num, .numbers, .dim b, .sheet-block, .draft-mark b, .cert-meta, .srv-pos, .doc-num, .hero-eyebrow, .eyebrow, .srv-group-label, .btn-solid, .btn-outline, .btn-bracket {
   font-family: var(--font-display);
 }
 
@@ -3118,28 +3049,6 @@ h1, h2, h3, h4, h5, h6,
   margin-bottom: 36px;
 }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 54px; }
-.hero-proof {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  border-top: 1px solid rgba(255,255,255,0.18);
-  padding: 24px 0 28px;
-}
-/* §2.3 — цифра показателя: 44 / 1.0 / Montserrat Light */
-.hero-proof b {
-  display: block;
-  font-size: clamp(26px, 2.6vw, 44px);
-  font-weight: 300;
-  line-height: 1;
-  margin-bottom: 9px;
-}
-.hero-proof span {
-  display: block;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.58);
-}
 
 /* §2.3 — buttons: 11.5 / uppercase / 0.18em / padding 15×26 */
 .btn-solid:not(.menu-cta), .btn-outline:not(.menu-cta) {
@@ -3152,7 +3061,6 @@ h1, h2, h3, h4, h5, h6,
 @media (max-width: 1000px) {
   :root { --pad: 22px; }          /* §2.1 */
   .hero-in { padding-top: calc(var(--nav-h) + 56px); }
-  .hero-proof { grid-template-columns: 1fr 1fr; gap: 20px 24px; }
   .hero-ctas { margin-bottom: 36px; }
 }
 @media (max-width: 700px) {
@@ -3161,15 +3069,11 @@ h1, h2, h3, h4, h5, h6,
   .hero-ctas a { flex: 1 1 100%; }
 }
 @media (max-width: 420px) {
-  .hero-proof { grid-template-columns: 1fr; gap: 14px; }
-  .hero-proof > div { display: flex; align-items: baseline; gap: 10px; }
-  .hero-proof b { margin-bottom: 0; }
 }
 
 /* ============================================================
    DRAFTING LAYER — brand library, first screen.
-   Corner frame, horizontal and vertical dimension, centre line,
-   target, two numeric marks: the six elements specified.
+   Corner frame, horizontal and vertical dimension, centre line, target, two numeric marks: the six elements specified.
    1px lines at every size; 0.60–0.75 main, 0.28–0.45 secondary;
    numbers 10px Montserrat with 1.2px tracking.
    NB: must be position:absolute — .hero is a flex row, so a static
@@ -3299,7 +3203,6 @@ h1, h2, h3, h4, h5, h6,
   .hero-title { max-width: none; }
   .hero-sub { font-size: 15.5px; line-height: 1.65; }
   .hero-ctas a { flex: 1 1 100%; }
-  .hero-proof { padding: 20px 0 22px; }
 }
 @media (max-width: 420px) {
   .hero-grid { background-size: 48px 48px; }
@@ -3318,8 +3221,7 @@ html.blueprint .hero-grid {
 /* the drafting layer is the drawing; in blueprint mode it comes forward */
 html.blueprint .draft { color: var(--gray-50); }
 html.blueprint .draft-corner { opacity: 1; }
-html.blueprint .draft-dim-h,
-html.blueprint .draft-dim-v { opacity: 0.9; }
+html.blueprint .draft-dim-h, html.blueprint .draft-dim-v { opacity: 0.9; }
 html.blueprint .draft-axis { opacity: 0.7; }
 html.blueprint .draft-target { opacity: 1; }
 /* the services list is a drawing too */
@@ -3381,8 +3283,7 @@ html.blueprint .srv-link { border-bottom-color: rgba(207, 208, 215, 0.28); }
 /* ============================================================
    BLUEPRINT — the drawing sheet.
    A frame, zone letters and numbers down the margins, and a title
-   block that reads off the page it is on. Fixed to the viewport,
-   so it behaves like a sheet the page is drawn on rather than
+   block that reads off the page it is on. Fixed to the viewport, so it behaves like a sheet the page is drawn on rather than
    something that scrolls with the content.
    ============================================================ */
 .bp-sheet {
@@ -3416,10 +3317,10 @@ html.blueprint .bp-sheet { opacity: 1; }
   color: rgba(207, 208, 215, 0.65);
   font-variant-numeric: tabular-nums;
 }
-.bp-zone-top    { top: 20px;    transform: translateX(-50%); }
+.bp-zone-top { top: 20px;    transform: translateX(-50%); }
 .bp-zone-bottom { bottom: 20px; transform: translateX(-50%); }
-.bp-zone-left   { left: 21px;   transform: translateY(-50%); }
-.bp-zone-right  { right: 21px;  transform: translateY(-50%); }
+.bp-zone-left { left: 21px;   transform: translateY(-50%); }
+.bp-zone-right { right: 21px;  transform: translateY(-50%); }
 
 .bp-title {
   position: absolute;
@@ -3462,8 +3363,7 @@ html.blueprint .bp-sheet { opacity: 1; }
 /* ============================================================
    THE DRAWING SHEET
    Built from the brand artwork: a navy-to-black gradient with the
-   cool glow top left and the warm one top right, a fine module,
-   long-dash rules over it, outline circles, crosshair marks at the
+   cool glow top left and the warm one top right, a fine module, long-dash rules over it, outline circles, crosshair marks at the
    intersections and dimension labels. All vector, so it stays
    crisp at any size and weighs nothing.
    ============================================================ */
@@ -3497,7 +3397,7 @@ html.blueprint .bp-sheet { opacity: 1; }
 }
 @keyframes sheet-drift {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(-2.2%, 1.6%, 0) scale(1.07); }
+  to { transform: translate3d(-2.2%, 1.6%, 0) scale(1.07); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero::before { animation: none; }
@@ -3622,8 +3522,7 @@ html.blueprint .bp-sheet { opacity: 1; }
 .sector-card:hover .corners, .sector-card:focus-visible .corners { opacity: 1; }
 .sector-card:hover .corners i, .sector-card:focus-visible .corners i { transform: scale(1); }
 /* the measuring rules that ran with the corners */
-.sector-card .corners::before,
-.sector-card .corners::after {
+.sector-card .corners::before, .sector-card .corners::after {
   content: "";
   position: absolute;
   left: 22px;
@@ -3635,8 +3534,7 @@ html.blueprint .bp-sheet { opacity: 1; }
 }
 .sector-card .corners::before { top: 0; transform-origin: left; }
 .sector-card .corners::after { bottom: 0; transform-origin: right; }
-.sector-card:hover .corners::before,
-.sector-card:hover .corners::after { transform: scaleX(1); }
+.sector-card:hover .corners::before, .sector-card:hover .corners::after { transform: scaleX(1); }
 @media (hover: none) { .sector-card .corners { display: none; } }
 
 /* ---------- services: the box follows the cursor, not just the click ---------- */
@@ -3649,8 +3547,7 @@ html.blueprint .bp-sheet { opacity: 1; }
   margin-left: -14px;
   margin-right: -14px;
 }
-.srv-link:hover:not(.is-active)::before,
-.srv-link:hover:not(.is-active)::after {
+.srv-link:hover:not(.is-active)::before, .srv-link:hover:not(.is-active)::after {
   content: "";
   position: absolute;
   width: 9px; height: 9px;
@@ -3665,8 +3562,7 @@ html.blueprint .bp-sheet { opacity: 1; }
    One field behind the whole document, not one per section.
 
    The first attempt gave .footprint, .certifications and .downloads a
-   gradient each. Every one of them restarted its glow at its own top edge,
-   which drew a visible line at each section boundary -- the seams ALDY saw.
+   gradient each. Every one of them restarted its glow at its own top edge, which drew a visible line at each section boundary -- the seams ALDY saw.
    A single layer spanning the full page has no boundaries to draw, so the
    light passes through the sections instead of stopping at them.
 
@@ -3689,9 +3585,8 @@ body::before {
     radial-gradient(52% 16% at 20% 94%, rgba(13,  39,  72, 0.30)  0%, transparent 72%);
 }
 /* ---------- and a moving light over it ----------
-   The field above is one layer the height of the whole document (13,652px on
-   the homepage). Animating that would hand the compositor a ~20M-pixel layer,
-   which is not worth it on a phone. So the motion lives on a second layer that
+   The field above is one layer the height of the whole document (13, 652px on
+   the homepage). Animating that would hand the compositor a ~20M-pixel layer, which is not worth it on a phone. So the motion lives on a second layer that
    is fixed and therefore only ever one screen big, drifting slowly across
    everything. The two together read as one ground that is quietly alive.
 
@@ -3721,16 +3616,14 @@ body::after {
    read as colour rather than as light. */
 @keyframes ground-drift {
   from { transform: translate3d(-14%, -9%, 0) scale(1); }
-  to   { transform: translate3d(18%, 13%, 0) scale(1.45); }
+  to { transform: translate3d(18%, 13%, 0) scale(1.45); }
 }
 @media (prefers-reduced-motion: reduce) {
   body::after { animation: none; }
 }
 
 /* These no longer paint their own ground; they let the page field through. */
-.footprint,
-.certifications,
-.downloads { position: relative; background: transparent; }
+.footprint, .certifications, .downloads { position: relative; background: transparent; }
 
 /* The map was too small to read. It grows and the column proportion shifts to
    give it the room, while the section still has to settle inside one screen. */
@@ -3739,7 +3632,7 @@ body::after {
 .footprint .euromap img { opacity: 0.5; }
 .footprint .pin b { font-size: var(--text-s); }
 .footprint .fp-intro { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; }
-/* (0,2,0) beat the mobile `.fp-intro { grid-template-columns: 1fr }` at (0,1,0),
+/* (0, 2, 0) beat the mobile `.fp-intro { grid-template-columns: 1fr }` at (0,1,0),
    so the two-column intro survived onto phones and squeezed the paragraph into
    a 55px column 893px tall -- one word per line. The stats sit under the text
    on a phone. */
@@ -3755,8 +3648,7 @@ body::after {
   .footprint .euromap { max-width: 420px; margin-inline: auto; }
 }
 
-/* This block has to hold the map, the list and its heading inside one screen,
-   and the head was the tallest part of it at 366px. Compact here only. */
+/* This block has to hold the map, the list and its heading inside one screen, and the head was the tallest part of it at 366px. Compact here only. */
 .footprint .section-head {
   margin-bottom: clamp(14px, 1.6vw, 22px);
   padding-top: 0;
@@ -3843,9 +3735,7 @@ body::after {
 .booking-alt { color: var(--gray-100); font-size: var(--text-s); margin: 18px 0 0; }
 .booking-alt a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
 /* Once the calendar is in, the pitch above it is redundant. */
-.booking.is-loaded .booking-lead,
-.booking.is-loaded .booking-note,
-.booking.is-loaded [data-booking-load] { display: none; }
+.booking.is-loaded .booking-lead, .booking.is-loaded .booking-note, .booking.is-loaded [data-booking-load] { display: none; }
 .booking-widget {
   min-width: 0; width: 100%; height: 700px; margin-top: 20px;
   border: 1px solid rgba(255,255,255,.08);
@@ -3860,9 +3750,9 @@ body::after {
    under it rather than between the heading and the widget. */
 .booking-in h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.01em; }
 .booking.is-loaded { display: flex; flex-direction: column; }
-.booking.is-loaded .booking-in    { order: 1; }
+.booking.is-loaded .booking-in { order: 1; }
 .booking.is-loaded .booking-widget { order: 2; }
-.booking.is-loaded .booking-alt   { order: 3; margin-top: 16px; }
+.booking.is-loaded .booking-alt { order: 3; margin-top: 16px; }
 
 /* ---------- Calendly popup ----------
    Their widget.css is appended to <head> after this file, so it wins at equal
@@ -3885,7 +3775,7 @@ body::after {
    matters. The box itself stays transparent and unbordered, so what the visitor
    sees is their card and nothing around it.
 
-   Their selector is (0,2,0) and carries !important, and their file loads after
+   Their selector is (0, 2, 0) and carries !important, and their file loads after
    this one, so an override needs !important AND more specificity -- hence the
    leading `body`. */
 body .calendly-overlay .calendly-popup {
@@ -3990,25 +3880,17 @@ body .calendly-overlay .calendly-popup {
 
    :lang() matches on <html lang>, which the build sets per tree, so the
    English tree is untouched. */
-:lang(fr) .hero-title,
-:lang(de) .hero-title,
-:lang(it) .hero-title { max-width: 28ch; }
+:lang(fr) .hero-title, :lang(de) .hero-title, :lang(it) .hero-title { max-width: 28ch; }
 
-:lang(fr) .section-title,
-:lang(de) .section-title,
-:lang(it) .section-title { max-width: none; }
+:lang(fr) .section-title, :lang(de) .section-title, :lang(it) .section-title { max-width: none; }
 
 /* German compounds do not break: Zeichnungsmodus, Betriebsbedingungen. Without
    this one long word can push a card wider than its column. */
 :lang(de) body { hyphens: auto; }
-:lang(de) .hero-title,
-:lang(de) .section-title,
-:lang(de) .srv-title { hyphens: manual; overflow-wrap: break-word; }
+:lang(de) .hero-title, :lang(de) .section-title, :lang(de) .srv-title { hyphens: manual; overflow-wrap: break-word; }
 
 @media (max-width: 1000px) {
-  :lang(fr) .hero-title,
-  :lang(de) .hero-title,
-  :lang(it) .hero-title { max-width: 24ch; }
+  :lang(fr) .hero-title, :lang(de) .hero-title, :lang(it) .hero-title { max-width: 24ch; }
 }
 
 /* ---------- the studio credit ----------
@@ -4042,8 +3924,7 @@ body .calendly-overlay .calendly-popup {
   color: var(--gray-50);
   transition: color var(--dur-2) ease;
 }
-.footer-bottom .made-by:hover b,
-.footer-bottom .made-by:focus-visible b { color: var(--white); }
+.footer-bottom .made-by:hover b, .footer-bottom .made-by:focus-visible b { color: var(--white); }
 
 /* ============================================================
    CAREERS
@@ -4200,10 +4081,10 @@ body .calendly-overlay .calendly-popup {
 
 /* ---- the alternatives panel ---- */
 .apply-alt { margin-top: clamp(26px, 3vw, 38px); padding-top: 22px; border-top: 1px solid var(--line); }
-/* a[href^="tel:"]:not([class*="btn-"]) is (0,2,1) and this was (0,1,1), so the
+/* a[href^="tel:"]:not([class*="btn-"]) is (0, 2, 1) and this was (0, 1, 1), so the
    global tap-target rule won and the email and phone links sat on one line
    reading "info@alprojects.eu Call +370 636 63 744". [href] takes this to
-   (0,2,1) as well, and it is later in the file. */
+   (0, 2, 1) as well, and it is later in the file. */
 .apply-alt a[href] {
   display: block; padding: 9px 0; color: var(--white);
   font-size: var(--text-s); text-decoration: underline; text-underline-offset: 4px;
@@ -4231,10 +4112,8 @@ body .calendly-overlay .calendly-popup {
   gap: 18px;
 }
 .apply-form legend { grid-column: 1 / -1; float: left; }   /* float: Safari ignores grid on legend */
-.apply-form .step > .field-wide,
-.apply-form .step > .field:only-of-type { grid-column: 1 / -1; }
-.apply-form > .field-check,
-.apply-form > .field { margin-top: 18px; }
+.apply-form .step > .field-wide, .apply-form .step > .field:only-of-type { grid-column: 1 / -1; }
+.apply-form > .field-check, .apply-form > .field { margin-top: 18px; }
 #docsStep { display: block; }
 @media (max-width: 700px) {
   .apply-form .step { grid-template-columns: 1fr; }
@@ -4350,8 +4229,8 @@ h2.eyebrow { font-weight: 400; margin-top: 0; }
 .lb-btn svg { width: 22px; height: 22px; }
 .lb-btn:hover, .lb-btn:focus-visible { color: var(--white); border-color: rgba(255,255,255,.5); }
 .lb-btn:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
-.lb-prev  { left: clamp(8px, 2.5vw, 36px); top: 50%; transform: translateY(-50%); }
-.lb-next  { right: clamp(8px, 2.5vw, 36px); top: 50%; transform: translateY(-50%); }
+.lb-prev { left: clamp(8px, 2.5vw, 36px); top: 50%; transform: translateY(-50%); }
+.lb-next { right: clamp(8px, 2.5vw, 36px); top: 50%; transform: translateY(-50%); }
 .lb-close { top: clamp(8px, 2.5vw, 28px); right: clamp(8px, 2.5vw, 28px); }
 html.lb-open, html.lb-open body { overflow: hidden; }
 @media (max-width: 700px) {
@@ -4376,10 +4255,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
    ============================================================ */
 @media (hover: none) {
   :root { --lift: 0px; --zoom: 1; }
-  .dir-card:hover .arr,
-  .news-card:hover .arr,
-  .adv-card:hover .adv-icon,
-  .srv-link:hover .srv-name { transform: none; }
+  .dir-card:hover .arr, .news-card:hover .arr, .adv-card:hover .adv-icon, .srv-link:hover .srv-name { transform: none; }
 }
 
 /* ============================================================
@@ -4394,22 +4270,13 @@ html.lb-open, html.lb-open body { overflow: hidden; }
    introducing a second press idiom alongside them. The chips scale instead:
    they are small and a 1px nudge on a 36px control is invisible.
    ============================================================ */
-.btn-outline:active,
-.srv-link:active,
-.doc-view:active,
-.lb-btn:active,
-.file-x:active,
-.bp-hint:active,
-.made-by:active { transform: translateY(1px); }
+.btn-outline:active, .srv-link:active, .doc-view:active, .lb-btn:active, .file-x:active, .bp-hint:active, .made-by:active { transform: translateY(1px); }
 
-.chip:active,
-.shot-open:active,
-.langs a:active { transform: scale(0.97); }
+.chip:active, .shot-open:active, .langs a:active { transform: scale(0.97); }
 .drop:active { transform: scale(0.995); }
 
 /* The press must land immediately; only the release is worth easing. */
-.btn-outline, .srv-link, .doc-view, .lb-btn, .file-x, .bp-hint, .made-by,
-.chip, .shot-open, .langs a, .drop {
+.btn-outline, .srv-link, .doc-view, .lb-btn, .file-x, .bp-hint, .made-by, .chip, .shot-open, .langs a, .drop {
   transition-property: color, background-color, border-color, opacity, transform;
   transition-duration: var(--dur-hover);
   transition-timing-function: var(--ease);
@@ -4418,9 +4285,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 .shot-open .corners i { transition: transform var(--dur-3) var(--ease); }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn-outline:active, .srv-link:active, .doc-view:active, .lb-btn:active,
-  .file-x:active, .bp-hint:active, .made-by:active,
-  .chip:active, .shot-open:active, .langs a:active, .drop:active { transform: none; }
+  .btn-outline:active, .srv-link:active, .doc-view:active, .lb-btn:active, .file-x:active, .bp-hint:active, .made-by:active, .chip:active, .shot-open:active, .langs a:active, .drop:active { transform: none; }
 }
 
 /* Arrowing between photographs was a hard cut: one image replaced by another
@@ -4448,10 +4313,9 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 @media (max-width: 700px) {
   /* Each of the five service slides carried the full list of all five
      services. On desktop that column is navigation; stacked, it is the same
-     five links repeated five times -- about 1,000px of the page spent saying
+     five links repeated five times -- about 1, 000px of the page spent saying
      nothing. The slides are their own navigation when you are scrolling. */
-  .service-slide .service-list,
-  .service-slide .service-col-label { display: none; }
+  .service-slide .service-list, .service-slide .service-col-label { display: none; }
   .service-body, .service-meta { gap: 14px; }
   .service-slide h3 { font-size: clamp(22px, 7vw, 30px); }
 }

@@ -532,6 +532,11 @@ to get the list of what is missing.
       Instagram/LinkedIn icons stay hidden. A likely match for Aleksandr is
       linkedin.com/in/aleksandr-vasiljev-067549aa (listed as ALprojects Norge
       AS) — unconfirmed, so not wired in.
+- [ ] **Project bases figure** — the footprint now lists six countries and nine
+      locations (Norway 2, UK 1, Netherlands 1, Germany 3, Lithuania HQ,
+      Belgium 1), so the counters read 6 / 9. The previous 5 / 7 was the same
+      arithmetic with the Netherlands counted as an offshore area rather than a
+      base. ⚠️ Confirm 9 is how the client counts a "project base".
 - [ ] **Second phone number** — the old site also listed +370 670 20654 next to
       +370 636 63744. Only the latter is on the new site.
 - [ ] **Newsletter backend** — set `FORM_ENDPOINT` (Formspree, Buttondown,

@@ -249,6 +249,8 @@ S = {
         '4. Rechtsgrundlage',
     '6. Your rights':
         '6. Ihre Rechte',
+    '<b>Belgium</b>':
+        '<b>Belgien</b>',
     '<b>Germany</b>':
         '<b>Deutschland</b>',
     'Available from':
@@ -547,8 +549,8 @@ S = {
         'Skalierbare Projektorganisation',
     'Valve manifolds over the bund':
         'Armaturenverteiler über der Auffangwanne',
-    '<b>5</b><span>Countries</span>':
-        '<b>5</b><span>Länder</span>',
+    '<b>6</b><span>Countries</span>':
+        '<b>6</b><span>Länder</span>',
     'Completed tank farm pipe racks':
         'Fertiggestellte Rohrbrücken im Tanklager',
     'Offshore and renewable energy.':
@@ -713,16 +715,12 @@ S = {
         'Fertigung &amp; Montage von Gasleitungen',
     'Turnarounds, shutdowns and breakdown repair':
         'Großstillstände, Anlagenstillstände und Störungsbehebung',
-    '<b>300</b><span>certified specialists</span>':
-        '<b>300</b><span>zertifizierte Fachkräfte</span>',
     'Dimensional control of structures and piping':
         'Maßkontrolle von Konstruktionen und Rohrleitungen',
     'Quality control and QA-QC — ALPROJECTS Group':
         'Qualitätskontrolle und QA-QC — ALPROJECTS Group',
     'TIG for piping, root runs and stainless work':
         'WIG für Rohrleitungen, Wurzellagen und Edelstahl',
-    '<b>11,000+</b><span>hours on one scope</span>':
-        '<b>11.000+</b><span>Stunden in einem Projekt</span>',
     '<span class="step-n">04</span> Your documents':
         '<span class="step-n">04</span> Ihre Unterlagen',
     'Certified specialist performing welding works':
@@ -755,8 +753,6 @@ S = {
         'Unternehmensprofil als PDF in neuem Tab öffnen',
     'Process lines run alongside insulated ductwork':
         'Prozessleitungen neben isolierten Kanälen verlegt',
-    '<b>5</b><span>countries, 7 project bases</span>':
-        '<b>5</b><span>Länder, 7 Projektstandorte</span>',
     'Pipe rack and cable trays on the loading gantry':
         'Rohrbrücke und Kabeltrassen am Verladeportal',
     'Stainless pipework around a transformer package':
@@ -1143,14 +1139,12 @@ S = {
         'Projektanfragen, Personalanfragen und Initiativbewerbungen landen im selben Postfach — gelesen von Menschen, die technische Fragen beantworten können.',
     'The scope ran from September 2025 to April 2026 and was delivered by a team of twelve specialists, accumulating more than 11,000 hours on site.':
         'Das Projekt lief von September 2025 bis April 2026 und wurde von einem Team aus zwölf Fachkräften ausgeführt, mit über 11.000 Stunden vor Ort.',
-    'Outline map of Europe marking the five countries ALPROJECTS Group operates in: Norway, the United Kingdom, the Netherlands, Germany and Lithuania':
-        'Umrisskarte Europas mit den fünf Ländern, in denen ALPROJECTS Group tätig ist: Norwegen, Vereinigtes Königreich, Niederlande, Deutschland und Litauen',
+    '<span class="fp-idx">06</span> <span class="fp-name">Belgium</span> <span class="fp-badge">1 location</span> <span class="fp-city">Antwerp</span>':
+        '<span class="fp-idx">06</span> <span class="fp-name">Belgien</span> <span class="fp-badge">1 Standort</span> <span class="fp-city">Antwerpen</span>',
     'The order of work stays the same on every job. Most of the time in a machinery space goes on getting the routing right, not on the welding itself.':
         'Die Reihenfolge der Arbeiten bleibt auf jeder Baustelle gleich. Im Maschinenraum geht die meiste Zeit in die richtige Leitungsführung, nicht in das Schweißen selbst.',
     'Work with ALPROJECTS Group — welding, pipe fitting, NDT, rope access and mechanical contracting on industrial and offshore projects across Europe.':
         'Arbeiten bei ALPROJECTS Group — Schweißtechnik, Rohrleitungsbau, ZfP, Seilzugangstechnik und Anlagenmontage auf Industrie- und Offshore-Projekten in ganz Europa.',
-    '<span class="fp-idx">03</span> <span class="fp-name">Netherlands</span> <span class="fp-badge">Offshore</span> <span class="fp-city">North Sea</span>':
-        '<span class="fp-idx">03</span> <span class="fp-name">Niederlande</span> <span class="fp-badge">Offshore</span> <span class="fp-city">Nordsee</span>',
     'Welding, pipe fitting, mechanical contracting, marine works, NDT, rope access and quality control for industrial and offshore projects across Europe.':
         'Schweißtechnik, Rohrleitungsbau, Anlagenmontage, Schiffbauarbeiten, ZfP, Seilzugangstechnik und Qualitätskontrolle für Industrie- und Offshore-Projekte in ganz Europa.',
     '<span class="fp-idx">05</span> <span class="fp-name">Lithuania</span> <span class="fp-badge">Headquarters</span> <span class="fp-city">Klaipėda</span>':
@@ -1159,6 +1153,8 @@ S = {
         'Ein Team offshore zu mobilisieren ist teuer, ein Stillstand noch teurer. Seilzugangstechnik und ZfP tragen den größten Teil dieser Arbeit, ergänzt um',
     'Welding, piping and mechanical contracting for shipbuilding, offshore, industry and energy. With our own inspectors, who never sign off our own welds.':
         'Schweißtechnik, Rohrleitungsbau und Anlagenmontage für Schiffbau, Offshore, Industrie und Energie. Mit eigenen Prüfern, die unsere eigenen Nähte nie freigeben.',
+    '<span class="fp-idx">03</span> <span class="fp-name">Netherlands</span> <span class="fp-badge">1 location</span> <span class="fp-city">Rotterdam</span>':
+        '<span class="fp-idx">03</span> <span class="fp-name">Niederlande</span> <span class="fp-badge">1 Standort</span> <span class="fp-city">Rotterdam</span>',
     "Repair work is decided in days, not months. We take steel renewal, piping replacement and mechanical repairs, to class and to the owner's requirements.":
         'Über Reparaturen wird in Tagen entschieden, nicht in Monaten. Wir übernehmen Stahlerneuerung, Rohrleitungstausch und mechanische Instandsetzung, nach Klassevorgaben und Anforderungen des Reeders.',
     'Scaffolding costs more in downtime than in steel. Certified technicians reach the same place on rope, inspect it and repair it while the plant keeps...':
@@ -1173,6 +1169,8 @@ S = {
         '<strong>Newsletter.</strong> Wenn Sie das Newsletter-Formular absenden, erhalten wir die eingegebene E-Mail-Adresse, um Ihnen Unternehmens- und Projektnachrichten zu senden.',
     'Most delays in piping start with a bad fit-up. We supply fitters for process, utility and engine room systems, instrument fitters for small bore work,...':
         'Die meisten Verzögerungen im Rohrleitungsbau beginnen mit einer schlechten Passung. Wir stellen Monteure für Prozess-, Versorgungs- und Maschinenraumsysteme, Instrumentenrohrleger für kleine Nennweiten,...',
+    'Outline map of Europe marking the six countries ALPROJECTS Group operates in: Norway, the United Kingdom, the Netherlands, Belgium, Germany and Lithuania':
+        'Umrisskarte Europas mit den sechs Ländern, in denen ALPROJECTS Group tätig ist: Norwegen, Vereinigtes Königreich, Niederlande, Belgien, Deutschland und Litauen',
     '<span class="fp-idx">02</span> <span class="fp-name">United Kingdom</span> <span class="fp-badge">1 location</span> <span class="fp-city">Newcastle</span>':
         '<span class="fp-idx">02</span> <span class="fp-name">Vereinigtes Königreich</span> <span class="fp-badge">1 Standort</span> <span class="fp-city">Newcastle</span>',
     'Every hour a unit stays down has a price. Our crews mobilise at short notice for turnarounds, shutdowns and breakdowns, and they carry welding, fitting...':
@@ -1181,12 +1179,12 @@ S = {
         'Eine Produktionslinie zu verlagern ist zuerst ein Terminproblem, dann ein Hebeproblem. Wir demontieren, verlagern, montieren neu und richten aus, in laufender Anlage oder...',
     'Quality is what you can prove afterwards. We inspect piping and steel structures and leave documentation that holds up when the client, the surveyor or...':
         'Qualität ist das, was sich hinterher belegen lässt. Wir prüfen Rohrleitungen und Stahlbau und hinterlassen eine Dokumentation, die standhält, wenn Kunde, Besichtiger oder...',
+    'Who we are, where we operate, the sectors we serve and the standards we are certified to. Includes our footprint across six countries and selected clients.':
+        'Wer wir sind, wo wir tätig sind, welche Branchen wir bedienen und nach welchen Normen wir zertifiziert sind. Mit unserer Präsenz in sechs Ländern und ausgewählten Kunden.',
     '<span class="fp-idx">01</span> <span class="fp-name">Norway</span> <span class="fp-badge">2 locations</span> <span class="fp-city">Ålesund · Orkanger</span>':
         '<span class="fp-idx">01</span> <span class="fp-name">Norwegen</span> <span class="fp-badge">2 Standorte</span> <span class="fp-city">Ålesund · Orkanger</span>',
     'I agree that ALPROJECTS may store these details to consider me for current and future roles, as described in the <a href="/privacy.html">privacy policy</a>.':
         'Ich bin damit einverstanden, dass ALPROJECTS diese Angaben speichert, um mich für aktuelle und künftige Stellen zu berücksichtigen, wie in der <a href="/privacy.html">Datenschutzerklärung</a> beschrieben.',
-    'Who we are, where we operate, the sectors we serve and the standards we are certified to. Includes our footprint across five countries and selected clients.':
-        'Wer wir sind, wo wir tätig sind, welche Branchen wir bedienen und nach welchen Normen wir zertifiziert sind. Mit unserer Präsenz in fünf Ländern und ausgewählten Kunden.',
     'Repair work is decided in days, not months. We take steel renewal, piping replacement and mechanical repairs, to class and to the owner&rsquo;s requirements.':
         'Über Reparaturen wird in Tagen entschieden, nicht in Monaten. Wir übernehmen Stahlerneuerung, Rohrleitungstausch und mechanische Instandsetzung, nach Klassevorgaben und Anforderungen des Reeders.',
     'Scaffolding costs more in downtime than in steel. Certified technicians reach the same place on rope, inspect it and repair it while the plant keeps running.':
@@ -1207,8 +1205,6 @@ S = {
         '<span class="kp-num">03</span> <span class="kp-name">Offshore-Windpark Ostwind</span> <span class="kp-scope">Kabelmonteure, Kabelhelfer und Unterstützung bei der Hebetechnik.</span>',
     'Consistency across borders is a documentation problem as much as a fabrication one — which is where certified personnel and a single quality system earn their place.':
         'Gleichbleibende Qualität über Ländergrenzen hinweg ist ebenso eine Frage der Dokumentation wie der Fertigung — genau dort zahlen sich zertifiziertes Personal und ein einheitliches Qualitätssystem aus.',
-    'ALPROJECTS GROUP <span>&middot;</span> NORWAY <span>&middot;</span> UK <span>&middot;</span> NETHERLANDS <span>&middot;</span> GERMANY <span>&middot;</span> LITHUANIA':
-        'ALPROJECTS GROUP <span>&middot;</span> NORWEGEN <span>&middot;</span> UK <span>&middot;</span> NIEDERLANDE <span>&middot;</span> DEUTSCHLAND <span>&middot;</span> LITAUEN',
     'We perform NDT inspections of welds, materials and structures without interrupting operations. Defects are identified at early stages to ensure safety and compliance.':
         'Wir führen ZfP an Schweißnähten, Werkstoffen und Konstruktionen durch, ohne den Betrieb zu unterbrechen. Fehler werden früh erkannt, um Sicherheit und Konformität zu gewährleisten.',
     '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
@@ -1261,6 +1257,8 @@ S = {
         'Unser Team montiert Maschinenraumsysteme auf Schiffen im Bau: Seewasser-, Bilge-, Ballast-, Kraftstoff- und Versorgungsleitungen von kleinen Nennweiten bis DN200 rund um die Hauptmaschinenfundamente.',
     '<strong>Manifolds, sea chests, tank connections.</strong> Gate valves, strainers and remote operated units set out and aligned on the tank top. Flange faces stay capped until the system is closed.':
         '<strong>Verteiler, Seekästen, Tankanschlüsse.</strong> Absperrschieber, Schmutzfänger und fernbetätigte Armaturen werden auf der Tankdecke ausgelegt und ausgerichtet. Flanschflächen bleiben verschlossen, bis das System geschlossen ist.',
+    'ALPROJECTS GROUP <span>&middot;</span> NORWAY <span>&middot;</span> UK <span>&middot;</span> NETHERLANDS <span>&middot;</span> BELGIUM <span>&middot;</span> GERMANY <span>&middot;</span> LITHUANIA':
+        'ALPROJECTS GROUP <span>&middot;</span> NORWEGEN <span>&middot;</span> UK <span>&middot;</span> NIEDERLANDE <span>&middot;</span> BELGIEN <span>&middot;</span> DEUTSCHLAND <span>&middot;</span> LITAUEN',
     'The certificate recognises companies with a high credit score and a proven record of financial stability. It is issued by Creditinfo Group and was awarded on 23 June 2026 for the 2025–2026 period.':
         'Das Zertifikat zeichnet Unternehmen mit hoher Bonität und nachgewiesener finanzieller Stabilität aus. Es wird von der Creditinfo Group ausgestellt und wurde am 23. Juni 2026 für den Zeitraum 2025–2026 verliehen.',
     '<strong>Drawn first, then built.</strong> Isometrics are checked before anything is cut. Spools are prefabricated in the shop, fitted on board and hung so the line can move without loading the welds.':
@@ -1315,8 +1313,8 @@ S = {
         'Die meisten Verzögerungen im Rohrleitungsbau beginnen mit einer schlechten Passung. Wir stellen Monteure für Prozess-, Versorgungs- und Maschinenraumsysteme, Instrumentenrohrleger für kleine Nennweiten und Werkstattteams, die Spools direkt nach Isometrien fertigen. Die Maße werden geprüft, bevor der Schweißer kommt, nicht danach.',
     'Under the GDPR you may request access to your data, correction, erasure, restriction of processing, portability, and you may object to processing based on legitimate interest. Write to <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> and we will respond within one month.':
         'Nach der DSGVO können Sie Auskunft über Ihre Daten, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit verlangen sowie einer auf berechtigtem Interesse beruhenden Verarbeitung widersprechen. Schreiben Sie an <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>; wir antworten innerhalb eines Monats.',
-    'Headquartered in Klaipėda, Lithuania, with active project bases supporting clients in five countries. Offices in <strong>Lithuania</strong>, <strong>Poland</strong>, <strong>Germany</strong> and <strong>Norway</strong> sit close to our clients&rsquo; yards, ports and offshore terminals.':
-        'Hauptsitz in Klaipėda, Litauen, mit aktiven Projektstandorten für Kunden in fünf Ländern. Unsere Büros in <strong>Litauen</strong>, <strong>Polen</strong>, <strong>Deutschland</strong> und <strong>Norwegen</strong> liegen nahe an den Werften, Häfen und Offshore-Terminals unserer Kunden.',
+    'Headquartered in Klaipėda, Lithuania, with active project bases supporting clients in six countries. Offices in <strong>Lithuania</strong>, <strong>Poland</strong>, <strong>Germany</strong> and <strong>Norway</strong> sit close to our clients&rsquo; yards, ports and offshore terminals.':
+        'Hauptsitz in Klaipėda, Litauen, mit aktiven Projektstandorten für Kunden in sechs Ländern. Unsere Büros in <strong>Litauen</strong>, <strong>Polen</strong>, <strong>Deutschland</strong> und <strong>Norwegen</strong> liegen nahe an den Werften, Häfen und Offshore-Terminals unserer Kunden.',
     'Send us the scope or the drawings and we will come back with a price and crew dates. The fastest route to a useful answer is the scope, the location, the standards that apply and the window you are working to. For personnel requests, tell us the disciplines, certifications and headcount.':
         'Senden Sie uns den Leistungsumfang oder die Zeichnungen und wir melden uns mit Preis und Einsatzterminen. Am schnellsten zu einer brauchbaren Antwort führen: Umfang, Ort, geltende Normen und Ihr Zeitfenster. Bei Personalanfragen nennen Sie uns Gewerke, Qualifikationen und Anzahl.',
     'Fuel handling infrastructure and wind energy support. Our <a href="/news/fuel-loading-terminal-completed.html">fuel loading terminal scope</a> ran from September 2025 to April 2026 with twelve specialists and over 11,000 hours on site — a useful figure for anyone planning work of that size.':

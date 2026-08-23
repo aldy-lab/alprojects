@@ -381,7 +381,7 @@ CAREERS = """
       certified and mostly on site.</p>
       <div class="kpis">
         <div class="kpi"><b>30</b><span>Open positions</span></div>
-        <div class="kpi"><b>5</b><span>Countries</span></div>
+        <div class="kpi"><b>6</b><span>Countries</span></div>
         <div class="kpi"><b>3</b><span>Working days to reply</span></div>
         <div class="kpi"><b>300</b><span>Specialists on our roster</span></div>
       </div>
