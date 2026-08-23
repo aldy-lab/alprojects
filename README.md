@@ -417,6 +417,32 @@ Fixing it needs fresh exports:
 Already at or above retina, leave alone: all five team photos, `news-2`,
 `news-3`, `photo-welding`.
 
+## Careers form
+
+Rebuilt from the client's mock in `02_Makety/careers-page.html`. Four steps,
+chip pickers for discipline / certificates / rotation / countries, six required
+fields, and a GDPR consent naming a 24-month retention that `privacy.html`
+section 3a now actually states.
+
+**File upload is wired but switched off, and that is deliberate.** GitHub Pages
+cannot receive a file. With `CAREERS_ENDPOINT` empty, step 04 tells the
+applicant where to send documents; set the endpoint and `js/main.js` builds a
+real drop zone and posts the whole form as `multipart/form-data` with the files
+attached. A drop zone with nothing behind it would take a welder's CV and drop
+it on the floor, which is worse than the page saying plainly where to send it.
+
+Verified with a stubbed endpoint: `POST multipart/form-data`, all eleven fields
+plus both attachments, success message, form and chips reset.
+
+To switch it on you need a form service that accepts file uploads — Formspree
+(paid), Basin, Netlify Forms, or a small serverless function. **This is the one
+hosting decision left on this site.**
+
+The honeypot field is positioned off-screen rather than `display:none`, so a
+bot that filters on `display` still fills it in. Submissions with it filled are
+dropped silently.
+
+
 ## Languages
 
 English at the root; French, German and Italian each get their own directory

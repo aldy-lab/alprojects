@@ -1474,9 +1474,11 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--muted);
 }
 .apply-form label .opt { text-transform: none; letter-spacing: 0; color: var(--muted-2); }
-.apply-form input[type="text"],
-.apply-form input[type="email"],
-.apply-form input[type="tel"],
+/* input[type=date] was added with the careers rebuild and missed this list, so
+   it inherited 13.3px and iOS Safari zoomed the page whenever it was focused --
+   the one thing the 16px floor exists to prevent. Selecting on :not() instead
+   of naming each type means the next input added cannot repeat it. */
+.apply-form input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
 .apply-form select,
 .apply-form textarea {
   width: 100%;
@@ -1484,8 +1486,14 @@ button { font-family: inherit; cursor: pointer; }
   border: 1px solid var(--line-strong);
   color: var(--text);
   font-family: inherit;
-  font-size: var(--text-m);
-  padding: 12px 14px;
+  /* 16px HERE, not in a media query. It used to be 13px with a mobile rule
+     bumping it to 16 -- and that rule carried the note "matches the desktop
+     rule's specificity, or it loses", which is a warning that it was one
+     selector change away from breaking. It then did: input[type=date] arrived
+     with the careers rebuild, was in neither list, and iOS zoomed on it.
+     One rule, one size, no specificity race. */
+  font-size: 16px;
+  padding: 15px 14px;
   border-radius: 2px;
   transition: border-color var(--dur-1) var(--ease);
 }
@@ -1511,7 +1519,10 @@ button { font-family: inherit; cursor: pointer; }
   align-items: flex-start;
   gap: 12px;
 }
-.apply-form .field-check input { width: 20px; height: 20px; margin-top: 2px; flex: none; accent-color: var(--accent); cursor: pointer; }
+/* 24px, not 20: WCAG 2.2 SC 2.5.8 applies at every width, and a required
+   consent checkbox is a control, not an inline link. A mobile rule already
+   set 24 -- the desktop base had been left at 20. */
+.apply-form .field-check input { width: 24px; height: 24px; margin-top: 1px; flex: none; accent-color: var(--accent); cursor: pointer; }
 .apply-form .field-check label {
   cursor: pointer;
   padding-block: 2px;
@@ -1781,13 +1792,8 @@ html.blueprint input, html.blueprint textarea, html.blueprint select { cursor: p
 @media (max-width: 980px) {
   /* iOS Safari zooms the page when a focused field is under 16px.
      16px here is a functional requirement, not a type choice. */
-  .apply-form input[type="text"],
-  .apply-form input[type="email"],
-  .apply-form input[type="tel"],
-  .apply-form select,
-  .apply-form textarea,
   .newsletter input[type="email"] {
-    font-size: 16px;   /* matches the desktop rule's specificity, or it loses */
+    font-size: 16px;   /* the apply form now carries 16px in its base rule */
   }
 
   /* comfortable touch targets (Apple HIG: 44px) */
@@ -4005,3 +4011,189 @@ body .calendly-overlay .calendly-popup {
 }
 .footer-bottom .made-by:hover b,
 .footer-bottom .made-by:focus-visible b { color: var(--white); }
+
+/* ============================================================
+   CAREERS
+   Rebuilt from the client's mock in 02_Makety/careers-page.html.
+   ============================================================ */
+.kpis {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 48px);
+  margin-top: clamp(28px, 3.5vw, 44px);
+  padding-top: clamp(20px, 2.4vw, 28px);
+  border-top: 1px solid var(--line);
+}
+.kpi b {
+  display: block; font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(24px, 2.6vw, 34px); line-height: 1; margin-bottom: 8px;
+  color: var(--white);
+}
+.kpi span {
+  font-size: var(--tag); letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted-2);
+}
+.careers-block { padding-top: clamp(46px, 5vw, 76px); }
+.careers-intro { color: var(--gray-50); max-width: 60ch; margin: 0 0 26px; }
+
+/* ---- the job card ---- */
+.position {
+  display: grid; grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  border: 1px solid rgba(255,255,255,.16);
+  padding: clamp(26px, 3vw, 40px);
+}
+.position-badge {
+  display: inline-block; margin: 0 0 20px; padding: 6px 11px;
+  border: 1px solid rgba(255,255,255,.3);
+  font-size: var(--tag); letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gray-50);
+}
+.position h3 {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(22px, 2.2vw, 30px); line-height: 1.15; margin: 0 0 12px;
+}
+.position-lead { color: var(--gray-50); max-width: 52ch; margin: 0 0 22px; }
+.position-label {
+  font-size: var(--tag); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted-2); margin: 0 0 12px;
+}
+.position-needs { list-style: none; margin: 0 0 26px; padding: 0; }
+.position-needs li {
+  position: relative; padding-left: 20px; margin-bottom: 9px;
+  color: var(--gray-50); font-size: var(--text-s); line-height: 1.55;
+}
+.position-needs li::before {
+  content: ""; position: absolute; left: 0; top: 0.7em;
+  width: 9px; height: 1px; background: rgba(255,255,255,.4);
+}
+.position-specs { align-self: start; }
+.spec { padding: 13px 0; border-top: 1px solid var(--line); }
+.spec:first-child { border-top: 0; padding-top: 0; }
+.spec span {
+  display: block; margin-bottom: 6px;
+  font-size: var(--tag); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted-2);
+}
+.spec b { font-weight: 400; font-size: var(--text-s); color: var(--text); }
+
+/* ---- chips ---- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  min-height: 44px; padding: 11px 15px;
+  background: transparent; border: 1px solid rgba(255,255,255,.18);
+  border-radius: 2px; color: var(--gray-50); cursor: pointer;
+  font-family: inherit; font-size: var(--text-s); line-height: 1.2;
+  transition: color var(--dur-2) ease, border-color var(--dur-2) ease,
+              background-color var(--dur-2) ease;
+}
+.chip:hover { color: var(--white); border-color: rgba(255,255,255,.4); }
+.chip:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.chip[aria-pressed="true"] {
+  color: var(--black); background: var(--white); border-color: var(--white);
+}
+/* 36px is under the 44px the rest of the site keeps to, so the smaller chips
+   get their target back with a pseudo-element instead of visible padding. */
+.chip-sm { min-height: 36px; padding: 8px 12px; font-size: var(--tag); position: relative; }
+.chip-sm::after {
+  content: ""; position: absolute; left: 0; right: 0;
+  top: 50%; height: 44px; transform: translateY(-50%);
+}
+.hint { font-size: var(--tag); color: var(--muted-2); margin: 10px 0 0; }
+
+/* ---- the form ---- */
+.apply-form .step { border: 0; margin: 0 0 clamp(26px, 3vw, 38px); padding: 0; }
+.apply-form legend {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 0 0 18px; margin-bottom: 20px; width: 100%;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display); font-weight: 500;
+  font-size: var(--text-s); letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--white);
+}
+.step-n { color: var(--muted-2); font-size: var(--tag); letter-spacing: 0.2em; }
+.apply-form .label {
+  display: block; margin-bottom: 10px;
+  font-size: var(--tag); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted-2);
+}
+.apply-form .field { margin-bottom: 18px; }
+/* A honeypot must be unreachable, not merely invisible: display:none would be
+   skipped by some bots, so it is taken out of the layout and the tab order. */
+.hp {
+  position: absolute; left: -9999px; width: 1px; height: 1px;
+  overflow: hidden; opacity: 0; pointer-events: none;
+}
+
+/* ---- documents ---- */
+.drop {
+  display: block; width: 100%; padding: 30px 22px; text-align: center;
+  background: rgba(255,255,255,.02); border: 1px dashed rgba(255,255,255,.24);
+  border-radius: 2px; color: var(--gray-50); cursor: pointer;
+  font-family: inherit; transition: border-color var(--dur-2) ease, background-color var(--dur-2) ease;
+}
+.drop:hover, .drop:focus-visible, .drop.is-over {
+  border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.05);
+}
+.drop:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+.drop b { display: block; color: var(--white); font-weight: 500; margin-bottom: 6px; }
+.drop span { display: block; font-size: var(--tag); color: var(--muted-2); }
+.files { list-style: none; margin: 14px 0 0; padding: 0; }
+.files li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; margin-bottom: 6px;
+  border: 1px solid var(--line); font-size: var(--text-s); color: var(--gray-50);
+}
+.files li span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-x {
+  flex: none; width: 28px; height: 28px; padding: 0;
+  background: transparent; border: 1px solid var(--line); border-radius: 2px;
+  color: var(--gray-100); font-size: 16px; line-height: 1; cursor: pointer;
+}
+.file-x:hover { color: var(--white); border-color: rgba(255,255,255,.4); }
+.docs-alt p { color: var(--gray-50); margin: 0 0 8px; }
+.docs-alt a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---- the alternatives panel ---- */
+.apply-alt { margin-top: clamp(26px, 3vw, 38px); padding-top: 22px; border-top: 1px solid var(--line); }
+/* a[href^="tel:"]:not([class*="btn-"]) is (0,2,1) and this was (0,1,1), so the
+   global tap-target rule won and the email and phone links sat on one line
+   reading "info@alprojects.eu Call +370 636 63 744". [href] takes this to
+   (0,2,1) as well, and it is later in the file. */
+.apply-alt a[href] {
+  display: block; padding: 9px 0; color: var(--white);
+  font-size: var(--text-s); text-decoration: underline; text-underline-offset: 4px;
+  text-decoration-color: rgba(255,255,255,.3);
+}
+.apply-alt a[href]:hover { text-decoration-color: currentColor; }
+
+@media (max-width: 900px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .position { grid-template-columns: 1fr; }
+  .position-specs { border-top: 1px solid var(--line); padding-top: 20px; }
+}
+@media (max-width: 520px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
+}
+
+/* The form was a two-column grid of fields. Now that the fields live inside
+   four <fieldset> steps, that grid was laying the STEPS out side by side --
+   "01 Who you are" next to "02 Your trade". The grid moves down a level: the
+   form stacks its steps, and each step is the two-column grid. */
+.apply-form { display: block; }
+.apply-form .step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+}
+.apply-form legend { grid-column: 1 / -1; float: left; }   /* float: Safari ignores grid on legend */
+.apply-form .step > .field-wide,
+.apply-form .step > .field:only-of-type { grid-column: 1 / -1; }
+.apply-form > .field-check,
+.apply-form > .field { margin-top: 18px; }
+#docsStep { display: block; }
+@media (max-width: 700px) {
+  .apply-form .step { grid-template-columns: 1fr; }
+}
+/* The two careers section labels are headings that look like eyebrows -- as
+   <p> they left the job title as an h3 with no h2 above it. */
+h2.eyebrow { font-weight: 400; margin-top: 0; }

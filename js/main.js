@@ -68,7 +68,14 @@
       apply_fail: "Could not send. Please email info@alprojects.eu instead.",
       sub_invalid: "Enter a valid email address to subscribe.",
       sub_fail: "Subscription failed. Email us at info@alprojects.eu.",
-      sub_mail: "Your mail app opened with a pre-filled subscription request."
+      sub_mail: "Your mail app opened with a pre-filled subscription request.",
+      need_name: "Please enter your name.",
+      need_email: "Please enter a valid email address.",
+      need_phone: "Please enter a phone or WhatsApp number.",
+      need_role: "Please choose your discipline.",
+      need_available: "Please say when you are available from.",
+      need_consent: "Please confirm the privacy notice to continue.",
+      apply_mail: "Your mail app opened with the details filled in — attach your CV and send."
     };
     T.fr = {
       cal_open: "Ouvrir le calendrier", cal_loading: "Chargement\u2026",
@@ -82,7 +89,14 @@
       apply_fail: "Envoi impossible. \u00c9crivez-nous \u00e0 info@alprojects.eu.",
       sub_invalid: "Saisissez une adresse e-mail valide pour vous abonner.",
       sub_fail: "\u00c9chec de l\u2019abonnement. \u00c9crivez-nous \u00e0 info@alprojects.eu.",
-      sub_mail: "Votre messagerie s\u2019est ouverte avec une demande d\u2019abonnement pr\u00e9-remplie."
+      sub_mail: "Votre messagerie s\u2019est ouverte avec une demande d\u2019abonnement pr\u00e9-remplie.",
+      need_name: "Veuillez saisir votre nom.",
+      need_email: "Veuillez saisir une adresse e-mail valide.",
+      need_phone: "Veuillez indiquer un numéro de téléphone ou WhatsApp.",
+      need_role: "Veuillez choisir votre métier.",
+      need_available: "Veuillez indiquer votre date de disponibilité.",
+      need_consent: "Veuillez accepter la notice de confidentialité pour continuer.",
+      apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez."
     };
     T.de = {
       cal_open: "Kalender \u00f6ffnen", cal_loading: "Wird geladen\u2026",
@@ -96,7 +110,14 @@
       apply_fail: "Senden nicht m\u00f6glich. Bitte schreiben Sie an info@alprojects.eu.",
       sub_invalid: "Bitte geben Sie eine g\u00fcltige E-Mail-Adresse ein.",
       sub_fail: "Anmeldung fehlgeschlagen. Schreiben Sie an info@alprojects.eu.",
-      sub_mail: "Ihr E-Mail-Programm wurde mit einer vorausgef\u00fcllten Anmeldung ge\u00f6ffnet."
+      sub_mail: "Ihr E-Mail-Programm wurde mit einer vorausgef\u00fcllten Anmeldung ge\u00f6ffnet.",
+      need_name: "Bitte geben Sie Ihren Namen ein.",
+      need_email: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      need_phone: "Bitte geben Sie eine Telefon- oder WhatsApp-Nummer an.",
+      need_role: "Bitte wählen Sie Ihr Gewerk.",
+      need_available: "Bitte geben Sie an, ab wann Sie verfügbar sind.",
+      need_consent: "Bitte bestätigen Sie den Datenschutzhinweis, um fortzufahren.",
+      apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie."
     };
     T.it = {
       cal_open: "Apri il calendario", cal_loading: "Caricamento\u2026",
@@ -110,7 +131,14 @@
       apply_fail: "Invio non riuscito. Scriveteci a info@alprojects.eu.",
       sub_invalid: "Inserisci un indirizzo e-mail valido per iscriverti.",
       sub_fail: "Iscrizione non riuscita. Scriveteci a info@alprojects.eu.",
-      sub_mail: "Il programma di posta si \u00e8 aperto con una richiesta di iscrizione precompilata."
+      sub_mail: "Il programma di posta si \u00e8 aperto con una richiesta di iscrizione precompilata.",
+      need_name: "Inserisci il tuo nome.",
+      need_email: "Inserisci un indirizzo e-mail valido.",
+      need_phone: "Inserisci un numero di telefono o WhatsApp.",
+      need_role: "Seleziona il tuo mestiere.",
+      need_available: "Indica da quando sei disponibile.",
+      need_consent: "Conferma l’informativa sulla privacy per continuare.",
+      apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia."
     };
     return T[LANG] || T.en;
   })();
@@ -912,24 +940,133 @@
   }
 
   /* ---------- careers application form ---------- */
+  /* ---------- careers: chips ----------
+     Toggle buttons instead of free text. The applicant taps rather than types,
+     and what arrives is structured enough to filter on. aria-pressed carries
+     the state: a <button> that only changes class has, to a screen reader,
+     done nothing. */
+  function chipGroup(id, attr, single) {
+    var box = document.getElementById(id);
+    if (!box) return function () { return []; };
+    var btns = [].slice.call(box.querySelectorAll(".chip"));
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var on = b.getAttribute("aria-pressed") === "true";
+        if (single) btns.forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", on ? "false" : "true");
+      });
+    });
+    return function () {
+      return btns.filter(function (b) { return b.getAttribute("aria-pressed") === "true"; })
+                 .map(function (b) { return b.getAttribute(attr); });
+    };
+  }
+
+  var getCerts = chipGroup("certChips", "data-cert");
+  var getRotation = chipGroup("rotChips", "data-rotation", true);
+  var getCountries = chipGroup("ctryChips", "data-country");
+
   var applyForm = document.getElementById("applyForm");
   if (applyForm) {
     var applyNote = document.getElementById("applyNote");
     var roleSelect = document.getElementById("apRole");
 
+    function pickRole(role) {
+      if (!roleSelect) return;
+      Array.prototype.forEach.call(roleSelect.options, function (o) {
+        if (o.value === role || o.text === role) roleSelect.value = o.value || o.text;
+      });
+    }
+
+    /* The discipline chips above the form are a shortcut into it. */
+    var discBox = document.getElementById("discChips");
+    if (discBox) {
+      [].slice.call(discBox.querySelectorAll(".chip")).forEach(function (b) {
+        b.addEventListener("click", function () {
+          [].slice.call(discBox.querySelectorAll(".chip")).forEach(function (x) {
+            x.setAttribute("aria-pressed", x === b ? "true" : "false");
+          });
+          pickRole(b.getAttribute("data-discipline"));
+          var form = document.getElementById("apply");
+          if (form) form.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+          var first = document.getElementById("apName");
+          if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 500);
+        });
+      });
+    }
+
     /* "Apply for this role" preselects that position and moves focus into the form */
     document.querySelectorAll("[data-apply]").forEach(function (a) {
       a.addEventListener("click", function () {
-        var role = a.getAttribute("data-apply");
-        if (roleSelect) {
-          Array.prototype.forEach.call(roleSelect.options, function (o) {
-            if (o.value === role) roleSelect.value = role;
-          });
-        }
+        pickRole(a.getAttribute("data-apply"));
         var first = document.getElementById("apName");
-        if (first) setTimeout(function () { first.focus(); }, 400);
+        if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 400);
       });
     });
+
+    /* ---------- documents ----------
+       The upload control is BUILT ONLY IF there is somewhere to upload to.
+       A static site cannot receive a file; a drop zone with no endpoint behind
+       it would take the CV and drop it on the floor, which is worse than the
+       page saying plainly where to send it. With CAREERS_ENDPOINT set, the
+       whole form posts as multipart and the files ride along. */
+    var picked = [];
+    var docsStep = document.getElementById("docsStep");
+    if (docsStep && CAREERS_ENDPOINT) {
+      var alt = document.getElementById("docsAlt");
+      if (alt) alt.parentNode.removeChild(alt);
+      docsStep.insertAdjacentHTML("beforeend",
+        '<button type="button" class="drop" id="dropZone">' +
+        '<b>Attach your CV and certificates</b>' +
+        '<span>Choose files, or drag them here. PDF, JPG or PNG, up to 10 MB each.</span>' +
+        '</button>' +
+        '<input type="file" id="apFiles" name="files" multiple class="hp" ' +
+        'accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">' +
+        '<ul class="files" id="fileList"></ul>' +
+        '<p class="hint">Photographs of certificates taken with a phone are fine.</p>');
+
+      var dz = document.getElementById("dropZone");
+      var fileInput = document.getElementById("apFiles");
+      var fileList = document.getElementById("fileList");
+      var MAX = 10 * 1024 * 1024;
+
+      function render() {
+        fileList.innerHTML = "";
+        picked.forEach(function (f, i) {
+          var li = document.createElement("li");
+          li.innerHTML = '<span>' + f.name.replace(/[<>&]/g, "") + '</span>' +
+            '<span>' + Math.max(1, Math.round(f.size / 1024)) + ' KB</span>';
+          var rm = document.createElement("button");
+          rm.type = "button"; rm.className = "file-x";
+          rm.setAttribute("aria-label", "Remove " + f.name);
+          rm.textContent = "×";
+          rm.addEventListener("click", function () { picked.splice(i, 1); render(); });
+          li.appendChild(rm);
+          fileList.appendChild(li);
+        });
+      }
+      function take(list) {
+        var over = [];
+        [].slice.call(list).forEach(function (f) {
+          if (f.size > MAX) { over.push(f.name); return; }
+          picked.push(f);
+        });
+        if (over.length) {
+          applyNote.textContent = "Too large (10 MB max): " + over.join(", ");
+          applyNote.classList.add("show", "is-error");
+        }
+        render();
+      }
+      dz.addEventListener("click", function () { fileInput.click(); });
+      fileInput.addEventListener("change", function () { take(fileInput.files); fileInput.value = ""; });
+      ["dragenter", "dragover"].forEach(function (e) {
+        dz.addEventListener(e, function (ev) { ev.preventDefault(); dz.classList.add("is-over"); });
+      });
+      ["dragleave", "drop"].forEach(function (e) {
+        dz.addEventListener(e, function (ev) { ev.preventDefault(); dz.classList.remove("is-over"); });
+      });
+      dz.addEventListener("drop", function (ev) { take(ev.dataTransfer.files); });
+    }
 
     applyForm.addEventListener("submit", function (ev) {
       ev.preventDefault();
@@ -938,8 +1075,13 @@
         name: f.name.value.trim(),
         email: f.email.value.trim(),
         phone: f.phone.value.trim(),
+        country: f.country.value.trim(),
         role: f.role.value,
-        certifications: f.certifications.value.trim(),
+        years: f.years.value,
+        certifications: getCerts().join(", "),
+        available: f.available.value,
+        rotation: getRotation().join(", "),
+        countries: getCountries().join(", "),
         message: f.message.value.trim()
       };
 
@@ -950,45 +1092,55 @@
       }
       applyNote.classList.remove("is-error");
 
-      if (!data.name) return fail("Please enter your name.", f.name);
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-        return fail("Please enter a valid email address.", f.email);
-      if (!data.message) return fail("Please describe your experience and availability.", f.message);
-      if (!f.consent.checked) return fail("Please confirm the privacy notice to continue.", f.consent);
+      /* the honeypot is invisible to a person; anything in it is a bot */
+      if (f.company && f.company.value) return;
+
+      if (!data.name) return fail(TXT.need_name, f.name);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return fail(TXT.need_email, f.email);
+      if (!data.phone) return fail(TXT.need_phone, f.phone);
+      if (!data.role) return fail(TXT.need_role, f.role);
+      if (!data.available) return fail(TXT.need_available, f.available);
+      if (!f.consent.checked) return fail(TXT.need_consent, f.consent);
 
       if (CAREERS_ENDPOINT) {
         applyNote.textContent = TXT.apply_sending;
         applyNote.classList.add("show");
-        fetch(CAREERS_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(data)
-        })
+        var fd = new FormData();
+        Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
+        picked.forEach(function (file) { fd.append("attachment", file, file.name); });
+        fetch(CAREERS_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: fd })
           .then(function (r) {
             if (r.ok) {
               applyNote.textContent = TXT.apply_sent;
+              applyNote.classList.remove("is-error");
               f.reset();
-            } else {
-              fail(TXT.apply_fail);
-            }
+              picked.length = 0;
+              document.querySelectorAll(".apply-form .chip[aria-pressed=true]")
+                .forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+              var fl = document.getElementById("fileList");
+              if (fl) fl.innerHTML = "";
+            } else { fail(TXT.apply_fail); }
           })
-          .catch(function () {
-            fail("Could not send. Please email info@alprojects.eu instead.");
-          });
+          .catch(function () { fail(TXT.apply_fail); });
         return;
       }
 
       /* No endpoint configured: hand off to the applicant's mail client with a
          pre-filled message, so the CV can be attached there. */
+      function line(label, v) { return label + ": " + (v || "—"); }
       var body = [
-        "Position: " + data.role,
-        "Name: " + data.name,
-        "Email: " + data.email,
-        "Phone: " + (data.phone || "—"),
-        "Certifications: " + (data.certifications || "—"),
+        line("Position", data.role),
+        line("Name", data.name),
+        line("Email", data.email),
+        line("Phone", data.phone),
+        line("Country", data.country),
+        line("Experience", data.years),
+        line("Certificates", data.certifications),
+        line("Available from", data.available),
+        line("Rotation", data.rotation),
+        line("Can work in", data.countries),
         "",
-        "Experience and availability:",
-        data.message,
+        data.message || "",
         "",
         "(Please attach your CV and certificates to this email.)"
       ].join("\n");
@@ -996,8 +1148,7 @@
         "mailto:info@alprojects.eu?subject=" +
         encodeURIComponent("Application — " + data.role) +
         "&body=" + encodeURIComponent(body);
-      applyNote.textContent =
-        "Your mail app opened with the details filled in — attach your CV and send.";
+      applyNote.textContent = TXT.apply_mail;
       applyNote.classList.add("show");
     });
   }

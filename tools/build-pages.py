@@ -8,7 +8,7 @@ editing the header or footer in index.html:
 
     python3 tools/build-pages.py
 """
-import datetime, hashlib, io, json as _json, os, re, sys
+import datetime, hashlib, html as _html, io, json as _json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -164,6 +164,10 @@ PRIVACY = """
         <li><strong>Booking a call.</strong> If you open the scheduling calendar on the
         contacts page and book a slot, Calendly receives the name, email address and any
         notes you enter, together with your IP address and time zone.</li>
+        <li><strong>Job applications.</strong> If you send the careers form we receive the
+        details you enter &mdash; name, contact details, discipline, certificates,
+        availability and any notes &mdash; together with any CV or certificate documents
+        you attach.</li>
       </ul>
 
       <h2>3. Third parties that receive data</h2>
@@ -195,16 +199,28 @@ PRIVACY = """
         IP address to any other company.</p>
       -->
 
+      <h2>3a. Recruitment data</h2>
+      <p>Applications are held for <strong>24 months</strong> from the date you send them,
+      so that we can contact you when a project matches your discipline. You can ask us to
+      delete them at any time by writing to
+      <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>, and we will do so without
+      needing a reason.</p>
+      <p>CVs and certificate documents are stored with the application and are seen only by
+      the people resourcing projects. We do not pass them to third parties, and we do not
+      use them for anything other than recruitment.</p>
+
       <h2>4. Legal basis</h2>
       <ul>
-        <li><strong>Consent</strong> (GDPR Art. 6(1)(a)) — newsletter subscription, and
-        loading the scheduling calendar, which happens only when you press the button.
-        You may withdraw it at any time.</li>
+        <li><strong>Consent</strong> (GDPR Art. 6(1)(a)) — newsletter subscription,
+        job applications, and loading the scheduling calendar, which happens only when you
+        press the button. You may withdraw it at any time.</li>
         <li><strong>Legitimate interest</strong> (Art. 6(1)(f)) — responding to enquiries,
         and keeping the site secure and available.</li>
       </ul>
 
       <h2>5. How long we keep it</h2>
+      <p>Job applications, including any CV and certificates, are kept for 24 months from
+      the date you send them, or until you ask us to delete them.</p>
       <p>Newsletter addresses are kept until you unsubscribe or ask us to remove them.
       Business correspondence is kept as long as needed for the enquiry or project and
       any statutory retention period that applies to it. Hosting logs are retained
@@ -240,6 +256,13 @@ POSITIONS = [
          count="30 positions",
          location="Project sites across Europe",
          contract="Project-based",
+         # ⚠️ BLOCKED ON CLIENT. These three are the first thing a rotation
+         # worker looks for, and thirty welders will not be found without a
+         # rate. A row with no value is omitted rather than printed as "to be
+         # confirmed" -- fill these in and the rows appear.
+         rotation="",
+         start="",
+         rate="",
          open=True,
          # --- Google for Jobs fields ---
          posted="2026-07-25",           # keep current; stale posts get demoted
@@ -256,6 +279,54 @@ POSITIONS = [
                 "Working English"]),
 ]
 
+DISCIPLINES = [
+    "Welding (TIG)", "Welding (MIG/MAG)", "Pipe fitting", "Instrument pipe fitting",
+    "Mechanical installation", "Shipbuilding", "Ship repair", "NDT inspection",
+    "Rope access", "Quality control / QA-QC", "Rigging", "Site supervision",
+]
+CERTIFICATES = [
+    "EN ISO 9606 (welder)", "TIG 141", "MIG/MAG 131/135", "IRATA L1", "IRATA L2",
+    "IRATA L3", "VCA / SCC", "NDT VT", "NDT PT/MT", "NDT UT", "GWO",
+    "Medical certificate",
+]
+ROTATIONS = ["4 / 2", "3 / 3", "2 / 2", "6 / 2", "Continuous", "Local, no rotation"]
+WORK_COUNTRIES = ["Norway", "Germany", "Netherlands", "United Kingdom",
+                  "Lithuania", "Denmark", "Belgium", "Poland"]
+EXPERIENCE = ["Less than 2 years", "2 to 5 years", "5 to 10 years", "More than 10 years"]
+
+
+def chips(items, attr, cls="chip"):
+    """A row of toggle buttons.
+
+    aria-pressed rather than a class alone: to a screen reader a <button> that
+    has silently changed class is a button that did nothing.
+    """
+    return "\n".join(
+        '            <button type="button" class="%s" %s="%s" aria-pressed="false">%s</button>'
+        % (cls, attr, _html.escape(v, quote=True), _html.escape(v))
+        for v in items)
+
+
+def spec_rows(p):
+    """The job card's spec column.
+
+    A row whose value is unknown is left out rather than printed as "to be
+    confirmed". The client's mock had four of them in a column of six, and a
+    card that answers nothing a rotation worker asks is worse than a shorter
+    one. Fill the value in POSITIONS and the row appears.
+    """
+    rows = [("Positions", p.get("count")), ("Location", p.get("location")),
+            ("Rotation", p.get("rotation")), ("Start", p.get("start")),
+            ("Contract", p.get("contract")), ("Rate", p.get("rate"))]
+    out = []
+    for label, val in rows:
+        if not val:
+            continue
+        out.append('          <div class="spec"><span>%s</span><b>%s</b></div>'
+                   % (label, val))
+    return "\n".join(out)
+
+
 def positions_html():
     live = [p for p in POSITIONS if p.get("open")]
     if not live:
@@ -267,18 +338,22 @@ def positions_html():
     out = []
     for p in live:
         d = dict(p)
-        d["needs"] = "\n".join("          <li>%s</li>" % n for n in p["needs"])
+        d["needs"] = "\n".join("            <li>%s</li>" % n for n in p["needs"])
+        d["specs"] = spec_rows(p)
         out.append("""      <article class="position" id="{id}">
-        <div class="position-head">
+        <div class="position-main">
+          <p class="position-badge">Hiring now</p>
           <h3>{title}</h3>
-          <p class="position-meta"><span>{count}</span><span>{location}</span><span>{contract}</span></p>
-        </div>
-        <p>{summary}</p>
-        <p class="position-label">What we need</p>
-        <ul>
+          <p class="position-lead">{summary}</p>
+          <p class="position-label">What we need</p>
+          <ul class="position-needs">
 {needs}
-        </ul>
-        <p><a class="btn-bracket" href="#apply" data-apply="{title}">Apply for this role</a></p>
+          </ul>
+          <p><a class="btn-solid" href="#apply" data-apply="{title}">Apply for this role</a></p>
+        </div>
+        <div class="position-specs">
+{specs}
+        </div>
       </article>""".format(**d))
     return "\n".join(out)
 
@@ -288,7 +363,13 @@ def position_options():
     for p in POSITIONS:
         if p.get("open"):
             opts.append('<option value="%s">%s</option>' % (p["title"], p["title"]))
-    return "\n              ".join(opts)
+    return "\n                ".join(opts)
+
+
+def _opts(items, placeholder):
+    out = ['<option value="">%s</option>' % placeholder]
+    out += ['<option>%s</option>' % _html.escape(v) for v in items]
+    return "\n                ".join(out)
 
 
 CAREERS = """
@@ -298,81 +379,147 @@ CAREERS = """
       <p class="page-lead">We deliver mechanical contracting, welding, inspection and access
       services on industrial and offshore projects across Europe. The work is technical,
       certified and mostly on site.</p>
+      <div class="kpis">
+        <div class="kpi"><b>30</b><span>Open positions</span></div>
+        <div class="kpi"><b>5</b><span>Countries</span></div>
+        <div class="kpi"><b>3</b><span>Working days to reply</span></div>
+        <div class="kpi"><b>300</b><span>Specialists on our roster</span></div>
+      </div>
     </div>
 
-    <div class="container prose">
-      <h2>Open positions</h2>
-%s
+    <section class="container careers-block">
+      <h2 class="eyebrow">Open position</h2>
+""" + positions_html() + """
+    </section>
 
-      <h2>We recruit regularly in these disciplines</h2>
-      <p>Even when a role is not advertised, we keep qualified specialists on file and
-      make contact when a project matches. These are the areas our project teams are
-      built from:</p>
-      <ul>
-        <li>Welding services (TIG, MIG/MAG)</li>
-        <li>Pipe fitting and piping prefabrication</li>
-        <li>Mechanical contracting and installation</li>
-        <li>Non-destructive testing (NDT)</li>
-        <li>Rope access services</li>
-        <li>Quality control and QAQC</li>
-        <li>Rigging and technical support</li>
-        <li>Project coordination and site supervision</li>
-      </ul>
-
-      <h2>What matters to us</h2>
-      <ul>
-        <li>Valid certification for your discipline, and the documentation to support it.</li>
-        <li>Willingness to travel &mdash; our projects run in several countries.</li>
-        <li>A serious approach to safety in complex and confined environments.</li>
-        <li>Working English; Lithuanian, Russian or Polish are useful additions.</li>
-      </ul>
-    </div>
+    <section class="container careers-block">
+      <h2 class="eyebrow">We recruit regularly in these disciplines</h2>
+      <p class="careers-intro">Even when a role is not advertised we keep qualified
+      specialists on file and make contact when a project matches. Select your discipline
+      and it goes straight into the form below.</p>
+      <div class="chips" id="discChips">
+""" + chips(DISCIPLINES, "data-discipline") + """
+      </div>
+    </section>
 
     <div class="container" id="apply">
       <div class="apply-panel">
         <div class="apply-intro">
           <p class="eyebrow">Apply</p>
           <h2>Send us your details</h2>
-          <p>Tell us your discipline and certifications. We read every application and
-          reply when a project matches your profile.</p>
-          <p class="apply-note">Attach your CV and certificates to the email that opens
-          when you submit &mdash; we do not accept file uploads through this page.</p>
+          <p>Six fields are required. Everything else helps us match you faster, but you
+          can send the form without it.</p>
+          <p>We read every application and reply within three working days when a project
+          matches your profile.</p>
+          <div class="apply-alt">
+            <p class="eyebrow">Prefer not to fill a form</p>
+            <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp +370 636 63 744</a>
+            <a href="mailto:info@alprojects.eu?subject=Application">info@alprojects.eu</a>
+            <a href="tel:+37063663744">Call +370 636 63 744</a>
+          </div>
         </div>
 
         <form id="applyForm" class="apply-form" novalidate>
-          <div class="field">
-            <label for="apName">Full name</label>
-            <input id="apName" name="name" type="text" required aria-required="true" autocomplete="name">
-          </div>
-          <div class="field">
-            <label for="apEmail">Email</label>
-            <input id="apEmail" name="email" type="email" required aria-required="true" autocomplete="email">
-          </div>
-          <div class="field">
-            <label for="apPhone">Phone <span class="opt">(optional)</span></label>
-            <input id="apPhone" name="phone" type="tel" autocomplete="tel">
-          </div>
-          <div class="field">
-            <label for="apRole">Position</label>
-            <select id="apRole" name="role">
-              %s
-            </select>
-          </div>
-          <div class="field">
-            <label for="apCerts">Certifications <span class="opt">(optional)</span></label>
-            <input id="apCerts" name="certifications" type="text"
-                   placeholder="e.g. TIG 141, IRATA Level 2, VT/PT Level 2">
-          </div>
-          <div class="field field-wide">
-            <label for="apMsg">Experience and availability</label>
-            <textarea id="apMsg" name="message" rows="5" required aria-required="true"
-                      placeholder="Disciplines you work in, years of experience, and when you could start."></textarea>
-          </div>
+          <fieldset class="step">
+            <legend><span class="step-n">01</span> Who you are</legend>
+            <div class="field">
+              <label for="apName">Full name</label>
+              <input id="apName" name="name" type="text" required aria-required="true"
+                     autocomplete="name" placeholder="Name and surname">
+            </div>
+            <div class="field">
+              <label for="apEmail">Email</label>
+              <input id="apEmail" name="email" type="email" required aria-required="true"
+                     autocomplete="email" placeholder="name@email.com">
+            </div>
+            <div class="field">
+              <label for="apPhone">Phone or WhatsApp</label>
+              <input id="apPhone" name="phone" type="tel" required aria-required="true"
+                     autocomplete="tel" placeholder="+370 ...">
+            </div>
+            <div class="field">
+              <label for="apCountry">Country of residence <span class="opt">(optional)</span></label>
+              <input id="apCountry" name="country" type="text" autocomplete="country-name"
+                     placeholder="Lithuania">
+            </div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-n">02</span> Your trade</legend>
+            <div class="field">
+              <label for="apRole">Discipline</label>
+              <select id="apRole" name="role" required aria-required="true">
+                """ + _opts(DISCIPLINES + ["Other"], "Select your discipline") + """
+              </select>
+            </div>
+            <div class="field">
+              <label for="apYears">Years of experience <span class="opt">(optional)</span></label>
+              <select id="apYears" name="years">
+                """ + _opts(EXPERIENCE, "Select") + """
+              </select>
+            </div>
+            <div class="field field-wide">
+              <span class="label" id="certLabel">Certificates you hold
+                <span class="opt">(optional, tap all that apply)</span></span>
+              <div class="chips chips-sm" id="certChips" role="group" aria-labelledby="certLabel">
+""" + chips(CERTIFICATES, "data-cert", "chip chip-sm") + """
+              </div>
+              <p class="hint">Not on the list? Add it in the notes field below.</p>
+            </div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-n">03</span> Availability</legend>
+            <div class="field">
+              <label for="apFrom">Available from</label>
+              <input id="apFrom" name="available" type="date" required aria-required="true">
+            </div>
+            <div class="field">
+              <span class="label" id="rotLabel">Preferred rotation
+                <span class="opt">(optional)</span></span>
+              <div class="chips chips-sm" id="rotChips" role="group" aria-labelledby="rotLabel">
+""" + chips(ROTATIONS, "data-rotation", "chip chip-sm") + """
+              </div>
+            </div>
+            <div class="field field-wide">
+              <span class="label" id="ctryLabel">Countries you can work in
+                <span class="opt">(optional)</span></span>
+              <div class="chips chips-sm" id="ctryChips" role="group" aria-labelledby="ctryLabel">
+""" + chips(WORK_COUNTRIES, "data-country", "chip chip-sm") + """
+              </div>
+            </div>
+            <div class="field field-wide">
+              <label for="apMsg">Anything else <span class="opt">(optional)</span></label>
+              <textarea id="apMsg" name="message" rows="4"
+                        placeholder="Certificate numbers and expiry dates, projects you have worked on, when you could start."></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" id="docsStep">
+            <legend><span class="step-n">04</span> Your documents</legend>
+            <!-- Replaced at runtime by js/main.js. With CAREERS_ENDPOINT set it
+                 becomes a real upload; without one it stays as written, because a
+                 drop zone that quietly discards the file is worse than saying so. -->
+            <div class="docs-alt" id="docsAlt">
+              <p>Send your CV and certificates to
+              <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a>
+              or by <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>,
+              with the same name you give above.</p>
+              <p class="hint">Photographs of certificates taken with a phone are fine.</p>
+            </div>
+          </fieldset>
+
           <div class="field field-wide field-check">
             <input id="apConsent" name="consent" type="checkbox" required aria-required="true">
-            <label for="apConsent">I agree that ALPROJECTS may store these details to
-            consider me for current and future roles, as described in the
+            <label for="apConsent">I agree that ALPROJECTS, UAB stores my details and
+            documents for recruitment purposes for 24 months. I can ask for them to be
+            deleted at any time by writing to info@alprojects.eu. See the
             <a href="/privacy.html">privacy policy</a>.</label>
+          </div>
+          <!-- Spam trap: a real applicant never sees this, a bot fills it in. -->
+          <div class="hp" aria-hidden="true">
+            <label for="apCompany">Company</label>
+            <input id="apCompany" name="company" type="text" tabindex="-1" autocomplete="off">
           </div>
           <div class="field field-wide">
             <button type="submit" class="btn-solid">Send application</button>
@@ -381,7 +528,7 @@ CAREERS = """
         </form>
       </div>
     </div>
-""" % (positions_html(), position_options())
+"""
 
 # ============================================================
 # NEWS ARTICLES

@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=64a950d9">
+  <link rel="stylesheet" href="/css/style.css?v=32f54ff6">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -163,90 +163,204 @@
       <p class="eyebrow">Carrières</p>
       <h1 class="page-title">Travailler avec ALPROJECTS</h1>
       <p class="page-lead">Nous réalisons des travaux de montage mécanique, de soudage, d’inspection et d’accès sur des projets industriels et offshore partout en Europe. Un travail technique, certifié et majoritairement sur chantier.</p>
+      <div class="kpis">
+        <div class="kpi"><b>30</b><span>Postes ouverts</span></div>
+        <div class="kpi"><b>5</b><span>Pays</span></div>
+        <div class="kpi"><b>3</b><span>Jours ouvrés pour répondre</span></div>
+        <div class="kpi"><b>300</b><span>Spécialistes dans nos effectifs</span></div>
+      </div>
     </div>
 
-    <div class="container prose">
-      <h2>Postes ouverts</h2>
+    <section class="container careers-block">
+      <h2 class="eyebrow">Poste ouvert</h2>
       <article class="position" id="tig-welder">
-        <div class="position-head">
+        <div class="position-main">
+          <p class="position-badge">Recrutement en cours</p>
           <h3>Soudeur TIG certifié</h3>
-          <p class="position-meta"><span>30 postes</span><span>Chantiers en Europe</span><span>Au projet</span></p>
+          <p class="position-lead">Nous recrutons trente soudeurs TIG certifiés pour des périmètres de projet à venir. C’est le facteur limitant de notre carnet de commandes actuel : les candidatures sont donc traitées rapidement.</p>
+          <p class="position-label">Ce que nous recherchons</p>
+          <ul class="position-needs">
+            <li>Certification de soudage TIG en cours de validité, avec les justificatifs</li>
+            <li>Disponibilité pour se déplacer et travailler sur chantier dans plusieurs pays</li>
+            <li>Expérience du soudage de tuyauteries et de structures métalliques</li>
+            <li>Anglais professionnel</li>
+          </ul>
+          <p><a class="btn-solid" href="#apply" data-apply="Certified TIG Welder">Postuler à ce poste</a></p>
         </div>
-        <p>Nous recrutons trente soudeurs TIG certifiés pour des périmètres de projet à venir. C’est le facteur limitant de notre carnet de commandes actuel : les candidatures sont donc traitées rapidement.</p>
-        <p class="position-label">Ce que nous recherchons</p>
-        <ul>
-          <li>Certification de soudage TIG en cours de validité, avec les justificatifs</li>
-          <li>Disponibilité pour se déplacer et travailler sur chantier dans plusieurs pays</li>
-          <li>Expérience du soudage de tuyauteries et de structures métalliques</li>
-          <li>Anglais professionnel</li>
-        </ul>
-        <p><a class="btn-bracket" href="#apply" data-apply="Certified TIG Welder">Postuler à ce poste</a></p>
+        <div class="position-specs">
+          <div class="spec"><span>Postes</span><b>30 postes</b></div>
+          <div class="spec"><span>Lieu</span><b>Chantiers en Europe</b></div>
+          <div class="spec"><span>Contrat</span><b>Au projet</b></div>
+        </div>
       </article>
+    </section>
 
-      <h2>Nous recrutons régulièrement dans ces métiers</h2>
-      <p>Même en l’absence d’annonce, nous conservons les profils qualifiés et reprenons contact dès qu’un projet correspond. Voici les métiers qui composent nos équipes :</p>
-      <ul>
-        <li>Soudage (TIG, MIG/MAG)</li>
-        <li>Tuyauterie et préfabrication de tuyauterie</li>
-        <li>Montage et installation mécanique</li>
-        <li>Contrôle non destructif (CND)</li>
-        <li>Travaux sur cordes</li>
-        <li>Contrôle qualité et QA-QC</li>
-        <li>Levage et assistance technique</li>
-        <li>Coordination de projet et supervision de chantier</li>
-      </ul>
-
-      <h2>Ce qui compte pour nous</h2>
-      <ul>
-        <li>Une certification en cours de validité pour votre métier, et les justificatifs correspondants.</li>
-        <li>Disponibilité pour se déplacer &mdash; nos projets se déroulent dans plusieurs pays.</li>
-        <li>Une approche rigoureuse de la sécurité en milieu complexe et confiné.</li>
-        <li>Anglais professionnel ; le lituanien, le russe ou le polonais sont un plus.</li>
-      </ul>
-    </div>
+    <section class="container careers-block">
+      <h2 class="eyebrow">Nous recrutons régulièrement dans ces métiers</h2>
+      <p class="careers-intro">Même en l’absence d’annonce, nous conservons les profils qualifiés et reprenons contact dès qu’un projet correspond. Sélectionnez votre métier : il est repris directement dans le formulaire ci-dessous.</p>
+      <div class="chips" id="discChips">
+            <button type="button" class="chip" data-discipline="Welding (TIG)" aria-pressed="false">Soudage (TIG)</button>
+            <button type="button" class="chip" data-discipline="Welding (MIG/MAG)" aria-pressed="false">Soudage (MIG/MAG)</button>
+            <button type="button" class="chip" data-discipline="Pipe fitting" aria-pressed="false">Tuyauterie</button>
+            <button type="button" class="chip" data-discipline="Instrument pipe fitting" aria-pressed="false">Tuyauterie instrumentation</button>
+            <button type="button" class="chip" data-discipline="Mechanical installation" aria-pressed="false">Montage mécanique</button>
+            <button type="button" class="chip" data-discipline="Shipbuilding" aria-pressed="false">Construction navale</button>
+            <button type="button" class="chip" data-discipline="Ship repair" aria-pressed="false">Réparation navale</button>
+            <button type="button" class="chip" data-discipline="NDT inspection" aria-pressed="false">Contrôle non destructif</button>
+            <button type="button" class="chip" data-discipline="Rope access" aria-pressed="false">Travaux sur cordes</button>
+            <button type="button" class="chip" data-discipline="Quality control / QA-QC" aria-pressed="false">Contrôle qualité / QA-QC</button>
+            <button type="button" class="chip" data-discipline="Rigging" aria-pressed="false">Levage</button>
+            <button type="button" class="chip" data-discipline="Site supervision" aria-pressed="false">Supervision de chantier</button>
+      </div>
+    </section>
 
     <div class="container" id="apply">
       <div class="apply-panel">
         <div class="apply-intro">
           <p class="eyebrow">Postuler</p>
           <h2>Envoyez-nous votre profil</h2>
-          <p>Indiquez-nous votre métier et vos certifications. Nous lisons chaque candidature et revenons vers vous dès qu’un projet correspond à votre profil.</p>
-          <p class="apply-note">Joignez votre CV et vos certificats à l’e-mail qui s’ouvre lors de l’envoi &mdash; cette page n’accepte pas le dépôt de fichiers.</p>
+          <p>Six champs sont obligatoires. Le reste nous aide à vous positionner plus vite, mais vous pouvez envoyer le formulaire sans.</p>
+          <p>Nous lisons chaque candidature et répondons sous trois jours ouvrés lorsqu’un projet correspond à votre profil.</p>
+          <div class="apply-alt">
+            <p class="eyebrow">Vous préférez ne pas remplir de formulaire</p>
+            <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp +370 636 63 744</a>
+            <a href="mailto:info@alprojects.eu?subject=Application">info@alprojects.eu</a>
+            <a href="tel:+37063663744">Appeler le +370 636 63 744</a>
+          </div>
         </div>
 
         <form id="applyForm" class="apply-form" novalidate>
-          <div class="field">
-            <label for="apName">Nom complet</label>
-            <input id="apName" name="name" type="text" required aria-required="true" autocomplete="name">
-          </div>
-          <div class="field">
-            <label for="apEmail">E-mail</label>
-            <input id="apEmail" name="email" type="email" required aria-required="true" autocomplete="email">
-          </div>
-          <div class="field">
-            <label for="apPhone">Téléphone <span class="opt">(facultatif)</span></label>
-            <input id="apPhone" name="phone" type="tel" autocomplete="tel">
-          </div>
-          <div class="field">
-            <label for="apRole">Poste</label>
-            <select id="apRole" name="role">
-              <option value="Open application">Candidature spontanée</option>
-              <option value="Certified TIG Welder">Soudeur TIG certifié</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="apCerts">Certifications <span class="opt">(facultatif)</span></label>
-            <input id="apCerts" name="certifications" type="text"
-                   placeholder="ex. TIG 141, IRATA niveau 2, VT/PT niveau 2">
-          </div>
-          <div class="field field-wide">
-            <label for="apMsg">Expérience et disponibilité</label>
-            <textarea id="apMsg" name="message" rows="5" required aria-required="true"
-                      placeholder="Vos métiers, vos années d’expérience et votre date de disponibilité."></textarea>
-          </div>
+          <fieldset class="step">
+            <legend><span class="step-n">01</span> Qui vous êtes</legend>
+            <div class="field">
+              <label for="apName">Nom complet</label>
+              <input id="apName" name="name" type="text" required aria-required="true"
+                     autocomplete="name" placeholder="Nom et prénom">
+            </div>
+            <div class="field">
+              <label for="apEmail">E-mail</label>
+              <input id="apEmail" name="email" type="email" required aria-required="true"
+                     autocomplete="email" placeholder="name@email.com">
+            </div>
+            <div class="field">
+              <label for="apPhone">Téléphone ou WhatsApp</label>
+              <input id="apPhone" name="phone" type="tel" required aria-required="true"
+                     autocomplete="tel" placeholder="+370 ...">
+            </div>
+            <div class="field">
+              <label for="apCountry">Pays de résidence <span class="opt">(facultatif)</span></label>
+              <input id="apCountry" name="country" type="text" autocomplete="country-name"
+                     placeholder="Lituanie">
+            </div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-n">02</span> Votre métier</legend>
+            <div class="field">
+              <label for="apRole">Métier</label>
+              <select id="apRole" name="role" required aria-required="true">
+                <option value="">Sélectionnez votre métier</option>
+                <option>Soudage (TIG)</option>
+                <option>Soudage (MIG/MAG)</option>
+                <option>Tuyauterie</option>
+                <option>Tuyauterie instrumentation</option>
+                <option>Montage mécanique</option>
+                <option>Construction navale</option>
+                <option>Réparation navale</option>
+                <option>Contrôle non destructif</option>
+                <option>Travaux sur cordes</option>
+                <option>Contrôle qualité / QA-QC</option>
+                <option>Levage</option>
+                <option>Supervision de chantier</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="apYears">Années d’expérience <span class="opt">(facultatif)</span></label>
+              <select id="apYears" name="years">
+                <option value="">Sélectionner</option>
+                <option>Moins de 2 ans</option>
+                <option>2 à 5 ans</option>
+                <option>5 à 10 ans</option>
+                <option>Plus de 10 ans</option>
+              </select>
+            </div>
+            <div class="field field-wide">
+              <span class="label" id="certLabel">Certifications que vous détenez <span class="opt">(facultatif, sélectionnez tout ce qui s’applique)</span></span>
+              <div class="chips chips-sm" id="certChips" role="group" aria-labelledby="certLabel">
+            <button type="button" class="chip chip-sm" data-cert="EN ISO 9606 (welder)" aria-pressed="false">EN ISO 9606 (soudeur)</button>
+            <button type="button" class="chip chip-sm" data-cert="TIG 141" aria-pressed="false">TIG 141</button>
+            <button type="button" class="chip chip-sm" data-cert="MIG/MAG 131/135" aria-pressed="false">MIG/MAG 131/135</button>
+            <button type="button" class="chip chip-sm" data-cert="IRATA L1" aria-pressed="false">IRATA N1</button>
+            <button type="button" class="chip chip-sm" data-cert="IRATA L2" aria-pressed="false">IRATA N2</button>
+            <button type="button" class="chip chip-sm" data-cert="IRATA L3" aria-pressed="false">IRATA N3</button>
+            <button type="button" class="chip chip-sm" data-cert="VCA / SCC" aria-pressed="false">VCA / SCC</button>
+            <button type="button" class="chip chip-sm" data-cert="NDT VT" aria-pressed="false">CND VT</button>
+            <button type="button" class="chip chip-sm" data-cert="NDT PT/MT" aria-pressed="false">CND PT/MT</button>
+            <button type="button" class="chip chip-sm" data-cert="NDT UT" aria-pressed="false">CND UT</button>
+            <button type="button" class="chip chip-sm" data-cert="GWO" aria-pressed="false">GWO</button>
+            <button type="button" class="chip chip-sm" data-cert="Medical certificate" aria-pressed="false">Certificat médical</button>
+              </div>
+              <p class="hint">Absent de la liste ? Indiquez-le dans le champ de remarques ci-dessous.</p>
+            </div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-n">03</span> Disponibilité</legend>
+            <div class="field">
+              <label for="apFrom">Disponible à partir du</label>
+              <input id="apFrom" name="available" type="date" required aria-required="true">
+            </div>
+            <div class="field">
+              <span class="label" id="rotLabel">Rotation souhaitée <span class="opt">(facultatif)</span></span>
+              <div class="chips chips-sm" id="rotChips" role="group" aria-labelledby="rotLabel">
+            <button type="button" class="chip chip-sm" data-rotation="4 / 2" aria-pressed="false">4 / 2</button>
+            <button type="button" class="chip chip-sm" data-rotation="3 / 3" aria-pressed="false">3 / 3</button>
+            <button type="button" class="chip chip-sm" data-rotation="2 / 2" aria-pressed="false">2 / 2</button>
+            <button type="button" class="chip chip-sm" data-rotation="6 / 2" aria-pressed="false">6 / 2</button>
+            <button type="button" class="chip chip-sm" data-rotation="Continuous" aria-pressed="false">En continu</button>
+            <button type="button" class="chip chip-sm" data-rotation="Local, no rotation" aria-pressed="false">Local, sans rotation</button>
+              </div>
+            </div>
+            <div class="field field-wide">
+              <span class="label" id="ctryLabel">Pays où vous pouvez travailler <span class="opt">(facultatif)</span></span>
+              <div class="chips chips-sm" id="ctryChips" role="group" aria-labelledby="ctryLabel">
+            <button type="button" class="chip chip-sm" data-country="Norway" aria-pressed="false">Norvège</button>
+            <button type="button" class="chip chip-sm" data-country="Germany" aria-pressed="false">Allemagne</button>
+            <button type="button" class="chip chip-sm" data-country="Netherlands" aria-pressed="false">Pays-Bas</button>
+            <button type="button" class="chip chip-sm" data-country="United Kingdom" aria-pressed="false">Royaume-Uni</button>
+            <button type="button" class="chip chip-sm" data-country="Lithuania" aria-pressed="false">Lituanie</button>
+            <button type="button" class="chip chip-sm" data-country="Denmark" aria-pressed="false">Danemark</button>
+            <button type="button" class="chip chip-sm" data-country="Belgium" aria-pressed="false">Belgique</button>
+            <button type="button" class="chip chip-sm" data-country="Poland" aria-pressed="false">Pologne</button>
+              </div>
+            </div>
+            <div class="field field-wide">
+              <label for="apMsg">Autre chose <span class="opt">(facultatif)</span></label>
+              <textarea id="apMsg" name="message" rows="4"
+                        placeholder="Numéros et dates de validité des certifications, projets sur lesquels vous avez travaillé, date de disponibilité."></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" id="docsStep">
+            <legend><span class="step-n">04</span> Vos documents</legend>
+            <!-- Replaced at runtime by js/main.js. With CAREERS_ENDPOINT set it
+                 becomes a real upload; without one it stays as written, because a
+                 drop zone that quietly discards the file is worse than saying so. -->
+            <div class="docs-alt" id="docsAlt">
+              <p>Envoyez votre CV et vos certificats à <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> ou par <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>, sous le même nom que celui indiqué ci-dessus.</p>
+              <p class="hint">Des photos de certificats prises au téléphone conviennent parfaitement.</p>
+            </div>
+          </fieldset>
+
           <div class="field field-wide field-check">
             <input id="apConsent" name="consent" type="checkbox" required aria-required="true">
-            <label for="apConsent">J’accepte qu’ALPROJECTS conserve ces informations afin d’étudier ma candidature pour les postes actuels et futurs, dans les conditions décrites dans la <a href="/fr/privacy.html">politique de confidentialité</a>.</label>
+            <label for="apConsent">J’accepte qu’ALPROJECTS, UAB conserve mes informations et mes documents à des fins de recrutement pendant 24 mois. Je peux en demander la suppression à tout moment en écrivant à info@alprojects.eu. Voir la <a href="/fr/privacy.html">politique de confidentialité</a>.</label>
+          </div>
+          <!-- Spam trap: a real applicant never sees this, a bot fills it in. -->
+          <div class="hp" aria-hidden="true">
+            <label for="apCompany">Entreprise</label>
+            <input id="apCompany" name="company" type="text" tabindex="-1" autocomplete="off">
           </div>
           <div class="field field-wide">
             <button type="submit" class="btn-solid">Envoyer la candidature</button>
@@ -390,6 +504,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=20daf19b"></script>
+  <script src="/js/main.js?v=5d7f7a13"></script>
 </body>
 </html>

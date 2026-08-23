@@ -22,6 +22,8 @@ WARNING: Have a native Italian speaker in the market review the services,
 """
 
 S = {
+    'GWO':
+        'GWO',
     'Home':
         'Home',
     'News':
@@ -34,26 +36,42 @@ S = {
         'E-mail',
     'Legal':
         'Note legali',
+    'Other':
+        'Altro',
     'Phone':
         'Telefono',
     'Scale':
         'Dimensione',
     'Marine':
         'Navale',
+    'NDT UT':
+        'CND UT',
+    'NDT VT':
+        'CND VT',
     'Norway':
         'Norvegia',
+    'Poland':
+        'Polonia',
     'Seafox':
         'Seafox',
     'Sector':
         'Settore',
+    'Select':
+        'Seleziona',
+    'Belgium':
+        'Belgio',
     'Careers':
         'Lavora con noi',
     'Company':
         'Azienda',
+    'Denmark':
+        'Danimarca',
     'Germany':
         'Germania',
     'Hamburg':
         'Amburgo',
+    'Rigging':
+        'Sollevamento',
     'Rostock':
         'Rostock',
     'Sectors':
@@ -72,6 +90,12 @@ S = {
         'Scriveteci',
     'Facebook':
         'Facebook',
+    'IRATA L1':
+        'IRATA L1',
+    'IRATA L2':
+        'IRATA L2',
+    'IRATA L3':
+        'IRATA L3',
     'ISO:9001':
         'ISO:9001',
     'LinkedIn':
@@ -106,6 +130,8 @@ S = {
         'Rilasciato da',
     'Lithuania':
         'Lituania',
+    'NDT PT/MT':
+        'CND PT/MT',
     'Newcastle':
         'Newcastle',
     'Open menu':
@@ -114,10 +140,18 @@ S = {
         'Continua a leggere',
     'Subscribe':
         'Iscriviti',
+    'VCA / SCC':
+        'VCA / SCC',
     '1 location':
         '1 sede',
     '7. Changes':
         '7. Modifiche',
+    'Continuous':
+        'Continuativo',
+    'Discipline':
+        'Mestiere',
+    'Hiring now':
+        'Selezione in corso',
     'Industrial':
         'Industria',
     'Industries':
@@ -142,10 +176,14 @@ S = {
         'Sede centrale',
     'Netherlands':
         'Paesi Bassi',
+    'Rope access':
+        'Lavori su fune',
     'Ship Repair':
         'Riparazione navale',
     'Ship repair':
         'Riparazione navale',
+    '2 to 5 years':
+        'Da 2 a 5 anni',
     '23 June 2026':
         '23 giugno 2026',
     'All services':
@@ -178,12 +216,16 @@ S = {
         'Sedi operative',
     '1. Who we are':
         '1. Chi siamo',
+    '5 to 10 years':
+        'Da 5 a 10 anni',
     '<b>Norway</b>':
         '<b>Norvegia</b>',
     'Certification':
         'Certificazioni',
     'Meet the team':
         'Il team',
+    'Open position':
+        'Posizione aperta',
     'Our footprint':
         'La nostra presenza',
     'Project bases':
@@ -194,6 +236,8 @@ S = {
         'Carpentieri metallici',
     'Thermo Fisher':
         'Thermo Fisher',
+    'Welding (TIG)':
+        'Saldatura (TIG)',
     'Where we work':
         'Dove operiamo',
     '4. Legal basis':
@@ -202,10 +246,14 @@ S = {
         '6. I vostri diritti',
     '<b>Germany</b>':
         '<b>Germania</b>',
+    'Available from':
+        'Disponibile dal',
     'Certifications':
         'Certificazioni',
     'NDT Inspectors':
         'Ispettori CND',
+    'NDT inspection':
+        'Controlli non distruttivi',
     'Open positions':
         'Posizioni aperte',
     'Our advantages':
@@ -220,6 +268,8 @@ S = {
         'Profilo aziendale',
     'Independent NDT':
         'CND indipendenti',
+    'MIG/MAG 131/135':
+        'MIG/MAG 131/135',
     'Main navigation':
         'Navigazione principale',
     'On our own jobs':
@@ -246,6 +296,8 @@ S = {
         'Creditinfo Group',
     'Enter Your Email':
         'Inserisci la tua e-mail',
+    'Name and surname':
+        'Nome e cognome',
     'Open application':
         'Candidatura spontanea',
     'Previous service':
@@ -256,6 +308,8 @@ S = {
         'I nostri progetti',
     'Send application':
         'Invia la candidatura',
+    'Site supervision':
+        'Supervisione di cantiere',
     'Welding Services':
         'Saldatura',
     'Welding services':
@@ -266,6 +320,8 @@ S = {
         'Scansione laser 3D',
     'Company documents':
         'Documenti aziendali',
+    'Less than 2 years':
+        'Meno di 2 anni',
     'Mobile navigation':
         'Navigazione mobile',
     'Mode: Engineering':
@@ -274,12 +330,20 @@ S = {
         'Apri nel browser ↗',
     'Open the calendar':
         'Apri il calendario',
+    'Phone or WhatsApp':
+        'Telefono o WhatsApp',
     'Send us the scope':
         'Inviateci l’ambito dei lavori',
+    'Welding (MIG/MAG)':
+        'Saldatura (MIG/MAG)',
     '2. What we collect':
         '2. Cosa raccogliamo',
     '<b>Netherlands</b>':
         '<b>Paesi Bassi</b>',
+    'Local, no rotation':
+        'In loco, senza rotazione',
+    'More than 10 years':
+        'Più di 10 anni',
     'Reference Projects':
         'Progetti di riferimento',
     'See open positions':
@@ -300,14 +364,22 @@ S = {
         'Ispezione e accesso',
     'Integrated Workflow':
         'Flusso di lavoro integrato',
+    'Medical certificate':
+        'Certificato medico',
     'Mobile Repair Teams':
         'Squadre mobili di riparazione',
     'Technical personnel':
         'Personale tecnico',
     '06 &middot; Industry':
         '06 &middot; Industria',
+    '3a. Recruitment data':
+        '3a. Dati di selezione',
+    'Call +370 636 63 744':
+        'Chiama +370 636 63 744',
     'Certified TIG Welder':
         'Saldatore TIG certificato',
+    'EN ISO 9606 (welder)':
+        'EN ISO 9606 (saldatore)',
     'Full Project Control':
         'Controllo completo del progetto',
     'Offshore / North Sea':
@@ -338,6 +410,8 @@ S = {
         'Montaggi meccanici',
     'Mechanical contracting':
         'Montaggi meccanici',
+    'Select your discipline':
+        'Seleziona il tuo mestiere',
     'Strongest in Lithuania':
         'Strongest in Lithuania',
     'Why choose AL Projects':
@@ -346,8 +420,12 @@ S = {
         'ALPROJECTS Group — home',
     'Head Office (Lithuania)':
         'Sede centrale (Lituania)',
+    'Instrument pipe fitting':
+        'Tubisteria strumentale',
     'Mechanical & Industrial':
         'Meccanica e industria',
+    'Mechanical installation':
+        'Montaggio meccanico',
     'News — ALPROJECTS Group':
         'Notizie — ALPROJECTS Group',
     'Non-Destructive Testing':
@@ -357,6 +435,8 @@ S = {
     'Operating Across Europe':
         'Operativi in tutta Europa',
     'Quality Control / QA-QC':
+        'Controllo qualità / QA-QC',
+    'Quality control / QA-QC':
         'Controllo qualità / QA-QC',
     'Rope Access Technicians':
         'Tecnici su fune',
@@ -374,8 +454,12 @@ S = {
         'Controllo qualità e QA-QC',
     'Specialists on the books':
         'Specialisti in organico',
+    'WhatsApp +370 636 63 744':
+        'WhatsApp +370 636 63 744',
     'Wind Turbine Technicians':
         'Tecnici eolici',
+    'Prefer not to fill a form':
+        'Preferisci non compilare un modulo',
     'Quality control and QA-QC':
         'Controllo qualità e QA-QC',
     'Short notice mobilisation':
@@ -452,6 +536,8 @@ S = {
         'Struttura di progetto scalabile',
     'Valve manifolds over the bund':
         'Collettori valvole sopra il bacino di contenimento',
+    '<b>5</b><span>Countries</span>':
+        '<b>5</b><span>Paesi</span>',
     'Completed tank farm pipe racks':
         'Pipe rack completati nel parco serbatoi',
     'Offshore and renewable energy.':
@@ -518,6 +604,8 @@ S = {
         'Saldatura — ALPROJECTS Group',
     '3D laser scanning — ALPROJECTS Group':
         'Scansione laser 3D — ALPROJECTS Group',
+    '<b>30</b><span>Open positions</span>':
+        '<b>30</b><span>Posizioni aperte</span>',
     'IRATA and SOFT certified technicians':
         'Tecnici certificati IRATA e SOFT',
     'Independent third party verification':
@@ -574,6 +662,12 @@ S = {
         'Pacchetti trasformatore e apparecchiature di impianto',
     'Weld, material and structural inspection':
         'Controllo di saldature, materiali e strutture',
+    '<span class="step-n">02</span> Your trade':
+        '<span class="step-n">02</span> Il tuo mestiere',
+    '<span>Contract</span><b>Project-based</b>':
+        '<span>Contratto</span><b>A progetto</b>',
+    '<span>Positions</span><b>30 positions</b>':
+        '<span>Posizioni</span><b>30 posizioni</b>',
     'As-built survey of existing installations':
         'Rilievo dell’esistente sugli impianti in opera',
     'Mechanical contracting — ALPROJECTS Group':
@@ -584,6 +678,10 @@ S = {
         'Coordinamento di progetto e supervisione di cantiere',
     'We recruit regularly in these disciplines':
         'Ricerchiamo regolarmente questi profili',
+    '<b>3</b><span>Working days to reply</span>':
+        '<b>3</b><span>Giorni lavorativi per la risposta</span>',
+    '<span class="step-n">01</span> Who you are':
+        '<span class="step-n">01</span> Chi sei',
     'A European provider of industrial services':
         'Un fornitore europeo di servizi industriali',
     'Among the strongest companies in Lithuania':
@@ -596,6 +694,8 @@ S = {
         'Aggiornamenti di progetto &amp; approfondimenti tecnici',
     'e.g. TIG 141, IRATA Level 2, VT/PT Level 2':
         'es. TIG 141, IRATA Livello 2, VT/PT Livello 2',
+    '<span class="step-n">03</span> Availability':
+        '<span class="step-n">03</span> Disponibilità',
     'Dismantling, skidding, jacking, positioning':
         'Smontaggio, traslazione, sollevamento, posizionamento',
     'Gas pipeline fabrication &amp; installation':
@@ -612,6 +712,8 @@ S = {
         'TIG per tubazioni, passate di radice e inox',
     '<b>11,000+</b><span>hours on one scope</span>':
         '<b>11.000+</b><span>ore su una sola commessa</span>',
+    '<span class="step-n">04</span> Your documents':
+        '<span class="step-n">04</span> I tuoi documenti',
     'Certified specialist performing welding works':
         'Specialista certificato durante lavori di saldatura',
     'Equipment alignment and mechanical completion':
@@ -648,6 +750,8 @@ S = {
         'Pipe rack e passerelle cavi sul portale di carico',
     'Stainless pipework around a transformer package':
         'Tubazioni inox attorno a un pacchetto trasformatore',
+    '<b>300</b><span>Specialists on our roster</span>':
+        '<b>300</b><span>Specialisti in organico</span>',
     'Carbon steel lines being set out on a plant roof':
         'Linee in acciaio al carbonio tracciate sulla copertura di un impianto',
     'Experience with pipe and steel structure welding':
@@ -662,8 +766,12 @@ S = {
         'Sollevamento e supporto tecnico — ALPROJECTS Group',
     'Support at client and third party witness points':
         'Assistenza ai punti di controllo del cliente e di terza parte',
+    'Anything else <span class="opt">(optional)</span>':
+        'Altro <span class="opt">(facoltativo)</span>',
     'Mechanical package installed beneath the bushings':
         'Pacchetto meccanico installato sotto gli isolatori passanti',
+    'Not on the list? Add it in the notes field below.':
+        'Non è in elenco? Indicalo nel campo note qui sotto.',
     'Offshore commissioning &amp; installation support':
         'Messa in servizio offshore &amp; supporto al montaggio',
     'Open the Reference Projects as a PDF in a new tab':
@@ -704,20 +812,30 @@ S = {
         'Scollegamento e ricollegamento di tubazioni e utenze',
     'Fitters working inside a hull block under construction':
         'Montatori al lavoro dentro un blocco di scafo in costruzione',
+    'Preferred rotation <span class="opt">(optional)</span>':
+        'Rotazione preferita <span class="opt">(facoltativo)</span>',
     'Subscribe to receive company news and project updates.':
         'Iscriviti per ricevere notizie aziendali e aggiornamenti di progetto.',
     'Transformer package, five countries — ALPROJECTS Group':
         'Pacchetto trasformatore, cinque Paesi — ALPROJECTS Group',
     '<span>8 pages</span><span>PDF</span><span>2.7 MB</span>':
         '<span>8 pagine</span><span>PDF</span><span>2,7 MB</span>',
+    '<span>Location</span><b>Project sites across Europe</b>':
+        '<span>Sede</span><b>Cantieri in tutta Europa</b>',
+    'Years of experience <span class="opt">(optional)</span>':
+        'Anni di esperienza <span class="opt">(facoltativo)</span>',
     '<span>16 pages</span><span>PDF</span><span>2.1 MB</span>':
         '<span>16 pagine</span><span>PDF</span><span>2,1 MB</span>',
     "Among Lithuania's strongest companies — ALPROJECTS Group":
         'Tra le aziende più solide della Lituania — ALPROJECTS Group',
+    'Country of residence <span class="opt">(optional)</span>':
+        'Paese di residenza <span class="opt">(facoltativo)</span>',
     'Discuss a project <span aria-hidden="true">&rarr;</span>':
         'Parliamo di un progetto <span aria-hidden="true">&rarr;</span>',
     'Fit-up, alignment and dimensional control before welding':
         'Accoppiamento, allineamento e controllo dimensionale prima della saldatura',
+    'Photographs of certificates taken with a phone are fine.':
+        'Vanno bene anche fotografie dei certificati scattate con il telefono.',
     'TIG root pass being welded on a prefabricated pipe spool':
         'Passata di radice TIG su uno spool di tubazione prefabbricato',
     'Wind turbine technicians on site at an onshore wind farm':
@@ -736,6 +854,8 @@ S = {
         'Ingegnere ALPROJECTS al lavoro su isometrici in cantiere',
     'Handover dossier assembled as the work goes, not at the end':
         'Dossier di consegna costruito durante i lavori, non alla fine',
+    'Countries you can work in <span class="opt">(optional)</span>':
+        'Paesi in cui puoi lavorare <span class="opt">(facoltativo)</span>',
     'Structural steel, pressure retaining piping and pipe supports':
         'Carpenteria metallica, tubazioni in pressione e supporti',
     'Valid TIG welding certification with supporting documentation':
@@ -832,6 +952,8 @@ S = {
         '<span class="srv-n">10</span><span class="srv-name">Scansione laser 3D</span>',
     'September 2025 to April 2026. Twelve specialists. Over 11,000 hours on site.':
         'Da settembre 2025 ad aprile 2026. Dodici specialisti. Oltre 11.000 ore in cantiere.',
+    'Certificates you hold <span class="opt">(optional, tap all that apply)</span>':
+        'Certificazioni che possiedi <span class="opt">(facoltativo, seleziona tutte quelle pertinenti)</span>',
     'Valid certification for your discipline, and the documentation to support it.':
         'Una certificazione valida per il vostro mestiere e la documentazione che la attesti.',
     '<span class="srv-n">05</span><span class="srv-name">Mobile Repair Teams</span>':
@@ -866,6 +988,8 @@ S = {
         '<strong>Industria</strong> — montaggio di impianti, pacchetti trasformatore, tubazioni di processo.',
     'Spool base &amp; offshore platforms · pipeline welding · fabrication · offshore support':
         'Spool base &amp; piattaforme offshore · saldatura di condotte · fabbricazione · supporto offshore',
+    'Certificate numbers and expiry dates, projects you have worked on, when you could start.':
+        'Numeri e scadenze dei certificati, progetti su cui hai lavorato, da quando potresti iniziare.',
     '<span class="srv-n">12</span><span class="srv-name">Rigging &amp; Technical Support</span>':
         '<span class="srv-n">12</span><span class="srv-name">Sollevamento &amp; supporto tecnico</span>',
     '<span>30 positions</span><span>Project sites across Europe</span><span>Project-based</span>':
@@ -890,6 +1014,8 @@ S = {
         '<strong>Cantieristica navale</strong> — tubazioni e montaggio meccanico su navi in costruzione.',
     'UAB “ALprojects” has been awarded the Strongest in Lithuania 2025–2026 certificate by Creditinfo.':
         'UAB “ALprojects” ha ricevuto da Creditinfo il certificato Strongest in Lithuania 2025–2026.',
+    'We read every application and reply within three working days when a project matches your profile.':
+        'Leggiamo ogni candidatura e rispondiamo entro tre giorni lavorativi quando un progetto corrisponde al tuo profilo.',
     '<span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">↗</span>':
         '<span class="num">02</span><span>08 ago 2026 &middot; Cantieristica navale</span><span class="arr">↗</span>',
     '<span class="num">03</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8599;</span>':
@@ -908,6 +1034,8 @@ S = {
         'Specialisti qualificati, disponibili per incarichi a progetto, di breve e lungo periodo in tutta Europa.',
     '<span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">&#8599;</span>':
         '<span class="num">02</span><span>08 ago 2026 &middot; Cantieristica navale</span><span class="arr">&#8599;</span>',
+    'Six fields are required. Everything else helps us match you faster, but you can send the form without it.':
+        'Sei campi sono obbligatori. Il resto ci aiuta a valutarti più in fretta, ma puoi inviare il modulo senza.',
     'Stainless steel piping, cooling systems and precision installation — repeated across five European sites.':
         'Tubazioni in acciaio inox, sistemi di raffreddamento e montaggio di precisione, ripetuti su cinque siti europei.',
     '<span class="num">04</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">↗</span>':
@@ -988,6 +1116,8 @@ S = {
         'Conta più di un logo appeso al muro. È la differenza tra un’impresa che porta a termine una commessa e una che non ci riesce.',
     '<span class="value" data-count="40" data-suffix="%">0%</span> <span class="label">Reduced inspection time through optimized workflows</span>':
         '<span class="value" data-count="40" data-suffix="%">0%</span> <span class="label">Tempi di ispezione ridotti grazie a flussi di lavoro ottimizzati</span>',
+    'Job applications, including any CV and certificates, are kept for 24 months from the date you send them, or until you ask us to delete them.':
+        'Le candidature, compresi CV e certificati, sono conservate per 24 mesi dalla data di invio, o finché non ne chiedete la cancellazione.',
     'Old drawings lie. We measure what is really there and hand the data to your engineers, so the clash shows up on a screen instead of on site.':
         'I vecchi disegni mentono. Misuriamo ciò che c’è davvero e consegniamo i dati ai vostri ingegneri: l’interferenza compare su uno schermo invece che in cantiere.',
     '<span class="value" data-count="1200" data-suffix="+">0+</span> <span class="label">Safe execution in complex and confined environments</span>':
@@ -1086,6 +1216,8 @@ S = {
         'La qualità è ciò che si riesce a dimostrare dopo. Controlliamo tubazioni e strutture metalliche e lasciamo una documentazione che regge quando il cliente, il perito o l’auditor la richiede.',
     '<strong>Welded, tested, then closed.</strong> Welding under ISO 3834. Every joint is documented, and NDT and pressure testing are done before insulation and final coating go on.':
         '<strong>Saldato, collaudato, poi chiuso.</strong> Saldatura secondo ISO 3834. Ogni giunto è documentato e i CND e le prove in pressione precedono la coibentazione e il rivestimento finale.',
+    'Even when a role is not advertised we keep qualified specialists on file and make contact when a project matches. Select your discipline and it goes straight into the form below.':
+        'Anche senza un annuncio aperto teniamo in archivio gli specialisti qualificati e ci facciamo vivi quando un progetto corrisponde. Seleziona il tuo mestiere: verrà riportato direttamente nel modulo qui sotto.',
     'We deliver mechanical contracting, welding, inspection and access services on industrial and offshore projects across Europe. The work is technical, certified and mostly on site.':
         'Realizziamo montaggi meccanici, saldatura, ispezioni e servizi di accesso su progetti industriali e offshore in tutta Europa. Un lavoro tecnico, certificato e in gran parte in cantiere.',
     '<strong>Server logs.</strong> The site is hosted on GitHub Pages. GitHub records technical request data, including IP address and browser user-agent, for security and reliability.':
@@ -1122,10 +1254,14 @@ S = {
         '<strong>Prima disegnato, poi costruito.</strong> Gli isometrici si verificano prima di tagliare qualsiasi cosa. Gli spool si prefabbricano in officina, si adattano a bordo e si sostengono in modo che la linea possa dilatarsi senza caricare le saldature.',
     'If you believe we have handled your data improperly, you may lodge a complaint with the Lithuanian State Data Protection Inspectorate (Valstybine duomenu apsaugos inspekcija), L. Sapiegos g. 17, Vilnius.':
         'Se ritenete che abbiamo trattato i vostri dati in modo scorretto, potete presentare reclamo all’Ispettorato statale lituano per la protezione dei dati (Valstybine duomenu apsaugos inspekcija), L. Sapiegos g. 17, Vilnius.',
+    '<strong>Consent</strong> (GDPR Art. 6(1)(a)) — newsletter subscription, job applications, and loading the scheduling calendar, which happens only when you press the button. You may withdraw it at any time.':
+        '<strong>Consenso</strong> (GDPR art. 6, par. 1, lett. a) — iscrizione alla newsletter, candidature e caricamento del calendario appuntamenti, che avviene solo premendo il pulsante. Potete revocarlo in qualsiasi momento.',
     'A transformer mechanical package covers the stainless steel piping and cooling systems that keep the unit within its operating envelope. The tolerances are tight and the commissioning window is usually short.':
         'Un pacchetto meccanico per trasformatore comprende le tubazioni in acciaio inox e i sistemi di raffreddamento che mantengono l’apparecchio entro i suoi limiti di esercizio. Le tolleranze sono strette e la finestra di messa in servizio di solito è breve.',
     'What made this scope demanding was not any single site but the repetition: the same package delivered across five European countries, each with its own site conditions, inspection regime and local requirements.':
         'La difficoltà di questa commessa non stava in un singolo sito ma nella ripetizione: lo stesso pacchetto realizzato in cinque Paesi europei, ciascuno con proprie condizioni di cantiere, regime ispettivo e requisiti locali.',
+    'CVs and certificate documents are stored with the application and are seen only by the people resourcing projects. We do not pass them to third parties, and we do not use them for anything other than recruitment.':
+        'I CV e i certificati sono conservati insieme alla candidatura e vengono visionati solo dalle persone che assegnano le risorse ai progetti. Non li trasmettiamo a terzi e non li utilizziamo per finalità diverse dalla selezione.',
     'UAB &ldquo;ALprojects&rdquo; holds the <strong>Strongest in Lithuania</strong> certificate, awarded by Creditinfo Group on 23 June 2026 to companies with a high credit score and a proven record of financial stability.':
         'UAB &ldquo;ALprojects&rdquo; è titolare del certificato <strong>Strongest in Lithuania</strong>, assegnato da Creditinfo Group il 23 giugno 2026 alle aziende con elevato punteggio creditizio e comprovata stabilità finanziaria.',
     '<strong>Booking a call.</strong> If you open the scheduling calendar on the contacts page and book a slot, Calendly receives the name, email address and any notes you enter, together with your IP address and time zone.':
@@ -1142,12 +1278,18 @@ S = {
         'La semplice consultazione di questo sito non carica script, font, strumenti di analisi o contenuti incorporati di terzi. Il carattere tipografico è servito dal nostro dominio: leggere queste pagine non comunica quindi il vostro indirizzo IP ad alcuna società pubblicitaria o di analisi.',
     "So there are two different things with the same equipment behind them. On our own jobs it is internal quality control, and it never counts as sign-off. On somebody else's welds it is independent NDT, because we did not weld it.":
         'Sono quindi due cose diverse con la stessa strumentazione dietro. Sui nostri cantieri è controllo qualità interno e non vale mai come validazione. Su saldature di altri è CND indipendente, perché non le abbiamo saldate noi.',
+    'I agree that ALPROJECTS, UAB stores my details and documents for recruitment purposes for 24 months. I can ask for them to be deleted at any time by writing to info@alprojects.eu. See the <a href="/privacy.html">privacy policy</a>.':
+        'Acconsento a che ALPROJECTS, UAB conservi i miei dati e documenti per finalità di selezione per 24 mesi. Posso chiederne la cancellazione in qualsiasi momento scrivendo a info@alprojects.eu. Si veda l’<a href="/privacy.html">informativa sulla privacy</a>.',
     'The company employs between 51 and 200 people and works across multiple European countries. Projects are resourced from a pool of certified specialists rather than subcontracted on, which is what keeps the quality system meaningful.':
         'L’azienda impiega tra 51 e 200 persone e opera in più Paesi europei. I progetti sono coperti attingendo a un bacino di specialisti certificati anziché essere subappaltati: è questo che rende significativo il sistema qualità.',
     '<strong>Where the line sits.</strong> Nobody should be signing off their own work, and we do not try to. Independent verification stays where the contract puts it, normally with the client or the class surveyor, and nothing we do changes that.':
         '<strong>Dove passa il confine.</strong> Nessuno dovrebbe validare il proprio lavoro, e noi non ci proviamo. La verifica indipendente resta dove la colloca il contratto, di norma presso il cliente o il perito del registro di classifica, e nulla di quanto facciamo lo cambia.',
     'The shortage is discussed across European industry in general terms. It becomes concrete when a project is resourced, scheduled and funded, and the constraint is simply the number of people who hold the certification and are willing to travel.':
         'Nell’industria europea se ne parla in termini generali. Diventa concreto quando un progetto è dotato di risorse, programmato e finanziato e il vincolo è semplicemente il numero di persone che hanno la certificazione e sono disposte a spostarsi.',
+    'Send your CV and certificates to <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> or by <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>, with the same name you give above.':
+        'Invia il CV e i certificati a <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> oppure via <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>, con lo stesso nome indicato sopra.',
+    '<strong>Job applications.</strong> If you send the careers form we receive the details you enter &mdash; name, contact details, discipline, certificates, availability and any notes &mdash; together with any CV or certificate documents you attach.':
+        '<strong>Candidature.</strong> Se inviate il modulo di candidatura riceviamo i dati inseriti &mdash; nome, recapiti, mestiere, certificazioni, disponibilità ed eventuali note &mdash; insieme ai CV e ai certificati allegati.',
     '<strong>What the eye cannot pick up.</strong> Clean the weld, apply the penetrant, let the developer draw it back out. Surface cracks and porosity that nobody would catch by eye show up in red, and anything outside the limits is repaired on the spot.':
         '<strong>Ciò che l’occhio non coglie.</strong> Pulire la saldatura, applicare il penetrante, lasciare che il rivelatore lo riporti in superficie. Cricche superficiali e porosità che nessuno noterebbe a occhio compaiono in rosso, e tutto ciò che esce dai limiti viene riparato sul posto.',
     'Execution of 3D laser scanning to capture precise as-built geometry of structures and piping systems. Point cloud data supports dimensional control, clash detection and retrofit engineering. Improves accuracy and reduces rework during installation and fabrication.':
@@ -1168,6 +1310,8 @@ S = {
         'Infrastrutture per la movimentazione di carburante e supporto all’eolico. La nostra <a href="/news/fuel-loading-terminal-completed.html">commessa al terminal di carico</a> si è svolta da settembre 2025 ad aprile 2026 con dodici specialisti e oltre 11.000 ore in cantiere: un riferimento utile per chi pianifica lavori di queste dimensioni.',
     'Execution of lifting, rigging and installation works for industrial and offshore projects. Planning, coordination and supervision of lifting operations in accordance with project requirements and site conditions. Work is performed with controlled procedures and safety compliance at all stages.':
         'Esecuzione di lavori di sollevamento, imbracatura e montaggio per progetti industriali e offshore. Pianificazione, coordinamento e supervisione delle operazioni di sollevamento secondo i requisiti di progetto e le condizioni di cantiere. I lavori seguono procedure controllate e rispettano la sicurezza in ogni fase.',
+    'Applications are held for <strong>24 months</strong> from the date you send them, so that we can contact you when a project matches your discipline. You can ask us to delete them at any time by writing to <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>, and we will do so without needing a reason.':
+        'Le candidature sono conservate per <strong>24 mesi</strong> dalla data di invio, così da poterti contattare quando un progetto corrisponde al tuo mestiere. Puoi chiederne la cancellazione in qualsiasi momento scrivendo a <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>, e vi daremo seguito senza chiedere motivazioni.',
     'Execution of installation, inspection and maintenance works at height using IRATA and SOFT certified rope access methods. Supports welding, NDT, mechanical works and structural repairs in areas where conventional access is not feasible. Work is performed in compliance with safety standards and site procedures.':
         'Esecuzione di lavori di montaggio, ispezione e manutenzione in quota con tecniche di accesso su fune certificate IRATA e SOFT. A supporto di saldatura, CND, lavori meccanici e riparazioni strutturali dove l’accesso convenzionale non è praticabile. I lavori rispettano le norme di sicurezza e le procedure di cantiere.',
     'Inspection, access and mechanical works on offshore facilities, where mobilising a team is expensive and a shutdown is more expensive still. Rope access and NDT carry most of this work; visual inspection plays a central role in confirming the safety and operational integrity of oil, gas and wind energy assets.':
