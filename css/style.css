@@ -3596,6 +3596,10 @@ html.blueprint .bp-sheet { opacity: 1; }
   .hero-grid::after { display: none; }
 }
 @media (max-width: 640px) { .sheet-dim { display: none; } }
+/* The two crosses on the 84% line share it with the buttons. Once those go
+   full width and the drawing-mode legend wraps under them, there is no room
+   left on that line and one of the crosses ends up inside the legend. */
+@media (max-width: 760px) { .sheet-plus-base { display: none; } }
 
 /* ---------- sector cards: the corner selection, as before ----------
    Four corner marks that draw in on hover, plus a rule top and bottom, so
@@ -3765,13 +3769,21 @@ body::after {
    in the drawing's own vocabulary, a keycap and a micro-caps note. It is a
    real button as well as a hint, which is the only way a phone (no B key)
    can reach the feature at all. */
+/* Was space-between, which pushed the drawing-mode legend to the far right of
+   the hero on its own. The legend now lives in the sheet corner and the eyebrow
+   has this row to itself. */
 .hero-note {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center;
   gap: 16px 24px; flex-wrap: wrap;
 }
 .hero-note .hero-eyebrow { margin-bottom: 0; }
 .hero-note { margin-bottom: 24px; }
 .bp-hint {
+  /* margin-left:auto puts it on the far right of the call-to-action row, so it
+     sits in the drawing's bottom corner and stays level with the buttons
+     without a hand-picked offset. */
+  margin-left: auto;
+  align-self: center;
   display: inline-flex; align-items: center; gap: 9px;
   min-height: 32px; padding: 5px 12px 5px 6px;
   background: transparent; border: 1px solid rgba(255,255,255,.14);
@@ -3799,6 +3811,15 @@ body::after {
 .bp-hint:hover .bp-key, .bp-hint:focus-visible .bp-key { border-color: rgba(255,255,255,.6); }
 /* Once the mode is on the label tells you how to leave. */
 .blueprint .bp-hint { color: var(--white); border-color: rgba(255,255,255,.45); }
+
+/* On a phone the buttons go full width and the legend wraps onto its own line.
+   Pushed right it would sit alone against the far edge, so it lines up with
+   them instead. This has to come after the base rule, not with the other
+   breakpoints higher up the file: same specificity, so whichever is written
+   last wins, and up there margin-left:auto was quietly winning. */
+@media (max-width: 760px) {
+  .bp-hint { margin-left: 0; margin-top: 4px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .js .bp-hint { animation: none; opacity: 1; transform: none; }
 }

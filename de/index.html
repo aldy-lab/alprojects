@@ -36,7 +36,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=871fd249">
+  <link rel="stylesheet" href="/css/style.css?v=45735b0a">
   <link rel="preload" as="image" href="/assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
@@ -135,24 +135,33 @@
       <span class="sheet-plus" style="left:26%; top:2%"   aria-hidden="true"></span>
       <span class="sheet-plus" style="left:26%; top:24%"  aria-hidden="true"></span>
       <span class="sheet-plus" style="left:72%; top:17%"  aria-hidden="true"></span>
-      <span class="sheet-plus" style="left:80%; top:84%"  aria-hidden="true"></span>
-      <span class="sheet-plus" style="left:8%;  top:84%"  aria-hidden="true"></span>
+      <!-- 72%, not 80%: the drawing-mode legend now sits on this line at the
+           container's right edge, and at 1600px and wider this cross landed
+           under its border. -->
+      <span class="sheet-plus sheet-plus-base" style="left:72%; top:84%"  aria-hidden="true"></span>
+      <span class="sheet-plus sheet-plus-base" style="left:8%;  top:84%"  aria-hidden="true"></span>
       <span class="sheet-dim"  style="left:73.5%; top:14.5%" aria-hidden="true">200X200</span>
       <span class="sheet-dim"  style="left:4%;    top:86%"   aria-hidden="true">200X200</span>
 
       <div class="container hero-in">
         <div class="hero-note">
           <p class="hero-eyebrow">ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITAUEN</p>
-          <button class="bp-hint" type="button" aria-pressed="false"
-                  title="Zeichnungsraster einblenden — Raster, Passmarken und laufende Maße">
-            <span class="bp-key" aria-hidden="true">B</span> <span class="bp-hint-label">Zeichnungsmodus</span>
-          </button>
         </div>
         <h1 class="hero-title">Mechanische Gewerke und unabhängige Prüfung</h1>
         <p class="hero-sub">Schweißen, Rohrleitungsbau und mechanische Arbeiten in ganz Nordeuropa. Geprüft von Menschen, die nicht geschweißt haben.</p>
         <div class="hero-ctas">
           <a class="btn-solid" href="/de/contacts.html">Senden Sie uns den Leistungsumfang</a>
           <a class="btn-outline" href="/de/projects.html">Unsere Projekte</a>
+          <!-- Sheet furniture rather than a third call to action: pushed to the
+               far right of this row so it lands in the drawing's bottom corner
+               with the tick marks, level with the buttons. Sitting in the row
+               rather than absolutely placed keeps it aligned with them at every
+               width and wraps with them on a phone. It is still a real button,
+               because a phone has no B key. -->
+          <button class="bp-hint" type="button" aria-pressed="false"
+                  title="Zeichnungsraster einblenden — Raster, Passmarken und laufende Maße">
+            <span class="bp-key" aria-hidden="true">B</span> <span class="bp-hint-label">Zeichnungsmodus</span>
+          </button>
         </div>
       </div>
     </section>
