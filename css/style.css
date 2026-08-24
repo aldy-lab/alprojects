@@ -3596,10 +3596,10 @@ html.blueprint .bp-sheet { opacity: 1; }
   .hero-grid::after { display: none; }
 }
 @media (max-width: 640px) { .sheet-dim { display: none; } }
-/* The two crosses on the 84% line share it with the buttons. Once those go
-   full width and the drawing-mode legend wraps under them, there is no room
-   left on that line and one of the crosses ends up inside the legend. */
-@media (max-width: 760px) { .sheet-plus-base { display: none; } }
+/* The legend is a fixed size but the viewport is not, so on a phone it covers
+   a much wider share of the top-right corner and reaches this cross. */
+@media (max-width: 760px) { .sheet-plus-tr { display: none; } }
+
 
 /* ---------- sector cards: the corner selection, as before ----------
    Four corner marks that draw in on hover, plus a rule top and bottom, so
@@ -3779,11 +3779,15 @@ body::after {
 .hero-note .hero-eyebrow { margin-bottom: 0; }
 .hero-note { margin-bottom: 24px; }
 .bp-hint {
-  /* margin-left:auto puts it on the far right of the call-to-action row, so it
-     sits in the drawing's bottom corner and stays level with the buttons
-     without a hand-picked offset. */
-  margin-left: auto;
-  align-self: center;
+  /* Top-right corner of the drawing, under the header. `right` reproduces the
+     container's own gutter -- 40px once the viewport is narrower than the
+     1360px container, half the leftover plus 40 once it is wider -- so the
+     legend lines up with the right edge of the content column at every width
+     rather than with the viewport. */
+  position: absolute;
+  top: calc(var(--nav-h) + 34px);
+  right: max(var(--pad), calc((100% - var(--container)) / 2 + var(--pad)));
+  z-index: 3;
   display: inline-flex; align-items: center; gap: 9px;
   min-height: 32px; padding: 5px 12px 5px 6px;
   background: transparent; border: 1px solid rgba(255,255,255,.14);
@@ -3812,14 +3816,7 @@ body::after {
 /* Once the mode is on the label tells you how to leave. */
 .blueprint .bp-hint { color: var(--white); border-color: rgba(255,255,255,.45); }
 
-/* On a phone the buttons go full width and the legend wraps onto its own line.
-   Pushed right it would sit alone against the far edge, so it lines up with
-   them instead. This has to come after the base rule, not with the other
-   breakpoints higher up the file: same specificity, so whichever is written
-   last wins, and up there margin-left:auto was quietly winning. */
-@media (max-width: 760px) {
-  .bp-hint { margin-left: 0; margin-top: 4px; }
-}
+
 @media (prefers-reduced-motion: reduce) {
   .js .bp-hint { animation: none; opacity: 1; transform: none; }
 }
