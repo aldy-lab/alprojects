@@ -1648,4 +1648,14 @@ S = {
         'Technicien cordiste travaillant sur une pale d’éolienne',
     'Three technicians on a wind farm site at first light':
         'Trois techniciens sur un parc éolien au lever du jour',
+    'VCA':
+        'VCA',
+    'EBN Certification':
+        'EBN Certification',
+    'VCA certification mark issued by EBN Certification':
+        'Marque de certification VCA délivrée par EBN Certification',
+    'Scope on the three ISO certificates: inspection and industrial maintenance services for onshore and offshore installations, issued by DNV Business Assurance Finland. VCA is certified by EBN Certification. Select a certificate to open the PDF.':
+        'Périmètre des trois certificats ISO : services d’inspection et de maintenance industrielle pour installations terrestres et offshore, délivrés par DNV Business Assurance Finland. Le VCA est certifié par EBN Certification. Sélectionnez un certificat pour ouvrir le PDF.',
+    '<span>EBN Certification</span>':
+        '<span>EBN Certification</span>',
 }

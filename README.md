@@ -612,6 +612,16 @@ to get the list of what is missing.
       14001 (C550875) and 45001 (C550877) arrived 22 Aug 2026 and are live in
       `assets/certificates/`. Each card shows the scan, its number and expiry,
       and opens the PDF.
+- [ ] **VCA** — ⚠️ **no certificate supplied.** The mark is on the site as a
+      fourth card, added at the client's request. What was provided is EBN
+      Certification's own logo — no company name, no certificate number, no
+      validity dates — so the card deliberately shows only `VCA / EBN
+      Certification` and is **not** a link. Fill `VCA_URL` and `VCA_META` in
+      `js/main.js` and it becomes a linked card with a number and a date like
+      the three DNV ones. Two things to get from the client:
+      the certificate PDF, and **which level** — VCA\*, VCA\*\* and VCA-P are
+      separate certifications for different scopes, and the artwork listed all
+      three because that is the certifying body's scheme list, not the holder's.
 - [ ] **ISO 3834** — ⚠️ **no certificate supplied.** The company profile lists
       it and three pages state welding is carried out under ISO 3834, but it was
       not among the three DNV certificates. Its card has been removed rather

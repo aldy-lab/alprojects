@@ -35,6 +35,12 @@
      yet and no names or photographs for one, so the button stays out of the
      DOM until this points somewhere real. */
   var MANAGEMENT_URL = "";
+  /* VCA. The mark is on the site; the certificate is not. Fill these two in and
+     the card becomes a link with a number and a validity date like the three DNV
+     ones. Leave them empty and it stays a plain tile that claims nothing beyond
+     the mark itself. */
+  var VCA_URL = "";   // e.g. "/assets/certificates/alprojects-vca.pdf"
+  var VCA_META = "";  // e.g. "Cert. 12345|Valid to 01.03.2028"
 
   /* Per-person profiles on the team cards. Keys match data-member in the HTML. */
   var MEMBER_SOCIAL = {
@@ -1425,6 +1431,33 @@
 
 
   /* ---------- "Meet the management" link ---------- */
+  /* ---------- VCA certificate card ---------- */
+  var vca = document.querySelector("[data-vca]");
+  if (vca) {
+    if (VCA_META) {
+      var meta = vca.querySelector(".cert-meta");
+      if (meta) {
+        meta.innerHTML = "";
+        VCA_META.split("|").forEach(function (part) {
+          var sp = document.createElement("span");
+          sp.textContent = part;
+          meta.appendChild(sp);
+        });
+      }
+    }
+    if (VCA_URL) {
+      /* becomes a link, the same as the three DNV cards */
+      var a = document.createElement("a");
+      a.className = "cert-card";
+      a.href = VCA_URL;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.setAttribute("aria-label", "Open the VCA certificate as a PDF");
+      a.innerHTML = vca.innerHTML;
+      vca.parentNode.replaceChild(a, vca);
+    }
+  }
+
   var mgmt = document.querySelector("[data-management]");
   if (mgmt) {
     if (MANAGEMENT_URL) {

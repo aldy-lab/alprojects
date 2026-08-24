@@ -1625,4 +1625,14 @@ S = {
         'Seilzugangstechniker bei der Arbeit an einem Rotorblatt',
     'Three technicians on a wind farm site at first light':
         'Drei Techniker auf einem Windpark im ersten Tageslicht',
+    'VCA':
+        'VCA',
+    'EBN Certification':
+        'EBN Certification',
+    'VCA certification mark issued by EBN Certification':
+        'VCA-Zertifizierungszeichen, ausgestellt von EBN Certification',
+    'Scope on the three ISO certificates: inspection and industrial maintenance services for onshore and offshore installations, issued by DNV Business Assurance Finland. VCA is certified by EBN Certification. Select a certificate to open the PDF.':
+        'Geltungsbereich der drei ISO-Zertifikate: Prüf- und Instandhaltungsleistungen für Anlagen an Land und offshore, ausgestellt von DNV Business Assurance Finland. VCA ist von EBN Certification zertifiziert. Wählen Sie ein Zertifikat, um das PDF zu öffnen.',
+    '<span>EBN Certification</span>':
+        '<span>EBN Certification</span>',
 }

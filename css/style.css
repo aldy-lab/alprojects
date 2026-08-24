@@ -4465,10 +4465,16 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 }
 
 @media (max-width: 560px) {
-  /* Three certificate scans at full width, 378px each. The scan is
-     unreadable at any size on a phone -- it is a token that opens the PDF, so
-     it works as a thumbnail and the three fit on one row. */
-  .certs-grid, .certs-grid-3 {
+  /* The scan is unreadable at any size on a phone -- it is a token that opens
+     the PDF, so it works as a thumbnail. Two up rather than the three this held
+     when there were three certificates: at four, one row of four leaves 92px
+     each on a 393px screen, and three across strands the fourth on a row of
+     its own. */
+  .certs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px; justify-items: stretch;
+  }
+  .certs-grid-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px; justify-items: stretch;
   }

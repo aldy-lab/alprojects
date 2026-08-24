@@ -36,7 +36,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=396916f1">
+  <link rel="stylesheet" href="/css/style.css?v=bbbdbc6a">
   <link rel="preload" as="image" href="/assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
@@ -483,7 +483,7 @@
     <section class="certifications" id="certifications">
       <div class="container">
         <div class="certs-panel reveal">
-          <div class="certs-grid certs-grid-3">
+          <div class="certs-grid">
             <a class="cert-card" href="/assets/certificates/alprojects-iso-9001.pdf" target="_blank" rel="noopener"
                aria-label="Ouvrir le certificat ISO 9001:2015 en PDF, certificat n° C760290">
               <img src="/assets/cert-iso-9001.webp" alt="Certificat de système de management DNV — ISO 9001:2015, certificat C760290"
@@ -505,9 +505,20 @@
               <p class="iso">ISO:45001</p>
               <p class="cert-meta"><span>Cert. C550877</span><span>Valable jusqu’au 07.08.2028</span></p>
             </a>
+            <!-- VCA. Not a link and no certificate number, because neither has been
+                 supplied: what exists is the EBN Certification mark. Both switch on
+                 from VCA_URL and VCA_META in js/main.js the moment the certificate
+                 arrives, and until then this card cannot state a number it does not
+                 have. See the README, "TODO before go-live". -->
+            <div class="cert-card" data-vca>
+              <img src="/assets/cert-vca-ebn.webp" alt="Marque de certification VCA délivrée par EBN Certification"
+                   loading="lazy" width="636" height="900">
+              <p class="iso">VCA</p>
+              <p class="cert-meta"><span>EBN Certification</span></p>
+            </div>
           </div>
           <p class="certs-caption">Certifiés pour garantir sécurité, qualité et conformité &mdash; <span class="certs-body">certification indépendante DNV</span></p>
-          <p class="certs-note">Périmètre commun aux trois : services d’inspection et de maintenance industrielle pour installations terrestres et offshore. Délivrés par DNV Business Assurance Finland. Sélectionnez un certificat pour ouvrir le PDF.</p>
+          <p class="certs-note">Périmètre des trois certificats ISO : services d’inspection et de maintenance industrielle pour installations terrestres et offshore, délivrés par DNV Business Assurance Finland. Le VCA est certifié par EBN Certification. Sélectionnez un certificat pour ouvrir le PDF.</p>
           <p class="certs-extra">Le soudage est réalisé sous <strong>ISO 3834</strong>. Chaque assemblage est documenté ; les CND et les épreuves de pression sont effectués avant la pose du calorifuge et du revêtement final.</p>
 
           <div class="award">
@@ -755,6 +766,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=7da74023"></script>
+  <script src="/js/main.js?v=e11fef60"></script>
 </body>
 </html>
