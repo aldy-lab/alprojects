@@ -4862,3 +4862,116 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   .co-val { grid-template-columns: 1fr; gap: 10px; }
   .co-val-n { padding-top: 0; }
 }
+
+/* ============================================================
+   SERVICE DEEP BLOCK  (below the services shell)
+   One service carries a longer story than the panel holds. The
+   block is empty for the other eleven, so it must collapse to
+   nothing rather than leave a gap under the shell.
+   ============================================================ */
+.srv-deep { display: none; }
+.srv-deep.is-on, .srv-deep:not(:empty) { display: block; }
+
+.srv-deep-band {
+  position: relative;
+  height: clamp(240px, 34vw, 420px);
+  overflow: hidden;
+  isolation: isolate;
+}
+.srv-deep-band img {
+  width: 100%; height: 100%; object-fit: cover;
+  /* Same frame and the same treatment as the quote band on the Company page:
+     saturated yellow steel over bright water, graded down and cooled so it
+     reads as ground rather than as stock photography. */
+  filter: saturate(0.12) brightness(0.60) contrast(1.07);
+}
+.srv-deep-band::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: rgba(24, 46, 78, 0.52);
+  mix-blend-mode: soft-light;
+}
+.srv-deep-scrim {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    linear-gradient(180deg, var(--bg) 0%, rgba(6,9,15,0) 26%,
+                    rgba(6,9,15,0) 68%, var(--bg) 100%);
+}
+
+.srv-deep-in { padding: clamp(46px, 6vw, 84px) var(--pad) clamp(56px, 8vw, 110px); }
+.srv-deep-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr);
+  gap: clamp(30px, 5vw, 78px);
+  align-items: start;
+  margin-top: clamp(22px, 3vw, 34px);
+}
+.srv-deep-head {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.1vw, 38px);
+  line-height: 1.16;
+  font-weight: 300;
+  color: var(--text);
+  max-width: 20ch;
+  text-wrap: balance;
+  margin: 0 0 22px;
+}
+.srv-deep-body {
+  color: var(--muted);
+  max-width: 58ch;
+  margin: 0 0 18px;
+}
+.srv-deep-note {
+  font-size: var(--text-m);
+  color: var(--muted-2);
+  border-left: 1px solid var(--line-strong);
+  padding-left: 14px;
+  max-width: 54ch;
+  margin: 26px 0 0;
+}
+
+/* the spec column: a definition list read as a data sheet */
+.srv-spec { margin: 0; }
+.srv-spec > div {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.srv-spec > div:first-child { padding-top: 0; }
+.srv-spec > div:last-child { border-bottom: 0; }
+.srv-spec dt {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 8px;
+}
+.srv-spec dd {
+  margin: 0;
+  font-size: var(--text-m);
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.srv-deep-photos {
+  display: grid;
+  grid-template-columns: minmax(0, 0.44fr) minmax(0, 1fr);
+  gap: clamp(14px, 1.8vw, 26px);
+  margin-top: clamp(40px, 5vw, 70px);
+}
+.srv-deep-photos figure { margin: 0; }
+.srv-deep-photos img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  filter: saturate(0.52) brightness(0.86);
+}
+.srv-deep-photos figure:last-child img { aspect-ratio: 16 / 9; }
+.srv-deep-caption { margin-top: 22px; }
+
+@media (max-width: 900px) {
+  .srv-deep-grid { grid-template-columns: 1fr; gap: 34px; }
+  .srv-deep-photos { grid-template-columns: 1fr; }
+  .srv-deep-photos img, .srv-deep-photos figure:last-child img { aspect-ratio: 16 / 10; }
+}

@@ -1595,4 +1595,34 @@ S = {
         'In der Schwerindustrie laufen Projekte über Monate und Verpflichtungen über Jahre. Ein unabhängiger Nachweis finanzieller Stabilität ist der Nachweis, dass wir da sein werden, um die Arbeit zu Ende zu bringen &mdash; eine andere Frage als die, ob die Schweißnähte gut sind, und es wert, getrennt beantwortet zu werden.',
     'More on the award':
         'Mehr zur Auszeichnung',
+    'What it is':
+        'Worum es geht',
+    'The scaffold costs more than the repair':
+        'Das Gerüst kostet mehr als die Reparatur',
+    'Nobody buys rope access because they want ropes. They buy it because the alternative is a scaffold, a crane, a vessel day or a shutdown. Each of those costs more than the work itself.':
+        'Niemand kauft Seilzugangstechnik, weil er Seile will. Man kauft sie, weil die Alternative ein Gerüst, ein Kran, ein Schiffstag oder ein Stillstand ist. Jedes davon kostet mehr als die Arbeit selbst.',
+    'Our technicians hold IRATA and SOFT certification and most of them carry a second trade: inspection, welding or mechanical. One person on the rope replaces a scaffold crew and an inspector standing behind them.':
+        'Unsere Techniker sind nach IRATA und SOFT zertifiziert, und die meisten bringen ein zweites Gewerk mit: Prüfung, Schweißen oder Mechanik. Eine Person am Seil ersetzt eine Gerüstkolonne und den Prüfer, der dahinter steht.',
+    'Every crew works with a written rescue plan and a supervisor on site. Without both, the job does not start.':
+        'Jede Mannschaft arbeitet mit einem schriftlichen Rettungsplan und einem Aufsichtführenden vor Ort. Ohne beides beginnt die Arbeit nicht.',
+    'IRATA and SOFT':
+        'IRATA und SOFT',
+    'Typical mobilisation':
+        'Typische Mobilisierung',
+    'short notice, crews of 2&ndash;6':
+        'kurzfristig, Teams von 2&ndash;6',
+    'offshore wind, oil and gas, industry, marine':
+        'Offshore-Wind, Öl und Gas, Industrie, Marine',
+    'Deliverable':
+        'Ergebnis',
+    'report in the client&rsquo;s format':
+        'Bericht im Format des Kunden',
+    'The same crew works offshore topsides, turbine blades and onshore wind. Rope access is how they get there; the trade they carry is what they do once they arrive.':
+        'Dieselbe Mannschaft arbeitet auf Offshore-Topsides, an Rotorblättern und im Onshore-Wind. Die Seilzugangstechnik ist der Weg dorthin; das Gewerk, das sie mitbringen, ist die Arbeit, die dort gemacht wird.',
+    'Rope access technician descending onto an offshore topside above open water':
+        'Seilzugangstechniker beim Abseilen auf ein Offshore-Topside über offener See',
+    'Rope access technician working on a wind turbine blade':
+        'Seilzugangstechniker bei der Arbeit an einem Rotorblatt',
+    'Three technicians on a wind farm site at first light':
+        'Drei Techniker auf einem Windpark im ersten Tageslicht',
 }

@@ -1592,4 +1592,34 @@ S = {
         'Nell’industria pesante i progetti durano mesi e gli impegni durano anni. Una prova indipendente di solidità finanziaria è la prova che ci saremo fino alla fine del lavoro &mdash; una domanda diversa da quella se le saldature siano buone, e che merita una risposta a parte.',
     'More on the award':
         'Di più sul riconoscimento',
+    'What it is':
+        'Di che si tratta',
+    'The scaffold costs more than the repair':
+        'Il ponteggio costa più della riparazione',
+    'Nobody buys rope access because they want ropes. They buy it because the alternative is a scaffold, a crane, a vessel day or a shutdown. Each of those costs more than the work itself.':
+        'Nessuno compra il lavoro su fune perché vuole delle funi. Lo compra perché l’alternativa è un ponteggio, una gru, una giornata di nave o un fermo impianto. Ognuna di queste costa più del lavoro stesso.',
+    'Our technicians hold IRATA and SOFT certification and most of them carry a second trade: inspection, welding or mechanical. One person on the rope replaces a scaffold crew and an inspector standing behind them.':
+        'I nostri tecnici sono certificati IRATA e SOFT e la maggior parte porta con sé un secondo mestiere: ispezione, saldatura o meccanica. Una persona sulla fune sostituisce una squadra di ponteggiatori e l’ispettore che sta dietro di loro.',
+    'Every crew works with a written rescue plan and a supervisor on site. Without both, the job does not start.':
+        'Ogni squadra lavora con un piano di soccorso scritto e un preposto in cantiere. Senza entrambi, il lavoro non comincia.',
+    'IRATA and SOFT':
+        'IRATA e SOFT',
+    'Typical mobilisation':
+        'Mobilitazione tipica',
+    'short notice, crews of 2&ndash;6':
+        'con breve preavviso, squadre di 2&ndash;6',
+    'offshore wind, oil and gas, industry, marine':
+        'eolico offshore, oil and gas, industria, navale',
+    'Deliverable':
+        'Consegna',
+    'report in the client&rsquo;s format':
+        'rapporto nel formato del cliente',
+    'The same crew works offshore topsides, turbine blades and onshore wind. Rope access is how they get there; the trade they carry is what they do once they arrive.':
+        'La stessa squadra lavora su topside offshore, pale eoliche ed eolico a terra. Il lavoro su fune è il modo in cui ci arrivano; il mestiere che portano è quello che fanno una volta arrivati.',
+    'Rope access technician descending onto an offshore topside above open water':
+        'Tecnico su fune in discesa su un topside offshore sopra il mare aperto',
+    'Rope access technician working on a wind turbine blade':
+        'Tecnico su fune al lavoro su una pala eolica',
+    'Three technicians on a wind farm site at first light':
+        'Tre tecnici in un parco eolico alle prime luci',
 }

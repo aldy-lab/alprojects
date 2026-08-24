@@ -1618,4 +1618,34 @@ S = {
         'L’entreprise emploie directement entre 51 et 200 personnes et s’appuie sur un vivier de plus de 300 spécialistes certifiés. Les projets sont pourvus à partir de ce vivier plutôt que sous-traités, et c’est ce qui donne du sens au système qualité.',
     'In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through &mdash; a different question from whether the welding is any good, and worth answering separately.':
         'Dans l’industrie lourde, les projets durent des mois et les engagements des années. Une preuve indépendante de solidité financière est la preuve que nous serons là pour mener le travail à son terme &mdash; une autre question que celle de la qualité des soudures, et qui mérite d’être traitée à part.',
+    'What it is':
+        'Ce que c’est',
+    'The scaffold costs more than the repair':
+        'L’échafaudage coûte plus cher que la réparation',
+    'Nobody buys rope access because they want ropes. They buy it because the alternative is a scaffold, a crane, a vessel day or a shutdown. Each of those costs more than the work itself.':
+        'Personne n’achète du travail sur corde par envie de cordes. On l’achète parce que l’alternative est un échafaudage, une grue, une journée de navire ou un arrêt d’installation. Chacun coûte plus cher que le travail lui-même.',
+    'Our technicians hold IRATA and SOFT certification and most of them carry a second trade: inspection, welding or mechanical. One person on the rope replaces a scaffold crew and an inspector standing behind them.':
+        'Nos techniciens sont certifiés IRATA et SOFT et la plupart exercent un second métier : inspection, soudage ou mécanique. Une personne sur corde remplace une équipe d’échafaudeurs et l’inspecteur qui se tient derrière elle.',
+    'Every crew works with a written rescue plan and a supervisor on site. Without both, the job does not start.':
+        'Chaque équipe travaille avec un plan de secours écrit et un superviseur sur site. Sans les deux, le chantier ne démarre pas.',
+    'IRATA and SOFT':
+        'IRATA et SOFT',
+    'Typical mobilisation':
+        'Mobilisation type',
+    'short notice, crews of 2&ndash;6':
+        'court préavis, équipes de 2&ndash;6',
+    'offshore wind, oil and gas, industry, marine':
+        'éolien offshore, pétrole et gaz, industrie, maritime',
+    'Deliverable':
+        'Livrable',
+    'report in the client&rsquo;s format':
+        'rapport au format du client',
+    'The same crew works offshore topsides, turbine blades and onshore wind. Rope access is how they get there; the trade they carry is what they do once they arrive.':
+        'La même équipe intervient sur les topsides offshore, les pales d’éoliennes et l’éolien terrestre. Le travail sur corde est la façon d’y accéder ; le métier qu’ils exercent est ce qu’ils font une fois arrivés.',
+    'Rope access technician descending onto an offshore topside above open water':
+        'Technicien cordiste descendant sur un topside offshore au-dessus de la mer',
+    'Rope access technician working on a wind turbine blade':
+        'Technicien cordiste travaillant sur une pale d’éolienne',
+    'Three technicians on a wind farm site at first light':
+        'Trois techniciens sur un parc éolien au lever du jour',
 }

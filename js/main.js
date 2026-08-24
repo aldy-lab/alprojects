@@ -798,6 +798,14 @@
       var pos = srvPanel.querySelector(".srv-pos");
       if (pos) pos.textContent = sv.num + " / 12";
 
+      /* The longer block below the shell belongs to one service, and switching
+         never reloads the page, so it has to be swapped with the panel. */
+      var deep = document.getElementById("srvDeep");
+      if (deep) {
+        deep.innerHTML = sv.deep || "";
+        deep.classList.toggle("is-on", !!sv.deep);
+      }
+
       document.querySelectorAll(".srv-link").forEach(function (a) {
         var on = a.getAttribute("data-service") === sv.slug;
         a.classList.toggle("is-active", on);

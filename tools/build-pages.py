@@ -1630,9 +1630,64 @@ SERVICE_GROUPS = [
     ]),
 ]
 
+ROPE_DEEP = """
+      <div class="srv-deep-band">
+        <img src="/assets/tia-band.webp" alt="Rope access technician descending onto an offshore topside above open water"
+             width="1700" height="566" loading="lazy" decoding="async">
+        <span class="srv-deep-scrim" aria-hidden="true"></span>
+      </div>
+
+      <div class="container srv-deep-in">
+        <p class="eyebrow">What it is</p>
+        <div class="srv-deep-grid">
+          <div>
+            <h2 class="srv-deep-head">The scaffold costs more than the repair</h2>
+            <p class="srv-deep-body">Nobody buys rope access because they want ropes. They buy it
+            because the alternative is a scaffold, a crane, a vessel day or a shutdown. Each of
+            those costs more than the work itself.</p>
+            <p class="srv-deep-body">Our technicians hold IRATA and SOFT certification and most of
+            them carry a second trade: inspection, welding or mechanical. One person on the rope
+            replaces a scaffold crew and an inspector standing behind them.</p>
+            <p class="srv-deep-note">Every crew works with a written rescue plan and a supervisor
+            on site. Without both, the job does not start.</p>
+          </div>
+          <dl class="srv-spec">
+            <div><dt>Certification</dt><dd>IRATA and SOFT</dd></div>
+            <div><dt>Typical mobilisation</dt><dd>short notice, crews of 2&ndash;6</dd></div>
+            <div><dt>Sectors</dt><dd>offshore wind, oil and gas, industry, marine</dd></div>
+            <div><dt>Deliverable</dt><dd>report in the client&rsquo;s format</dd></div>
+          </dl>
+        </div>
+
+        <div class="srv-deep-photos">
+          <figure>
+            <img src="/assets/tia-people.webp" alt="Rope access technician working on a wind turbine blade"
+                 width="860" height="645" loading="lazy" decoding="async">
+          </figure>
+          <figure>
+            <img src="/assets/tia-hero.webp" alt="Three technicians on a wind farm site at first light"
+                 width="1900" height="814" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <p class="srv-deep-note srv-deep-caption">The same crew works offshore topsides, turbine
+        blades and onshore wind. Rope access is how they get there; the trade they carry is what
+        they do once they arrive.</p>
+      </div>
+"""
+
+
 SERVICES_FLAT = [sv for _, group in SERVICE_GROUPS for sv in group]
 for _i, _sv in enumerate(SERVICES_FLAT, 1):
     _sv["num"] = "%02d" % _i
+
+# A service may carry a longer block below the shell. Only rope access has one;
+# the rest render nothing there. It travels in the JSON payload with everything
+# else, because switching services never reloads the page -- appended straight
+# into the document it would still be sitting under "Welding services" one click
+# later.
+DEEP_BLOCKS = {"rope-access-services": ROPE_DEEP}
+for _sv in SERVICES_FLAT:
+    _sv["deep"] = DEEP_BLOCKS.get(_sv["slug"], "")
 
 
 
@@ -1672,7 +1727,7 @@ def service_page_body(sv):
     rendered as HTML -- one h1 per page, and no twelve-fold duplicate content
     across twelve URLs. The rest travel as JSON so switching is instant."""
     payload = _json.dumps(
-        [{k: x[k] for k in ("slug", "num", "h1", "lead", "points")} for x in SERVICES_FLAT],
+        [{k: x[k] for k in ("slug", "num", "h1", "lead", "points", "deep")} for x in SERVICES_FLAT],
         ensure_ascii=False, separators=(",", ":"))
     return ('\n    <section class="srv-shell">\n'
             '      <div class="container srv">\n'
@@ -1691,9 +1746,10 @@ def service_page_body(sv):
             '        </div>\n'
             '      </div>\n'
             '    </section>\n'
+            '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
             '    <script type="application/json" id="srv-data">{payload}</script>\n'
             ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
-                     num=sv["num"], payload=payload)
+                     num=sv["num"], deep=sv["deep"], payload=payload)
 
 
 # ---------------- write everything ----------------
