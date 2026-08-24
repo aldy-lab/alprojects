@@ -3596,9 +3596,7 @@ html.blueprint .bp-sheet { opacity: 1; }
   .hero-grid::after { display: none; }
 }
 @media (max-width: 640px) { .sheet-dim { display: none; } }
-/* The legend is a fixed size but the viewport is not, so on a phone it covers
-   a much wider share of the top-right corner and reaches this cross. */
-@media (max-width: 760px) { .sheet-plus-tr { display: none; } }
+
 
 
 /* ---------- sector cards: the corner selection, as before ----------
@@ -3785,13 +3783,14 @@ body::after {
      legend lines up with the right edge of the content column at every width
      rather than with the viewport. */
   position: absolute;
-  /* Inset from the corner rather than pinned to it: the gutter expression below
-     is the container's own right edge, and the two nudges bring the legend in
-     from it so it sits inside the drawing instead of on its border. Both scale
-     a little with the viewport so the inset does not look heavy on a phone. */
+  /* Centred across the sheet, below the header. left:0/right:0 with an auto
+     inline margin rather than a translate: the entry animation already owns
+     `transform`, and a translateX here would be wiped out the moment it runs. */
   top: calc(var(--nav-h) + 34px + clamp(26px, 5vh, 58px));
-  right: calc(max(var(--pad), (100% - var(--container)) / 2 + var(--pad))
-              + clamp(40px, 8.5vw, 150px));
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: fit-content;
   z-index: 3;
   display: inline-flex; align-items: center; gap: 9px;
   min-height: 32px; padding: 5px 12px 5px 6px;
