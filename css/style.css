@@ -364,10 +364,38 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom: 1px solid transparent;
   transition: background var(--dur-3), border-color var(--dur-3);
 }
+/* The header's tint ends on a line at the bottom of its box. Over a page that
+   starts with a photograph -- the home and Company heroes -- that line is a
+   visible band edge across the image (a 28-out-of-255 step on Company). This
+   strip carries the same tint and blur 26px further down and fades it out, so
+   the header meets the photograph instead of being cut out of it. Masking the
+   header itself would have faded the bottom of the Book a call button with it. */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* top:100% resolves against the padding box, which put this strip over the
+     header's own 1px bottom border and tinted that row twice -- a dark hairline
+     right where the seam was supposed to disappear. The extra pixel clears it. */
+  top: calc(100% + 1px);
+  height: 34px;
+  /* Tint only, deliberately no backdrop-filter. The step under the header is
+     entirely the 0.35 tint -- with the header hidden the row reads 56 either
+     side of the line, with it 40 above and 56 below. A second blurred region
+     here only added its own one-row compositing seam at the top edge. */
+  background: linear-gradient(180deg, rgba(10, 10, 18, 0.35) 0%,
+                              rgba(10, 10, 18, 0.12) 58%, rgba(10, 10, 18, 0) 100%);
+  pointer-events: none;
+  transition: background var(--dur-3);
+}
 .site-header.scrolled {
   background: rgba(10, 10, 18, 0.82);
   border-bottom-color: var(--line);
 }
+/* Once the header is opaque it has its own bottom rule, and the strip would
+   read as a smear under it. */
+.site-header.scrolled::after { background: rgba(10, 10, 18, 0); }
 .header-inner {
   width: 100%;
   display: flex;
@@ -994,7 +1022,7 @@ button { font-family: inherit; cursor: pointer; }
 .cta-panel {
   position: relative;
   border: 1px solid var(--line);
-  background: url("../assets/cta-bg.webp") center / cover no-repeat, var(--panel);
+  background: var(--panel);
   overflow: hidden;
   display: grid;
   grid-template-columns: 1.1fr 1.4fr 1fr;
@@ -1003,16 +1031,37 @@ button { font-family: inherit; cursor: pointer; }
   padding: clamp(40px, 5vw, 76px) clamp(24px, 3vw, 56px);
   min-height: 300px;
 }
+/* The photograph, on its own feathered layer. It used to sit directly in
+   .cta-panel's background, so its bloom ran straight into the frame: 8 to 113
+   out of 255 across a single pixel at the top edge, and 62 to 7 at the right.
+   Masked, it dissolves inside the panel instead of being cut by it. */
 .cta-panel::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
+  background: url("../assets/cta-bg.webp") center / cover no-repeat;
+  pointer-events: none;
+}
+.cta-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   background:
     linear-gradient(90deg, rgba(10, 10, 18, 0.25), rgba(10, 10, 18, 0.55) 50%, rgba(10, 10, 18, 0.25)),
     repeating-linear-gradient(90deg, transparent 0 calc(33.33% - 1px), rgba(255, 255, 255, 0.06) calc(33.33% - 1px) 33.33%);
+  /* The photograph is dark on the left and bright on the right, and its bright
+     end ran straight into the frame -- 113 out of 255 against a page at 8. A
+     radial vignette would have flattened the middle to fix an edge, so the
+     falloff is an inset shadow instead: it only touches the outer ~120px of a
+     1280px panel and leaves the picture in the middle alone. */
+  box-shadow: inset 0 0 96px 26px rgba(10, 10, 18, 0.94);
   pointer-events: none;
 }
-.cta-panel > * { position: relative; }
+/* ::after paints last among positioned siblings, so the content needs to be
+   lifted above it explicitly or the scrim would sit on top of the text. */
+.cta-panel > * { position: relative; z-index: 2; }
 .cta-title {
   font-size: var(--h3);
   font-weight: 500;
@@ -1925,7 +1974,14 @@ html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint te
   align-items: start;
   height: 100%;
   padding: clamp(18px, 1.8vw, 28px);
-  background: var(--panel);
+  /* Semi-transparent rather than a flat --panel slab. The page's light field
+     runs from 9 to 23 out of 255 across this section, so an opaque fill stepped
+     hard against the dark left side and not at all against the bright right.
+     Letting the field through keeps the card a constant amount above whatever
+     is behind it, and the inset rim carries the fill down to the frame instead
+     of ending on it. */
+  background: linear-gradient(180deg, rgba(19, 20, 33, 0.80), rgba(13, 14, 24, 0.64));
+  box-shadow: inset 0 0 44px 8px rgba(7, 8, 14, 0.34);
   border: 1px solid var(--line);
   transition: border-color var(--dur-3) var(--ease);
 }
@@ -2547,17 +2603,25 @@ a.cert-card:hover img { border-color: var(--accent); }
 .srv-shell {
   position: relative;
   padding: clamp(40px, 6vw, 90px) 0 clamp(60px, 8vw, 110px);
-  background: url("../assets/services-bg.webp") center / cover no-repeat, var(--bg);
+  /* No ground on the element itself. Painting an opaque --bg here stamped the
+     section over the page's own light field at exactly the header height --
+     luminance 29 to 7 across one pixel, which reads as a line under the nav.
+     The ground moved to ::before, which fades in so the section arrives. */
 }
 /* The list used to sit on the bright part of the photograph. This darkens the
-   left side so type never competes with the image behind it. */
+   left side so type never competes with the image behind it. The whole layer
+   is masked at the top so it meets the page instead of cutting it. */
 .srv-shell::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
     linear-gradient(90deg, rgba(5,6,15,0.97) 0%, rgba(5,6,15,0.9) 42%, rgba(5,6,15,0.72) 100%),
-    linear-gradient(180deg, var(--bg) 0%, rgba(5,6,15,0) 22%, rgba(5,6,15,0) 78%, var(--bg) 100%);
+    linear-gradient(180deg, rgba(5,6,15,0) 0%, rgba(5,6,15,0) 78%, var(--bg) 100%),
+    url("../assets/services-bg.webp") center / cover no-repeat,
+    var(--bg);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 72px);
+  mask-image: linear-gradient(180deg, transparent 0, #000 72px);
   pointer-events: none;
 }
 .srv {
@@ -2889,6 +2953,12 @@ a.cert-card:hover img { border-color: var(--accent); }
   align-items: flex-end;
   overflow: hidden;
   background: var(--bg);
+  /* main is padded by the header's height, so the photograph starts on exactly
+     the row where the fixed header ends -- a 28-out-of-255 line straight across
+     the image. Fading the first 54px lets it come out of the page instead. The
+     hero's own text sits 300px lower, so the mask never reaches it. */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 54px);
+  mask-image: linear-gradient(180deg, transparent 0, #000 54px);
 }
 .sector-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sector-hero-scrim {
