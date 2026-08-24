@@ -3785,8 +3785,13 @@ body::after {
      legend lines up with the right edge of the content column at every width
      rather than with the viewport. */
   position: absolute;
-  top: calc(var(--nav-h) + 34px);
-  right: max(var(--pad), calc((100% - var(--container)) / 2 + var(--pad)));
+  /* Inset from the corner rather than pinned to it: the gutter expression below
+     is the container's own right edge, and the two nudges bring the legend in
+     from it so it sits inside the drawing instead of on its border. Both scale
+     a little with the viewport so the inset does not look heavy on a phone. */
+  top: calc(var(--nav-h) + 34px + clamp(26px, 5vh, 58px));
+  right: calc(max(var(--pad), (100% - var(--container)) / 2 + var(--pad))
+              + clamp(22px, 3.4vw, 58px));
   z-index: 3;
   display: inline-flex; align-items: center; gap: 9px;
   min-height: 32px; padding: 5px 12px 5px 6px;
