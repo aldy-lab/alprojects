@@ -696,13 +696,10 @@
     );
   }
 
-  /* ---------- header state ---------- */
-  var header = document.querySelector(".site-header");
-  function onScrollHeader() {
-    header.classList.toggle("scrolled", window.scrollY > 30);
-  }
-  window.addEventListener("scroll", onScrollHeader, { passive: true });
-  onScrollHeader();
+  /* The header used to gain a solid background once you scrolled past 30px.
+     It is transparent at every scroll position now -- what keeps the nav
+     readable is a scrim fixed to the top of the viewport that fades out to
+     nothing, so there is no state to track and no scroll listener for it. */
 
   /* ---------- footprint: map markers linked to the country rows ----------
      Both the map and the list already carry every country, so this only

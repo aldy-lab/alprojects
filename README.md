@@ -64,6 +64,26 @@ lifted until it clears 4.5:1 on the darkest panel with margin (4.8:1) — which
 keeps it visibly quieter than `--muted` at 6.2:1, so the type hierarchy is
 unchanged. If you re-sample the palette from Figma, re-check this one.
 
+### The header is transparent, and two things keep the nav readable
+
+There is no header background at any scroll position — the nav floats over
+whatever is passing under it. Scrolled fully bare, that measured **1.06:1** on
+`/careers.html`: photographs, the white certificate scans and the light panels
+all pass beneath it. Two things replace the bar, and removing either one breaks
+the nav on the bright sections:
+
+- `.site-header::after` — a scrim fixed to the top of the viewport, 132px tall,
+  fading to nothing. Because it ends on zero there is no edge anywhere, so it
+  reads as the screen being darker at the top rather than as a bar.
+- `.main-nav a` is `#b0b7c8`, deliberately lighter than `--muted` and set only
+  here. On the brightest section the ground still reads 68 out of 255 through
+  the scrim; at `--muted` that is 3.3:1, at this colour 4.9:1.
+
+Worst case across every page and scroll position is now 4.83:1 (the
+certificates on the home page); everything else is 5:1 to 9.8:1. `html.menu-open`
+puts a solid ground back while the mobile panel is open, since that panel is
+opaque and starts at the header's bottom edge.
+
 ## Accessibility
 
 Audited across every page with a headless probe: one `<h1>` per page, no
