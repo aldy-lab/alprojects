@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=c347f71d">
+  <link rel="stylesheet" href="/css/style.css?v=b9ad01f6">
 </head>
 <body>
 
@@ -88,71 +88,280 @@
 
   <main id="main" class="page">
 
-    <div class="container page-head">
-      <p class="eyebrow">Company</p>
-      <h1 class="page-title">A European provider of industrial services</h1>
-      <p class="page-lead">ALPROJECTS Group serves the shipbuilding, offshore, industrial and
-      energy sectors, from a head office in Klaipėda, Lithuania.</p>
-    </div>
+    <section class="sector-hero co-hero">
+      <img class="sector-hero-img" src="/assets/tia-hero.webp" alt="ALPROJECTS crew on a wind farm site"
+           width="1900" height="814" fetchpriority="high" decoding="async">
+      <span class="sector-hero-scrim" aria-hidden="true"></span>
+      <div class="container sector-hero-in">
+        <p class="eyebrow">Company</p>
+        <h1 class="sector-hero-title">This is ALPROJECTS</h1>
+        <p class="sector-hero-lead">What we are here to do, and the rules we work by. Written
+        down so a client can hold us to them.</p>
+      </div>
+    </section>
 
+    <!-- ================= VISION / MISSION ================= -->
     <div class="container">
-      <p class="back">
-        <a class="btn-bracket" href="/this-is-alprojects.html">This is ALPROJECTS &mdash; vision, values and HSEQ</a>
-      </p>
+      <div class="co-vm">
+        <div class="reveal">
+          <p class="eyebrow">Our vision</p>
+          <p class="co-big">Industrial work that comes with its own evidence.</p>
+          <p class="co-body">Europe has no shortage of contractors who can weld. It has a
+          shortage of contractors who can hand over the evidence with the work, in a form the
+          client, the surveyor and the auditor all accept.</p>
+        </div>
+        <div class="reveal reveal-d1">
+          <p class="eyebrow">Our mission</p>
+          <p class="co-big">Certified people on site, and independent proof of what they did.</p>
+          <p class="co-body">We take mechanical scopes and deliver them with our own
+          supervision. We supply the qualified people a project is short of. And we inspect the
+          result with people who did not do the work.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="container prose">
-      <h2>What we do</h2>
-      <p>We specialise in piping prefabrication and installation, steel fabrication and
-      mechanical installation, and we provide certified technical personnel to projects
-      across Europe. In practice that means we are engaged either to deliver a defined
-      mechanical scope, or to supply the qualified people a project is short of &mdash;
-      often both on the same site.</p>
-
-      <h2>Sectors</h2>
-      <ul>
-        <li><strong>Shipbuilding</strong> — piping and mechanical installation on vessels under construction.</li>
-        <li><strong>Offshore</strong> — inspection, access and mechanical works on offshore facilities.</li>
-        <li><strong>Industrial</strong> — plant installation, transformer packages, process piping.</li>
-        <li><strong>Energy and renewables</strong> — fuel handling infrastructure and wind energy support.</li>
+    <!-- ================= WHAT WE DO ================= -->
+    <div class="container co-sec">
+      <p class="eyebrow">What we do</p>
+      <h2 class="sub-head co-vhead reveal">We deliver the scope, or we supply the people a
+      scope is short of</h2>
+      <p class="co-body reveal">Often both, on the same site. We specialise in piping
+      prefabrication and installation, steel fabrication and mechanical installation, and we
+      provide certified technical personnel to projects across Europe.</p>
+      <ul class="co-rows reveal">
+        <li>
+          <a href="/sectors/shipbuilding.html">
+            <b>Shipbuilding</b>
+            <span>Piping and mechanical installation on vessels under construction.</span>
+            <em aria-hidden="true">&rarr;</em>
+          </a>
+        </li>
+        <li>
+          <a href="/sectors/offshore.html">
+            <b>Offshore</b>
+            <span>Inspection, access and mechanical works on offshore facilities.</span>
+            <em aria-hidden="true">&rarr;</em>
+          </a>
+        </li>
+        <li>
+          <a href="/sectors/industrial.html">
+            <b>Industrial</b>
+            <span>Plant installation, transformer packages, process piping.</span>
+            <em aria-hidden="true">&rarr;</em>
+          </a>
+        </li>
+        <li>
+          <a href="/sectors/renewables.html">
+            <b>Energy and renewables</b>
+            <span>Fuel handling infrastructure and wind energy support.</span>
+            <em aria-hidden="true">&rarr;</em>
+          </a>
+        </li>
       </ul>
+    </div>
 
-      <h2>Certification</h2>
-      <p>ALPROJECTS Group holds <strong>ISO 3834</strong> for welding quality requirements,
-      alongside ISO 9001, ISO 14001 and ISO 45001 covering quality, environmental and
-      occupational health and safety management. Certification is what allows a client to
-      accept our documentation without re-doing the inspection themselves.</p>
+    <!-- ================= PEOPLE ================= -->
+    <div class="container co-sec">
+      <p class="eyebrow">Our people</p>
+      <div class="co-people">
+        <div class="reveal">
+          <h2 class="sub-head">Three hundred specialists, and a schedule that does not wait</h2>
+          <p class="co-body">Welders, pipe fitters, shipbuilders, mechanics, NDT inspectors and
+          rope access technicians. Most carry a second trade, which is why one of our people
+          often covers what usually takes two.</p>
+          <p class="co-body">They travel. A crew that mobilises to Norway on Monday can be in
+          Rostock the following month. That is the job, and everyone who joins us knows it
+          before the first rotation.</p>
+          <p class="co-note">We keep the roster current. Certificates, medicals and
+          availability are checked before anyone is offered to a project.</p>
+          <p class="back">
+            <a class="btn-solid" href="/careers.html">Work with us</a>
+            <!-- Filled in from MANAGEMENT_URL in js/main.js. Removed while that is
+                 empty, so a page that does not exist yet never ships as a dead link. -->
+            <a class="btn-bracket" data-management hidden href="#">Meet the management</a>
+          </p>
+        </div>
+        <figure class="co-people-img reveal reveal-d1">
+          <img src="/assets/tia-people.webp" alt="Rope access technician working on a turbine blade"
+               width="860" height="645" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <div class="co-figs reveal">
+        <div><span class="value" data-count="300" data-suffix="+">0+</span><span class="label">Certified specialists on the roster</span></div>
+        <div><span class="value" data-count="6">0</span><span class="label">Countries we work in</span></div>
+        <div><span class="value" data-count="4">0</span><span class="label">Sectors, one set of disciplines</span></div>
+        <div><span class="value" data-count="3">0</span><span class="label">ISO management systems, certified by DNV</span></div>
+      </div>
+    </div>
 
-      <h2>Strongest in Lithuania, 2025&ndash;2026</h2>
-      <p>UAB &ldquo;ALprojects&rdquo; holds the <strong>Strongest in Lithuania</strong>
-      certificate, awarded by Creditinfo Group on 23 June 2026 to companies with a high
-      credit score and a proven record of financial stability.</p>
-      <p>In heavy industry, projects run for months and commitments run for years.
-      Independent proof of financial stability is proof that we will be there to see the
-      work through &mdash; which is a different question from whether the welding is any
-      good, and worth answering separately.
-      <a href="/news/strongest-in-lithuania-2025-2026.html">More on the award</a>.</p>
+    <!-- ================= VALUES ================= -->
+    <div class="container co-sec">
+      <p class="eyebrow">Our values</p>
+      <h2 class="sub-head co-vhead reveal">Values are worth writing down only if someone can
+      hold you to them. Ours are written so a client can.</h2>
+      <div class="co-vals">
+        <div class="co-val reveal">
+          <span class="co-val-n">01</span>
+          <div>
+            <h3>We keep learning on every job</h3>
+            <ul class="co-val-list">
+            <li>We debrief after each mobilisation and write down what we would do differently.</li>
+            <li>We share procedures between crews, so the second job runs faster than the first.</li>
+            <li>We ask the client&rsquo;s supervisor what went wrong before he has to tell us.</li>
+            <li>We bring people up to a second trade, because two skills in one man are worth more offshore.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="co-val reveal">
+          <span class="co-val-n">02</span>
+          <div>
+            <h3>We are responsible for the scope</h3>
+            <ul class="co-val-list">
+            <li>We take the work with our own supervision and our own quality control.</li>
+            <li>When the mistake is ours, we say so and we correct it at our cost.</li>
+            <li>We never hand a problem down to the next contractor in the chain.</li>
+            <li>We get everyone home at the end of the rotation.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="co-val reveal">
+          <span class="co-val-n">03</span>
+          <div>
+            <h3>We look for the work others avoid</h3>
+            <ul class="co-val-list">
+            <li>We take scopes with difficult access, tight windows and unclear starting conditions.</li>
+            <li>We answer enquiries that arrive at short notice, because that is when a client needs a contractor most.</li>
+            <li>We invest in certification before the market starts asking for it.</li>
+            <li>We build the business together, across offices and across crews.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="co-val reveal">
+          <span class="co-val-n">04</span>
+          <div>
+            <h3>We look after people and the site</h3>
+            <ul class="co-val-list">
+            <li>We work to the client&rsquo;s permit system and add our own where theirs is thinner.</li>
+            <li>We leave the area cleaner than we found it.</li>
+            <li>We ask for help early. Nobody on a rope is expected to manage alone.</li>
+            <li>We follow the law and our own procedures when nobody is watching.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="co-val reveal">
+          <span class="co-val-n">05</span>
+          <div>
+            <h3>We keep the date we gave</h3>
+            <ul class="co-val-list">
+            <li>A mobilisation date is given only when the people are actually free.</li>
+            <li>We plan so that the safe method is also the fast one.</li>
+            <li>We remind the client of his deadlines as well as ours.</li>
+            <li>A yard schedule does not move, so ours has to hold.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="co-val reveal">
+          <span class="co-val-n">06</span>
+          <div>
+            <h3>We say it early and we say it plainly</h3>
+            <ul class="co-val-list">
+            <li>We explain the scope and the risks before the work starts.</li>
+            <li>A problem is reported the day it appears. Friday is too late.</li>
+            <li>We confirm that we understood the client, and that he understood us.</li>
+            <li>We write documentation a person can actually read.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <h2>Where we work from</h2>
-      <p>Head office in Klaipėda, Lithuania, with operations in <strong>Belgium</strong>
-      and <strong>Norway</strong>, serving offshore, shipbuilding and industry across
-      Northern and Western Europe.</p>
+    <!-- ================= QUOTE BAND ================= -->
+    <section class="co-band">
+      <img src="/assets/tia-band.webp" alt="Rope access descent onto an offshore topside"
+           width="1700" height="566" loading="lazy" decoding="async">
+      <span class="co-band-scrim" aria-hidden="true"></span>
+      <div class="container co-band-in">
+        <blockquote>Anyone on our crew can stop a job.</blockquote>
+        <cite>ALPROJECTS Group &middot; Value 02</cite>
+      </div>
+    </section>
 
-      <h2>Scale</h2>
-      <p>The company employs between 51 and 200 people directly and draws on a roster of
-      more than 300 certified specialists across Europe. Projects are resourced from that
-      roster rather than subcontracted on, which is what keeps the quality system
-      meaningful.</p>
+    <!-- ================= HSEQ ================= -->
+    <div class="container co-sec">
+      <p class="eyebrow">HSEQ</p>
+      <div class="co-hseq">
+        <div class="reveal">
+          <h2 class="sub-head">Zero harm is a target, and we report against it</h2>
+          <p class="co-body">We work inside the client&rsquo;s permit system and add our own
+          where theirs is thinner. Every scope gets a risk assessment and a method statement
+          before mobilisation, and both are written for the actual site. Copying the paperwork
+          from the last job is how people get hurt.</p>
+          <p class="co-note">Our management systems are certified to ISO 9001, 14001 and
+          45001, and our welding to ISO 3834. Certification is what lets a client accept our
+          documentation without repeating the inspection themselves.</p>
+        </div>
+      </div>
+      <div class="co-zeros reveal">
+        <div class="co-zero"><b>No injuries</b><span>to our people, to the client&rsquo;s people, to anyone else on site.</span></div>
+        <div class="co-zero"><b>No occupational illness</b><span>from the way we organise the work.</span></div>
+        <div class="co-zero"><b>No spills</b><span>to the sea, to the ground or to the drain.</span></div>
+        <div class="co-zero"><b>No damage</b><span>to the structure we were sent to work on.</span></div>
+      </div>
+      <p class="co-note co-zeros-note">We publish our safety figures once a year: hours
+      worked, incidents, and what we changed as a result. A target nobody measures is a
+      slogan.</p>
+      <div class="co-plates reveal">
+        <div class="co-plate"><b>ISO 3834</b><span>Welding quality</span></div>
+        <div class="co-plate"><b>ISO 9001</b><span>Quality</span></div>
+        <div class="co-plate"><b>ISO 14001</b><span>Environment</span></div>
+        <div class="co-plate"><b>ISO 45001</b><span>Health and safety</span></div>
+      </div>
+    </div>
 
-      <h2>Head office</h2>
-      <p>ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br>
-      <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot;
-      <a href="tel:+37063663744">+370 636 63 744</a></p>
+    <!-- ================= STANDING ================= -->
+    <div class="container co-sec">
+      <p class="eyebrow">Standing</p>
+      <div class="co-vm">
+        <div class="reveal">
+          <p class="co-big">Where we work from</p>
+          <p class="co-body">Head office in Klaipėda, Lithuania, with operations in
+          <strong>Belgium</strong> and <strong>Norway</strong>, serving offshore, shipbuilding
+          and industry across Northern and Western Europe.</p>
+          <p class="co-note">The company employs between 51 and 200 people directly and draws
+          on a roster of more than 300 certified specialists. Projects are resourced from that
+          roster rather than subcontracted on, which is what keeps the quality system
+          meaningful.</p>
+        </div>
+        <div class="reveal reveal-d1">
+          <p class="co-big">Strongest in Lithuania, 2025&ndash;2026</p>
+          <p class="co-body">UAB &ldquo;ALprojects&rdquo; holds the <strong>Strongest in
+          Lithuania</strong> certificate, awarded by Creditinfo Group on 23 June 2026 to
+          companies with a high credit score and a proven record of financial stability.</p>
+          <p class="co-body">In heavy industry, projects run for months and commitments run for
+          years. Independent proof of financial stability is proof that we will be there to see
+          the work through &mdash; a different question from whether the welding is any good,
+          and worth answering separately.</p>
+          <p class="back">
+            <a class="btn-bracket" href="/news/strongest-in-lithuania-2025-2026.html">More on the award</a>
+          </p>
+        </div>
+      </div>
+    </div>
 
-      <p class="back">
-        <a class="btn-bracket" href="/services.html">Our services</a>
-        <a class="btn-bracket" href="/#team">Meet the team</a>
-      </p>
+    <!-- ================= CTA ================= -->
+    <div class="container">
+      <div class="co-cta">
+        <h2 class="sub-head reveal">If this is how you want your contractor to work, send us the scope</h2>
+        <p class="co-note">We reply to project enquiries within one working day.</p>
+        <p class="co-addr">ALPROJECTS, UAB &middot; Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br>
+        <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot;
+        <a href="tel:+37063663744">+370 636 63 744</a></p>
+        <p class="back">
+          <a class="btn-solid" href="/contacts.html#enquiry">Send us the scope</a>
+          <a class="btn-bracket" href="/services.html">Our services</a>
+          <a class="btn-bracket" href="/projects.html">See our projects</a>
+        </p>
+      </div>
     </div>
 
   </main>
@@ -192,7 +401,6 @@
         <div class="footer-col">
           <h2>Company</h2>
           <ul>
-            <li><a href="/this-is-alprojects.html">This is ALPROJECTS</a></li>
             <li><a href="/company.html">About Us</a></li>
             <li><a href="/services.html">Our Services</a></li>
             <li><a href="/#certifications">Certifications</a></li>
@@ -291,6 +499,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=abc78454"></script>
+  <script src="/js/main.js?v=eab716fd"></script>
 </body>
 </html>

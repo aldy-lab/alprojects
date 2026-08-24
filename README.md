@@ -537,6 +537,12 @@ to get the list of what is missing.
       Belgium 1), so the counters read 6 / 9. The previous 5 / 7 was the same
       arithmetic with the Netherlands counted as an offshore area rather than a
       base. ⚠️ Confirm 9 is how the client counts a "project base".
+- [ ] **Which countries have offices** — ⚠️ the two pages disagree. The homepage
+      footprint says offices in **Lithuania, Poland, Germany and Norway**; the
+      Company page says head office in Klaipėda with operations in **Belgium and
+      Norway**. Both came from client material and both are still on the site.
+      Poland and Germany against Belgium is not a wording difference — confirm
+      the real list and make the two match.
 - [ ] **Second phone number** — the old site also listed +370 670 20654 next to
       +370 636 63744. Only the latter is on the new site.
 - [ ] **Newsletter backend** — set `FORM_ENDPOINT` (Formspree, Buttondown,
@@ -607,11 +613,14 @@ to get the list of what is missing.
 - [ ] Contact email is `info@alprojects.eu` while the site is on alprojects.co —
       intentional, .eu redirects to .co.
 
-### /this-is-alprojects.html — the six confirmations TZ part 6 §6 asks for
+### /company.html — the six confirmations TZ part 6 §6 asks for
 
-The page is built to the brief and reads as a set of promises a client can quote
-back. Six of them are commitments rather than descriptions, and the TZ itself
-says they must be confirmed before publication:
+TZ part 6 was specified as a separate `/this-is-alprojects` page. It is instead
+the Company page: the old prose `/company.html` and the TZ's vision / values /
+HSEQ material were the same subject told twice, and one page carries it better
+than two competing for the same visitor. Six of its statements are commitments
+rather than descriptions, and the TZ itself says they must be confirmed before
+publication:
 
 - [ ] **"Anyone on our crew can stop a job."** This is Stop Work Authority. It is
       only publishable if a written procedure exists that says so and protects
@@ -628,11 +637,11 @@ says they must be confirmed before publication:
       looks for it.
 - [ ] **Three hundred specialists** — the headline figure on this page. Elsewhere
       the site says 300+. Confirm the number and keep the two in step.
-- [ ] **"Meet the management" button** — the page has the slot wired but the
+- [ ] **"Meet the management" button** — the Company page has the slot wired but the
       button is removed while `MANAGEMENT_URL` is blank (see Configuration). It
       switches on the moment there is a page to point it at; names and photos
       are still needed.
-- [ ] **ISO 3834 on this page** — the HSEQ block shows four ISO plates, matching
+- [ ] **ISO 3834 on the Company page** — the HSEQ block shows four ISO plates, matching
       the rest of the site. The sentence above them now names the three
       management-system standards separately from the welding one, so the page
       no longer claims four certified management systems. The underlying gap is

@@ -31,7 +31,7 @@
      mail client with every answer filled in, so an enquiry is never lost
      to a POST that goes nowhere. */
   var CONTACT_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
-  /* "Meet the management" on /this-is-alprojects.html. There is no such page
+  /* "Meet the management" on /company.html. There is no such page
      yet and no names or photographs for one, so the button stays out of the
      DOM until this points somewhere real. */
   var MANAGEMENT_URL = "";

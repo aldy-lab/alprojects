@@ -1562,4 +1562,34 @@ S = {
         'Questa è ALPROJECTS — ALPROJECTS Group',
     'Our management systems are certified to ISO 9001, 14001 and 45001, and our welding to ISO 3834. Certification is what lets a client accept our documentation without repeating the inspection themselves.':
         'I nostri sistemi di gestione sono certificati ISO 9001, 14001 e 45001 e la nostra saldatura ISO 3834. È la certificazione che permette al cliente di accettare la nostra documentazione senza ripetere l’ispezione.',
+    '<b>Shipbuilding</b> <span>Piping and mechanical installation on vessels under construction.</span> <em aria-hidden="true">&rarr;</em>':
+        '<b>Cantieristica navale</b> <span>Tubazioni e montaggio meccanico su navi in costruzione.</span> <em aria-hidden="true">&rarr;</em>',
+    '<b>Offshore</b> <span>Inspection, access and mechanical works on offshore facilities.</span> <em aria-hidden="true">&rarr;</em>':
+        '<b>Offshore</b> <span>Ispezione, accesso e lavori meccanici su impianti offshore.</span> <em aria-hidden="true">&rarr;</em>',
+    '<b>Industrial</b> <span>Plant installation, transformer packages, process piping.</span> <em aria-hidden="true">&rarr;</em>':
+        '<b>Industria</b> <span>Montaggio di impianti, pacchetti trasformatori, tubazioni di processo.</span> <em aria-hidden="true">&rarr;</em>',
+    '<b>Energy and renewables</b> <span>Fuel handling infrastructure and wind energy support.</span> <em aria-hidden="true">&rarr;</em>':
+        '<b>Energia e rinnovabili</b> <span>Infrastrutture per la movimentazione di combustibili e supporto eolico.</span> <em aria-hidden="true">&rarr;</em>',
+    '<span class="value" data-count="300" data-suffix="+">0+</span><span class="label">Certified specialists on the roster</span>':
+        '<span class="value" data-count="300" data-suffix="+">0+</span><span class="label">Specialisti certificati in organico</span>',
+    '<span class="value" data-count="6">0</span><span class="label">Countries we work in</span>':
+        '<span class="value" data-count="6">0</span><span class="label">Paesi in cui operiamo</span>',
+    '<span class="value" data-count="4">0</span><span class="label">Sectors, one set of disciplines</span>':
+        '<span class="value" data-count="4">0</span><span class="label">Settori, un unico insieme di discipline</span>',
+    '<span class="value" data-count="3">0</span><span class="label">ISO management systems, certified by DNV</span>':
+        '<span class="value" data-count="3">0</span><span class="label">Sistemi di gestione ISO, certificati da DNV</span>',
+    'ALPROJECTS, UAB &middot; Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
+        'ALPROJECTS, UAB &middot; Šilutės pl. 2-536, LT-91110 Klaipėda, Lituania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
+    'Standing':
+        'La nostra solidità',
+    'We deliver the scope, or we supply the people a scope is short of':
+        'Consegniamo la commessa, oppure forniamo le persone che le mancano',
+    'Often both, on the same site. We specialise in piping prefabrication and installation, steel fabrication and mechanical installation, and we provide certified technical personnel to projects across Europe.':
+        'Spesso entrambe le cose, sullo stesso cantiere. Siamo specializzati nella prefabbricazione e installazione di tubazioni, nelle carpenterie metalliche e nel montaggio meccanico, e forniamo personale tecnico certificato a progetti in tutta Europa.',
+    'The company employs between 51 and 200 people directly and draws on a roster of more than 300 certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'L’azienda impiega direttamente tra 51 e 200 persone e attinge a un organico di oltre 300 specialisti certificati. I progetti sono coperti da quell’organico invece che subappaltati, ed è questo a rendere significativo il sistema qualità.',
+    'In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through &mdash; a different question from whether the welding is any good, and worth answering separately.':
+        'Nell’industria pesante i progetti durano mesi e gli impegni durano anni. Una prova indipendente di solidità finanziaria è la prova che ci saremo fino alla fine del lavoro &mdash; una domanda diversa da quella se le saldature siano buone, e che merita una risposta a parte.',
+    'More on the award':
+        'Di più sul riconoscimento',
 }
