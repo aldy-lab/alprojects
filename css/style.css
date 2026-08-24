@@ -358,44 +358,32 @@ button { font-family: inherit; cursor: pointer; }
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  background: rgba(10, 10, 18, 0.35);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  /* Transparent at the top of the page: no tint, no blur, no bar. The nav sits
+     on whatever the page opens with. Every page but the home one is at 16 out
+     of 255 behind here, so there is nothing to protect the type from; the home
+     hero's corner glow is handled at the hero, where it can fade over 190px
+     instead of stopping on the header's edge. */
+  background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background var(--dur-3), border-color var(--dur-3);
+  transition: background var(--dur-3), border-color var(--dur-3),
+              backdrop-filter var(--dur-3);
 }
-/* The header's tint ends on a line at the bottom of its box. Over a page that
-   starts with a photograph -- the home and Company heroes -- that line is a
-   visible band edge across the image (a 28-out-of-255 step on Company). This
-   strip carries the same tint and blur 26px further down and fades it out, so
-   the header meets the photograph instead of being cut out of it. Masking the
-   header itself would have faded the bottom of the Book a call button with it. */
-.site-header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  /* top:100% resolves against the padding box, which put this strip over the
-     header's own 1px bottom border and tinted that row twice -- a dark hairline
-     right where the seam was supposed to disappear. The extra pixel clears it. */
-  top: calc(100% + 1px);
-  height: 34px;
-  /* Tint only, deliberately no backdrop-filter. The step under the header is
-     entirely the 0.35 tint -- with the header hidden the row reads 56 either
-     side of the line, with it 40 above and 56 below. A second blurred region
-     here only added its own one-row compositing seam at the top edge. */
-  background: linear-gradient(180deg, rgba(10, 10, 18, 0.35) 0%,
-                              rgba(10, 10, 18, 0.12) 58%, rgba(10, 10, 18, 0) 100%);
-  pointer-events: none;
-  transition: background var(--dur-3);
-}
+/* Once content is running underneath, the bar comes back. */
 .site-header.scrolled {
   background: rgba(10, 10, 18, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
+}
+/* The mobile panel is opaque and starts at the header's bottom edge, so a
+   transparent header above it would show the page through a 78px strip. */
+html.menu-open .site-header {
+  background: rgba(10, 10, 18, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 /* Once the header is opaque it has its own bottom rule, and the strip would
    read as a smear under it. */
-.site-header.scrolled::after { background: rgba(10, 10, 18, 0); }
 .header-inner {
   width: 100%;
   display: flex;
@@ -3488,6 +3476,25 @@ html.blueprint .bp-sheet { opacity: 1; }
   animation: sheet-drift 34s ease-in-out infinite alternate;
   will-change: transform;
 }
+/* With the header transparent, the top-right corner glow above sits directly
+   behind the nav -- 90 out of 255 under the Book a call button, which took the
+   nav links to 4.7:1. This carries the top of the sheet down over 190px and
+   ends on nothing, so the type is legible without putting a bar back. */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 190px;
+  z-index: 1;
+  background: linear-gradient(180deg,
+    rgba(5, 7, 14, 0.66) 0%, rgba(5, 7, 14, 0.30) 46%, rgba(5, 7, 14, 0) 100%);
+  pointer-events: none;
+}
+/* the hero copy sits at the bottom, but keep it above the scrim regardless */
+.hero-in { z-index: 2; }
+
 @keyframes sheet-drift {
   from { transform: translate3d(0, 0, 0) scale(1); }
   to { transform: translate3d(-2.2%, 1.6%, 0) scale(1.07); }

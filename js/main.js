@@ -871,6 +871,9 @@
     var setMenu = function (open) {
       mobileMenu.classList.toggle("open", open);
       burger.classList.toggle("open", open);
+      /* The header is transparent at the top of the page; while the panel is
+         open it has to be opaque or the page shows through above it. */
+      document.documentElement.classList.toggle("menu-open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
       document.body.style.overflow = open ? "hidden" : "";
       if (open) {
@@ -890,6 +893,7 @@
         /* Navigating away: close without stealing focus back to the burger. */
         mobileMenu.classList.remove("open");
         burger.classList.remove("open");
+        document.documentElement.classList.remove("menu-open");
         burger.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";
       });
