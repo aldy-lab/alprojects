@@ -860,8 +860,8 @@ S = {
         '<span>Cert. C760290</span><span>Valido fino al 28.07.2028</span>',
     'ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITHUANIA':
         'ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITUANIA',
-    'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110<br>Klaipėda':
-        'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110<br>Klaipėda',
+    'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110<br>Klaipėda':
+        'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110<br>Klaipėda',
     'ALPROJECTS engineer working from isometric drawings on site':
         'Ingegnere ALPROJECTS al lavoro su isometrici in cantiere',
     'Handover dossier assembled as the work goes, not at the end':
@@ -890,8 +890,8 @@ S = {
         'Strutture jack-up · montaggio metallico · saldatura · supporto offshore',
     'ALPROJECTS Group — Integrated Engineering for Industry & Offshore':
         'ALPROJECTS Group — Ingegneria integrata per industria e offshore',
-    'ALPROJECTS, UAB — Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania':
-        'ALPROJECTS, UAB — Šilutės av. 2-536, LT-91110 Klaipėda, Lituania',
+    'ALPROJECTS, UAB — Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania':
+        'ALPROJECTS, UAB — Šilutės pl. 2-536, LT-91110 Klaipėda, Lituania',
     'Email: <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>':
         'E-mail: <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>',
     'Railway bridges · steel fitting · structural repairs · 5G welding':
@@ -950,8 +950,8 @@ S = {
         'Apri il certificato ISO 14001:2015 in PDF, certificato n. C550875',
     'Open the ISO 45001:2018 certificate as a PDF, certificate number C550877':
         'Apri il certificato ISO 45001:2018 in PDF, certificato n. C550877',
-    'ALPROJECTS, UAB<br> Šilutės av. 2-536<br> LT-91110 Klaipėda<br> Lithuania':
-        'ALPROJECTS, UAB<br> Šilutės av. 2-536<br> LT-91110 Klaipėda<br> Lituania',
+    'ALPROJECTS, UAB<br> Šilutės pl. 2-536<br> LT-91110 Klaipėda<br> Lithuania':
+        'ALPROJECTS, UAB<br> Šilutės pl. 2-536<br> LT-91110 Klaipėda<br> Lituania',
     'Overlay the drafting sheet — grid, registration marks and live dimensions':
         'Sovrapponi il foglio di disegno — griglia, riferimenti e quote in tempo reale',
     'Spool prefabrication from isometrics, marked and traceable to the drawing':
@@ -1060,8 +1060,8 @@ S = {
         '<span class="num">01</span><span>13 ago 2026 &middot; Controllo qualità</span><span class="arr">&#8599;</span>',
     '<span class="num">05</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8599;</span>':
         '<span class="num">05</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">&#8599;</span>',
-    'Contact ALPROJECTS Group — Šilutės av. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.':
-        'Contatta ALPROJECTS Group — Šilutės av. 2-536, Klaipėda, Lituania. Richieste di progetto e di personale.',
+    'Contact ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.':
+        'Contatta ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lituania. Richieste di progetto e di personale.',
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
         'Montaggi meccanici, tubisteria, saldatura, QA-QC, lavori su fune e CND per industria e offshore.',
     'Welding, piping and mechanical works across Northern Europe. Inspected by people who did not do the welding.':
@@ -1244,8 +1244,8 @@ S = {
         '<strong>Log del server.</strong> Il sito è ospitato su GitHub Pages. GitHub registra dati tecnici delle richieste, compresi indirizzo IP e user-agent del browser, per sicurezza e affidabilità.',
     'Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.':
         'Numeri come 11.000 ore vanno detti chiaramente: sono ciò che un progetto di queste dimensioni costa davvero in manodopera qualificata, e pianificare su una cifra più bassa è il modo in cui i programmi saltano.',
-    'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
-        'ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110 Klaipėda, Lituania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
+    'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
+        'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lituania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
     'It is worth being direct about this, because the answer is not a recruitment campaign. It is training, certification pathways, and treating the trades as a career rather than a stopgap.':
         'Vale la pena dirlo con franchezza, perché la risposta non è una campagna di reclutamento. Sono formazione, percorsi di certificazione e il riconoscimento di questi mestieri come una carriera, non come un ripiego.',
     'Scope on all three: inspection and industrial maintenance services for onshore and offshore installations. Issued by DNV Business Assurance Finland. Select a certificate to open the PDF.':
@@ -1420,4 +1420,146 @@ S = {
         '<span class="value" data-count="3">0</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>',
     'Every figure points to a project, a client or a certificate':
         'Ogni numero rimanda a un progetto, a un cliente o a un certificato',
+
+    # --- This is ALPROJECTS (TZ part 6) ---
+    'This is ALPROJECTS':
+        'Questa è ALPROJECTS',
+    'What we are here to do, and the rules we work by. Written down so a client can hold us to them.':
+        'Che cosa siamo qui a fare e le regole con cui lavoriamo. Messe per iscritto perché un cliente possa tenerci fede.',
+    'Our vision':
+        'La nostra visione',
+    'Industrial work that comes with its own evidence.':
+        'Lavori industriali che portano con sé le proprie prove.',
+    'Europe has no shortage of contractors who can weld. It has a shortage of contractors who can hand over the evidence with the work, in a form the client, the surveyor and the auditor all accept.':
+        'All’Europa non mancano imprese capaci di saldare. Mancano imprese capaci di consegnare le prove insieme al lavoro, in una forma che il cliente, il perito e l’auditor accettino tutti.',
+    'Our mission':
+        'La nostra missione',
+    'Certified people on site, and independent proof of what they did.':
+        'Personale certificato in cantiere e una prova indipendente di ciò che ha fatto.',
+    'We take mechanical scopes and deliver them with our own supervision. We supply the qualified people a project is short of. And we inspect the result with people who did not do the work.':
+        'Prendiamo in carico ambiti meccanici e li consegniamo con la nostra supervisione. Forniamo il personale qualificato che manca a un progetto. E ispezioniamo il risultato con persone che non hanno eseguito il lavoro.',
+    'Three hundred specialists, and a schedule that does not wait':
+        'Trecento specialisti e un programma che non aspetta',
+    'Welders, pipe fitters, shipbuilders, mechanics, NDT inspectors and rope access technicians. Most carry a second trade, which is why one of our people often covers what usually takes two.':
+        'Saldatori, tubisti, carpentieri navali, meccanici, ispettori CND e tecnici su fune. La maggior parte esercita un secondo mestiere: per questo una nostra persona copre spesso ciò che di norma ne richiede due.',
+    'They travel. A crew that mobilises to Norway on Monday can be in Rostock the following month. That is the job, and everyone who joins us knows it before the first rotation.':
+        'Si spostano. Una squadra che parte per la Norvegia il lunedì può essere a Rostock il mese dopo. È il mestiere, e chi entra da noi lo sa prima della prima rotazione.',
+    'We keep the roster current. Certificates, medicals and availability are checked before anyone is offered to a project.':
+        'Teniamo aggiornato l’organico. Certificati, idoneità mediche e disponibilità sono verificati prima di proporre chiunque a un progetto.',
+    'Work with us':
+        'Lavora con noi',
+    'Meet the management':
+        'La direzione',
+    'Our values':
+        'I nostri valori',
+    'Values are worth writing down only if someone can hold you to them. Ours are written so a client can.':
+        'Vale la pena scrivere i valori solo se qualcuno può chiedertene conto. I nostri sono scritti perché un cliente possa farlo.',
+    'We keep learning on every job':
+        'Impariamo a ogni lavoro',
+    'We debrief after each mobilisation and write down what we would do differently.':
+        'Facciamo un debriefing dopo ogni mobilitazione e annotiamo che cosa faremmo diversamente.',
+    'We share procedures between crews, so the second job runs faster than the first.':
+        'Condividiamo le procedure tra le squadre, così il secondo lavoro va più veloce del primo.',
+    'We ask the client&rsquo;s supervisor what went wrong before he has to tell us.':
+        'Chiediamo al responsabile del cliente che cosa è andato storto prima che debba dircelo lui.',
+    'We bring people up to a second trade, because two skills in one man are worth more offshore.':
+        'Formiamo le persone a un secondo mestiere, perché due competenze in un uomo valgono di più offshore.',
+    'We are responsible for the scope':
+        'Rispondiamo dell’ambito di lavoro',
+    'We take the work with our own supervision and our own quality control.':
+        'Prendiamo il lavoro con la nostra supervisione e il nostro controllo qualità.',
+    'When the mistake is ours, we say so and we correct it at our cost.':
+        'Quando l’errore è nostro, lo diciamo e lo correggiamo a nostre spese.',
+    'We never hand a problem down to the next contractor in the chain.':
+        'Non scarichiamo mai un problema sull’impresa successiva della catena.',
+    'We get everyone home at the end of the rotation.':
+        'Alla fine della rotazione riportiamo tutti a casa.',
+    'We look for the work others avoid':
+        'Cerchiamo i lavori che altri evitano',
+    'We take scopes with difficult access, tight windows and unclear starting conditions.':
+        'Prendiamo ambiti con accesso difficile, finestre strette e condizioni di partenza poco chiare.',
+    'We answer enquiries that arrive at short notice, because that is when a client needs a contractor most.':
+        'Rispondiamo alle richieste che arrivano con poco preavviso, perché è allora che un cliente ha più bisogno di un’impresa.',
+    'We invest in certification before the market starts asking for it.':
+        'Investiamo nella certificazione prima che il mercato inizi a chiederla.',
+    'We build the business together, across offices and across crews.':
+        'Costruiamo l’azienda insieme, tra le sedi e tra le squadre.',
+    'We look after people and the site':
+        'Ci prendiamo cura delle persone e del cantiere',
+    'We work to the client&rsquo;s permit system and add our own where theirs is thinner.':
+        'Lavoriamo secondo il sistema di permessi del cliente e aggiungiamo il nostro dove il suo è più leggero.',
+    'We leave the area cleaner than we found it.':
+        'Lasciamo l’area più pulita di come l’abbiamo trovata.',
+    'We ask for help early. Nobody on a rope is expected to manage alone.':
+        'Chiediamo aiuto per tempo. Nessuno su fune deve cavarsela da solo.',
+    'We follow the law and our own procedures when nobody is watching.':
+        'Rispettiamo la legge e le nostre procedure anche quando nessuno guarda.',
+    'We keep the date we gave':
+        'Manteniamo la data che abbiamo dato',
+    'A mobilisation date is given only when the people are actually free.':
+        'Una data di mobilitazione viene data solo quando le persone sono davvero libere.',
+    'We plan so that the safe method is also the fast one.':
+        'Pianifichiamo perché il metodo sicuro sia anche quello veloce.',
+    'We remind the client of his deadlines as well as ours.':
+        'Ricordiamo al cliente le sue scadenze oltre alle nostre.',
+    'A yard schedule does not move, so ours has to hold.':
+        'Il programma di un cantiere navale non si sposta, quindi il nostro deve reggere.',
+    'We say it early and we say it plainly':
+        'Lo diciamo presto e lo diciamo chiaramente',
+    'We explain the scope and the risks before the work starts.':
+        'Spieghiamo l’ambito e i rischi prima che il lavoro inizi.',
+    'A problem is reported the day it appears. Friday is too late.':
+        'Un problema si segnala il giorno in cui compare. Venerdì è troppo tardi.',
+    'We confirm that we understood the client, and that he understood us.':
+        'Confermiamo di aver capito il cliente e che lui ha capito noi.',
+    'We write documentation a person can actually read.':
+        'Scriviamo documentazione che una persona possa davvero leggere.',
+    'Anyone on our crew can stop a job.':
+        'Chiunque nella nostra squadra può fermare un lavoro.',
+    'ALPROJECTS Group &middot; Value 02':
+        'ALPROJECTS Group &middot; Valore 02',
+    'HSEQ':
+        'HSEQ',
+    'Zero harm is a target, and we report against it':
+        'Zero danni è un obiettivo, e ne rendiamo conto',
+    'We work inside the client&rsquo;s permit system and add our own where theirs is thinner. Every scope gets a risk assessment and a method statement before mobilisation, and both are written for the actual site. Copying the paperwork from the last job is how people get hurt.':
+        'Lavoriamo all’interno del sistema di permessi del cliente e aggiungiamo il nostro dove il suo è più leggero. Ogni ambito riceve una valutazione dei rischi e una procedura operativa prima della mobilitazione, entrambe scritte per il cantiere reale. Copiare i documenti del lavoro precedente è il modo in cui le persone si fanno male.',
+    'Our management systems are certified to four standards. Certification is what lets a client accept our documentation without repeating the inspection themselves.':
+        'I nostri sistemi di gestione sono certificati secondo quattro norme. È la certificazione che permette a un cliente di accettare la nostra documentazione senza ripetere lui stesso l’ispezione.',
+    '<b>No injuries</b><span>to our people, to the client&rsquo;s people, to anyone else on site.</span>':
+        '<b>Nessun infortunio</b><span>né tra i nostri, né tra quelli del cliente, né tra chiunque altro in cantiere.</span>',
+    '<b>No occupational illness</b><span>from the way we organise the work.</span>':
+        '<b>Nessuna malattia professionale</b><span>dovuta al modo in cui organizziamo il lavoro.</span>',
+    '<b>No spills</b><span>to the sea, to the ground or to the drain.</span>':
+        '<b>Nessuno sversamento</b><span>in mare, nel terreno o nello scarico.</span>',
+    '<b>No damage</b><span>to the structure we were sent to work on.</span>':
+        '<b>Nessun danno</b><span>alla struttura su cui siamo stati mandati a lavorare.</span>',
+    'We publish our safety figures once a year: hours worked, incidents, and what we changed as a result. A target nobody measures is a slogan.':
+        'Pubblichiamo i nostri dati di sicurezza una volta l’anno: ore lavorate, incidenti e che cosa abbiamo cambiato di conseguenza. Un obiettivo che nessuno misura è uno slogan.',
+    '<b>ISO 3834</b><span>Welding quality</span>':
+        '<b>ISO 3834</b><span>Qualità in saldatura</span>',
+    '<b>ISO 9001</b><span>Quality</span>':
+        '<b>ISO 9001</b><span>Qualità</span>',
+    '<b>ISO 14001</b><span>Environment</span>':
+        '<b>ISO 14001</b><span>Ambiente</span>',
+    '<b>ISO 45001</b><span>Health and safety</span>':
+        '<b>ISO 45001</b><span>Salute e sicurezza</span>',
+    'If this is how you want your contractor to work, send us the scope':
+        'Se è così che volete lavori la vostra impresa, inviateci l’ambito',
+    'We reply to project enquiries within one working day.':
+        'Rispondiamo alle richieste di progetto entro un giorno lavorativo.',
+    'ALPROJECTS crew on a wind farm site':
+        'Squadra ALPROJECTS in un parco eolico',
+    'Rope access technician working on a turbine blade':
+        'Tecnico su fune al lavoro su una pala eolica',
+    'Rope access descent onto an offshore topside':
+        'Discesa su fune verso un topside offshore',
+    'This is ALPROJECTS &mdash; vision, values and HSEQ':
+        'Questa è ALPROJECTS &mdash; visione, valori e HSEQ',
+    'Vision, values and HSEQ. What ALPROJECTS Group is here to do, and the rules we work by.':
+        'Visione, valori e HSEQ. Che cosa ALPROJECTS Group è qui a fare e le regole con cui lavoriamo.',
+    'This is ALPROJECTS — ALPROJECTS Group':
+        'Questa è ALPROJECTS — ALPROJECTS Group',
+    'Our management systems are certified to ISO 9001, 14001 and 45001, and our welding to ISO 3834. Certification is what lets a client accept our documentation without repeating the inspection themselves.':
+        'I nostri sistemi di gestione sono certificati ISO 9001, 14001 e 45001 e la nostra saldatura ISO 3834. È la certificazione che permette al cliente di accettare la nostra documentazione senza ripetere l’ispezione.',
 }

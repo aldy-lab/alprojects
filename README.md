@@ -591,10 +591,12 @@ to get the list of what is missing.
       not among the three DNV certificates. Its card has been removed rather
       than shown as a placeholder beside three real scans. Get the document, or
       the claim is unevidenced if a tender asks.
-- [ ] **Registered address** — ⚠️ the certificates read **Šilutės pl. 2, 521
-      kab.**; the site says **Šilutės av. 2-536**. Different street type and
-      different room number. The certificate is the legal document — confirm
-      which is right and make them match.
+- [ ] **Registered address** — the street type is settled: **Šilutės pl.**
+      (not `av.`), confirmed by both the DNV certificates and the client's own
+      TZ part 6 mockup footer, and corrected across the site. ⚠️ The office
+      number is still open — the certificates read **521 kab.**, the site and
+      the client's mockup both read **2-536**. The certificate is the legal
+      document, so confirm which one belongs in the footer and the JSON-LD.
 - [ ] **Team section** — ⚠️ the client struck the five management headshots out.
       That block is now "Qualified specialists" (the profile's own personnel
       split and 100+ figure). If the intent was only "fix the photo quality",
@@ -604,6 +606,38 @@ to get the list of what is missing.
       described under Configuration.
 - [ ] Contact email is `info@alprojects.eu` while the site is on alprojects.co —
       intentional, .eu redirects to .co.
+
+### /this-is-alprojects.html — the six confirmations TZ part 6 §6 asks for
+
+The page is built to the brief and reads as a set of promises a client can quote
+back. Six of them are commitments rather than descriptions, and the TZ itself
+says they must be confirmed before publication:
+
+- [ ] **"Anyone on our crew can stop a job."** This is Stop Work Authority. It is
+      only publishable if a written procedure exists that says so and protects
+      the person who uses it. If there is no procedure, the sentence has to go —
+      a client will test it on site.
+- [ ] **"When the mistake is ours, we say so and we correct it at our cost."**
+      A commercial commitment. Confirm it does not contradict the liability and
+      rework clauses in the standard contract.
+- [ ] **"We answer enquiries that arrive at short notice"** — the TZ's draft said
+      one working day. Confirm the company can hold that, or the line changes.
+- [ ] **"We publish our safety figures once a year: hours worked, incidents, and
+      what we changed as a result."** Nothing has been published yet. Either the
+      first set gets published, or this promise is dated the moment a client
+      looks for it.
+- [ ] **Three hundred specialists** — the headline figure on this page. Elsewhere
+      the site says 300+. Confirm the number and keep the two in step.
+- [ ] **"Meet the management" button** — the page has the slot wired but the
+      button is removed while `MANAGEMENT_URL` is blank (see Configuration). It
+      switches on the moment there is a page to point it at; names and photos
+      are still needed.
+- [ ] **ISO 3834 on this page** — the HSEQ block shows four ISO plates, matching
+      the rest of the site. The sentence above them now names the three
+      management-system standards separately from the welding one, so the page
+      no longer claims four certified management systems. The underlying gap is
+      unchanged: no ISO 3834 certificate has been supplied. See the ISO 3834
+      item above.
 
 ## Local preview
 

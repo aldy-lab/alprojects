@@ -4445,3 +4445,243 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 @media (hover: none) {
   .prose .contact-emails a[href^="mailto:"] { padding-block: 8px; }
 }
+
+/* ============================================================
+   THIS IS ALPROJECTS  (/this-is-alprojects.html)
+   Measurements from TZ part 6 section 3. The one deliberate
+   departure: the brief prints the value numbers and the rule over
+   the four zeros in #FFDACE. Those use var(--warm), which is the
+   site-wide switch already set to the cool accent -- putting the
+   beige back is one line at the top of this file, not a hunt
+   through this block.
+   ============================================================ */
+.tia-hero { min-height: 620px; }
+/* The shared sector scrim is built for a headline over a busy plate and
+   runs to 0.94 on the left. Here the crew stands bottom-left, exactly
+   under it, and the brief picks this frame because it is the only one
+   showing them at full height -- so this hero gets a lighter wash. */
+.tia-hero .sector-hero-scrim {
+  background:
+    linear-gradient(90deg, rgba(6,9,15,0.86) 0%, rgba(6,9,15,0.55) 46%, rgba(6,9,15,0.18) 100%),
+    linear-gradient(0deg, rgba(6,9,15,0.62) 0%, rgba(6,9,15,0.12) 58%);
+}
+.tia-hero .sector-hero-title { max-width: 14ch; }
+
+.tia-vm {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+  padding: clamp(56px, 8vw, 88px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.tia-big {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.3;
+  font-weight: 300;
+  color: var(--text);
+  max-width: 24ch;
+  margin: 14px 0 16px;
+}
+.tia-body { color: var(--muted); max-width: 56ch; margin-bottom: 16px; }
+.tia-note {
+  font-size: var(--text-m);
+  color: var(--muted-2);
+  border-left: 1px solid var(--line-strong);
+  padding-left: 14px;
+  max-width: 52ch;
+}
+
+.tia-people {
+  display: grid;
+  grid-template-columns: minmax(0, 61.8fr) minmax(0, 38.2fr);
+  gap: clamp(26px, 4vw, 56px);
+  align-items: start;
+  padding-bottom: clamp(56px, 8vw, 88px);
+  border-bottom: 1px solid var(--line);
+}
+.tia-people-img { margin: 0; }
+.tia-people-img img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.tia-vhead { max-width: 30ch; margin-bottom: clamp(26px, 3vw, 38px); }
+.tia-vals { padding-bottom: clamp(56px, 8vw, 88px); }
+.tia-val {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 26px;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+}
+.tia-val:first-child { border-top: 0; padding-top: 0; }
+.tia-val-n {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--warm);
+  padding-top: 7px;
+}
+.tia-val h3 {
+  font-family: var(--font-display);
+  font-size: clamp(19px, 2.2vw, 24px);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 14px;
+  max-width: 26ch;
+}
+.tia-val-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  column-gap: 48px;
+}
+.tia-val-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 10px;
+  break-inside: avoid;
+}
+.tia-val-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* isolate: the wash below uses mix-blend-mode, which blends against the
+   nearest stacking context. Without this the band is not one, and what the
+   wash blends with is whatever the browser happens to have composited
+   behind it. */
+.tia-band { position: relative; height: 400px; overflow: hidden; isolation: isolate; }
+/* The frame is a saturated yellow offshore structure -- the one loud thing on
+   an otherwise near-monochrome page. Graded down so it reads as ground for the
+   quote rather than as stock photography, and cooled so the yellow does not
+   fight the site's palette. */
+.tia-band img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.28) brightness(0.62) contrast(1.06);
+}
+/* A cool wash over the graded frame: takes the last of the yellow out of the
+   highlights without flattening the structure to grey. */
+.tia-band::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: rgba(24, 46, 78, 0.34);
+  mix-blend-mode: soft-light;
+  /* generated content paints last among positioned siblings, so without this
+     the wash would sit on top of the quote instead of under it */
+  z-index: 1;
+}
+.tia-band-scrim {
+  position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background: linear-gradient(90deg, rgba(6,9,15,0.92) 0%, rgba(6,9,15,0.55) 45%, rgba(6,9,15,0.2) 100%);
+}
+.tia-band-in {
+  position: absolute; inset: 0; z-index: 3;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.tia-band blockquote {
+  margin: 0;
+  max-width: 24ch;
+  font-family: var(--font-display);
+  font-size: clamp(21px, 3vw, 30px);
+  line-height: 1.2;
+  font-weight: 300;
+  color: #fff;
+}
+.tia-band cite {
+  display: block;
+  margin-top: 14px;
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--warm);
+}
+
+/* The section rule goes above the eyebrow. With it below, the eyebrow
+   floated 88px clear of the heading it labels and read as dead space. */
+.tia-sec { padding-top: clamp(56px, 8vw, 88px); }
+/* .sub-head carries an 86px top margin site-wide, which is right when it
+   follows body copy. On this page every one of them sits directly under the
+   eyebrow that names it, and that margin pushed the label 86px clear of its
+   own heading. */
+.tia-people .sub-head,
+.tia-hseq .sub-head,
+.tia-cta .sub-head,
+.tia-vhead { margin-top: 0; }
+.tia-hseq { padding: 0; }
+.tia-zeros {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  margin: 34px 0 26px;
+}
+.tia-zero { border-top: 2px solid var(--warm); padding-top: 16px; }
+.tia-zero b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.7vw, 20px);
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 9px;
+}
+.tia-zero span { font-size: 12.5px; line-height: 1.55; color: var(--muted-2); }
+.tia-zeros-note { margin-bottom: 30px; }
+.tia-plates {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding-bottom: clamp(56px, 8vw, 88px);
+  border-bottom: 1px solid var(--line);
+}
+.tia-plate { border: 1px solid var(--line-strong); padding: 20px; }
+.tia-plate b {
+  display: block;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.tia-plate span {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.tia-cta { padding: clamp(56px, 8vw, 88px) 0; }
+.tia-cta .sub-head { max-width: 28ch; }
+.tia-cta .tia-note { margin: 16px 0 0; }
+
+@media (max-width: 1000px) {
+  .tia-hero { min-height: 460px; }
+  .tia-vm, .tia-people { grid-template-columns: 1fr; gap: 34px; }
+  .tia-val-list { columns: 1; }
+  .tia-zeros, .tia-plates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tia-band { height: 300px; }
+  /* The desktop scrim runs left-to-right, which works when the quote occupies
+     the left third. At this width the quote spans the frame and the crop puts
+     the pale structure directly behind it, so the scrim becomes a vertical one
+     with a floor under the whole frame. */
+  .tia-band-scrim {
+    background: linear-gradient(180deg, rgba(6,9,15,0.60) 0%, rgba(6,9,15,0.74) 55%, rgba(6,9,15,0.86) 100%);
+  }
+}
+@media (max-width: 560px) {
+  .tia-zeros, .tia-plates { grid-template-columns: 1fr; }
+  .tia-val { grid-template-columns: 1fr; gap: 10px; }
+  .tia-val-n { padding-top: 0; }
+}

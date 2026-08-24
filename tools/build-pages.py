@@ -144,7 +144,7 @@ PRIVACY = """
       <p>ALPROJECTS, UAB (&ldquo;ALPROJECTS Group&rdquo;, &ldquo;we&rdquo;) is the controller of personal
       data collected through alprojects.co.</p>
       <ul>
-        <li>ALPROJECTS, UAB — Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania</li>
+        <li>ALPROJECTS, UAB — Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania</li>
         <li>Email: <a href="mailto:info@alprojects.eu">info@alprojects.eu</a></li>
         <li>Phone: <a href="tel:+37063663744">+370 636 63 744</a></li>
       </ul>
@@ -725,6 +725,12 @@ COMPANY = """
       energy sectors, from a head office in Klaipėda, Lithuania.</p>
     </div>
 
+    <div class="container">
+      <p class="back">
+        <a class="btn-bracket" href="/this-is-alprojects.html">This is ALPROJECTS &mdash; vision, values and HSEQ</a>
+      </p>
+    </div>
+
     <div class="container prose">
       <h2>What we do</h2>
       <p>We specialise in piping prefabrication and installation, steel fabrication and
@@ -769,7 +775,7 @@ COMPANY = """
       meaningful.</p>
 
       <h2>Head office</h2>
-      <p>ALPROJECTS, UAB<br>Šilutės av. 2-536, LT-91110 Klaipėda, Lithuania<br>
+      <p>ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br>
       <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot;
       <a href="tel:+37063663744">+370 636 63 744</a></p>
 
@@ -1171,7 +1177,7 @@ CONTACTS = """
     <div class="container prose">
       <h2>Head office</h2>
       <p>ALPROJECTS, UAB<br>
-      Šilutės av. 2-536<br>
+      Šilutės pl. 2-536<br>
       LT-91110 Klaipėda<br>
       Lithuania</p>
 
@@ -1252,7 +1258,7 @@ def job_postings_ld():
                 "address": {"@type": "PostalAddress",
                             "addressLocality": "Klaipėda",
                             "postalCode": "LT-91110",
-                            "streetAddress": "Šilutės av. 2-536",
+                            "streetAddress": "Šilutės pl. 2-536",
                             "addressCountry": "LT"},
             }],
             "applicantLocationRequirements": [
@@ -1482,6 +1488,201 @@ def service_page_body(sv):
 
 
 # ---------------- write everything ----------------
+THIS_IS = """
+    <section class="sector-hero tia-hero">
+      <img class="sector-hero-img" src="/assets/tia-hero.webp" alt="ALPROJECTS crew on a wind farm site"
+           width="1900" height="814" fetchpriority="high" decoding="async">
+      <span class="sector-hero-scrim" aria-hidden="true"></span>
+      <div class="container sector-hero-in">
+        <p class="eyebrow">Company</p>
+        <h1 class="sector-hero-title">This is ALPROJECTS</h1>
+        <p class="sector-hero-lead">What we are here to do, and the rules we work by. Written
+        down so a client can hold us to them.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="tia-vm">
+        <div>
+          <p class="eyebrow">Our vision</p>
+          <p class="tia-big">Industrial work that comes with its own evidence.</p>
+          <p class="tia-body">Europe has no shortage of contractors who can weld. It has a
+          shortage of contractors who can hand over the evidence with the work, in a form the
+          client, the surveyor and the auditor all accept.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Our mission</p>
+          <p class="tia-big">Certified people on site, and independent proof of what they did.</p>
+          <p class="tia-body">We take mechanical scopes and deliver them with our own
+          supervision. We supply the qualified people a project is short of. And we inspect the
+          result with people who did not do the work.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="eyebrow">Our people</p>
+      <div class="tia-people">
+        <div>
+          <h2 class="sub-head">Three hundred specialists, and a schedule that does not wait</h2>
+          <p class="tia-body">Welders, pipe fitters, shipbuilders, mechanics, NDT inspectors and
+          rope access technicians. Most carry a second trade, which is why one of our people
+          often covers what usually takes two.</p>
+          <p class="tia-body">They travel. A crew that mobilises to Norway on Monday can be in
+          Rostock the following month. That is the job, and everyone who joins us knows it
+          before the first rotation.</p>
+          <p class="tia-note">We keep the roster current. Certificates, medicals and
+          availability are checked before anyone is offered to a project.</p>
+          <p class="back">
+            <a class="btn-solid" href="/careers.html">Work with us</a>
+            <!-- Filled in from MANAGEMENT_URL in js/main.js. Removed while that is
+                 empty, so a page that does not exist yet never ships as a dead link. -->
+            <a class="btn-bracket" data-management hidden href="#">Meet the management</a>
+          </p>
+        </div>
+        <figure class="tia-people-img">
+          <img src="/assets/tia-people.webp" alt="Rope access technician working on a turbine blade"
+               width="860" height="645" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="eyebrow">Our values</p>
+      <h2 class="sub-head tia-vhead">Values are worth writing down only if someone can hold you
+      to them. Ours are written so a client can.</h2>
+      <div class="tia-vals">
+        <div class="tia-val">
+          <span class="tia-val-n">01</span>
+          <div>
+            <h3>We keep learning on every job</h3>
+            <ul class="tia-val-list">
+            <li>We debrief after each mobilisation and write down what we would do differently.</li>
+            <li>We share procedures between crews, so the second job runs faster than the first.</li>
+            <li>We ask the client&rsquo;s supervisor what went wrong before he has to tell us.</li>
+            <li>We bring people up to a second trade, because two skills in one man are worth more offshore.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tia-val">
+          <span class="tia-val-n">02</span>
+          <div>
+            <h3>We are responsible for the scope</h3>
+            <ul class="tia-val-list">
+            <li>We take the work with our own supervision and our own quality control.</li>
+            <li>When the mistake is ours, we say so and we correct it at our cost.</li>
+            <li>We never hand a problem down to the next contractor in the chain.</li>
+            <li>We get everyone home at the end of the rotation.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tia-val">
+          <span class="tia-val-n">03</span>
+          <div>
+            <h3>We look for the work others avoid</h3>
+            <ul class="tia-val-list">
+            <li>We take scopes with difficult access, tight windows and unclear starting conditions.</li>
+            <li>We answer enquiries that arrive at short notice, because that is when a client needs a contractor most.</li>
+            <li>We invest in certification before the market starts asking for it.</li>
+            <li>We build the business together, across offices and across crews.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tia-val">
+          <span class="tia-val-n">04</span>
+          <div>
+            <h3>We look after people and the site</h3>
+            <ul class="tia-val-list">
+            <li>We work to the client&rsquo;s permit system and add our own where theirs is thinner.</li>
+            <li>We leave the area cleaner than we found it.</li>
+            <li>We ask for help early. Nobody on a rope is expected to manage alone.</li>
+            <li>We follow the law and our own procedures when nobody is watching.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tia-val">
+          <span class="tia-val-n">05</span>
+          <div>
+            <h3>We keep the date we gave</h3>
+            <ul class="tia-val-list">
+            <li>A mobilisation date is given only when the people are actually free.</li>
+            <li>We plan so that the safe method is also the fast one.</li>
+            <li>We remind the client of his deadlines as well as ours.</li>
+            <li>A yard schedule does not move, so ours has to hold.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tia-val">
+          <span class="tia-val-n">06</span>
+          <div>
+            <h3>We say it early and we say it plainly</h3>
+            <ul class="tia-val-list">
+            <li>We explain the scope and the risks before the work starts.</li>
+            <li>A problem is reported the day it appears. Friday is too late.</li>
+            <li>We confirm that we understood the client, and that he understood us.</li>
+            <li>We write documentation a person can actually read.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="tia-band">
+      <img src="/assets/tia-band.webp" alt="Rope access descent onto an offshore topside"
+           width="1700" height="566" loading="lazy" decoding="async">
+      <span class="tia-band-scrim" aria-hidden="true"></span>
+      <div class="container tia-band-in">
+        <blockquote>Anyone on our crew can stop a job.</blockquote>
+        <cite>ALPROJECTS Group &middot; Value 02</cite>
+      </div>
+    </section>
+
+    <div class="container tia-sec">
+      <p class="eyebrow">HSEQ</p>
+      <div class="tia-hseq">
+        <div>
+          <h2 class="sub-head">Zero harm is a target, and we report against it</h2>
+          <p class="tia-body">We work inside the client&rsquo;s permit system and add our own
+          where theirs is thinner. Every scope gets a risk assessment and a method statement
+          before mobilisation, and both are written for the actual site. Copying the paperwork
+          from the last job is how people get hurt.</p>
+          <p class="tia-note">Our management systems are certified to ISO 9001, 14001 and
+          45001, and our welding to ISO 3834. Certification is what lets a client accept our
+          documentation without repeating the inspection themselves.</p>
+        </div>
+      </div>
+      <div class="tia-zeros">
+        <div class="tia-zero"><b>No injuries</b><span>to our people, to the client&rsquo;s people, to anyone else on site.</span></div>
+        <div class="tia-zero"><b>No occupational illness</b><span>from the way we organise the work.</span></div>
+        <div class="tia-zero"><b>No spills</b><span>to the sea, to the ground or to the drain.</span></div>
+        <div class="tia-zero"><b>No damage</b><span>to the structure we were sent to work on.</span></div>
+      </div>
+      <p class="tia-note tia-zeros-note">We publish our safety figures once a year: hours
+      worked, incidents, and what we changed as a result. A target nobody measures is a
+      slogan.</p>
+      <div class="tia-plates">
+        <div class="tia-plate"><b>ISO 3834</b><span>Welding quality</span></div>
+        <div class="tia-plate"><b>ISO 9001</b><span>Quality</span></div>
+        <div class="tia-plate"><b>ISO 14001</b><span>Environment</span></div>
+        <div class="tia-plate"><b>ISO 45001</b><span>Health and safety</span></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="tia-cta">
+        <h2 class="sub-head">If this is how you want your contractor to work, send us the scope</h2>
+        <p class="tia-note">We reply to project enquiries within one working day.</p>
+        <p class="back">
+          <a class="btn-solid" href="/contacts.html#enquiry">Send us the scope</a>
+          <a class="btn-bracket" href="/projects.html">See our projects</a>
+        </p>
+      </div>
+    </div>
+"""
+
+write("this-is-alprojects.html", page("This is ALPROJECTS",
+      "Vision, values and HSEQ. What ALPROJECTS Group is here to do, and the rules we work by.",
+      THIS_IS, canonical="/this-is-alprojects.html", og="company"))
 write("privacy.html", page("Privacy Policy",
       "How ALPROJECTS Group handles personal data collected through this website.",
       PRIVACY, canonical="/privacy.html"))
@@ -1520,7 +1721,7 @@ write("projects.html", page("Projects",
       PROJECTS, canonical="/projects.html", og="projects"))
 
 write("contacts.html", page("Contacts",
-      "Contact ALPROJECTS Group — Šilutės av. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.",
+      "Contact ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.",
       CONTACTS, canonical="/contacts.html", og="contacts"))
 
 write("news/index.html", page("News",
@@ -1620,6 +1821,7 @@ SITEMAP = [
   + [("/sectors/%s.html" % s0, "monthly", "0.7") for s0, _n, _i, _l, _v in SECTOR_PAGES] + [
     ("/projects.html", "monthly", "0.9"),
     ("/company.html",  "monthly", "0.8"),
+    ("/this-is-alprojects.html", "monthly", "0.8"),
     ("/news/",         "weekly",  "0.8"),
     ("/contacts.html", "yearly",  "0.7"),
     ("/careers.html",  "monthly", "0.6"),
