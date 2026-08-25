@@ -2587,7 +2587,10 @@ html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint te
   transition: opacity var(--dur-2) var(--ease);
   pointer-events: none;
 }
-.cshape[data-shape="norway"] { -webkit-mask-image: url("../assets/map/norway.png");      mask-image: url("../assets/map/norway.png"); }
+/* ?v=2: the mask changed under the same filename, and images on this site
+   carry no content hash, so a cached copy of the old one would keep showing
+   southern Norway only. The stylesheet itself is hashed, so this propagates. */
+.cshape[data-shape="norway"] { -webkit-mask-image: url("../assets/map/norway.png?v=2"); mask-image: url("../assets/map/norway.png?v=2"); }
 .cshape[data-shape="uk"] { -webkit-mask-image: url("../assets/map/uk.png");          mask-image: url("../assets/map/uk.png"); }
 .cshape[data-shape="netherlands"] { -webkit-mask-image: url("../assets/map/netherlands.png"); mask-image: url("../assets/map/netherlands.png"); }
 .cshape[data-shape="germany"] { -webkit-mask-image: url("../assets/map/germany.png");     mask-image: url("../assets/map/germany.png"); }
