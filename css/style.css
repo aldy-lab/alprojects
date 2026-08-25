@@ -883,7 +883,34 @@ html.menu-open .site-header {
   background:
     radial-gradient(900px 480px at 12% 10%, rgba(18, 41, 75, 0.85), transparent 60%),
     radial-gradient(700px 420px at 88% 90%, rgba(18, 41, 75, 0.55), transparent 60%),
-    var(--panel);
+    /* Semi-transparent, not the flat --panel slab it was. The page's own light
+       field runs across this section, so an opaque fill sat level with the
+       ground on the left edge and 8 out of 255 above it on the right -- the
+       panel ended on a step that changed as you moved along it. Letting the
+       field through keeps it a constant amount above whatever is behind. */
+    linear-gradient(180deg, rgba(19, 20, 33, 0.82), rgba(13, 14, 24, 0.66));
+  /* and the fill fades into the frame rather than running into it */
+  box-shadow: inset 0 0 90px 18px rgba(7, 8, 14, 0.34);
+  /* The 1px frame was the last hard thing here: a bright hairline -- 43 out of
+     255 against a page at 9 -- drawn all the way round a 1280x1105 box. Fading
+     the left and right ends takes the rectangle away without removing the line,
+     so the panel resolves into the page instead of being stamped on it. The
+     top and bottom edges measure flat already, and the cards sit 48px inside
+     the padding, so a 30px fade never reaches them. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 6px, #000 32px,
+                      #000 calc(100% - 32px), transparent calc(100% - 6px));
+  mask-image: linear-gradient(90deg, transparent 6px, #000 32px,
+              #000 calc(100% - 32px), transparent calc(100% - 6px));
+  /* Spelled out rather than left to the engine defaults, which differ for the
+     -webkit- prefixed properties. */
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-origin: border-box;
+  -webkit-mask-clip: border-box;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-origin: border-box;
+  mask-clip: border-box;
+  mask-size: 100% 100%;
   overflow: hidden;
   padding: clamp(44px, 5vw, 80px) clamp(20px, 3vw, 60px);
 }
