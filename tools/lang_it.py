@@ -1634,4 +1634,10 @@ S = {
         '<span>EBN Certification</span>',
     'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>':
         'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lituania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>',
+    'Scaffolding costs more in downtime than in steel. IRATA and SOFT certified technicians reach the same place on rope, inspect it and repair it while the plant keeps running.':
+        'Un ponteggio costa più in fermo impianto che in acciaio. Tecnici certificati IRATA e SOFT raggiungono lo stesso punto su fune, lo ispezionano e lo riparano mentre l’impianto continua a lavorare.',
+    'Inspection &amp; Access':
+        'Ispezione &amp; accesso',
+    '<span>Offshore Oil &amp; Gas</span><span>Wind Energy</span><span>Industrial Facilities</span><span>Marine</span>':
+        '<span>Oil &amp; gas offshore</span><span>Eolico</span><span>Impianti industriali</span><span>Navale</span>',
 }

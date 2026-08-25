@@ -612,6 +612,13 @@ to get the list of what is missing.
       14001 (C550875) and 45001 (C550877) arrived 22 Aug 2026 and are live in
       `assets/certificates/`. Each card shows the scan, its number and expiry,
       and opens the PDF.
+- [ ] **Rope access slide photograph** — ⚠️ the fifth slide on the home page is
+      running a **stand-in**. The frame ALDY chose (technician on rope under an
+      offshore deck, grey sea) was pasted into chat and never reached the disk.
+      `assets/svc-rope-access.webp` is currently cut from the Company page's
+      offshore frame, and it is only 928px wide against a slide that renders at
+      1280 — soft, and the third use of that same photograph on the site. Drop
+      the real file anywhere and it is a one-file swap.
 - [ ] **VCA** — ⚠️ **no certificate supplied.** The mark is on the site as a
       fourth card, added at the client's request. What was provided is EBN
       Certification's own logo — no company name, no certificate number, no

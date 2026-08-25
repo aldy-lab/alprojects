@@ -1660,4 +1660,10 @@ S = {
         '<span>EBN Certification</span>',
     'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>':
         'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lituanie<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>',
+    'Scaffolding costs more in downtime than in steel. IRATA and SOFT certified technicians reach the same place on rope, inspect it and repair it while the plant keeps running.':
+        'Un échafaudage coûte plus cher en arrêt de production qu’en acier. Des techniciens certifiés IRATA et SOFT atteignent le même point sur corde, l’inspectent et le réparent pendant que l’installation continue de tourner.',
+    'Inspection &amp; Access':
+        'Inspection &amp; accès',
+    '<span>Offshore Oil &amp; Gas</span><span>Wind Energy</span><span>Industrial Facilities</span><span>Marine</span>':
+        '<span>Pétrole &amp; gaz offshore</span><span>Éolien</span><span>Installations industrielles</span><span>Maritime</span>',
 }
