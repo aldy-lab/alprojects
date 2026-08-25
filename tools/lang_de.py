@@ -1635,4 +1635,6 @@ S = {
         'Geltungsbereich der drei ISO-Zertifikate: Prüf- und Instandhaltungsleistungen für Anlagen an Land und offshore, ausgestellt von DNV Business Assurance Finland. VCA ist von EBN Certification zertifiziert. Wählen Sie ein Zertifikat, um das PDF zu öffnen.',
     '<span>EBN Certification</span>':
         '<span>EBN Certification</span>',
+    'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>':
+        'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Litauen<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>',
 }

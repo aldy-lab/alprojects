@@ -4755,6 +4755,13 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   max-width: 30ch;
   text-wrap: balance;
 }
+/* .sub-head carries no bottom margin of its own -- site-wide it is followed by
+   .sub-lead, which brings its own. Three of these are followed straight by body
+   copy, and at line-height 1.2 that put the first line hard against the
+   heading. (.co-vhead sets its own below, and precedes a whole block.) */
+.co-people .sub-head,
+.co-hseq .sub-head,
+.co-cta .sub-head { margin-bottom: clamp(16px, 1.8vw, 24px); }
 .co-hseq { padding: 0; }
 /* .co-vm carries its own section padding, correct where it opens the page.
    Inside .co-sec an eyebrow already sits above it and that padding read as
@@ -4799,7 +4806,53 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   color: var(--muted-2);
 }
 
-.co-cta { padding: clamp(56px, 8vw, 88px) 0; }
+/* A statement heading with a narrow paragraph under it left the right half of
+   the screen empty and read as unfinished. Paired across two columns instead:
+   the heading holds the left, the paragraph that explains it sits beside it. */
+.co-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: clamp(26px, 4vw, 72px);
+  align-items: start;
+  margin-top: clamp(22px, 3vw, 34px);
+}
+.co-intro .sub-head { max-width: 22ch; }
+.co-intro .co-body { margin-bottom: 0; padding-top: 6px; }
+
+/* Same for the closing block: the statement on the left, the ways to act on
+   the right, rather than four stacked items down one edge. */
+.co-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.86fr);
+  gap: clamp(30px, 5vw, 80px);
+  align-items: start;
+  padding: clamp(56px, 8vw, 88px) 0;
+}
+.co-cta-act { padding-top: 6px; }
+.co-cta-act .co-addr { margin: 0 0 26px; }
+/* Three buttons in this column wrapped two-then-one, which reads as an
+   accident. Set as a grid with the primary spanning both tracks, so it is one
+   action on the first line and the two alternatives under it. */
+.co-cta-act .back {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 12px;
+  justify-content: start;
+}
+.co-cta-act .back .btn-solid { grid-column: 1 / -1; justify-self: start; }
+
+@media (max-width: 900px) {
+  .co-intro, .co-cta { grid-template-columns: 1fr; }
+  .co-intro .sub-head { max-width: 30ch; }
+}
+/* max-content tracks cannot shrink, so two bracket buttons side by side made
+   the whole block 420px wide inside a 393px phone. One per row below this. */
+@media (max-width: 620px) {
+  .co-cta-act .back { grid-template-columns: 1fr; justify-items: start; }
+  .co-cta-act .back .btn-solid { grid-column: auto; }
+}
+
 .co-cta .sub-head { max-width: 28ch; }
 .co-cta .co-note { margin: 16px 0 0; }
 

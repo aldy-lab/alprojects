@@ -1632,4 +1632,6 @@ S = {
         'Ambito dei tre certificati ISO: servizi di ispezione e manutenzione industriale per installazioni a terra e offshore, rilasciati da DNV Business Assurance Finland. Il VCA è certificato da EBN Certification. Seleziona un certificato per aprire il PDF.',
     '<span>EBN Certification</span>':
         '<span>EBN Certification</span>',
+    'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>':
+        'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lituania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>',
 }

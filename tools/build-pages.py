@@ -753,11 +753,13 @@ COMPANY = """
     <!-- ================= WHAT WE DO ================= -->
     <div class="container co-sec">
       <p class="eyebrow">What we do</p>
-      <h2 class="sub-head co-vhead reveal">We deliver the scope, or we supply the people a
-      scope is short of</h2>
-      <p class="co-body reveal">Often both, on the same site. We specialise in piping
-      prefabrication and installation, steel fabrication and mechanical installation, and we
-      provide certified technical personnel to projects across Europe.</p>
+      <div class="co-intro">
+        <h2 class="sub-head co-vhead reveal">We deliver the scope, or we supply the people a
+        scope is short of</h2>
+        <p class="co-body reveal">Often both, on the same site. We specialise in piping
+        prefabrication and installation, steel fabrication and mechanical installation, and we
+        provide certified technical personnel to projects across Europe.</p>
+      </div>
       <ul class="co-rows reveal">
         <li>
           <a href="/sectors/shipbuilding.html">
@@ -981,16 +983,20 @@ COMPANY = """
     <!-- ================= CTA ================= -->
     <div class="container">
       <div class="co-cta">
-        <h2 class="sub-head reveal">If this is how you want your contractor to work, send us the scope</h2>
-        <p class="co-note">We reply to project enquiries within one working day.</p>
-        <p class="co-addr">ALPROJECTS, UAB &middot; Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br>
-        <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot;
-        <a href="tel:+37063663744">+370 636 63 744</a></p>
-        <p class="back">
-          <a class="btn-solid" href="/contacts.html#enquiry">Send us the scope</a>
-          <a class="btn-bracket" href="/services.html">Our services</a>
-          <a class="btn-bracket" href="/projects.html">See our projects</a>
-        </p>
+        <div>
+          <h2 class="sub-head reveal">If this is how you want your contractor to work, send us the scope</h2>
+          <p class="co-note">We reply to project enquiries within one working day.</p>
+        </div>
+        <div class="co-cta-act">
+          <p class="co-addr">ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br>
+          <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br>
+          <a href="tel:+37063663744">+370 636 63 744</a></p>
+          <p class="back">
+            <a class="btn-solid" href="/contacts.html#enquiry">Send us the scope</a>
+            <a class="btn-bracket" href="/services.html">Our services</a>
+            <a class="btn-bracket" href="/projects.html">See our projects</a>
+          </p>
+        </div>
       </div>
     </div>
 """
