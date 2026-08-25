@@ -29,7 +29,7 @@ SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 
 # rootify now lives in tools/paths.py: the translation build needs the same
 # rewriting for the language trees, and two copies would drift.
-from paths import rootify  # noqa: E402
+from paths import rootify, clean_urls  # noqa: E402
 
 
 HEADER_R, FOOTER_R, SPRITE_R = rootify(HEADER), rootify(FOOTER), rootify(SPRITE)
@@ -117,7 +117,7 @@ def stamp(html):
 
 def write(path, html):
     if path.endswith(".html"):
-        html = stamp(html)
+        html = clean_urls(stamp(html))
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     io.open(full, "w", encoding="utf-8").write(html)
@@ -1892,16 +1892,16 @@ for _slug, _name, _img, _lead, _svcs in SECTOR_PAGES:
 # added article can never leave a dead URL behind in the sitemap.
 SITEMAP = [
     ("/",              "monthly", "1.0"),
-    ("/services.html", "monthly", "0.9"),
-] + [("/services/%s.html" % sv["slug"], "monthly", "0.7") for sv in SERVICES_FLAT] \
-  + [("/sectors/%s.html" % s0, "monthly", "0.7") for s0, _n, _i, _l, _v in SECTOR_PAGES] + [
-    ("/projects.html", "monthly", "0.9"),
+    ("/services", "monthly", "0.9"),
+] + [("/services/%s" % sv["slug"], "monthly", "0.7") for sv in SERVICES_FLAT] \
+  + [("/sectors/%s" % s0, "monthly", "0.7") for s0, _n, _i, _l, _v in SECTOR_PAGES] + [
+    ("/projects", "monthly", "0.9"),
     ("/company.html",  "monthly", "0.8"),
     ("/news/",         "weekly",  "0.8"),
-    ("/contacts.html", "yearly",  "0.7"),
+    ("/contacts", "yearly",  "0.7"),
     ("/careers.html",  "monthly", "0.6"),
     ("/privacy.html",  "yearly",  "0.2"),
-] + [("/news/%s.html" % a["slug"], "yearly", "0.6") for a in ARTICLES]
+] + [("/news/%s" % a["slug"], "yearly", "0.6") for a in ARTICLES]
 
 def sitemap():
     urls = "\n".join(
@@ -1924,7 +1924,7 @@ write("sitemap.xml", sitemap())
 for _name in ("index.html", "404.html"):
     _path = os.path.join(ROOT, _name)
     _before = io.open(_path, encoding="utf-8").read()
-    _after = stamp(_before)
+    _after = clean_urls(stamp(_before))
     if _after != _before:
         io.open(_path, "w", encoding="utf-8").write(_after)
         print("stamped %s" % _name)

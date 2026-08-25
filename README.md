@@ -687,8 +687,27 @@ publication:
 
 ## Local preview
 
-No build step. Any static server works:
+No build step, but **use `tools/serve.py`, not `python3 -m http.server`**:
 
 ```
-python3 -m http.server 8080     # then open http://localhost:8080/
+python3 tools/serve.py          # then open http://localhost:8899/
 ```
+
+The site links to `/company`, not `/company.html`. GitHub Pages resolves that
+itself — nested paths and the language trees included — but the plain
+`http.server` does not, so every link on the site 404s and it looks as though
+the build is broken. `tools/serve.py` adds the one rule the host applies
+(extensionless → `.html`) and serves `404.html` with a real 404 status, so
+what you see locally is what deploys.
+
+### Why the links have no .html
+
+Both spellings resolve on GitHub Pages, which is exactly why the canonical,
+the `hreflang` set and `sitemap.xml` all name the extensionless one — otherwise
+every page is reachable at two URLs and points search engines at the one
+nothing links to. `404.html` keeps its extension: that filename is how GitHub
+Pages finds the custom 404, and no browser ever requests `/404`.
+
+`clean_urls()` in `tools/paths.py` does the rewriting, and both builds call it.
+If you add a link by hand in `index.html`, write it either way — the build
+normalises it on the next run.

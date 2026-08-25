@@ -904,8 +904,8 @@ S = {
         'Avancement des projets et regards d’ingénierie d’ALPROJECTS Group.',
     'Willingness to travel and work on site across several countries':
         'Disponibilité pour se déplacer et travailler sur chantier dans plusieurs pays',
-    'Email us</a> <a class="btn-bracket" href="/careers.html">Careers':
-        'Nous écrire</a> <a class="btn-bracket" href="/careers.html">Carrières',
+    'Email us</a> <a class="btn-bracket" href="/careers">Careers':
+        'Nous écrire</a> <a class="btn-bracket" href="/careers">Carrières',
     'Jack-up structures · steel erection · welding · offshore support':
         'Structures auto-élévatrices · montage métallique · soudage · assistance offshore',
     'ALPROJECTS Group — Integrated Engineering for Industry & Offshore':
@@ -992,8 +992,8 @@ S = {
         'De septembre 2025 à avril 2026. Douze spécialistes. Plus de 11 000 heures sur site.',
     'Certificates you hold <span class="opt">(optional, tap all that apply)</span>':
         'Certifications que vous détenez <span class="opt">(facultatif, sélectionnez tout ce qui s’applique)</span>',
-    'Our services</a> <a class="btn-bracket" href="/contacts.html">Start a project':
-        'Nos services</a> <a class="btn-bracket" href="/contacts.html">Démarrer un projet',
+    'Our services</a> <a class="btn-bracket" href="/contacts">Start a project':
+        'Nos services</a> <a class="btn-bracket" href="/contacts">Démarrer un projet',
     'Valid certification for your discipline, and the documentation to support it.':
         'Une certification en cours de validité pour votre métier, et les justificatifs correspondants.',
     '<span class="srv-n">05</span><span class="srv-name">Mobile Repair Teams</span>':
@@ -1018,8 +1018,8 @@ S = {
         'Nos CND ne remplacent pas votre contrôleur. Nous les utilisons d’abord pour détecter nos propres erreurs.',
     'Planning a project across shipbuilding, piping or industrial services? Let us talk.':
         'Vous préparez un projet en construction navale, tuyauterie ou services industriels ? Parlons-en.',
-    'Send us the scope</a> <a class="btn-outline" href="/projects.html">See our projects':
-        'Envoyez-nous le périmètre</a> <a class="btn-outline" href="/projects.html">Voir nos projets',
+    'Send us the scope</a> <a class="btn-outline" href="/projects">See our projects':
+        'Envoyez-nous le périmètre</a> <a class="btn-outline" href="/projects">Voir nos projets',
     'Send us the scope or the drawings and we will come back with a price and crew dates.':
         'Envoyez-nous le périmètre ou les plans et nous reviendrons avec un prix et des dates d’équipe.',
     '<span class="srv-n">04</span><span class="srv-name">Heavy Equipment Relocation</span>':
@@ -1222,8 +1222,8 @@ S = {
         'Qui nous sommes, où nous opérons, les secteurs que nous servons et les normes qui nous certifient. Avec notre implantation dans six pays et une sélection de clients.',
     '<span class="fp-idx">01</span> <span class="fp-name">Norway</span> <span class="fp-badge">2 locations</span> <span class="fp-city">Ålesund · Orkanger</span>':
         '<span class="fp-idx">01</span> <span class="fp-name">Norvège</span> <span class="fp-badge">2 sites</span> <span class="fp-city">Ålesund · Orkanger</span>',
-    'I agree that ALPROJECTS may store these details to consider me for current and future roles, as described in the <a href="/privacy.html">privacy policy</a>.':
-        'J’accepte qu’ALPROJECTS conserve ces informations afin d’étudier ma candidature pour les postes actuels et futurs, dans les conditions décrites dans la <a href="/privacy.html">politique de confidentialité</a>.',
+    'I agree that ALPROJECTS may store these details to consider me for current and future roles, as described in the <a href="/privacy">privacy policy</a>.':
+        'J’accepte qu’ALPROJECTS conserve ces informations afin d’étudier ma candidature pour les postes actuels et futurs, dans les conditions décrites dans la <a href="/privacy">politique de confidentialité</a>.',
     'Repair work is decided in days, not months. We take steel renewal, piping replacement and mechanical repairs, to class and to the owner&rsquo;s requirements.':
         'Une réparation se décide en jours, pas en mois. Nous prenons en charge le renouvellement de tôles, le remplacement de tuyauteries et les réparations mécaniques, aux exigences de la société de classification et de l’armateur.',
     'Scaffolding costs more in downtime than in steel. Certified technicians reach the same place on rope, inspect it and repair it while the plant keeps running.':
@@ -1326,8 +1326,8 @@ S = {
         'La simple consultation de ce site ne charge aucun script, police, outil de mesure ou contenu embarqué de tiers. La typographie est servie depuis notre propre domaine : lire ces pages ne communique donc votre adresse IP à aucune régie publicitaire ni société de mesure d’audience.',
     "So there are two different things with the same equipment behind them. On our own jobs it is internal quality control, and it never counts as sign-off. On somebody else's welds it is independent NDT, because we did not weld it.":
         'Il s’agit donc de deux choses différentes derrière le même matériel. Sur nos propres chantiers, c’est du contrôle qualité interne, et cela ne vaut jamais validation. Sur les soudures d’un tiers, c’est du CND indépendant, parce que nous ne les avons pas soudées.',
-    'I agree that ALPROJECTS, UAB stores my details and documents for recruitment purposes for 24 months. I can ask for them to be deleted at any time by writing to info@alprojects.eu. See the <a href="/privacy.html">privacy policy</a>.':
-        'J’accepte qu’ALPROJECTS, UAB conserve mes informations et mes documents à des fins de recrutement pendant 24 mois. Je peux en demander la suppression à tout moment en écrivant à info@alprojects.eu. Voir la <a href="/privacy.html">politique de confidentialité</a>.',
+    'I agree that ALPROJECTS, UAB stores my details and documents for recruitment purposes for 24 months. I can ask for them to be deleted at any time by writing to info@alprojects.eu. See the <a href="/privacy">privacy policy</a>.':
+        'J’accepte qu’ALPROJECTS, UAB conserve mes informations et mes documents à des fins de recrutement pendant 24 mois. Je peux en demander la suppression à tout moment en écrivant à info@alprojects.eu. Voir la <a href="/privacy">politique de confidentialité</a>.',
     '<strong>Where the line sits.</strong> Nobody should be signing off their own work, and we do not try to. Independent verification stays where the contract puts it, normally with the client or the class surveyor, and nothing we do changes that.':
         '<strong>Où passe la limite.</strong> Personne ne devrait valider son propre travail, et nous ne cherchons pas à le faire. La vérification indépendante reste là où le contrat la place, généralement chez le client ou l’expert de la société de classification, et rien de ce que nous faisons ne change cela.',
     'The shortage is discussed across European industry in general terms. It becomes concrete when a project is resourced, scheduled and funded, and the constraint is simply the number of people who hold the certification and are willing to travel.':
@@ -1352,8 +1352,8 @@ S = {
         'Siège à Klaipėda, en Lituanie, et des bases projet actives au service de clients dans six pays. Nos bureaux en <strong>Lituanie</strong>, en <strong>Pologne</strong>, en <strong>Allemagne</strong> et en <strong>Norvège</strong> sont proches des chantiers, des ports et des terminaux offshore de nos clients.',
     'Send us the scope or the drawings and we will come back with a price and crew dates. The fastest route to a useful answer is the scope, the location, the standards that apply and the window you are working to. For personnel requests, tell us the disciplines, certifications and headcount.':
         'Envoyez-nous le périmètre ou les plans et nous reviendrons avec un prix et des dates d’équipe. Le chemin le plus court vers une réponse utile : le périmètre, le lieu, les normes applicables et la fenêtre d’intervention. Pour un besoin en personnel, précisez les métiers, les certifications et l’effectif.',
-    'Fuel handling infrastructure and wind energy support. Our <a href="/news/fuel-loading-terminal-completed.html">fuel loading terminal scope</a> ran from September 2025 to April 2026 with twelve specialists and over 11,000 hours on site — a useful figure for anyone planning work of that size.':
-        'Infrastructures de manutention de carburant et assistance à l’éolien. Notre <a href="/news/fuel-loading-terminal-completed.html">chantier de terminal de chargement</a> s’est déroulé de septembre 2025 à avril 2026 avec douze spécialistes et plus de 11 000 heures sur site — un repère utile pour qui planifie un chantier de cette taille.',
+    'Fuel handling infrastructure and wind energy support. Our <a href="/news/fuel-loading-terminal-completed">fuel loading terminal scope</a> ran from September 2025 to April 2026 with twelve specialists and over 11,000 hours on site — a useful figure for anyone planning work of that size.':
+        'Infrastructures de manutention de carburant et assistance à l’éolien. Notre <a href="/news/fuel-loading-terminal-completed">chantier de terminal de chargement</a> s’est déroulé de septembre 2025 à avril 2026 avec douze spécialistes et plus de 11 000 heures sur site — un repère utile pour qui planifie un chantier de cette taille.',
     'Execution of lifting, rigging and installation works for industrial and offshore projects. Planning, coordination and supervision of lifting operations in accordance with project requirements and site conditions. Work is performed with controlled procedures and safety compliance at all stages.':
         'Réalisation de travaux de levage, d’élingage et d’installation pour projets industriels et offshore. Planification, coordination et supervision des opérations de levage selon les exigences du projet et les conditions du site. Les travaux suivent des procédures maîtrisées et respectent la sécurité à chaque étape.',
     'Applications are held for <strong>24 months</strong> from the date you send them, so that we can contact you when a project matches your discipline. You can ask us to delete them at any time by writing to <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>, and we will do so without needing a reason.':
@@ -1370,10 +1370,10 @@ S = {
         'Tuyauterie et montage mécanique sur navires en construction — circuits d’eau de mer, de cale et de combustible cheminant dans des compartiments déjà encombrés de machines, de structure et d’autres corps de métier. Préfabrication et montage sont traités ensemble, car un tronçon conforme au plan mais pas au compartiment réel part à la ferraille.',
     'We specialise in piping prefabrication and installation, steel fabrication and mechanical installation, and we provide certified technical personnel to projects across Europe. In practice that means we are engaged either to deliver a defined mechanical scope, or to supply the qualified people a project is short of &mdash; often both on the same site.':
         'Nous sommes spécialisés dans la préfabrication et le montage de tuyauterie, la fabrication métallique et le montage mécanique, et nous mettons du personnel technique certifié à disposition de projets partout en Europe. Concrètement, on nous confie soit un périmètre mécanique défini, soit les compétences qualifiées qui manquent au projet &mdash; souvent les deux sur le même site.',
-    'In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through &mdash; which is a different question from whether the welding is any good, and worth answering separately. <a href="/news/strongest-in-lithuania-2025-2026.html">More on the award</a>.':
-        'Dans l’industrie lourde, les projets durent des mois et les engagements des années. Une preuve indépendante de solidité financière est la preuve que nous serons là jusqu’au bout &mdash; question distincte de la qualité du soudage, et qui mérite d’être traitée séparément. <a href="/news/strongest-in-lithuania-2025-2026.html">En savoir plus sur cette distinction</a>.',
-    'Plant installation, process piping and mechanical packages. A recent example is a transformer mechanical package — stainless steel piping and cooling systems &mdash; <a href="/news/transformer-mechanical-package.html">delivered across five European countries</a>, where consistency across borders was as much a documentation problem as a fabrication one.':
-        'Installation d’unités, tuyauterie process et ensembles mécaniques. Exemple récent : un ensemble mécanique de transformateur — tuyauterie inox et circuits de refroidissement &mdash; <a href="/news/transformer-mechanical-package.html">livré dans cinq pays européens</a>, où la constance d’un pays à l’autre relevait autant de la documentation que de la fabrication.',
+    'In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through &mdash; which is a different question from whether the welding is any good, and worth answering separately. <a href="/news/strongest-in-lithuania-2025-2026">More on the award</a>.':
+        'Dans l’industrie lourde, les projets durent des mois et les engagements des années. Une preuve indépendante de solidité financière est la preuve que nous serons là jusqu’au bout &mdash; question distincte de la qualité du soudage, et qui mérite d’être traitée séparément. <a href="/news/strongest-in-lithuania-2025-2026">En savoir plus sur cette distinction</a>.',
+    'Plant installation, process piping and mechanical packages. A recent example is a transformer mechanical package — stainless steel piping and cooling systems &mdash; <a href="/news/transformer-mechanical-package">delivered across five European countries</a>, where consistency across borders was as much a documentation problem as a fabrication one.':
+        'Installation d’unités, tuyauterie process et ensembles mécaniques. Exemple récent : un ensemble mécanique de transformateur — tuyauterie inox et circuits de refroidissement &mdash; <a href="/news/transformer-mechanical-package">livré dans cinq pays européens</a>, où la constance d’un pays à l’autre relevait autant de la documentation que de la fabrication.',
     'The one exception is the scheduling calendar on the contacts page. It is supplied by Calendly LLC and is <strong>not loaded until you press &ldquo;Open the calendar&rdquo;</strong>. Until you do, no request is made to Calendly and they receive nothing about you. Once you open it, Calendly receives your IP address and sets its own cookies in order to run the calendar, and the details you submit if you book a slot. Calendly is a US company and transfers are covered by the EU Standard Contractual Clauses; see <a href="https://calendly.com/privacy" target="_blank" rel="noopener">calendly.com/privacy</a>. You can book a call by email instead if you prefer not to use it.':
         'La seule exception est le calendrier de rendez-vous de la page contact. Il est fourni par Calendly LLC et <strong>n’est pas chargé tant que vous n’avez pas cliqué sur &ldquo;Ouvrir le calendrier&rdquo;</strong>. Jusque-là, aucune requête n’est adressée à Calendly et ils ne reçoivent rien vous concernant. Une fois ouvert, Calendly reçoit votre adresse IP et dépose ses propres cookies pour faire fonctionner le calendrier, ainsi que les informations que vous saisissez si vous réservez un créneau. Calendly est une société américaine et les transferts sont encadrés par les clauses contractuelles types de l’UE ; voir <a href="https://calendly.com/privacy" target="_blank" rel="noopener">calendly.com/privacy</a>. Vous pouvez aussi réserver un appel par e-mail si vous préférez ne pas l’utiliser.',
 
@@ -1386,8 +1386,8 @@ S = {
         'Envoyez-nous le périmètre ou les plans et nous reviendrons avec un prix et des dates d’équipe. Le chemin le plus court vers une réponse utile : le périmètre, le lieu, les normes applicables et la fenêtre d’intervention.',
     'For personnel requests, tell us the disciplines, the certifications and the headcount.':
         'Pour les demandes de personnel, indiquez-nous les métiers, les certifications et les effectifs.',
-    'Applying for a job? The application form on the <a href="/careers.html">careers page</a> takes your CV and certificates with it.':
-        'Vous postulez à un poste ? Le formulaire de la <a href="/careers.html">page carrières</a> accepte votre CV et vos certificats.',
+    'Applying for a job? The application form on the <a href="/careers">careers page</a> takes your CV and certificates with it.':
+        'Vous postulez à un poste ? Le formulaire de la <a href="/careers">page carrières</a> accepte votre CV et vos certificats.',
     'Service group':
         'Domaine de services',
     'Select a service group':
@@ -1416,8 +1416,8 @@ S = {
         'Société <span class="opt">(facultatif)</span>',
     'How can we help?':
         'Comment pouvons-nous vous aider ?',
-    'I agree that ALPROJECTS, UAB may store these details in order to answer my enquiry. See the <a href="/privacy.html">privacy policy</a>.':
-        'J’accepte qu’ALPROJECTS, UAB conserve ces informations afin de répondre à ma demande. Voir la <a href="/privacy.html">politique de confidentialité</a>.',
+    'I agree that ALPROJECTS, UAB may store these details in order to answer my enquiry. See the <a href="/privacy">privacy policy</a>.':
+        'J’accepte qu’ALPROJECTS, UAB conserve ces informations afin de répondre à ma demande. Voir la <a href="/privacy">politique de confidentialité</a>.',
     'Website':
         'Site web',
     'Send the enquiry':

@@ -103,6 +103,10 @@ def lang_url(lang, rel):
     p = rel
     if p.endswith("index.html"):
         p = p[:-len("index.html")]
+    elif p.endswith(".html") and p != "404.html":
+        # clean URLs: /company, not /company.html. GitHub Pages serves both, so
+        # the canonical and the hreflang set have to name the one we link to.
+        p = p[:-len(".html")]
     p = "/" + p
     if p == "/index.html":
         p = "/"

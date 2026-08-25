@@ -48,3 +48,29 @@ def rootify_anchors(html):
 def rootify(html):
     """Both: what a generated sub-page needs."""
     return rootify_anchors(rootify_assets(html))
+
+def clean_urls(html):
+    """Drop the .html from internal links, canonicals and structured data.
+
+    GitHub Pages already serves /company for /company.html -- verified against
+    the live host, including under /fr/ -- so this is a link-and-canonical
+    change, not a restructuring. Both spellings resolve, which is exactly why
+    the canonical has to move with the links: otherwise every page is reachable
+    at two URLs and points at the one nobody links to.
+
+    404.html keeps its extension. GitHub Pages looks for that exact filename to
+    serve a custom 404, and /404 is not a thing a browser ever requests.
+    """
+    def _href(m):
+        attr, path, tail = m.group(1), m.group(2), m.group(3) or ""
+        if path.endswith("/404"):
+            return m.group(0)
+        return '%s="%s%s"' % (attr, path, tail)
+
+    # href="/company.html", href="/contacts.html#enquiry"
+    html = re.sub(r'\b(href)="(/[^"#?]*?)\.html([#?][^"]*)?"', _href, html)
+    # canonical, hreflang and JSON-LD carry the origin
+    html = re.sub(r'(https://alprojects\.co/[^"\'\s<]*?)\.html(?![a-zA-Z])',
+                  lambda m: m.group(0) if m.group(1).endswith("/404") else m.group(1),
+                  html)
+    return html

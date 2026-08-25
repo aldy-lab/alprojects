@@ -820,7 +820,7 @@
 
       document.title = sv.h1 + TXT.title_suffix;
       if (push && window.history && history.pushState) {
-        history.pushState({ srv: sv.slug }, "", PREFIX + "/services/" + sv.slug + ".html");
+        history.pushState({ srv: sv.slug }, "", PREFIX + "/services/" + sv.slug);
       }
       /* Release on the next frame: the browser has to paint the out state once
          before the transition back to rest will run. */
