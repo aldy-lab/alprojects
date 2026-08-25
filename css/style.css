@@ -4645,12 +4645,20 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   list-style: none;
   columns: 2;
   column-gap: 48px;
+  /* The two columns split whatever width they are given, and in this grid that
+     was 620px each -- 79 characters a line. Capping the list rather than the
+     items keeps the 48px gutter tight; capping the items instead left 180px of
+     dead space inside each column and pushed the two apart. */
+  max-width: 960px;
 }
 .co-val-list li {
   position: relative;
   padding-left: 18px;
+  /* Only bites in the single-column layout: two columns already come out at
+     61 characters, but on a tablet the list drops to one and ran to 89. */
+  max-width: 64ch;
   font-size: 13.5px;
-  line-height: 1.6;
+  line-height: 1.62;
   color: var(--muted);
   margin-bottom: 10px;
   break-inside: avoid;
@@ -4726,6 +4734,27 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 .co-hseq .sub-head,
 .co-cta .sub-head,
 .co-vhead { margin-top: 0; }
+
+/* Sentence case, not the site-wide uppercase .sub-head.
+   The class does two different jobs. On /projects and the sector pages it
+   labels a section and the strings are short -- "Selected key projects" is 21
+   characters, "What we do here" is 15 -- where caps read fine. Here every one
+   of them is a sentence: 47 to 66 characters, which came out as three and four
+   lines of uppercase with no word-shape left to read. The vision and mission
+   statements on this same page were already sentence case and were the most
+   legible thing on it, so these now match them and sit one step above.
+   Capped measure and balanced wrapping so they break in two lines, not four. */
+.co-people .sub-head,
+.co-hseq .sub-head,
+.co-cta .sub-head,
+.co-vhead {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.2;
+  max-width: 30ch;
+  text-wrap: balance;
+}
 .co-hseq { padding: 0; }
 /* .co-vm carries its own section padding, correct where it opens the page.
    Inside .co-sec an eyebrow already sits above it and that padding read as
