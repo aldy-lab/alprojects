@@ -972,6 +972,17 @@
 
   /* ---------- stat counters ---------- */
   var counters = document.querySelectorAll("[data-count]");
+  /* The real figure is written into the HTML, so a crawler, a link preview or
+     a visitor whose JS never ran sees 11,000 rather than 0. That means the
+     animation has to reset it here instead of counting up from a zero that was
+     sitting in the markup. Reset only when the animation is going to run: with
+     reduced motion the number simply stays as authored. */
+  if (!reduceMotion) {
+    counters.forEach(function (el) {
+      var t = parseInt(el.getAttribute("data-count"), 10);
+      if (!isNaN(t)) el.textContent = "0" + (el.getAttribute("data-suffix") || "");
+    });
+  }
   function animateCounter(el) {
     var target = parseInt(el.getAttribute("data-count"), 10);
     var suffix = el.getAttribute("data-suffix") || "";

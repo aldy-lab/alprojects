@@ -556,7 +556,7 @@ CAREERS = """
 # ============================================================
 ARTICLES = [
     dict(slug="we-do-not-certify-our-own-welds",
-         num="01", date="13 Aug 2026", iso="2026-08-13", cat="Quality Control",
+         date="13 Aug 2026", iso="2026-08-13", cat="Quality Control",
          img="projects/welding-tig-pipe-1200.webp", w=900, h=1200,
          alt="TIG root pass being welded on a prefabricated pipe spool",
          title="We do not certify our own welds",
@@ -573,7 +573,7 @@ ARTICLES = [
          cta="Send us the scope and we will come back with a price and crew dates."),
 
     dict(slug="piping-installation-engine-room",
-         num="02", date="08 Aug 2026", iso="2026-08-08", cat="Shipbuilding",
+         date="08 Aug 2026", iso="2026-08-08", cat="Shipbuilding",
          img="projects/sector-shipbuilding-1200.webp", w=1200, h=1017,
          alt="Fitters working inside a hull block under construction",
          title="Piping installation in the engine room",
@@ -590,7 +590,7 @@ ARTICLES = [
          cta="Send us the drawings and we will come back with a price and crew dates."),
 
     dict(slug="strongest-in-lithuania-2025-2026",
-         num="03", date="23 Jun 2026", iso="2026-06-23", cat="Company",
+         date="23 Jun 2026", iso="2026-06-23", cat="Company",
          img="projects/engineer-drawings-1200.webp", w=1200, h=954,
          alt="ALPROJECTS engineer working from isometric drawings on site",
          title="Among the strongest companies in Lithuania",
@@ -606,7 +606,7 @@ ARTICLES = [
          cta="Planning a project across shipbuilding, piping or industrial services? Let us talk."),
 
     dict(slug="transformer-mechanical-package",
-         num="04", date="01 Aug 2026", iso="2026-08-01", cat="Industrial Projects",
+         date="01 Aug 2026", iso="2026-08-01", cat="Industrial Projects",
          img="projects/transformer-overhead-1200.webp", w=1200, h=900,
          alt="Stainless pipework and transformer package installed at a substation",
          title="A transformer mechanical package across five countries",
@@ -620,7 +620,7 @@ ARTICLES = [
          facts=[], cta="Send us the scope and we will come back with a price and crew dates."),
 
     dict(slug="fuel-loading-terminal-completed",
-         num="05", date="25 Jul 2026", iso="2026-07-25", cat="Energy Projects",
+         date="25 Jul 2026", iso="2026-07-25", cat="Energy Projects",
          img="projects/terminal-rack-tanks-1200.webp", w=1200, h=900,
          alt="Completed pipe rack running to storage tanks at a fuel loading terminal",
          title="Fuel loading terminal completed",
@@ -633,7 +633,7 @@ ARTICLES = [
          facts=[], cta="Send us the scope and we will come back with a price and crew dates."),
 
     dict(slug="europe-tig-welder-shortage",
-         num="06", date="25 Jul 2026", iso="2026-07-25", cat="Industry",
+         date="25 Jul 2026", iso="2026-07-25", cat="Industry",
          img="projects/sector-industry-1200.webp", w=1200, h=1017,
          alt="TIG welder working on a large-diameter stainless pipe",
          title="We needed 30 certified TIG welders. Europe could not supply them.",
@@ -646,6 +646,14 @@ ARTICLES = [
          ],
          facts=[], cta="If you hold the ticket and you are willing to travel, we would like to hear from you."),
 ]
+
+# Newest first, and the number comes from that order rather than being typed in.
+# The list was hand-ordered and hand-numbered, which put the June award third --
+# between 08 August and 01 August -- and meant a seventh article would have
+# renumbered every page that already carries its number in its own body.
+ARTICLES.sort(key=lambda a: a["iso"], reverse=True)
+for _i, _a in enumerate(ARTICLES, 1):
+    _a["num"] = "%02d" % _i
 
 ARTICLE_BODY = """
     <div class="container page-head">
@@ -819,10 +827,10 @@ COMPANY = """
         </figure>
       </div>
       <div class="co-figs reveal">
-        <div><span class="value" data-count="300" data-suffix="+">0+</span><span class="label">Certified specialists on the roster</span></div>
-        <div><span class="value" data-count="6">0</span><span class="label">Countries we work in</span></div>
-        <div><span class="value" data-count="4">0</span><span class="label">Sectors, one set of disciplines</span></div>
-        <div><span class="value" data-count="3">0</span><span class="label">ISO management systems, certified by DNV</span></div>
+        <div><span class="value" data-count="300" data-suffix="+">300+</span> <span class="label">Certified specialists on the roster</span></div>
+        <div><span class="value" data-count="6">6</span> <span class="label">Countries we work in</span></div>
+        <div><span class="value" data-count="4">4</span> <span class="label">Sectors, one set of disciplines</span></div>
+        <div><span class="value" data-count="3">3</span> <span class="label">ISO management systems, certified by DNV</span></div>
       </div>
     </div>
 

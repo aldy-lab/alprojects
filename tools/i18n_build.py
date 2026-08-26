@@ -268,18 +268,45 @@ def translate_page(src, lang, rel, stats):
 def sitemap(pages):
     langs = [l for l in i18n.LANGS if i18n.PUBLISH.get(l)]
     import datetime
-    today = datetime.date.today().isoformat()
+    import subprocess
     rows = []
+
+    def last_changed(rel):
+        """When this page actually changed, not when the build ran.
+
+        One date across every URL tells a crawler nothing -- it cannot tell the
+        page that changed today from the twenty-nine that did not. Taken from
+        git, which knows; falls back to the file's mtime outside a checkout."""
+        try:
+            out = subprocess.check_output(
+                ["git", "log", "-1", "--format=%cs", "--", rel],
+                cwd=ROOT, stderr=subprocess.DEVNULL).decode().strip()
+            if out:
+                return out
+        except Exception:
+            pass
+        try:
+            return datetime.date.fromtimestamp(
+                os.path.getmtime(os.path.join(ROOT, rel))).isoformat()
+        except Exception:
+            return datetime.date.today().isoformat()
+
     for rel in pages:
         if rel == "404.html":
             continue
+        lastmod = last_changed(rel)
         for lg in langs:
             alts = "".join(
                 '\n    <xhtml:link rel="alternate" hreflang="%s" href="%s"/>'
                 % (i18n.LOCALE[a][0], lang_url(a, rel)) for a in langs)
+            # x-default: without it Google picks for itself which version to
+            # show a visitor whose language the site does not have -- a Dutch or
+            # Norwegian buyer, which is most of the market this site is for.
+            alts += ('\n    <xhtml:link rel="alternate" hreflang="x-default" href="%s"/>'
+                     % lang_url(i18n.DEFAULT, rel))
             rows.append(
                 "  <url>\n    <loc>%s</loc>%s\n    <lastmod>%s</lastmod>\n  </url>"
-                % (lang_url(lg, rel), alts, today))
+                % (lang_url(lg, rel), alts, lastmod))
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
             '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'

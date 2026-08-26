@@ -1640,4 +1640,52 @@ S = {
         'Ispezione &amp; accesso',
     '<span>Offshore Oil &amp; Gas</span><span>Wind Energy</span><span>Industrial Facilities</span><span>Marine</span>':
         '<span>Oil &amp; gas offshore</span><span>Eolico</span><span>Impianti industriali</span><span>Navale</span>',
+    '<span class="value" data-count="300" data-suffix="+">300+</span> <span class="label">Certified specialists on the roster</span>':
+        '<span class="value" data-count="300" data-suffix="+">300+</span> <span class="label">Specialisti certificati in organico</span>',
+    '<span class="value" data-count="6">6</span> <span class="label">Countries we work in</span>':
+        '<span class="value" data-count="6">6</span> <span class="label">Paesi in cui operiamo</span>',
+    '<span class="value" data-count="4">4</span> <span class="label">Sectors, one set of disciplines</span>':
+        '<span class="value" data-count="4">4</span> <span class="label">Settori, un unico insieme di discipline</span>',
+    '<span class="value" data-count="3">3</span> <span class="label">ISO management systems, certified by DNV</span>':
+        '<span class="value" data-count="3">3</span> <span class="label">Sistemi di gestione ISO, certificati da DNV</span>',
+    '<span class="value" data-count="90" data-suffix="+">90+</span> <span class="label">Projects delivered across multiple countries</span>':
+        '<span class="value" data-count="90" data-suffix="+">90+</span> <span class="label">Progetti realizzati in più Paesi</span>',
+    '<span class="value" data-count="98" data-suffix="%">98%</span> <span class="label">Early risk detection by certified specialists</span>':
+        '<span class="value" data-count="98" data-suffix="%">98%</span> <span class="label">Individuazione precoce dei rischi da parte di specialisti certificati</span>',
+    '<span class="value" data-count="40" data-suffix="%">40%</span> <span class="label">Reduced inspection time through optimized workflows</span>':
+        '<span class="value" data-count="40" data-suffix="%">40%</span> <span class="label">Tempi di ispezione ridotti grazie a flussi di lavoro ottimizzati</span>',
+    '<span class="value" data-count="1200" data-suffix="+">1,200+</span> <span class="label">Safe execution in complex and confined environments</span>':
+        '<span class="value" data-count="1200" data-suffix="+">1.200+</span> <span class="label">Esecuzione sicura in ambienti complessi e confinati</span>',
+    '<span class="value" data-count="11000" data-suffix="+">11,000+</span> <span class="label">Hours on one scope &mdash; fuel terminal, September 2025 to April 2026</span>':
+        '<span class="value" data-count="11000" data-suffix="+">11.000+</span> <span class="label">Ore su un solo intervento &mdash; terminale di carico, da settembre 2025 ad aprile 2026</span>',
+    '<span class="value" data-count="12">12</span> <span class="label">Specialists on that scope, one crew from start to handover</span>':
+        '<span class="value" data-count="12">12</span> <span class="label">Specialisti su quell’intervento, una sola squadra dall’inizio alla consegna</span>',
+    '<span class="value" data-count="4">4</span> <span class="label">Offshore and wind projects delivered &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>':
+        '<span class="value" data-count="4">4</span> <span class="label">Progetti offshore ed eolici realizzati &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>',
+    '<span class="value" data-count="3">3</span> <span class="label">ISO management systems, certified independently by DNV</span>':
+        '<span class="value" data-count="3">3</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>',
+    '03 &middot; Industrial Projects':
+        '03 &middot; Progetti industriali',
+    '<span class="num">03</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">↗</span>':
+        '<span class="num">03</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">↗</span>',
+    '04 &middot; Energy Projects':
+        '04 &middot; Progetti energia',
+    '<span class="num">04</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">↗</span>':
+        '<span class="num">04</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">↗</span>',
+    '05 &middot; Industry':
+        '05 &middot; Industria',
+    '<span class="num">05</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">↗</span>':
+        '<span class="num">05</span><span>25 lug 2026 &middot; Industria</span><span class="arr">↗</span>',
+    '06 &middot; Company':
+        '06 &middot; Azienda',
+    '<span class="num">06</span><span>23 Jun 2026 &middot; Company</span><span class="arr">↗</span>':
+        '<span class="num">06</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">↗</span>',
+    '<span class="num">03</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8599;</span>':
+        '<span class="num">03</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">&#8599;</span>',
+    '<span class="num">04</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8599;</span>':
+        '<span class="num">04</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">&#8599;</span>',
+    '<span class="num">05</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">&#8599;</span>':
+        '<span class="num">05</span><span>25 lug 2026 &middot; Industria</span><span class="arr">&#8599;</span>',
+    '<span class="num">06</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8599;</span>':
+        '<span class="num">06</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">&#8599;</span>',
 }
