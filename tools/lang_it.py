@@ -25,7 +25,7 @@ S = {
     'GWO':
         'GWO',
     'Home':
-        'Home',
+        'Homepage',
     'News':
         'Notizie',
     'Apply':
@@ -175,7 +175,7 @@ S = {
     '3 locations':
         '3 sedi',
     'Book a call':
-        'Prenota una call',
+        'Fissa un incontro',
     'Head office':
         'Sede centrale',
     'Netherlands':
@@ -461,7 +461,7 @@ S = {
     '02 &middot; Shipbuilding':
         '02 &middot; Cantieristica navale',
     'Cross-Industry Expertise':
-        'Competenze trasversali',
+        'Competenze intersettoriali',
     'Internal quality control':
         'Controllo qualità interno',
     "On somebody else's welds":
@@ -577,7 +577,7 @@ S = {
     'Pipe fitting — ALPROJECTS Group':
         'Tubisteria — ALPROJECTS Group',
     'Rigging &amp; Technical Support':
-        'Sollevamento &amp; supporto tecnico',
+        'Rigging e supporto tecnico',
     'Shipbuilding — ALPROJECTS Group':
         'Cantieristica navale — ALPROJECTS Group',
     'We do not certify our own welds':
@@ -1005,7 +1005,7 @@ S = {
     'Certificate numbers and expiry dates, projects you have worked on, when you could start.':
         'Numeri e scadenze dei certificati, progetti su cui hai lavorato, da quando potresti iniziare.',
     '<span class="srv-n">12</span><span class="srv-name">Rigging &amp; Technical Support</span>':
-        '<span class="srv-n">12</span><span class="srv-name">Sollevamento &amp; supporto tecnico</span>',
+        '<span class="srv-n">12</span><span class="srv-name">Rigging e supporto tecnico</span>',
     '<span>30 positions</span><span>Project sites across Europe</span><span>Project-based</span>':
         '<span>30 posizioni</span><span>Cantieri in tutta Europa</span><span>A progetto</span>',
     '<strong>Offshore</strong> — inspection, access and mechanical works on offshore facilities.':
@@ -1065,7 +1065,7 @@ S = {
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
         'Montaggi meccanici, tubisteria, saldatura, QA-QC, lavori su fune e CND per industria e offshore.',
     'Welding, piping and mechanical works across Northern Europe. Inspected by people who did not do the welding.':
-        'Saldatura, tubazioni e lavori meccanici in tutto il Nord Europa. Controllati da chi non ha saldato.',
+        'Saldatura, tubazioni e lavori meccanici in tutto il Nord Europa. Controllati da chi non ha eseguito la saldatura.',
     'Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.':
         'Progetti navali, offshore, industriali e di energia rinnovabile realizzati da ALPROJECTS Group in tutta Europa.',
     '<span>Offshore &amp; Marine</span><span>Energy</span><span>Heavy Industry</span><span>Steel Fabrication</span>':
@@ -1171,7 +1171,7 @@ S = {
     'Scaffolding costs more in downtime than in steel. Certified technicians reach the same place on rope, inspect it and repair it while the plant keeps...':
         'Il ponteggio costa più in fermo impianto che in acciaio. Tecnici certificati raggiungono lo stesso punto su fune, lo ispezionano e lo riparano mentre l’impianto continua...',
     'A weld is only as good as the paperwork behind it. We weld structural steel and piping systems in TIG, MIG and semi-automatic processes, under an ISO...':
-        'Una saldatura vale quanto la documentazione che la accompagna. Saldiamo carpenteria e impianti di tubazioni in TIG, MIG e processi semiautomatici, sotto un sistema ISO...',
+        'Una saldatura vale quanto la documentazione che l’accompagna. Saldiamo carpenteria e impianti di tubazioni in TIG, MIG e processi semiautomatici, sotto un sistema ISO...',
     'Nobody should be signing off their own work. We inspect welds, materials and structures without stopping production, and we report to the client, not...':
         'Nessuno dovrebbe validare il proprio lavoro. Controlliamo saldature, materiali e strutture senza fermare la produzione e rendiamo conto al cliente, non...',
     'Some clients need the whole scope taken off their hands. We install plant and equipment, fabricate steel and build transformer packages, with our own...':
@@ -1313,7 +1313,7 @@ S = {
     'Execution of 3D laser scanning to capture precise as-built geometry of structures and piping systems. Point cloud data supports dimensional control, clash detection and retrofit engineering. Improves accuracy and reduces rework during installation and fabrication.':
         'Esecuzione di scansioni laser 3D per rilevare con precisione la geometria dell’esistente di strutture e impianti di tubazioni. La nuvola di punti alimenta il controllo dimensionale, il rilevamento delle interferenze e la progettazione di retrofit. Aumenta la precisione e riduce le rilavorazioni in montaggio e fabbricazione.',
     'A weld is only as good as the paperwork behind it. We weld structural steel and piping systems in TIG, MIG and semi-automatic processes, under an ISO 3834 quality system. The welders hold current qualifications and the procedure is approved before the first arc is struck.':
-        'Una saldatura vale quanto la documentazione che la accompagna. Saldiamo carpenteria e impianti di tubazioni in TIG, MIG e processi semiautomatici, sotto un sistema qualità ISO 3834. I saldatori hanno qualifiche in corso di validità e la procedura è approvata prima di innescare il primo arco.',
+        'Una saldatura vale quanto la documentazione che l’accompagna. Saldiamo carpenteria e impianti di tubazioni in TIG, MIG e processi semiautomatici, sotto un sistema qualità ISO 3834. I saldatori hanno qualifiche in corso di validità e la procedura è approvata prima di innescare il primo arco.',
     'Newsletter addresses are kept until you unsubscribe or ask us to remove them. Business correspondence is kept as long as needed for the enquiry or project and any statutory retention period that applies to it. Hosting logs are retained according to GitHub&rsquo;s own schedule.':
         'Gli indirizzi della newsletter sono conservati fino alla vostra disiscrizione o richiesta di cancellazione. La corrispondenza commerciale è conservata per il tempo necessario alla richiesta o al progetto e per gli eventuali termini di legge applicabili. I log di hosting seguono le tempistiche di GitHub.',
     'Most delays in piping start with a bad fit-up. We supply fitters for process, utility and engine room systems, instrument fitters for small bore work, and workshop crews who build spools straight from the isometrics. The dimensions are checked before the welder arrives, not after.':
@@ -1688,4 +1688,148 @@ S = {
         '<span class="num">05</span><span>25 lug 2026 &middot; Industria</span><span class="arr">&#8599;</span>',
     '<span class="num">06</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8599;</span>':
         '<span class="num">06</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">&#8599;</span>',
+    'Quality control (QA/QC)':
+        'Controllo qualità (QA/QC)',
+    'Welder qualifications to EN ISO 9606-1, verified before mobilisation':
+        'Qualifiche dei saldatori secondo EN ISO 9606-1, verificate prima della mobilitazione',
+    'Welding coordination and traceability under ISO 3834-2':
+        'Coordinamento di saldatura e tracciabilità secondo ISO 3834-2',
+    '<b>30</b><span>Positions to fill</span>':
+        '<b>30</b><span>Posizioni da coprire</span>',
+    '<b>No injuries</b><span>to our people, to the client&rsquo;s people, or to anyone else on site.</span>':
+        '<b>Nessun infortunio</b><span>né tra i nostri, né tra quelli del cliente, né tra chiunque altro in cantiere.</span>',
+    '<span class="kp-num">03</span> <span class="kp-name">Ostwind Offshore Wind Farm</span> <span class="kp-scope">Cable jointers, jointer&rsquo;s mates and rigging support.</span>':
+        '<span class="kp-num">03</span> <span class="kp-name">Parco eolico offshore Ostwind</span> <span class="kp-scope">Giuntisti cavi, assistenti giuntisti e supporto al sollevamento.</span>',
+    '<span class="srv-n">11</span><span class="srv-name">Quality control (QA/QC)</span>':
+        '<span class="srv-n">11</span><span class="srv-name">Controllo qualità (QA/QC)</span>',
+    'A weld is only as good as the paperwork behind it. We weld structural steel and piping systems by TIG (141), MAG (135) and flux-cored (136) processes, under an ISO 3834-2 quality system. The welders hold current qualifications and the procedure is approved before the first arc is struck.':
+        'Una saldatura vale quanto la documentazione che l’accompagna. Saldiamo carpenteria metallica e sistemi di tubazioni in TIG (141), MAG (135) e filo animato (136), con un sistema qualità ISO 3834-2. I saldatori possiedono qualifiche in corso di validità e il procedimento è approvato prima del primo arco.',
+    'A weld is only as good as the paperwork behind it. We weld structural steel and piping systems by TIG (141), MAG (135) and flux-cored (136) processes,...':
+        'Una saldatura vale quanto la documentazione che l’accompagna. Saldiamo carpenteria metallica e sistemi di tubazioni in TIG (141), MAG (135) e...',
+    'ALPROJECTS, UAB has been awarded the Strongest in Lithuania 2025–2026 certificate by Creditinfo Group.':
+        'ALPROJECTS, UAB ha ricevuto il certificato Strongest in Lithuania 2025–2026 da Creditinfo Group.',
+    'ALPROJECTS, UAB holds the <strong>Strongest in Lithuania</strong> certificate, awarded by Creditinfo Group on 23 June 2026 to companies with a high credit score and a proven record of financial stability.':
+        'ALPROJECTS, UAB detiene il certificato <strong>Strongest in Lithuania</strong>, assegnato da Creditinfo Group il 23 giugno 2026 alle imprese con elevato merito creditizio e comprovata solidità finanziaria.',
+    'Abnormal load permits, escort and cargo securing to EN 12195-1, with CMR cover':
+        'Autorizzazioni per trasporti eccezionali, scorta e ancoraggio del carico secondo EN 12195-1, con copertura CMR',
+    'Acceptance to EN ISO 5817 and ISO 10675, or to the project specification':
+        'Criteri di accettabilità secondo EN ISO 5817 e ISO 10675, o secondo la specifica di progetto',
+    'Certificates you hold <span class="opt">(optional, select all that apply)</span>':
+        'Certificazioni che possiedi <span class="opt">(facoltativo, seleziona tutte quelle pertinenti)</span>',
+    'Dismantling, skidding, jacking and positioning on SPMT or hydraulic gantry':
+        'Smontaggio, traslazione, sollevamento e posizionamento su SPMT o portale idraulico',
+    'Engine room piping: fuel, lube oil, cooling water, ballast and bilge systems, including spool prefabrication':
+        'Tubazioni di sala macchine: combustibile, olio lubrificante, acqua di raffreddamento, zavorra e sentina, inclusa la prefabbricazione degli spool',
+    'Foundation preparation, chocking, grouting and laser shaft alignment':
+        'Preparazione delle fondazioni, spessoramento, boiaccatura e allineamento laser degli alberi',
+    'Hull structural fitting and welding to class-approved procedures':
+        'Montaggio e saldatura della struttura dello scafo secondo procedure approvate dall’ente di classifica',
+    'IRATA-certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site':
+        'Tecnici certificati IRATA, livelli da 1 a 3, con un supervisore IRATA livello 3 in ogni cantiere',
+    'If you believe we have handled your data improperly, you may lodge a complaint with the Lithuanian State Data Protection Inspectorate (Valstybinė duomenų apsaugos inspekcija), L. Sapiegos g. 17, LT-10312 Vilnius, <a href="mailto:ada@ada.lt">ada@ada.lt</a>, <a href="https://vdai.lrv.lt" target="_blank" rel="noopener">vdai.lrv.lt</a>.':
+        'Se ritieni che abbiamo trattato i tuoi dati in modo improprio, puoi presentare reclamo all’Autorità lituana per la protezione dei dati (Valstybinė duomenų apsaugos inspekcija), L. Sapiegos g. 17, LT-10312 Vilnius, <a href="mailto:ada@ada.lt">ada@ada.lt</a>, <a href="https://vdai.lrv.lt" target="_blank" rel="noopener">vdai.lrv.lt</a>.',
+    'Independent third-party verification, reported to the client in their format':
+        'Verifica indipendente di terza parte, riportata al cliente nel suo formato',
+    'Inspection and Test Plans (ITP) with hold, witness and review points agreed before work starts':
+        'Piani di controllo e collaudo (ITP) con punti di hold, witness e review concordati prima dell’inizio dei lavori',
+    'Inspection with the plant running, where the method allows it':
+        'Ispezione con l’impianto in funzione, dove il metodo lo consente',
+    'Instrument pipe fitters: small-bore, tubing, impulse lines and instrument hook-ups':
+        'Tubisti strumentali: piccolo diametro, tubing, linee di impulso e collegamenti strumenti',
+    'MAG (135) for structural steel fill and capping passes; MIG (131) for aluminium and non-ferrous work':
+        'MAG (135) per passate di riempimento e finitura su acciaio da carpenteria; MIG (131) per alluminio e metalli non ferrosi',
+    'Magnetic particle testing (MT) to EN ISO 17638 and ultrasonic testing (UT) to EN ISO 17640':
+        'Magnetoscopia (MT) secondo EN ISO 17638 e ultrasuoni (UT) secondo EN ISO 17640',
+    'Manufacturing Record Book (MRB) assembled as the work goes, not at the end':
+        'Manufacturing Record Book (MRB) composto durante i lavori, non alla fine',
+    'Mobile repair teams':
+        'Squadre mobili di riparazione',
+    'Mobile repair teams — ALPROJECTS Group':
+        'Squadre mobili di riparazione — ALPROJECTS Group',
+    'Most delays in piping start with a bad fit-up. We supply fitters for process, utility and engine room systems, instrument fitters for small-bore work, and workshop crews who build spools straight from the isometrics. The dimensions are checked before the welder arrives, not after.':
+        'La maggior parte dei ritardi nelle tubazioni nasce da un accoppiamento fatto male. Forniamo tubisti per sistemi di processo, di servizio e di sala macchine, tubisti strumentali per il piccolo diametro e squadre di officina che prefabbricano gli spool direttamente dagli isometrici. Le quote si verificano prima che arrivi il saldatore, non dopo.',
+    'Most delays in piping start with a bad fit-up. We supply fitters for process, utility and engine room systems, instrument fitters for small-bore work,...':
+        'La maggior parte dei ritardi nelle tubazioni nasce da un accoppiamento fatto male. Forniamo tubisti per sistemi di processo, di servizio e di...',
+    'Moving a production line is a scheduling problem before it is a lifting problem. We dismantle, move, reinstall and align it, inside a running plant or between two countries.':
+        'Spostare una linea di produzione è prima un problema di programmazione che di sollevamento. La smontiamo, la trasferiamo, la reinstalliamo e la allineiamo, dentro un impianto in funzione o tra due Paesi.',
+    'Moving a production line is a scheduling problem before it is a lifting problem. We dismantle, move, reinstall and align it, inside a running plant or...':
+        'Spostare una linea di produzione è prima un problema di programmazione che di sollevamento. La smontiamo, la trasferiamo, la reinstalliamo e la...',
+    'Nobody should be signing off their own work. UT, PT and MT let us inspect while the plant keeps running; radiography is planned around production windows. We report to the client, not to the contractor who did the welding.':
+        'Nessuno dovrebbe approvare il proprio lavoro. UT, PT e MT ci permettono di ispezionare con l’impianto in funzione; la radiografia è pianificata attorno alle finestre di produzione. Riferiamo al cliente, non all’impresa che ha eseguito la saldatura.',
+    'Nobody should be signing off their own work. UT, PT and MT let us inspect while the plant keeps running; radiography is planned around production...':
+        'Nessuno dovrebbe approvare il proprio lavoro. UT, PT e MT ci permettono di ispezionare con l’impianto in funzione; la radiografia è...',
+    'Often without scaffolding, and usually without a shutdown':
+        'Spesso senza ponteggio e di norma senza fermo impianto',
+    'On-board mechanical repairs':
+        'Riparazioni meccaniche a bordo',
+    'Our management systems are certified to ISO 9001, 14001 and 45001, and our welding to ISO 3834. Certification is what lets a client accept our documentation without repeating the inspection.':
+        'I nostri sistemi di gestione sono certificati ISO 9001, 14001 e 45001 e la nostra saldatura ISO 3834. È la certificazione che permette al cliente di accettare la nostra documentazione senza ripetere l’ispezione.',
+    'Our supervisors and our QA/QC engineers on site':
+        'I nostri supervisori e i nostri ingegneri QA/QC in cantiere',
+    'Our technicians hold IRATA and SOFT certification and most of them carry a second trade: inspection, welding or mechanical fitting. One person on the rope replaces a scaffold crew and an inspector standing behind them.':
+        'I nostri tecnici sono certificati IRATA e SOFT e la maggior parte porta un secondo mestiere: ispezione, saldatura o montaggio meccanico. Una persona sulla fune sostituisce una squadra di ponteggiatori e l’ispettore che sta dietro di loro.',
+    'Phased array (PAUT) and TOFD where radiography is not practical':
+        'Phased array (PAUT) e TOFD dove la radiografia non è praticabile',
+    'Prefer not to fill in a form?':
+        'Preferisci non compilare un modulo?',
+    'Pressure piping to EN 13480 and PED 2014/68/EU, with pressure testing before insulation':
+        'Tubazioni in pressione secondo EN 13480 e PED 2014/68/UE, con prova in pressione prima della coibentazione',
+    'Process and utility piping in carbon steel and stainless steel, small bore to large bore':
+        'Tubazioni di processo e di servizio in acciaio al carbonio e inox, dal piccolo al grande diametro',
+    'Quality assurance and quality control (QA/QC)':
+        'Assicurazione e controllo qualità (QA/QC)',
+    'Quality assurance and quality control (QA/QC) — ALPROJECTS Group':
+        'Assicurazione e controllo qualità (QA/QC) — ALPROJECTS Group',
+    'Quality system certified to ISO 9001; welding under ISO 3834-2':
+        'Sistema qualità certificato ISO 9001; saldatura secondo ISO 3834-2',
+    'Railway bridges · steel fitting · structural repairs · pipe welding, 5G position':
+        'Ponti ferroviari · montaggio metallico · riparazioni strutturali · saldatura di tubazioni, posizione 5G',
+    'Repair work is decided in days, not months. We take steel renewal, piping replacement and mechanical repairs to class and to the owner&rsquo;s requirements.':
+        'Una riparazione si decide in giorni, non in mesi. Assumiamo rinnovo lamiere, sostituzione tubazioni e riparazioni meccaniche secondo i requisiti dell’ente di classifica e dell’armatore.',
+    'Repair work is decided in days, not months. We take steel renewal, piping replacement and mechanical repairs to class and to the owner\'s requirements.':
+        'Una riparazione si decide in giorni, non in mesi. Assumiamo rinnovo lamiere, sostituzione tubazioni e riparazioni meccaniche secondo i requisiti dell’ente di classifica e dell’armatore.',
+    'Scopes delivered to the yard&rsquo;s schedule and class-approved drawings':
+        'Commesse consegnate secondo il programma del cantiere e i disegni approvati dall’ente di classifica',
+    'Short-notice mobilisation':
+        'Mobilitazione con breve preavviso',
+    'Site-to-site moves across Europe':
+        'Trasferimenti da sito a sito in tutta Europa',
+    'Six fields are required. Everything else helps us match you faster, but the form will send without them.':
+        'Sei campi sono obbligatori. Il resto ci aiuta a valutarti più in fretta, ma il modulo si invia anche senza.',
+    'Steel fabrication to EN 1090, mechanical completion documented and handed over as a package':
+        'Carpenteria metallica secondo EN 1090, mechanical completion documentata e consegnata come pacchetto',
+    'Structural steel welding to EN 1090-1 and EN 1090-2, execution classes EXC2 and EXC3':
+        'Saldatura di carpenteria metallica secondo EN 1090-1 ed EN 1090-2, classi di esecuzione EXC2 ed EXC3',
+    'Structural steel, pressure-retaining piping and pipe supports':
+        'Carpenteria metallica, tubazioni in pressione e supporti',
+    'Support at client and third-party hold and witness points':
+        'Assistenza ai punti di hold e witness del cliente e di terze parti',
+    'Technicians certified to ISO 9712 Level II and Level III':
+        'Tecnici certificati ISO 9712 livello II e livello III',
+    'This website has no user accounts, no analytics and sets no cookies of its own. Data reaches us in the following ways:':
+        'Questo sito non ha account utente, non usa strumenti di analisi e non imposta cookie propri. I dati ci raggiungono nei modi seguenti:',
+    'Transformer packages: bushings, coolers, conservators and connecting pipework':
+        'Pacchetti trasformatore: passanti, refrigeranti, conservatori e tubazioni di collegamento',
+    'Turnarounds, shutdowns and breakdown repairs':
+        'Fermate generali, fermi programmati e riparazioni di guasto',
+    'Visual testing (VT) to EN ISO 17637 and penetrant testing (PT) to EN ISO 3452':
+        'Esame visivo (VT) secondo EN ISO 17637 e liquidi penetranti (PT) secondo EN ISO 3452',
+    'WPS to EN ISO 15609-1, qualified by WPQR to EN ISO 15614-1, written for the project standard':
+        'WPS secondo EN ISO 15609-1, qualificata da WPQR secondo EN ISO 15614-1, redatta per la norma di progetto',
+    'We are recruiting 30 certified TIG welders for upcoming project scopes. This is the constraint on our current pipeline, so applications are reviewed quickly.':
+        'Stiamo assumendo 30 saldatori TIG certificati per commesse in arrivo. È il vincolo del nostro portafoglio attuale, quindi le candidature vengono valutate rapidamente.',
+    'We ask the client&rsquo;s supervisor what went wrong before they have to tell us.':
+        'Chiediamo al preposto del cliente che cosa è andato storto prima che debba dircelo.',
+    'We bring people up to a second trade, because two skills in one person are worth more offshore.':
+        'Portiamo le persone a un secondo mestiere, perché due competenze in una sola persona valgono di più offshore.',
+    'We remind the client of their deadlines as well as ours.':
+        'Ricordiamo al cliente le sue scadenze oltre alle nostre.',
+    'Working level of English (B1 or better)':
+        'Livello di inglese professionale (B1 o superiore)',
+    'Yard schedules move, and the penalty lands on the subcontractor. We plan for that, and take engine room piping, structural steel and outfitting as complete scopes, on newbuilds and on repair.':
+        'I programmi dei cantieri navali si spostano, e la penale ricade sul subappaltatore. Lo mettiamo in conto e assumiamo tubazioni di sala macchine, carpenteria metallica e allestimento come commesse complete, sia in nuove costruzioni sia in riparazione.',
+    'Fuel handling infrastructure and wind energy support. Our <a href="/news/fuel-loading-terminal-completed">fuel loading terminal scope</a> ran from September 2025 to April 2026 with 12 specialists and over 11,000 hours on site — a useful figure for anyone planning work of that size.':
+        'Infrastrutture per la movimentazione di combustibili e supporto eolico. La nostra <a href="/news/fuel-loading-terminal-completed">commessa al terminale di carico</a> è andata da settembre 2025 ad aprile 2026 con 12 specialisti e oltre 11.000 ore in cantiere — un riferimento utile per chi pianifica lavori di queste dimensioni.',
+    'Yard schedules move, and the penalty lands on the subcontractor. We plan for that, and take engine room piping, structural steel and outfitting as com':
+        'I programmi dei cantieri navali si spostano, e la penale ricade sul subappaltatore. Lo mettiamo in conto e assumiamo tubazioni di sala macchine,',
 }

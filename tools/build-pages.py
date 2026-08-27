@@ -151,7 +151,7 @@ PRIVACY = """
 
       <h2>2. What we collect</h2>
       <p>This website has no user accounts, no analytics and sets no cookies of its own.
-      Data reaches us in three ways:</p>
+      Data reaches us in the following ways:</p>
       <ul>
         <li><strong>Newsletter.</strong> If you submit the newsletter form, we receive the
         email address you enter, in order to send you company and project updates.</li>
@@ -234,7 +234,7 @@ PRIVACY = """
       within one month.</p>
       <p>If you believe we have handled your data improperly, you may lodge a complaint
       with the Lithuanian State Data Protection Inspectorate
-      (Valstybine duomenu apsaugos inspekcija), L. Sapiegos g. 17, Vilnius.</p>
+      (Valstybinė duomenų apsaugos inspekcija), L. Sapiegos g. 17, LT-10312 Vilnius, <a href="mailto:ada@ada.lt">ada@ada.lt</a>, <a href="https://vdai.lrv.lt" target="_blank" rel="noopener">vdai.lrv.lt</a>.</p>
 
       <h2>7. Changes</h2>
       <p>If this policy changes, the revised version will be published on this page with
@@ -270,13 +270,13 @@ POSITIONS = [
          employment_type="CONTRACTOR",
          vacancies=30,
          countries=["LT", "BE", "NO"],
-         summary="We are recruiting thirty certified TIG welders for upcoming project "
+         summary="We are recruiting 30 certified TIG welders for upcoming project "
                  "scopes. This is the constraint on our current pipeline, so applications "
                  "are reviewed quickly.",
          needs=["Valid TIG welding certification with supporting documentation",
                 "Willingness to travel and work on site across several countries",
                 "Experience with pipe and steel structure welding",
-                "Working English"]),
+                "Working level of English (B1 or better)"]),
 ]
 
 DISCIPLINES = [
@@ -380,7 +380,7 @@ CAREERS = """
       services on industrial and offshore projects across Europe. The work is technical,
       certified and mostly on site.</p>
       <div class="kpis">
-        <div class="kpi"><b>30</b><span>Open positions</span></div>
+        <div class="kpi"><b>30</b><span>Positions to fill</span></div>
         <div class="kpi"><b>6</b><span>Countries</span></div>
         <div class="kpi"><b>3</b><span>Working days to reply</span></div>
         <div class="kpi"><b>300</b><span>Specialists on our roster</span></div>
@@ -407,12 +407,12 @@ CAREERS = """
         <div class="apply-intro">
           <p class="eyebrow">Apply</p>
           <h2>Send us your details</h2>
-          <p>Six fields are required. Everything else helps us match you faster, but you
-          can send the form without it.</p>
+          <p>Six fields are required. Everything else helps us match you faster, but
+          the form will send without them.</p>
           <p>We read every application and reply within three working days when a project
           matches your profile.</p>
           <div class="apply-alt">
-            <p class="eyebrow">Prefer not to fill a form</p>
+            <p class="eyebrow">Prefer not to fill in a form?</p>
             <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp +370 636 63 744</a>
             <a href="mailto:info@alprojects.eu?subject=Application">info@alprojects.eu</a>
             <a href="tel:+37063663744">Call +370 636 63 744</a>
@@ -460,7 +460,7 @@ CAREERS = """
             </div>
             <div class="field field-wide">
               <span class="label" id="certLabel">Certificates you hold
-                <span class="opt">(optional, tap all that apply)</span></span>
+                <span class="opt">(optional, select all that apply)</span></span>
               <div class="chips chips-sm" id="certChips" role="group" aria-labelledby="certLabel">
 """ + chips(CERTIFICATES, "data-cert", "chip chip-sm") + """
               </div>
@@ -595,7 +595,7 @@ ARTICLES = [
          alt="ALPROJECTS engineer working from isometric drawings on site",
          title="Among the strongest companies in Lithuania",
          seo="Among Lithuania's strongest companies",
-         lead="UAB \u201cALprojects\u201d has been awarded the Strongest in Lithuania 2025\u20132026 certificate by Creditinfo.",
+         lead="ALPROJECTS, UAB has been awarded the Strongest in Lithuania 2025\u20132026 certificate by Creditinfo Group.",
          body=[
            "The certificate recognises companies with a high credit score and a proven record of financial stability. It is issued by Creditinfo Group and was awarded on 23 June 2026 for the 2025\u20132026 period.",
            "<strong>A stable partner is a safer project.</strong> In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through.",
@@ -847,8 +847,8 @@ COMPANY = """
             <ul class="co-val-list">
             <li>We debrief after each mobilisation and write down what we would do differently.</li>
             <li>We share procedures between crews, so the second job runs faster than the first.</li>
-            <li>We ask the client&rsquo;s supervisor what went wrong before he has to tell us.</li>
-            <li>We bring people up to a second trade, because two skills in one man are worth more offshore.</li>
+            <li>We ask the client&rsquo;s supervisor what went wrong before they have to tell us.</li>
+            <li>We bring people up to a second trade, because two skills in one person are worth more offshore.</li>
             </ul>
           </div>
         </div>
@@ -895,7 +895,7 @@ COMPANY = """
             <ul class="co-val-list">
             <li>A mobilisation date is given only when the people are actually free.</li>
             <li>We plan so that the safe method is also the fast one.</li>
-            <li>We remind the client of his deadlines as well as ours.</li>
+            <li>We remind the client of their deadlines as well as ours.</li>
             <li>A yard schedule does not move, so ours has to hold.</li>
             </ul>
           </div>
@@ -938,11 +938,11 @@ COMPANY = """
           from the last job is how people get hurt.</p>
           <p class="co-note">Our management systems are certified to ISO 9001, 14001 and
           45001, and our welding to ISO 3834. Certification is what lets a client accept our
-          documentation without repeating the inspection themselves.</p>
+          documentation without repeating the inspection.</p>
         </div>
       </div>
       <div class="co-zeros reveal">
-        <div class="co-zero"><b>No injuries</b><span>to our people, to the client&rsquo;s people, to anyone else on site.</span></div>
+        <div class="co-zero"><b>No injuries</b><span>to our people, to the client&rsquo;s people, or to anyone else on site.</span></div>
         <div class="co-zero"><b>No occupational illness</b><span>from the way we organise the work.</span></div>
         <div class="co-zero"><b>No spills</b><span>to the sea, to the ground or to the drain.</span></div>
         <div class="co-zero"><b>No damage</b><span>to the structure we were sent to work on.</span></div>
@@ -974,7 +974,7 @@ COMPANY = """
         </div>
         <div class="reveal reveal-d1">
           <p class="co-big">Strongest in Lithuania, 2025&ndash;2026</p>
-          <p class="co-body">UAB &ldquo;ALprojects&rdquo; holds the <strong>Strongest in
+          <p class="co-body">ALPROJECTS, UAB holds the <strong>Strongest in
           Lithuania</strong> certificate, awarded by Creditinfo Group on 23 June 2026 to
           companies with a high credit score and a proven record of financial stability.</p>
           <p class="co-body">In heavy industry, projects run for months and commitments run for
@@ -1164,7 +1164,7 @@ PROJECTS = """
       <h2>Renewable and energy projects</h2>
       <p>Fuel handling infrastructure and wind energy support. Our
       <a href="/news/fuel-loading-terminal-completed.html">fuel loading terminal scope</a>
-      ran from September 2025 to April 2026 with twelve specialists and over 11,000 hours
+      ran from September 2025 to April 2026 with 12 specialists and over 11,000 hours
       on site — a useful figure for anyone planning work of that size.</p>
 
     </div>
@@ -1186,7 +1186,7 @@ PROJECTS = """
         <li class="kp-row">
           <span class="kp-num">03</span>
           <span class="kp-name">Ostwind Offshore Wind Farm</span>
-          <span class="kp-scope">Cable jointers, cable mates and rigging support.</span>
+          <span class="kp-scope">Cable jointers, jointer&rsquo;s mates and rigging support.</span>
         </li>
         <li class="kp-row">
           <span class="kp-num">04</span>
@@ -1204,7 +1204,7 @@ PROJECTS = """
           <p class="on-country">Germany</p>
           <p class="on-tag">3 locations</p>
           <div class="on-item"><p class="on-site">Rostock</p><p class="on-scope">Cruise &amp; river vessels · piping systems · pressure testing · structural welding</p></div>
-          <div class="on-item"><p class="on-site">Frankfurt</p><p class="on-scope">Railway bridges · steel fitting · structural repairs · 5G welding</p></div>
+          <div class="on-item"><p class="on-site">Frankfurt</p><p class="on-scope">Railway bridges · steel fitting · structural repairs · pipe welding, 5G position</p></div>
           <div class="on-item"><p class="on-site">Hamburg</p><p class="on-scope">Industrial maintenance · equipment &amp; hydro-turbine repairs</p></div>
         </div>
         <div class="on-col">
@@ -1316,7 +1316,7 @@ CONTACTS = """
           <p class="apply-note">Applying for a job? The application form on the
           <a href="/careers.html">careers page</a> takes your CV and certificates with it.</p>
           <div class="apply-alt">
-            <p class="eyebrow">Prefer not to fill a form</p>
+            <p class="eyebrow">Prefer not to fill in a form?</p>
             <a href="mailto:info@alprojects.eu?subject=Project%20enquiry">info@alprojects.eu</a>
             <a href="tel:+37063663744">Call +370 636 63 744</a>
             <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp +370 636 63 744</a>
@@ -1537,22 +1537,24 @@ SERVICE_GROUPS = [
     ("Mechanical & Industrial", [
         dict(slug="welding-services", nav="Welding Services", h1="Welding services",
              lead="A weld is only as good as the paperwork behind it. We weld structural steel "
-                  "and piping systems in TIG, MIG and semi-automatic processes, under an ISO 3834 "
+                  "and piping systems by TIG (141), MAG (135) and flux-cored (136) processes, under an ISO 3834-2 "
                   "quality system. The welders hold current qualifications and the procedure is "
                   "approved before the first arc is struck.",
              points=["TIG for piping, root runs and stainless work",
-                     "MIG and semi-automatic MAG for structural steel and fill passes",
-                     "Structural steel, pressure retaining piping and pipe supports",
-                     "Welder qualifications to EN ISO 9606, verified before mobilisation",
-                     "WPS and WPQR to EN ISO 15614, written for the project standard",
-                     "Welding coordination and traceability under ISO 3834"]),
+                     "MAG (135) for structural steel fill and capping passes; MIG (131) for aluminium and non-ferrous work",
+                     "Structural steel, pressure-retaining piping and pipe supports",
+                     "Welder qualifications to EN ISO 9606-1, verified before mobilisation",
+                     "WPS to EN ISO 15609-1, qualified by WPQR to EN ISO 15614-1, written for the project standard",
+                     "Welding coordination and traceability under ISO 3834-2",
+                     "Structural steel welding to EN 1090-1 and EN 1090-2, execution classes EXC2 and EXC3",
+                     "Pressure piping to EN 13480 and PED 2014/68/EU, with pressure testing before insulation"]),
         dict(slug="pipe-fitting", nav="Pipe Fitting", h1="Pipe fitting",
              lead="Most delays in piping start with a bad fit-up. We supply fitters for process, "
-                  "utility and engine room systems, instrument fitters for small bore work, and "
+                  "utility and engine room systems, instrument fitters for small-bore work, and "
                   "workshop crews who build spools straight from the isometrics. The dimensions "
                   "are checked before the welder arrives, not after.",
-             points=["Process and utility piping: carbon steel, stainless, large bore",
-                     "Instrument pipe fitters: small bore, tubing, impulse lines and instrument hook-ups",
+             points=["Process and utility piping in carbon steel and stainless steel, small bore to large bore",
+                     "Instrument pipe fitters: small-bore, tubing, impulse lines and instrument hook-ups",
                      "Marine pipe fitters: engine room and system piping on newbuilds and repair",
                      "Spool prefabrication from isometrics, marked and traceable to the drawing",
                      "Fit-up, alignment and dimensional control before welding",
@@ -1562,62 +1564,67 @@ SERVICE_GROUPS = [
                   "equipment, fabricate steel and build transformer packages, with our own "
                   "supervisors on site.",
              points=["Steel fabrication and mechanical installation",
-                     "Transformer packages and plant equipment",
+                     "Transformer packages: bushings, coolers, conservators and connecting pipework",
                      "Equipment alignment and mechanical completion",
                      "One contract, one schedule, one point of contact",
-                     "Our supervisors and our QA on site"]),
+                     "Our supervisors and our QA/QC engineers on site",
+                     "Steel fabrication to EN 1090, mechanical completion documented and handed over as a package"]),
         dict(slug="heavy-equipment-relocation", nav="Heavy Equipment Relocation",
              h1="Heavy equipment relocation",
              lead="Moving a production line is a scheduling problem before it is a lifting problem. "
-                  "We dismantle, move, re-install and align it, inside a running plant or between "
+                  "We dismantle, move, reinstall and align it, inside a running plant or between "
                   "two countries.",
-             points=["Dismantling, skidding, jacking, positioning",
+             points=["Dismantling, skidding, jacking and positioning on SPMT or hydraulic gantry",
                      "Disconnection and reconnection of piping and utilities",
-                     "Foundation fit-up and final alignment",
-                     "Site to site moves across Europe"]),
+                     "Foundation preparation, chocking, grouting and laser shaft alignment",
+                     "Site-to-site moves across Europe",
+                     "Abnormal load permits, escort and cargo securing to EN 12195-1, with CMR cover"]),
         dict(slug="mobile-repair-teams", nav="Mobile Repair Teams",
-             h1="Mobile repair teams for refineries",
+             h1="Mobile repair teams",
              lead="Every hour a unit stays down has a price. Our crews mobilise at short notice for "
                   "turnarounds, shutdowns and breakdowns, and they carry welding, fitting and "
                   "mechanical skills in the same team.",
-             points=["Short notice mobilisation",
+             points=["Short-notice mobilisation",
                      "One crew, several trades",
-                     "Turnarounds, shutdowns and breakdown repair",
+                     "Turnarounds, shutdowns and breakdown repairs",
                      "Work under the plant&rsquo;s permit and safety regime"]),
     ]),
     ("Marine", [
         dict(slug="shipbuilding", nav="Shipbuilding", h1="Shipbuilding",
              lead="Yard schedules do not move. Our crews slot into them and take engine room piping, "
                   "structural steel and outfitting.",
-             points=["Engine room and system piping",
-                     "Structural fitting and welding",
+             points=["Engine room piping: fuel, lube oil, cooling water, ballast and bilge systems, including spool prefabrication",
+                     "Hull structural fitting and welding to class-approved procedures",
                      "Outfitting and mechanical installation",
-                     "Teams that follow the yard&rsquo;s plan"]),
+                     "Scopes delivered to the yard&rsquo;s schedule and class-approved drawings"]),
         dict(slug="ship-repair", nav="Ship Repair", h1="Ship repair",
              lead="Repair work is decided in days, not months. We take steel renewal, piping "
-                  "replacement and mechanical repairs, to class and to the owner&rsquo;s requirements.",
+                  "replacement and mechanical repairs to class and to the owner&rsquo;s requirements.",
              points=["Steel renewal and piping replacement",
-                     "Mechanical repair on board",
+                     "On-board mechanical repairs",
                      "Dry dock and quayside scopes",
                      "Fast mobilisation to the vessel"]),
     ]),
     ("Inspection & Access", [
         dict(slug="non-destructive-testing", nav="Non-Destructive Testing",
              h1="Non-destructive testing",
-             lead="Nobody should be signing off their own work. We inspect welds, materials and "
-                  "structures without stopping production, and we report to the client, not to the "
-                  "contractor who did the welding.",
-             points=["Independent third party verification",
-                     "Weld, material and structural inspection",
-                     "No interruption to production",
-                     "Reporting in the client&rsquo;s format"]),
+             lead="Nobody should be signing off their own work. UT, PT and MT let us inspect "
+                  "while the plant keeps running; radiography is planned around production "
+                  "windows. We report to the client, not to the contractor who did the welding.",
+             points=["Visual testing (VT) to EN ISO 17637 and penetrant testing (PT) to EN ISO 3452",
+                     "Magnetic particle testing (MT) to EN ISO 17638 and ultrasonic testing (UT) to EN ISO 17640",
+                     "Phased array (PAUT) and TOFD where radiography is not practical",
+                     "Technicians certified to ISO 9712 Level II and Level III",
+                     "Acceptance to EN ISO 5817 and ISO 10675, or to the project specification",
+                     "Inspection with the plant running, where the method allows it",
+                     "Independent third-party verification, reported to the client in their format"]),
         dict(slug="rope-access-services", nav="Rope Access Services", h1="Rope access services",
              lead="Scaffolding costs more in downtime than in steel. Certified technicians reach the "
                   "same place on rope, inspect it and repair it while the plant keeps running.",
-             points=["IRATA and SOFT certified technicians",
+             points=["IRATA-certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site",
                      "Inspection and mechanical work at height",
                      "Rescue plan and supervision on every job",
-                     "No scaffolding, no shutdown"]),
+                     "Often without scaffolding, and usually without a shutdown"]),
         dict(slug="3d-laser-scanning", nav="3D Laser Scanning", h1="3D laser scanning",
              lead="Old drawings lie. We measure what is really there and hand the data to your "
                   "engineers, so the clash shows up on a screen instead of on site.",
@@ -1625,14 +1632,16 @@ SERVICE_GROUPS = [
                      "Dimensional control of structures and piping",
                      "Clash detection before fabrication",
                      "Data in the client&rsquo;s CAD format"]),
-        dict(slug="quality-control", nav="Quality Control / QA-QC", h1="Quality control and QA-QC",
+        dict(slug="quality-control", nav="Quality control (QA/QC)", h1="Quality assurance and quality control (QA/QC)",
              lead="Quality is what you can prove afterwards. We inspect piping and steel structures "
                   "and leave documentation that holds up when the client, the surveyor or the "
                   "auditor asks for it.",
              points=["Piping and steel structure verification",
                      "Traceability down to the individual weld",
-                     "Support at client and third party witness points",
-                     "Handover dossier assembled as the work goes, not at the end"]),
+                     "Support at client and third-party hold and witness points",
+                     "Inspection and Test Plans (ITP) with hold, witness and review points agreed before work starts",
+                     "Quality system certified to ISO 9001; welding under ISO 3834-2",
+                     "Manufacturing Record Book (MRB) assembled as the work goes, not at the end"]),
         dict(slug="rigging-technical-support", nav="Rigging &amp; Technical Support",
              h1="Rigging and technical support",
              lead="Lifts go wrong at the planning stage. We plan them, and we send the people who "
@@ -1660,7 +1669,7 @@ ROPE_DEEP = """
             because the alternative is a scaffold, a crane, a vessel day or a shutdown. Each of
             those costs more than the work itself.</p>
             <p class="srv-deep-body">Our technicians hold IRATA and SOFT certification and most of
-            them carry a second trade: inspection, welding or mechanical. One person on the rope
+            them carry a second trade: inspection, welding or mechanical fitting. One person on the rope
             replaces a scaffold crew and an inspector standing behind them.</p>
             <p class="srv-deep-note">Every crew works with a written rescue plan and a supervisor
             on site. Without both, the job does not start.</p>
@@ -1829,8 +1838,9 @@ for a in ARTICLES:
 # ---------------- sector pages (TZ §4.2: each card its own page) ----------------
 SECTOR_PAGES = [
     ("shipbuilding", "Shipbuilding", "sector-shipbuilding",
-     "Yard schedules do not move. Our crews slot into them and take engine room "
-     "piping, structural steel and outfitting, on newbuilds and on repair.",
+     "Yard schedules move, and the penalty lands on the subcontractor. We plan for "
+     "that, and take engine room piping, structural steel and outfitting as complete "
+     "scopes, on newbuilds and on repair.",
      ["welding-services", "pipe-fitting", "shipbuilding", "ship-repair", "quality-control"]),
     ("offshore", "Offshore", "sector-offshore",
      "Mobilising a team offshore is expensive and a shutdown is more expensive still. "
