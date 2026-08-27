@@ -2110,4 +2110,52 @@ S = {
         'Ein Gerüst kostet mehr Stillstand als Stahl. IRATA-zertifizierte Techniker der Stufen 1 bis 3, mit einem IRATA-Level-3-Aufsichtsführenden auf jeder Baustelle, erreichen dieselbe Stelle am Seil, prüfen sie und setzen sie instand, während die Anlage weiterläuft.',
     'Awarded to ALPROJECTS, UAB by Creditinfo Group on 23 June 2026, recognising a high credit score and a proven record of financial stability. In heavy industry, projects run for months and commitments run for years &mdash; independent proof of stability is proof we will be there to see the work through.':
         'Verliehen an die ALPROJECTS, UAB durch die Creditinfo Group am 23. Juni 2026, in Anerkennung einer hohen Bonität und einer nachgewiesenen Finanzstabilität. In der Schwerindustrie laufen Projekte über Monate und Verpflichtungen über Jahre &mdash; ein unabhängiger Nachweis der Stabilität ist der Nachweis, dass wir die Arbeit zu Ende bringen.',
+
+    # ---- audit Block 5: privacy sections, consent, abbreviations ----
+    '9. Cookies':
+        '9. Cookies',
+    '12. Changes':
+        '12. Änderungen',
+    '11. Children':
+        '11. Minderjährige',
+    '7. Your rights':
+        '7. Ihre Rechte',
+    '5. Legal basis':
+        '5. Rechtsgrundlage',
+    '4. Recruitment data':
+        '4. Bewerberdaten',
+    '10. How we protect it':
+        '10. Wie wir sie schützen',
+    '6. How long we keep it':
+        '6. Speicherdauer',
+    '8. Health data in applications':
+        '8. Gesundheitsdaten in Bewerbungen',
+    'The site is served over HTTPS only, with HTTP redirected.':
+        'Die Website wird ausschließlich über HTTPS ausgeliefert, HTTP wird umgeleitet.',
+    'Access is removed when someone leaves the company or changes role.':
+        'Zugänge werden entzogen, wenn jemand das Unternehmen verlässt oder die Funktion wechselt.',
+    'It is a static site: no database, no user accounts and no login to compromise.':
+        'Es ist eine statische Website: keine Datenbank, keine Benutzerkonten und kein Login, das kompromittiert werden könnte.',
+    'We do not carry out automated decision-making or profiling, including in recruitment.':
+        'Wir treffen keine automatisierten Entscheidungen und betreiben kein Profiling, auch nicht bei der Personalauswahl.',
+    'This website is not intended for persons under 16, and we do not knowingly collect their personal data.':
+        'Diese Website richtet sich nicht an Personen unter 16 Jahren, und wir erheben deren personenbezogene Daten nicht wissentlich.',
+    'Application documents reach us by email and are stored in the company account, access limited to the people resourcing projects.':
+        'Bewerbungsunterlagen erreichen uns per E-Mail und werden im Unternehmenskonto abgelegt; der Zugriff ist auf die Personen beschränkt, die Projekte besetzen.',
+    'Industrial Rope Access Trade Association (IRATA) certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site':
+        'Von der Industrial Rope Access Trade Association (IRATA) zertifizierte Techniker der Stufen 1 bis 3, mit einem IRATA-Level-3-Aufsichtsführenden auf jeder Baustelle',
+    'You may also withdraw consent at any time, without affecting the lawfulness of processing carried out before withdrawal (Article 7(3)).':
+        'Sie können Ihre Einwilligung außerdem jederzeit widerrufen, ohne dass die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung berührt wird (Artikel 7 Absatz 3).',
+    'Welding Procedure Specification (WPS) to EN ISO 15609-1, qualified by Welding Procedure Qualification Record (WPQR) to EN ISO 15614-1, written for the project standard':
+        'Schweißanweisung (WPS) nach EN ISO 15609-1, qualifiziert durch Schweißverfahrensprüfung (WPQR) nach EN ISO 15614-1, erstellt für die Projektnorm',
+    'This section describes how the site and our handling are <em>designed</em>. It is not a statement that we hold an ISO 27001 certificate or any other security attestation, because we do not.':
+        'Dieser Abschnitt beschreibt, wie die Website und unser Umgang damit <em>ausgelegt</em> sind. Er behauptet nicht, dass wir ein ISO-27001-Zertifikat oder einen anderen Sicherheitsnachweis besitzen, denn das tun wir nicht.',
+    'This website sets no cookies of its own. It has no analytics, no advertising tags, no tracking pixels and no user accounts, so there is nothing to consent to and no cookie banner to dismiss.':
+        'Diese Website setzt keine eigenen Cookies. Sie hat keine Analyse, keine Werbe-Tags, keine Tracking-Pixel und keine Benutzerkonten, also gibt es nichts einzuwilligen und kein Cookie-Banner wegzuklicken.',
+    'By subscribing you agree that ALPROJECTS, UAB will process your email address to send company news and project updates. You can unsubscribe at any time. See our <a href="/privacy">Privacy Policy</a>.':
+        'Mit dem Abonnement erklären Sie sich damit einverstanden, dass die ALPROJECTS, UAB Ihre E-Mail-Adresse verarbeitet, um Unternehmensnachrichten und Projektberichte zu versenden. Sie können sich jederzeit abmelden. Weitere Informationen in der <a href="/privacy">Datenschutzerklärung</a>.',
+    'The one exception is the scheduling calendar on the contacts page. It is not loaded until you press the button that opens it; if you do, Calendly sets its own cookies at that point. Nothing is set if you do not.':
+        'Die einzige Ausnahme ist der Terminkalender auf der Kontaktseite. Er wird erst geladen, wenn Sie die Schaltfläche drücken, die ihn öffnet; tun Sie das, setzt Calendly zu diesem Zeitpunkt eigene Cookies. Tun Sie es nicht, wird nichts gesetzt.',
+    'Some applicants choose to upload a medical or fitness certificate. This is health data and falls under Article 9 GDPR. We process it only where it is necessary for obligations in the field of employment and occupational health and safety law (Article 9(2)(b)), we store it separately from other application data, and access is limited to the people responsible for mobilisation.':
+        'Manche Bewerber laden ein ärztliches Attest oder eine Tauglichkeitsbescheinigung hoch. Das sind Gesundheitsdaten und fallen unter Artikel 9 DSGVO. Wir verarbeiten sie nur, soweit dies für Pflichten aus dem Arbeitsrecht und dem Arbeitsschutzrecht erforderlich ist (Artikel 9 Absatz 2 Buchstabe b), speichern sie getrennt von den übrigen Bewerbungsunterlagen, und der Zugriff ist auf die für die Mobilisierung zuständigen Personen beschränkt.',
 }

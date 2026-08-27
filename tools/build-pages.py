@@ -199,7 +199,7 @@ PRIVACY = """
         IP address to any other company.</p>
       -->
 
-      <h2>3a. Recruitment data</h2>
+      <h2>4. Recruitment data</h2>
       <p>Applications are held for <strong>24 months</strong> from the date you send them,
       so that we can contact you when a project matches your discipline. You can ask us to
       delete them at any time by writing to
@@ -209,7 +209,7 @@ PRIVACY = """
       the people resourcing projects. We do not pass them to third parties, and we do not
       use them for anything other than recruitment.</p>
 
-      <h2>4. Legal basis</h2>
+      <h2>5. Legal basis</h2>
       <ul>
         <li><strong>Consent</strong> (GDPR Art. 6(1)(a)) — newsletter subscription,
         job applications, and loading the scheduling calendar, which happens only when you
@@ -218,7 +218,7 @@ PRIVACY = """
         and keeping the site secure and available.</li>
       </ul>
 
-      <h2>5. How long we keep it</h2>
+      <h2>6. How long we keep it</h2>
       <p>Job applications, including any CV and certificates, are kept for 24 months from
       the date you send them, or until you ask us to delete them.</p>
       <p>Newsletter addresses are kept until you unsubscribe or ask us to remove them.
@@ -226,17 +226,57 @@ PRIVACY = """
       any statutory retention period that applies to it. Hosting logs are retained
       according to GitHub&rsquo;s own schedule.</p>
 
-      <h2>6. Your rights</h2>
+      <h2>7. Your rights</h2>
       <p>Under the GDPR you may request access to your data, correction, erasure,
       restriction of processing, portability, and you may object to processing based on
       legitimate interest. Write to
       <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> and we will respond
       within one month.</p>
+      <p>You may also withdraw consent at any time, without affecting the lawfulness of
+      processing carried out before withdrawal (Article 7(3)).</p>
+      <p>We do not carry out automated decision-making or profiling, including in
+      recruitment.</p>
       <p>If you believe we have handled your data improperly, you may lodge a complaint
       with the Lithuanian State Data Protection Inspectorate
       (Valstybinė duomenų apsaugos inspekcija), L. Sapiegos g. 17, LT-10312 Vilnius, <a href="mailto:ada@ada.lt">ada@ada.lt</a>, <a href="https://vdai.lrv.lt" target="_blank" rel="noopener">vdai.lrv.lt</a>.</p>
 
-      <h2>7. Changes</h2>
+      <h2>8. Health data in applications</h2>
+      <!-- NOTE(ALPROJECTS): the careers form offers a "Medical certificate" upload,
+           which is Article 9 special-category data. The simpler alternative is to
+           drop that checkbox and ask for the certificate after an offer, outside a
+           public form — that removes the question entirely. Until you decide, the
+           collection has to be disclosed, which is what this section does. -->
+      <p>Some applicants choose to upload a medical or fitness certificate. This is health
+      data and falls under Article 9 GDPR. We process it only where it is necessary for
+      obligations in the field of employment and occupational health and safety law
+      (Article 9(2)(b)), we store it separately from other application data, and access is
+      limited to the people responsible for mobilisation.</p>
+
+      <h2>9. Cookies</h2>
+      <p>This website sets no cookies of its own. It has no analytics, no advertising
+      tags, no tracking pixels and no user accounts, so there is nothing to consent to and
+      no cookie banner to dismiss.</p>
+      <p>The one exception is the scheduling calendar on the contacts page. It is not
+      loaded until you press the button that opens it; if you do, Calendly sets its own
+      cookies at that point. Nothing is set if you do not.</p>
+
+      <h2>10. How we protect it</h2>
+      <p>This section describes how the site and our handling are <em>designed</em>. It is
+      not a statement that we hold an ISO 27001 certificate or any other security
+      attestation, because we do not.</p>
+      <ul>
+        <li>The site is served over HTTPS only, with HTTP redirected.</li>
+        <li>It is a static site: no database, no user accounts and no login to compromise.</li>
+        <li>Application documents reach us by email and are stored in the company account,
+        access limited to the people resourcing projects.</li>
+        <li>Access is removed when someone leaves the company or changes role.</li>
+      </ul>
+
+      <h2>11. Children</h2>
+      <p>This website is not intended for persons under 16, and we do not knowingly
+      collect their personal data.</p>
+
+      <h2>12. Changes</h2>
       <p>If this policy changes, the revised version will be published on this page with
       a new date at the top.</p>
 
@@ -705,6 +745,7 @@ def news_index():
           <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8599;</span></span>
           <span class="thumb"><img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}" loading="{loading}"{prio}><span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
           <h2>{title}</h2>
+          <span class="news-excerpt">{lead}</span>
         </a>""".format(**card))
     return """
     <div class="container page-head">
@@ -1963,7 +2004,7 @@ SERVICE_GROUPS = [
                      "MAG (135) for structural steel fill and capping passes; MIG (131) for aluminium and non-ferrous work",
                      "Structural steel, pressure-retaining piping and pipe supports",
                      "Welder qualifications to EN ISO 9606-1, verified before mobilisation",
-                     "WPS to EN ISO 15609-1, qualified by WPQR to EN ISO 15614-1, written for the project standard",
+                     "Welding Procedure Specification (WPS) to EN ISO 15609-1, qualified by Welding Procedure Qualification Record (WPQR) to EN ISO 15614-1, written for the project standard",
                      "Welding coordination and traceability under ISO 3834-2",
                      "Structural steel welding to EN 1090-1 and EN 1090-2, execution classes EXC2 and EXC3",
                      "Pressure piping to EN 13480 and PED 2014/68/EU, with pressure testing before insulation"]),
@@ -2041,7 +2082,7 @@ SERVICE_GROUPS = [
         dict(slug="rope-access-services", nav="Rope Access Services", h1="Rope access services",
              lead="Scaffolding costs more in downtime than in steel. Certified technicians reach the "
                   "same place on rope, inspect it and repair it while the plant keeps running.",
-             points=["IRATA-certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site",
+             points=["Industrial Rope Access Trade Association (IRATA) certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site",
                      "Inspection and mechanical work at height",
                      "Rescue plan and supervision on every job",
                      "Often without scaffolding, and usually without a shutdown"]),

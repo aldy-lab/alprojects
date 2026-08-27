@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=6108106f">
+  <link rel="stylesheet" href="/css/style.css?v=1d3bfce0">
 </head>
 <body>
 
@@ -136,25 +136,51 @@
         IP address to any other company.</p>
       -->
 
-      <h2>3a. Dati di selezione</h2>
+      <h2>4. Dati di selezione</h2>
       <p>Le candidature sono conservate per <strong>24 mesi</strong> dalla data di invio, così da poterti contattare quando un progetto corrisponde al tuo mestiere. Puoi chiederne la cancellazione in qualsiasi momento scrivendo a <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>, e vi daremo seguito senza chiedere motivazioni.</p>
       <p>I CV e i certificati sono conservati insieme alla candidatura e vengono visionati solo dalle persone che assegnano le risorse ai progetti. Non li trasmettiamo a terzi e non li utilizziamo per finalità diverse dalla selezione.</p>
 
-      <h2>4. Base giuridica</h2>
+      <h2>5. Base giuridica</h2>
       <ul>
         <li><strong>Consenso</strong> (GDPR art. 6, par. 1, lett. a) — iscrizione alla newsletter, candidature e caricamento del calendario appuntamenti, che avviene solo premendo il pulsante. Potete revocarlo in qualsiasi momento.</li>
         <li><strong>Interesse legittimo</strong> (art. 6, par. 1, lett. f) — rispondere alle richieste e mantenere il sito sicuro e disponibile.</li>
       </ul>
 
-      <h2>5. Per quanto tempo li conserviamo</h2>
+      <h2>6. Per quanto tempo li conserviamo</h2>
       <p>Le candidature, compresi CV e certificati, sono conservate per 24 mesi dalla data di invio, o finché non ne chiedete la cancellazione.</p>
       <p>Gli indirizzi della newsletter sono conservati fino alla vostra disiscrizione o richiesta di cancellazione. La corrispondenza commerciale è conservata per il tempo necessario alla richiesta o al progetto e per gli eventuali termini di legge applicabili. I log di hosting seguono le tempistiche di GitHub.</p>
 
-      <h2>6. I vostri diritti</h2>
+      <h2>7. I vostri diritti</h2>
       <p>Ai sensi del GDPR potete chiedere l’accesso ai vostri dati, la rettifica, la cancellazione, la limitazione del trattamento e la portabilità, e potete opporvi a un trattamento fondato sul legittimo interesse. Scrivete a <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> e risponderemo entro un mese.</p>
+      <p>Puoi inoltre revocare il consenso in qualsiasi momento, senza pregiudicare la liceità del trattamento effettuato prima della revoca (articolo 7, paragrafo 3).</p>
+      <p>Non effettuiamo processi decisionali automatizzati né profilazione, nemmeno in fase di selezione.</p>
       <p>Se ritieni che abbiamo trattato i tuoi dati in modo improprio, puoi presentare reclamo all’Autorità lituana per la protezione dei dati (Valstybinė duomenų apsaugos inspekcija), L. Sapiegos g. 17, LT-10312 Vilnius, <a href="mailto:ada@ada.lt">ada@ada.lt</a>, <a href="https://vdai.lrv.lt" target="_blank" rel="noopener">vdai.lrv.lt</a>.</p>
 
-      <h2>7. Modifiche</h2>
+      <h2>8. Dati sanitari nelle candidature</h2>
+      <!-- NOTE(ALPROJECTS): the careers form offers a "Medical certificate" upload,
+           which is Article 9 special-category data. The simpler alternative is to
+           drop that checkbox and ask for the certificate after an offer, outside a
+           public form — that removes the question entirely. Until you decide, the
+           collection has to be disclosed, which is what this section does. -->
+      <p>Alcuni candidati scelgono di caricare un certificato medico o di idoneità. Si tratta di dati sanitari e rientrano nell’articolo 9 del GDPR. Li trattiamo solo ove necessario per obblighi in materia di diritto del lavoro e di salute e sicurezza sul lavoro (articolo 9, paragrafo 2, lettera b), li conserviamo separatamente dagli altri dati di candidatura e l’accesso è limitato alle persone responsabili della mobilitazione.</p>
+
+      <h2>9. Cookie</h2>
+      <p>Questo sito non imposta cookie propri. Non ha analytics, tag pubblicitari, pixel di tracciamento né account utente: non c’è quindi nulla da accettare e nessun banner cookie da chiudere.</p>
+      <p>L’unica eccezione è il calendario appuntamenti nella pagina contatti. Non viene caricato finché non premi il pulsante che lo apre; se lo fai, in quel momento Calendly imposta i propri cookie. Se non lo fai, non viene impostato nulla.</p>
+
+      <h2>10. Come li proteggiamo</h2>
+      <p>Questa sezione descrive come il sito e la nostra gestione sono <em>progettati</em>. Non afferma che possediamo una certificazione ISO 27001 o altra attestazione di sicurezza, perché non è così.</p>
+      <ul>
+        <li>Il sito è servito esclusivamente in HTTPS, con l’HTTP reindirizzato.</li>
+        <li>È un sito statico: nessun database, nessun account utente e nessun accesso da compromettere.</li>
+        <li>I documenti di candidatura ci arrivano via e-mail e sono conservati nell’account aziendale, con accesso limitato alle persone che assegnano il personale ai progetti.</li>
+        <li>Gli accessi vengono revocati quando una persona lascia l’azienda o cambia ruolo.</li>
+      </ul>
+
+      <h2>11. Minori</h2>
+      <p>Questo sito non è destinato a persone di età inferiore a 16 anni e non raccogliamo consapevolmente i loro dati personali.</p>
+
+      <h2>12. Modifiche</h2>
       <p>In caso di modifica della presente informativa, la versione aggiornata sarà pubblicata su questa pagina con una nuova data in testa.</p>
 
       <p class="back"><a class="btn-bracket" href="/it/">Torna alla home</a></p>
@@ -171,8 +197,17 @@
           <form id="newsletterForm" novalidate>
             <label class="visually-hidden" for="nlEmail" style="position:absolute;left:-9999px">E-mail</label>
             <input id="nlEmail" type="email" name="email" placeholder="Inserisci la tua e-mail" required aria-required="true" autocomplete="email">
-            <button type="submit" aria-label="Iscriviti">↗</button>
+            <button type="submit" aria-label="Iscriviti">&#8599;</button>
           </form>
+          <!-- GDPR Art. 4(11) and 7: consent has to be informed and given by an
+               affirmative act. Typing an address into a field is not one, so the
+               box is unticked by default and the form will not send without it.
+               Art. 13 wants the purpose stated at the point of collection, which
+               is what the sentence does. -->
+          <label class="nl-consent" for="nlConsent">
+            <input type="checkbox" id="nlConsent" name="consent" required aria-required="true">
+            <span>Iscrivendoti acconsenti al trattamento del tuo indirizzo e-mail da parte di ALPROJECTS, UAB per l’invio di notizie aziendali e aggiornamenti sui progetti. Puoi annullare l’iscrizione in qualsiasi momento. Consulta la nostra <a href="/it/privacy">Informativa sulla privacy</a>.</span>
+          </label>
           <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
         </div>
 
@@ -294,6 +329,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=538f2db7"></script>
+  <script src="/js/main.js?v=fee2b26c"></script>
 </body>
 </html>

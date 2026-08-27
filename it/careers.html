@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=6108106f">
+  <link rel="stylesheet" href="/css/style.css?v=1d3bfce0">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -397,8 +397,17 @@
           <form id="newsletterForm" novalidate>
             <label class="visually-hidden" for="nlEmail" style="position:absolute;left:-9999px">E-mail</label>
             <input id="nlEmail" type="email" name="email" placeholder="Inserisci la tua e-mail" required aria-required="true" autocomplete="email">
-            <button type="submit" aria-label="Iscriviti">↗</button>
+            <button type="submit" aria-label="Iscriviti">&#8599;</button>
           </form>
+          <!-- GDPR Art. 4(11) and 7: consent has to be informed and given by an
+               affirmative act. Typing an address into a field is not one, so the
+               box is unticked by default and the form will not send without it.
+               Art. 13 wants the purpose stated at the point of collection, which
+               is what the sentence does. -->
+          <label class="nl-consent" for="nlConsent">
+            <input type="checkbox" id="nlConsent" name="consent" required aria-required="true">
+            <span>Iscrivendoti acconsenti al trattamento del tuo indirizzo e-mail da parte di ALPROJECTS, UAB per l’invio di notizie aziendali e aggiornamenti sui progetti. Puoi annullare l’iscrizione in qualsiasi momento. Consulta la nostra <a href="/it/privacy">Informativa sulla privacy</a>.</span>
+          </label>
           <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
         </div>
 
@@ -520,6 +529,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=538f2db7"></script>
+  <script src="/js/main.js?v=fee2b26c"></script>
 </body>
 </html>

@@ -81,6 +81,7 @@
       apply_sent: "Application sent. We will be in touch.",
       apply_fail: "Could not send. Please email info@alprojects.eu instead.",
       sub_invalid: "Enter a valid email address to subscribe.",
+      sub_consent: "Please tick the consent box before subscribing.",
       sub_fail: "Subscription failed. Email us at info@alprojects.eu.",
       sub_mail: "Your mail app opened with a pre-filled subscription request.",
       need_name: "Please enter your name.",
@@ -113,6 +114,7 @@
       apply_sent: "Candidature envoy\u00e9e. Nous vous recontacterons.",
       apply_fail: "Envoi impossible. \u00c9crivez-nous \u00e0 info@alprojects.eu.",
       sub_invalid: "Saisissez une adresse e-mail valide pour vous abonner.",
+      sub_consent: "Veuillez cocher la case de consentement avant de vous abonner.",
       sub_fail: "\u00c9chec de l\u2019abonnement. \u00c9crivez-nous \u00e0 info@alprojects.eu.",
       sub_mail: "Votre messagerie s\u2019est ouverte avec une demande d\u2019abonnement pr\u00e9-remplie.",
       need_name: "Veuillez saisir votre nom.",
@@ -145,6 +147,7 @@
       apply_sent: "Bewerbung gesendet. Wir melden uns.",
       apply_fail: "Senden nicht m\u00f6glich. Bitte schreiben Sie an info@alprojects.eu.",
       sub_invalid: "Bitte geben Sie eine g\u00fcltige E-Mail-Adresse ein.",
+      sub_consent: "Bitte kreuzen Sie das Einwilligungsfeld an, bevor Sie sich anmelden.",
       sub_fail: "Anmeldung fehlgeschlagen. Schreiben Sie an info@alprojects.eu.",
       sub_mail: "Ihr E-Mail-Programm wurde mit einer vorausgef\u00fcllten Anmeldung ge\u00f6ffnet.",
       need_name: "Bitte geben Sie Ihren Namen ein.",
@@ -177,6 +180,7 @@
       apply_sent: "Candidatura inviata. Vi ricontatteremo.",
       apply_fail: "Invio non riuscito. Scriveteci a info@alprojects.eu.",
       sub_invalid: "Inserisci un indirizzo e-mail valido per iscriverti.",
+      sub_consent: "Spunta la casella di consenso prima di iscriverti.",
       sub_fail: "Iscrizione non riuscita. Scriveteci a info@alprojects.eu.",
       sub_mail: "Il programma di posta si \u00e8 aperto con una richiesta di iscrizione precompilata.",
       need_name: "Inserisci il tuo nome.",
@@ -1571,6 +1575,16 @@
       if (!valid) {
         note.textContent = TXT.sub_invalid;
         note.classList.add("show");
+        return;
+      }
+      /* Consent is a condition of sending, not decoration. The box lives
+         outside <form> so a submit cannot be satisfied by the browser's own
+         required-check alone; gate it here as well. */
+      var consent = document.getElementById("nlConsent");
+      if (consent && !consent.checked) {
+        note.textContent = TXT.sub_consent;
+        note.classList.add("show");
+        consent.focus();
         return;
       }
       if (FORM_ENDPOINT) {

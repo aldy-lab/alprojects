@@ -5753,3 +5753,39 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 @media (max-width: 640px) {
   .sheet-furniture .sheet-dim { display: none; }
 }
+
+/* Newsletter consent. Unticked by default and outside the input row, so it
+   reads as a decision rather than as part of the field. */
+.nl-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: var(--text-m);
+  line-height: 1.6;
+  color: var(--muted);
+  cursor: pointer;
+  max-width: 46ch;
+}
+.nl-consent input {
+  flex: none;
+  /* 16px minimum, and a 44px tap target via the padded label on touch */
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  accent-color: var(--white);
+}
+.nl-consent a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+@media (hover: none) { .nl-consent { padding: 6px 0; } }
+
+/* News card excerpt. The article's own lead, not the photograph's alt text --
+   the alt describes the picture, which is why the old summaries read as
+   captions. */
+.news-excerpt {
+  display: block;
+  margin-top: 12px;
+  font-size: var(--text-l);
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 46ch;
+}

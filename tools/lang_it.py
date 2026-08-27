@@ -2107,4 +2107,52 @@ S = {
         'Il ponteggio costa più in fermo impianto che in acciaio. Tecnici certificati IRATA, dai livelli 1 a 3, con un supervisore IRATA livello 3 su ogni sito, raggiungono lo stesso punto su fune, lo ispezionano e lo riparano mentre l’impianto resta in esercizio.',
     'Awarded to ALPROJECTS, UAB by Creditinfo Group on 23 June 2026, recognising a high credit score and a proven record of financial stability. In heavy industry, projects run for months and commitments run for years &mdash; independent proof of stability is proof we will be there to see the work through.':
         'Conferito ad ALPROJECTS, UAB da Creditinfo Group il 23 giugno 2026, a riconoscimento di un elevato rating creditizio e di una comprovata solidità finanziaria. Nell’industria pesante i progetti durano mesi e gli impegni durano anni &mdash; una prova indipendente di solidità è la prova che ci saremo fino alla fine.',
+
+    # ---- audit Block 5: privacy sections, consent, abbreviations ----
+    '9. Cookies':
+        '9. Cookie',
+    '12. Changes':
+        '12. Modifiche',
+    '11. Children':
+        '11. Minori',
+    '7. Your rights':
+        '7. I vostri diritti',
+    '5. Legal basis':
+        '5. Base giuridica',
+    '4. Recruitment data':
+        '4. Dati di selezione',
+    '10. How we protect it':
+        '10. Come li proteggiamo',
+    '6. How long we keep it':
+        '6. Per quanto tempo li conserviamo',
+    '8. Health data in applications':
+        '8. Dati sanitari nelle candidature',
+    'The site is served over HTTPS only, with HTTP redirected.':
+        'Il sito è servito esclusivamente in HTTPS, con l’HTTP reindirizzato.',
+    'Access is removed when someone leaves the company or changes role.':
+        'Gli accessi vengono revocati quando una persona lascia l’azienda o cambia ruolo.',
+    'It is a static site: no database, no user accounts and no login to compromise.':
+        'È un sito statico: nessun database, nessun account utente e nessun accesso da compromettere.',
+    'We do not carry out automated decision-making or profiling, including in recruitment.':
+        'Non effettuiamo processi decisionali automatizzati né profilazione, nemmeno in fase di selezione.',
+    'This website is not intended for persons under 16, and we do not knowingly collect their personal data.':
+        'Questo sito non è destinato a persone di età inferiore a 16 anni e non raccogliamo consapevolmente i loro dati personali.',
+    'Application documents reach us by email and are stored in the company account, access limited to the people resourcing projects.':
+        'I documenti di candidatura ci arrivano via e-mail e sono conservati nell’account aziendale, con accesso limitato alle persone che assegnano il personale ai progetti.',
+    'Industrial Rope Access Trade Association (IRATA) certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site':
+        'Tecnici certificati Industrial Rope Access Trade Association (IRATA), dai livelli 1 a 3, con un supervisore IRATA livello 3 su ogni sito',
+    'You may also withdraw consent at any time, without affecting the lawfulness of processing carried out before withdrawal (Article 7(3)).':
+        'Puoi inoltre revocare il consenso in qualsiasi momento, senza pregiudicare la liceità del trattamento effettuato prima della revoca (articolo 7, paragrafo 3).',
+    'Welding Procedure Specification (WPS) to EN ISO 15609-1, qualified by Welding Procedure Qualification Record (WPQR) to EN ISO 15614-1, written for the project standard':
+        'Specifica di procedura di saldatura (WPS) secondo EN ISO 15609-1, qualificata da verbale di qualifica (WPQR) secondo EN ISO 15614-1, redatta per la norma di progetto',
+    'This section describes how the site and our handling are <em>designed</em>. It is not a statement that we hold an ISO 27001 certificate or any other security attestation, because we do not.':
+        'Questa sezione descrive come il sito e la nostra gestione sono <em>progettati</em>. Non afferma che possediamo una certificazione ISO 27001 o altra attestazione di sicurezza, perché non è così.',
+    'This website sets no cookies of its own. It has no analytics, no advertising tags, no tracking pixels and no user accounts, so there is nothing to consent to and no cookie banner to dismiss.':
+        'Questo sito non imposta cookie propri. Non ha analytics, tag pubblicitari, pixel di tracciamento né account utente: non c’è quindi nulla da accettare e nessun banner cookie da chiudere.',
+    'By subscribing you agree that ALPROJECTS, UAB will process your email address to send company news and project updates. You can unsubscribe at any time. See our <a href="/privacy">Privacy Policy</a>.':
+        'Iscrivendoti acconsenti al trattamento del tuo indirizzo e-mail da parte di ALPROJECTS, UAB per l’invio di notizie aziendali e aggiornamenti sui progetti. Puoi annullare l’iscrizione in qualsiasi momento. Consulta la nostra <a href="/privacy">Informativa sulla privacy</a>.',
+    'The one exception is the scheduling calendar on the contacts page. It is not loaded until you press the button that opens it; if you do, Calendly sets its own cookies at that point. Nothing is set if you do not.':
+        'L’unica eccezione è il calendario appuntamenti nella pagina contatti. Non viene caricato finché non premi il pulsante che lo apre; se lo fai, in quel momento Calendly imposta i propri cookie. Se non lo fai, non viene impostato nulla.',
+    'Some applicants choose to upload a medical or fitness certificate. This is health data and falls under Article 9 GDPR. We process it only where it is necessary for obligations in the field of employment and occupational health and safety law (Article 9(2)(b)), we store it separately from other application data, and access is limited to the people responsible for mobilisation.':
+        'Alcuni candidati scelgono di caricare un certificato medico o di idoneità. Si tratta di dati sanitari e rientrano nell’articolo 9 del GDPR. Li trattiamo solo ove necessario per obblighi in materia di diritto del lavoro e di salute e sicurezza sul lavoro (articolo 9, paragrafo 2, lettera b), li conserviamo separatamente dagli altri dati di candidatura e l’accesso è limitato alle persone responsabili della mobilitazione.',
 }
