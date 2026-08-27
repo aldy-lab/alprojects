@@ -2065,4 +2065,20 @@ S = {
         '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Sostituzione dell’agitatore in un serbatoio di stoccaggio</span> <span class="arr" aria-hidden="true">&#8599;</span>',
     'On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up above shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched.':
         'In questo cantiere nessuna mensola è stata saldata direttamente sul mantello. Ogni staffaggio poggia su una piastra di rinforzo, ed è la piastra a essere saldata al mantello. Il primo piano qui sopra ne mostra una. Se un giorno la mensola dovrà essere rimossa, si stacca dalla piastra e il mantello resta intatto.',
+
+    # ---- sticky plate deck, 27 Aug 2026 ----
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 02</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">01 / 02</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 05</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">01 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 02</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">02 / 02</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 05</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">02 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">03 / 05</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">03 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">04 / 05</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">04 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">05 / 05</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">05 / 05</span>',
 }

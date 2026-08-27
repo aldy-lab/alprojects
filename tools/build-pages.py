@@ -1319,30 +1319,75 @@ for _c in CASES:
         "%s: stages cover %s of %d frames" % (_c["slug"], _used, len(_c["photos"]))
 
 
-def _plate(c, n, eager=False):
-    """One numbered plate: the button the viewer picks up, its corner ticks, its
-    number, and the caption. The number sits outside <figcaption> on purpose --
-    js/main.js reads the caption with textContent, so anything inside it ends up
-    prefixed to the caption in the viewer."""
+def _plate(c, n, eager=False, sizes="(max-width: 900px) 92vw, 38vw"):
+    """One numbered plate: the button the viewer picks up, its corner ticks and
+    its caption. The number lives outside <figcaption> -- js/main.js reads the
+    caption with textContent, so anything inside it is prefixed to the caption
+    in the viewer.
+
+    --ar carries the frame's own ratio so the button can be sized by height and
+    still hug the photograph. object-fit then has nothing to crop, which is why
+    the corner ticks sit on the image edge rather than on a letterboxed box."""
     alt, cap, w, h = c["photos"][n - 1]
     base = "/assets/projects/cases/%s/%02d" % (c["slug"], n)
     return (
-        '          <figure class="plate%s">\n'
+        '          <figure class="plate%s" style="--ar:%d/%d">\n'
         '            <button type="button" class="shot-open" data-shot="%d">\n'
         '              <img src="%s-1200.webp"\n'
         '                   srcset="%s-600.webp 600w, %s-1200.webp 1200w"\n'
-        '                   sizes="(max-width: 900px) 92vw, 38vw"\n'
+        '                   sizes="%s"\n'
         '                   alt="%s" width="%d" height="%d"\n'
         '                   loading="%s" decoding="async"%s>\n'
         '              <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>\n'
         '            </button>\n'
         '            <figcaption>%s</figcaption>\n'
         '          </figure>'
-        % (" plate-tall" if h > w else "", n, base, base, base,
+        % (" plate-tall" if h > w else "", w, h, n, base, base, base, sizes,
            _html.escape(alt, quote=True), w, h,
            "eager" if eager else "lazy",
            ' fetchpriority="high"' if eager else "",
            _html.escape(cap)))
+
+
+def _deck(c):
+    """The stage sequence as the site's sticky card stack -- the same interaction
+    the twelve service slides use on the homepage. Each card pins under the
+    header and the next one rides up over it, so the photographs advance as you
+    scroll instead of scrolling past.
+
+    Card height is fixed rather than content-driven. A short card in a sticky
+    stack does not fully cover the one beneath it, and the previous photograph
+    peeks out along the bottom edge for the whole of the next card's travel."""
+    n_total = len(c["stages"])
+    out = []
+    for i, (n, paras) in enumerate(c["stages"], 1):
+        alt, cap, w, h = c["photos"][n - 1]
+        pips = "".join('<i class="done"></i>' if k <= i else "<i></i>"
+                       for k in range(1, n_total + 1))
+        out.append(
+            '      <article class="case-slide%(wide)s">\n'
+            '        <span class="slide-bg" aria-hidden="true"\n'
+            '              style="background-image:url(\'/assets/projects/cases/%(slug)s/%(nn)02d-600.webp\')"></span>\n'
+            '        <div class="slide-top">\n'
+            '          <span class="slide-label">Stage</span>\n'
+            '          <span class="slide-count">%(i)02d / %(tot)02d</span>\n'
+            '        </div>\n'
+            '        <div class="slide-body">\n'
+            '          <div class="slide-txt">\n'
+            '            <p class="slide-n" aria-hidden="true">%(i)02d</p>\n'
+            '%(paras)s\n          </div>\n'
+            '%(plate)s\n'
+            '        </div>\n'
+            '        <div class="slide-meta">\n'
+            '          <div class="progress" aria-hidden="true">%(pips)s</div>\n'
+            '        </div>\n'
+            '      </article>'
+            % dict(wide="" if h > w else " slide-wide", slug=c["slug"], nn=n,
+                   i=i, tot=n_total,
+                   paras="\n".join("            <p>%s</p>" % p for p in paras),
+                   plate=_plate(c, n, sizes="(max-width: 980px) 88vw, 40vw"),
+                   pips=pips))
+    return "\n".join(out)
 
 
 def case_body(c, nxt):
@@ -1351,19 +1396,6 @@ def case_body(c, nxt):
         '            <li><a href="/services/%s.html">%s</a></li>' % (s, by_slug[s]["nav"])
         for s in c["services"] if s in by_slug)
     _alt, _cap, _w, _h = c["photos"][0]
-
-    stages = []
-    for i, (n, paras) in enumerate(c["stages"], 1):
-        stages.append(
-            '        <div class="stage%s">\n'
-            '          <p class="stage-n" aria-hidden="true">%02d</p>\n'
-            '          <div class="stage-txt">\n%s\n          </div>\n'
-            '%s\n'
-            '        </div>'
-            % (" stage-tall" if c["photos"][n - 1][3] > c["photos"][n - 1][2] else "",
-               i,
-               "\n".join("            <p>%s</p>" % p for p in paras),
-               _plate(c, n)))
 
     intro = ""
     if c["intro"]:
@@ -1402,12 +1434,14 @@ def case_body(c, nxt):
       </div>
     </div>
 
-%(intro)s    <section class="container case-seq">
-      <div class="seq-head">
+%(intro)s    <section class="case-seq">
+      <div class="container seq-head">
         <h2 class="sub-head">How it was built</h2>
         <p class="sub-lead">One plate to a stage. Press a plate to open it full size.</p>
       </div>
+      <div class="container case-deck">
 %(stages)s
+      </div>
     </section>
 
 %(lightbox)s
@@ -1447,7 +1481,7 @@ def case_body(c, nxt):
            title=c["title"], lead=c["lead"], setting=c["setting"],
            hero_plate=_plate(c, 1, eager=True).replace('class="plate',
                                                        'class="case-fig plate'),
-           n=len(c["photos"]), intro=intro, stages="\n".join(stages),
+           n=len(c["photos"]), intro=intro, stages=_deck(c),
            lightbox=LIGHTBOX, note=note, links=links, cta=c["cta"],
            nxt_slug=nxt["slug"], nxt_title=_html.escape(nxt["title"]))
 

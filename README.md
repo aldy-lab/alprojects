@@ -538,24 +538,40 @@ lead, and the closing line became the call to action.
 | `/projects/tank-internals-and-attachments` | 3 | bracket on a pad plate |
 | `/projects/agitator-replacement` | 3 | shaft, full height of the tank |
 
-Each page is a **plate sequence**, the way a job report is: a numbered spine down
-the left, the paragraph that describes a stage, and the one photograph that
-shows it. The pairing is written out per stage in `CASES` rather than zipped by
-position — the client's paragraphs and his frame order do not run in step. The
-`photos[0]` frame is always the hero and every other frame belongs to exactly
-one stage, in ascending order; a build-time assertion enforces both, so a
-re-ordered stage list cannot silently drop a photograph.
+Each page is a **plate sequence** presented as the site's sticky card stack —
+the same interaction the twelve service slides use on the homepage. Each card
+pins under the header and the next rides up over it, so the plates advance as
+you scroll instead of scrolling past. The pairing is written out per stage in
+`CASES` rather than zipped by position: the client's paragraphs and his frame
+order do not run in step. The `photos[0]` frame is always the hero and every
+other frame belongs to exactly one stage, in ascending order; a build-time
+assertion enforces both, so a re-ordered stage list cannot silently drop a
+photograph.
 
-Two layout rules earned their comments and are worth not undoing:
+Four things about the deck are load-bearing:
 
-- **The plate cap lives on the grid track, not on the image.** Capping the image
-  with `max-height` and letting `width: auto` follow collapsed every
-  not-yet-loaded lazy frame to a 201px row — an unloaded `<img>` has no
-  intrinsic width, so `width: auto` cannot use the width/height attributes to
-  reserve the box, and the page shifted as each photograph arrived. Measured
-  after the fix: zero shift, rows within 20px of each other.
-- **627px and 352px** are the two track caps: both are 470px tall, at 4:3 and at
-  3:4. A row comes out the same height whichever way up the photograph is.
+- **Card height is fixed, not content-driven.** A short card in a sticky stack
+  does not fully cover the one beneath it, and the previous photograph peeks
+  along the bottom edge for the whole of the next card's travel.
+- **`height: min(78vh, 720px, 50vw)` — all three terms earn their place.** The
+  container caps at 1280px, so the plate column tops out near 785px however big
+  the screen, while a landscape frame needs 1.33× the card's body height. 720px
+  is the tallest card that keeps those two in reach; 50vw covers the tall,
+  narrow window where height outruns width. Above either bound the button hits
+  `max-width` and the frame letterboxes inside its own border. Verified: 99 of
+  99 plates at exact ratio across nine window shapes from 1000×700 to 2560×1440.
+- **The plate takes height from its row and width from `--ar`,** the frame's own
+  ratio, written into the markup. That is what puts the corner ticks on the
+  image edge rather than on a letterboxed box. `object-fit` is `contain`, not
+  `cover`, so in the one case the two can disagree an evidence photograph
+  letterboxes instead of being cut.
+- **`.slide-body` is `align-items: stretch`.** The plate derives its height from
+  that row, and a content-sized row makes it circular — the button collapsed to
+  the column width and cropped every portrait frame to landscape.
+
+Below 980px the deck stops sticking and becomes an ordinary column of cards,
+the same breakpoint the service slides unstack at. Sticking a card taller than
+the viewport pins content the reader cannot scroll to.
 
 `/projects.html` wins over the `/projects/` directory on GitHub Pages, the same
 way `/services.html` does, so the index keeps its URL and the cases sit under it.

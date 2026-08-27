@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=4e8c2db1">
+  <link rel="stylesheet" href="/css/style.css?v=77ab2287">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -121,7 +121,7 @@
           <h1 class="case-title">Interni del serbatoio, bocchelli e staffaggi</h1>
           <p class="case-lead">Tubazione interna da un bocchello di mantello, mensole su piastre di rinforzo, travetti del tetto verso l’anello centrale.</p>
         </div>
-          <figure class="case-fig plate plate-tall">
+          <figure class="case-fig plate plate-tall" style="--ar:1200/1600">
             <button type="button" class="shot-open" data-shot="1">
               <img src="/assets/projects/cases/tank-internals-and-attachments/01-1200.webp"
                    srcset="/assets/projects/cases/tank-internals-and-attachments/01-600.webp 600w, /assets/projects/cases/tank-internals-and-attachments/01-1200.webp 1200w"
@@ -156,22 +156,29 @@
       <p>In questo cantiere nessuna mensola è stata saldata direttamente sul mantello. Ogni staffaggio poggia su una piastra di rinforzo, ed è la piastra a essere saldata al mantello. Il primo piano qui sopra ne mostra una. Se un giorno la mensola dovrà essere rimossa, si stacca dalla piastra e il mantello resta intatto.</p>
     </div>
 
-    <section class="container case-seq">
-      <div class="seq-head">
+    <section class="case-seq">
+      <div class="container seq-head">
         <h2 class="sub-head">Come è stato realizzato</h2>
         <p class="sub-lead">Una tavola per fase. Tocca una tavola per aprirla a piena dimensione.</p>
       </div>
-        <div class="stage stage-tall">
-          <p class="stage-n" aria-hidden="true">01</p>
-          <div class="stage-txt">
+      <div class="container case-deck">
+      <article class="case-slide">
+        <span class="slide-bg" aria-hidden="true"
+              style="background-image:url('/assets/projects/cases/tank-internals-and-attachments/02-600.webp')"></span>
+        <div class="slide-top">
+          <span class="slide-label">Fase</span> <span class="slide-count">01 / 02</span>
+        </div>
+        <div class="slide-body">
+          <div class="slide-txt">
+            <p class="slide-n" aria-hidden="true">01</p>
             <p>La tubazione interna parte da un bocchello di mantello e attraversa il serbatoio.</p>
             <p>Le piastre sono state posate anche sulle lamiere di fondo: i cavalletti sulle piastre e il tubo sui cavalletti. Quando i cavalletti vengono rimossi, il danno lo prendono le piastre e non le lamiere di fondo.</p>
           </div>
-          <figure class="plate plate-tall">
+          <figure class="plate plate-tall" style="--ar:1200/1600">
             <button type="button" class="shot-open" data-shot="2">
               <img src="/assets/projects/cases/tank-internals-and-attachments/02-1200.webp"
                    srcset="/assets/projects/cases/tank-internals-and-attachments/02-600.webp 600w, /assets/projects/cases/tank-internals-and-attachments/02-1200.webp 1200w"
-                   sizes="(max-width: 900px) 92vw, 38vw"
+                   sizes="(max-width: 980px) 88vw, 40vw"
                    alt="Tubazione interna collegata a un bocchello di mantello all’interno di un serbatoio, con le lamiere di fondo al di sotto" width="1200" height="1600"
                    loading="lazy" decoding="async">
               <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -179,16 +186,26 @@
             <figcaption>Tubazione interna dal bocchello di mantello.</figcaption>
           </figure>
         </div>
-        <div class="stage">
-          <p class="stage-n" aria-hidden="true">02</p>
-          <div class="stage-txt">
+        <div class="slide-meta">
+          <div class="progress" aria-hidden="true"><i class="done"></i><i></i></div>
+        </div>
+      </article>
+      <article class="case-slide slide-wide">
+        <span class="slide-bg" aria-hidden="true"
+              style="background-image:url('/assets/projects/cases/tank-internals-and-attachments/03-600.webp')"></span>
+        <div class="slide-top">
+          <span class="slide-label">Fase</span> <span class="slide-count">02 / 02</span>
+        </div>
+        <div class="slide-body">
+          <div class="slide-txt">
+            <p class="slide-n" aria-hidden="true">02</p>
             <p>Il tetto poggia su travetti radiali che convergono in un anello centrale.</p>
           </div>
-          <figure class="plate">
+          <figure class="plate" style="--ar:1200/900">
             <button type="button" class="shot-open" data-shot="3">
               <img src="/assets/projects/cases/tank-internals-and-attachments/03-1200.webp"
                    srcset="/assets/projects/cases/tank-internals-and-attachments/03-600.webp 600w, /assets/projects/cases/tank-internals-and-attachments/03-1200.webp 1200w"
-                   sizes="(max-width: 900px) 92vw, 38vw"
+                   sizes="(max-width: 980px) 88vw, 40vw"
                    alt="Tetto del serbatoio su travetti radiali verso l’anello centrale, con un’apertura per bocchello tagliata" width="1200" height="900"
                    loading="lazy" decoding="async">
               <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -196,6 +213,11 @@
             <figcaption>Travetti del tetto verso l’anello centrale.</figcaption>
           </figure>
         </div>
+        <div class="slide-meta">
+          <div class="progress" aria-hidden="true"><i class="done"></i><i class="done"></i></div>
+        </div>
+      </article>
+      </div>
     </section>
 
     <!-- The gallery viewer. Inert markup: js/main.js wires it, and with no

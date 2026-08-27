@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=4e8c2db1">
+  <link rel="stylesheet" href="/css/style.css?v=77ab2287">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -121,7 +121,7 @@
           <h1 class="case-title">Armaturenstation und Anbindungsleitungen</h1>
           <p class="case-lead">Eine neue Armaturenstation am Fuß eines Lagertanks. Wir haben die Armaturen gesetzt und ausgerichtet, die Spools eingepasst, die Verbindungen geschweißt und verschraubt und die Leitung an die bestehende Rohrbrücke angebunden.</p>
         </div>
-          <figure class="case-fig plate plate-tall">
+          <figure class="case-fig plate plate-tall" style="--ar:1200/1600">
             <button type="button" class="shot-open" data-shot="1">
               <img src="/assets/projects/cases/valve-station-tie-in-piping/01-1200.webp"
                    srcset="/assets/projects/cases/valve-station-tie-in-piping/01-600.webp 600w, /assets/projects/cases/valve-station-tie-in-piping/01-1200.webp 1200w"
@@ -157,21 +157,28 @@
       <p>Die Armaturen kamen auf verstellbare Böcke, und wir haben sie ausgerichtet, bevor irgendetwas fixiert wurde. Geheftet wurde erst, als die Leitung gerade lief und die Flanschflächen parallel standen.</p>
     </div>
 
-    <section class="container case-seq">
-      <div class="seq-head">
+    <section class="case-seq">
+      <div class="container seq-head">
         <h2 class="sub-head">Wie es gebaut wurde</h2>
         <p class="sub-lead">Eine Tafel je Arbeitsschritt. Zum Vergrößern eine Tafel anklicken.</p>
       </div>
-        <div class="stage">
-          <p class="stage-n" aria-hidden="true">01</p>
-          <div class="stage-txt">
+      <div class="container case-deck">
+      <article class="case-slide slide-wide">
+        <span class="slide-bg" aria-hidden="true"
+              style="background-image:url('/assets/projects/cases/valve-station-tie-in-piping/02-600.webp')"></span>
+        <div class="slide-top">
+          <span class="slide-label">Arbeitsschritt</span> <span class="slide-count">01 / 02</span>
+        </div>
+        <div class="slide-body">
+          <div class="slide-txt">
+            <p class="slide-n" aria-hidden="true">01</p>
             <p>Die Nahaufnahme zeigt eine fertige Wurzel, aufgenommen durch die Bohrung vom offenen Ende eines Spools.</p>
           </div>
-          <figure class="plate">
+          <figure class="plate" style="--ar:1200/900">
             <button type="button" class="shot-open" data-shot="2">
               <img src="/assets/projects/cases/valve-station-tie-in-piping/02-1200.webp"
                    srcset="/assets/projects/cases/valve-station-tie-in-piping/02-600.webp 600w, /assets/projects/cases/valve-station-tie-in-piping/02-1200.webp 1200w"
-                   sizes="(max-width: 900px) 92vw, 38vw"
+                   sizes="(max-width: 980px) 88vw, 40vw"
                    alt="Fertige Wurzellage an einer Stumpfnaht, durch die Rohrbohrung vom offenen Ende eines Spools aufgenommen" width="1200" height="900"
                    loading="lazy" decoding="async">
               <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -179,16 +186,26 @@
             <figcaption>Fertige Wurzel.</figcaption>
           </figure>
         </div>
-        <div class="stage stage-tall">
-          <p class="stage-n" aria-hidden="true">02</p>
-          <div class="stage-txt">
+        <div class="slide-meta">
+          <div class="progress" aria-hidden="true"><i class="done"></i><i></i></div>
+        </div>
+      </article>
+      <article class="case-slide">
+        <span class="slide-bg" aria-hidden="true"
+              style="background-image:url('/assets/projects/cases/valve-station-tie-in-piping/03-600.webp')"></span>
+        <div class="slide-top">
+          <span class="slide-label">Arbeitsschritt</span> <span class="slide-count">02 / 02</span>
+        </div>
+        <div class="slide-body">
+          <div class="slide-txt">
+            <p class="slide-n" aria-hidden="true">02</p>
             <p>Ein Teil der Verbindungen ist geschweißt, der Rest geflanscht und verschraubt. Dazwischen kamen die Spools.</p>
           </div>
-          <figure class="plate plate-tall">
+          <figure class="plate plate-tall" style="--ar:1200/1600">
             <button type="button" class="shot-open" data-shot="3">
               <img src="/assets/projects/cases/valve-station-tie-in-piping/03-1200.webp"
                    srcset="/assets/projects/cases/valve-station-tie-in-piping/03-600.webp 600w, /assets/projects/cases/valve-station-tie-in-piping/03-1200.webp 1200w"
-                   sizes="(max-width: 900px) 92vw, 38vw"
+                   sizes="(max-width: 980px) 88vw, 40vw"
                    alt="Anbindungsleitungen und Flanschverbindungen von der Armaturenstation in die bestehende Rohrbrücke" width="1200" height="1600"
                    loading="lazy" decoding="async">
               <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -196,6 +213,11 @@
             <figcaption>An die bestehende Rohrbrücke eingebunden.</figcaption>
           </figure>
         </div>
+        <div class="slide-meta">
+          <div class="progress" aria-hidden="true"><i class="done"></i><i class="done"></i></div>
+        </div>
+      </article>
+      </div>
     </section>
 
     <!-- The gallery viewer. Inert markup: js/main.js wires it, and with no

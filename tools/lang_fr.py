@@ -2091,4 +2091,20 @@ S = {
         '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Remplacement d’agitateur dans un réservoir de stockage</span> <span class="arr" aria-hidden="true">&#8599;</span>',
     'On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up above shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched.':
         'Sur ce chantier, aucune console n’a été soudée directement sur la robe. Chaque accessoire repose sur une platine d’appui, et c’est la platine qui est soudée à la robe. Le gros plan ci-dessus en montre une. Si la console doit un jour être déposée, elle se dépose de la platine et la robe reste intacte.',
+
+    # ---- sticky plate deck, 27 Aug 2026 ----
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 02</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">01 / 02</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 05</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">01 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 02</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">02 / 02</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 05</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">02 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">03 / 05</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">03 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">04 / 05</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">04 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">05 / 05</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">05 / 05</span>',
 }

@@ -2068,4 +2068,20 @@ S = {
         '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Rührwerkstausch in einem Lagertank</span> <span class="arr" aria-hidden="true">&#8599;</span>',
     'On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up above shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched.':
         'Auf dieser Baustelle wurde keine Konsole direkt auf den Mantel geschweißt. Jedes Anbauteil sitzt auf einem Futterblech, und das Futterblech ist auf den Mantel geschweißt. Die Nahaufnahme oben zeigt eines. Muss die Konsole je herunter, kommt sie vom Futterblech, und der Mantel bleibt unberührt.',
+
+    # ---- sticky plate deck, 27 Aug 2026 ----
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 02</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">01 / 02</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 05</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">01 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 02</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">02 / 02</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 05</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">02 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">03 / 05</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">03 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">04 / 05</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">04 / 05</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">05 / 05</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">05 / 05</span>',
 }
