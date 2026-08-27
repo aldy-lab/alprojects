@@ -553,6 +553,11 @@ Four things about the deck are load-bearing:
 - **Card height is fixed, not content-driven.** A short card in a sticky stack
   does not fully cover the one beneath it, and the previous photograph peeks
   along the bottom edge for the whole of the next card's travel.
+- **The hero starts both columns on the same line.** It used to bottom-align
+  the type against a tall plate, which put the text down at the fold with the
+  photograph towering beside it. With the sheet behind them the space above is
+  the drawing rather than a hole, so the two can simply start together, and the
+  plate is capped (340px portrait, 520px landscape) so the title reads first.
 - **`height: min(78vh, 720px, 50vw)` — all three terms earn their place.** The
   container caps at 1280px, so the plate column tops out near 785px however big
   the screen, while a landscape frame needs 1.33× the card's body height. 720px
@@ -572,6 +577,33 @@ Four things about the deck are load-bearing:
 Below 980px the deck stops sticking and becomes an ordinary column of cards,
 the same breakpoint the service slides unstack at. Sticking a card taller than
 the viewport pins content the reader cannot scroll to.
+
+### The sheet ground
+
+Hero and cards both sit on the homepage hero's drawing sheet rather than on flat
+page ground: the cool radial top left, the warm brand glow top right, the 104px
+module, registration crosshairs and a dimension label. `_sheet()` in
+`tools/build-pages.py` emits the furniture; the CSS reuses the hero's own
+`.sheet-plus` and `.sheet-dim` elements and only adds placement.
+
+- **The dimension label carries the frame's real pixel size** (`1200X1600`). The
+  drafting motif only works while it is telling the truth, so it is generated
+  from the same numbers that set `--ar`, never typed in.
+- **It has two placements** because the two contexts already have furniture in
+  their corners: a card carries its progress bar along the bottom edge, so the
+  label goes top right under the counter; the hero carries the plate's caption
+  at the lower right, so it goes bottom left.
+- **The glow is static on cards.** Five drifting layers down one page is motion
+  the hero earns once and a deck does not.
+- **Crosshairs are hidden below 980px.** Stacked, the type fills the column and
+  a mark placed against a two-column layout lands on a word — at 393px the first
+  one sat on "piping". The module and the gradient carry the sheet on a phone.
+  Checked by testing marks against real glyph rects (`Range.getClientRects`),
+  not element boxes: an element box spans the whole column and reports overlaps
+  where there is only empty space beside the text.
+
+Dropping the old blurred-photograph backdrop also removed a second download of
+every frame — the deck now costs nothing beyond the plates themselves.
 
 `/projects.html` wins over the `/projects/` directory on GitHub Pages, the same
 way `/services.html` does, so the index keeps its URL and the cases sit under it.

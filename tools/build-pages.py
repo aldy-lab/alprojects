@@ -1349,6 +1349,20 @@ def _plate(c, n, eager=False, sizes="(max-width: 900px) 92vw, 38vw"):
            _html.escape(cap)))
 
 
+def _sheet(dim, marks, where="tr"):
+    """The drawing-sheet furniture from the homepage hero: the fine module, a
+    few registration crosshairs and a dimension label. The label carries the
+    frame's real pixel size rather than an invented number -- the drafting
+    motif only works while it is telling the truth."""
+    plus = "\n".join(
+        '        <span class="sheet-plus" style="left:%s; top:%s" aria-hidden="true"></span>'
+        % xy for xy in marks)
+    return ('      <span class="sheet-grid" aria-hidden="true"></span>\n'
+            '      <span class="sheet-furniture" aria-hidden="true">\n%s\n'
+            '        <span class="sheet-dim sheet-dim-%s">%s</span>\n'
+            '      </span>' % (plus, where, dim))
+
+
 def _deck(c):
     """The stage sequence as the site's sticky card stack -- the same interaction
     the twelve service slides use on the homepage. Each card pins under the
@@ -1366,8 +1380,7 @@ def _deck(c):
                        for k in range(1, n_total + 1))
         out.append(
             '      <article class="case-slide%(wide)s">\n'
-            '        <span class="slide-bg" aria-hidden="true"\n'
-            '              style="background-image:url(\'/assets/projects/cases/%(slug)s/%(nn)02d-600.webp\')"></span>\n'
+            '%(sheet)s\n'
             '        <div class="slide-top">\n'
             '          <span class="slide-label">Stage</span>\n'
             '          <span class="slide-count">%(i)02d / %(tot)02d</span>\n'
@@ -1382,7 +1395,10 @@ def _deck(c):
             '          <div class="progress" aria-hidden="true">%(pips)s</div>\n'
             '        </div>\n'
             '      </article>'
-            % dict(wide="" if h > w else " slide-wide", slug=c["slug"], nn=n,
+            % dict(wide="" if h > w else " slide-wide",
+                   sheet=_sheet("%dX%d" % (w, h),
+                                (("9%", "14%"), ("31%", "6%"), ("31%", "30%")),
+                                "tr"),
                    i=i, tot=n_total,
                    paras="\n".join("            <p>%s</p>" % p for p in paras),
                    plate=_plate(c, n, sizes="(max-width: 980px) 88vw, 40vw"),
@@ -1407,6 +1423,7 @@ def case_body(c, nxt):
 
     return """
     <section class="case-hero%(tall)s">
+%(hero_sheet)s
       <div class="container case-hero-in">
         <div class="case-hero-txt">
           <p class="eyebrow">Project &middot; %(kicker)s</p>
@@ -1477,7 +1494,13 @@ def case_body(c, nxt):
         <span class="arr" aria-hidden="true">&#8599;</span>
       </a>
     </nav>
-""" % dict(tall=" case-hero-tall" if _h > _w else "", kicker=c["kicker"],
+""" % dict(tall=" case-hero-tall" if _h > _w else "",
+           hero_sheet=_sheet("%dX%d" % (_w, _h),
+                             # clear of the type block, which runs roughly
+                             # x 5-50%, y 20-52%
+                             (("53%", "20%"), ("41%", "72%"), ("15%", "82%"),
+                              ("62%", "56%")), "bl"),
+           kicker=c["kicker"],
            title=c["title"], lead=c["lead"], setting=c["setting"],
            hero_plate=_plate(c, 1, eager=True).replace('class="plate',
                                                        'class="case-fig plate'),

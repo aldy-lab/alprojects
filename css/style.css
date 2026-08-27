@@ -5199,10 +5199,16 @@ html.lb-open, html.lb-open body { overflow: hidden; }
    text beside it, and leaves the dead space under the copy that a fixed height
    would only move somewhere else. Narrowing the column is what actually
    shortens the photograph. */
-.case-hero-tall .case-hero-in {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr);
-  align-items: end;
-}
+.case-hero-tall .case-hero-in { grid-template-columns: minmax(0, 1fr) minmax(0, 0.5fr); }
+/* Both columns start on the same line. The hero used to bottom-align the type
+   against a tall plate, which is what put the text down at the fold with the
+   photograph towering beside it. With the sheet behind them the space above is
+   the drawing, not a hole, so the two can simply start together. */
+.case-hero-in { align-items: start; }
+/* And the plate stops being the loudest thing on the page: the title reads
+   first, the photograph second. */
+.case-hero .case-fig { max-width: 520px; margin-left: auto; }
+.case-hero-tall .case-fig { max-width: 340px; }
 .case-hero-txt .eyebrow { position: relative; padding-top: 20px; }
 .case-hero-txt .eyebrow::before {
   content: "";
@@ -5290,25 +5296,28 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   isolation: isolate;
   background: var(--panel);
 }
-/* The frame again, as ground: blurred, desaturated and darkened the way the
-   quote band on the Company page treats its photograph, so the card has
-   photographic colour without competing with the plate sitting on top of it. */
-.slide-bg {
-  position: absolute;
-  inset: -60px;
-  z-index: -2;
-  background-position: center;
-  background-size: cover;
-  filter: blur(38px) saturate(0.2) brightness(0.62);
+/* The card ground is the hero's drawing sheet, not the frame blurred behind
+   itself: the same cool radial, the same warm glow top right, the same fine
+   module. It also costs nothing to download -- the blurred backdrop pulled a
+   second copy of every photograph. */
+.case-slide {
+  background:
+    radial-gradient(72% 80% at 14% 10%, #143254 0%, #0c223f 46%, transparent 78%),
+    linear-gradient(180deg, #0c1930 0%, #09121f 58%, #070d18 100%);
 }
+/* The brand glow. Static here: five drifting layers down one page is motion
+   the hero earns once and a deck does not. */
 .case-slide::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
+  pointer-events: none;
   background:
-    linear-gradient(to top, rgba(8, 8, 15, 0.88) 0%, rgba(8, 8, 15, 0.55) 52%, rgba(8, 8, 15, 0.4) 100%),
-    radial-gradient(120% 90% at 78% 40%, rgba(16, 34, 58, 0.38), transparent 70%);
+    radial-gradient(46% 54% at 96% 6%,
+      rgba(255, 222, 210, 0.30) 0%, rgba(255, 222, 210, 0.11) 34%, transparent 68%),
+    radial-gradient(44% 52% at -4% 6%,
+      rgba(150, 186, 240, 0.20) 0%, rgba(150, 186, 240, 0.07) 38%, transparent 72%);
 }
 
 .slide-top {
@@ -5675,4 +5684,72 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   .case-card .corners::before, .case-card .corners::after,
   .news-card .corners::before, .news-card .corners::after { transform: scaleX(1); }
   .case-close-grid .sector-services a:hover { padding-left: 0; }
+}
+
+/* ============================================================
+   SHEET FURNITURE ON THE CASE PAGES
+   The hero's drawing sheet, reused: the fine module, registration
+   crosshairs and a dimension label. Same artwork, same weights.
+   ============================================================ */
+.sheet-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(207, 208, 215, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(207, 208, 215, 0.05) 1px, transparent 1px);
+  background-size: 104px 104px;
+  /* The eye reads the end of a pattern as a line even where the luminance on
+     both sides matches, so the module has to fade out rather than stop. */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 58%, transparent 96%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 58%, transparent 96%);
+}
+.sheet-furniture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+/* .sheet-plus and .sheet-dim are the hero's own elements; only the placement
+   inside these two containers is new. */
+.sheet-furniture .sheet-dim { opacity: 0.6; }
+/* Two placements, because the two contexts have different furniture already
+   in the corners: a card carries its progress bar along the bottom edge, and
+   the hero carries the plate's caption at the lower right. */
+.sheet-dim-tr {
+  right: clamp(20px, 2.6vw, 44px);
+  top: calc(clamp(20px, 2.6vw, 34px) + 24px);
+}
+.sheet-dim-bl { left: clamp(20px, 2.6vw, 44px); bottom: clamp(26px, 3vw, 44px); }
+
+.case-hero { position: relative; overflow: hidden; }
+.case-hero .sheet-grid {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 72%, transparent 99%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 72%, transparent 99%);
+}
+/* The hero sat on flat page ground, so a bottom-aligned column of type beside
+   a tall plate read as one heavy object and a lot of nothing. On the sheet the
+   empty half is the sheet, and the two sides can align at the top. */
+.case-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 76% at 14% 18%, rgba(21, 53, 95, 0.55) 0%, rgba(13, 38, 71, 0.28) 46%, transparent 78%),
+    radial-gradient(42% 50% at 97% 4%, rgba(255, 222, 210, 0.22) 0%, rgba(255, 222, 210, 0.07) 38%, transparent 70%);
+}
+.case-hero-in { position: relative; z-index: 1; }
+
+/* "На малых форматах остаются только углы и одна отметка." Stacked, the type
+   fills the column, and a registration mark placed against a two-column layout
+   lands on a word -- at 393px the first one sat on "piping". The module and the
+   gradient carry the sheet on a phone; the marks come back with the columns. */
+@media (max-width: 980px) {
+  .sheet-furniture .sheet-plus { display: none; }
+}
+@media (max-width: 640px) {
+  .sheet-furniture .sheet-dim { display: none; }
 }
