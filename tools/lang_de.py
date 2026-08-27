@@ -455,10 +455,10 @@ S = {
         'Zerstörungsfreie Prüfung',
     'Operating Across Europe':
         'Europaweit im Einsatz',
-    'Quality Control / QA-QC':
-        'Qualitätskontrolle / QA-QC',
-    'Quality control / QA-QC':
-        'Qualitätskontrolle / QA-QC',
+    'Quality Control / QA/QC':
+        'Qualitätskontrolle / QA/QC',
+    'Quality control / QA/QC':
+        'Qualitätskontrolle / QA/QC',
     'Rope Access Technicians':
         'Seilzugangstechniker',
     '02 &middot; Shipbuilding':
@@ -472,7 +472,7 @@ S = {
     'One crew, several trades':
         'Eine Mannschaft, mehrere Gewerke',
     'Quality control and QAQC':
-        'Qualitätskontrolle und QA-QC',
+        'Qualitätskontrolle und QA/QC',
     'Specialists on the books':
         'Fachkräfte in der Stammbelegschaft',
     'WhatsApp +370 636 63 744':
@@ -481,8 +481,8 @@ S = {
         'Windkrafttechniker',
     'Prefer not to fill a form':
         'Lieber kein Formular',
-    'Quality control and QA-QC':
-        'Qualitätskontrolle und QA-QC',
+    'Quality control and QA/QC':
+        'Qualitätskontrolle und QA/QC',
     'Short notice mobilisation':
         'Kurzfristige Mobilisierung',
     'Careers — ALPROJECTS Group':
@@ -727,8 +727,8 @@ S = {
         'Maßkontrolle von Konstruktionen und Rohrleitungen',
     'Mechanical scopes and independent inspection':
         'Mechanische Gewerke und unabhängige Prüfung',
-    'Quality control and QA-QC — ALPROJECTS Group':
-        'Qualitätskontrolle und QA-QC — ALPROJECTS Group',
+    'Quality control and QA/QC — ALPROJECTS Group':
+        'Qualitätskontrolle und QA/QC — ALPROJECTS Group',
     'TIG for piping, root runs and stainless work':
         'WIG für Rohrleitungen, Wurzellagen und Edelstahl',
     '<span class="step-n">04</span> Your documents':
@@ -983,8 +983,8 @@ S = {
         '<span class="srv-n">03</span><span class="srv-name">Anlagenmontage</span>',
     '<span class="srv-n">08</span><span class="srv-name">Non-Destructive Testing</span>':
         '<span class="srv-n">08</span><span class="srv-name">Zerstörungsfreie Prüfung</span>',
-    '<span class="srv-n">11</span><span class="srv-name">Quality Control / QA-QC</span>':
-        '<span class="srv-n">11</span><span class="srv-name">Qualitätskontrolle / QA-QC</span>',
+    '<span class="srv-n">11</span><span class="srv-name">Quality Control / QA/QC</span>':
+        '<span class="srv-n">11</span><span class="srv-name">Qualitätskontrolle / QA/QC</span>',
     'Instrument pipe fitters: small bore, tubing, impulse lines and instrument hook-ups':
         'Monteure für Mess- und Instrumentierungsleitungen: kleine Nennweiten, Tubing, Impulsleitungen und Messanschlüsse',
     'Cruise &amp; river vessels · piping systems · pressure testing · structural welding':
@@ -1066,7 +1066,7 @@ S = {
     'Contact ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.':
         'Kontakt zu ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Litauen. Projektanfragen und Personalanfragen.',
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
-        'Anlagenmontage, Rohrleitungsbau, Schweißtechnik, QA-QC, Seilzugangstechnik und ZfP für Industrie und Offshore.',
+        'Anlagenmontage, Rohrleitungsbau, Schweißtechnik, QA/QC, Seilzugangstechnik und ZfP für Industrie und Offshore.',
     'Welding, piping and mechanical works across Northern Europe. Inspected by people who did not do the welding.':
         'Schweißen, Rohrleitungsbau und mechanische Arbeiten in ganz Nordeuropa. Geprüft von Prüfern, die die Naht nicht selbst geschweißt haben.',
     'Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.':
@@ -1206,7 +1206,7 @@ S = {
     'Mobilising a team offshore is expensive and a shutdown is more expensive still. Rope access and NDT carry most of this work, with mechanical scopes alongside.':
         'Ein Team offshore zu mobilisieren ist teuer, ein Stillstand noch teurer. Seilzugangstechnik und ZfP tragen den größten Teil dieser Arbeit, ergänzt um mechanische Leistungen.',
     'ALPROJECTS Group delivers mechanical contracting, pipe fitting, welding, QAQC, rope access and NDT services for industrial and offshore projects across Europe.':
-        'ALPROJECTS Group erbringt Anlagenmontage, Rohrleitungsbau, Schweißtechnik, QA-QC, Seilzugangstechnik und ZfP für Industrie- und Offshore-Projekte in ganz Europa.',
+        'ALPROJECTS Group erbringt Anlagenmontage, Rohrleitungsbau, Schweißtechnik, QA/QC, Seilzugangstechnik und ZfP für Industrie- und Offshore-Projekte in ganz Europa.',
     '<span class="kp-num">04</span> <span class="kp-name">Hywind Tampen</span> <span class="kp-scope">Rotational team support for offshore pull-in operations.</span>':
         '<span class="kp-num">04</span> <span class="kp-name">Hywind Tampen</span> <span class="kp-scope">Teams im Rotationseinsatz zur Unterstützung von Offshore-Einzugsarbeiten.</span>',
     'Four project types, one set of disciplines. The engineering is largely the same; the environment, the standards and the consequences of getting it wrong are not.':
@@ -2084,4 +2084,30 @@ S = {
         '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">04 / 05</span>',
     '<span class="slide-label">Stage</span> <span class="slide-count">05 / 05</span>':
         '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">05 / 05</span>',
+
+    # ---- 26 Aug audit, remaining Block 2/4 corrections ----
+    'Where we have delivered':
+        'Wo wir gearbeitet haben',
+    'Drydock and afloat (alongside) repair scopes':
+        'Reparaturen im Dock und schwimmend (längsseits)',
+    'We aim to reply to project enquiries within one working day.':
+        'Wir bemühen uns, Projektanfragen innerhalb eines Werktags zu beantworten.',
+    'The scope ran from September 2025 to April 2026 and was delivered by a team of 12 specialists, accumulating more than 11,000 hours on site.':
+        'Der Auftrag lief von September 2025 bis April 2026 und wurde von einem Team von 12 Fachkräften ausgeführt, mit mehr als 11.000 Stunden vor Ort.',
+    'Yard schedules move, and the penalty lands on the subcontractor. We plan for that, and take engine room piping, structural steel and outfitting as...':
+        'Werftterminen verschieben sich, und die Vertragsstrafe trifft den Nachunternehmer. Wir planen das ein und übernehmen Maschinenraumrohrleitungen,...',
+    'We track hours worked, incidents and what we changed as a result, and we share the figures with clients on request. A target nobody measures is a slogan.':
+        'Wir erfassen geleistete Stunden, Vorfälle und was wir daraufhin geändert haben, und geben die Zahlen auf Anfrage an Kunden weiter. Ein Ziel, das niemand misst, ist ein Slogan.',
+    'Yard schedules move, and the penalty lands on the subcontractor. We plan for that, and take engine room piping, structural steel and outfitting as complete scopes.':
+        'Werftterminen verschieben sich, und die Vertragsstrafe trifft den Nachunternehmer. Wir planen das ein und übernehmen Maschinenraumrohrleitungen, Stahlbau und Ausrüstung als vollständige Lose.',
+    'Head office in Klaipėda, Lithuania, with project bases in <strong>six countries</strong>, serving offshore, shipbuilding and industry across Northern and Western Europe.':
+        'Hauptsitz in Klaipėda, Litauen, mit Projektstützpunkten in <strong>sechs Ländern</strong>, für Offshore, Schiffbau und Industrie in Nord- und Westeuropa.',
+    'We draw on a roster of more than 300 certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'Wir greifen auf einen Pool von mehr als 300 zertifizierten Fachkräften zurück. Projekte werden aus diesem Bestand besetzt und nicht weitervergeben, und genau das hält das Qualitätssystem belastbar.',
+    'Lithuania &middot; Norway &middot; United Kingdom &middot; Netherlands &middot; Germany &middot; Belgium &mdash; offshore, shipbuilding and industry across Northern and Western Europe.':
+        'Litauen &middot; Norwegen &middot; Vereinigtes Königreich &middot; Niederlande &middot; Deutschland &middot; Belgien &mdash; Offshore, Schiffbau und Industrie in Nord- und Westeuropa.',
+    'Scaffolding costs more in downtime than in steel. IRATA-certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site reach the same place on rope, inspect it and repair it while the plant keeps running.':
+        'Ein Gerüst kostet mehr Stillstand als Stahl. IRATA-zertifizierte Techniker der Stufen 1 bis 3, mit einem IRATA-Level-3-Aufsichtsführenden auf jeder Baustelle, erreichen dieselbe Stelle am Seil, prüfen sie und setzen sie instand, während die Anlage weiterläuft.',
+    'Awarded to ALPROJECTS, UAB by Creditinfo Group on 23 June 2026, recognising a high credit score and a proven record of financial stability. In heavy industry, projects run for months and commitments run for years &mdash; independent proof of stability is proof we will be there to see the work through.':
+        'Verliehen an die ALPROJECTS, UAB durch die Creditinfo Group am 23. Juni 2026, in Anerkennung einer hohen Bonität und einer nachgewiesenen Finanzstabilität. In der Schwerindustrie laufen Projekte über Monate und Verpflichtungen über Jahre &mdash; ein unabhängiger Nachweis der Stabilität ist der Nachweis, dass wir die Arbeit zu Ende bringen.',
 }

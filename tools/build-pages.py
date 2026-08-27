@@ -282,7 +282,7 @@ POSITIONS = [
 DISCIPLINES = [
     "Welding (TIG)", "Welding (MIG/MAG)", "Pipe fitting", "Instrument pipe fitting",
     "Mechanical installation", "Shipbuilding", "Ship repair", "NDT inspection",
-    "Rope access", "Quality control / QA-QC", "Rigging", "Site supervision",
+    "Rope access", "Quality control (QA/QC)", "Rigging", "Site supervision",
 ]
 CERTIFICATES = [
     "EN ISO 9606 (welder)", "TIG 141", "MIG/MAG 131/135", "IRATA L1", "IRATA L2",
@@ -626,7 +626,7 @@ ARTICLES = [
          title="Fuel loading terminal completed",
          lead="September 2025 to April 2026. Twelve specialists. Over 11,000 hours on site.",
          body=[
-           "The scope ran from September 2025 to April 2026 and was delivered by a team of twelve specialists, accumulating more than 11,000 hours on site.",
+           "The scope ran from September 2025 to April 2026 and was delivered by a team of 12 specialists, accumulating more than 11,000 hours on site.",
            "Fuel handling infrastructure concentrates every discipline we work in \u2014 mechanical installation, pipe fitting, welding, and the inspection and documentation that has to accompany all three when the medium is flammable.",
            "Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.",
          ],
@@ -947,8 +947,8 @@ COMPANY = """
         <div class="co-zero"><b>No spills</b><span>to the sea, to the ground or to the drain.</span></div>
         <div class="co-zero"><b>No damage</b><span>to the structure we were sent to work on.</span></div>
       </div>
-      <p class="co-note co-zeros-note">We publish our safety figures once a year: hours
-      worked, incidents, and what we changed as a result. A target nobody measures is a
+      <p class="co-note co-zeros-note">We track hours worked, incidents and what we changed as a result, and we
+      share the figures with clients on request. A target nobody measures is a
       slogan.</p>
       <div class="co-plates reveal">
         <div class="co-plate"><b>ISO 3834</b><span>Welding quality</span></div>
@@ -964,11 +964,10 @@ COMPANY = """
       <div class="co-vm">
         <div class="reveal">
           <p class="co-big">Where we work from</p>
-          <p class="co-body">Head office in Klaipėda, Lithuania, with operations in
-          <strong>Belgium</strong> and <strong>Norway</strong>, serving offshore, shipbuilding
+          <p class="co-body">Head office in Klaipėda, Lithuania, with project bases in
+          <strong>six countries</strong>, serving offshore, shipbuilding
           and industry across Northern and Western Europe.</p>
-          <p class="co-note">The company employs between 51 and 200 people directly and draws
-          on a roster of more than 300 certified specialists. Projects are resourced from that
+          <p class="co-note">We draw on a roster of more than 300 certified specialists. Projects are resourced from that
           roster rather than subcontracted on, which is what keeps the quality system
           meaningful.</p>
         </div>
@@ -993,7 +992,7 @@ COMPANY = """
       <div class="co-cta">
         <div>
           <h2 class="sub-head reveal">If this is how you want your contractor to work, send us the scope</h2>
-          <p class="co-note">We reply to project enquiries within one working day.</p>
+          <p class="co-note">We aim to reply to project enquiries within one working day.</p>
         </div>
         <div class="co-cta-act">
           <p class="co-addr">ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br>
@@ -1638,7 +1637,7 @@ PROJECTS = """
     </div>
 
     <div class="container">
-      <h2 class="sub-head">Delivered across five countries</h2>
+      <h2 class="sub-head">Where we have delivered</h2>
       <p class="sub-lead">Onshore project experience.</p>
       <div class="on-grid">
         <div class="on-col">
@@ -1825,7 +1824,7 @@ CONTACTS = """
       Lithuania</p>
 
       <h2>Where we work from</h2>
-      <p>Lithuania &middot; Belgium &middot; Norway &mdash; serving offshore, shipbuilding and
+      <p>Lithuania &middot; Norway &middot; United Kingdom &middot; Netherlands &middot; Germany &middot; Belgium &mdash; offshore, shipbuilding and
       industry across Northern and Western Europe.</p>
 
       <h2>Email</h2>
@@ -2011,8 +2010,9 @@ SERVICE_GROUPS = [
     ]),
     ("Marine", [
         dict(slug="shipbuilding", nav="Shipbuilding", h1="Shipbuilding",
-             lead="Yard schedules do not move. Our crews slot into them and take engine room piping, "
-                  "structural steel and outfitting.",
+             lead="Yard schedules move, and the penalty lands on the subcontractor. We plan "
+                  "for that, and take engine room piping, structural steel and outfitting "
+                  "as complete scopes.",
              points=["Engine room piping: fuel, lube oil, cooling water, ballast and bilge systems, including spool prefabrication",
                      "Hull structural fitting and welding to class-approved procedures",
                      "Outfitting and mechanical installation",
@@ -2022,7 +2022,7 @@ SERVICE_GROUPS = [
                   "replacement and mechanical repairs to class and to the owner&rsquo;s requirements.",
              points=["Steel renewal and piping replacement",
                      "On-board mechanical repairs",
-                     "Dry dock and quayside scopes",
+                     "Drydock and afloat (alongside) repair scopes",
                      "Fast mobilisation to the vessel"]),
     ]),
     ("Inspection & Access", [
@@ -2367,7 +2367,26 @@ def sitemap():
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
             + urls + '\n</urlset>\n')
 
-write("sitemap.xml", sitemap())
+# The sitemap has two authors. This one knows every page; tools/i18n_build.py
+# knows the hreflang alternates. Whichever ran last used to win, so a bare
+# `python3 tools/build-pages.py` silently replaced a 136-alternate sitemap with
+# an EN-only one -- verified: x-default went from 136 occurrences to 0, with no
+# error and nothing in the diff to notice. Hand the job to i18n_build whenever a
+# language is published, so the order of the two commands stops mattering.
+def _write_sitemap():
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import i18n
+        if any(i18n.PUBLISH.get(l) for l in i18n.LANGS if l != i18n.DEFAULT):
+            import i18n_build
+            write("sitemap.xml", i18n_build.sitemap(i18n_build.source_pages()))
+            return
+    except Exception as exc:                      # never block the page build
+        print("sitemap: falling back to the English-only map (%s)" % exc)
+    write("sitemap.xml", sitemap())
+
+
+_write_sitemap()
 
 
 # index.html and 404.html are hand-maintained rather than generated, so stamp
