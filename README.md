@@ -9,6 +9,7 @@ index.html         — the homepage (all sections, matching the Figma frame)
 company.html       — about the company
 services.html      — the five service lines in depth
 projects.html      — shipbuilding / offshore / industrial / renewable
+projects/*.html    — four project case pages (see "Project cases" below)
 contacts.html      — address, email, both phone numbers
 careers.html       — careers / open application
 privacy.html       — privacy policy
@@ -520,6 +521,110 @@ To add a language: add it to `LANGS`, `LOCALE`, `LABEL`, `LANG_NAME` and
 `LANG_GROUP` in `tools/i18n.py`, create `tools/lang_xx.py`, and run the build
 to get the list of what is missing.
 
+
+## Project cases
+
+`/projects/` holds four case pages, built from the photo drop the client
+delivered on 27 August 2026 (`~/Downloads/projects/`, four folders, each with a
+`README.txt` of retouching notes, `web-ready/` at 1920px, `print-full-size/`,
+and a `website-copy-EN.md`). The copy on the pages is the client's own, lightly
+cut: the "## Page" section became the body, the "## Card" blurb became the hero
+lead, and the closing line became the call to action.
+
+| URL | Frames | Lead frame |
+|---|---|---|
+| `/projects/tank-and-vessel-fabrication` | 6 | working under the shell |
+| `/projects/valve-station-tie-in-piping` | 3 | work front under cover |
+| `/projects/tank-internals-and-attachments` | 3 | bracket on a pad plate |
+| `/projects/agitator-replacement` | 3 | shaft, full height of the tank |
+
+Each page is a **plate sequence**, the way a job report is: a numbered spine down
+the left, the paragraph that describes a stage, and the one photograph that
+shows it. The pairing is written out per stage in `CASES` rather than zipped by
+position — the client's paragraphs and his frame order do not run in step. The
+`photos[0]` frame is always the hero and every other frame belongs to exactly
+one stage, in ascending order; a build-time assertion enforces both, so a
+re-ordered stage list cannot silently drop a photograph.
+
+Two layout rules earned their comments and are worth not undoing:
+
+- **The plate cap lives on the grid track, not on the image.** Capping the image
+  with `max-height` and letting `width: auto` follow collapsed every
+  not-yet-loaded lazy frame to a 201px row — an unloaded `<img>` has no
+  intrinsic width, so `width: auto` cannot use the width/height attributes to
+  reserve the box, and the page shifted as each photograph arrived. Measured
+  after the fix: zero shift, rows within 20px of each other.
+- **627px and 352px** are the two track caps: both are 470px tall, at 4:3 and at
+  3:4. A row comes out the same height whichever way up the photograph is.
+
+`/projects.html` wins over the `/projects/` directory on GitHub Pages, the same
+way `/services.html` does, so the index keeps its URL and the cases sit under it.
+`tools/serve.py` reproduces that ordering locally — check there before assuming
+a case URL is broken.
+
+Photographs are re-encoded by hand into `assets/projects/cases/<slug>/NN-{600,1200}.webp`.
+The encoder steps quality down until each frame fits a byte budget (200 KB at
+1200px, 70 KB at 600px) with a floor of q66, because a flat quality setting gave
+483 KB on the busiest frame and 24 KB on the weld close-up. Three frames sit
+above budget at the floor; they are genuinely high-entropy (gravel, textured
+primer) and crushing them further shows on a page whose subject is weld quality.
+
+**Nothing on these pages names a client, a site, a date or a tonnage**, because
+none of it was supplied — and most offshore and shipbuilding frame agreements
+forbid naming the customer without written consent. The retoucher removed the
+tag numbers and one customer logo before handing the frames over. Do not add
+identifying detail without checking the contract first.
+
+### ⚠️ Two frames pulled: the customer's logo
+
+The delivered valve-station set had five frames. **Two of them — the ones the
+client numbered 01 and 02 — carry the Dow diamond logo, fully legible on the
+tarpaulin**, along with mirrored safety text. His retoucher's note says the
+customer logo was removed from three frames; these two were missed. Confirmed at
+source resolution, not from a thumbnail.
+
+They are **not in this repo at all** — not resized, not cropped, not in git
+history. The page was rebuilt on the three frames that carry no customer
+identification, and the paragraphs whose photographs are gone moved into the
+intro. To put them back once they come back cleaned: re-encode into
+`01`/`02` and restore the two `stages` entries and the two `photos` rows in
+`CASES`.
+
+What stays deliberately: **TENARIS** on the pipe in the tie-in frame is the
+mill's mark, and mill and casting marks are what the client asked to keep. A
+mill mark says who rolled the pipe; a corporate logo on a tarpaulin says whose
+plant it is. Those are not the same disclosure.
+
+Check every new frame at source resolution before it ships. A logo that is four
+pixels tall in the card thumbnail is perfectly readable in the viewer.
+
+### Still open on the case pages
+
+- **Is the root-run pipe stainless or carbon?** `03-finished-root-run` shows heat
+  tint in the bore. On carbon steel that is normal; on stainless it means the
+  purge was short, and the frame then argues against the page it sits on. The
+  outer surface reads as galvanised carbon steel, but that is a judgement from a
+  photograph, not a material certificate. Confirm before go-live.
+- **The welder in `tank-and-vessel-fabrication/01`** has his face behind a visor —
+  not identifiable to a stranger, identifiable to his mates. It is the strongest
+  frame in the set and it leads the page. Ask him.
+- **Drop zone** in `tank-and-vessel-fabrication/05`: a shell hangs over concrete
+  blocks. Confirm nobody is under it before publishing a lift photograph.
+- **Equipment brands** are legible on the crane, the access towers and the
+  extraction unit, and scaffold brands on the towers in the tank-internals set.
+  Normal for a workshop photograph, but they do say whose shop it is.
+- **Mill and casting marks** were left on the pipe in the valve set. The client
+  offered to remove those too — say the word.
+- **The agitator set is thin**: three frames, two of which are nearly the same
+  view. One more frame from a different position would carry the page.
+- **The valve set is now thin too**, at three frames, because of the two pulled
+  above. Cleaned versions would take it back to five.
+- **One tank-internals frame was dropped** — a chalk position number sat on a
+  bottom plate at a seam, on a surface too light to rebuild. Wipe that floor,
+  reshoot, and it goes straight back in.
+- **`04-temporary-clips-and-bottom-plates`** resembles the tank-internals frames
+  closely enough that a reader may take them for the same job. Kept for now,
+  since the clips it shows also appear in frame 01; drop it if that bothers you.
 
 ## TODO before go-live (client input needed)
 

@@ -1858,4 +1858,237 @@ S = {
         'Infrastructures de manutention de carburant et support éolien. Notre <a href="/news/fuel-loading-terminal-completed">lot de terminal de chargement</a> s’est déroulé de septembre 2025 à avril 2026 avec 12 spécialistes et plus de 11 000 heures sur site — un repère utile pour qui planifie un chantier de cette taille.',
     'Yard schedules move, and the penalty lands on the subcontractor. We plan for that, and take engine room piping, structural steel and outfitting as com':
         'Les plannings des chantiers navals bougent, et la pénalité retombe sur le sous-traitant. Nous le prévoyons, et prenons en charge la tuyauterie de salle',
+
+    # ---- Chantiers /projects/* (livraison client, 27 août 2026) ----
+    # Vocabulaire réservoirs : virole (course), robe (shell), piquage
+    # (nozzle), platine d'appui (pad plate), taquet provisoire
+    # (temporary clip), palonnier (spreader beam), chevron (rafter).
+    'Recent work':
+        'Travaux récents',
+    'All projects':
+        'Tous les projets',
+    'From this job':
+        'Sur ce chantier',
+    'Disciplines on this job':
+        'Métiers sur ce chantier',
+    'Four scopes, photographed as they were built.':
+        'Quatre chantiers, photographiés pendant leur exécution.',
+    'Read the job <span class="arr">&#8599;</span>':
+        'Voir le chantier <span class="arr">&#8599;</span>',
+    '6 photographs. Press one to open it full size.':
+        '6 photographies. Cliquez sur l’une d’elles pour l’ouvrir en grand format.',
+    '5 photographs. Press one to open it full size.':
+        '5 photographies. Cliquez sur l’une d’elles pour l’ouvrir en grand format.',
+    '3 photographs. Press one to open it full size.':
+        '3 photographies. Cliquez sur l’une d’elles pour l’ouvrir en grand format.',
+    'Shop fabrication and welding':
+        'Fabrication et soudage en atelier',
+    'Mechanical installation and welding':
+        'Montage mécanique et soudage',
+    'Mechanical installation and welding &middot; tank farm':
+        'Montage mécanique et soudage &middot; parc de stockage',
+    'Project &middot; Mechanical installation':
+        'Chantier &middot; Montage mécanique',
+    'Project &middot; Shop fabrication and welding':
+        'Chantier &middot; Fabrication et soudage en atelier',
+    'Project &middot; Mechanical installation and welding':
+        'Chantier &middot; Montage mécanique et soudage',
+    'Project &middot; Mechanical installation and welding &middot; tank farm':
+        'Chantier &middot; Montage mécanique et soudage &middot; parc de stockage',
+    'Tank and vessel fabrication':
+        'Fabrication de réservoirs et de capacités',
+    'Valve station and tie-in piping':
+        'Poste de vannes et tuyauterie de raccordement',
+    'Tank internals, nozzles and attachments':
+        'Internes de réservoir, piquages et accessoires soudés',
+    'Agitator replacement inside a storage tank':
+        'Remplacement d’agitateur dans un réservoir de stockage',
+    'Tank and vessel fabrication — ALPROJECTS Group':
+        'Fabrication de réservoirs et de capacités — ALPROJECTS Group',
+    'Valve station and tie-in piping — ALPROJECTS Group':
+        'Poste de vannes et tuyauterie de raccordement — ALPROJECTS Group',
+    'Tank internals, nozzles and attachments — ALPROJECTS Group':
+        'Internes de réservoir, piquages et accessoires soudés — ALPROJECTS Group',
+    'Agitator replacement inside a storage tank — ALPROJECTS Group':
+        'Remplacement d’agitateur dans un réservoir de stockage — ALPROJECTS Group',
+    'Send us the drawings.':
+        'Envoyez-nous les plans.',
+    'Send us the scope.':
+        'Envoyez-nous le périmètre.',
+    'Tell us what goes inside and we will price it.':
+        'Dites-nous ce qui va à l’intérieur et nous le chiffrons.',
+    'Tell us what is going in and we will look at it.':
+        'Dites-nous ce qui doit être installé et nous l’étudions.',
+    'Shell held up on packing, work going on underneath.':
+        'Robe maintenue sur cales, travaux en dessous.',
+    'The nozzles go in before the course goes on the stack.':
+        'Les piquages sont posés avant que la virole ne rejoigne l’empilage.',
+    'Vessel closed up.':
+        'Capacité refermée.',
+    'Inside the shell, with the temporary clips round the courses.':
+        'À l’intérieur de la robe, avec les taquets provisoires autour des viroles.',
+    'Lifted on slings from welded lugs.':
+        'Levée par élingues sur oreilles soudées.',
+    'The shop floor.':
+        'L’atelier.',
+    'Valves levelled before anything was tacked.':
+        'Vannes mises de niveau avant tout pointage.',
+    'The valve station.':
+        'Le poste de vannes.',
+    'Finished root.':
+        'Racine terminée.',
+    'Tied into the existing rack.':
+        'Raccordé au rack existant.',
+    'Work front under temporary cover.':
+        'Front de travail sous abri provisoire.',
+    'The pad plate goes on before the bracket.':
+        'La platine se pose avant la console.',
+    'Internal pipe off the shell nozzle.':
+        'Tuyauterie interne au départ du piquage de robe.',
+    'Roof rafters into the centre ring.':
+        'Chevrons de toit vers l’anneau central.',
+    'Looking up the shaft to the roof.':
+        'Vue de l’arbre vers le toit.',
+    'The bearing at the floor.':
+        'Le palier au fond.',
+    'Lower impeller on the shaft.':
+        'Mobile inférieur sur l’arbre.',
+    'Welder working under a tank shell held up and secured on timber packing, with bottom plates laid out on the shop floor':
+        'Soudeur au travail sous une robe de réservoir maintenue et calée sur des cales en bois, tôles de fond disposées au sol de l’atelier',
+    'Vessel shell course being lowered onto the course below by overhead crane, with the nozzles already welded in':
+        'Virole de capacité descendue au pont roulant sur la virole inférieure, piquages déjà soudés',
+    'Assembled vessel standing on blocks, with nozzles, a side manway and a drawing taped to the shell':
+        'Capacité assemblée posée sur cales, avec ses piquages, un trou d’homme latéral et un plan scotché sur la robe',
+    'Inside a tank shell, a long pipe on trestles and temporary clips welded round the courses above the bottom plates':
+        'À l’intérieur d’une robe de réservoir, une longue tuyauterie sur tréteaux et des taquets provisoires soudés autour des viroles au-dessus des tôles de fond',
+    'Tank shell lifted on slings from lugs welded to the top course':
+        'Robe de réservoir levée par élingues depuis des oreilles soudées sur la virole supérieure',
+    'Fabrication hall with tank shells, a vessel on packing, and a spreader beam with slings on the floor':
+        'Halle de fabrication avec des robes de réservoir, une capacité sur cales et un palonnier avec ses élingues au sol',
+    'Row of valves and piping levelled and aligned before tacking':
+        'Rangée de vannes et de tuyauterie mises de niveau et alignées avant pointage',
+    'Valves on a tank valve station, with a spirit level laid across a valve during setting out':
+        'Vannes d’un poste de vannes de réservoir, avec un niveau à bulle posé en travers d’une vanne pendant le réglage',
+    'Finished root run on a butt weld, photographed down the pipe bore from the open end of a spool':
+        'Passe de racine terminée sur une soudure bout à bout, photographiée dans l’alésage depuis l’extrémité ouverte d’un tronçon',
+    'Tie-in piping and flanged joints running from the valve station into the existing rack':
+        'Tuyauterie de raccordement et assemblages à brides reliant le poste de vannes au rack existant',
+    'Valve station under temporary cover at the base of a storage tank':
+        'Poste de vannes sous abri provisoire au pied d’un réservoir de stockage',
+    'External bracket welded to a pad plate on the tank shell, with the pad welded all round':
+        'Console extérieure soudée sur une platine d’appui de la robe du réservoir, la platine étant soudée sur tout son pourtour',
+    'Internal pipe connected to a shell nozzle inside a tank, with bottom plates below':
+        'Tuyauterie interne raccordée à un piquage de robe à l’intérieur d’un réservoir, tôles de fond en dessous',
+    'Tank roof on radial rafters into the centre ring, with a nozzle opening cut':
+        'Toit de réservoir sur chevrons radiaux vers l’anneau central, avec une ouverture de piquage découpée',
+    'Agitator shaft running the full height of a storage tank up to the roof, with the upper impeller near the top':
+        'Arbre d’agitateur sur toute la hauteur d’un réservoir de stockage jusqu’au toit, le mobile supérieur près du sommet',
+    'Agitator bearing at the tank floor, with levelling tools in place':
+        'Palier d’agitateur au fond du réservoir, outils de mise de niveau en place',
+    'Lower agitator impeller bolted to the shaft inside a storage tank, with the bearing on the floor below it':
+        'Mobile d’agitation inférieur boulonné sur l’arbre à l’intérieur d’un réservoir de stockage, avec le palier au fond en dessous',
+    'We weld the nozzles into the courses before they go on the stack, weld out the seams under a crane, and cut and fit the bottoms on the shop floor.':
+        'Nous soudons les piquages dans les viroles avant leur mise en empilage, remplissons les soudures sous pont roulant, et découpons et ajustons les fonds au sol de l’atelier.',
+    'We weld the nozzles into the courses before they go on the stack, weld out the seams under a crane, and cut and fit the bottoms on the shop...':
+        'Nous soudons les piquages dans les viroles avant leur mise en empilage, remplissons les soudures sous pont roulant, et découpons et ajustons les fonds...',
+    'Nozzles and manways go into the shell courses before they go on the stack, while a course can still be worked from both sides. The welder works downhand and can get at the back of the joint. By the time a course goes on the stack the nozzles are already in it.':
+        'Les piquages et les trous d’homme sont posés dans les viroles avant leur mise en empilage, tant qu’une virole reste accessible des deux côtés. Le soudeur travaille à plat et peut atteindre l’envers du joint. Au moment où une virole rejoint l’empilage, ses piquages y sont déjà.',
+    'The first course goes on timber packing. The next comes down on it under the crane, landed and held while the seam is tacked, and then welded out.':
+        'La première virole est posée sur cales en bois. La suivante y est descendue au pont roulant, posée et maintenue le temps du pointage, puis la soudure est remplie.',
+    'The large tanks go together the other way up. The shell is held up on packing and the next course goes on underneath it, with a row of temporary clips round the inside holding it while the seams are welded out.':
+        'Les grands réservoirs se montent dans l’autre sens. La robe est maintenue en l’air sur cales et la virole suivante vient se placer en dessous, une rangée de taquets provisoires à l’intérieur la tenant pendant le remplissage des soudures.',
+    'Those clips and the lifting lugs come off when the shell is done, and the places where they were welded are dressed back level with the plate.':
+        'Ces taquets et les oreilles de levage sont déposés une fois la robe terminée, et leurs zones de soudure sont arasées au nu de la tôle.',
+    'Lifting is done on the overhead crane, using slings and a spreader beam. Bottom plates are cut and fitted on the shop floor.':
+        'Le levage se fait au pont roulant, avec élingues et palonnier. Les tôles de fond sont découpées et ajustées au sol de l’atelier.',
+    'In the shop the welding is done under cover and under a crane.':
+        'En atelier, le soudage se fait à l’abri et sous pont roulant.',
+    'A new valve station at the base of a storage tank. We set and levelled the valves, fitted the spools, welded and bolted the joints, and tied the run into the existing pipe rack.':
+        'Un nouveau poste de vannes au pied d’un réservoir de stockage. Nous avons réglé et mis de niveau les vannes, posé les tronçons, soudé et boulonné les assemblages, et raccordé la ligne au rack à tuyauterie existant.',
+    'A new valve station at the base of a storage tank. We set and levelled the valves, fitted the spools, welded and bolted the joints, and tied the run...':
+        'Un nouveau poste de vannes au pied d’un réservoir de stockage. Nous avons réglé et mis de niveau les vannes, posé les tronçons, soudé et boulonné...',
+    'A storage tank needed a new valve station and a connection into the existing pipe rack.':
+        'Un réservoir de stockage devait recevoir un nouveau poste de vannes et un raccordement au rack à tuyauterie existant.',
+    'The valves went on adjustable stands and we levelled them before anything was fixed. We did not tack until the run was straight and the flange faces were parallel.':
+        'Les vannes ont été posées sur supports réglables et mises de niveau avant toute fixation. Nous n’avons pointé qu’une fois la ligne droite et les portées de brides parallèles.',
+    'Some of the joints are welded, the rest are flanged and bolted. The spools went in between them.':
+        'Une partie des assemblages est soudée, le reste est à brides boulonnées. Les tronçons ont été posés entre les deux.',
+    'The close-up shows a finished root, taken down the bore from the open end of a spool.':
+        'Le gros plan montre une racine terminée, prise dans l’alésage depuis l’extrémité ouverte d’un tronçon.',
+    'The work front sat under temporary cover, with the plant live around it.':
+        'Le front de travail était sous abri provisoire, l’installation restant en service autour.',
+    'Internal pipe off a shell nozzle, brackets on pad plates, roof rafters into the centre ring.':
+        'Tuyauterie interne au départ d’un piquage de robe, consoles sur platines d’appui, chevrons de toit vers l’anneau central.',
+    'Internal pipe off a shell nozzle, brackets on pad plates, roof rafters into the centre...':
+        'Tuyauterie interne au départ d’un piquage de robe, consoles sur platines d’appui, chevrons de toit vers...',
+    'On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched.':
+        'Sur ce chantier, aucune console n’a été soudée directement sur la robe. Chaque accessoire repose sur une platine d’appui, et c’est la platine qui est soudée à la robe. Le gros plan en montre une. Si la console doit un jour être déposée, elle se dépose de la platine et la robe reste intacte.',
+    'Pads went down on the bottom plates as well, the stands went on the pads and the pipe sat on the stands. When the stands come off, the pads take the damage instead of the bottom plates.':
+        'Des platines ont également été posées sur les tôles de fond ; les supports sont venus sur les platines et la tuyauterie sur les supports. À la dépose des supports, ce sont les platines qui encaissent, pas les tôles de fond.',
+    'The internal pipe runs from a shell nozzle across the tank, and the roof goes on radial rafters into a centre ring.':
+        'La tuyauterie interne part d’un piquage de robe et traverse le réservoir ; le toit repose sur des chevrons radiaux convergeant vers un anneau central.',
+    'Temporary steel goes on and comes off all the way through a job like this. Every place it was welded is ground back flush before the tank is painted.':
+        'Sur un chantier de ce type, les pièces provisoires sont soudées puis déposées en permanence. Chaque zone soudée est meulée à ras avant la mise en peinture du réservoir.',
+    'The shaft runs from the drive mounting on the roof down to a bearing at the floor, with two impellers on it.':
+        'L’arbre descend du support d’entraînement en toiture jusqu’à un palier au fond, avec deux mobiles d’agitation.',
+    'The shaft runs from the drive mounting on the roof down to a bearing at the floor, with two impellers on...':
+        'L’arbre descend du support d’entraînement en toiture jusqu’à un palier au fond, avec deux mobiles...',
+    'The agitator in this tank was being replaced. The shaft runs the full height of the tank, from the drive mounting on the roof down to a bearing at the floor. Two impellers on it, one low down and one near the roof.':
+        'L’agitateur de ce réservoir était en cours de remplacement. L’arbre occupe toute la hauteur du réservoir, du support d’entraînement en toiture jusqu’à un palier au fond. Deux mobiles d’agitation dessus, un en partie basse et un près du toit.',
+    'The fitting work was done inside the tank, with the tank out of service.':
+        'Le montage a été réalisé à l’intérieur du réservoir, celui-ci étant hors service.',
+    'The bearing at the floor went in first. We levelled it before any of the shaft went in, and checked the shaft once it was down. Everything above depends on that bearing.':
+        'Le palier au fond a été posé en premier. Nous l’avons mis de niveau avant toute mise en place de l’arbre, puis contrôlé l’arbre une fois descendu. Tout ce qui se trouve au-dessus dépend de ce palier.',
+    'We fitted the lower impeller from the tank floor and the upper one from temporary access.':
+        'Nous avons monté le mobile inférieur depuis le fond du réservoir et le supérieur depuis un accès provisoire.',
+
+    # ---- plate-sequence redesign of /projects/*, 27 Aug 2026 ----
+    'Scope':
+        'Périmètre',
+    'Plates':
+        'Planches',
+    'Setting':
+        'Contexte',
+    'More projects':
+        'Autres chantiers',
+    '6 photographs':
+        '6 photographies',
+    '3 photographs':
+        '3 photographies',
+    'How it was built':
+        'Le déroulement du chantier',
+    'Tank out of service':
+        'Réservoir hors service',
+    'Tank being fitted out':
+        'Réservoir en cours d’équipement',
+    'Fabrication shop, under a crane':
+        'Atelier de fabrication, sous pont roulant',
+    'Live plant, work front under cover':
+        'Installation en service, front de travail sous abri',
+    'The roof goes on radial rafters into a centre ring.':
+        'Le toit repose sur des chevrons radiaux convergeant vers un anneau central.',
+    'One plate to a stage. Press a plate to open it full size.':
+        'Une planche par étape. Cliquez sur une planche pour l’ouvrir en grand format.',
+    'The internal pipe runs from a shell nozzle across the tank.':
+        'La tuyauterie interne part d’un piquage de robe et traverse le réservoir.',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Montage mécanique</span>',
+    '<span class="case-num">01</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">01</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">02</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="eyebrow">Index</span> <span class="case-next-t">All projects</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Index</span> <span class="case-next-t">Tous les projets</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Tank and vessel fabrication</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Fabrication de réservoirs et de capacités</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Valve station and tie-in piping</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Poste de vannes et tuyauterie de raccordement</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Tank internals, nozzles and attachments</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Internes de réservoir, piquages et accessoires soudés</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Agitator replacement inside a storage tank</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Remplacement d’agitateur dans un réservoir de stockage</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    'On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up above shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched.':
+        'Sur ce chantier, aucune console n’a été soudée directement sur la robe. Chaque accessoire repose sur une platine d’appui, et c’est la platine qui est soudée à la robe. Le gros plan ci-dessus en montre une. Si la console doit un jour être déposée, elle se dépose de la platine et la robe reste intacte.',
 }

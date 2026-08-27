@@ -1128,6 +1128,379 @@ def shots_html():
     return "\n".join(out)
 
 
+
+# ============================================================
+# PROJECT CASES
+# ============================================================
+# Four scopes the client photographed and wrote up. Everything here is his
+# copy; nothing about a client, a site or a date is stated, because none of it
+# was supplied and most offshore frame agreements forbid naming the customer
+# anyway. The retoucher took the tag numbers and one customer logo off the
+# frames before they were handed over -- see the notes in the drop folder.
+#
+# The page is a plate sequence, the way a job report is: each stage carries the
+# paragraph that describes it and the one photograph that shows it. The pairing
+# is written out per stage rather than zipped by position, because the client's
+# paragraphs and his frame order do not run in step -- his fourth paragraph is
+# about the clips coming off, and the frame that shows the clips is his fourth
+# but his second paragraph's frame is his third.
+#
+# `photos[0]` is always the hero. Every other frame is used by exactly one
+# stage, in ascending order, which is what keeps the lightbox sequence equal to
+# the photo order -- the viewer numbers shots by DOM position, not by the
+# data-shot attribute.
+CASES = [
+    dict(
+        slug="tank-and-vessel-fabrication",
+        title="Tank and vessel fabrication",
+        kicker="Shop fabrication and welding",
+        setting="Fabrication shop, under a crane",
+        lead="We weld the nozzles into the courses before they go on the stack, weld out "
+             "the seams under a crane, and cut and fit the bottoms on the shop floor.",
+        intro=[],
+        stages=[
+            (2, ["Nozzles and manways go into the shell courses before they go on the "
+                 "stack, while a course can still be worked from both sides. The welder "
+                 "works downhand and can get at the back of the joint. By the time a "
+                 "course goes on the stack the nozzles are already in it."]),
+            (3, ["The first course goes on timber packing. The next comes down on it "
+                 "under the crane, landed and held while the seam is tacked, and then "
+                 "welded out."]),
+            (4, ["The large tanks go together the other way up. The shell is held up on "
+                 "packing and the next course goes on underneath it, with a row of "
+                 "temporary clips round the inside holding it while the seams are welded "
+                 "out.",
+                 "Those clips and the lifting lugs come off when the shell is done, and "
+                 "the places where they were welded are dressed back level with the "
+                 "plate."]),
+            (5, ["Lifting is done on the overhead crane, using slings and a spreader "
+                 "beam. Bottom plates are cut and fitted on the shop floor."]),
+            (6, ["In the shop the welding is done under cover and under a crane."]),
+        ],
+        note="",
+        cta="Send us the drawings.",
+        services=["welding-services", "pipe-fitting", "mechanical-contracting",
+                  "quality-control"],
+        photos=[
+            ("Welder working under a tank shell held up and secured on timber packing, "
+             "with bottom plates laid out on the shop floor",
+             "Shell held up on packing, work going on underneath.", 1200, 1600),
+            ("Vessel shell course being lowered onto the course below by overhead crane, "
+             "with the nozzles already welded in",
+             "The nozzles go in before the course goes on the stack.", 1200, 1600),
+            ("Assembled vessel standing on blocks, with nozzles, a side manway and a "
+             "drawing taped to the shell",
+             "Vessel closed up.", 1200, 1600),
+            ("Inside a tank shell, a long pipe on trestles and temporary clips welded "
+             "round the courses above the bottom plates",
+             "Inside the shell, with the temporary clips round the courses.", 1200, 1600),
+            ("Tank shell lifted on slings from lugs welded to the top course",
+             "Lifted on slings from welded lugs.", 1200, 1600),
+            ("Fabrication hall with tank shells, a vessel on packing, and a spreader beam "
+             "with slings on the floor",
+             "The shop floor.", 1200, 900),
+        ]),
+    dict(
+        slug="valve-station-tie-in-piping",
+        title="Valve station and tie-in piping",
+        kicker="Mechanical installation and welding &middot; tank farm",
+        setting="Live plant, work front under cover",
+        lead="A new valve station at the base of a storage tank. We set and levelled the "
+             "valves, fitted the spools, welded and bolted the joints, and tied the run "
+             "into the existing pipe rack.",
+        # Two of the five delivered frames are not here. The customer's logo is
+        # legible on the tarpaulin in both -- the retoucher cleaned three frames
+        # and these two were missed -- so they are out of the repo entirely
+        # until they come back cleaned. See README, "Still open on the case
+        # pages". The three that remain carry no customer identification: the
+        # "TENARIS" on the pipe in the tie-in frame is the mill's mark, which
+        # the client asked to keep.
+        intro=["A storage tank needed a new valve station and a connection into the "
+               "existing pipe rack.",
+               "The valves went on adjustable stands and we levelled them before "
+               "anything was fixed. We did not tack until the run was straight and the "
+               "flange faces were parallel."],
+        stages=[
+            (2, ["The close-up shows a finished root, taken down the bore from the open "
+                 "end of a spool."]),
+            (3, ["Some of the joints are welded, the rest are flanged and bolted. The "
+                 "spools went in between them."]),
+        ],
+        note="The work front sat under temporary cover, with the plant live around it.",
+        cta="Send us the scope.",
+        services=["pipe-fitting", "welding-services", "mechanical-contracting",
+                  "quality-control"],
+        photos=[
+            ("Valve station under temporary cover at the base of a storage tank",
+             "Work front under temporary cover.", 1200, 1600),
+            ("Finished root run on a butt weld, photographed down the pipe bore from the "
+             "open end of a spool",
+             "Finished root.", 1200, 900),
+            ("Tie-in piping and flanged joints running from the valve station into the "
+             "existing rack",
+             "Tied into the existing rack.", 1200, 1600),
+        ]),
+    dict(
+        slug="tank-internals-and-attachments",
+        title="Tank internals, nozzles and attachments",
+        kicker="Mechanical installation and welding",
+        setting="Tank being fitted out",
+        lead="Internal pipe off a shell nozzle, brackets on pad plates, roof rafters into "
+             "the centre ring.",
+        # The hero frame IS the close-up this paragraph points at, so it reads as
+        # the lead-in to the sequence rather than as a stage of its own.
+        intro=["On this job no bracket went straight onto the shell. Every attachment sat "
+               "on a pad plate, and the pad was welded to the shell. The close-up above "
+               "shows one. If the bracket ever has to come off, it comes off the pad and "
+               "the shell is untouched."],
+        stages=[
+            (2, ["The internal pipe runs from a shell nozzle across the tank.",
+                 "Pads went down on the bottom plates as well, the stands went on the "
+                 "pads and the pipe sat on the stands. When the stands come off, the pads "
+                 "take the damage instead of the bottom plates."]),
+            (3, ["The roof goes on radial rafters into a centre ring."]),
+        ],
+        note="Temporary steel goes on and comes off all the way through a job like this. "
+             "Every place it was welded is ground back flush before the tank is painted.",
+        cta="Tell us what goes inside and we will price it.",
+        services=["welding-services", "mechanical-contracting", "pipe-fitting",
+                  "quality-control"],
+        photos=[
+            ("External bracket welded to a pad plate on the tank shell, with the pad "
+             "welded all round",
+             "The pad plate goes on before the bracket.", 1200, 1600),
+            ("Internal pipe connected to a shell nozzle inside a tank, with bottom plates "
+             "below",
+             "Internal pipe off the shell nozzle.", 1200, 1600),
+            ("Tank roof on radial rafters into the centre ring, with a nozzle opening cut",
+             "Roof rafters into the centre ring.", 1200, 900),
+        ]),
+    dict(
+        slug="agitator-replacement",
+        title="Agitator replacement inside a storage tank",
+        kicker="Mechanical installation",
+        setting="Tank out of service",
+        lead="The shaft runs from the drive mounting on the roof down to a bearing at the "
+             "floor, with two impellers on it.",
+        intro=["The agitator in this tank was being replaced. The shaft runs the full "
+               "height of the tank, from the drive mounting on the roof down to a bearing "
+               "at the floor. Two impellers on it, one low down and one near the roof.",
+               "The fitting work was done inside the tank, with the tank out of service."],
+        stages=[
+            (2, ["The bearing at the floor went in first. We levelled it before any of the "
+                 "shaft went in, and checked the shaft once it was down. Everything above "
+                 "depends on that bearing."]),
+            (3, ["We fitted the lower impeller from the tank floor and the upper one from "
+                 "temporary access."]),
+        ],
+        note="",
+        cta="Tell us what is going in and we will look at it.",
+        services=["mechanical-contracting", "rigging-technical-support", "pipe-fitting",
+                  "quality-control"],
+        photos=[
+            ("Agitator shaft running the full height of a storage tank up to the roof, "
+             "with the upper impeller near the top",
+             "Looking up the shaft to the roof.", 1200, 900),
+            ("Agitator bearing at the tank floor, with levelling tools in place",
+             "The bearing at the floor.", 1200, 1600),
+            ("Lower agitator impeller bolted to the shaft inside a storage tank, with the "
+             "bearing on the floor below it",
+             "Lower impeller on the shaft.", 1200, 900),
+        ]),
+]
+
+# Every frame has to appear exactly once, as the hero or as one stage's plate.
+# Without this a re-ordered stage list silently drops a photograph -- the page
+# still builds, the lightbox still works, and the frame is just gone.
+for _c in CASES:
+    _used = [n for n, _ in _c["stages"]]
+    assert _used == sorted(_used), "%s: stages must run in photo order" % _c["slug"]
+    assert _used == list(range(2, len(_c["photos"]) + 1)), \
+        "%s: stages cover %s of %d frames" % (_c["slug"], _used, len(_c["photos"]))
+
+
+def _plate(c, n, eager=False):
+    """One numbered plate: the button the viewer picks up, its corner ticks, its
+    number, and the caption. The number sits outside <figcaption> on purpose --
+    js/main.js reads the caption with textContent, so anything inside it ends up
+    prefixed to the caption in the viewer."""
+    alt, cap, w, h = c["photos"][n - 1]
+    base = "/assets/projects/cases/%s/%02d" % (c["slug"], n)
+    return (
+        '          <figure class="plate%s">\n'
+        '            <button type="button" class="shot-open" data-shot="%d">\n'
+        '              <img src="%s-1200.webp"\n'
+        '                   srcset="%s-600.webp 600w, %s-1200.webp 1200w"\n'
+        '                   sizes="(max-width: 900px) 92vw, 38vw"\n'
+        '                   alt="%s" width="%d" height="%d"\n'
+        '                   loading="%s" decoding="async"%s>\n'
+        '              <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>\n'
+        '            </button>\n'
+        '            <figcaption>%s</figcaption>\n'
+        '          </figure>'
+        % (" plate-tall" if h > w else "", n, base, base, base,
+           _html.escape(alt, quote=True), w, h,
+           "eager" if eager else "lazy",
+           ' fetchpriority="high"' if eager else "",
+           _html.escape(cap)))
+
+
+def case_body(c, nxt):
+    by_slug = {sv["slug"]: sv for sv in SERVICES_FLAT}
+    links = "\n".join(
+        '            <li><a href="/services/%s.html">%s</a></li>' % (s, by_slug[s]["nav"])
+        for s in c["services"] if s in by_slug)
+    _alt, _cap, _w, _h = c["photos"][0]
+
+    stages = []
+    for i, (n, paras) in enumerate(c["stages"], 1):
+        stages.append(
+            '        <div class="stage%s">\n'
+            '          <p class="stage-n" aria-hidden="true">%02d</p>\n'
+            '          <div class="stage-txt">\n%s\n          </div>\n'
+            '%s\n'
+            '        </div>'
+            % (" stage-tall" if c["photos"][n - 1][3] > c["photos"][n - 1][2] else "",
+               i,
+               "\n".join("            <p>%s</p>" % p for p in paras),
+               _plate(c, n)))
+
+    intro = ""
+    if c["intro"]:
+        intro = ('    <div class="container case-intro">\n%s\n    </div>\n\n'
+                 % "\n".join("      <p>%s</p>" % p for p in c["intro"]))
+    note = ""
+    if c["note"]:
+        note = ('      <p class="case-note">%s</p>\n' % c["note"])
+
+    return """
+    <section class="case-hero%(tall)s">
+      <div class="container case-hero-in">
+        <div class="case-hero-txt">
+          <p class="eyebrow">Project &middot; %(kicker)s</p>
+          <h1 class="case-title">%(title)s</h1>
+          <p class="case-lead">%(lead)s</p>
+        </div>
+%(hero_plate)s
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="fact-strip case-spec">
+        <div class="fact">
+          <p class="fact-label">Scope</p>
+          <p class="fact-value">%(kicker)s</p>
+        </div>
+        <div class="fact">
+          <p class="fact-label">Setting</p>
+          <p class="fact-value">%(setting)s</p>
+        </div>
+        <div class="fact">
+          <p class="fact-label">Plates</p>
+          <p class="fact-value">%(n)d photographs</p>
+        </div>
+      </div>
+    </div>
+
+%(intro)s    <section class="container case-seq">
+      <div class="seq-head">
+        <h2 class="sub-head">How it was built</h2>
+        <p class="sub-lead">One plate to a stage. Press a plate to open it full size.</p>
+      </div>
+%(stages)s
+    </section>
+
+%(lightbox)s
+
+    <section class="container case-close">
+%(note)s      <div class="case-close-grid">
+        <div>
+          <p class="eyebrow">Disciplines on this job</p>
+          <ul class="sector-services">
+%(links)s
+          </ul>
+        </div>
+        <div class="case-ask">
+          <p class="case-ask-h">%(cta)s</p>
+          <p>Send the drawings or the scope and we will come back with a price and crew
+          dates. If it is a shutdown, tell us the window.</p>
+          <p class="back">
+            <a class="btn-solid" href="/contacts.html">Start a project</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <nav class="container case-next" aria-label="More projects">
+      <a class="case-next-link" href="/projects/%(nxt_slug)s.html">
+        <span class="eyebrow">Next project</span>
+        <span class="case-next-t">%(nxt_title)s</span>
+        <span class="arr" aria-hidden="true">&#8599;</span>
+      </a>
+      <a class="case-next-link case-next-all" href="/projects.html">
+        <span class="eyebrow">Index</span>
+        <span class="case-next-t">All projects</span>
+        <span class="arr" aria-hidden="true">&#8599;</span>
+      </a>
+    </nav>
+""" % dict(tall=" case-hero-tall" if _h > _w else "", kicker=c["kicker"],
+           title=c["title"], lead=c["lead"], setting=c["setting"],
+           hero_plate=_plate(c, 1, eager=True).replace('class="plate',
+                                                       'class="case-fig plate'),
+           n=len(c["photos"]), intro=intro, stages="\n".join(stages),
+           lightbox=LIGHTBOX, note=note, links=links, cta=c["cta"],
+           nxt_slug=nxt["slug"], nxt_title=_html.escape(nxt["title"]))
+
+
+def cases_html():
+    cards = []
+    for i, c in enumerate(CASES):
+        alt, _cap, w, h = c["photos"][0]
+        cards.append(
+            '        <a class="case-card" href="/projects/%s.html">\n'
+            '          <span class="case-thumb"><img src="/assets/projects/cases/%s/01-600.webp"\n'
+            '               alt="%s" width="%d" height="%d" loading="%s" decoding="async"></span>\n'
+            '          <span class="case-txt">\n'
+            '            <span class="case-top">\n'
+            '              <span class="case-num">%02d</span>\n'
+            '              <span class="case-kicker">%s</span>\n'
+            '            </span>\n'
+            '            <h3>%s</h3>\n'
+            '            <span class="case-blurb">%s</span>\n'
+            '            <span class="case-more">Read the job <span class="arr">&#8599;</span></span>\n'
+            '          </span>\n'
+            '        </a>'
+            % (c["slug"], c["slug"], _html.escape(alt, quote=True), w, h,
+               "eager" if i < 2 else "lazy", i + 1, c["kicker"],
+               _html.escape(c["title"]), c["lead"]))
+    return "\n".join(cards)
+
+
+# The gallery viewer, shared by /projects and every case page.
+LIGHTBOX = """    <!-- The gallery viewer. Inert markup: js/main.js wires it, and with no
+         JavaScript the thumbnails stay ordinary figures. -->
+    <div class="lb" id="lightbox" hidden>
+      <div class="lb-scrim" data-lb-close></div>
+      <div class="lb-panel" role="dialog" aria-modal="true" aria-label="Project photograph">
+        <figure class="lb-fig">
+          <!-- no src= until a photograph is chosen: src="" makes some
+               browsers re-request the page itself -->
+          <img id="lbImage" alt="">
+          <figcaption><span id="lbCaption"></span><span class="lb-count" id="lbCount"></span></figcaption>
+        </figure>
+        <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photograph">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next photograph">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close" data-lb-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+    </div>
+"""
+
 # ============================================================
 # PROJECTS
 # ============================================================
@@ -1167,6 +1540,14 @@ PROJECTS = """
       ran from September 2025 to April 2026 with 12 specialists and over 11,000 hours
       on site — a useful figure for anyone planning work of that size.</p>
 
+    </div>
+
+    <div class="container">
+      <h2 class="sub-head">Recent work</h2>
+      <p class="sub-lead">Four scopes, photographed as they were built.</p>
+      <div class="case-grid">
+""" + cases_html() + """
+      </div>
     </div>
 
     <div class="container">
@@ -1241,28 +1622,7 @@ PROJECTS = """
       </div>
     </div>
 
-    <!-- The gallery viewer. Inert markup: js/main.js wires it, and with no
-         JavaScript the thumbnails stay ordinary figures. -->
-    <div class="lb" id="lightbox" hidden>
-      <div class="lb-scrim" data-lb-close></div>
-      <div class="lb-panel" role="dialog" aria-modal="true" aria-label="Project photograph">
-        <figure class="lb-fig">
-          <!-- no src= until a photograph is chosen: src="" makes some
-               browsers re-request the page itself -->
-          <img id="lbImage" alt="">
-          <figcaption><span id="lbCaption"></span><span class="lb-count" id="lbCount"></span></figcaption>
-        </figure>
-        <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photograph">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-        <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next photograph">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-        <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close" data-lb-close>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-      </div>
-    </div>
+""" + LIGHTBOX + """
 
     <div class="container prose">
       <p class="back">
@@ -1813,6 +2173,18 @@ write("projects.html", page("Projects",
       "Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.",
       PROJECTS, canonical="/projects.html", og="projects"))
 
+# --- one page per project case, under /projects/ ---
+# /projects.html wins over the /projects/ directory on GitHub Pages, the same
+# way /services.html does, so the index keeps its URL and the cases sit under it.
+for _i, _c in enumerate(CASES):
+    write("projects/%s.html" % _c["slug"],
+          page(_c["title"], _c["lead"][:152].rsplit(" ", 1)[0] + "...",
+               case_body(_c, CASES[(_i + 1) % len(CASES)]),
+               canonical="/projects/%s.html" % _c["slug"],
+               og="projects",
+               head_extra=breadcrumb_ld([("Home", "/"), ("Projects", "/projects.html"),
+                                         (_c["title"], "/projects/%s.html" % _c["slug"])])))
+
 write("contacts.html", page("Contacts",
       "Contact ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.",
       CONTACTS, canonical="/contacts.html", og="contacts"))
@@ -1914,6 +2286,7 @@ SITEMAP = [
 ] + [("/services/%s" % sv["slug"], "monthly", "0.7") for sv in SERVICES_FLAT] \
   + [("/sectors/%s" % s0, "monthly", "0.7") for s0, _n, _i, _l, _v in SECTOR_PAGES] + [
     ("/projects", "monthly", "0.9"),
+] + [("/projects/%s" % c["slug"], "monthly", "0.7") for c in CASES] + [
     ("/company.html",  "monthly", "0.8"),
     ("/news/",         "weekly",  "0.8"),
     ("/contacts", "yearly",  "0.7"),

@@ -48,7 +48,8 @@ ORIGIN = "https://alprojects.co"
 # Pages that make up the site, relative to the repo root.
 def source_pages():
     out = []
-    for pat in ("*.html", "news/*.html", "services/*.html", "sectors/*.html"):
+    for pat in ("*.html", "news/*.html", "services/*.html", "sectors/*.html",
+                "projects/*.html"):
         out += sorted(glob.glob(os.path.join(ROOT, pat)))
     keep = []
     for f in out:

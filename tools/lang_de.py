@@ -1835,4 +1835,237 @@ S = {
         'Kraftstoffinfrastruktur und Unterstützung im Windbereich. Unser <a href="/news/fuel-loading-terminal-completed">Umfang am Verladeterminal</a> lief von September 2025 bis April 2026 mit 12 Fachkräften und über 11.000 Stunden vor Ort — ein nützlicher Anhaltspunkt für alle, die Arbeiten dieser Größe planen.',
     'Yard schedules move, and the penalty lands on the subcontractor. We plan for that, and take engine room piping, structural steel and outfitting as com':
         'Werftterminpläne verschieben sich, und die Vertragsstrafe trifft den Nachunternehmer. Wir planen dafür und übernehmen Maschinenraum-Rohrleitungen,',
+
+    # ---- Baustellen /projects/* (Kundenlieferung, 27. August 2026) ----
+    # Tankbau-Vokabular: Schuss (course), Mantel (shell), Stutzen
+    # (nozzle), Futterblech (pad plate), Montagelasche (temporary clip),
+    # Traverse (spreader beam), Sparren (rafter).
+    'Recent work':
+        'Aktuelle Projekte',
+    'All projects':
+        'Alle Projekte',
+    'From this job':
+        'Von dieser Baustelle',
+    'Disciplines on this job':
+        'Gewerke auf dieser Baustelle',
+    'Four scopes, photographed as they were built.':
+        'Vier Projekte, fotografiert während der Ausführung.',
+    'Read the job <span class="arr">&#8599;</span>':
+        'Zur Baustelle <span class="arr">&#8599;</span>',
+    '6 photographs. Press one to open it full size.':
+        '6 Aufnahmen. Zum Vergrößern eine davon anklicken.',
+    '5 photographs. Press one to open it full size.':
+        '5 Aufnahmen. Zum Vergrößern eine davon anklicken.',
+    '3 photographs. Press one to open it full size.':
+        '3 Aufnahmen. Zum Vergrößern eine davon anklicken.',
+    'Shop fabrication and welding':
+        'Fertigung und Schweißen in der Werkstatt',
+    'Mechanical installation and welding':
+        'Mechanische Montage und Schweißen',
+    'Mechanical installation and welding &middot; tank farm':
+        'Mechanische Montage und Schweißen &middot; Tanklager',
+    'Project &middot; Mechanical installation':
+        'Projekt &middot; Mechanische Montage',
+    'Project &middot; Shop fabrication and welding':
+        'Projekt &middot; Fertigung und Schweißen in der Werkstatt',
+    'Project &middot; Mechanical installation and welding':
+        'Projekt &middot; Mechanische Montage und Schweißen',
+    'Project &middot; Mechanical installation and welding &middot; tank farm':
+        'Projekt &middot; Mechanische Montage und Schweißen &middot; Tanklager',
+    'Tank and vessel fabrication':
+        'Tank- und Behälterbau',
+    'Valve station and tie-in piping':
+        'Armaturenstation und Anbindungsleitungen',
+    'Tank internals, nozzles and attachments':
+        'Tankeinbauten, Stutzen und Anbauteile',
+    'Agitator replacement inside a storage tank':
+        'Rührwerkstausch in einem Lagertank',
+    'Tank and vessel fabrication — ALPROJECTS Group':
+        'Tank- und Behälterbau — ALPROJECTS Group',
+    'Valve station and tie-in piping — ALPROJECTS Group':
+        'Armaturenstation und Anbindungsleitungen — ALPROJECTS Group',
+    'Tank internals, nozzles and attachments — ALPROJECTS Group':
+        'Tankeinbauten, Stutzen und Anbauteile — ALPROJECTS Group',
+    'Agitator replacement inside a storage tank — ALPROJECTS Group':
+        'Rührwerkstausch in einem Lagertank — ALPROJECTS Group',
+    'Send us the drawings.':
+        'Schicken Sie uns die Zeichnungen.',
+    'Send us the scope.':
+        'Schicken Sie uns den Leistungsumfang.',
+    'Tell us what goes inside and we will price it.':
+        'Sagen Sie uns, was hinein soll, und wir kalkulieren es.',
+    'Tell us what is going in and we will look at it.':
+        'Sagen Sie uns, was eingebaut werden soll, und wir sehen es uns an.',
+    'Shell held up on packing, work going on underneath.':
+        'Mantel auf Holzunterbau abgestützt, Arbeiten darunter.',
+    'The nozzles go in before the course goes on the stack.':
+        'Die Stutzen kommen hinein, bevor der Schuss aufgesetzt wird.',
+    'Vessel closed up.':
+        'Behälter geschlossen.',
+    'Inside the shell, with the temporary clips round the courses.':
+        'Im Mantel, mit den Montagelaschen rund um die Schüsse.',
+    'Lifted on slings from welded lugs.':
+        'An Anschlagmitteln von angeschweißten Ösen gehoben.',
+    'The shop floor.':
+        'Die Fertigungshalle.',
+    'Valves levelled before anything was tacked.':
+        'Armaturen ausgerichtet, bevor geheftet wurde.',
+    'The valve station.':
+        'Die Armaturenstation.',
+    'Finished root.':
+        'Fertige Wurzel.',
+    'Tied into the existing rack.':
+        'An die bestehende Rohrbrücke eingebunden.',
+    'Work front under temporary cover.':
+        'Arbeitsfront unter provisorischer Überdachung.',
+    'The pad plate goes on before the bracket.':
+        'Das Futterblech kommt vor der Konsole.',
+    'Internal pipe off the shell nozzle.':
+        'Innenleitung am Mantelstutzen.',
+    'Roof rafters into the centre ring.':
+        'Dachsparren zum Zentralring.',
+    'Looking up the shaft to the roof.':
+        'Blick an der Welle hinauf zum Dach.',
+    'The bearing at the floor.':
+        'Das Lager am Boden.',
+    'Lower impeller on the shaft.':
+        'Unteres Rührorgan auf der Welle.',
+    'Welder working under a tank shell held up and secured on timber packing, with bottom plates laid out on the shop floor':
+        'Schweißer bei der Arbeit unter einem Tankmantel, der auf Holzunterbau abgestützt und gesichert ist, mit Bodenblechen auf dem Hallenboden',
+    'Vessel shell course being lowered onto the course below by overhead crane, with the nozzles already welded in':
+        'Mantelschuss eines Behälters, der per Hallenkran auf den darunterliegenden Schuss abgesenkt wird, die Stutzen bereits eingeschweißt',
+    'Assembled vessel standing on blocks, with nozzles, a side manway and a drawing taped to the shell':
+        'Fertig montierter Behälter auf Böcken, mit Stutzen, seitlichem Mannloch und einer auf den Mantel geklebten Zeichnung',
+    'Inside a tank shell, a long pipe on trestles and temporary clips welded round the courses above the bottom plates':
+        'Im Tankmantel: ein langes Rohr auf Böcken und Montagelaschen, rund um die Schüsse über den Bodenblechen angeschweißt',
+    'Tank shell lifted on slings from lugs welded to the top course':
+        'Tankmantel an Anschlagmitteln von Ösen gehoben, die auf den obersten Schuss geschweißt sind',
+    'Fabrication hall with tank shells, a vessel on packing, and a spreader beam with slings on the floor':
+        'Fertigungshalle mit Tankmänteln, einem Behälter auf Holzunterbau und einer Traverse mit Anschlagmitteln am Boden',
+    'Row of valves and piping levelled and aligned before tacking':
+        'Reihe von Armaturen und Rohrleitungen, ausgerichtet und fluchtend vor dem Heften',
+    'Valves on a tank valve station, with a spirit level laid across a valve during setting out':
+        'Armaturen einer Tank-Armaturenstation, mit einer quer aufgelegten Wasserwaage beim Ausrichten',
+    'Finished root run on a butt weld, photographed down the pipe bore from the open end of a spool':
+        'Fertige Wurzellage an einer Stumpfnaht, durch die Rohrbohrung vom offenen Ende eines Spools aufgenommen',
+    'Tie-in piping and flanged joints running from the valve station into the existing rack':
+        'Anbindungsleitungen und Flanschverbindungen von der Armaturenstation in die bestehende Rohrbrücke',
+    'Valve station under temporary cover at the base of a storage tank':
+        'Armaturenstation unter provisorischer Überdachung am Fuß eines Lagertanks',
+    'External bracket welded to a pad plate on the tank shell, with the pad welded all round':
+        'Außenkonsole auf ein Futterblech am Tankmantel geschweißt, das Futterblech ringsum verschweißt',
+    'Internal pipe connected to a shell nozzle inside a tank, with bottom plates below':
+        'Innenleitung an einem Mantelstutzen im Tank, darunter die Bodenbleche',
+    'Tank roof on radial rafters into the centre ring, with a nozzle opening cut':
+        'Tankdach auf radialen Sparren zum Zentralring, mit ausgeschnittener Stutzenöffnung',
+    'Agitator shaft running the full height of a storage tank up to the roof, with the upper impeller near the top':
+        'Rührwerkswelle über die volle Höhe eines Lagertanks bis zum Dach, mit dem oberen Rührorgan nahe der Spitze',
+    'Agitator bearing at the tank floor, with levelling tools in place':
+        'Rührwerkslager am Tankboden, mit angesetztem Ausrichtwerkzeug',
+    'Lower agitator impeller bolted to the shaft inside a storage tank, with the bearing on the floor below it':
+        'Unteres Rührorgan auf die Welle geschraubt, im Lagertank, darunter das Lager am Boden',
+    'We weld the nozzles into the courses before they go on the stack, weld out the seams under a crane, and cut and fit the bottoms on the shop floor.':
+        'Wir schweißen die Stutzen in die Schüsse, bevor diese aufgesetzt werden, schweißen die Nähte unter dem Kran aus und schneiden und passen die Böden in der Halle ein.',
+    'We weld the nozzles into the courses before they go on the stack, weld out the seams under a crane, and cut and fit the bottoms on the shop...':
+        'Wir schweißen die Stutzen in die Schüsse, bevor diese aufgesetzt werden, schweißen die Nähte unter dem Kran aus und schneiden und passen die Böden...',
+    'Nozzles and manways go into the shell courses before they go on the stack, while a course can still be worked from both sides. The welder works downhand and can get at the back of the joint. By the time a course goes on the stack the nozzles are already in it.':
+        'Stutzen und Mannlöcher kommen in die Mantelschüsse, bevor diese aufgesetzt werden, solange ein Schuss noch von beiden Seiten zugänglich ist. Der Schweißer arbeitet in Wannenposition und kommt an die Rückseite der Naht. Wenn ein Schuss aufgesetzt wird, sind die Stutzen bereits drin.',
+    'The first course goes on timber packing. The next comes down on it under the crane, landed and held while the seam is tacked, and then welded out.':
+        'Der erste Schuss steht auf Holzunterbau. Der nächste wird mit dem Kran darauf abgesenkt, aufgesetzt und gehalten, während die Naht geheftet und anschließend ausgeschweißt wird.',
+    'The large tanks go together the other way up. The shell is held up on packing and the next course goes on underneath it, with a row of temporary clips round the inside holding it while the seams are welded out.':
+        'Die großen Tanks entstehen andersherum. Der Mantel wird auf Holzunterbau hochgehalten, und der nächste Schuss kommt darunter, gehalten von einer Reihe Montagelaschen innen, während die Nähte ausgeschweißt werden.',
+    'Those clips and the lifting lugs come off when the shell is done, and the places where they were welded are dressed back level with the plate.':
+        'Diese Laschen und die Hebeösen kommen ab, sobald der Mantel fertig ist, und ihre Schweißstellen werden bündig zum Blech verschliffen.',
+    'Lifting is done on the overhead crane, using slings and a spreader beam. Bottom plates are cut and fitted on the shop floor.':
+        'Gehoben wird mit dem Hallenkran, mit Anschlagmitteln und Traverse. Die Bodenbleche werden in der Halle zugeschnitten und eingepasst.',
+    'In the shop the welding is done under cover and under a crane.':
+        'In der Werkstatt wird überdacht und unter dem Kran geschweißt.',
+    'A new valve station at the base of a storage tank. We set and levelled the valves, fitted the spools, welded and bolted the joints, and tied the run into the existing pipe rack.':
+        'Eine neue Armaturenstation am Fuß eines Lagertanks. Wir haben die Armaturen gesetzt und ausgerichtet, die Spools eingepasst, die Verbindungen geschweißt und verschraubt und die Leitung an die bestehende Rohrbrücke angebunden.',
+    'A new valve station at the base of a storage tank. We set and levelled the valves, fitted the spools, welded and bolted the joints, and tied the run...':
+        'Eine neue Armaturenstation am Fuß eines Lagertanks. Wir haben die Armaturen gesetzt und ausgerichtet, die Spools eingepasst, die Verbindungen...',
+    'A storage tank needed a new valve station and a connection into the existing pipe rack.':
+        'Ein Lagertank brauchte eine neue Armaturenstation und eine Anbindung an die bestehende Rohrbrücke.',
+    'The valves went on adjustable stands and we levelled them before anything was fixed. We did not tack until the run was straight and the flange faces were parallel.':
+        'Die Armaturen kamen auf verstellbare Böcke, und wir haben sie ausgerichtet, bevor irgendetwas fixiert wurde. Geheftet wurde erst, als die Leitung gerade lief und die Flanschflächen parallel standen.',
+    'Some of the joints are welded, the rest are flanged and bolted. The spools went in between them.':
+        'Ein Teil der Verbindungen ist geschweißt, der Rest geflanscht und verschraubt. Dazwischen kamen die Spools.',
+    'The close-up shows a finished root, taken down the bore from the open end of a spool.':
+        'Die Nahaufnahme zeigt eine fertige Wurzel, aufgenommen durch die Bohrung vom offenen Ende eines Spools.',
+    'The work front sat under temporary cover, with the plant live around it.':
+        'Die Arbeitsfront lag unter provisorischer Überdachung, die Anlage ringsum in Betrieb.',
+    'Internal pipe off a shell nozzle, brackets on pad plates, roof rafters into the centre ring.':
+        'Innenleitung an einem Mantelstutzen, Konsolen auf Futterblechen, Dachsparren zum Zentralring.',
+    'Internal pipe off a shell nozzle, brackets on pad plates, roof rafters into the centre...':
+        'Innenleitung an einem Mantelstutzen, Konsolen auf Futterblechen, Dachsparren zum...',
+    'On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched.':
+        'Auf dieser Baustelle wurde keine Konsole direkt auf den Mantel geschweißt. Jedes Anbauteil sitzt auf einem Futterblech, und das Futterblech ist auf den Mantel geschweißt. Die Nahaufnahme zeigt eines. Muss die Konsole je herunter, kommt sie vom Futterblech, und der Mantel bleibt unberührt.',
+    'Pads went down on the bottom plates as well, the stands went on the pads and the pipe sat on the stands. When the stands come off, the pads take the damage instead of the bottom plates.':
+        'Auch auf die Bodenbleche kamen Futterbleche, auf die Futterbleche die Böcke und auf die Böcke das Rohr. Werden die Böcke entfernt, nehmen die Futterbleche den Schaden und nicht die Bodenbleche.',
+    'The internal pipe runs from a shell nozzle across the tank, and the roof goes on radial rafters into a centre ring.':
+        'Die Innenleitung führt von einem Mantelstutzen quer durch den Tank, und das Dach liegt auf radialen Sparren, die in einem Zentralring zusammenlaufen.',
+    'Temporary steel goes on and comes off all the way through a job like this. Every place it was welded is ground back flush before the tank is painted.':
+        'Bei einer solchen Arbeit werden ständig Hilfskonstruktionen angeschweißt und wieder entfernt. Jede Schweißstelle wird bündig verschliffen, bevor der Tank beschichtet wird.',
+    'The shaft runs from the drive mounting on the roof down to a bearing at the floor, with two impellers on it.':
+        'Die Welle läuft von der Antriebsaufnahme auf dem Dach bis zu einem Lager am Boden, mit zwei Rührorganen darauf.',
+    'The shaft runs from the drive mounting on the roof down to a bearing at the floor, with two impellers on...':
+        'Die Welle läuft von der Antriebsaufnahme auf dem Dach bis zu einem Lager am Boden, mit zwei...',
+    'The agitator in this tank was being replaced. The shaft runs the full height of the tank, from the drive mounting on the roof down to a bearing at the floor. Two impellers on it, one low down and one near the roof.':
+        'Das Rührwerk in diesem Tank wurde getauscht. Die Welle läuft über die volle Höhe des Tanks, von der Antriebsaufnahme auf dem Dach bis zu einem Lager am Boden. Zwei Rührorgane darauf, eines weit unten und eines nahe dem Dach.',
+    'The fitting work was done inside the tank, with the tank out of service.':
+        'Die Montage erfolgte im Tank, bei außer Betrieb genommenem Tank.',
+    'The bearing at the floor went in first. We levelled it before any of the shaft went in, and checked the shaft once it was down. Everything above depends on that bearing.':
+        'Das Lager am Boden kam zuerst. Wir haben es ausgerichtet, bevor die Welle eingebracht wurde, und die Welle geprüft, sobald sie unten war. Alles darüber hängt an diesem Lager.',
+    'We fitted the lower impeller from the tank floor and the upper one from temporary access.':
+        'Das untere Rührorgan haben wir vom Tankboden aus montiert, das obere von einem provisorischen Zugang.',
+
+    # ---- plate-sequence redesign of /projects/*, 27 Aug 2026 ----
+    'Scope':
+        'Leistungsumfang',
+    'Plates':
+        'Tafeln',
+    'Setting':
+        'Umfeld',
+    'More projects':
+        'Weitere Projekte',
+    '6 photographs':
+        '6 Aufnahmen',
+    '3 photographs':
+        '3 Aufnahmen',
+    'How it was built':
+        'Wie es gebaut wurde',
+    'Tank out of service':
+        'Tank außer Betrieb',
+    'Tank being fitted out':
+        'Tank im Ausbau',
+    'Fabrication shop, under a crane':
+        'Fertigungshalle, unter dem Kran',
+    'Live plant, work front under cover':
+        'Anlage in Betrieb, Arbeitsfront überdacht',
+    'The roof goes on radial rafters into a centre ring.':
+        'Das Dach liegt auf radialen Sparren, die in einem Zentralring zusammenlaufen.',
+    'One plate to a stage. Press a plate to open it full size.':
+        'Eine Tafel je Arbeitsschritt. Zum Vergrößern eine Tafel anklicken.',
+    'The internal pipe runs from a shell nozzle across the tank.':
+        'Die Innenleitung führt von einem Mantelstutzen quer durch den Tank.',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Mechanische Montage</span>',
+    '<span class="case-num">01</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">01</span> <span class="case-kicker">Fertigung und Schweißen in der Werkstatt</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
+    '<span class="case-num">02</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Mechanische Montage und Schweißen &middot; Tanklager</span>',
+    '<span class="eyebrow">Index</span> <span class="case-next-t">All projects</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Übersicht</span> <span class="case-next-t">Alle Projekte</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Tank and vessel fabrication</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Tank- und Behälterbau</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Valve station and tie-in piping</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Armaturenstation und Anbindungsleitungen</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Tank internals, nozzles and attachments</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Tankeinbauten, Stutzen und Anbauteile</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Agitator replacement inside a storage tank</span> <span class="arr" aria-hidden="true">&#8599;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Rührwerkstausch in einem Lagertank</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    'On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up above shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched.':
+        'Auf dieser Baustelle wurde keine Konsole direkt auf den Mantel geschweißt. Jedes Anbauteil sitzt auf einem Futterblech, und das Futterblech ist auf den Mantel geschweißt. Die Nahaufnahme oben zeigt eines. Muss die Konsole je herunter, kommt sie vom Futterblech, und der Mantel bleibt unberührt.',
 }
