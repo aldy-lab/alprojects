@@ -1684,7 +1684,8 @@ html.blueprint [data-dim]::after {
   pointer-events: none;
 }
 html.blueprint [data-dim] { position: relative; }
-html.blueprint .sector-card, html.blueprint .adv-card, html.blueprint .news-card, html.blueprint .cert-card, html.blueprint .doc-card, html.blueprint .shot, html.blueprint .fp-card {
+html.blueprint .sector-card, html.blueprint .adv-card, html.blueprint .news-card, html.blueprint .cert-card, html.blueprint .doc-card, html.blueprint .shot, html.blueprint .fp-card,
+html.blueprint .plate, html.blueprint .case-card, html.blueprint .case-next-link {
   outline: 1px dashed rgba(185, 196, 216, 0.28);
   outline-offset: 2px;
 }
@@ -5236,17 +5237,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   color: var(--muted);
 }
 .plate img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
-/* Corner ticks are part of the plate frame here, not a hover affordance -- they
-   are on at rest and brighten on the pointer, so a touch screen still gets the
-   drawing mark. .shot in the gallery below keeps its own hover-only rule. */
-.plate .corners {
-  position: absolute; inset: 10px; z-index: 3;
-  opacity: 0.5; pointer-events: none;
-  transition: opacity var(--dur-2) var(--ease);
-}
 .plate .shot-open { position: relative; }
-.plate .shot-open:hover .corners,
-.plate .shot-open:focus-visible .corners { opacity: 1; }
 /* The hero plate is the same component, given the hero's own column. */
 .case-fig { position: relative; }
 .case-fig figcaption { margin-top: 14px; }
@@ -5410,4 +5401,156 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 @media (max-width: 700px) {
   .case-grid { grid-template-columns: 1fr; }
   .stage, .stage-tall { grid-template-columns: 30px minmax(0, 1fr); }
+}
+
+/* ============================================================
+   SELECTION — the corner draw, applied to everything you can pick
+
+   The sector cards already framed themselves on hover: four marks that
+   scale out from their own corners, and two measuring rules that run in
+   from opposite ends. Every photograph the viewer can open now does the
+   same, so one gesture means one thing across the site instead of each
+   surface inventing its own brightening.
+   ============================================================ */
+.shot-open { position: relative; }
+/* A scrim under the marks. On a bright frame -- the shop floor, the tarpaulin
+   -- white corner ticks at 0.85 sat on near-white plate and vanished, which is
+   how the affordance came to look like nothing was happening. */
+.shot-open::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(125% 100% at 50% 50%,
+              transparent 38%, rgba(5, 6, 15, 0.42) 100%);
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease);
+}
+.shot-open:hover::after, .shot-open:focus-visible::after { opacity: 1; }
+
+.plate .corners, .shot .corners {
+  position: absolute;
+  inset: 10px;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease);
+}
+.plate .corners i, .shot .corners i, .case-card .corners i, .news-card .corners i {
+  width: 16px;
+  height: 16px;
+  border-color: rgba(255, 255, 255, 0.85);
+  transform: scale(0.55);
+  transition: transform var(--dur-3) var(--ease);
+}
+/* Each mark grows out of the corner it sits in. Without the per-corner origin
+   they all scale about their own centres and the set reads as four squares
+   inflating rather than as a frame being drawn. */
+.plate .corners i:nth-child(1), .shot .corners i:nth-child(1), .case-card .corners i:nth-child(1), .news-card .corners i:nth-child(1) { transform-origin: top left; }
+.plate .corners i:nth-child(2), .shot .corners i:nth-child(2), .case-card .corners i:nth-child(2), .news-card .corners i:nth-child(2) { transform-origin: top right; }
+.plate .corners i:nth-child(3), .shot .corners i:nth-child(3), .case-card .corners i:nth-child(3), .news-card .corners i:nth-child(3) { transform-origin: bottom left; }
+.plate .corners i:nth-child(4), .shot .corners i:nth-child(4), .case-card .corners i:nth-child(4), .news-card .corners i:nth-child(4) { transform-origin: bottom right; }
+
+.plate .corners::before, .plate .corners::after,
+.shot .corners::before, .shot .corners::after,
+.case-card .corners::before, .case-card .corners::after,
+.news-card .corners::before, .news-card .corners::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.28);
+  transform: scaleX(0);
+  transition: transform var(--dur-3) var(--ease);
+}
+.plate .corners::before, .shot .corners::before, .case-card .corners::before, .news-card .corners::before { top: 0; transform-origin: left; }
+.plate .corners::after,  .shot .corners::after,  .case-card .corners::after,  .news-card .corners::after  { bottom: 0; transform-origin: right; }
+
+.shot-open:hover .corners, .shot-open:focus-visible .corners { opacity: 1; }
+.shot-open:hover .corners i, .shot-open:focus-visible .corners i { transform: scale(1); }
+.shot-open:hover .corners::before, .shot-open:focus-visible .corners::before,
+.shot-open:hover .corners::after,  .shot-open:focus-visible .corners::after { transform: scaleX(1); }
+
+/* ---------- the project cards frame themselves too ---------- */
+.case-thumb { position: relative; }
+.case-card .corners {
+  position: absolute;
+  inset: 10px;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease);
+}
+.news-card .thumb { position: relative; }
+.news-card .corners {
+  position: absolute;
+  inset: 10px;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease);
+}
+.news-card:hover .corners, .news-card:focus-visible .corners,
+.case-card:hover .corners, .case-card:focus-visible .corners { opacity: 1; }
+.news-card:hover .corners i, .news-card:focus-visible .corners i,
+.case-card:hover .corners i, .case-card:focus-visible .corners i { transform: scale(1); }
+.news-card:hover .corners::before, .news-card:focus-visible .corners::before,
+.news-card:hover .corners::after,  .news-card:focus-visible .corners::after,
+.case-card:hover .corners::before, .case-card:focus-visible .corners::before,
+.case-card:hover .corners::after,  .case-card:focus-visible .corners::after { transform: scaleX(1); }
+
+/* ---------- next / index: the services row's bracket pair ---------- */
+.case-next-link { position: relative; }
+.case-next-link:hover { background: rgba(255, 255, 255, 0.028); }
+.case-next-link::before, .case-next-link::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease);
+}
+.case-next-link::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.case-next-link::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+.case-next-link:hover::before, .case-next-link:hover::after,
+.case-next-link:focus-visible::before, .case-next-link:focus-visible::after { opacity: 1; }
+
+/* ---------- the disciplines list picks up the services-row gesture ---------- */
+.case-close-grid .sector-services a {
+  position: relative;
+  padding-left: 0;
+  transition: color var(--dur-2) var(--ease), padding-left var(--dur-2) var(--ease);
+}
+.case-close-grid .sector-services a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: var(--line-strong);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-2) var(--ease);
+}
+.case-close-grid .sector-services a:hover { padding-left: 18px; }
+.case-close-grid .sector-services a:hover::before { transform: scaleX(1); }
+
+@media (hover: none) {
+  .plate .corners, .case-card .corners, .news-card .corners { display: none; }
+  .shot-open::after { display: none; }
+  .case-close-grid .sector-services a:hover { padding-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* the marks still appear; they just stop moving to get there */
+  .plate .corners i, .shot .corners i, .case-card .corners i, .news-card .corners i { transform: none; }
+  .plate .corners::before, .plate .corners::after,
+  .shot .corners::before, .shot .corners::after,
+  .case-card .corners::before, .case-card .corners::after,
+  .news-card .corners::before, .news-card .corners::after { transform: scaleX(1); }
+  .case-close-grid .sector-services a:hover { padding-left: 0; }
 }

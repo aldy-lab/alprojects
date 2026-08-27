@@ -703,7 +703,7 @@ def news_index():
                     prio=' fetchpriority="high"' if i == 0 else "")
         cards.append("""        <a class="news-card" href="/news/{slug}.html">
           <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8599;</span></span>
-          <span class="thumb"><img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}" loading="{loading}"{prio}></span>
+          <span class="thumb"><img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}" loading="{loading}"{prio}><span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
           <h2>{title}</h2>
         </a>""".format(**card))
     return """
@@ -1458,8 +1458,11 @@ def cases_html():
         alt, _cap, w, h = c["photos"][0]
         cards.append(
             '        <a class="case-card" href="/projects/%s.html">\n'
-            '          <span class="case-thumb"><img src="/assets/projects/cases/%s/01-600.webp"\n'
-            '               alt="%s" width="%d" height="%d" loading="%s" decoding="async"></span>\n'
+            '          <span class="case-thumb">\n'
+            '            <img src="/assets/projects/cases/%s/01-600.webp"\n'
+            '                 alt="%s" width="%d" height="%d" loading="%s" decoding="async">\n'
+            '            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>\n'
+            '          </span>\n'
             '          <span class="case-txt">\n'
             '            <span class="case-top">\n'
             '              <span class="case-num">%02d</span>\n'

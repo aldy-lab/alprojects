@@ -626,6 +626,43 @@ pixels tall in the card thumbnail is perfectly readable in the viewer.
   closely enough that a reader may take them for the same job. Kept for now,
   since the clips it shows also appear in frame 01; drop it if that bothers you.
 
+## Selection — one hover gesture, site-wide
+
+The sector cards always framed themselves on hover: four corner marks that scale
+out **from their own corners** (per-corner `transform-origin` — without it they
+scale about their centres and read as four squares inflating, not as a frame
+being drawn), plus two measuring rules that run in from opposite ends. Every
+surface you can pick now does the same thing:
+
+| Surface | Where |
+|---|---|
+| `.plate` | case-page photographs, hero included |
+| `.shot` | the `/projects` "From site" gallery |
+| `.case-card` | the project cards on `/projects` |
+| `.news-card` | news index **and** the homepage row |
+| `.sector-card` | unchanged — this is the original |
+
+Anything the viewer can open also gets `.shot-open::after`, a radial scrim that
+darkens only the edges. White corner ticks at 0.85 alpha sat on near-white
+plate — the shop floor, the tarpaulin — and disappeared, which is why the
+affordance looked like nothing was happening at all.
+
+`.case-next-link` and the disciplines list take the *services row* gesture
+instead — the 9px bracket pair and the sliding indent — because they are rows,
+not frames.
+
+Two rules that have to travel with it: `@media (hover: none)` drops the marks
+and the scrim entirely, and `@media (prefers-reduced-motion: reduce)` keeps them
+but sets the marks to their final transform so only opacity changes.
+
+The homepage news cards are hand-authored in `index.html`, not generated, so
+they need the `<span class="corners">` added by hand — they were missed the
+first time round and only turned up because the hover was tested on `/` as well
+as on `/news/`. Anything new that should participate needs three things: the
+corners span in the markup, its selector folded into the block at the end of
+`css/style.css`, and its selector added to `measure()` in `js/main.js` plus the
+`html.blueprint` outline rule, so it joins blueprint mode too.
+
 ## TODO before go-live (client input needed)
 
 - [x] **Calendly** — `BOOKING_URL` is set to
