@@ -2155,4 +2155,8 @@ S = {
         'L’unica eccezione è il calendario appuntamenti nella pagina contatti. Non viene caricato finché non premi il pulsante che lo apre; se lo fai, in quel momento Calendly imposta i propri cookie. Se non lo fai, non viene impostato nulla.',
     'Some applicants choose to upload a medical or fitness certificate. This is health data and falls under Article 9 GDPR. We process it only where it is necessary for obligations in the field of employment and occupational health and safety law (Article 9(2)(b)), we store it separately from other application data, and access is limited to the people responsible for mobilisation.':
         'Alcuni candidati scelgono di caricare un certificato medico o di idoneità. Si tratta di dati sanitari e rientrano nell’articolo 9 del GDPR. Li trattiamo solo ove necessario per obblighi in materia di diritto del lavoro e di salute e sicurezza sul lavoro (articolo 9, paragrafo 2, lettera b), li conserviamo separatamente dagli altri dati di candidatura e l’accesso è limitato alle persone responsabili della mobilitazione.',
+
+    # ---- slide 3 valve-station photograph, 29 Aug 2026 ----
+    'Tie-in piping and valve station at a tank farm, with gate and globe valves set on stands and the run tying into the existing rack':
+        'Tubazioni di collegamento e stazione valvole in un parco serbatoi, con valvole a saracinesca e a globo poste su supporti e la linea collegata al pipe rack esistente',
 }

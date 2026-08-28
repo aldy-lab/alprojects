@@ -2158,4 +2158,8 @@ S = {
         'Die einzige Ausnahme ist der Terminkalender auf der Kontaktseite. Er wird erst geladen, wenn Sie die Schaltfläche drücken, die ihn öffnet; tun Sie das, setzt Calendly zu diesem Zeitpunkt eigene Cookies. Tun Sie es nicht, wird nichts gesetzt.',
     'Some applicants choose to upload a medical or fitness certificate. This is health data and falls under Article 9 GDPR. We process it only where it is necessary for obligations in the field of employment and occupational health and safety law (Article 9(2)(b)), we store it separately from other application data, and access is limited to the people responsible for mobilisation.':
         'Manche Bewerber laden ein ärztliches Attest oder eine Tauglichkeitsbescheinigung hoch. Das sind Gesundheitsdaten und fallen unter Artikel 9 DSGVO. Wir verarbeiten sie nur, soweit dies für Pflichten aus dem Arbeitsrecht und dem Arbeitsschutzrecht erforderlich ist (Artikel 9 Absatz 2 Buchstabe b), speichern sie getrennt von den übrigen Bewerbungsunterlagen, und der Zugriff ist auf die für die Mobilisierung zuständigen Personen beschränkt.',
+
+    # ---- slide 3 valve-station photograph, 29 Aug 2026 ----
+    'Tie-in piping and valve station at a tank farm, with gate and globe valves set on stands and the run tying into the existing rack':
+        'Anbindungsleitungen und Armaturenstation in einem Tanklager, mit Absperrschiebern und Durchgangsventilen auf Böcken und der Leitung, die in die bestehende Rohrbrücke eingebunden ist',
 }

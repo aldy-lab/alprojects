@@ -36,7 +36,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=264860b1">
+  <link rel="stylesheet" href="/css/style.css?v=943a3ac5">
   <link rel="preload" as="image" href="/assets/hero-bg.webp" fetchpriority="high">
 
   <script type="application/ld+json">
@@ -384,7 +384,25 @@
 
         <!-- 3 / 5 -->
         <article class="service-slide" id="service-mechanical">
-          <div class="bg" style="background-image:url('/assets/svc-mechanical-photo.webp')"></div>
+          <!-- Slide 3 is the one slide served as a real <picture>: the frame has
+               a 4:5 phone crop of its own, and the alt text carries meaning the
+               other four slides put in their headings. Focal point 52%/60% -- a
+               straight 50%/50% cuts the orange handwheel at common desktop
+               heights. -->
+          <div class="bg">
+            <picture>
+              <source type="image/webp" media="(max-width: 600px)"
+                      srcset="/assets/svc-mechanical-valve-station-mobile-1080x1350.webp">
+              <source type="image/jpeg" media="(max-width: 600px)"
+                      srcset="/assets/svc-mechanical-valve-station-mobile-1080x1350.jpg">
+              <source type="image/webp"
+                      srcset="/assets/svc-mechanical-valve-station-1200x778.webp 1200w, /assets/svc-mechanical-valve-station-1500x973.webp 1500w, /assets/svc-mechanical-valve-station-1920x1245.webp 1920w"
+                      sizes="100vw">
+              <img src="/assets/svc-mechanical-valve-station-1500x973.jpg"
+                   alt="Tubazioni di collegamento e stazione valvole in un parco serbatoi, con valvole a saracinesca e a globo poste su supporti e la linea collegata al pipe rack esistente"
+                   width="1500" height="973" loading="lazy" decoding="async">
+            </picture>
+          </div>
           <div class="service-top">
             <h3>Montaggi meccanici</h3>
             <span class="count">3/5</span>
