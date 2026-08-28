@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=1d3bfce0">
+  <link rel="stylesheet" href="/css/style.css?v=264860b1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -138,17 +138,37 @@
 
   <main id="main" class="page">
 
-    <div class="container page-head">
-      <p class="eyebrow">06 &middot; Unternehmen</p>
-      <h1 class="page-title article-title">Zu den stärksten Unternehmen Litauens</h1>
-      <p class="page-meta"><time datetime="2026-06-23">23. Juni 2026</time></p>
+    <section class="art-head">
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:74%; top:30%" aria-hidden="true"></span>
+        <span class="sheet-plus" style="left:60%; top:76%" aria-hidden="true"></span>
+        <span class="sheet-plus" style="left:88%; top:64%" aria-hidden="true"></span>
+        <span class="sheet-dim sheet-dim-bl">1200X954</span>
+      </span>
+      <div class="container page-head">
+        <p class="eyebrow">06 &middot; Unternehmen</p>
+        <h1 class="page-title article-title">Zu den stärksten Unternehmen Litauens</h1>
+        <p class="page-meta"><time datetime="2026-06-23">23. Juni 2026</time></p>
+      </div>
+    </section>
+
+    <!-- The plate sits on the same column as the type. It used to be a plain
+         .container while everything else was .container.prose, so the photograph
+         started 130px to the left of the headline it belonged to and finished
+         50px short of it on the right -- two left edges stacked, which is what
+         made the block under it look wrong. -->
+    <div class="container art-figure">
+      <figure class="art-plate">
+        <span class="art-frame">
+          <img src="/assets/projects/engineer-drawings-1200.webp" alt="ALPROJECTS Ingenieur arbeitet vor Ort nach Isometrien" width="1200" height="954"
+               fetchpriority="high" decoding="async">
+          <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </span>
+      </figure>
     </div>
 
-    <div class="container">
-      <img class="article-hero" src="/assets/projects/engineer-drawings-1200.webp" alt="ALPROJECTS Ingenieur arbeitet vor Ort nach Isometrien" width="1200" height="954">
-    </div>
-
-    <div class="container prose">
+    <div class="container prose art-body">
       <!-- NOTE(ALPROJECTS): written from your own LinkedIn carousel. Relative
            post dates ("2d", "1w") were resolved against 15 Aug 2026 — check them.
            The photo is stock from the original design, not the post's image. -->

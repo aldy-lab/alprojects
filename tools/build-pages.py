@@ -696,17 +696,31 @@ for _i, _a in enumerate(ARTICLES, 1):
     _a["num"] = "%02d" % _i
 
 ARTICLE_BODY = """
-    <div class="container page-head">
-      <p class="eyebrow">{num} &middot; {cat}</p>
-      <h1 class="page-title article-title">{title}</h1>
-      <p class="page-meta"><time datetime="{iso}">{date}</time></p>
+    <section class="art-head">
+{sheet}
+      <div class="container page-head">
+        <p class="eyebrow">{num} &middot; {cat}</p>
+        <h1 class="page-title article-title">{title}</h1>
+        <p class="page-meta"><time datetime="{iso}">{date}</time></p>
+      </div>
+    </section>
+
+    <!-- The plate sits on the same column as the type. It used to be a plain
+         .container while everything else was .container.prose, so the photograph
+         started 130px to the left of the headline it belonged to and finished
+         50px short of it on the right -- two left edges stacked, which is what
+         made the block under it look wrong. -->
+    <div class="container art-figure">
+      <figure class="art-plate">
+        <span class="art-frame">
+          <img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}"
+               fetchpriority="high" decoding="async">
+          <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </span>
+      </figure>
     </div>
 
-    <div class="container">
-      <img class="article-hero" src="/assets/{img}" alt="{alt}" width="{w}" height="{h}">
-    </div>
-
-    <div class="container prose">
+    <div class="container prose art-body">
       <!-- NOTE(ALPROJECTS): written from your own LinkedIn carousel. Relative
            post dates ("2d", "1w") were resolved against 15 Aug 2026 — check them.
            The photo is stock from the original design, not the post's image. -->
@@ -2298,6 +2312,9 @@ for a in ARTICLES:
     body = dict(a)
     body["paras"] = "\n".join("      <p>%s</p>" % p for p in a["body"])
     body["factblock"] = facts_html(a.get("facts"))
+    # the drawing sheet the project pages use, so news reads as the same site
+    body["sheet"] = _sheet("%sX%s" % (a["w"], a["h"]),
+                           (("74%", "30%"), ("60%", "76%"), ("88%", "64%")), "bl")
     write("news/%s.html" % a["slug"],
           page(a.get("seo", a["title"]), a["lead"], ARTICLE_BODY.format(**body),
                canonical="/news/%s.html" % a["slug"],
