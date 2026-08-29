@@ -6279,8 +6279,14 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
 
   /* a 16px checkbox is a 16px target; the label is already clickable, but the
      box itself has to be reachable too */
-  input[type="checkbox"], input[type="radio"] { width: 22px; height: 22px; }
-  .nl-consent input { margin-top: 1px; }
+  input[type="checkbox"], input[type="radio"] { width: 24px; height: 24px; }
+  .nl-consent input { margin-top: 0; }
+  /* the label is the real target: give the whole row the height, so a thumb
+     landing anywhere on the sentence toggles the box */
+  .nl-consent, .consent-row, label:has(> input[type="checkbox"]) {
+    min-height: 44px;
+    align-items: center;
+  }
 }
 
 /* Slide 2 sat at 2.48:1 for its paragraph and 2.87 for the service list --
@@ -6300,3 +6306,32 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
      rope     desc 5.97  nav 6.58  chips 9.36  h3 11.53 */
 #service-welding .bg { filter: saturate(0.7) brightness(0.45) contrast(1.05); }
 #service-rope .bg    { filter: saturate(0.7) brightness(0.55) contrast(1.04); }
+
+/* ============================================================
+   VERTICAL RHYTHM
+
+   Measured across all 35 pages: 46 real gaps, median 80px, but a tail
+   running to 226. The cause is sections that both pad -- .sectors ends
+   with 96px and .why opens with 130, so the seam between them is 226
+   for no reason either of them intended.
+
+   Two steps, and sections pad on ONE side. The bottom of the last block
+   on a page is already handled by main's own floor.
+   ============================================================ */
+/* Two steps, sized from what the site already does rather than imposed on it:
+   the median gap is 80px, so the standard step is 80 and the chapter break is
+   112. A first attempt used 96/128 and made four seams WORSE, because those
+   numbers were larger than the paddings they replaced -- .case-seq went from
+   52 to 94 and its gap grew from 138 to 180. A scale has to be measured off
+   the thing it is normalising. */
+:root {
+  --gap-section: clamp(44px, 5vw, 80px);
+  --gap-major: clamp(60px, 7vw, 112px);
+}
+/* Sections pad on one side. .sectors used to close with 96px into .why
+   opening with 130, which is where the 226px seam came from. */
+.sectors { padding: var(--gap-major) 0 0; }
+.why { padding: var(--gap-major) 0 0; }
+.cta { padding-top: var(--gap-major); padding-bottom: 0; }
+.downloads { padding-bottom: 0; }
+.advantages { padding: var(--gap-section) 0 0; }

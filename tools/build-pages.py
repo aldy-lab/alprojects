@@ -2172,6 +2172,7 @@ SERVICE_GROUPS = [
                      "Clash detection before fabrication",
                      "Data in the client&rsquo;s CAD format"]),
         dict(slug="quality-control", nav="Quality control (QA/QC)", h1="Quality assurance and quality control (QA/QC)",
+             seo="Quality control and QA/QC",
              lead="Quality is what you can prove afterwards. We inspect piping and steel structures "
                   "and leave documentation that holds up when the client, the surveyor or the "
                   "auditor asks for it.",
@@ -2339,7 +2340,10 @@ def _service_desc(sv):
 
 for _sv in SERVICES_FLAT:
     write("services/%s.html" % _sv["slug"],
-          page(_sv["h1"], _service_desc(_sv), service_page_body(_sv),
+          # seo overrides h1 where the heading is longer than a title tag wants;
+          # articles already work this way. Only quality control needs it: its
+          # heading plus the suffix ran to 64 characters.
+          page(_sv.get("seo", _sv["h1"]), _service_desc(_sv), service_page_body(_sv),
                canonical="/services/%s.html" % _sv["slug"], og="services",
                head_extra=service_ld(_sv) +
                           breadcrumb_ld([("Home", "/"), ("Services", "/services.html"),

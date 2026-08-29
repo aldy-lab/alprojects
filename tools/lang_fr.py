@@ -2193,4 +2193,16 @@ S = {
     # ---- hero foot, 29 Aug 2026 ----
     '<span>Klaip&#279;da, Lithuania</span> <span class="hero-scroll">Scroll<i></i></span>':
         '<span>Klaip&#279;da, Lituanie</span> <span class="hero-scroll">Faire d&#233;filer<i></i></span>',
+
+    # ---- sector titles disambiguated + news description, 29 Aug 2026 ----
+    'Industrial sector — ALPROJECTS Group':
+        'Secteur industriel — ALPROJECTS Group',
+    'Offshore sector — ALPROJECTS Group':
+        'Secteur offshore — ALPROJECTS Group',
+    'Renewables sector — ALPROJECTS Group':
+        'Secteur des énergies renouvelables — ALPROJECTS Group',
+    'Shipbuilding sector — ALPROJECTS Group':
+        'Secteur de la construction navale — ALPROJECTS Group',
+    'Project updates and engineering insights from ALPROJECTS Group — welding, piping, NDT and offshore scopes across Northern and Western Europe.':
+        'Actualités de chantiers et retours d’ingénierie d’ALPROJECTS Group — soudage, tuyauterie, CND et lots offshore en Europe du Nord et de l’Ouest.',
 }
