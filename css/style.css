@@ -6138,7 +6138,10 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
   gap: 20px;
   padding-top: 16px;
   padding-bottom: 18px;
-  border-top: 1px solid var(--line);
+  /* No rule. It was added to give the empty band under the lead a job, and it
+     became the line at the bottom of the hero -- the thing being pointed at.
+     The label and the scroll cue carry the band on their own; a hairline
+     across a photograph is one element too many. */
   font-size: var(--tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -6176,10 +6179,28 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
    there is no edge to see, and the section starts sooner. The fade is on
    the frame and the scrim, not on .sector-hero, so the foot row and the
    type stay crisp on top of it. */
+/* The fade goes on the frame after all, but measured from the frame's own
+   bottom rather than as a percentage. The frame is height:100%+140px with
+   top:-70px for the parallax headroom, so the hero's bottom edge sits at
+   calc(100% - 70px) of the frame. Ending the fade exactly there is what makes
+   the photograph reach zero at the cut instead of being sliced at 54% opacity,
+   which is the line that kept coming back. */
 .sector-hero-img, .sector-hero-scrim {
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 200px), transparent calc(100% - 70px));
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 200px), transparent calc(100% - 70px));
+}
+/* The scrim is inset:0, so its bottom already is the hero's; it fades over the
+   same 130px measured from its own end. */
+.sector-hero-scrim {
   -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 130px), transparent 100%);
   mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 130px), transparent 100%);
 }
+/* And the hero stops painting its own ground. It was filling with var(--bg)
+   while the page below carries that same colour PLUS the document-wide light
+   field, so the two never matched and the boundary showed as a 5.8/255 step
+   even once the photograph faded correctly. Transparent lets the field run
+   through unbroken. */
+.sector-hero { background: transparent; }
 .co-vm { padding-top: clamp(34px, 4vw, 52px); }
 
 /* ---------- the enquiry panels ----------
