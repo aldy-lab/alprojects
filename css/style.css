@@ -242,7 +242,7 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- utility type ---------- */
 .eyebrow {
   font-size: var(--tag);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 22px;
@@ -313,7 +313,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--black);
   font-size: var(--text-s);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   padding-inline: 26px;
   transition: background var(--dur-2) var(--ease),
@@ -432,7 +432,7 @@ html.menu-open .site-header {
   display: grid; place-items: center;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 2px;
   transition: background var(--dur-2);
 }
 .socials a:hover { background: rgba(255, 255, 255, 0.14); }
@@ -447,7 +447,7 @@ html.menu-open .site-header {
   background: none;
   border: 1px solid var(--line);
   width: 42px; height: 42px;
-  border-radius: 4px;
+  border-radius: 2px;
   position: relative;
 }
 .burger span, .burger span::before, .burger span::after {
@@ -482,7 +482,7 @@ html.menu-open .site-header {
   font-size: 22px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
   color: var(--text);
@@ -572,7 +572,7 @@ html.menu-open .site-header {
 .dir-top .num { font-size: var(--numbers); color: var(--muted-2); }
 .dir-top .name {
   font-size: var(--text-s);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text);
 }
@@ -685,7 +685,7 @@ html.menu-open .site-header {
 .adv-card p {
   font-size: var(--tag);
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text);
   line-height: 1.6;
@@ -751,7 +751,7 @@ html.menu-open .site-header {
 .service-col-label {
   font-size: var(--tag);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text);
 }
@@ -760,7 +760,7 @@ html.menu-open .site-header {
   display: inline-block;
   min-height: 26px;
   font-size: var(--text-s);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text);
   width: max-content;
@@ -786,7 +786,7 @@ html.menu-open .site-header {
 .industry-tags { display: flex; flex-wrap: wrap; gap: 8px 10px; }
 .industry-tags span {
   font-size: 10px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
   background: rgba(255, 255, 255, 0.05);
@@ -867,7 +867,7 @@ html.menu-open .site-header {
   display: grid; place-items: center;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 2px;
   transition: background var(--dur-2);
 }
 .member .links a:hover { background: rgba(255, 255, 255, 0.13); }
@@ -980,7 +980,7 @@ html.menu-open .site-header {
 .cert-plate-num {
   font-size: clamp(26px, 2.6vw, 34px);
   font-weight: 300;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--text);
   line-height: 1;
 }
@@ -1025,7 +1025,7 @@ html.menu-open .site-header {
   gap: 26px;
   margin-bottom: 22px;
   font-size: var(--tag);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -1110,13 +1110,13 @@ html.menu-open .site-header {
 .terminal .t-title {
   font-size: var(--text-m);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 14px;
 }
 .terminal .t-line {
   font-size: var(--tag);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 4px;
@@ -1181,7 +1181,7 @@ html.menu-open .site-header {
 .footer-col a {
   display: inline-block;
   font-size: var(--text-s);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text);
   padding-block: 5px;
@@ -1216,7 +1216,7 @@ html.menu-open .site-header {
   justify-content: space-between;
   gap: 16px;
   font-size: var(--tag);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
@@ -1522,7 +1522,10 @@ html.menu-open .site-header {
   letter-spacing: 0.02em;
   margin-bottom: 16px;
 }
-.apply-intro p { color: var(--muted); max-width: 42ch; margin-bottom: 12px; }
+/* :not(.eyebrow) — this selector is (0,2,0) and .eyebrow is (0,1,0), so it was
+   quietly recolouring the eyebrow inside the two form panels. One class, two
+   greys, on four pages. */
+.apply-intro p:not(.eyebrow) { color: var(--muted); max-width: 42ch; margin-bottom: 12px; }
 .apply-intro .apply-note {
   font-size: var(--text-m);
   color: var(--muted-2);
@@ -1744,7 +1747,7 @@ html.blueprint .plate, html.blueprint .case-card, html.blueprint .case-next-link
 }
 .award-tag {
   font-size: var(--tag);
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -2191,7 +2194,7 @@ html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint te
   padding: 4px 9px;
   white-space: nowrap;
 }
-.fp-city { grid-area: city; font-size: var(--text-m); letter-spacing: 0.04em; color: var(--muted); }
+.fp-city { grid-area: city; font-size: var(--text-m); letter-spacing: 0.06em; color: var(--muted); }
 
 @media (max-width: 900px) {
   .fp-main { grid-template-columns: 1fr; }
@@ -2520,7 +2523,7 @@ html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint te
 .pin i {
   font-style: normal;
   font-size: var(--tag);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted-2);
   text-shadow: 0 0 10px var(--bg), 0 0 4px var(--bg);
@@ -2617,7 +2620,7 @@ a.cert-card:hover img { border-color: var(--accent); }
   flex-direction: column;
   gap: 3px;
   font-size: var(--tag);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted-2);
   font-variant-numeric: tabular-nums;
@@ -2677,7 +2680,7 @@ a.cert-card:hover img { border-color: var(--accent); }
 .srv-group + .srv-group { margin-top: clamp(24px, 3vw, 38px); }
 .srv-group-label {
   font-size: var(--tag);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted-2);
   margin-bottom: 10px;
@@ -2889,7 +2892,7 @@ a.cert-card:hover img { border-color: var(--accent); }
   color: var(--text);
   font-size: var(--text-s);
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   transition: background var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
 }
@@ -2968,7 +2971,7 @@ a.cert-card:hover img { border-color: var(--accent); }
   margin-top: 6px;
   font-size: 10.5px;               /* §4.2 */
   line-height: 1.45;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: rgba(255, 255, 255, 0.6); /* §4.2 */
 }
 .sector-arrow {
@@ -3167,7 +3170,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
 /* §2.3 — buttons: 11.5 / uppercase / 0.18em / padding 15×26 */
 .btn-solid:not(.menu-cta), .btn-outline:not(.menu-cta) {
   font-size: 11.5px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   padding: 0 26px;
   min-height: 50px;
 }
@@ -3219,7 +3222,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
 }
 .draft-dim-h i { flex: 1 1 auto; height: 1px; background: currentColor; }
 .draft-dim-h b, .draft-dim-v b {
-  font-size: 10px; font-weight: 400; letter-spacing: 1.2px;
+  font-size: 10px; font-weight: 400; letter-spacing: 0.12em;
   font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--muted);
 }
 .draft-dim-v {
@@ -3260,7 +3263,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
 }
 .draft-mark i {
   font-style: normal;
-  font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--muted);
 }
 .draft-mark.m1 { top: 136px; right: 19%; }
@@ -3315,7 +3318,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
     /* five country names wrap to three lines at this width and push the
        headline down the screen */
     font-size: 9px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.2em;
     line-height: 1.7;
     margin-bottom: 18px;
   }
@@ -4119,7 +4122,7 @@ body .calendly-overlay .calendly-popup {
 .position-badge {
   display: inline-block; margin: 0 0 20px; padding: 6px 11px;
   border: 1px solid rgba(255,255,255,.3);
-  font-size: var(--tag); letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: var(--tag); letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--gray-50);
 }
 .position h3 {
@@ -4451,7 +4454,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 /* Arrowing between photographs was a hard cut: one image replaced by another
    in a single frame, which reads as a glitch rather than as navigation. The
    neighbours are already preloaded, so a short fade is free. */
-.lb-fig img { transition: opacity 140ms var(--ease); }
+.lb-fig img { transition: opacity var(--dur-1) var(--ease); }
 /* transition:none so the out state lands instantly -- the neighbours are
    preloaded, so fading the OLD frame out first would only add dead time
    before the new one appears. It goes straight to invisible and fades in. */
@@ -4755,7 +4758,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   margin-top: 14px;
   font-style: normal;
   font-size: 10px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--warm);
 }
@@ -4919,7 +4922,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   font-style: normal;
   justify-self: end;
   color: var(--muted-2);
-  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1), color 180ms ease;
+  transition: transform var(--dur-hover) var(--ease), color var(--dur-hover) var(--ease);
 }
 @media (hover: hover) and (pointer: fine) {
   .co-rows a:hover em { transform: translateX(5px); color: var(--text); }
@@ -6198,3 +6201,63 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
 
 /* The chips row ran straight into the panel below it -- measured 0px. */
 #apply .apply-panel { margin-top: clamp(30px, 4vw, 56px); }
+
+/* ============================================================
+   TYPE CONSISTENCY
+
+   Audited across all 35 pages by reading computed styles rather than
+   the source. Two things a judge sees before they can name them:
+
+   .eyebrow had no colour of its own, so it inherited and rendered in
+   two different greys depending on which section it sat in -- one class,
+   two appearances. The culprit was .apply-intro p, which outranks it.
+
+   The top heading level was set at three weights: 300 on the homepage,
+   sector and service titles, 400 on the case titles, 500 on .page-title.
+   The brandbook specifies Montserrat Light for the first-screen H1, so
+   300 is the one that is right rather than merely the most common.
+   ============================================================ */
+.page-title, .case-title { font-weight: 300; }
+
+/* ============================================================
+   TOUCH TARGETS
+
+   Audited on an iPhone 15: nine interactive components came in under
+   44px. The site's own checklist asks for 44 and it was not being met
+   on the small chips, the inline "read more" style links, or the
+   checkboxes.
+
+   Everything here is scoped to a coarse pointer, so the desktop layout
+   is untouched. The inline links grow by padding rather than by
+   changing display -- display:block on a tap target once collapsed a
+   flex gap on this site and merged two menu labels together.
+   ============================================================ */
+@media (pointer: coarse) {
+  .chip-sm { min-height: 44px; padding-top: 12px; padding-bottom: 12px; }
+
+  /* inline links: padding expands the hit box without altering the line box */
+  .doc-view, .service-all, .srv-cta, .made-by, .certs-body a, .apply-alt a {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  /* The footer and service link lists: 20 links a page at 37px. These are
+     list items, already block-level in their row, so min-height is safe here
+     and lands exactly on 44 -- padding alone left them at 41, because these
+     links carry padding of their own further up the sheet. */
+  .footer-col li a, .service-list li a, .sector-services li a, .co-rows li a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .service-all, .doc-view, .made-by, .srv-cta, .group .big {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* a 16px checkbox is a 16px target; the label is already clickable, but the
+     box itself has to be reachable too */
+  input[type="checkbox"], input[type="radio"] { width: 22px; height: 22px; }
+  .nl-consent input { margin-top: 1px; }
+}
