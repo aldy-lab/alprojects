@@ -6139,13 +6139,16 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
   font-size: var(--tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted-2);
+  /* --muted-2 measured 2.96:1 here: it sits over the part of the frame that
+     is fading out, so the ground behind it is lighter than the scrim below
+     the type above. The brand's light grey clears 4.5 with room. */
+  color: var(--gray-50);
 }
 .hero-scroll { display: inline-flex; align-items: center; gap: 10px; }
 .hero-scroll i {
   width: 1px;
   height: 18px;
-  background: linear-gradient(180deg, var(--muted-2), transparent);
+  background: linear-gradient(180deg, var(--gray-50), transparent);
   animation: hero-scroll-cue 2.4s var(--ease) infinite;
 }
 @keyframes hero-scroll-cue {
@@ -6158,3 +6161,40 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
 .co-hero .sheet-dim-br { bottom: 78px; }
 @media (prefers-reduced-motion: reduce) { .hero-scroll i { animation: none; opacity: 0.7; } }
 @media (max-width: 700px) { .hero-foot { display: none; } .co-hero .sector-hero-in { padding-bottom: 46px; } }
+
+/* ============================================================
+   THE HERO'S BOTTOM EDGE, AND THE TWO FORM PANELS
+   ============================================================ */
+
+/* The hero stopped dead and the section below opened with 88px of empty
+   padding -- 106px of black between a photographic hero and the first
+   word of the next section, which is the band that kept getting circled.
+   The photograph dissolves into the page over its last 130px instead, so
+   there is no edge to see, and the section starts sooner. The fade is on
+   the frame and the scrim, not on .sector-hero, so the foot row and the
+   type stay crisp on top of it. */
+.sector-hero-img, .sector-hero-scrim {
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 130px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 130px), transparent 100%);
+}
+.co-vm { padding-top: clamp(34px, 4vw, 52px); }
+
+/* ---------- the enquiry panels ----------
+   Both were carrying a blue wash that exists nowhere else on their page.
+   Each now matches the card it sits next to: the careers panel takes the
+   vacancy card's flat white wash, the contacts panel takes the booking
+   card's warm corner glow. Nothing invented -- these are the two
+   components' own values. */
+#apply .apply-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+#enquiry .apply-panel {
+  background:
+    radial-gradient(120% 140% at 88% 8%, rgba(255, 222, 210, 0.07) 0%, transparent 58%),
+    rgba(255, 255, 255, 0.018);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* The chips row ran straight into the panel below it -- measured 0px. */
+#apply .apply-panel { margin-top: clamp(30px, 4vw, 56px); }
