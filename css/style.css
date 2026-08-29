@@ -6261,3 +6261,21 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
   input[type="checkbox"], input[type="radio"] { width: 22px; height: 22px; }
   .nl-consent input { margin-top: 1px; }
 }
+
+/* Slide 2 sat at 2.48:1 for its paragraph and 2.87 for the service list --
+   the same failure slide 3 had, and the same cause: a bright frame under the
+   shared bottom-only scrim. It takes the same grading, and that alone clears
+   every target here, so it gets no extra scrim. Measured with the slide
+   pinned and the type hidden: paragraph 4.63, list 5.12, chips 9.27,
+   headline 8.18. */
+#service-pipe .bg { filter: saturate(0.7) brightness(0.62) contrast(1.04); }
+
+/* Measuring all five slides rather than only the one that was reported found
+   two more: welding at 1.69 for its service list, and rope access at 3.08 for
+   its paragraph -- the latter caused by the frame swap above, whose sunset is
+   far brighter than the frame it replaced. Both take the same grading, tuned
+   to what each frame needs.
+     welding  desc 7.93  nav 5.14  chips 9.43  h3 10.08
+     rope     desc 5.97  nav 6.58  chips 9.36  h3 11.53 */
+#service-welding .bg { filter: saturate(0.7) brightness(0.45) contrast(1.05); }
+#service-rope .bg    { filter: saturate(0.7) brightness(0.55) contrast(1.04); }

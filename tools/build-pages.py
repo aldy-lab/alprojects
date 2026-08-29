@@ -1994,6 +1994,56 @@ def article_ld(a):
         "mainEntityOfPage": "https://alprojects.co/news/%s.html" % a["slug"],
     })
 
+def service_ld(sv):
+    """Service schema for a service page. Google reads name, provider, the area
+    served and the service type; without it these twelve pages carry only a
+    breadcrumb and describe nothing machine-readable about what is offered."""
+    return jsonld(_strip({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": sv["h1"],
+        "serviceType": sv["h1"],
+        "description": _service_desc(sv),
+        "provider": {"@type": "Organization", "name": "ALPROJECTS Group",
+                     "url": "https://alprojects.co/"},
+        "areaServed": [{"@type": "Country", "name": c} for c in
+                       ("Lithuania", "Norway", "United Kingdom",
+                        "Netherlands", "Germany", "Belgium")],
+        "url": "https://alprojects.co/services/%s" % sv["slug"],
+    }))
+
+
+def contact_ld():
+    """The contacts page had no structured data at all. This is the one page a
+    search engine should be able to read an address and a phone number off."""
+    return jsonld(_strip({
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "url": "https://alprojects.co/contacts",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "ALPROJECTS, UAB",
+            "url": "https://alprojects.co/",
+            "email": "info@alprojects.eu",
+            "telephone": "+37063663744",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "\u0160ilut\u0117s pl. 2-536",
+                "postalCode": "LT-91110",
+                "addressLocality": "Klaip\u0117da",
+                "addressCountry": "LT",
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "sales",
+                "email": "info@alprojects.eu",
+                "telephone": "+37063663744",
+                "availableLanguage": ["en", "lt", "de", "fr", "it"],
+            },
+        },
+    }))
+
+
 def breadcrumb_ld(trail):
     return jsonld({
         "@context": "https://schema.org",
@@ -2291,7 +2341,8 @@ for _sv in SERVICES_FLAT:
     write("services/%s.html" % _sv["slug"],
           page(_sv["h1"], _service_desc(_sv), service_page_body(_sv),
                canonical="/services/%s.html" % _sv["slug"], og="services",
-               head_extra=breadcrumb_ld([("Home", "/"), ("Services", "/services.html"),
+               head_extra=service_ld(_sv) +
+                          breadcrumb_ld([("Home", "/"), ("Services", "/services.html"),
                                          (_sv["h1"], "/services/%s.html" % _sv["slug"])])))
 
 # /services.html shows the first service, and is the entry point people link to
@@ -2318,10 +2369,13 @@ for _i, _c in enumerate(CASES):
 
 write("contacts.html", page("Contacts",
       "Contact ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.",
-      CONTACTS, canonical="/contacts.html", og="contacts"))
+      CONTACTS, canonical="/contacts.html", og="contacts",
+      head_extra=contact_ld() +
+                 breadcrumb_ld([("Home", "/"), ("Contacts", "/contacts.html")])))
 
 write("news/index.html", page("News",
-      "Project updates and engineering insights from ALPROJECTS Group.",
+      "Project updates and engineering insights from ALPROJECTS Group — welding, "
+      "piping, NDT and offshore scopes across Northern and Western Europe.",
       news_index(), canonical="/news/", og="news"))
 
 for a in ARTICLES:
@@ -2412,7 +2466,10 @@ def sector_body(slug, name, img, lead, service_slugs):
 
 for _slug, _name, _img, _lead, _svcs in SECTOR_PAGES:
     write("sectors/%s.html" % _slug,
-          page(_name, _lead[:150], sector_body(_slug, _name, _img, _lead, _svcs),
+          # "%s sector", not "%s": /sectors/shipbuilding and /services/shipbuilding
+          # were both titled "Shipbuilding — ALPROJECTS Group", which is two of
+          # our own pages competing for one query.
+          page("%s sector" % _name, _lead[:150], sector_body(_slug, _name, _img, _lead, _svcs),
                canonical="/sectors/%s.html" % _slug, og="projects",
                head_extra=breadcrumb_ld([("Home", "/"), ("Projects", "/projects.html"),
                                          (_name, "/sectors/%s.html" % _slug)])))
