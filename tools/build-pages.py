@@ -879,6 +879,7 @@ COMPANY = """
         <figure class="co-people-img reveal reveal-d1">
           <img src="/assets/tia-people.webp" alt="Rope access technician working on a turbine blade"
                width="860" height="645" loading="lazy" decoding="async">
+          <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </figure>
       </div>
       <div class="co-figs reveal">
@@ -2161,10 +2162,12 @@ ROPE_DEEP = """
           <figure>
             <img src="/assets/tia-people.webp" alt="Rope access technician working on a wind turbine blade"
                  width="860" height="645" loading="lazy" decoding="async">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </figure>
           <figure>
             <img src="/assets/tia-hero.webp" alt="Three technicians on a wind farm site at first light"
                  width="1900" height="814" loading="lazy" decoding="async">
+            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </figure>
         </div>
         <p class="srv-deep-note srv-deep-caption">The same crew works offshore topsides, turbine

@@ -1350,8 +1350,12 @@ html.menu-open .site-header {
 }
 .prose > h2:first-child { margin-top: 0; padding-top: 0; }
 .prose > h2:first-child::before { display: none; }
-.prose p { margin-bottom: 14px; max-width: 74ch; }
-.prose ul { margin: 0 0 18px; max-width: 74ch; }
+/* 68, not 74. Running text past about 70 characters costs the reader the
+   return sweep -- the eye loses the next line's start. The pages this governs
+   (privacy, projects, contacts, sectors) are the ones with the longest
+   unbroken prose on the site, so they feel it most. */
+.prose p { margin-bottom: 14px; max-width: 68ch; }
+.prose ul { margin: 0 0 18px; max-width: 68ch; }
 .prose li {
   position: relative;
   padding-left: 20px;
@@ -5905,3 +5909,71 @@ html.lb-open, html.lb-open body { overflow: hidden; }
       rgba(7, 7, 8, 0.80) 0%,
       rgba(7, 7, 8, 0.00) 60%);
 }
+
+/* ============================================================
+   ONE IMAGE LANGUAGE, TWO STATES
+
+   Every photograph on the site now carries the same corner marks. What
+   differs is whether they move, and that difference means something:
+
+     drawn in on hover  = you can open this   (.shot, .plate, .case-card,
+                          .news-card, .sector-card, .doc-cover)
+     on at rest, still  = a plate, not a control  (.art-plate, .stats-photo,
+                          .co-people-img, .srv-deep-photos)
+
+   Before this, the second group had no treatment at all -- three photo
+   components on the site were simply dead to the pointer, which is what
+   read as inconsistent. Giving them the hover marks instead would have
+   been worse: a mark that promises a click and does nothing.
+
+   Full-bleed grounds (.sector-hero-img, .co-band, .srv-deep-band, the
+   slide backgrounds) stay unmarked. They are the surface, not an object
+   on it.
+   ============================================================ */
+.stats-photo, .co-people-img, .srv-deep-photos figure { position: relative; }
+.stats-photo .corners,
+.co-people-img .corners,
+.srv-deep-photos figure .corners {
+  position: absolute;
+  inset: 10px;
+  z-index: 3;
+  pointer-events: none;
+}
+.stats-photo .corners i,
+.co-people-img .corners i,
+.srv-deep-photos figure .corners i {
+  width: 16px;
+  height: 16px;
+  border-color: rgba(255, 255, 255, 0.85);
+}
+/* the static ones: on, quiet, and they do not move */
+.stats-photo .corners,
+.co-people-img .corners,
+.srv-deep-photos figure .corners { opacity: 0.45; }
+/* Certificate cards deliberately keep the border hover they already had.
+   They hold documents, not photographs: the corner marks would bracket the
+   card rather than the certificate inside it, sit in the padding, and go
+   invisible where they crossed white paper. Same language does not mean the
+   same device on components with different content. */
+
+/* ---------- measure ---------- */
+/* 146 characters a line, centred, with nothing capping it. Anything past
+   about 70 stops being read and starts being scanned. */
+.certs-note { max-width: 68ch; margin-left: auto; margin-right: auto; }
+.booking-note { max-width: 68ch; }
+.privacy-list li, .prose li { max-width: 72ch; }
+
+/* ---------- form focus ---------- */
+/* The border already went from rgba(255,255,255,.14) to near-white on focus,
+   which is visible. One pixel of it is thin for a form somebody fills in from
+   the keyboard, so it gets a ring as well -- inset, so it cannot shift layout. */
+.apply-form input:focus-visible,
+.apply-form select:focus-visible,
+.apply-form textarea:focus-visible,
+.newsletter input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+
