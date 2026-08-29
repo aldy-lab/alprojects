@@ -2162,4 +2162,8 @@ S = {
     # ---- slide 3 valve-station photograph, 29 Aug 2026 ----
     'Tie-in piping and valve station at a tank farm, with gate and globe valves set on stands and the run tying into the existing rack':
         'Anbindungsleitungen und Armaturenstation in einem Tanklager, mit Absperrschiebern und Durchgangsventilen auf Böcken und der Leitung, die in die bestehende Rohrbrücke eingebunden ist',
+
+    # ---- stats photo, nozzle tie-in, 29 Aug 2026 ----
+    'Grinding inside a tank shell beside a bolted nozzle flange, with a second fitter working at the opening above':
+        'Schleifarbeiten im Tankmantel neben einem verschraubten Stutzenflansch, während ein zweiter Monteur an der Öffnung darüber arbeitet',
 }
