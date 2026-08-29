@@ -2166,4 +2166,8 @@ S = {
     # ---- stats photo, nozzle tie-in, 29 Aug 2026 ----
     'Grinding inside a tank shell beside a bolted nozzle flange, with a second fitter working at the opening above':
         'Schleifarbeiten im Tankmantel neben einem verschraubten Stutzenflansch, während ein zweiter Monteur an der Öffnung darüber arbeitet',
+
+    # ---- hero foot, 29 Aug 2026 ----
+    '<span>Klaip&#279;da, Lithuania</span> <span class="hero-scroll">Scroll<i></i></span>':
+        '<span>Klaip&#279;da, Litauen</span> <span class="hero-scroll">Scrollen<i></i></span>',
 }

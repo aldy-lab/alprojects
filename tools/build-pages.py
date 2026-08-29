@@ -798,6 +798,12 @@ COMPANY = """
         <p class="sector-hero-lead hero-rise hero-rise-2">What we are here to do, and the rules we work by. Written
         down so a client can hold us to them.</p>
       </div>
+      <div class="hero-foot" aria-hidden="true">
+        <div class="container hero-foot-in">
+          <span>Klaip&#279;da, Lithuania</span>
+          <span class="hero-scroll">Scroll<i></i></span>
+        </div>
+      </div>
     </section>
 
     <!-- ================= VISION / MISSION ================= -->
