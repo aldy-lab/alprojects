@@ -5977,3 +5977,92 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 }
 
 
+
+/* ============================================================
+   PAGE HEROES — the drawing sheet over the photograph
+
+   The company and sector heroes were the last surfaces on the site with
+   no sheet on them: a full-bleed photograph, a scrim and type. Correct,
+   and indistinguishable from any other industrial site. They now carry
+   the same furniture as the homepage hero and the project pages -- the
+   module, registration crosshairs and a dimension label with the frame's
+   real pixel size -- so a hero reads as this site's rather than as a
+   stock plate.
+   ============================================================ */
+.co-hero { min-height: min(88svh, 900px); }
+
+/* Grade toward the site's near-monochrome. The scrim darkens; this takes
+   the colour out, which is what the rest of the site does to a photograph
+   that has to sit under type. */
+.sector-hero-img { filter: saturate(0.62) contrast(1.04); }
+
+/* Headroom for the parallax: the frame is taller than its hero and starts
+   above it, so it can travel without ever showing an edge. A scale()
+   instead would have cropped further into the composition. */
+.sector-hero-img {
+  top: -70px;
+  height: calc(100% + 140px);
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sector-hero-img { top: 0; height: 100%; will-change: auto; transform: none !important; }
+}
+
+.sector-hero .sheet-grid {
+  z-index: 1;
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 70%, transparent 98%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 70%, transparent 98%);
+}
+.sector-hero .sheet-furniture { z-index: 2; }
+.sector-hero .sheet-dim { opacity: 0.55; }
+/* bottom right: the type sits bottom left, and top right is under the header */
+.sheet-dim-br {
+  right: clamp(20px, 2.6vw, 44px);
+  bottom: clamp(26px, 3vw, 44px);
+}
+/* The brand glow, over the photograph rather than under it, so the frame
+   picks up the same light the homepage hero has. */
+.sector-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(44% 52% at 97% 6%, rgba(255, 222, 210, 0.16) 0%, rgba(255, 222, 210, 0.05) 42%, transparent 74%),
+    radial-gradient(46% 54% at 2% 8%, rgba(150, 186, 240, 0.14) 0%, rgba(150, 186, 240, 0.04) 44%, transparent 72%);
+}
+.sector-hero-in { z-index: 3; }
+
+/* ---------- the entrance ---------- */
+/* Eyebrow, headline, lead, one after the other. Staged rather than
+   simultaneous, because the three are read in that order anyway. */
+.js .hero-rise {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: hero-rise var(--dur-4) var(--ease) forwards;
+  animation-delay: 120ms;
+}
+.js .hero-rise-1 { animation-delay: 220ms; }
+.js .hero-rise-2 { animation-delay: 320ms; }
+@keyframes hero-rise { to { opacity: 1; transform: none; } }
+
+/* The sheet draws itself in behind them, the way the homepage grid does. */
+.js .sector-hero .sheet-grid,
+.js .sector-hero .sheet-furniture {
+  opacity: 0;
+  animation: hero-sheet 900ms var(--ease) 260ms forwards;
+}
+@keyframes hero-sheet { from { opacity: 0; } to { opacity: 0.55; } }
+.js .sector-hero .sheet-furniture { animation-name: hero-sheet-full; }
+@keyframes hero-sheet-full { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero-rise { opacity: 1; transform: none; animation: none; }
+  .js .sector-hero .sheet-grid { opacity: 0.55; animation: none; }
+  .js .sector-hero .sheet-furniture { opacity: 1; animation: none; }
+}
+@media (max-width: 980px) {
+  .co-hero { min-height: min(78svh, 720px); }
+}

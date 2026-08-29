@@ -785,10 +785,17 @@ COMPANY = """
       <img class="sector-hero-img" src="/assets/tia-hero.webp" alt="ALPROJECTS crew on a wind farm site"
            width="1900" height="814" fetchpriority="high" decoding="async">
       <span class="sector-hero-scrim" aria-hidden="true"></span>
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:58%; top:24%"></span>
+        <span class="sheet-plus" style="left:74%; top:52%"></span>
+        <span class="sheet-plus" style="left:88%; top:30%"></span>
+        <span class="sheet-dim sheet-dim-br">1900X814</span>
+      </span>
       <div class="container sector-hero-in">
-        <p class="eyebrow">Company</p>
-        <h1 class="sector-hero-title">This is ALPROJECTS</h1>
-        <p class="sector-hero-lead">What we are here to do, and the rules we work by. Written
+        <p class="eyebrow hero-rise">Company</p>
+        <h1 class="sector-hero-title hero-rise hero-rise-1">This is ALPROJECTS</h1>
+        <p class="sector-hero-lead hero-rise hero-rise-2">What we are here to do, and the rules we work by. Written
         down so a client can hold us to them.</p>
       </div>
     </section>
@@ -2363,10 +2370,16 @@ def sector_body(slug, name, img, lead, service_slugs):
       <img class="sector-hero-img" src="/assets/projects/%(img)s-1200.webp"
            alt="" width="1204" height="1017" fetchpriority="high" decoding="async">
       <span class="sector-hero-scrim" aria-hidden="true"></span>
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:62%%; top:26%%"></span>
+        <span class="sheet-plus" style="left:80%%; top:56%%"></span>
+        <span class="sheet-dim sheet-dim-br">1204X1017</span>
+      </span>
       <div class="container sector-hero-in">
-        <p class="eyebrow">Sector</p>
-        <h1 class="sector-hero-title">%(name)s</h1>
-        <p class="sector-hero-lead">%(lead)s</p>
+        <p class="eyebrow hero-rise">Sector</p>
+        <h1 class="sector-hero-title hero-rise hero-rise-1">%(name)s</h1>
+        <p class="sector-hero-lead hero-rise hero-rise-2">%(lead)s</p>
       </div>
     </section>
 

@@ -959,6 +959,38 @@
   window.addEventListener("scroll", setActiveNav, { passive: true });
   setActiveNav();
 
+  /* ---------- hero parallax ----------
+     The frame travels slower than the page as the hero scrolls out. CSS gives
+     it 70px of headroom above and below (top:-70px, height:100%+140px), so the
+     translate can never expose an edge -- a scale() would have cropped further
+     into a composition that was framed on purpose.
+
+     Factor 0.14: at the point the hero has scrolled its own height away, the
+     frame has moved 14% of that, which is under the 70px headroom for every
+     hero on the site. Anything larger and the bottom edge appears. */
+  var heroFrames = document.querySelectorAll(".sector-hero-img");
+  if (heroFrames.length && !reduceMotion) {
+    var heroTicking = false;
+    var parallax = function () {
+      heroTicking = false;
+      for (var i = 0; i < heroFrames.length; i++) {
+        var img = heroFrames[i];
+        var host = img.parentNode;
+        var r = host.getBoundingClientRect();
+        /* off screen: leave the last transform alone rather than writing one
+           every frame for something nobody is looking at */
+        if (r.bottom < -100 || r.top > window.innerHeight + 100) continue;
+        var shift = Math.min(70, Math.max(0, -r.top) * 0.14);
+        img.style.transform = "translate3d(0," + shift.toFixed(1) + "px,0)";
+      }
+    };
+    window.addEventListener("scroll", function () {
+      if (!heroTicking) { heroTicking = true; requestAnimationFrame(parallax); }
+    }, { passive: true });
+    window.addEventListener("resize", parallax, { passive: true });
+    parallax();
+  }
+
   /* ---------- scroll reveal ---------- */
   var revealEls = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && !reduceMotion) {
