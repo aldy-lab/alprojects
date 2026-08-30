@@ -1712,7 +1712,7 @@ PROJECTS = """
 
 
     <div class="container">
-      <h2 class="sub-head">Recent work</h2>
+      <h2 class="sub-head">Projects</h2>
       <p class="sub-lead">Four scopes, photographed as they were built.</p>
       <div class="case-grid">
 """ + cases_html() + """
