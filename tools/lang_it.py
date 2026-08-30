@@ -44,8 +44,6 @@ S = {
         '<span class="slide-label">Fase</span> <span class="slide-count">03 / 04</span>',
     '<span class="slide-label">Stage</span> <span class="slide-count">04 / 04</span>':
         '<span class="slide-label">Fase</span> <span class="slide-count">04 / 04</span>',
-    'Five scopes, photographed as they were built.':
-        'Cinque cantieri, fotografati durante l’esecuzione.',
     '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <span class="legal-ids">Company code 305137109 &middot; VAT LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
         '<span>© 2019–2026 ALPROJECTS GROUP. Tutti i diritti riservati.</span> <span class="legal-ids">Codice azienda 305137109 &middot; P. IVA LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Realizzato da <b>ALDY</b></a>',
     'Company code 305137109 &middot; VAT LT100012753216':
@@ -2279,4 +2277,62 @@ S = {
         '<span class="case-num">01</span> <span class="case-kicker">Montaggio meccanico e tubisteria · Cantieristica navale</span>',
     '<span class="eyebrow">Next project</span> <span class="case-next-t">Engine room piping and machinery installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
         '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Tubisteria e montaggio macchinari in sala macchine</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+
+    # --- case: foundations, penetrations and equipment installation -----
+    'Foundations, penetrations and equipment installation':
+        'Basamenti, attraversamenti e montaggio delle apparecchiature',
+    'Foundations, penetrations and equipment installation — ALPROJECTS Group':
+        'Basamenti, attraversamenti e montaggio delle apparecchiature — ALPROJECTS Group',
+    'Steel fabrication and mechanical installation · Shipbuilding':
+        'Costruzione in acciaio e montaggio meccanico · Cantieristica navale',
+    'Project &middot; Steel fabrication and mechanical installation · Shipbuilding':
+        'Progetto &middot; Costruzione in acciaio e montaggio meccanico · Cantieristica navale',
+    'Vessel under construction, machinery and tank spaces':
+        'Nave in costruzione, locali macchine e casse',
+    'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and pipe routes.':
+        'L’acciaio che deve essere in opera prima delle apparecchiature. Abbiamo costruito e posato i basamenti e i telai, tagliato le aperture e saldato gli attraversamenti di paratia, e montato i supporti dei percorsi cavi e tubazioni.',
+    'Frames and seats are fabricated to the drawing, then set to the steel that is actually there. We land the frame on the marked position, check it for position and level, and weld it down once it sits right. A unit light enough to be landed with its frame goes in first. Anything heavier goes on after the frame is welded down, and stays under cover until commissioning.':
+        'Telai e basamenti si costruiscono sul disegno, poi si adattano all’acciaio effettivamente in opera. Caliamo il telaio sulla posizione tracciata, ne verifichiamo posizione e livello e lo saldiamo quando appoggia correttamente. Un’unità abbastanza leggera da essere calata con il proprio telaio entra per prima. Tutto ciò che è più pesante arriva dopo la saldatura del telaio e resta coperto fino alla messa in servizio.',
+    'We mark the opening from the ring that goes into it, cut it, and prepare the edge before the ring is offered up. That way the root gap is even the whole way round. On a watertight boundary the gap is what the weld has to close, and an uneven one shows up at the tightness test.':
+        'Tracciamo l’apertura sull’anello che vi andrà inserito, la tagliamo e prepariamo il lembo prima di presentare l’anello. Così il gioco alla radice è uniforme su tutto il giro. Su una delimitazione stagna è quel gioco che la saldatura deve chiudere, e se è irregolare si vede alla prova di tenuta.',
+    'The ring is worked from both sides at once. One fitter checks the alignment inside the opening while another dresses the prep outside, and we tack in a balanced sequence so the ring does not pull as it is welded out.':
+        'L’anello viene lavorato dai due lati contemporaneamente. Un montatore verifica l’allineamento all’interno dell’apertura mentre un altro rifinisce il cianfrino all’esterno, e puntiamo con una sequenza bilanciata perché l’anello non tiri man mano che viene saldato.',
+    'Supports for cable and pipe routes go on before the boundary is closed in. We set the brackets clear of the insulation and the pins that hold it, so the tray runs at its own height and nothing has to be cut back when the lining goes on.':
+        'I supporti dei percorsi cavi e tubazioni si montano prima che la delimitazione venga chiusa. Posizioniamo le mensole a distanza dall’isolamento e dai perni che lo trattengono, così la passerella corre alla propria quota e nulla deve essere ritagliato quando si posa il rivestimento.',
+    'Coming down on the marked position.':
+        'In discesa sulla posizione tracciata.',
+    'The unit on its frame, covered until commissioning.':
+        'L’unità sul proprio telaio, coperta fino alla messa in servizio.',
+    'The opening cut, and the penetration piece ready to go in.':
+        'L’apertura tagliata e il pezzo di attraversamento pronto per l’inserimento.',
+    'Dressing the prep before the penetration is welded out.':
+        'Rifinitura del cianfrino prima della saldatura dell’attraversamento.',
+    'Cable tray supports on an insulated boundary.':
+        'Supporti della passerella portacavi su una delimitazione isolata.',
+    'Cylindrical steel unit in a fabricated frame, suspended on chain hoists over its marked position on the deck of a vessel under construction':
+        'Unità cilindrica in acciaio in un telaio costruito, sospesa a paranchi a catena sopra la posizione tracciata sul ponte di una nave in costruzione',
+    'Machinery unit under protective covers on a fabricated steel frame in a shipyard hall':
+        'Gruppo macchina sotto teli di protezione su un telaio in acciaio costruito, in un capannone del cantiere navale',
+    'Circular opening cut in a bulkhead, with the penetration piece standing ready on the deck beside it':
+        'Apertura circolare tagliata in una paratia, con il pezzo di attraversamento pronto sul ponte accanto',
+    'Two fitters at a bulkhead penetration, one checking alignment inside the opening while the other dresses the edge with a grinder':
+        'Due montatori a un attraversamento di paratia, uno verifica l’allineamento all’interno dell’apertura mentre l’altro rifinisce il lembo con la smerigliatrice',
+    'Cable trays and brackets fitted to an insulated bulkhead, with insulation pins welded across the plate':
+        'Passerelle portacavi e mensole montate su una paratia isolata, con perni per isolamento saldati su tutta la lamiera',
+    'Six scopes, photographed as they were built.':
+        'Sei cantieri, fotografati durante l’esecuzione.',
+    '<span class="case-num">02</span> <span class="case-kicker">Steel fabrication and mechanical installation · Shipbuilding</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Costruzione in acciaio e montaggio meccanico · Cantieristica navale</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Foundations, penetrations and equipment installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Basamenti, attraversamenti e montaggio delle apparecchiature</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Costruzione e saldatura in officina</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Montaggio meccanico e saldatura &middot; parco serbatoi</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montaggio meccanico e saldatura</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Montaggio meccanico</span>',
+    'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and...':
+        'L’acciaio che deve essere in opera prima delle apparecchiature. Abbiamo costruito e posato i basamenti e i telai, tagliato le aperture e saldato gli attraversamenti di paratia, e montato i...',
 }

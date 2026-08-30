@@ -1351,6 +1351,62 @@ CASES = [
         ],
     ),
     dict(
+        slug="foundations-penetrations-and-equipment-installation",
+        title="Foundations, penetrations and equipment installation",
+        kicker="Steel fabrication and mechanical installation \u00b7 Shipbuilding",
+        setting="Vessel under construction, machinery and tank spaces",
+        lead="The steel that has to be in place before the equipment. We made and set "
+             "the seats and frames, cut the openings and welded in the bulkhead "
+             "penetrations, and fitted the supports for the cable and pipe routes.",
+        intro=[],
+        stages=[
+            (2, ["Frames and seats are fabricated to the drawing, then set to the "
+                 "steel that is actually there. We land the frame on the marked "
+                 "position, check it for position and level, and weld it down once "
+                 "it sits right. A unit light enough to be landed with its frame "
+                 "goes in first. Anything heavier goes on after the frame is welded "
+                 "down, and stays under cover until commissioning."]),
+            (3, ["We mark the opening from the ring that goes into it, cut it, and "
+                 "prepare the edge before the ring is offered up. That way the root "
+                 "gap is even the whole way round. On a watertight boundary the gap "
+                 "is what the weld has to close, and an uneven one shows up at the "
+                 "tightness test."]),
+            (4, ["The ring is worked from both sides at once. One fitter checks the "
+                 "alignment inside the opening while another dresses the prep "
+                 "outside, and we tack in a balanced sequence so the ring does not "
+                 "pull as it is welded out."]),
+            (5, ["Supports for cable and pipe routes go on before the boundary is "
+                 "closed in. We set the brackets clear of the insulation and the "
+                 "pins that hold it, so the tray runs at its own height and nothing "
+                 "has to be cut back when the lining goes on."]),
+        ],
+        note="",
+        og="foundations-penetrations",
+        cta="Send us the drawings.",
+        cta_note="Send the drawings or the scope and we will come back with a price and "
+                 "crew dates. If it is a yard slot, tell us the window.",
+        cta_btn="Send us the drawings",
+        services=["mechanical-contracting", "welding-services", "shipbuilding",
+                  "rigging-technical-support", "quality-control"],
+        photos=[
+            ("Cylindrical steel unit in a fabricated frame, suspended on chain hoists "
+             "over its marked position on the deck of a vessel under construction",
+             "Coming down on the marked position.", 1200, 1600),
+            ("Machinery unit under protective covers on a fabricated steel frame in a "
+             "shipyard hall",
+             "The unit on its frame, covered until commissioning.", 1200, 900),
+            ("Circular opening cut in a bulkhead, with the penetration piece standing "
+             "ready on the deck beside it",
+             "The opening cut, and the penetration piece ready to go in.", 1200, 1600),
+            ("Two fitters at a bulkhead penetration, one checking alignment inside the "
+             "opening while the other dresses the edge with a grinder",
+             "Dressing the prep before the penetration is welded out.", 1200, 1600),
+            ("Cable trays and brackets fitted to an insulated bulkhead, with insulation "
+             "pins welded across the plate",
+             "Cable tray supports on an insulated boundary.", 1200, 1600),
+        ],
+    ),
+    dict(
         slug="tank-and-vessel-fabrication",
         title="Tank and vessel fabrication",
         kicker="Shop fabrication and welding",
@@ -1788,7 +1844,7 @@ PROJECTS = """
 
     <div class="container">
       <h2 class="sub-head">Projects</h2>
-      <p class="sub-lead">Five scopes, photographed as they were built.</p>
+      <p class="sub-lead">Six scopes, photographed as they were built.</p>
       <div class="case-grid">
 """ + cases_html() + """
       </div>

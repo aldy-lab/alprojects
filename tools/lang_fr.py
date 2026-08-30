@@ -44,8 +44,6 @@ S = {
         '<span class="slide-label">Étape</span> <span class="slide-count">03 / 04</span>',
     '<span class="slide-label">Stage</span> <span class="slide-count">04 / 04</span>':
         '<span class="slide-label">Étape</span> <span class="slide-count">04 / 04</span>',
-    'Five scopes, photographed as they were built.':
-        'Cinq chantiers, photographiés pendant leur exécution.',
     '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <span class="legal-ids">Company code 305137109 &middot; VAT LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
         '<span>© 2019–2026 ALPROJECTS GROUP. Tous droits réservés.</span> <span class="legal-ids">Code d’entreprise 305137109 &middot; TVA LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Réalisé par <b>ALDY</b></a>',
     'Company code 305137109 &middot; VAT LT100012753216':
@@ -2305,4 +2303,62 @@ S = {
         '<span class="case-num">01</span> <span class="case-kicker">Montage mécanique et tuyauterie · Construction navale</span>',
     '<span class="eyebrow">Next project</span> <span class="case-next-t">Engine room piping and machinery installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
         '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Tuyauterie et montage des machines en salle des machines</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+
+    # --- case: foundations, penetrations and equipment installation -----
+    'Foundations, penetrations and equipment installation':
+        'Berceaux, traversées de cloison et montage des équipements',
+    'Foundations, penetrations and equipment installation — ALPROJECTS Group':
+        'Berceaux, traversées de cloison et montage des équipements — ALPROJECTS Group',
+    'Steel fabrication and mechanical installation · Shipbuilding':
+        'Fabrication acier et montage mécanique · Construction navale',
+    'Project &middot; Steel fabrication and mechanical installation · Shipbuilding':
+        'Chantier &middot; Fabrication acier et montage mécanique · Construction navale',
+    'Vessel under construction, machinery and tank spaces':
+        'Navire en construction, locaux machines et capacités',
+    'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and pipe routes.':
+        'L’acier qui doit être en place avant les équipements. Nous avons fabriqué et posé les berceaux et les châssis, découpé les ouvertures et soudé les traversées de cloison, et monté les supports des cheminements de câbles et de tuyauteries.',
+    'Frames and seats are fabricated to the drawing, then set to the steel that is actually there. We land the frame on the marked position, check it for position and level, and weld it down once it sits right. A unit light enough to be landed with its frame goes in first. Anything heavier goes on after the frame is welded down, and stays under cover until commissioning.':
+        'Les châssis et les berceaux sont fabriqués d’après le plan, puis ajustés à l’acier réellement en place. Nous posons le châssis sur la position tracée, contrôlons sa position et son niveau, et le soudons dès qu’il porte correctement. Un ensemble assez léger pour être descendu avec son châssis entre en premier. Tout ce qui est plus lourd vient après le soudage du châssis et reste sous bâche jusqu’à la mise en service.',
+    'We mark the opening from the ring that goes into it, cut it, and prepare the edge before the ring is offered up. That way the root gap is even the whole way round. On a watertight boundary the gap is what the weld has to close, and an uneven one shows up at the tightness test.':
+        'Nous traçons l’ouverture d’après la virole qui doit y prendre place, la découpons et préparons le bord avant de présenter la virole. Le jeu à la racine est ainsi régulier sur tout le pourtour. Sur un cloisonnement étanche, c’est ce jeu que la soudure doit refermer, et une irrégularité se voit à l’essai d’étanchéité.',
+    'The ring is worked from both sides at once. One fitter checks the alignment inside the opening while another dresses the prep outside, and we tack in a balanced sequence so the ring does not pull as it is welded out.':
+        'La virole est travaillée des deux côtés à la fois. Un monteur contrôle l’alignement à l’intérieur de l’ouverture pendant qu’un autre reprend le chanfrein à l’extérieur, et nous pointons selon une séquence équilibrée pour que la virole ne tire pas au fur et à mesure du soudage.',
+    'Supports for cable and pipe routes go on before the boundary is closed in. We set the brackets clear of the insulation and the pins that hold it, so the tray runs at its own height and nothing has to be cut back when the lining goes on.':
+        'Les supports des cheminements de câbles et de tuyauteries sont posés avant la fermeture du cloisonnement. Nous plaçons les consoles à l’écart de l’isolation et des goujons qui la tiennent, pour que le chemin de câbles reste à sa propre hauteur et que rien n’ait à être recoupé lors de la pose de l’habillage.',
+    'Coming down on the marked position.':
+        'Descente sur la position tracée.',
+    'The unit on its frame, covered until commissioning.':
+        'L’ensemble sur son châssis, sous bâche jusqu’à la mise en service.',
+    'The opening cut, and the penetration piece ready to go in.':
+        'L’ouverture découpée et la pièce de traversée prête à être posée.',
+    'Dressing the prep before the penetration is welded out.':
+        'Reprise du chanfrein avant le soudage de la traversée.',
+    'Cable tray supports on an insulated boundary.':
+        'Supports de chemin de câbles sur un cloisonnement isolé.',
+    'Cylindrical steel unit in a fabricated frame, suspended on chain hoists over its marked position on the deck of a vessel under construction':
+        'Ensemble cylindrique en acier dans un châssis fabriqué, suspendu à des palans à chaîne au-dessus de sa position tracée sur le pont d’un navire en construction',
+    'Machinery unit under protective covers on a fabricated steel frame in a shipyard hall':
+        'Ensemble mécanique sous bâches de protection sur un châssis acier fabriqué, dans un hall de chantier naval',
+    'Circular opening cut in a bulkhead, with the penetration piece standing ready on the deck beside it':
+        'Ouverture circulaire découpée dans une cloison, la pièce de traversée posée prête sur le pont à côté',
+    'Two fitters at a bulkhead penetration, one checking alignment inside the opening while the other dresses the edge with a grinder':
+        'Deux monteurs à une traversée de cloison, l’un contrôlant l’alignement à l’intérieur de l’ouverture pendant que l’autre reprend le bord à la meuleuse',
+    'Cable trays and brackets fitted to an insulated bulkhead, with insulation pins welded across the plate':
+        'Chemins de câbles et consoles posés sur une cloison isolée, avec des goujons d’isolation soudés sur toute la tôle',
+    'Six scopes, photographed as they were built.':
+        'Six chantiers, photographiés pendant leur exécution.',
+    '<span class="case-num">02</span> <span class="case-kicker">Steel fabrication and mechanical installation · Shipbuilding</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Fabrication acier et montage mécanique · Construction navale</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Foundations, penetrations and equipment installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Berceaux, traversées de cloison et montage des équipements</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Montage mécanique</span>',
+    'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and...':
+        'L’acier qui doit être en place avant les équipements. Nous avons fabriqué et posé les berceaux et les châssis, découpé les ouvertures et soudé les traversées de cloison, et monté les supports des...',
 }

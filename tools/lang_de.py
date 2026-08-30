@@ -47,8 +47,6 @@ S = {
         '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">03 / 04</span>',
     '<span class="slide-label">Stage</span> <span class="slide-count">04 / 04</span>':
         '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">04 / 04</span>',
-    'Five scopes, photographed as they were built.':
-        'Fünf Projekte, fotografiert während der Ausführung.',
     '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <span class="legal-ids">Company code 305137109 &middot; VAT LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
         '<span>© 2019–2026 ALPROJECTS GROUP. Alle Rechte vorbehalten.</span> <span class="legal-ids">Firmencode 305137109 &middot; USt-IdNr. LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Umgesetzt von <b>ALDY</b></a>',
     'Company code 305137109 &middot; VAT LT100012753216':
@@ -2282,4 +2280,62 @@ S = {
         '<span class="case-num">01</span> <span class="case-kicker">Mechanische Montage und Rohrleitungsbau · Schiffbau</span>',
     '<span class="eyebrow">Next project</span> <span class="case-next-t">Engine room piping and machinery installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
         '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Rohrleitungsbau und Maschinenmontage im Maschinenraum</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+
+    # --- case: foundations, penetrations and equipment installation -----
+    'Foundations, penetrations and equipment installation':
+        'Fundamente, Durchführungen und Anlagenmontage',
+    'Foundations, penetrations and equipment installation — ALPROJECTS Group':
+        'Fundamente, Durchführungen und Anlagenmontage — ALPROJECTS Group',
+    'Steel fabrication and mechanical installation · Shipbuilding':
+        'Stahlfertigung und mechanische Montage · Schiffbau',
+    'Project &middot; Steel fabrication and mechanical installation · Shipbuilding':
+        'Projekt &middot; Stahlfertigung und mechanische Montage · Schiffbau',
+    'Vessel under construction, machinery and tank spaces':
+        'Schiff im Bau, Maschinen- und Tankräume',
+    'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and pipe routes.':
+        'Der Stahl, der vor der Ausrüstung stehen muss. Wir haben die Fundamente und Rahmen gefertigt und gesetzt, die Öffnungen geschnitten und die Schottdurchführungen eingeschweißt und die Halterungen für die Kabel- und Rohrtrassen montiert.',
+    'Frames and seats are fabricated to the drawing, then set to the steel that is actually there. We land the frame on the marked position, check it for position and level, and weld it down once it sits right. A unit light enough to be landed with its frame goes in first. Anything heavier goes on after the frame is welded down, and stays under cover until commissioning.':
+        'Rahmen und Fundamente werden nach Zeichnung gefertigt und dann auf den tatsächlich vorhandenen Stahl gesetzt. Wir setzen den Rahmen auf die angerissene Position, prüfen Lage und Waage und schweißen ihn fest, sobald er richtig sitzt. Eine Einheit, die leicht genug ist, um mit ihrem Rahmen eingebracht zu werden, kommt zuerst hinein. Alles Schwerere kommt erst nach dem Festschweißen des Rahmens hinzu und bleibt bis zur Inbetriebnahme abgedeckt.',
+    'We mark the opening from the ring that goes into it, cut it, and prepare the edge before the ring is offered up. That way the root gap is even the whole way round. On a watertight boundary the gap is what the weld has to close, and an uneven one shows up at the tightness test.':
+        'Wir reißen die Öffnung nach dem Ring an, der hineinkommt, schneiden sie und bereiten die Kante vor, bevor der Ring angesetzt wird. So ist der Wurzelspalt rundum gleichmäßig. An einer wasserdichten Begrenzung ist der Spalt das, was die Naht schließen muss, und ein ungleichmäßiger zeigt sich bei der Dichtheitsprüfung.',
+    'The ring is worked from both sides at once. One fitter checks the alignment inside the opening while another dresses the prep outside, and we tack in a balanced sequence so the ring does not pull as it is welded out.':
+        'Der Ring wird von beiden Seiten gleichzeitig bearbeitet. Ein Monteur prüft die Ausrichtung innerhalb der Öffnung, während ein zweiter außen die Schweißnahtvorbereitung nacharbeitet, und wir heften in ausgewogener Folge, damit sich der Ring beim Ausschweißen nicht verzieht.',
+    'Supports for cable and pipe routes go on before the boundary is closed in. We set the brackets clear of the insulation and the pins that hold it, so the tray runs at its own height and nothing has to be cut back when the lining goes on.':
+        'Die Halterungen für Kabel- und Rohrtrassen kommen an, bevor die Begrenzung geschlossen wird. Wir setzen die Konsolen frei von der Isolierung und den Isolierstiften, damit die Kabelbahn auf ihrer eigenen Höhe läuft und beim Anbringen der Verkleidung nichts zurückgeschnitten werden muss.',
+    'Coming down on the marked position.':
+        'Absenken auf die angerissene Position.',
+    'The unit on its frame, covered until commissioning.':
+        'Die Einheit auf ihrem Rahmen, abgedeckt bis zur Inbetriebnahme.',
+    'The opening cut, and the penetration piece ready to go in.':
+        'Die geschnittene Öffnung und das Durchführungsstück, bereit zum Einbau.',
+    'Dressing the prep before the penetration is welded out.':
+        'Nacharbeit der Schweißnahtvorbereitung vor dem Ausschweißen der Durchführung.',
+    'Cable tray supports on an insulated boundary.':
+        'Kabelbahnhalterungen an einer isolierten Begrenzung.',
+    'Cylindrical steel unit in a fabricated frame, suspended on chain hoists over its marked position on the deck of a vessel under construction':
+        'Zylindrische Stahleinheit in einem gefertigten Rahmen, an Kettenzügen über ihrer angerissenen Position auf dem Deck eines im Bau befindlichen Schiffes',
+    'Machinery unit under protective covers on a fabricated steel frame in a shipyard hall':
+        'Maschineneinheit unter Schutzabdeckungen auf einem gefertigten Stahlrahmen in einer Werfthalle',
+    'Circular opening cut in a bulkhead, with the penetration piece standing ready on the deck beside it':
+        'Runde Öffnung in einem Schott, daneben steht das Durchführungsstück bereit auf dem Deck',
+    'Two fitters at a bulkhead penetration, one checking alignment inside the opening while the other dresses the edge with a grinder':
+        'Zwei Monteure an einer Schottdurchführung: einer prüft die Ausrichtung innerhalb der Öffnung, der andere arbeitet die Kante mit dem Schleifer nach',
+    'Cable trays and brackets fitted to an insulated bulkhead, with insulation pins welded across the plate':
+        'Kabelbahnen und Konsolen an einem isolierten Schott, mit über die Platte verteilt aufgeschweißten Isolierstiften',
+    'Six scopes, photographed as they were built.':
+        'Sechs Projekte, fotografiert während der Ausführung.',
+    '<span class="case-num">02</span> <span class="case-kicker">Steel fabrication and mechanical installation · Shipbuilding</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Stahlfertigung und mechanische Montage · Schiffbau</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Foundations, penetrations and equipment installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Fundamente, Durchführungen und Anlagenmontage</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Fertigung und Schweißen in der Werkstatt</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Mechanische Montage und Schweißen &middot; Tanklager</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Mechanische Montage</span>',
+    'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and...':
+        'Der Stahl, der vor der Ausrüstung stehen muss. Wir haben die Fundamente und Rahmen gefertigt und gesetzt, die Öffnungen geschnitten und die Schottdurchführungen eingeschweißt und die Halterungen...',
 }
