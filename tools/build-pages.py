@@ -466,12 +466,6 @@ CAREERS = """
       <p class="page-lead">We deliver mechanical contracting, welding, inspection and access
       services on industrial and offshore projects across Europe. The work is technical,
       certified and mostly on site.</p>
-      <div class="kpis">
-        <div class="kpi"><b>30</b><span>Positions to fill</span></div>
-        <div class="kpi"><b>6</b><span>Countries</span></div>
-        <div class="kpi"><b>3</b><span>Working days to reply</span></div>
-        <div class="kpi"><b>300</b><span>Specialists on our roster</span></div>
-      </div>
     </div>
 
     <section class="container careers-block">

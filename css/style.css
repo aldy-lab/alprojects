@@ -4113,22 +4113,6 @@ body .calendly-overlay .calendly-popup {
    CAREERS
    Rebuilt from the client's mock in 02_Makety/careers-page.html.
    ============================================================ */
-.kpis {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(18px, 3vw, 48px);
-  margin-top: clamp(28px, 3.5vw, 44px);
-  padding-top: clamp(20px, 2.4vw, 28px);
-  border-top: 1px solid var(--line);
-}
-.kpi b {
-  display: block; font-family: var(--font-display); font-weight: 300;
-  font-size: clamp(24px, 2.6vw, 34px); line-height: 1; margin-bottom: 8px;
-  color: var(--white);
-}
-.kpi span {
-  font-size: var(--tag); letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--muted-2);
-}
 .careers-block { padding-top: clamp(46px, 5vw, 76px); }
 .careers-intro { color: var(--gray-50); max-width: 60ch; margin: 0 0 26px; }
 
@@ -4276,13 +4260,11 @@ body .calendly-overlay .calendly-popup {
 .apply-alt a[href]:hover { text-decoration-color: currentColor; }
 
 @media (max-width: 900px) {
-  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .position { grid-template-columns: 1fr; }
+    .position { grid-template-columns: 1fr; }
   .position-specs { border-top: 1px solid var(--line); padding-top: 20px; }
 }
 @media (max-width: 520px) {
-  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
-}
+  }
 
 /* The form was a two-column grid of fields. Now that the fields live inside
    four <fieldset> steps, that grid was laying the STEPS out side by side --
