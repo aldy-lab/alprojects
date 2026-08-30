@@ -1084,8 +1084,8 @@ S = {
         'Contatta ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lituania. Richieste di progetto e di personale.',
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
         'Montaggi meccanici, tubisteria, saldatura, QA/QC, lavori su fune e CND per industria e offshore.',
-    'Welding, piping and mechanical works across Northern Europe. Inspected by people who did not do the welding.':
-        'Saldatura, tubazioni e lavori meccanici in tutto il Nord Europa. Controllati da chi non ha eseguito la saldatura.',
+    'Welding, piping and mechanical works across Europe and Scandinavia. Inspected by people who did not do the welding.':
+        'Saldatura, tubazioni e lavori meccanici in tutta l’Europa e la Scandinavia. Controllati da chi non ha eseguito la saldatura.',
     'Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.':
         'Progetti navali, offshore, industriali e di energia rinnovabile realizzati da ALPROJECTS Group in tutta Europa.',
     '<span>Offshore &amp; Marine</span><span>Energy</span><span>Heavy Industry</span><span>Steel Fabrication</span>':
@@ -1167,7 +1167,7 @@ S = {
     '<span class="value" data-count="1200" data-suffix="+">0+</span> <span class="label">Safe execution in complex and confined environments</span>':
         '<span class="value" data-count="1200" data-suffix="+">0+</span> <span class="label">Esecuzione sicura in ambienti complessi e confinati</span>',
     'Delivered projects with photography from site — shipyards, offshore structures, industrial plants and energy terminals across Northern Europe.':
-        'Progetti realizzati con immagini dal cantiere — cantieri navali, strutture offshore, impianti industriali e terminal energetici in tutto il Nord Europa.',
+        'Progetti realizzati con immagini dal cantiere — cantieri navali, strutture offshore, impianti industriali e terminal energetici in tutta l’Europa e la Scandinavia.',
     'Yard schedules do not move. Our crews slot into them and take engine room piping, structural steel and outfitting, on newbuilds and on repair.':
         'I programmi dei cantieri navali non si spostano. Le nostre squadre vi si inseriscono e prendono in carico tubazioni di sala macchine, carpenteria e allestimento, su nuove costruzioni e riparazioni.',
     'Project enquiries, personnel requests and open applications all reach the same inbox — it is read by people who can answer technical questions.':

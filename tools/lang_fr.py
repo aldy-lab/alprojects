@@ -1112,8 +1112,8 @@ S = {
         'Contacter ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lituanie. Demandes de projet et de personnel.',
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
         'Montage mécanique, tuyauterie, soudage, QA/QC, travaux sur cordes et CND pour l’industrie et l’offshore.',
-    'Welding, piping and mechanical works across Northern Europe. Inspected by people who did not do the welding.':
-        'Soudage, tuyauterie et travaux mécaniques dans toute l’Europe du Nord. Contrôlés par ceux qui n’ont pas exécuté la soudure.',
+    'Welding, piping and mechanical works across Europe and Scandinavia. Inspected by people who did not do the welding.':
+        'Soudage, tuyauterie et travaux mécaniques dans toute l’Europe et la Scandinavie. Contrôlés par ceux qui n’ont pas exécuté la soudure.',
     'Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.':
         'Projets de construction navale, offshore, industriels et d’énergies renouvelables réalisés par ALPROJECTS Group partout en Europe.',
     '<span>Offshore &amp; Marine</span><span>Energy</span><span>Heavy Industry</span><span>Steel Fabrication</span>':

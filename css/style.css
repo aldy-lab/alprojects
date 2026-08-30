@@ -6734,3 +6734,68 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
      at 360 and 390 -- nothing leaves the screen. */
   .hero-proof span { font-size: 10.5px; letter-spacing: 0.1em; text-align: right; white-space: nowrap; }
 }
+
+
+/* ---------- hero blueprint ----------
+   The process drawing on the right of the first screen, from the hero TZ.
+   Behind everything the hero already carries -- it sits under .hero-grid and
+   the sheet furniture, and well under the copy -- and masked away on the left
+   so it never reaches the type. pointer-events:none because it is decoration
+   with a live link over it. */
+.hero-blueprint {
+  position: absolute;
+  inset: 0 -5% 0 auto;
+  width: 55%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.42;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 100%);
+}
+.hero-blueprint img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  object-position: right center;
+  display: block;
+}
+/* The TZ gives one breakpoint, at 900px. The hero has its own at 980, where
+   the copy stops sharing the row and takes the full width -- so between 901
+   and 980 the drawing was landing on the headline. Measured as ink, not as
+   bounding boxes: 54 of 255 inside the title's box, against 1 at 1440.
+
+   Two steps rather than one. From 1250 down the drawing narrows and its fade
+   starts later, which clears the copy at 1100 and 1024 (34 and 51 -> 5 and 6).
+   From 980 down the copy is full width, so nothing can sit beside it: the
+   drawing goes to the TZ's mobile treatment, wide and faint, and becomes
+   texture behind the type rather than a picture next to it. Checked where it
+   matters -- the headline reads 11.7:1 against its background with the drawing
+   and 11.8:1 without, at a 4.5 requirement. */
+@media (max-width: 1250px) {
+  .hero-blueprint {
+    width: 46%;
+    right: -3%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 40%, #000 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 40%, #000 100%);
+  }
+}
+@media (max-width: 980px) {
+  .hero-blueprint {
+    right: -18%;
+    width: 70%;
+    opacity: 0.16;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+  }
+}
+
+
+/* ---------- the low sheet marks give way to the proof strip ----------
+   Two crosshairs and a dimension label sit at 84% of the hero's height. That
+   was empty on a phone until the proof strip moved in under the buttons, and
+   now the marks land on top of "300+" and "SPECIALISTS ON THE BOOKS".
+   Measured, not guessed: both crosshairs at y 709 inside a strip that runs
+   657 to 806. Decoration yields to type. */
+@media (max-width: 700px) {
+  .hero .sheet-low { display: none; }
+}

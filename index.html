@@ -37,7 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=831b2285">
+  <link rel="stylesheet" href="/css/style.min.css?v=4e7d5547">
 
   <script type="application/ld+json">
   {
@@ -125,6 +125,14 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
+      <!-- Decorative process drawing on the right of the hero, per the hero TZ.
+           An <img>, not inline SVG: 2.2 KB inlined into 140 pages would be
+           300 KB of duplicated markup for a picture the browser caches once.
+           aria-hidden and pointer-events:none -- the eyebrow says where we are
+           and the headline says what we do, so it carries no information. -->
+      <div class="hero-blueprint" aria-hidden="true">
+        <img src="/assets/hero-blueprint.svg" alt="" width="892" height="712" decoding="async">
+      </div>
       <span class="hero-grid" aria-hidden="true"></span>
 
       <!-- Drawing-sheet furniture from the brand artwork: outline circles,
@@ -135,10 +143,10 @@
       <span class="sheet-plus" style="left:26%; top:2%"   aria-hidden="true"></span>
       <span class="sheet-plus" style="left:26%; top:24%"  aria-hidden="true"></span>
       <span class="sheet-plus" style="left:72%; top:17%"  aria-hidden="true"></span>
-      <span class="sheet-plus" style="left:80%; top:84%"  aria-hidden="true"></span>
-      <span class="sheet-plus" style="left:8%;  top:84%"  aria-hidden="true"></span>
+      <span class="sheet-plus sheet-low" style="left:80%; top:84%"  aria-hidden="true"></span>
+      <span class="sheet-plus sheet-low" style="left:8%;  top:84%"  aria-hidden="true"></span>
       <span class="sheet-dim"  style="left:73.5%; top:14.5%" aria-hidden="true">200X200</span>
-      <span class="sheet-dim"  style="left:4%;    top:86%"   aria-hidden="true">200X200</span>
+      <span class="sheet-dim sheet-low"  style="left:4%;    top:86%"   aria-hidden="true">200X200</span>
 
       <!-- Sheet furniture, in the drawing's top-right corner under the header.
            Positioned against the same gutter the container uses, so it lines up
@@ -155,7 +163,7 @@
           <p class="hero-eyebrow">ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITHUANIA</p>
         </div>
         <h1 class="hero-title">Mechanical scopes and independent inspection</h1>
-        <p class="hero-sub">Welding, piping and mechanical works across Northern Europe.
+        <p class="hero-sub">Welding, piping and mechanical works across Europe and Scandinavia.
         Inspected by people who did not do the welding.</p>
         <div class="hero-ctas">
           <a class="btn-solid" href="/contacts#enquiry">Send us the scope</a>

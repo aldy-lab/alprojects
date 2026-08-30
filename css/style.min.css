@@ -4948,3 +4948,40 @@ border-bottom: 1px solid rgba(207, 208, 215, 0.16);
 .hero-proof b { font-size: 12px; white-space: normal; }
 .hero-proof span { font-size: 10.5px; letter-spacing: 0.1em; text-align: right; white-space: nowrap; }
 }
+.hero-blueprint {
+position: absolute;
+inset: 0 -5% 0 auto;
+width: 55%;
+z-index: 0;
+pointer-events: none;
+overflow: hidden;
+opacity: 0.42;
+-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 100%);
+mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 100%);
+}
+.hero-blueprint img {
+width: 100%; height: 100%;
+object-fit: contain;
+object-position: right center;
+display: block;
+}
+@media (max-width: 1250px) {
+.hero-blueprint {
+width: 46%;
+right: -3%;
+-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 40%, #000 100%);
+mask-image: linear-gradient(to right, transparent 0%, #000 40%, #000 100%);
+}
+}
+@media (max-width: 980px) {
+.hero-blueprint {
+right: -18%;
+width: 70%;
+opacity: 0.16;
+-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+}
+}
+@media (max-width: 700px) {
+.hero .sheet-low { display: none; }
+}

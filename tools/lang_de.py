@@ -1087,8 +1087,8 @@ S = {
         'Kontakt zu ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Litauen. Projektanfragen und Personalanfragen.',
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
         'Anlagenmontage, Rohrleitungsbau, Schweißtechnik, QA/QC, Seilzugangstechnik und ZfP für Industrie und Offshore.',
-    'Welding, piping and mechanical works across Northern Europe. Inspected by people who did not do the welding.':
-        'Schweißen, Rohrleitungsbau und mechanische Arbeiten in ganz Nordeuropa. Geprüft von Prüfern, die die Naht nicht selbst geschweißt haben.',
+    'Welding, piping and mechanical works across Europe and Scandinavia. Inspected by people who did not do the welding.':
+        'Schweißen, Rohrleitungsbau und mechanische Arbeiten in ganz Europa und Skandinavien. Geprüft von Prüfern, die die Naht nicht selbst geschweißt haben.',
     'Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.':
         'Projekte in Schiffbau, Offshore, Industrie und erneuerbaren Energien, ausgeführt von ALPROJECTS Group in ganz Europa.',
     '<span>Offshore &amp; Marine</span><span>Energy</span><span>Heavy Industry</span><span>Steel Fabrication</span>':
@@ -1170,7 +1170,7 @@ S = {
     '<span class="value" data-count="1200" data-suffix="+">0+</span> <span class="label">Safe execution in complex and confined environments</span>':
         '<span class="value" data-count="1200" data-suffix="+">0+</span> <span class="label">Sichere Ausführung in komplexen und beengten Umgebungen</span>',
     'Delivered projects with photography from site — shipyards, offshore structures, industrial plants and energy terminals across Northern Europe.':
-        'Ausgeführte Projekte mit Aufnahmen von der Baustelle — Werften, Offshore-Strukturen, Industrieanlagen und Energieterminals in ganz Nordeuropa.',
+        'Ausgeführte Projekte mit Aufnahmen von der Baustelle — Werften, Offshore-Strukturen, Industrieanlagen und Energieterminals in ganz Europa und Skandinavien.',
     'Yard schedules do not move. Our crews slot into them and take engine room piping, structural steel and outfitting, on newbuilds and on repair.':
         'Werftterminpläne verschieben sich nicht. Unsere Teams fügen sich ein und übernehmen Maschinenraumrohrleitungen, Stahlbau und Ausrüstung, bei Neubau wie Reparatur.',
     'Project enquiries, personnel requests and open applications all reach the same inbox — it is read by people who can answer technical questions.':
