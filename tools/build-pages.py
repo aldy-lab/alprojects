@@ -831,7 +831,7 @@ def news_index():
                     srcset=thumb_sources(a["img"]),
                     prio=' fetchpriority="high"' if i == 0 else "")
         cards.append("""        <a class="news-card" href="/news/{slug}.html">
-          <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8599;</span></span>
+          <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8593;</span></span>
           <span class="thumb"><img src="/assets/{img}"{srcset} alt="{alt}" width="{w}" height="{h}" loading="{loading}"{prio}><span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
           <h2>{title}</h2>
           <span class="news-excerpt">{lead}</span>
@@ -1629,12 +1629,12 @@ def case_body(c, nxt):
       <a class="case-next-link" href="/projects/%(nxt_slug)s.html">
         <span class="eyebrow">Next project</span>
         <span class="case-next-t">%(nxt_title)s</span>
-        <span class="arr" aria-hidden="true">&#8599;</span>
+        <span class="arr" aria-hidden="true">&#8593;</span>
       </a>
       <a class="case-next-link case-next-all" href="/projects.html">
         <span class="eyebrow">Index</span>
         <span class="case-next-t">All projects</span>
-        <span class="arr" aria-hidden="true">&#8599;</span>
+        <span class="arr" aria-hidden="true">&#8593;</span>
       </a>
     </nav>
 """ % dict(tall=" case-hero-tall" if _h > _w else "",
@@ -1670,7 +1670,7 @@ def cases_html():
             '            </span>\n'
             '            <h3>%s</h3>\n'
             '            <span class="case-blurb">%s</span>\n'
-            '            <span class="case-more">Read the job <span class="arr">&#8599;</span></span>\n'
+            '            <span class="case-more">Read the job <span class="arr">&#8593;</span></span>\n'
             '          </span>\n'
             '        </a>'
             % (c["slug"], c["slug"], _html.escape(alt, quote=True), w, h,

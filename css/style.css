@@ -6503,3 +6503,32 @@ html:not(.js) .booking [data-booking-load] { display: none; }
 @media (max-width: 700px) {
   .service-slide .bg { background-image: var(--bg-m, var(--bg)); }
 }
+
+
+/* ---------- the north-east arrow is drawn from a glyph the font has ----------
+   The arrow on the news cards, the case links and the newsletter button was
+   U+2197. Montserrat does not contain it and neither does Poppins, so all 228
+   of them across the site were rendered by whatever the operating system
+   substitutes -- a different shape, weight and baseline on macOS, Windows and
+   Android, beside type that is otherwise one family. U+2191 is in the font;
+   turned 45 degrees it is the same arrow, in the same typeface, at the same
+   stroke weight. `rotate` rather than `transform` on purpose: it composes as
+   its own property, so the hover translate on .arr keeps working untouched. */
+.arr {
+  display: inline-block;
+  rotate: 45deg;
+  /* The display face, explicitly: U+2191 is in Montserrat and not in Poppins,
+     and .arr inherits the body font. Without this the glyph still leaves the
+     family and the whole exercise buys nothing. */
+  font-family: var(--font-display);
+}
+
+
+/* ---------- the language switcher is a tap target on a touch screen ----------
+   34x34 clears the mandatory 24px but not the 44px that a thumb wants, and on
+   a tablet the switcher sits in the header where there is room for it. Height
+   only: four buttons at 44px wide would be 176px of header on a device that
+   has 810 of them, and the width is not what makes it hard to hit. */
+@media (pointer: coarse) {
+  .langs a { height: 44px; }
+}

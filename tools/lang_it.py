@@ -334,8 +334,8 @@ S = {
         'Navigazione mobile',
     'Mode: Engineering':
         'Modalità: ingegneria',
-    'Open in browser ↗':
-        'Apri nel browser ↗',
+    'Open in browser <span class="arr">&#8593;</span>':
+        'Apri nel browser <span class="arr">&#8593;</span>',
     'Open the calendar':
         'Apri il calendario',
     'Phone or WhatsApp':
@@ -1014,12 +1014,12 @@ S = {
         'La carenza di mestieri qualificati non è un’astrazione quando è il vostro progetto a non poter partire.',
     'The link may be out of date, or the page may have moved. Everything we do is on the homepage.':
         'Il link potrebbe essere obsoleto o la pagina è stata spostata. Tutto quello che facciamo è nella home.',
-    '<span class="num">03</span><span>23 Jun 2026 &middot; Company</span><span class="arr">↗</span>':
-        '<span class="num">03</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">↗</span>',
+    '<span class="num">03</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8593;</span>':
+        '<span class="num">03</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">&#8593;</span>',
     '<strong>Energy and renewables</strong> — fuel handling infrastructure and wind energy support.':
         '<strong>Energia e rinnovabili</strong> — infrastrutture per la movimentazione di carburante e supporto all’eolico.',
-    '<span class="num">06</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">↗</span>':
-        '<span class="num">06</span><span>25 lug 2026 &middot; Industria</span><span class="arr">↗</span>',
+    '<span class="num">06</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">&#8593;</span>':
+        '<span class="num">06</span><span>25 lug 2026 &middot; Industria</span><span class="arr">&#8593;</span>',
     '<span class="bp-key" aria-hidden="true">B</span> <span class="bp-hint-label">Drawing mode</span>':
         '<span class="bp-key" aria-hidden="true">B</span> <span class="bp-hint-label">Modalità disegno</span>',
     'Lifts go wrong at the planning stage. We plan them, and we send the people who run them on site.':
@@ -1030,36 +1030,36 @@ S = {
         'UAB “ALprojects” ha ricevuto da Creditinfo il certificato Strongest in Lithuania 2025–2026.',
     'We read every application and reply within three working days when a project matches your profile.':
         'Leggiamo ogni candidatura e rispondiamo entro tre giorni lavorativi quando un progetto corrisponde al tuo profilo.',
-    '<span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">↗</span>':
-        '<span class="num">02</span><span>08 ago 2026 &middot; Cantieristica navale</span><span class="arr">↗</span>',
-    '<span class="num">03</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8599;</span>':
-        '<span class="num">03</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">&#8599;</span>',
-    '<span class="num">06</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">&#8599;</span>':
-        '<span class="num">06</span><span>25 lug 2026 &middot; Industria</span><span class="arr">&#8599;</span>',
+    '<span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">&#8593;</span>':
+        '<span class="num">02</span><span>08 ago 2026 &middot; Cantieristica navale</span><span class="arr">&#8593;</span>',
+    '<span class="num">03</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8593;</span>':
+        '<span class="num">03</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">&#8593;</span>',
+    '<span class="num">06</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">&#8593;</span>':
+        '<span class="num">06</span><span>25 lug 2026 &middot; Industria</span><span class="arr">&#8593;</span>',
     'Straight into the diary of someone who can answer technical questions — scope, standards, crew dates.':
         'Direttamente nell’agenda di chi può rispondere a domande tecniche: ambito, norme, date delle squadre.',
-    '<span class="num">01</span><span>13 Aug 2026 &middot; Quality Control</span><span class="arr">↗</span>':
-        '<span class="num">01</span><span>13 ago 2026 &middot; Controllo qualità</span><span class="arr">↗</span>',
-    '<span class="num">05</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">↗</span>':
-        '<span class="num">05</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">↗</span>',
+    '<span class="num">01</span><span>13 Aug 2026 &middot; Quality Control</span><span class="arr">&#8593;</span>':
+        '<span class="num">01</span><span>13 ago 2026 &middot; Controllo qualità</span><span class="arr">&#8593;</span>',
+    '<span class="num">05</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8593;</span>':
+        '<span class="num">05</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">&#8593;</span>',
     'If this policy changes, the revised version will be published on this page with a new date at the top.':
         'In caso di modifica della presente informativa, la versione aggiornata sarà pubblicata su questa pagina con una nuova data in testa.',
     'Qualified specialists, available for project-based, short-term and long-term assignments across Europe.':
         'Specialisti qualificati, disponibili per incarichi a progetto, di breve e lungo periodo in tutta Europa.',
     '<span class="contact-label">General</span> <a href="mailto:office@alprojects.eu">office@alprojects.eu</a>':
         '<span class="contact-label">Generale</span> <a href="mailto:office@alprojects.eu">office@alprojects.eu</a>',
-    '<span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">&#8599;</span>':
-        '<span class="num">02</span><span>08 ago 2026 &middot; Cantieristica navale</span><span class="arr">&#8599;</span>',
+    '<span class="num">02</span><span>08 Aug 2026 &middot; Shipbuilding</span><span class="arr">&#8593;</span>':
+        '<span class="num">02</span><span>08 ago 2026 &middot; Cantieristica navale</span><span class="arr">&#8593;</span>',
     'Six fields are required. Everything else helps us match you faster, but you can send the form without it.':
         'Sei campi sono obbligatori. Il resto ci aiuta a valutarti più in fretta, ma puoi inviare il modulo senza.',
     'Stainless steel piping, cooling systems and precision installation — repeated across five European sites.':
         'Tubazioni in acciaio inox, sistemi di raffreddamento e montaggio di precisione, ripetuti su cinque siti europei.',
-    '<span class="num">04</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">↗</span>':
-        '<span class="num">04</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">↗</span>',
-    '<span class="num">01</span><span>13 Aug 2026 &middot; Quality Control</span><span class="arr">&#8599;</span>':
-        '<span class="num">01</span><span>13 ago 2026 &middot; Controllo qualità</span><span class="arr">&#8599;</span>',
-    '<span class="num">05</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8599;</span>':
-        '<span class="num">05</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">&#8599;</span>',
+    '<span class="num">04</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8593;</span>':
+        '<span class="num">04</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">&#8593;</span>',
+    '<span class="num">01</span><span>13 Aug 2026 &middot; Quality Control</span><span class="arr">&#8593;</span>':
+        '<span class="num">01</span><span>13 ago 2026 &middot; Controllo qualità</span><span class="arr">&#8593;</span>',
+    '<span class="num">05</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8593;</span>':
+        '<span class="num">05</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">&#8593;</span>',
     'Contact ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.':
         'Contatta ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lituania. Richieste di progetto e di personale.',
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
@@ -1074,8 +1074,8 @@ S = {
         'Questo sito non prevede account utente, non usa strumenti di analisi e non imposta cookie propri. I dati ci arrivano in tre modi:',
     '<span class="contact-label">Project enquiries</span> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>':
         '<span class="contact-label">Richieste di progetto</span> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>',
-    '<span class="num">04</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8599;</span>':
-        '<span class="num">04</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">&#8599;</span>',
+    '<span class="num">04</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8593;</span>':
+        '<span class="num">04</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">&#8593;</span>',
     '<span>Industrial Plants</span><span>Offshore Structures</span><span>Wind Energy</span><span>Infrastructure</span>':
         '<span>Impianti industriali</span><span>Strutture offshore</span><span>Eolico</span><span>Infrastrutture</span>',
     'Yard schedules do not move. Our crews slot into them and take engine room piping, structural steel and outfitting.':
@@ -1668,28 +1668,28 @@ S = {
         '<span class="value" data-count="3">3</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>',
     '03 &middot; Industrial Projects':
         '03 &middot; Progetti industriali',
-    '<span class="num">03</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">↗</span>':
-        '<span class="num">03</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">↗</span>',
+    '<span class="num">03</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8593;</span>':
+        '<span class="num">03</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">&#8593;</span>',
     '04 &middot; Energy Projects':
         '04 &middot; Progetti energia',
-    '<span class="num">04</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">↗</span>':
-        '<span class="num">04</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">↗</span>',
+    '<span class="num">04</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8593;</span>':
+        '<span class="num">04</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">&#8593;</span>',
     '05 &middot; Industry':
         '05 &middot; Industria',
-    '<span class="num">05</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">↗</span>':
-        '<span class="num">05</span><span>25 lug 2026 &middot; Industria</span><span class="arr">↗</span>',
+    '<span class="num">05</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">&#8593;</span>':
+        '<span class="num">05</span><span>25 lug 2026 &middot; Industria</span><span class="arr">&#8593;</span>',
     '06 &middot; Company':
         '06 &middot; Azienda',
-    '<span class="num">06</span><span>23 Jun 2026 &middot; Company</span><span class="arr">↗</span>':
-        '<span class="num">06</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">↗</span>',
-    '<span class="num">03</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8599;</span>':
-        '<span class="num">03</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">&#8599;</span>',
-    '<span class="num">04</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8599;</span>':
-        '<span class="num">04</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">&#8599;</span>',
-    '<span class="num">05</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">&#8599;</span>':
-        '<span class="num">05</span><span>25 lug 2026 &middot; Industria</span><span class="arr">&#8599;</span>',
-    '<span class="num">06</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8599;</span>':
-        '<span class="num">06</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">&#8599;</span>',
+    '<span class="num">06</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8593;</span>':
+        '<span class="num">06</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">&#8593;</span>',
+    '<span class="num">03</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8593;</span>':
+        '<span class="num">03</span><span>01 ago 2026 &middot; Progetti industriali</span><span class="arr">&#8593;</span>',
+    '<span class="num">04</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8593;</span>':
+        '<span class="num">04</span><span>25 lug 2026 &middot; Progetti energia</span><span class="arr">&#8593;</span>',
+    '<span class="num">05</span><span>25 Jul 2026 &middot; Industry</span><span class="arr">&#8593;</span>':
+        '<span class="num">05</span><span>25 lug 2026 &middot; Industria</span><span class="arr">&#8593;</span>',
+    '<span class="num">06</span><span>23 Jun 2026 &middot; Company</span><span class="arr">&#8593;</span>':
+        '<span class="num">06</span><span>23 giu 2026 &middot; Azienda</span><span class="arr">&#8593;</span>',
     'Quality control (QA/QC)':
         'Controllo qualità (QA/QC)',
     'Welder qualifications to EN ISO 9606-1, verified before mobilisation':
@@ -1849,8 +1849,8 @@ S = {
         'Discipline su questo cantiere',
     'Four scopes, photographed as they were built.':
         'Quattro cantieri, fotografati durante l’esecuzione.',
-    'Read the job <span class="arr">&#8599;</span>':
-        'Vedi il cantiere <span class="arr">&#8599;</span>',
+    'Read the job <span class="arr">&#8593;</span>':
+        'Vedi il cantiere <span class="arr">&#8593;</span>',
     '6 photographs. Press one to open it full size.':
         '6 fotografie. Toccane una per aprirla a piena dimensione.',
     '5 photographs. Press one to open it full size.':
@@ -2055,16 +2055,16 @@ S = {
         '<span class="case-num">03</span> <span class="case-kicker">Montaggio meccanico e saldatura</span>',
     '<span class="case-num">02</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
         '<span class="case-num">02</span> <span class="case-kicker">Montaggio meccanico e saldatura &middot; parco serbatoi</span>',
-    '<span class="eyebrow">Index</span> <span class="case-next-t">All projects</span> <span class="arr" aria-hidden="true">&#8599;</span>':
-        '<span class="eyebrow">Indice</span> <span class="case-next-t">Tutti i progetti</span> <span class="arr" aria-hidden="true">&#8599;</span>',
-    '<span class="eyebrow">Next project</span> <span class="case-next-t">Tank and vessel fabrication</span> <span class="arr" aria-hidden="true">&#8599;</span>':
-        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Costruzione di serbatoi e recipienti</span> <span class="arr" aria-hidden="true">&#8599;</span>',
-    '<span class="eyebrow">Next project</span> <span class="case-next-t">Valve station and tie-in piping</span> <span class="arr" aria-hidden="true">&#8599;</span>':
-        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Stazione valvole e tubazioni di collegamento</span> <span class="arr" aria-hidden="true">&#8599;</span>',
-    '<span class="eyebrow">Next project</span> <span class="case-next-t">Tank internals, nozzles and attachments</span> <span class="arr" aria-hidden="true">&#8599;</span>':
-        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Interni del serbatoio, bocchelli e staffaggi</span> <span class="arr" aria-hidden="true">&#8599;</span>',
-    '<span class="eyebrow">Next project</span> <span class="case-next-t">Agitator replacement inside a storage tank</span> <span class="arr" aria-hidden="true">&#8599;</span>':
-        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Sostituzione dell’agitatore in un serbatoio di stoccaggio</span> <span class="arr" aria-hidden="true">&#8599;</span>',
+    '<span class="eyebrow">Index</span> <span class="case-next-t">All projects</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Indice</span> <span class="case-next-t">Tutti i progetti</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Tank and vessel fabrication</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Costruzione di serbatoi e recipienti</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Valve station and tie-in piping</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Stazione valvole e tubazioni di collegamento</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Tank internals, nozzles and attachments</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Interni del serbatoio, bocchelli e staffaggi</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Agitator replacement inside a storage tank</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Sostituzione dell’agitatore in un serbatoio di stoccaggio</span> <span class="arr" aria-hidden="true">&#8593;</span>',
     'On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up above shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched.':
         'In questo cantiere nessuna mensola è stata saldata direttamente sul mantello. Ogni staffaggio poggia su una piastra di rinforzo, ed è la piastra a essere saldata al mantello. Il primo piano qui sopra ne mostra una. Se un giorno la mensola dovrà essere rimossa, si stacca dalla piastra e il mantello resta intatto.',
 

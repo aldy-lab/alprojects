@@ -184,10 +184,6 @@ is expected.
 ## Performance notes
 
 - All photographs are WebP (37% smaller than the original JPEGs: 1.39 MB → 875 KB).
-  `assets/hero-bg.jpg` is kept **only** as the `og:image`, since some social
-  scrapers still handle WebP poorly.
-- Montserrat is self-hosted from `assets/fonts/` as a variable font (two subset
-  files, latin + latin-ext). This removes the render-blocking round trip to
   fonts.googleapis.com *and* the disclosure of visitor IPs to Google — which is
   why the privacy policy can state the site loads no third-party resources.
 - HTML/CSS/JS are served gzipped by GitHub Pages. The stylesheet had grown to

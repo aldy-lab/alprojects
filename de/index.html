@@ -37,7 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=57a24da6">
+  <link rel="stylesheet" href="/css/style.min.css?v=56bd3d69">
 
   <script type="application/ld+json">
   {
@@ -395,15 +395,16 @@
                straight 50%/50% cuts the orange handwheel at common desktop
                heights. -->
           <div class="bg">
+            <!-- WebP only. The JPEG copies of every one of these were 1.05 MB of
+                 repository for a browser that has not existed since Safari 14 in
+                 2020; the WebP srcset moves onto the <img> itself, which does the
+                 same job with one element fewer. -->
             <picture>
-              <source type="image/webp" media="(max-width: 600px)"
+              <source media="(max-width: 600px)"
                       srcset="/assets/svc-mechanical-valve-station-mobile-1080x1350.webp">
-              <source type="image/jpeg" media="(max-width: 600px)"
-                      srcset="/assets/svc-mechanical-valve-station-mobile-1080x1350.jpg">
-              <source type="image/webp"
-                      srcset="/assets/svc-mechanical-valve-station-1200x778.webp 1200w, /assets/svc-mechanical-valve-station-1500x973.webp 1500w, /assets/svc-mechanical-valve-station-1920x1245.webp 1920w"
-                      sizes="100vw">
-              <img src="/assets/svc-mechanical-valve-station-1500x973.jpg"
+              <img src="/assets/svc-mechanical-valve-station-1500x973.webp"
+                   srcset="/assets/svc-mechanical-valve-station-1200x778.webp 1200w, /assets/svc-mechanical-valve-station-1500x973.webp 1500w, /assets/svc-mechanical-valve-station-1920x1245.webp 1920w"
+                   sizes="100vw"
                    alt="Anbindungsleitungen und Armaturenstation in einem Tanklager, mit Absperrschiebern und Durchgangsventilen auf Böcken und der Leitung, die in die bestehende Rohrbrücke eingebunden ist"
                    width="1500" height="973" loading="lazy" decoding="async">
             </picture>
@@ -597,17 +598,17 @@
       <div class="container">
         <div class="news-grid">
           <a class="news-card reveal" href="/de/news/we-do-not-certify-our-own-welds">
-            <span class="news-top"><span class="num">01</span><span>13. Aug. 2026 &middot; Qualitätskontrolle</span><span class="arr">↗</span></span>
+            <span class="news-top"><span class="num">01</span><span>13. Aug. 2026 &middot; Qualitätskontrolle</span><span class="arr">&#8593;</span></span>
             <span class="thumb"><img src="/assets/projects/welding-tig-pipe-1200.webp" srcset="/assets/projects/welding-tig-pipe-600.webp 600w, /assets/projects/welding-tig-pipe-1200.webp 1200w" sizes="(max-width: 640px) 75vw, (max-width: 1400px) 26vw, 371px" alt="WIG-Wurzellage an einem vorgefertigten Rohrspool" width="900" height="1200" loading="lazy"><span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
             <h3>Wir zertifizieren unsere eigenen Nähte nicht</h3>
           </a>
           <a class="news-card reveal reveal-d1" href="/de/news/piping-installation-engine-room">
-            <span class="news-top"><span class="num">02</span><span>08. Aug. 2026 &middot; Schiffbau</span><span class="arr">↗</span></span>
+            <span class="news-top"><span class="num">02</span><span>08. Aug. 2026 &middot; Schiffbau</span><span class="arr">&#8593;</span></span>
             <span class="thumb"><img src="/assets/projects/sector-shipbuilding-1200.webp" srcset="/assets/projects/sector-shipbuilding-600.webp 600w, /assets/projects/sector-shipbuilding-1200.webp 1200w" sizes="(max-width: 640px) 75vw, (max-width: 1400px) 26vw, 371px" alt="Monteure in einer im Bau befindlichen Rumpfsektion" width="1200" height="1017" loading="lazy"><span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
             <h3>Rohrleitungsmontage im Maschinenraum</h3>
           </a>
           <a class="news-card reveal reveal-d2" href="/de/news/strongest-in-lithuania-2025-2026">
-            <span class="news-top"><span class="num">03</span><span>23. Juni 2026 &middot; Unternehmen</span><span class="arr">↗</span></span>
+            <span class="news-top"><span class="num">03</span><span>23. Juni 2026 &middot; Unternehmen</span><span class="arr">&#8593;</span></span>
             <span class="thumb"><img src="/assets/news-2.webp" srcset="/assets/news-2-600.webp 600w, /assets/news-2.webp 1000w" sizes="(max-width: 640px) 75vw, (max-width: 1400px) 26vw, 371px" alt="ALPROJECTS Group Baustelle" width="1000" height="750" loading="lazy"><span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
             <h3>Zu den stärksten Unternehmen Litauens</h3>
           </a>
@@ -640,7 +641,7 @@
               <p class="doc-meta"><span>16 Seiten</span><span>PDF</span><span>2,1 MB</span></p>
               <div class="doc-actions">
                 <a class="btn-bracket" href="/assets/downloads/alprojects-company-profile.pdf" download aria-label="Unternehmensprofil als PDF herunterladen">PDF herunterladen</a>
-                <a class="doc-view" href="/assets/downloads/alprojects-company-profile.pdf" target="_blank" rel="noopener" aria-label="Unternehmensprofil in neuem Tab öffnen">Im Browser öffnen ↗</a>
+                <a class="doc-view" href="/assets/downloads/alprojects-company-profile.pdf" target="_blank" rel="noopener" aria-label="Unternehmensprofil in neuem Tab öffnen">Im Browser öffnen <span class="arr">&#8593;</span></a>
               </div>
             </div>
           </article>
@@ -658,7 +659,7 @@
               <p class="doc-meta"><span>8 Seiten</span><span>PDF</span><span>2,7 MB</span></p>
               <div class="doc-actions">
                 <a class="btn-bracket" href="/assets/downloads/alprojects-reference-projects.pdf" download aria-label="Referenzprojekte als PDF herunterladen">PDF herunterladen</a>
-                <a class="doc-view" href="/assets/downloads/alprojects-reference-projects.pdf" target="_blank" rel="noopener" aria-label="Referenzprojekte in neuem Tab öffnen">Im Browser öffnen ↗</a>
+                <a class="doc-view" href="/assets/downloads/alprojects-reference-projects.pdf" target="_blank" rel="noopener" aria-label="Referenzprojekte in neuem Tab öffnen">Im Browser öffnen <span class="arr">&#8593;</span></a>
               </div>
             </div>
           </article>
@@ -699,7 +700,7 @@
           <form id="newsletterForm" novalidate>
             <label class="visually-hidden" for="nlEmail" style="position:absolute;left:-9999px">E-Mail</label>
             <input id="nlEmail" type="email" name="email" placeholder="E-Mail-Adresse eingeben" required aria-required="true" autocomplete="email">
-            <button type="submit" aria-label="Abonnieren">&#8599;</button>
+            <button type="submit" aria-label="Abonnieren"><span class="arr">&#8593;</span></button>
           </form>
           <!-- GDPR Art. 4(11) and 7: consent has to be informed and given by an
                affirmative act. Typing an address into a field is not one, so the
