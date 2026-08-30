@@ -1297,25 +1297,29 @@ CASES = [
              "through a compartment that was already full.",
         intro=[],
         stages=[
-            (2, ["The mounts go down before anything else. We land the machine on them "
-                 "all at once, check the height of every mount, and shim the ones that "
-                 "sit low until the load is shared. The alignment is checked and "
-                 "recorded before we make up the first flange."]),
-            (3, ["Dimensions come off the steel, not the drawing. By the time the piping "
-                 "starts the space is full, so we build the valves, the strainer and the "
-                 "branches up on one frame outside the compartment and land the group as "
-                 "a unit, with the bolt holes matching and the flange faces square. Set "
-                 "out that way, somebody standing in front of it can reach every "
-                 "handwheel."]),
+            (2, ["The mounts go down before anything else. We land the machine "
+                 "on them all at once, then set each mount so it takes its "
+                 "share of the load and sits within the deflection the maker "
+                 "allows. The alignment is checked and recorded before the "
+                 "first flange is made up, and again once the lines are "
+                 "connected."]),
+            (3, ["The drawing gives the route; the dimensions come off the "
+                 "steel. By the time the piping starts the space is full, so we "
+                 "build the valves, the strainer and the branches up on one "
+                 "frame outside the compartment and land the group as a unit, "
+                 "with the bolt holes matching and the flange faces square. Set "
+                 "out that way, somebody standing in front of it can reach "
+                 "every handwheel."]),
             (4, ["Resiliently mounted machinery moves, and the hull works at sea. "
                  "Flexible hoses take that movement at the machine connections. On the "
                  "runs, mechanical couplings take up misalignment, and we anchor and "
                  "guide the pipe either side of them so the coupling is not left "
                  "carrying the line."]),
-            (5, ["We set the valve groups out to keep the tank access clear, because the "
-                 "covers have to come off in service. Every open end stays capped until "
-                 "the system is blanked for test, and each line is tagged to the drawing "
-                 "as it is finished."]),
+            (5, ["We set the valve groups out to keep the tank access clear, "
+                 "because the covers have to come off in service. Open ends are "
+                 "capped whenever work stops on a line, and the system is "
+                 "blanked at its boundaries for the pressure test. Each line is "
+                 "tagged to the drawing as it is finished."]),
         ],
         note="",
         og="engine-room-piping",
@@ -1371,7 +1375,8 @@ CASES = [
                  "plate."]),
             (5, ["Lifting is done on the overhead crane, using slings and a spreader "
                  "beam. Bottom plates are cut and fitted on the shop floor."]),
-            (6, ["In the shop the welding is done under cover and under a crane."]),
+            (6, ["In the shop the welding is done under cover and under a "
+                 "crane."]),
         ],
         note="",
         cta="Send us the drawings.",
