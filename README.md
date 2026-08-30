@@ -844,12 +844,16 @@ corners span in the markup, its selector folded into the block at the end of
       not among the three DNV certificates. Its card has been removed rather
       than shown as a placeholder beside three real scans. Get the document, or
       the claim is unevidenced if a tender asks.
-- [ ] **Registered address** — the street type is settled: **Šilutės pl.**
-      (not `av.`), confirmed by both the DNV certificates and the client's own
-      TZ part 6 mockup footer, and corrected across the site. ⚠️ The office
-      number is still open — the certificates read **521 kab.**, the site and
-      the client's mockup both read **2-536**. The certificate is the legal
-      document, so confirm which one belongs in the footer and the JSON-LD.
+- [x] **Registered address** — settled from the company register, 30 August:
+      **Šilutės pl. 2, LT-92298 Klaipėda**. Neither candidate on the table was
+      right: the site carried **2-536** with postcode **LT-91110**, the DNV
+      certificates read **521 kab.**, and the register has no office number at
+      all and a different postcode. Corrected in the footer of all 140 pages,
+      the contacts page, the privacy policy, the meta descriptions and every
+      JSON-LD block, in four languages.
+- [x] **Company code and VAT** — 305137109 and LT100012753216, from the same
+      register entry. On the legal line in the footer, and in the Organization
+      schema as `taxID` and `vatID`.
 - [ ] **Team section** — ⚠️ the client struck the five management headshots out.
       That block is now "Qualified specialists" (the profile's own personnel
       split and 100+ figure). If the intent was only "fix the photo quality",

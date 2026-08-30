@@ -6734,3 +6734,14 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
 @media (max-width: 700px) {
   .hero .sheet-low { display: none; }
 }
+
+
+/* ---------- registry details in the footer ----------
+   A UAB has to state its company code and VAT number, and a buyer checking
+   the company before a tender looks for exactly those two. They sit on the
+   legal line beside the copyright, in the same quiet grey, because they are
+   reference rather than reading. */
+.footer-bottom .legal-ids { color: var(--muted-2); }
+@media (max-width: 700px) {
+  .footer-bottom .legal-ids { display: block; margin-top: 6px; }
+}

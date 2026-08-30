@@ -4933,3 +4933,7 @@ border-bottom: 1px solid rgba(207, 208, 215, 0.16);
 @media (max-width: 700px) {
 .hero .sheet-low { display: none; }
 }
+.footer-bottom .legal-ids { color: var(--muted-2); }
+@media (max-width: 700px) {
+.footer-bottom .legal-ids { display: block; margin-top: 6px; }
+}

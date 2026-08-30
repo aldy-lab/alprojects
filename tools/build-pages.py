@@ -191,7 +191,7 @@ PRIVACY = """
       <p>ALPROJECTS, UAB (&ldquo;ALPROJECTS Group&rdquo;, &ldquo;we&rdquo;) is the controller of personal
       data collected through alprojects.co.</p>
       <ul>
-        <li>ALPROJECTS, UAB — Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania</li>
+        <li>ALPROJECTS, UAB — Šilutės pl. 2, LT-92298 Klaipėda, Lithuania</li>
         <li>Email: <a href="mailto:info@alprojects.eu">info@alprojects.eu</a></li>
         <li>Phone: <a href="tel:+37063663744">+370 636 63 744</a></li>
       </ul>
@@ -1133,7 +1133,7 @@ COMPANY = """
           <p class="co-note">We aim to reply to project enquiries within one working day.</p>
         </div>
         <div class="co-cta-act">
-          <p class="co-addr">ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br>
+          <p class="co-addr">ALPROJECTS, UAB<br>Šilutės pl. 2, LT-92298 Klaipėda, Lithuania<br>
           <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br>
           <a href="tel:+37063663744">+370 636 63 744</a></p>
           <p class="back">
@@ -1953,8 +1953,8 @@ CONTACTS = """
     <div class="container prose">
       <h2>Head office</h2>
       <p>ALPROJECTS, UAB<br>
-      Šilutės pl. 2-536<br>
-      LT-91110 Klaipėda<br>
+      Šilutės pl. 2<br>
+      LT-92298 Klaipėda<br>
       Lithuania</p>
 
       <h2>Where we work from</h2>
@@ -1993,6 +1993,8 @@ import json
 
 ORG = {
     "@type": "Organization",
+    "vatID": "LT100012753216",
+    "taxID": "305137109",
     "name": "ALPROJECTS Group",
     "sameAs": "https://alprojects.co/",
     "logo": "https://alprojects.co/assets/logo-1200.png",
@@ -2033,8 +2035,8 @@ def job_postings_ld():
                 "@type": "Place",
                 "address": {"@type": "PostalAddress",
                             "addressLocality": "Klaipėda",
-                            "postalCode": "LT-91110",
-                            "streetAddress": "Šilutės pl. 2-536",
+                            "postalCode": "LT-92298",
+                            "streetAddress": "Šilutės pl. 2",
                             "addressCountry": "LT"},
             }],
             "applicantLocationRequirements": [
@@ -2087,14 +2089,16 @@ def contact_ld():
         "url": "https://alprojects.co/contacts",
         "mainEntity": {
             "@type": "Organization",
+    "vatID": "LT100012753216",
+    "taxID": "305137109",
             "name": "ALPROJECTS, UAB",
             "url": "https://alprojects.co/",
             "email": "info@alprojects.eu",
             "telephone": "+37063663744",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "\u0160ilut\u0117s pl. 2-536",
-                "postalCode": "LT-91110",
+                "streetAddress": "\u0160ilut\u0117s pl. 2",
+                "postalCode": "LT-92298",
                 "addressLocality": "Klaip\u0117da",
                 "addressCountry": "LT",
             },
@@ -2437,7 +2441,7 @@ for _i, _c in enumerate(CASES):
                                          (_c["title"], "/projects/%s.html" % _c["slug"])])))
 
 write("contacts.html", page("Contacts",
-      "Contact ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.",
+      "Contact ALPROJECTS Group — Šilutės pl. 2, Klaipėda, Lithuania. Project enquiries and personnel requests.",
       CONTACTS, canonical="/contacts.html", og="contacts",
       head_extra=contact_ld() +
                  breadcrumb_ld([("Home", "/"), ("Contacts", "/contacts.html")])))

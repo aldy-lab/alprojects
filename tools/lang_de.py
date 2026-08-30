@@ -25,6 +25,10 @@ WARNING: Have a native German speaker in the market review the services,
 """
 
 S = {
+    '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <span class="legal-ids">Company code 305137109 &middot; VAT LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
+        '<span>© 2019–2026 ALPROJECTS GROUP. Alle Rechte vorbehalten.</span> <span class="legal-ids">Firmencode 305137109 &middot; USt-IdNr. LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Umgesetzt von <b>ALDY</b></a>',
+    'Company code 305137109 &middot; VAT LT100012753216':
+        'Firmencode 305137109 &middot; USt-IdNr. LT100012753216',
     '<b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certified by DNV</span>':
         '<b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Zertifiziert durch DNV</span>',
     '<b>300+</b><span>Specialists on the books</span>':
@@ -883,8 +887,8 @@ S = {
         '<span>Zert. C760290</span><span>Gültig bis 28.07.2028</span>',
     'ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITHUANIA':
         'ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITAUEN',
-    'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110<br>Klaipėda':
-        'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110<br>Klaipėda',
+    'ALPROJECTS, UAB<br>Šilutės pl. 2, LT-92298<br>Klaipėda':
+        'ALPROJECTS, UAB<br>Šilutės pl. 2, LT-92298<br>Klaipėda',
     'ALPROJECTS engineer working from isometric drawings on site':
         'ALPROJECTS Ingenieur arbeitet vor Ort nach Isometrien',
     'Handover dossier assembled as the work goes, not at the end':
@@ -913,8 +917,8 @@ S = {
         'Hubinselstrukturen · Stahlmontage · Schweißen · Offshore-Unterstützung',
     'ALPROJECTS Group — Integrated Engineering for Industry & Offshore':
         'ALPROJECTS Group — Integriertes Engineering für Industrie und Offshore',
-    'ALPROJECTS, UAB — Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania':
-        'ALPROJECTS, UAB — Šilutės pl. 2-536, LT-91110 Klaipėda, Litauen',
+    'ALPROJECTS, UAB — Šilutės pl. 2, LT-92298 Klaipėda, Lithuania':
+        'ALPROJECTS, UAB — Šilutės pl. 2, LT-92298 Klaipėda, Litauen',
     'Email: <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>':
         'E-Mail: <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>',
     'Railway bridges · steel fitting · structural repairs · 5G welding':
@@ -973,8 +977,8 @@ S = {
         'ISO 14001:2015-Zertifikat als PDF öffnen, Zertifikatsnummer C550875',
     'Open the ISO 45001:2018 certificate as a PDF, certificate number C550877':
         'ISO 45001:2018-Zertifikat als PDF öffnen, Zertifikatsnummer C550877',
-    'ALPROJECTS, UAB<br> Šilutės pl. 2-536<br> LT-91110 Klaipėda<br> Lithuania':
-        'ALPROJECTS, UAB<br> Šilutės pl. 2-536<br> LT-91110 Klaipėda<br> Litauen',
+    'ALPROJECTS, UAB<br> Šilutės pl. 2<br> LT-92298 Klaipėda<br> Lithuania':
+        'ALPROJECTS, UAB<br> Šilutės pl. 2<br> LT-92298 Klaipėda<br> Litauen',
     'Overlay the drafting sheet — grid, registration marks and live dimensions':
         'Zeichnungsraster einblenden — Raster, Passmarken und laufende Maße',
     'Spool prefabrication from isometrics, marked and traceable to the drawing':
@@ -1083,8 +1087,8 @@ S = {
         '<span class="num">01</span><span>13. Aug. 2026 &middot; Qualitätskontrolle</span><span class="arr">&#8593;</span>',
     '<span class="num">05</span><span>25 Jul 2026 &middot; Energy Projects</span><span class="arr">&#8593;</span>':
         '<span class="num">05</span><span>25. Juli 2026 &middot; Energieprojekte</span><span class="arr">&#8593;</span>',
-    'Contact ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Lithuania. Project enquiries and personnel requests.':
-        'Kontakt zu ALPROJECTS Group — Šilutės pl. 2-536, Klaipėda, Litauen. Projektanfragen und Personalanfragen.',
+    'Contact ALPROJECTS Group — Šilutės pl. 2, Klaipėda, Lithuania. Project enquiries and personnel requests.':
+        'Kontakt zu ALPROJECTS Group — Šilutės pl. 2, Klaipėda, Litauen. Projektanfragen und Personalanfragen.',
     'Mechanical contracting, pipe fitting, welding services, QAQC, rope access and NDT for industry and offshore.':
         'Anlagenmontage, Rohrleitungsbau, Schweißtechnik, QA/QC, Seilzugangstechnik und ZfP für Industrie und Offshore.',
     'Welding, piping and mechanical works across Europe and Scandinavia. Inspected by people who did not do the welding.':
@@ -1269,8 +1273,8 @@ S = {
         '<strong>Server-Protokolle.</strong> Die Website wird auf GitHub Pages gehostet. GitHub erfasst technische Zugriffsdaten, darunter IP-Adresse und Browserkennung, zu Zwecken der Sicherheit und Verfügbarkeit.',
     'Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.':
         'Zahlen wie 11.000 Stunden gehören klar benannt: So viel kostet ein Projekt dieser Größe tatsächlich an Facharbeit, und mit einer niedrigeren Annahme zu planen ist der Weg zu gerissenen Terminen.',
-    'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
-        'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Litauen<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
+    'ALPROJECTS, UAB<br>Šilutės pl. 2, LT-92298 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
+        'ALPROJECTS, UAB<br>Šilutės pl. 2, LT-92298 Klaipėda, Litauen<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
     'It is worth being direct about this, because the answer is not a recruitment campaign. It is training, certification pathways, and treating the trades as a career rather than a stopgap.':
         'Man sollte das offen sagen, denn die Antwort ist keine Recruiting-Kampagne. Sie heißt Ausbildung, Qualifizierungswege und die Anerkennung dieser Berufe als Laufbahn statt als Notlösung.',
     'Scope on all three: inspection and industrial maintenance services for onshore and offshore installations. Issued by DNV Business Assurance Finland. Select a certificate to open the PDF.':
@@ -1603,8 +1607,8 @@ S = {
         '<span class="value" data-count="4">0</span><span class="label">Sektoren, dieselben Gewerke</span>',
     '<span class="value" data-count="3">0</span><span class="label">ISO management systems, certified by DNV</span>':
         '<span class="value" data-count="3">0</span><span class="label">ISO-Managementsysteme, von DNV zertifiziert</span>',
-    'ALPROJECTS, UAB &middot; Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
-        'ALPROJECTS, UAB &middot; Šilutės pl. 2-536, LT-91110 Klaipėda, Litauen<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
+    'ALPROJECTS, UAB &middot; Šilutės pl. 2, LT-92298 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
+        'ALPROJECTS, UAB &middot; Šilutės pl. 2, LT-92298 Klaipėda, Litauen<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
     'Standing':
         'Unsere Bonität',
     'We deliver the scope, or we supply the people a scope is short of':
@@ -1657,8 +1661,8 @@ S = {
         'Geltungsbereich der drei ISO-Zertifikate: Prüf- und Instandhaltungsleistungen für Anlagen an Land und offshore, ausgestellt von DNV Business Assurance Finland. VCA ist von EBN Certification zertifiziert. Wählen Sie ein Zertifikat, um das PDF zu öffnen.',
     '<span>EBN Certification</span>':
         '<span>EBN Certification</span>',
-    'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>':
-        'ALPROJECTS, UAB<br>Šilutės pl. 2-536, LT-91110 Klaipėda, Litauen<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>',
+    'ALPROJECTS, UAB<br>Šilutės pl. 2, LT-92298 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>':
+        'ALPROJECTS, UAB<br>Šilutės pl. 2, LT-92298 Klaipėda, Litauen<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a><br> <a href="tel:+37063663744">+370 636 63 744</a>',
     'Scaffolding costs more in downtime than in steel. IRATA and SOFT certified technicians reach the same place on rope, inspect it and repair it while the plant keeps running.':
         'Ein Gerüst kostet mehr an Stillstand als an Stahl. Nach IRATA und SOFT zertifizierte Techniker erreichen dieselbe Stelle am Seil, prüfen und reparieren sie, während die Anlage weiterläuft.',
     'Inspection &amp; Access':
