@@ -2322,8 +2322,6 @@ S = {
         'Zwei Monteure an einer Schottdurchführung: einer prüft die Ausrichtung innerhalb der Öffnung, der andere arbeitet die Kante mit dem Schleifer nach',
     'Cable trays and brackets fitted to an insulated bulkhead, with insulation pins welded across the plate':
         'Kabelbahnen und Konsolen an einem isolierten Schott, mit über die Platte verteilt aufgeschweißten Isolierstiften',
-    'Six scopes, photographed as they were built.':
-        'Sechs Projekte, fotografiert während der Ausführung.',
     '<span class="case-num">02</span> <span class="case-kicker">Steel fabrication and mechanical installation · Shipbuilding</span>':
         '<span class="case-num">02</span> <span class="case-kicker">Stahlfertigung und mechanische Montage · Schiffbau</span>',
     '<span class="eyebrow">Next project</span> <span class="case-next-t">Foundations, penetrations and equipment installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
@@ -2338,4 +2336,60 @@ S = {
         '<span class="case-num">06</span> <span class="case-kicker">Mechanische Montage</span>',
     'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and...':
         'Der Stahl, der vor der Ausrüstung stehen muss. Wir haben die Fundamente und Rahmen gefertigt und gesetzt, die Öffnungen geschnitten und die Schottdurchführungen eingeschweißt und die Halterungen...',
+
+    # --- case: large-bore pipe replacement -------------------------------
+    'Large-bore pipe replacement':
+        'Austausch von Rohrleitungen großer Nennweite',
+    'Large-bore pipe replacement — ALPROJECTS Group':
+        'Austausch von Rohrleitungen großer Nennweite — ALPROJECTS Group',
+    'Mechanical installation and welding · Industrial':
+        'Mechanische Montage und Schweißen · Industrie',
+    'Project &middot; Mechanical installation and welding · Industrial':
+        'Projekt &middot; Mechanische Montage und Schweißen · Industrie',
+    'Existing plant, scaffolded work fronts':
+        'Bestandsanlage, eingerüstete Arbeitsfronten',
+    'Large-bore pipework replaced inside an existing plant. We prefabricated the spools, rigged them into position on chain hoists off the plant steel, and welded them in place.':
+        'Austausch von Rohrleitungen großer Nennweite in einer Bestandsanlage. Wir haben die Rohrspools vorgefertigt, sie mit Kettenzügen am Anlagenstahl in Position gebracht und vor Ort eingeschweißt.',
+    'We put the covers down before anything hot starts — blankets under the work front, sheeting across what is behind it, and the grating below closed off. A spark that goes through the grating lands on whatever is on the level under you.':
+        'Die Abdeckungen kommen, bevor irgendetwas Heißes beginnt — Schweißdecken unter der Arbeitsfront, Planen über allem, was dahinter liegt, und der Gitterrost darunter geschlossen. Ein Funke, der durch den Gitterrost fällt, landet auf dem, was eine Ebene tiefer steht.',
+    'Branches and stubs go on at floor level, where the piece can be turned and the weld is made in the flat position. The spool goes up as one piece with its openings already in it. Every branch done down here is one less weld made overhead.':
+        'Abzweige und Stutzen werden am Boden angeschweißt, wo sich das Teil drehen lässt und die Naht in Wannenlage ausgeführt wird. Der Rohrspool geht als ein Stück nach oben, die Öffnungen sind bereits darin. Jeder Abzweig, der hier unten fertig wird, ist eine Naht weniger über Kopf.',
+    'There is no crane over the work front, so the load comes off the plant steel. We agree the attachment points with the plant first, then hang beam clamps and chain hoists at each end and walk the spool into line by hand.':
+        'Über der Arbeitsfront gibt es keinen Kran, also wird die Last am Anlagenstahl aufgenommen. Die Anschlagpunkte stimmen wir zuerst mit dem Betreiber ab, hängen dann an beiden Enden Trägerklemmen und Kettenzüge ein und ziehen den Rohrspool von Hand in die Flucht.',
+    'Fit-up decides the joint. We set the gap and hold it the whole way round before an arc is struck, and the root goes in first — in this frame it is part way round, with the gap above still open. The joint is cleaned and checked before the fill and cap go on.':
+        'Der Zusammenbau entscheidet über die Naht. Wir stellen den Spalt ein und halten ihn rundum, bevor ein Lichtbogen gezündet wird, und zuerst kommt die Wurzellage — in dieser Aufnahme ist sie ein Stück weit herum, oben ist der Spalt noch offen. Die Naht wird gereinigt und geprüft, bevor Füll- und Decklage folgen.',
+    'The new run in place.':
+        'Die neue Leitung an ihrem Platz.',
+    'The work front covered before hot work starts.':
+        'Die Arbeitsfront abgedeckt, bevor die Heißarbeiten beginnen.',
+    'Branch and stub welded on before the spool goes up.':
+        'Abzweig und Stutzen angeschweißt, bevor der Rohrspool nach oben geht.',
+    'Beam clamps and chain hoists off the existing steel.':
+        'Trägerklemmen und Kettenzüge am vorhandenen Stahlbau.',
+    'The root run part way round the joint.':
+        'Die Wurzellage ein Stück weit um die Naht herum.',
+    'New large-bore pipework and a fabricated bend installed among existing lines and ducts inside an industrial plant':
+        'Neue Rohrleitungen großer Nennweite und ein gefertigter Bogen, eingebaut zwischen vorhandenen Leitungen und Kanälen in einer Industrieanlage',
+    'Protective sheeting and welding blankets laid over plant grating around a pipe spool standing ready for installation':
+        'Schutzplanen und Schweißdecken über dem Gitterrost der Anlage, rund um einen zum Einbau bereitstehenden Rohrspool',
+    'Prefabricated pipe bend with a welded branch and stub, standing on timber on plant grating':
+        'Vorgefertigter Rohrbogen mit angeschweißtem Abzweig und Stutzen, auf Holzunterlagen auf dem Gitterrost der Anlage',
+    'Two beam clamps and chain hoists rigged from overhead steel, taking the weight of a large-bore pipe':
+        'Zwei Trägerklemmen mit Kettenzügen, am darüberliegenden Stahlbau angeschlagen und das Gewicht eines Rohres großer Nennweite aufnehmend',
+    'Close-up of a pipe butt joint with an even root gap and the root run part way round':
+        'Nahaufnahme einer Rohrstumpfnaht mit gleichmäßigem Wurzelspalt und der Wurzellage, die ein Stück weit herumgeführt ist',
+    'Seven scopes, photographed as they were built.':
+        'Sieben Projekte, fotografiert während der Ausführung.',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding · Industrial</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Mechanische Montage und Schweißen · Industrie</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Large-bore pipe replacement</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Austausch von Rohrleitungen großer Nennweite</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Fertigung und Schweißen in der Werkstatt</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Mechanische Montage und Schweißen &middot; Tanklager</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Mechanische Montage</span>',
 }

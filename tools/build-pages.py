@@ -1407,6 +1407,67 @@ CASES = [
         ],
     ),
     dict(
+        slug="large-bore-pipe-replacement",
+        title="Large-bore pipe replacement",
+        kicker="Mechanical installation and welding \u00b7 Industrial",
+        # The client has to confirm this one: the package offers "Plant
+        # shutdown" and "Live plant" as the two alternatives, and says not to
+        # guess. This is the neutral value, and it is what the photographs show.
+        setting="Existing plant, scaffolded work fronts",
+        lead="Large-bore pipework replaced inside an existing plant. We prefabricated "
+             "the spools, rigged them into position on chain hoists off the plant "
+             "steel, and welded them in place.",
+        intro=[],
+        stages=[
+            (2, ["We put the covers down before anything hot starts \u2014 blankets "
+                 "under the work front, sheeting across what is behind it, and the "
+                 "grating below closed off. A spark that goes through the grating "
+                 "lands on whatever is on the level under you."]),
+            (3, ["Branches and stubs go on at floor level, where the piece can be "
+                 "turned and the weld is made in the flat position. The spool goes "
+                 "up as one piece with its openings already in it. Every branch "
+                 "done down here is one less weld made overhead."]),
+            # This stage claims the attachment points were agreed with the plant.
+            # If that agreement did not happen, the sentence has to go -- the
+            # package flags it as the kind of claim that gets a crew removed.
+            (4, ["There is no crane over the work front, so the load comes off the "
+                 "plant steel. We agree the attachment points with the plant first, "
+                 "then hang beam clamps and chain hoists at each end and walk the "
+                 "spool into line by hand."]),
+            (5, ["Fit-up decides the joint. We set the gap and hold it the whole way "
+                 "round before an arc is struck, and the root goes in first \u2014 in "
+                 "this frame it is part way round, with the gap above still open. "
+                 "The joint is cleaned and checked before the fill and cap go on."]),
+        ],
+        note="",
+        og="large-bore-pipe-replacement",
+        cta="Send us the drawings.",
+        # Back to the site's original wording: this job has a shutdown, where the
+        # two shipbuilding cases have a yard slot.
+        cta_note="Send the drawings or the scope and we will come back with a price and "
+                 "crew dates. If it is a shutdown, tell us the window.",
+        cta_btn="Send us the drawings",
+        services=["pipe-fitting", "welding-services", "mechanical-contracting",
+                  "rigging-technical-support", "quality-control"],
+        photos=[
+            ("New large-bore pipework and a fabricated bend installed among existing "
+             "lines and ducts inside an industrial plant",
+             "The new run in place.", 1200, 1600),
+            ("Protective sheeting and welding blankets laid over plant grating around "
+             "a pipe spool standing ready for installation",
+             "The work front covered before hot work starts.", 1200, 1600),
+            ("Prefabricated pipe bend with a welded branch and stub, standing on "
+             "timber on plant grating",
+             "Branch and stub welded on before the spool goes up.", 1200, 900),
+            ("Two beam clamps and chain hoists rigged from overhead steel, taking the "
+             "weight of a large-bore pipe",
+             "Beam clamps and chain hoists off the existing steel.", 1200, 1600),
+            ("Close-up of a pipe butt joint with an even root gap and the root run "
+             "part way round",
+             "The root run part way round the joint.", 1200, 1600),
+        ],
+    ),
+    dict(
         slug="tank-and-vessel-fabrication",
         title="Tank and vessel fabrication",
         kicker="Shop fabrication and welding",
@@ -1844,7 +1905,7 @@ PROJECTS = """
 
     <div class="container">
       <h2 class="sub-head">Projects</h2>
-      <p class="sub-lead">Six scopes, photographed as they were built.</p>
+      <p class="sub-lead">Seven scopes, photographed as they were built.</p>
       <div class="case-grid">
 """ + cases_html() + """
       </div>

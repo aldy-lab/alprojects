@@ -2345,8 +2345,6 @@ S = {
         'Deux monteurs à une traversée de cloison, l’un contrôlant l’alignement à l’intérieur de l’ouverture pendant que l’autre reprend le bord à la meuleuse',
     'Cable trays and brackets fitted to an insulated bulkhead, with insulation pins welded across the plate':
         'Chemins de câbles et consoles posés sur une cloison isolée, avec des goujons d’isolation soudés sur toute la tôle',
-    'Six scopes, photographed as they were built.':
-        'Six chantiers, photographiés pendant leur exécution.',
     '<span class="case-num">02</span> <span class="case-kicker">Steel fabrication and mechanical installation · Shipbuilding</span>':
         '<span class="case-num">02</span> <span class="case-kicker">Fabrication acier et montage mécanique · Construction navale</span>',
     '<span class="eyebrow">Next project</span> <span class="case-next-t">Foundations, penetrations and equipment installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
@@ -2361,4 +2359,60 @@ S = {
         '<span class="case-num">06</span> <span class="case-kicker">Montage mécanique</span>',
     'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and...':
         'L’acier qui doit être en place avant les équipements. Nous avons fabriqué et posé les berceaux et les châssis, découpé les ouvertures et soudé les traversées de cloison, et monté les supports des...',
+
+    # --- case: large-bore pipe replacement -------------------------------
+    'Large-bore pipe replacement':
+        'Remplacement de tuyauterie de gros diamètre',
+    'Large-bore pipe replacement — ALPROJECTS Group':
+        'Remplacement de tuyauterie de gros diamètre — ALPROJECTS Group',
+    'Mechanical installation and welding · Industrial':
+        'Montage mécanique et soudage · Industrie',
+    'Project &middot; Mechanical installation and welding · Industrial':
+        'Chantier &middot; Montage mécanique et soudage · Industrie',
+    'Existing plant, scaffolded work fronts':
+        'Installation existante, fronts de travail échafaudés',
+    'Large-bore pipework replaced inside an existing plant. We prefabricated the spools, rigged them into position on chain hoists off the plant steel, and welded them in place.':
+        'Remplacement de tuyauterie de gros diamètre dans une installation existante. Nous avons préfabriqué les tronçons, les avons mis en place sur des palans à chaîne accrochés à la charpente de l’installation, et les avons soudés en place.',
+    'We put the covers down before anything hot starts — blankets under the work front, sheeting across what is behind it, and the grating below closed off. A spark that goes through the grating lands on whatever is on the level under you.':
+        'Les protections sont posées avant tout travail à chaud — couvertures sous le front de travail, bâches sur tout ce qui se trouve derrière, et le caillebotis en dessous obturé. Une étincelle qui passe à travers le caillebotis retombe sur ce qui se trouve au niveau inférieur.',
+    'Branches and stubs go on at floor level, where the piece can be turned and the weld is made in the flat position. The spool goes up as one piece with its openings already in it. Every branch done down here is one less weld made overhead.':
+        'Les piquages et les embouts sont soudés au sol, où la pièce peut être tournée et la soudure exécutée à plat. Le tronçon monte d’une seule pièce, ses ouvertures déjà réalisées. Chaque piquage fait en bas est une soudure de moins à faire en plafond.',
+    'There is no crane over the work front, so the load comes off the plant steel. We agree the attachment points with the plant first, then hang beam clamps and chain hoists at each end and walk the spool into line by hand.':
+        'Il n’y a pas de pont roulant au-dessus du front de travail : la charge est donc reprise sur la charpente de l’installation. Nous validons d’abord les points d’accrochage avec l’exploitant, puis suspendons des pinces à poutre et des palans à chaîne à chaque extrémité et amenons le tronçon dans l’axe à la main.',
+    'Fit-up decides the joint. We set the gap and hold it the whole way round before an arc is struck, and the root goes in first — in this frame it is part way round, with the gap above still open. The joint is cleaned and checked before the fill and cap go on.':
+        'L’accostage décide du joint. Nous réglons le jeu et le maintenons sur tout le pourtour avant d’amorcer, et la passe de racine passe en premier — sur cette image, elle est faite sur une partie du tour, le jeu au-dessus étant encore ouvert. Le joint est nettoyé et contrôlé avant les passes de remplissage et de finition.',
+    'The new run in place.':
+        'La nouvelle ligne en place.',
+    'The work front covered before hot work starts.':
+        'Le front de travail protégé avant le début des travaux à chaud.',
+    'Branch and stub welded on before the spool goes up.':
+        'Piquage et embout soudés avant le levage du tronçon.',
+    'Beam clamps and chain hoists off the existing steel.':
+        'Pinces à poutre et palans à chaîne sur la charpente existante.',
+    'The root run part way round the joint.':
+        'La passe de racine exécutée sur une partie du tour du joint.',
+    'New large-bore pipework and a fabricated bend installed among existing lines and ducts inside an industrial plant':
+        'Nouvelle tuyauterie de gros diamètre et coude fabriqué, posés entre des lignes et des gaines existantes dans une installation industrielle',
+    'Protective sheeting and welding blankets laid over plant grating around a pipe spool standing ready for installation':
+        'Bâches de protection et couvertures de soudage étalées sur le caillebotis autour d’un tronçon de tuyauterie prêt à être posé',
+    'Prefabricated pipe bend with a welded branch and stub, standing on timber on plant grating':
+        'Coude de tuyauterie préfabriqué avec piquage et embout soudés, posé sur des cales en bois sur le caillebotis',
+    'Two beam clamps and chain hoists rigged from overhead steel, taking the weight of a large-bore pipe':
+        'Deux pinces à poutre et leurs palans à chaîne accrochés à la charpente en hauteur, reprenant le poids d’un tuyau de gros diamètre',
+    'Close-up of a pipe butt joint with an even root gap and the root run part way round':
+        'Gros plan d’un joint bout à bout avec un jeu à la racine régulier et la passe de racine exécutée sur une partie du tour',
+    'Seven scopes, photographed as they were built.':
+        'Sept chantiers, photographiés pendant leur exécution.',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding · Industrial</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Montage mécanique et soudage · Industrie</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Large-bore pipe replacement</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Remplacement de tuyauterie de gros diamètre</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Montage mécanique</span>',
 }
