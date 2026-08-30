@@ -2378,8 +2378,6 @@ S = {
         'Zwei Trägerklemmen mit Kettenzügen, am darüberliegenden Stahlbau angeschlagen und das Gewicht eines Rohres großer Nennweite aufnehmend',
     'Close-up of a pipe butt joint with an even root gap and the root run part way round':
         'Nahaufnahme einer Rohrstumpfnaht mit gleichmäßigem Wurzelspalt und der Wurzellage, die ein Stück weit herumgeführt ist',
-    'Seven scopes, photographed as they were built.':
-        'Sieben Projekte, fotografiert während der Ausführung.',
     '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding · Industrial</span>':
         '<span class="case-num">03</span> <span class="case-kicker">Mechanische Montage und Schweißen · Industrie</span>',
     '<span class="eyebrow">Next project</span> <span class="case-next-t">Large-bore pipe replacement</span> <span class="arr" aria-hidden="true">&#8593;</span>':
@@ -2392,4 +2390,54 @@ S = {
         '<span class="case-num">06</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
     '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation</span>':
         '<span class="case-num">07</span> <span class="case-kicker">Mechanische Montage</span>',
+
+    # --- case: grate bar replacement -------------------------------------
+    'Grate bar replacement':
+        'Austausch von Roststäben',
+    'Grate bar replacement — ALPROJECTS Group':
+        'Austausch von Roststäben — ALPROJECTS Group',
+    'Mechanical maintenance · Waste to energy':
+        'Mechanische Instandhaltung · Müllheizkraftwerk',
+    'Project &middot; Mechanical maintenance · Waste to energy':
+        'Projekt &middot; Mechanische Instandhaltung · Müllheizkraftwerk',
+    'Waste-to-energy plant, furnace during outage':
+        'Müllheizkraftwerk, Feuerraum während der Revision',
+    'Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the specified gap.':
+        'Austausch der Roststäbe im Feuerraum eines Müllheizkraftwerks während der Revision. Die alten Stäbe kamen reihenweise heraus, dort freigeschnitten, wo sie festgefressen waren, und die neuen gingen mit dem vorgegebenen Spalt wieder hinein.',
+    'How it was done':
+        'Wie es ausgeführt wurde',
+    'The furnace is cold by the time we go in, but it is not clean. Everything inside is coated in fly ash and combustion residue, so the crew works in disposable coveralls and P3 respirators, and the suits come off at the door. Entry is under permit, with the space ventilated and the atmosphere monitored.':
+        'Wenn wir einfahren, ist der Feuerraum kalt, aber nicht sauber. Alles darin ist mit Flugasche und Verbrennungsrückständen bedeckt, deshalb arbeitet die Mannschaft in Einweg-Schutzanzügen und mit P3-Atemschutz, und die Anzüge bleiben am Ausstieg. Das Befahren erfolgt mit Erlaubnisschein, bei belüftetem Raum und überwachter Atmosphäre.',
+    'The bars sit in rows across the grate, and after a full run most of them are seized in place. They come out one row at a time — cut free where they will not move, lifted out by hand and stacked. The new ones go back set to the gap the maker specifies, because that gap is how the primary air reaches the bed.':
+        'Die Stäbe liegen in Reihen über den Rost, und nach einer vollen Reise sitzen die meisten fest. Sie kommen reihenweise heraus — freigeschnitten, wo sie sich nicht bewegen lassen, von Hand herausgehoben und gestapelt. Die neuen gehen mit dem vom Hersteller vorgegebenen Spalt wieder hinein, denn über diesen Spalt erreicht die Primärluft das Brennbett.',
+    'Cutting seized steel free.':
+        'Festgefressener Stahl wird freigeschnitten.',
+    'Disposable coveralls and P3 respirators.':
+        'Einweg-Schutzanzüge und P3-Atemschutz.',
+    'Old bars out, one row at a time.':
+        'Alte Stäbe heraus, Reihe für Reihe.',
+    'Worker in disposable coveralls and respirator cutting seized steel free with an oxy-fuel torch at the grate, with removed grate blocks in the foreground':
+        'Arbeiter in Einweg-Schutzanzug und mit Atemschutz schneidet am Rost festgefressenen Stahl mit dem Brennschneider frei, im Vordergrund ausgebaute Rostblöcke',
+    'Worker in a hard hat, goggles and P3 respirator inside the cold furnace of a waste-to-energy plant':
+        'Arbeiter mit Schutzhelm, Schutzbrille und P3-Atemschutz im kalten Feuerraum eines Müllheizkraftwerks',
+    'Two workers in disposable coveralls levering an old grate bar out of its row, with removed bars stacked behind them':
+        'Zwei Arbeiter in Einweg-Schutzanzügen hebeln einen alten Roststab aus seiner Reihe, dahinter gestapelte ausgebaute Stäbe',
+    'Send us the scope and we will come back with a price and crew dates. If it is an outage, tell us the window.':
+        'Senden Sie uns den Leistungsumfang und wir melden uns mit Preis und Einsatzterminen. Bei einer Revision nennen Sie uns bitte das Zeitfenster.',
+    'Eight scopes, photographed as they were built.':
+        'Acht Projekte, fotografiert während der Ausführung.',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical maintenance · Waste to energy</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Mechanische Instandhaltung · Müllheizkraftwerk</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Grate bar replacement</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Austausch von Roststäben</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Fertigung und Schweißen in der Werkstatt</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Mechanische Montage und Schweißen &middot; Tanklager</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
+    '<span class="case-num">08</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">08</span> <span class="case-kicker">Mechanische Montage</span>',
+    'Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the...':
+        'Austausch der Roststäbe im Feuerraum eines Müllheizkraftwerks während der Revision. Die alten Stäbe kamen reihenweise heraus, dort freigeschnitten, wo sie festgefressen waren, und die neuen gingen...',
 }

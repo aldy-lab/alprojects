@@ -1470,6 +1470,56 @@ CASES = [
         ],
     ),
     dict(
+        slug="grate-bar-replacement",
+        title="Grate bar replacement",
+        kicker="Mechanical maintenance \u00b7 Waste to energy",
+        setting="Waste-to-energy plant, furnace during outage",
+        lead="Grate bars replaced inside the furnace of a waste-to-energy plant "
+             "during the outage. The old bars came out one row at a time, cut "
+             "free where they were seized, and the new ones went back set to the "
+             "specified gap.",
+        intro=[],
+        # Nothing was built here; something worn was replaced.
+        seq_head="How it was done",
+        stages=[
+            (2, ["The furnace is cold by the time we go in, but it is not clean. "
+                 "Everything inside is coated in fly ash and combustion residue, "
+                 "so the crew works in disposable coveralls and P3 respirators, "
+                 "and the suits come off at the door. Entry is under permit, with "
+                 "the space ventilated and the atmosphere monitored."]),
+            (3, ["The bars sit in rows across the grate, and after a full run most "
+                 "of them are seized in place. They come out one row at a time "
+                 "\u2014 cut free where they will not move, lifted out by hand and "
+                 "stacked. The new ones go back set to the gap the maker "
+                 "specifies, because that gap is how the primary air reaches the "
+                 "bed."]),
+        ],
+        note="",
+        og="grate-bar-replacement",
+        # Scope, not drawings: nobody sends drawings for an outage, they send
+        # the scope and the window. The other three new cases say "drawings".
+        cta="Send us the scope.",
+        cta_note="Send us the scope and we will come back with a price and crew "
+                 "dates. If it is an outage, tell us the window.",
+        cta_btn="Send us the scope",
+        # No welding: the three frames show oxy-fuel cutting and nothing else.
+        # The client has been asked whether welding was in scope.
+        services=["mechanical-contracting", "mobile-repair-teams",
+                  "quality-control"],
+        photos=[
+            ("Worker in disposable coveralls and respirator cutting seized steel "
+             "free with an oxy-fuel torch at the grate, with removed grate blocks "
+             "in the foreground",
+             "Cutting seized steel free.", 1200, 1600),
+            ("Worker in a hard hat, goggles and P3 respirator inside the cold "
+             "furnace of a waste-to-energy plant",
+             "Disposable coveralls and P3 respirators.", 1200, 1600),
+            ("Two workers in disposable coveralls levering an old grate bar out of "
+             "its row, with removed bars stacked behind them",
+             "Old bars out, one row at a time.", 1200, 1600),
+        ],
+    ),
+    dict(
         slug="tank-and-vessel-fabrication",
         title="Tank and vessel fabrication",
         kicker="Shop fabrication and welding",
@@ -1773,7 +1823,7 @@ def case_body(c, nxt):
 
 %(intro)s    <section class="case-seq">
       <div class="container seq-head">
-        <h2 class="sub-head">How it was built</h2>
+        <h2 class="sub-head">%(seq_head)s</h2>
         <p class="sub-lead">One plate to a stage. Press a plate to open it full size.</p>
       </div>
       <div class="container case-deck">
@@ -1837,6 +1887,10 @@ def case_body(c, nxt):
                           "come back with a price and crew dates. If it is a "
                           "shutdown, tell us the window."),
            cta_btn=c.get("cta_btn", "Start a project"),
+           # "How it was built" is wrong on a maintenance job -- nothing was
+           # built there, something worn was replaced. Per case, defaulting to
+           # what the pages that ARE about building already say.
+           seq_head=c.get("seq_head", "How it was built"),
            nxt_slug=nxt["slug"], nxt_title=_html.escape(nxt["title"]))
 
 
@@ -1946,7 +2000,7 @@ PROJECTS = """
       </span>
       <div class="container">
         <h2 class="sub-head">Projects</h2>
-        <p class="sub-lead">Seven scopes, photographed as they were built.</p>
+        <p class="sub-lead">Eight scopes, photographed as they were built.</p>
         <div class="case-grid">
 """ + cases_html() + """
         </div>

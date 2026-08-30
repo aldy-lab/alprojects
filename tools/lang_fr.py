@@ -2401,8 +2401,6 @@ S = {
         'Deux pinces à poutre et leurs palans à chaîne accrochés à la charpente en hauteur, reprenant le poids d’un tuyau de gros diamètre',
     'Close-up of a pipe butt joint with an even root gap and the root run part way round':
         'Gros plan d’un joint bout à bout avec un jeu à la racine régulier et la passe de racine exécutée sur une partie du tour',
-    'Seven scopes, photographed as they were built.':
-        'Sept chantiers, photographiés pendant leur exécution.',
     '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding · Industrial</span>':
         '<span class="case-num">03</span> <span class="case-kicker">Montage mécanique et soudage · Industrie</span>',
     '<span class="eyebrow">Next project</span> <span class="case-next-t">Large-bore pipe replacement</span> <span class="arr" aria-hidden="true">&#8593;</span>':
@@ -2415,4 +2413,54 @@ S = {
         '<span class="case-num">06</span> <span class="case-kicker">Montage mécanique et soudage</span>',
     '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation</span>':
         '<span class="case-num">07</span> <span class="case-kicker">Montage mécanique</span>',
+
+    # --- case: grate bar replacement -------------------------------------
+    'Grate bar replacement':
+        'Remplacement des barreaux de grille',
+    'Grate bar replacement — ALPROJECTS Group':
+        'Remplacement des barreaux de grille — ALPROJECTS Group',
+    'Mechanical maintenance · Waste to energy':
+        'Maintenance mécanique · Valorisation énergétique des déchets',
+    'Project &middot; Mechanical maintenance · Waste to energy':
+        'Chantier &middot; Maintenance mécanique · Valorisation énergétique des déchets',
+    'Waste-to-energy plant, furnace during outage':
+        'Usine de valorisation énergétique, foyer pendant l’arrêt de tranche',
+    'Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the specified gap.':
+        'Remplacement des barreaux de grille dans le foyer d’une usine de valorisation énergétique des déchets pendant l’arrêt de tranche. Les anciens barreaux sont sortis rangée par rangée, découpés là où ils étaient grippés, et les nouveaux sont remontés au jeu prescrit.',
+    'How it was done':
+        'Le déroulement de l’intervention',
+    'The furnace is cold by the time we go in, but it is not clean. Everything inside is coated in fly ash and combustion residue, so the crew works in disposable coveralls and P3 respirators, and the suits come off at the door. Entry is under permit, with the space ventilated and the atmosphere monitored.':
+        'Quand nous entrons, le foyer est froid mais pas propre. Tout y est couvert de cendres volantes et de résidus de combustion : l’équipe travaille donc en combinaisons jetables et masques P3, et les combinaisons restent à la porte. L’entrée se fait sous permis, l’espace ventilé et l’atmosphère surveillée.',
+    'The bars sit in rows across the grate, and after a full run most of them are seized in place. They come out one row at a time — cut free where they will not move, lifted out by hand and stacked. The new ones go back set to the gap the maker specifies, because that gap is how the primary air reaches the bed.':
+        'Les barreaux sont disposés en rangées sur la grille et, après une campagne complète, la plupart sont grippés. Ils sortent rangée par rangée — découpés là où ils ne bougent plus, dégagés à la main et empilés. Les neufs sont remontés au jeu prescrit par le constructeur, car c’est par ce jeu que l’air primaire atteint le lit de combustible.',
+    'Cutting seized steel free.':
+        'Découpe de l’acier grippé.',
+    'Disposable coveralls and P3 respirators.':
+        'Combinaisons jetables et masques P3.',
+    'Old bars out, one row at a time.':
+        'Anciens barreaux déposés, rangée par rangée.',
+    'Worker in disposable coveralls and respirator cutting seized steel free with an oxy-fuel torch at the grate, with removed grate blocks in the foreground':
+        'Ouvrier en combinaison jetable et masque découpant à la grille de l’acier grippé au chalumeau oxycoupeur, blocs de grille déposés au premier plan',
+    'Worker in a hard hat, goggles and P3 respirator inside the cold furnace of a waste-to-energy plant':
+        'Ouvrier en casque, lunettes et masque P3 dans le foyer froid d’une usine de valorisation énergétique des déchets',
+    'Two workers in disposable coveralls levering an old grate bar out of its row, with removed bars stacked behind them':
+        'Deux ouvriers en combinaisons jetables extrayant au levier un ancien barreau de sa rangée, barreaux déposés empilés derrière eux',
+    'Send us the scope and we will come back with a price and crew dates. If it is an outage, tell us the window.':
+        'Envoyez-nous le périmètre et nous reviendrons avec un prix et des dates d’équipe. S’il s’agit d’un arrêt de tranche, précisez-nous la fenêtre.',
+    'Eight scopes, photographed as they were built.':
+        'Huit chantiers, photographiés pendant leur exécution.',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical maintenance · Waste to energy</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Maintenance mécanique · Valorisation énergétique des déchets</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Grate bar replacement</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Remplacement des barreaux de grille</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">08</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">08</span> <span class="case-kicker">Montage mécanique</span>',
+    'Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the...':
+        'Remplacement des barreaux de grille dans le foyer d’une usine de valorisation énergétique des déchets pendant l’arrêt de tranche. Les anciens barreaux sont sortis rangée par rangée, découpés là où...',
 }
