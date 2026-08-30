@@ -423,7 +423,7 @@ html.menu-open .site-header {
   font-size: 9px;
   color: var(--muted-2);
 }
-.main-nav a:hover, .main-nav a.active { color: var(--text); }
+.main-nav a:hover, .main-nav a.active, .main-nav a[aria-current="page"] { color: var(--text); }
 
 .header-right { display: flex; align-items: center; gap: 18px; }
 .socials { display: flex; gap: 8px; }
@@ -1105,7 +1105,11 @@ html.menu-open .site-header {
   border: 1px solid var(--line);
   backdrop-filter: blur(6px);
   padding: 26px 28px;
-  max-width: 480px;
+  /* min() not a bare 480px: the box is shrink-to-fit, so a longer heading
+     grew it past its own panel -- "Projektsequenz initialisieren" made it
+     318px inside a 268px panel at 360px wide. */
+  max-width: min(480px, 100%);
+  min-width: 0;
 }
 .terminal .t-title {
   font-size: var(--text-m);
@@ -2139,7 +2143,10 @@ html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint te
   align-items: end;
   margin-bottom: clamp(26px, 3vw, 44px);
 }
-.fp-intro p { max-width: 62ch; }
+/* `> p`, not `p`: the figures in .fp-figures are paragraphs too, and the
+   descendant selector at (0,2,1) beat .fp-num (0,1,0) -- "6 Countries /
+   9 Project bases" shipped at the 15px body size instead of the design's 44px. */
+.fp-intro > p { max-width: 62ch; }
 .fp-figures { margin-top: 0; }
 
 /* Map beside the list rather than stacked above it: stacked, this section ran
@@ -2201,7 +2208,7 @@ html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint te
   .fp-intro { grid-template-columns: 1fr; align-items: start; }
 }
 
-.fp-intro p {
+.fp-intro > p {
   font-size: var(--text-xl);
   font-weight: 300;
   line-height: 1.8;
@@ -3361,7 +3368,7 @@ html.blueprint .srv-link { border-bottom-color: rgba(207, 208, 215, 0.28); }
    screen, so the map and the list tighten rather than stack. */
 .footprint { padding-top: clamp(44px, 5vw, 70px); padding-bottom: clamp(44px, 5vw, 72px); }
 .footprint .fp-intro { margin-bottom: clamp(20px, 2.4vw, 32px); }
-.footprint .fp-intro p { font-size: var(--text-l); line-height: 1.7; }
+.footprint .fp-intro > p { font-size: var(--text-l); line-height: 1.7; }
 .footprint .fp-figures { gap: clamp(22px, 3vw, 42px); }
 .footprint .fp-num { font-size: clamp(30px, 3.2vw, 44px); }
 .footprint .euromap { max-width: 460px; }
@@ -3392,7 +3399,7 @@ html.blueprint .srv-link { border-bottom-color: rgba(207, 208, 215, 0.28); }
 .footprint { padding-top: clamp(36px, 4vw, 56px); padding-bottom: clamp(36px, 4vw, 58px); }
 .footprint .section-head { margin-bottom: clamp(18px, 2vw, 26px); }
 .footprint .fp-intro { margin-bottom: clamp(16px, 1.8vw, 24px); }
-.footprint .fp-intro p { max-width: 66ch; }
+.footprint .fp-intro > p { max-width: 66ch; }
 .footprint .fp-figures { margin-top: 20px; }
 .footprint .euromap { max-width: 400px; }
 .footprint .fp-main { gap: clamp(22px, 3vw, 54px); align-items: center; }
@@ -6335,3 +6342,149 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
 .cta { padding-top: var(--gap-major); padding-bottom: 0; }
 .downloads { padding-bottom: 0; }
 .advantages { padding: var(--gap-section) 0 0; }
+
+
+/* ---------- long button labels may wrap on a narrow phone ----------
+   The buttons are nowrap by design, so their height never depends on the
+   label. That holds in English; it does not in German, where "Senden Sie uns
+   den Leistungsumfang" measures 369px in a 360px viewport -- the hero button
+   ran 31px off the screen and the CTA's bracket button 77px, breaking out of
+   its own panel. Below 560px the label wraps instead. min-width:0 as well:
+   these are flex items, and a flex item refuses to shrink below its content
+   without it, so max-width alone would not have held. Single-line labels are
+   unchanged -- min-height still governs the box. */
+@media (max-width: 560px) {
+  .btn-solid:not(.menu-cta), .btn-outline, .btn-bracket {
+    white-space: normal;
+    line-height: 1.25;
+    padding-block: 12px;
+    max-width: 100%;
+    min-width: 0;
+    text-align: center;
+  }
+  .btn-bracket { padding-inline: 16px; }
+}
+
+
+/* ---------- section heads get the page gutter on a phone ----------
+   .section-head sits outside .container, so it had no horizontal padding at
+   all: at 390px "OPERATING ACROSS EUROPE" and "ONE SET OF DISCIPLINES" ran
+   the full width of the screen with the glyphs against both edges. The gutter
+   is --pad, the same one .container uses, so the heads line up with the copy
+   below them rather than sitting to their own measure.
+
+   The title steps down with it. Padding alone would have been enough to stop
+   the collision, but the titles carry deliberate <br> breaks and the narrower
+   measure pushed them onto a third ragged line -- smaller type keeps the two
+   lines the design asks for. */
+@media (max-width: 700px) {
+  .section-head { padding-inline: var(--pad); }
+  .section-title { font-size: clamp(21px, 5.6vw, 26px); }
+}
+
+
+/* ---------- 12px floor for labels on a phone ----------
+   The label sizes are set for a 27-inch screen at arm's length. On a phone in
+   daylight they are the first thing to go: 112 elements on the homepage sat
+   below 12px, among them the certificate numbers and validity dates a buyer
+   squints at to check the evidence. --tag and --numbers carry most of them,
+   so the floor is one line each rather than a rule per component. Decorative
+   drawing marks (.dim b, the blueprint legend) keep their size -- they are
+   aria-hidden and not there to be read. */
+@media (max-width: 700px) {
+  :root { --tag: 12px; --numbers: 12px; }
+  /* Four that set their own size and so ignore the variables above. The
+     certificate line is the one that mattered: "Cert. C760290 - Valid to
+     28.07.2027" was set to 9px on phones, and it is the evidence a buyer
+     checks before believing the claim next to it. */
+  .cert-card figcaption, .cert-meta { font-size: 12px; }
+  .industry-tags span { font-size: 12px; }
+  .sector-fact { font-size: 12px; }
+  .langs a { font-size: 12px; }
+}
+
+
+/* ---------- certificates panel: no edge fade on a phone ----------
+   The panel's mask fades its own left and right ends so a 1280px hairline
+   does not read as a stamped-on rectangle. The rule above it reasons that
+   "the cards sit 48px inside the padding, so a 30px fade never reaches them"
+   -- true at the desktop padding of 43px, false at the phone's 20px, where
+   the first card starts 21px in and the fade runs to 32px. Measured at 390px:
+   the card's own left border (luminance 41 against a 24 ground) disappeared
+   completely and the fill behind it lost a fifth of its value, so the cards
+   read as bleeding out of the panel they sit in. The panel is 346px wide
+   here; the frame alone does the job the fade was drawn for. */
+@media (max-width: 700px) {
+  .certs-panel { -webkit-mask-image: none; mask-image: none; }
+}
+
+
+/* ---------- service card: the title can never push the counter out ----------
+   .service-top is a flex row of the title and the "1/5" counter. A flex item
+   will not shrink below its longest unbreakable word, so a compound noun --
+   "Rohrleitungsmontagearbeiten", or any Lithuanian equivalent -- drove the
+   title 254px wide at 360px and carried the counter 243px past the card edge,
+   where the parent clipped it away: the counter silently vanished rather than
+   causing a scrollbar. None of the four shipped languages hits this today;
+   this is the guard, not a repair. */
+.service-top h3 { min-width: 0; overflow-wrap: anywhere; }
+.service-top .count { flex: none; }
+
+
+/* ---------- service card title on a phone ----------
+   The 25px title had 226px of the 314px row (the counter and its 20px gap
+   take the rest), and "SCHWEISSTECHNIK" needs 272px. It hyphenated, and the
+   dictionary works on the uppercased string -- text-transform turns "ß" into
+   "SS" -- so the break landed as "SCHWEISSTECH-NIK". Every German title broke
+   and one ran to three lines. A narrower gap plus one step down puts them on
+   a single line, and the row is 201px shorter across the five cards, which
+   matters more here than anywhere: the stack is the tallest thing on the
+   phone. The container padding is deliberately not touched -- the title has
+   to stay on the same left edge as the paragraph under it. */
+@media (max-width: 700px) {
+  .service-top { gap: 12px; }
+  .service-top h3 { font-size: 21px; }
+}
+
+
+/* ---------- standalone contact links are tap targets ----------
+   The direct-channel links -- the ones a site manager on a phone actually
+   reaches for -- were 25 to 41px tall: .apply-alt 37, .booking-alt 25, the
+   phone list 33. Each is the whole content of its row, so giving it the 44px
+   target costs nothing around it. Links inside a sentence ("see our privacy
+   policy") are deliberately left alone: WCAG exempts inline text links, and
+   padding them would break the line rhythm of the paragraph they sit in.
+   The consent checkboxes are 24px but each has its own label -- 268x71 and
+   346x95 -- so the real target is already there. Scoped to a touch screen:
+   a mouse does not need 44px, and on the desktop contacts page the same rule
+   added 83px of height for nothing. (hover: none) is already used eight times
+   in this file for the same reason. */
+@media (pointer: coarse) {
+  .apply-alt a,
+  .booking-alt a,
+  .contact-emails a,
+  .prose li > a[href^="tel:"],
+  .prose li > a[href^="mailto:"] {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 0;
+  }
+}
+
+
+/* ---------- booking panel without scripting ----------
+   The panel ships visible so revealing it cannot shift the page (it used to
+   cost CLS 0.276 the moment main.js arrived late). Its button opens the
+   Calendly overlay and does nothing at all without scripting, so with no .js
+   marker the button goes and the mailto line under it carries the section --
+   the site's own rule: a missing control, never a dead one. */
+html:not(.js) .booking [data-booking-load] { display: none; }
+
+
+/* ---------- the sector prose now follows the cases ----------
+   Moving it below the photographs left its first heading hard against the
+   bottom of the last case card -- 21px between them on a phone, where the
+   sections either side of it sit at 105 and 193. It takes the same major step
+   the rest of the page is built on rather than a number of its own. */
+.prose-after-cases { margin-top: var(--gap-major); }
