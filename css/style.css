@@ -89,6 +89,19 @@
      fourth, and two card types that did not respond at all. */
   --lift: -5px;
   --zoom: 1.04;
+
+  /* Stacking order, named. The numbers were picked one at a time -- 90, 99,
+     100, 200, 290, 300, 1000 -- and a number on its own says nothing about
+     what it is meant to sit above. Values are unchanged; only the ladder is
+     written down, so the next thing that needs a layer has somewhere to go
+     other than 9999. */
+  --z-bar: 90;        /* phone action bar, under everything that opens */
+  --z-menu: 99;       /* mobile menu panel */
+  --z-header: 100;    /* sticky header, above the menu's backdrop */
+  --z-skip: 200;      /* skip-link, above the header when focused */
+  --z-measure: 290;   /* blueprint drag-to-measure overlay */
+  --z-flag: 300;      /* blueprint badge, above its own overlay */
+  --z-viewer: 1000;   /* photo viewer, above everything */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -195,7 +208,7 @@ a { color: inherit; text-decoration: none; }
   left: 50%;
   top: 0;
   transform: translate(-50%, -120%);
-  z-index: 200;
+  z-index: var(--z-skip);
   padding: 12px 22px;
   background: var(--text);
   color: var(--bg);
@@ -354,7 +367,7 @@ button { font-family: inherit; cursor: pointer; }
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 100;
+  z-index: var(--z-header);
   height: var(--nav-h);
   display: flex;
   align-items: center;
@@ -469,7 +482,7 @@ html.menu-open .site-header {
 .mobile-menu {
   position: fixed;
   inset: var(--nav-h) 0 0 0;
-  z-index: 99;
+  z-index: var(--z-menu);
   background: rgba(10, 10, 18, 0.97);
   backdrop-filter: blur(20px);
   display: none;
@@ -1707,7 +1720,7 @@ html.blueprint .plate, html.blueprint .case-card, html.blueprint .case-next-link
   left: 50%;
   bottom: 26px;
   transform: translateX(-50%) translateY(14px);
-  z-index: 300;
+  z-index: var(--z-flag);
   padding: 9px 18px;
   background: rgba(5, 6, 15, 0.9);
   border: 1px solid var(--line-strong);
@@ -1821,7 +1834,7 @@ html.blueprint .plate, html.blueprint .case-card, html.blueprint .case-next-link
 .measure-layer {
   position: fixed;
   inset: 0;
-  z-index: 290;
+  z-index: var(--z-measure);
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--dur-2) var(--ease);
@@ -3418,7 +3431,7 @@ html.blueprint .srv-link { border-bottom-color: rgba(207, 208, 215, 0.28); }
 .bp-sheet {
   position: fixed;
   inset: 0;
-  z-index: 300;
+  z-index: var(--z-flag);
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--dur-3) var(--ease);
@@ -4358,7 +4371,7 @@ h2.eyebrow { font-weight: 400; margin-top: 0; }
 /* ---------- the viewer ---------- */
 .lb[hidden] { display: none; }
 .lb {
-  position: fixed; inset: 0; z-index: 1000;
+  position: fixed; inset: 0; z-index: var(--z-viewer);
   display: grid; place-items: center;
   padding: clamp(16px, 3vw, 40px);
 }
@@ -6650,7 +6663,7 @@ html:not(.js) .booking [data-booking-load] { display: none; }
    open. The body gets its height back as padding so the footer is never
    hidden behind it. Injected by js/main.js; STICKY_CTA = false removes it. */
 .cta-bar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-bar);
   display: none;
   grid-template-columns: minmax(96px, 0.8fr) 1.6fr; gap: 10px;
   padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));

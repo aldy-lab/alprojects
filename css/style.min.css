@@ -46,6 +46,13 @@
 --btn-h: 48px;
 --lift: -5px;
 --zoom: 1.04;
+--z-bar: 90;
+--z-menu: 99;
+--z-header: 100;
+--z-skip: 200;
+--z-measure: 290;
+--z-flag: 300;
+--z-viewer: 1000;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 ::selection { background: var(--accent); color: var(--black); }
@@ -101,7 +108,7 @@ position: absolute;
 left: 50%;
 top: 0;
 transform: translate(-50%, -120%);
-z-index: 200;
+z-index: var(--z-skip);
 padding: 12px 22px;
 background: var(--text);
 color: var(--bg);
@@ -227,7 +234,7 @@ html { scroll-behavior: auto; }
 .site-header {
 position: fixed;
 inset: 0 0 auto 0;
-z-index: 100;
+z-index: var(--z-header);
 height: var(--nav-h);
 display: flex;
 align-items: center;
@@ -315,7 +322,7 @@ transition: transform var(--dur-2), opacity var(--dur-2);
 .mobile-menu {
 position: fixed;
 inset: var(--nav-h) 0 0 0;
-z-index: 99;
+z-index: var(--z-menu);
 background: rgba(10, 10, 18, 0.97);
 backdrop-filter: blur(20px);
 display: none;
@@ -1365,7 +1372,7 @@ position: fixed;
 left: 50%;
 bottom: 26px;
 transform: translateX(-50%) translateY(14px);
-z-index: 300;
+z-index: var(--z-flag);
 padding: 9px 18px;
 background: rgba(5, 6, 15, 0.9);
 border: 1px solid var(--line-strong);
@@ -1468,7 +1475,7 @@ line-height: 1.7;
 .measure-layer {
 position: fixed;
 inset: 0;
-z-index: 290;
+z-index: var(--z-measure);
 pointer-events: none;
 opacity: 0;
 transition: opacity var(--dur-2) var(--ease);
@@ -2698,7 +2705,7 @@ html.blueprint .srv-link { border-bottom-color: rgba(207, 208, 215, 0.28); }
 .bp-sheet {
 position: fixed;
 inset: 0;
-z-index: 300;
+z-index: var(--z-flag);
 pointer-events: none;
 opacity: 0;
 transition: opacity var(--dur-3) var(--ease);
@@ -3384,7 +3391,7 @@ transform: scale(0.55); transition: transform var(--dur-3) var(--ease);
 @media (hover: none) { .shot .corners { display: none; } }
 .lb[hidden] { display: none; }
 .lb {
-position: fixed; inset: 0; z-index: 1000;
+position: fixed; inset: 0; z-index: var(--z-viewer);
 display: grid; place-items: center;
 padding: clamp(16px, 3vw, 40px);
 }
@@ -4881,7 +4888,7 @@ transition: border-color var(--dur-2) var(--ease), color var(--dur-2) var(--ease
 .cta-direct a { min-height: 48px; }
 }
 .cta-bar {
-position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-bar);
 display: none;
 grid-template-columns: minmax(96px, 0.8fr) 1.6fr; gap: 10px;
 padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));

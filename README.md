@@ -895,6 +895,39 @@ publication:
       unchanged: no ISO 3834 certificate has been supplied. See the ISO 3834
       item above.
 
+## Breakpoints and stacking order
+
+A count of the media queries says 122 of them across 27 widths, which reads
+like a mess. It is not, and it was checked before anything was changed:
+
+* six stops carry 223 of the 273 width-based rules -- 560, 640, 700, 900, 980
+  and 1000. That is the ladder, and it is already a ladder.
+* `975px` is not a stray near 980. The comment above it says so: it matches
+  the third-party booking widget's own breakpoint, and moving it would break
+  the alignment it exists to keep.
+* `max-width: 980px` and `min-width: 981px` are a complementary pair, not two
+  stops. They do not overlap, which is the point.
+* the remaining eleven widths carry 27 rules between them and are per-component:
+  `1180px` is exactly where the two download cards stop fitting side by side
+  (measured: one 1090px column below it, two 540px columns above); `400px` is
+  where the document card's two buttons stop fitting beside the cover; `620px`
+  is where two bracket buttons stop fitting in a row.
+
+Breakpoints that sit where the content actually breaks are the point of them.
+Flattening these into a five-stop scale would move each reflow away from the
+width where its component needs it, which is a regression dressed as tidiness.
+If a future refactor still wants a scale, the six stops above are it, and the
+per-component widths should stay where they are.
+
+Stacking order is a named scale in `:root` -- `--z-bar` 90, `--z-menu` 99,
+`--z-header` 100, `--z-skip` 200, `--z-measure` 290, `--z-flag` 300,
+`--z-viewer` 1000. The values did not change; they are only written down, so
+the next thing that needs a layer has somewhere to go other than 9999.
+
+The 19 one-off hex colours outside `:root` were looked at too and deliberately
+left: 17 of them are gradient stops, each used exactly once. Nineteen tokens
+with one use apiece is not a design system, it is an indirection.
+
 ## Local preview
 
 No build step, but **use `tools/serve.py`, not `python3 -m http.server`**:
