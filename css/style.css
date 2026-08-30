@@ -4563,7 +4563,17 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   border-bottom: 1px solid rgba(255,255,255,.28);
   transition: color var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease);
 }
-.service-all::after { content: " \2192"; }
+/* U+2192 is not in Montserrat either -- same substitution, same mismatch as
+   the north-east arrow above. U+2191 turned 90 degrees is the same arrow in
+   the family. inline-block so the rotation has a box to turn. */
+.service-all::after {
+  content: "\2191";
+  display: inline-block;
+  margin-left: .5em;
+  rotate: 90deg;
+  /* the display face, or the glyph leaves the family the same way .arr did */
+  font-family: var(--font-display);
+}
 .service-all:hover, .service-all:focus-visible { color: var(--white); border-color: var(--white); }
 
 /* ---------- contacts: the two email addresses ----------
@@ -6514,14 +6524,19 @@ html:not(.js) .booking [data-booking-load] { display: none; }
    turned 45 degrees it is the same arrow, in the same typeface, at the same
    stroke weight. `rotate` rather than `transform` on purpose: it composes as
    its own property, so the hover translate on .arr keeps working untouched. */
-.arr {
+/* One arrow, four directions. U+2191 is the only one of the four Montserrat
+   actually contains, so the rest are it, turned. font-family is not optional:
+   these inherit the body face, Poppins has none of the arrows either, and
+   without the line the glyph leaves the family exactly as it did before.
+   `rotate` rather than `transform`, so the hover translate on .arr and the
+   translateX on .sector-arrow keep working as their own property. */
+.arr, .ar-e, .ar-w {
   display: inline-block;
-  rotate: 45deg;
-  /* The display face, explicitly: U+2191 is in Montserrat and not in Poppins,
-     and .arr inherits the body font. Without this the glyph still leaves the
-     family and the whole exercise buys nothing. */
   font-family: var(--font-display);
 }
+.arr  { rotate: 45deg; }    /* north-east */
+.ar-e { rotate: 90deg; }    /* east */
+.ar-w { rotate: -90deg; }   /* west */
 
 
 /* ---------- the language switcher is a tap target on a touch screen ----------

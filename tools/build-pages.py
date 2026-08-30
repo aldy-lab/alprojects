@@ -916,28 +916,28 @@ COMPANY = """
           <a href="/sectors/shipbuilding.html">
             <b>Shipbuilding</b>
             <span>Piping and mechanical installation on vessels under construction.</span>
-            <em aria-hidden="true">&rarr;</em>
+            <em class="ar-e" aria-hidden="true">&#8593;</em>
           </a>
         </li>
         <li>
           <a href="/sectors/offshore.html">
             <b>Offshore</b>
             <span>Inspection, access and mechanical works on offshore facilities.</span>
-            <em aria-hidden="true">&rarr;</em>
+            <em class="ar-e" aria-hidden="true">&#8593;</em>
           </a>
         </li>
         <li>
           <a href="/sectors/industrial.html">
             <b>Industrial</b>
             <span>Plant installation, transformer packages, process piping.</span>
-            <em aria-hidden="true">&rarr;</em>
+            <em class="ar-e" aria-hidden="true">&#8593;</em>
           </a>
         </li>
         <li>
           <a href="/sectors/renewables.html">
             <b>Energy and renewables</b>
             <span>Fuel handling infrastructure and wind energy support.</span>
-            <em aria-hidden="true">&rarr;</em>
+            <em class="ar-e" aria-hidden="true">&#8593;</em>
           </a>
         </li>
       </ul>
@@ -2380,7 +2380,7 @@ def service_panel(sv):
             '          <p class="srv-lead">{lead}</p>\n'
             '          <ul class="srv-points">\n{points}\n          </ul>\n'
             '          <a class="srv-cta" href="/contacts.html">Discuss a project '
-            '<span aria-hidden="true">&rarr;</span></a>\n'
+            '<span class="ar-e" aria-hidden="true">&#8593;</span></a>\n'
             '        </article>').format(slug=sv["slug"], num=sv["num"],
                                         h1=sv["h1"], lead=sv["lead"], points=points)
 
@@ -2401,9 +2401,9 @@ def service_page_body(sv):
             '{panel}\n'
             '          <div class="srv-controls">\n'
             '            <button class="srv-arrow" type="button" data-srv-prev '
-            'aria-label="Previous service">&larr;</button>\n'
+            'aria-label="Previous service"><span class="ar-w">&#8593;</span></button>\n'
             '            <button class="srv-arrow" type="button" data-srv-next '
-            'aria-label="Next service">&rarr;</button>\n'
+            'aria-label="Next service"><span class="ar-e">&#8593;</span></button>\n'
             '            <span class="srv-pos" aria-live="polite">{num} / 12</span>\n'
             '          </div>\n'
             '        </div>\n'

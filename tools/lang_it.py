@@ -840,8 +840,8 @@ S = {
         'Tra le aziende più solide della Lituania — ALPROJECTS Group',
     'Country of residence <span class="opt">(optional)</span>':
         'Paese di residenza <span class="opt">(facoltativo)</span>',
-    'Discuss a project <span aria-hidden="true">&rarr;</span>':
-        'Parliamo di un progetto <span aria-hidden="true">&rarr;</span>',
+    'Discuss a project <span class="ar-e" aria-hidden="true">&#8593;</span>':
+        'Parliamo di un progetto <span class="ar-e" aria-hidden="true">&#8593;</span>',
     'Fit-up, alignment and dimensional control before welding':
         'Accoppiamento, allineamento e controllo dimensionale prima della saldatura',
     'Photographs of certificates taken with a phone are fine.':
@@ -1564,14 +1564,14 @@ S = {
         'Questa è ALPROJECTS — ALPROJECTS Group',
     'Our management systems are certified to ISO 9001, 14001 and 45001, and our welding to ISO 3834. Certification is what lets a client accept our documentation without repeating the inspection themselves.':
         'I nostri sistemi di gestione sono certificati ISO 9001, 14001 e 45001 e la nostra saldatura ISO 3834. È la certificazione che permette al cliente di accettare la nostra documentazione senza ripetere l’ispezione.',
-    '<b>Shipbuilding</b> <span>Piping and mechanical installation on vessels under construction.</span> <em aria-hidden="true">&rarr;</em>':
-        '<b>Cantieristica navale</b> <span>Tubazioni e montaggio meccanico su navi in costruzione.</span> <em aria-hidden="true">&rarr;</em>',
-    '<b>Offshore</b> <span>Inspection, access and mechanical works on offshore facilities.</span> <em aria-hidden="true">&rarr;</em>':
-        '<b>Offshore</b> <span>Ispezione, accesso e lavori meccanici su impianti offshore.</span> <em aria-hidden="true">&rarr;</em>',
-    '<b>Industrial</b> <span>Plant installation, transformer packages, process piping.</span> <em aria-hidden="true">&rarr;</em>':
-        '<b>Industria</b> <span>Montaggio di impianti, pacchetti trasformatori, tubazioni di processo.</span> <em aria-hidden="true">&rarr;</em>',
-    '<b>Energy and renewables</b> <span>Fuel handling infrastructure and wind energy support.</span> <em aria-hidden="true">&rarr;</em>':
-        '<b>Energia e rinnovabili</b> <span>Infrastrutture per la movimentazione di combustibili e supporto eolico.</span> <em aria-hidden="true">&rarr;</em>',
+    '<b>Shipbuilding</b> <span>Piping and mechanical installation on vessels under construction.</span> <em class="ar-e" aria-hidden="true">&#8593;</em>':
+        '<b>Cantieristica navale</b> <span>Tubazioni e montaggio meccanico su navi in costruzione.</span> <em class="ar-e" aria-hidden="true">&#8593;</em>',
+    '<b>Offshore</b> <span>Inspection, access and mechanical works on offshore facilities.</span> <em class="ar-e" aria-hidden="true">&#8593;</em>':
+        '<b>Offshore</b> <span>Ispezione, accesso e lavori meccanici su impianti offshore.</span> <em class="ar-e" aria-hidden="true">&#8593;</em>',
+    '<b>Industrial</b> <span>Plant installation, transformer packages, process piping.</span> <em class="ar-e" aria-hidden="true">&#8593;</em>':
+        '<b>Industria</b> <span>Montaggio di impianti, pacchetti trasformatori, tubazioni di processo.</span> <em class="ar-e" aria-hidden="true">&#8593;</em>',
+    '<b>Energy and renewables</b> <span>Fuel handling infrastructure and wind energy support.</span> <em class="ar-e" aria-hidden="true">&#8593;</em>':
+        '<b>Energia e rinnovabili</b> <span>Infrastrutture per la movimentazione di combustibili e supporto eolico.</span> <em class="ar-e" aria-hidden="true">&#8593;</em>',
     '<span class="value" data-count="300" data-suffix="+">0+</span><span class="label">Certified specialists on the roster</span>':
         '<span class="value" data-count="300" data-suffix="+">0+</span><span class="label">Specialisti certificati in organico</span>',
     '<span class="value" data-count="6">0</span><span class="label">Countries we work in</span>':
