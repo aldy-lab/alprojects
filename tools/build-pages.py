@@ -31,9 +31,11 @@ SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 # rewriting for the language trees, and two copies would drift.
 from paths import rootify, clean_urls  # noqa: E402
 import minify  # noqa: E402
+import thumbs  # noqa: E402
 
 # Before anything is stamped: the ?v= hash is taken from the minified file,
 # so it has to be rewritten first or every page would ship last run's hash.
+thumbs.run()
 minify.run()
 
 
@@ -1839,13 +1841,42 @@ def case_body(c, nxt):
 
 
 def cases_html():
+    """The card grid on /projects.
+
+    Two things here are computed rather than fixed, because both broke the
+    moment a case was added:
+
+    * The grid is two columns. With an odd number of cases the last card sat
+      alone beside an empty half-row -- 600px of nothing, the kind of dead
+      space this site gets judged on. So on an odd count the FIRST card spans
+      both columns, which leaves an even number behind it and fills every row.
+      Add or remove a case and the layout stays whole; nothing to remember.
+
+    * The thumbnail used to be the 600px file with no srcset, in a box that
+      measures 627 CSS px at a 1440 viewport -- 1254 device px on a retina
+      laptop, so the photograph was being blown up 2.09x and looked soft.
+      Both widths are offered now and the browser picks.
+    """
+    lead = len(CASES) % 2 == 1
     cards = []
     for i, c in enumerate(CASES):
-        alt, _cap, w, h = c["photos"][0]
+        alt, _cap, _w, _h = c["photos"][0]
+        # the cover is the 4:3 crop tools/thumbs.py writes, not the plate
+        w, h = 1200, 900
+        is_lead = lead and i == 0
+        # The lead card's plate is about half the container; the others about a
+        # quarter of the viewport, capped by the container at 670px.
+        sizes = ("(max-width: 700px) 92vw, (max-width: 1440px) 50vw, 700px"
+                 if is_lead else
+                 "(max-width: 700px) 92vw, (max-width: 1440px) 47vw, 670px")
         cards.append(
-            '        <a class="case-card" href="/projects/%s.html">\n'
+            '        <a class="case-card%s" href="/projects/%s.html">\n'
             '          <span class="case-thumb">\n'
-            '            <img src="/assets/projects/cases/%s/01-600.webp"\n'
+            '            <img src="/assets/projects/cases/%s/card-600.webp"\n'
+            '                 srcset="/assets/projects/cases/%s/card-600.webp 600w,'
+            ' /assets/projects/cases/%s/card-900.webp 900w,'
+            ' /assets/projects/cases/%s/card-1200.webp 1200w"\n'
+            '                 sizes="%s"\n'
             '                 alt="%s" width="%d" height="%d" loading="%s" decoding="async">\n'
             '            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>\n'
             '          </span>\n'
@@ -1859,7 +1890,9 @@ def cases_html():
             '            <span class="case-more">Read the job <span class="arr">&#8593;</span></span>\n'
             '          </span>\n'
             '        </a>'
-            % (c["slug"], c["slug"], _html.escape(alt, quote=True), w, h,
+            % (" case-wide" if is_lead else "", c["slug"],
+               c["slug"], c["slug"], c["slug"], c["slug"], sizes,
+               _html.escape(alt, quote=True), w, h,
                "eager" if i < 2 else "lazy", i + 1, c["kicker"],
                _html.escape(c["title"]), c["lead"]))
     return "\n".join(cards)
@@ -1903,13 +1936,22 @@ PROJECTS = """
     </div>
 
 
-    <div class="container">
-      <h2 class="sub-head">Projects</h2>
-      <p class="sub-lead">Seven scopes, photographed as they were built.</p>
-      <div class="case-grid">
+    <section class="case-sheet">
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:2.4%; top:4%"></span>
+        <span class="sheet-plus" style="left:95%; top:4%"></span>
+        <span class="sheet-plus" style="left:2.4%; top:52%"></span>
+        <span class="sheet-plus" style="left:95%; top:52%"></span>
+      </span>
+      <div class="container">
+        <h2 class="sub-head">Projects</h2>
+        <p class="sub-lead">Seven scopes, photographed as they were built.</p>
+        <div class="case-grid">
 """ + cases_html() + """
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- The four sector paragraphs sit below the photographed cases, not
          above them: a visitor who clicked "See our projects" scrolled

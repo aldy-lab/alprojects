@@ -4921,3 +4921,56 @@ border-bottom: 1px solid rgba(207, 208, 215, 0.16);
 @media (max-width: 700px) {
 .footer-bottom .legal-ids { display: block; margin-top: 6px; }
 }
+.case-sheet {
+position: relative;
+isolation: isolate;
+}
+.case-sheet > .container { position: relative; z-index: 1; }
+.case-sheet > .sheet-grid {
+background-size: 116px 116px;
+-webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 9%, #000 84%, transparent 100%);
+mask-image: linear-gradient(180deg, transparent 0%, #000 9%, #000 84%, transparent 100%);
+}
+.case-sheet > .sheet-furniture .sheet-plus { opacity: 0.4; }
+.case-card { background: color-mix(in srgb, var(--panel) 82%, transparent); }
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+.case-card { background: rgba(16, 17, 29, 0.82); }
+}
+.case-card:hover { background: var(--panel-2); }
+.case-card.case-wide { grid-column: 1 / -1; }
+@media (min-width: 701px) {
+.case-card.case-wide { flex-direction: row; align-items: stretch; }
+.case-card.case-wide .case-thumb { flex: 0 0 48%; min-width: 0; }
+.case-card.case-wide .case-thumb img { height: 100%; aspect-ratio: 16 / 10; }
+.case-card.case-wide .case-txt {
+flex: 1 1 auto;
+min-width: 0;
+justify-content: center;
+padding: clamp(22px, 2.6vw, 48px);
+gap: 12px;
+}
+.case-card.case-wide .case-blurb { max-width: 46ch; }
+.case-card.case-wide .case-more { margin-top: 6px; }
+}
+@media (min-width: 1100px) {
+.case-card.case-wide .case-thumb { flex: 0 0 52%; }
+.case-card.case-wide .case-txt { gap: 14px; }
+.case-card.case-wide h3 { font-size: var(--h4); max-width: 20ch; }
+}
+.case-thumb img { filter: saturate(0.64) contrast(1.04); }
+.case-thumb::after {
+content: "";
+position: absolute;
+inset: 0;
+z-index: 1;
+background: var(--accent-deep);
+opacity: 0.09;
+pointer-events: none;
+transition: opacity var(--dur-3) var(--ease);
+}
+.case-card:hover .case-thumb::after,
+.case-card:focus-visible .case-thumb::after { opacity: 0; }
+@media (hover: none) {
+.case-thumb::after { opacity: 0.05; }
+.case-thumb img { filter: saturate(0.78) contrast(1.02); }
+}
