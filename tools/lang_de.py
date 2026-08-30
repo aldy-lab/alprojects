@@ -25,6 +25,26 @@ WARNING: Have a native German speaker in the market review the services,
 """
 
 S = {
+    '<b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certified by DNV</span>':
+        '<b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Zertifiziert durch DNV</span>',
+    '<b>300+</b><span>Specialists on the books</span>':
+        '<b>300+</b><span>Fachkr\u00e4fte im Bestand</span>',
+    '<b>6 countries</b><span>9 project bases</span>':
+        '<b>6 L\u00e4nder</b><span>9 Projektstandorte</span>',
+    '<b>Strongest in Lithuania</b><span>Creditinfo, 2025&ndash;2026</span>':
+        '<b>St\u00e4rkstes Unternehmen Litauens</b><span>Creditinfo, 2025&ndash;2026</span>',
+    'Key facts':
+        'Kennzahlen',
+    'Next step':
+        'Nächster Schritt',
+    'Book a 30-minute call':
+        '30 Minuten buchen',
+    'Direct contact':
+        'Direkter Kontakt',
+    '<span class="cta-direct-label">Phone</span><a href="tel:+37063663744">+370 636 63 744</a>':
+        '<span class="cta-direct-label">Telefon</span><a href="tel:+37063663744">+370 636 63 744</a>',
+    '<span class="cta-direct-label">WhatsApp</span><a href="https://wa.me/37063663744" target="_blank" rel="noopener">+370 636 63 744</a>':
+        '<span class="cta-direct-label">WhatsApp</span><a href="https://wa.me/37063663744" target="_blank" rel="noopener">+370 636 63 744</a>',
     'GWO':
         'GWO',
     'Home':

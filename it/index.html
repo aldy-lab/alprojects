@@ -37,7 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=a2453049">
+  <link rel="stylesheet" href="/css/style.min.css?v=dd548703">
 
   <script type="application/ld+json">
   {
@@ -156,9 +156,19 @@
         <h1 class="hero-title">Ambiti meccanici e ispezione indipendente</h1>
         <p class="hero-sub">Saldatura, tubazioni e lavori meccanici in tutto il Nord Europa. Controllati da chi non ha eseguito la saldatura.</p>
         <div class="hero-ctas">
-          <a class="btn-solid" href="/it/contacts">Inviateci l’ambito dei lavori</a>
+          <a class="btn-solid" href="/it/contacts#enquiry">Inviateci l’ambito dei lavori</a>
           <a class="btn-outline" href="/it/projects">I nostri progetti</a>
         </div>
+        <!-- Proof on the first screen. Every figure here is already stated
+             further down the page with what backs it: the three certificates
+             as scans, the six countries as a list of bases, the award as a news
+             item. Nothing is claimed here that is not evidenced there. -->
+        <ul class="hero-proof" aria-label="Dati principali">
+          <li><b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certificato da DNV</span></li>
+          <li><b>300+</b><span>Specialisti in organico</span></li>
+          <li><b>6 paesi</b><span>9 basi operative</span></li>
+          <li><b>Azienda più solida di Lituania</b><span>Creditinfo, 2025&ndash;2026</span></li>
+        </ul>
       </div>
     </section>
 
@@ -670,20 +680,28 @@
     <!-- ================= CTA ================= -->
     <section class="cta">
       <div class="container">
+        <!-- The panel that closes the page. It used to be a terminal -- INITIALIZE
+             PROJECT SEQUENCE, STATUS: READY, a loading bar -- with a raw mailto:
+             on the button. The gag says nothing to a procurement manager, and
+             the button opened nothing at all on a laptop with no mail client
+             configured, without telling him. Form first, because it asks for
+             what a quote needs and takes the drawings; the call second; the
+             direct channels as text for people who would rather not use either. -->
         <div class="cta-panel reveal">
-          <h2 class="cta-title">Inviateci l’ambito dei lavori</h2>
-          <div class="terminal">
-            <p class="t-title">Avvia la sequenza di progetto</p>
-            <p class="t-line">Stato: pronto</p>
-            <p class="t-line">Modalità: ingegneria</p>
-            <div class="loadbar" id="ctaLoadbar" aria-hidden="true">
-              <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </div>
+          <div class="cta-lead">
+            <p class="eyebrow">Prossimo passo</p>
+            <h2 class="cta-title">Inviateci l’ambito dei lavori</h2>
+            <p class="cta-sub">Inviateci l’ambito dei lavori o i disegni e vi risponderemo con un prezzo e le date delle squadre.</p>
           </div>
-          <p class="cta-sub">Inviateci l’ambito dei lavori o i disegni e vi risponderemo con un prezzo e le date delle squadre.</p>
-          <a class="btn-bracket" href="mailto:info@alprojects.eu?subject=Project%20scope%20%E2%80%94%20ALPROJECTS%20website">Inviateci l’ambito dei lavori</a>
+          <div class="cta-actions">
+            <a class="btn-solid" href="/it/contacts#enquiry">Invia la richiesta</a>
+            <a class="btn-outline" data-booking href="/it/contacts">Prenotate 30 minuti</a>
+          </div>
+          <ul class="cta-direct" aria-label="Contatto diretto">
+            <li><span class="cta-direct-label">Telefono</span><a href="tel:+37063663744">+370 636 63 744</a></li>
+            <li><span class="cta-direct-label">WhatsApp</span><a href="https://wa.me/37063663744" target="_blank" rel="noopener">+370 636 63 744</a></li>
+            <li><span class="cta-direct-label">Email</span><a href="mailto:info@alprojects.eu">info@alprojects.eu</a></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -833,6 +851,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.min.js?v=5b205dbc"></script>
+  <script src="/js/main.min.js?v=7f068b30"></script>
 </body>
 </html>

@@ -22,6 +22,26 @@ TERMINOLOGY
 """
 
 S = {
+    '<b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certified by DNV</span>':
+        '<b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certifi\u00e9 par DNV</span>',
+    '<b>300+</b><span>Specialists on the books</span>':
+        '<b>300+</b><span>Sp\u00e9cialistes inscrits</span>',
+    '<b>6 countries</b><span>9 project bases</span>':
+        '<b>6 pays</b><span>9 bases de projet</span>',
+    '<b>Strongest in Lithuania</b><span>Creditinfo, 2025&ndash;2026</span>':
+        '<b>Entreprise la plus solide de Lituanie</b><span>Creditinfo, 2025&ndash;2026</span>',
+    'Key facts':
+        'Chiffres cl\u00e9s',
+    'Next step':
+        'Étape suivante',
+    'Book a 30-minute call':
+        'Réserver 30 minutes',
+    'Direct contact':
+        'Contact direct',
+    '<span class="cta-direct-label">Phone</span><a href="tel:+37063663744">+370 636 63 744</a>':
+        '<span class="cta-direct-label">Téléphone</span><a href="tel:+37063663744">+370 636 63 744</a>',
+    '<span class="cta-direct-label">WhatsApp</span><a href="https://wa.me/37063663744" target="_blank" rel="noopener">+370 636 63 744</a>':
+        '<span class="cta-direct-label">WhatsApp</span><a href="https://wa.me/37063663744" target="_blank" rel="noopener">+370 636 63 744</a>',
     'GWO':
         'GWO',
     'Home':

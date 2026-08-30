@@ -57,6 +57,11 @@
      if you do, add the disclosure paragraph to privacy.html — see README. */
   var ANALYTICS_DOMAIN = ""; // e.g. "alprojects.co"
 
+  /* Phone-only bar with the two things a site manager on a phone reaches for:
+     call, or hand over the scope. Set to false and it is gone site-wide. */
+  var STICKY_CTA = true;
+  var PHONE = "+37063663744";
+
   /* ============================================================
      LANGUAGE
      <html lang> is set per tree by tools/i18n_build.py. PREFIX comes from it
@@ -99,6 +104,7 @@
       contact_sent: "Message sent. We will be in touch.",
       contact_mail: "Your mail app opened with the enquiry filled in — press send.",
       contact_mail_files: "Your mail app opened \u2014 the drawings do not travel with it, so attach them now:",
+      bar_call: "Call", bar_scope: "Send the scope",
       apply_mail: "Your mail app opened with the details filled in — attach your CV and send.",
       file_remove: "Remove",
       file_too_big: "Too large (10 MB maximum):",
@@ -134,6 +140,7 @@
       contact_sent: "Message envoyé. Nous vous recontacterons.",
       contact_mail: "Votre messagerie s’est ouverte avec la demande préremplie — cliquez sur envoyer.",
       contact_mail_files: "Votre messagerie s\u2019est ouverte \u2014 les plans ne partent pas avec elle, joignez-les maintenant\u00a0:",
+      bar_call: "Appeler", bar_scope: "Envoyer le cahier des charges",
       apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez.",
       file_remove: "Retirer",
       file_too_big: "Trop volumineux (10 Mo maximum) :",
@@ -169,6 +176,7 @@
       contact_sent: "Nachricht gesendet. Wir melden uns.",
       contact_mail: "Ihr E-Mail-Programm wurde mit der ausgefüllten Anfrage geöffnet — bitte absenden.",
       contact_mail_files: "Ihr E-Mail-Programm wurde ge\u00f6ffnet \u2014 die Zeichnungen gehen nicht mit, bitte jetzt anh\u00e4ngen:",
+      bar_call: "Anrufen", bar_scope: "Leistungsumfang senden",
       apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie.",
       file_remove: "Entfernen",
       file_too_big: "Zu groß (maximal 10 MB):",
@@ -204,6 +212,7 @@
       contact_sent: "Messaggio inviato. Vi ricontatteremo.",
       contact_mail: "Il programma di posta si è aperto con la richiesta compilata — premete invia.",
       contact_mail_files: "Il programma di posta si \u00e8 aperto \u2014 i disegni non partono con esso, allegateli ora:",
+      bar_call: "Chiamare", bar_scope: "Inviare il capitolato",
       apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia.",
       file_remove: "Rimuovi",
       file_too_big: "Troppo grande (massimo 10 MB):",
@@ -1105,7 +1114,6 @@
   }
 
   runLoadbar("heroLoadbar", 420);
-  runLoadbar("ctaLoadbar", 240);
 
   /* ---------- team headline: words light up on scroll ---------- */
   var headline = document.getElementById("teamHeadline");
@@ -1690,5 +1698,40 @@
         note.classList.add("show");
       }
     });
+  }
+
+  /* ---------- phone action bar ----------
+     Fixed to the bottom edge, revealed only after the first screen has been
+     read so nothing ever covers the hero, never on /contacts (the form is
+     already there), and never while the menu or the photo viewer is open.
+     Injected here rather than shipped in the markup so STICKY_CTA removes it
+     everywhere at once, and so a page with scripting off never shows a bar
+     whose links would still work but whose reveal would not. */
+  if (STICKY_CTA && !/\/contacts(\.html)?$/.test(location.pathname)) {
+    var bar = document.createElement("div");
+    bar.className = "cta-bar";
+    bar.setAttribute("role", "region");
+    bar.setAttribute("aria-label", TXT.bar_scope);
+    var callA = document.createElement("a");
+    callA.className = "cta-bar-call";
+    callA.href = "tel:" + PHONE;
+    callA.textContent = TXT.bar_call;
+    var scopeA = document.createElement("a");
+    scopeA.className = "cta-bar-scope";
+    scopeA.href = PREFIX + "/contacts#enquiry";
+    scopeA.textContent = TXT.bar_scope;
+    bar.appendChild(callA);
+    bar.appendChild(scopeA);
+    document.body.appendChild(bar);
+    document.documentElement.classList.add("has-cta-bar");
+    var barTick = false;
+    var barCheck = function () {
+      barTick = false;
+      bar.classList.toggle("is-on", window.scrollY > window.innerHeight * 0.7);
+    };
+    window.addEventListener("scroll", function () {
+      if (!barTick) { barTick = true; requestAnimationFrame(barCheck); }
+    }, { passive: true });
+    barCheck();
   }
 })();

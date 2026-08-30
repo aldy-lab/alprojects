@@ -22,6 +22,26 @@ WARNING: Have a native Italian speaker in the market review the services,
 """
 
 S = {
+    '<b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certified by DNV</span>':
+        '<b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certificato da DNV</span>',
+    '<b>300+</b><span>Specialists on the books</span>':
+        '<b>300+</b><span>Specialisti in organico</span>',
+    '<b>6 countries</b><span>9 project bases</span>':
+        '<b>6 paesi</b><span>9 basi operative</span>',
+    '<b>Strongest in Lithuania</b><span>Creditinfo, 2025&ndash;2026</span>':
+        '<b>Azienda pi\u00f9 solida di Lituania</b><span>Creditinfo, 2025&ndash;2026</span>',
+    'Key facts':
+        'Dati principali',
+    'Next step':
+        'Prossimo passo',
+    'Book a 30-minute call':
+        'Prenotate 30 minuti',
+    'Direct contact':
+        'Contatto diretto',
+    '<span class="cta-direct-label">Phone</span><a href="tel:+37063663744">+370 636 63 744</a>':
+        '<span class="cta-direct-label">Telefono</span><a href="tel:+37063663744">+370 636 63 744</a>',
+    '<span class="cta-direct-label">WhatsApp</span><a href="https://wa.me/37063663744" target="_blank" rel="noopener">+370 636 63 744</a>':
+        '<span class="cta-direct-label">WhatsApp</span><a href="https://wa.me/37063663744" target="_blank" rel="noopener">+370 636 63 744</a>',
     'GWO':
         'GWO',
     'Home':

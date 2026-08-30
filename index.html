@@ -37,7 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=a2453049">
+  <link rel="stylesheet" href="/css/style.min.css?v=dd548703">
 
   <script type="application/ld+json">
   {
@@ -158,9 +158,19 @@
         <p class="hero-sub">Welding, piping and mechanical works across Northern Europe.
         Inspected by people who did not do the welding.</p>
         <div class="hero-ctas">
-          <a class="btn-solid" href="/contacts">Send us the scope</a>
+          <a class="btn-solid" href="/contacts#enquiry">Send us the scope</a>
           <a class="btn-outline" href="/projects">See our projects</a>
         </div>
+        <!-- Proof on the first screen. Every figure here is already stated
+             further down the page with what backs it: the three certificates
+             as scans, the six countries as a list of bases, the award as a news
+             item. Nothing is claimed here that is not evidenced there. -->
+        <ul class="hero-proof" aria-label="Key facts">
+          <li><b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certified by DNV</span></li>
+          <li><b>300+</b><span>Specialists on the books</span></li>
+          <li><b>6 countries</b><span>9 project bases</span></li>
+          <li><b>Strongest in Lithuania</b><span>Creditinfo, 2025&ndash;2026</span></li>
+        </ul>
       </div>
     </section>
 
@@ -710,20 +720,28 @@
     <!-- ================= CTA ================= -->
     <section class="cta">
       <div class="container">
+        <!-- The panel that closes the page. It used to be a terminal -- INITIALIZE
+             PROJECT SEQUENCE, STATUS: READY, a loading bar -- with a raw mailto:
+             on the button. The gag says nothing to a procurement manager, and
+             the button opened nothing at all on a laptop with no mail client
+             configured, without telling him. Form first, because it asks for
+             what a quote needs and takes the drawings; the call second; the
+             direct channels as text for people who would rather not use either. -->
         <div class="cta-panel reveal">
-          <h2 class="cta-title">Send us the scope</h2>
-          <div class="terminal">
-            <p class="t-title">Initialize project sequence</p>
-            <p class="t-line">Status: Ready</p>
-            <p class="t-line">Mode: Engineering</p>
-            <div class="loadbar" id="ctaLoadbar" aria-hidden="true">
-              <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </div>
+          <div class="cta-lead">
+            <p class="eyebrow">Next step</p>
+            <h2 class="cta-title">Send us the scope</h2>
+            <p class="cta-sub">Send us the scope or the drawings and we will come back with a price and crew dates.</p>
           </div>
-          <p class="cta-sub">Send us the scope or the drawings and we will come back with a price and crew dates.</p>
-          <a class="btn-bracket" href="mailto:info@alprojects.eu?subject=Project%20scope%20%E2%80%94%20ALPROJECTS%20website">Send us the scope</a>
+          <div class="cta-actions">
+            <a class="btn-solid" href="/contacts#enquiry">Send the enquiry</a>
+            <a class="btn-outline" data-booking href="/contacts">Book a 30-minute call</a>
+          </div>
+          <ul class="cta-direct" aria-label="Direct contact">
+            <li><span class="cta-direct-label">Phone</span><a href="tel:+37063663744">+370 636 63 744</a></li>
+            <li><span class="cta-direct-label">WhatsApp</span><a href="https://wa.me/37063663744" target="_blank" rel="noopener">+370 636 63 744</a></li>
+            <li><span class="cta-direct-label">Email</span><a href="mailto:info@alprojects.eu">info@alprojects.eu</a></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -876,6 +894,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.min.js?v=5b205dbc"></script>
+  <script src="/js/main.min.js?v=7f068b30"></script>
 </body>
 </html>
