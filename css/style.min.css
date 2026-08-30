@@ -4711,8 +4711,8 @@ animation: hero-scroll-cue 2.4s var(--ease) infinite;
 @media (prefers-reduced-motion: reduce) { .hero-scroll i { animation: none; opacity: 0.7; } }
 @media (max-width: 700px) { .hero-foot { display: none; } .co-hero .sector-hero-in { padding-bottom: 46px; } }
 .sector-hero-img, .sector-hero-scrim {
--webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 200px), transparent calc(100% - 70px));
-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 200px), transparent calc(100% - 70px));
+-webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 400px), transparent calc(100% - 70px));
+mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 400px), transparent calc(100% - 70px));
 }
 .sector-hero-scrim {
 -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 130px), transparent 100%);

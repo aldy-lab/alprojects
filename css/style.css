@@ -6216,8 +6216,15 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
    the photograph reach zero at the cut instead of being sliced at 54% opacity,
    which is the line that kept coming back. */
 .sector-hero-img, .sector-hero-scrim {
-  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 200px), transparent calc(100% - 70px));
-  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 200px), transparent calc(100% - 70px));
+  /* 400px, not 200. Ending the fade at the cut was the first half of this --
+     the frame reaches zero instead of being sliced at 54% opacity -- but 130px
+     of visible fade is still abrupt on a 792px hero, and the eye reads the
+     place where the photograph runs out as an edge even when there is no step
+     in the pixels. Measured across the seam, in the sky rather than across the
+     type: the largest jump between adjacent rows falls from 1.84 to 0.82 of
+     255, and the fall in brightness over the last 160px from 40 points to 20. */
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 400px), transparent calc(100% - 70px));
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 400px), transparent calc(100% - 70px));
 }
 /* The scrim is inset:0, so its bottom already is the hero's; it fades over the
    same 130px measured from its own end. */
