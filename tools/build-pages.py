@@ -69,6 +69,7 @@ def page(title, description, body, noindex=False, canonical=None, head_extra="",
   <link rel="alternate icon" type="image/png" href="/assets/logo.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/style.min.css">
 {head_extra}</head>
@@ -793,6 +794,33 @@ def facts_html(facts):
     return '      <div class="fact-strip">\n%s\n      </div>' % cells
 
 
+def thumb_sources(img):
+    """srcset/sizes for a news thumbnail, when a smaller variant exists.
+
+    The -600 files were generated at some point and never wired up: every
+    thumbnail was pulling its full 1200px original into a box 270 to 371 CSS
+    px wide, 855 KB of them on the news index. The widths come from measuring
+    the card, not from guessing -- 75% of the viewport below 640px, 26% above
+    it, capped by the container at 371px. Returns nothing at all when the
+    small file is absent, so a missing variant is a heavier page and never a
+    broken reference.
+    """
+    if not img.endswith(".webp"):
+        return ""
+    stem = img[:-len("-1200.webp")] if img.endswith("-1200.webp") else img[:-len(".webp")]
+    small = stem + "-600.webp"
+    if not os.path.exists(os.path.join(ROOT, "assets", small)):
+        return ""
+    from PIL import Image  # only to read the header; the build has Pillow already
+    try:
+        big_w = Image.open(os.path.join(ROOT, "assets", img)).size[0]
+    except Exception:
+        big_w = 1200
+    return (' srcset="/assets/%s 600w, /assets/%s %dw"'
+            ' sizes="(max-width: 640px) 75vw, (max-width: 1400px) 26vw, 371px"'
+            % (small, img, big_w))
+
+
 def news_index():
     cards = []
     for i, a in enumerate(ARTICLES):
@@ -800,10 +828,11 @@ def news_index():
         # by a round trip. Everything from row two down stays lazy.
         eager = i < 3
         card = dict(a, loading="eager" if eager else "lazy",
+                    srcset=thumb_sources(a["img"]),
                     prio=' fetchpriority="high"' if i == 0 else "")
         cards.append("""        <a class="news-card" href="/news/{slug}.html">
           <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8599;</span></span>
-          <span class="thumb"><img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}" loading="{loading}"{prio}><span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+          <span class="thumb"><img src="/assets/{img}"{srcset} alt="{alt}" width="{w}" height="{h}" loading="{loading}"{prio}><span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
           <h2>{title}</h2>
           <span class="news-excerpt">{lead}</span>
         </a>""".format(**card))
