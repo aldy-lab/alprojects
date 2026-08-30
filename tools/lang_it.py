@@ -22,6 +22,30 @@ WARNING: Have a native Italian speaker in the market review the services,
 """
 
 S = {
+    '3 photographs, 2 stages':
+        '3 fotografie, 2 fasi',
+    '5 photographs, 4 stages':
+        '5 fotografie, 4 fasi',
+    '6 photographs, 5 stages':
+        '6 fotografie, 5 fasi',
+    '<span class="case-num">02</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Costruzione e saldatura in officina</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Montaggio meccanico e saldatura &middot; parco serbatoi</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Montaggio meccanico e saldatura</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montaggio meccanico</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 04</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">01 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 04</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">02 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">03 / 04</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">03 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">04 / 04</span>':
+        '<span class="slide-label">Fase</span> <span class="slide-count">04 / 04</span>',
+    'Five scopes, photographed as they were built.':
+        'Cinque cantieri, fotografati durante l’esecuzione.',
     '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <span class="legal-ids">Company code 305137109 &middot; VAT LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
         '<span>© 2019–2026 ALPROJECTS GROUP. Tutti i diritti riservati.</span> <span class="legal-ids">Codice azienda 305137109 &middot; P. IVA LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Realizzato da <b>ALDY</b></a>',
     'Company code 305137109 &middot; VAT LT100012753216':

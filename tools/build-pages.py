@@ -1288,6 +1288,65 @@ def shots_html():
 # data-shot attribute.
 CASES = [
     dict(
+        slug="engine-room-piping-and-machinery-installation",
+        title="Engine room piping and machinery installation",
+        kicker="Mechanical installation and piping \u00b7 Shipbuilding",
+        setting="Vessel under construction, machinery spaces",
+        lead="Machinery on resilient mounts, and the seawater, bilge and fuel lines "
+             "that connect it. The mounts went down first; the piping followed, "
+             "through a compartment that was already full.",
+        intro=[],
+        stages=[
+            (2, ["The mounts go down before anything else. We land the machine on them "
+                 "all at once, check the height of every mount, and shim the ones that "
+                 "sit low until the load is shared. The alignment is checked and "
+                 "recorded before we make up the first flange."]),
+            (3, ["Dimensions come off the steel, not the drawing. By the time the piping "
+                 "starts the space is full, so we build the valves, the strainer and the "
+                 "branches up on one frame outside the compartment and land the group as "
+                 "a unit, with the bolt holes matching and the flange faces square. Set "
+                 "out that way, somebody standing in front of it can reach every "
+                 "handwheel."]),
+            (4, ["Resiliently mounted machinery moves, and the hull works at sea. "
+                 "Flexible hoses take that movement at the machine connections. On the "
+                 "runs, mechanical couplings take up misalignment, and we anchor and "
+                 "guide the pipe either side of them so the coupling is not left "
+                 "carrying the line."]),
+            (5, ["We set the valve groups out to keep the tank access clear, because the "
+                 "covers have to come off in service. Every open end stays capped until "
+                 "the system is blanked for test, and each line is tagged to the drawing "
+                 "as it is finished."]),
+        ],
+        note="",
+        og="engine-room-piping",
+        cta="Send us the drawings.",
+        # A new build has no shutdown to work round; it has a slot at the yard.
+        cta_note="Send the drawings or the scope and we will come back with a price and "
+                 "crew dates. If it is a yard slot, tell us the window.",
+        # Heading, body and button say the same thing here. The other four say
+        # three different things; this page is the pattern if that gets swept.
+        cta_btn="Send us the drawings",
+        services=["pipe-fitting", "welding-services", "mechanical-contracting",
+                  "shipbuilding", "quality-control"],
+        photos=[
+            ("Machined seating in an engine room with resilient mounts bolted down, "
+             "studs and nuts set, and timber packing alongside",
+             "Resilient mounts on the machined seating.", 1200, 1600),
+            ("A row of resilient mounts along the machined seating, with the first pipe "
+             "runs and capped flanges laid in beside them",
+             "The seating, with the mounts set and the first lines alongside.", 1200, 900),
+            ("Valve and strainer group made up on a frame against an engine room "
+             "bulkhead, with globe valves, a basket strainer and capped branches",
+             "Valve and strainer group on the bulkhead.", 1200, 900),
+            ("Large-bore pipe runs under a deckhead, with mechanical couplings on the "
+             "vertical drop and anchors either side of them",
+             "Mechanical couplings on the large-bore runs.", 1200, 1600),
+            ("Valve group set out around a bolted tank access cover, with the covers "
+             "left clear and every open end capped",
+             "Valve group around the tank access cover.", 1200, 1600),
+        ],
+    ),
+    dict(
         slug="tank-and-vessel-fabrication",
         title="Tank and vessel fabrication",
         kicker="Shop fabrication and welding",
@@ -1583,7 +1642,7 @@ def case_body(c, nxt):
         </div>
         <div class="fact">
           <p class="fact-label">Plates</p>
-          <p class="fact-value">%(n)d photographs</p>
+          <p class="fact-value">%(plates)s</p>
         </div>
       </div>
     </div>
@@ -1610,10 +1669,9 @@ def case_body(c, nxt):
         </div>
         <div class="case-ask">
           <p class="case-ask-h">%(cta)s</p>
-          <p>Send the drawings or the scope and we will come back with a price and crew
-          dates. If it is a shutdown, tell us the window.</p>
+          <p>%(cta_note)s</p>
           <p class="back">
-            <a class="btn-solid" href="/contacts.html">Start a project</a>
+            <a class="btn-solid" href="/contacts.html">%(cta_btn)s</a>
           </p>
         </div>
       </div>
@@ -1641,8 +1699,20 @@ def case_body(c, nxt):
            title=c["title"], lead=c["lead"], setting=c["setting"],
            hero_plate=_plate(c, 1, eager=True).replace('class="plate',
                                                        'class="case-fig plate'),
-           n=len(c["photos"]), intro=intro, stages=_deck(c),
+           n=len(c["photos"]),
+           # A photograph count on its own contradicted the counter at the foot
+           # of the deck: the header said "6 photographs" and the last plate said
+           # "05 / 05", because the opening plate is a photograph but not a stage.
+           # Both numbers are named now.
+           plates="%d photographs, %d stages" % (len(c["photos"]), len(c["stages"])),
+           intro=intro, stages=_deck(c),
            lightbox=LIGHTBOX, note=note, links=links, cta=c["cta"],
+           # Optional per case; the defaults are what the four existing pages say,
+           # so adding the fields changed none of them.
+           cta_note=c.get("cta_note", "Send the drawings or the scope and we will "
+                          "come back with a price and crew dates. If it is a "
+                          "shutdown, tell us the window."),
+           cta_btn=c.get("cta_btn", "Start a project"),
            nxt_slug=nxt["slug"], nxt_title=_html.escape(nxt["title"]))
 
 
@@ -1713,7 +1783,7 @@ PROJECTS = """
 
     <div class="container">
       <h2 class="sub-head">Projects</h2>
-      <p class="sub-lead">Four scopes, photographed as they were built.</p>
+      <p class="sub-lead">Five scopes, photographed as they were built.</p>
       <div class="case-grid">
 """ + cases_html() + """
       </div>
@@ -2433,10 +2503,18 @@ write("projects.html", page("Projects",
 # way /services.html does, so the index keeps its URL and the cases sit under it.
 for _i, _c in enumerate(CASES):
     write("projects/%s.html" % _c["slug"],
-          page(_c["title"], _c["lead"][:152].rsplit(" ", 1)[0] + "...",
+          # 200, not 152: the cut was landing mid-sentence. The valve-station lead
+          # is 179 characters and shipped as "...through a..."; a complete sentence
+          # reads better in a result than a tidy length does.
+          page(_c["title"],
+               _c["lead"] if len(_c["lead"]) <= 200
+               else _c["lead"][:197].rsplit(" ", 1)[0] + "...",
                case_body(_c, CASES[(_i + 1) % len(CASES)]),
                canonical="/projects/%s.html" % _c["slug"],
-               og="projects",
+               # All four cases shared /assets/og/projects.jpg, so five different
+               # projects previewed identically in LinkedIn. Per case where a card
+               # exists, the shared one until the other four have theirs.
+               og=_c.get("og", "projects"),
                head_extra=breadcrumb_ld([("Home", "/"), ("Projects", "/projects.html"),
                                          (_c["title"], "/projects/%s.html" % _c["slug"])])))
 

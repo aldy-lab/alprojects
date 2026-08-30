@@ -22,6 +22,30 @@ TERMINOLOGY
 """
 
 S = {
+    '3 photographs, 2 stages':
+        '3 photographies, 2 étapes',
+    '5 photographs, 4 stages':
+        '5 photographies, 4 étapes',
+    '6 photographs, 5 stages':
+        '6 photographies, 5 étapes',
+    '<span class="case-num">02</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montage mécanique</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 04</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">01 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 04</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">02 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">03 / 04</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">03 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">04 / 04</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">04 / 04</span>',
+    'Five scopes, photographed as they were built.':
+        'Cinq chantiers, photographiés pendant leur exécution.',
     '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <span class="legal-ids">Company code 305137109 &middot; VAT LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
         '<span>© 2019–2026 ALPROJECTS GROUP. Tous droits réservés.</span> <span class="legal-ids">Code d’entreprise 305137109 &middot; TVA LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Réalisé par <b>ALDY</b></a>',
     'Company code 305137109 &middot; VAT LT100012753216':

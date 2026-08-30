@@ -25,6 +25,30 @@ WARNING: Have a native German speaker in the market review the services,
 """
 
 S = {
+    '3 photographs, 2 stages':
+        '3 Aufnahmen, 2 Arbeitsschritte',
+    '5 photographs, 4 stages':
+        '5 Aufnahmen, 4 Arbeitsschritte',
+    '6 photographs, 5 stages':
+        '6 Aufnahmen, 5 Arbeitsschritte',
+    '<span class="case-num">02</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Fertigung und Schweißen in der Werkstatt</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Mechanische Montage und Schweißen &middot; Tanklager</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Mechanische Montage</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 04</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">01 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 04</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">02 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">03 / 04</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">03 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">04 / 04</span>':
+        '<span class="slide-label">Arbeitsschritt</span> <span class="slide-count">04 / 04</span>',
+    'Five scopes, photographed as they were built.':
+        'Fünf Projekte, fotografiert während der Ausführung.',
     '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <span class="legal-ids">Company code 305137109 &middot; VAT LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
         '<span>© 2019–2026 ALPROJECTS GROUP. Alle Rechte vorbehalten.</span> <span class="legal-ids">Firmencode 305137109 &middot; USt-IdNr. LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Umgesetzt von <b>ALDY</b></a>',
     'Company code 305137109 &middot; VAT LT100012753216':
