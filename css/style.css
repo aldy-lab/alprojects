@@ -6488,3 +6488,18 @@ html:not(.js) .booking [data-booking-load] { display: none; }
    sections either side of it sit at 105 and 193. It takes the same major step
    the rest of the page is built on rather than a number of its own. */
 .prose-after-cases { margin-top: var(--gap-major); }
+
+
+/* ---------- service-slide backgrounds pick their own size ----------
+   Three of the five slides set the photograph from an inline background-image,
+   which cannot carry a srcset, so a phone downloaded the desktop file: 210 KB
+   of svc-pipe-fitting for an area 702x1540 device px. The frame is landscape
+   and the area on a phone is portrait, so `cover` upscales it 1.8x and shows a
+   narrow vertical slice of it -- through a filter that takes the brightness to
+   0.45. What arrives is a dark texture, and it does not need 1600px of source
+   to be one. The URL moves into a custom property so the stylesheet can choose;
+   --bg-m falls back to --bg, so a slide with no mobile variant keeps working. */
+.service-slide .bg { background-image: var(--bg); }
+@media (max-width: 700px) {
+  .service-slide .bg { background-image: var(--bg-m, var(--bg)); }
+}

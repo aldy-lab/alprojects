@@ -4799,3 +4799,7 @@ padding-block: 0;
 }
 html:not(.js) .booking [data-booking-load] { display: none; }
 .prose-after-cases { margin-top: var(--gap-major); }
+.service-slide .bg { background-image: var(--bg); }
+@media (max-width: 700px) {
+.service-slide .bg { background-image: var(--bg-m, var(--bg)); }
+}
