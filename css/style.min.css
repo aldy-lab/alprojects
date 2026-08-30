@@ -1390,15 +1390,6 @@ transition: opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease)
 .tech-grid::before { transition: none; transform: none; }
 .dir-card .corners i { transform: none; }
 }
-.certs-extra {
-max-width: 68ch;
-margin: 14px auto 0;
-text-align: center;
-font-size: var(--text-m);
-color: var(--muted);
-line-height: 1.7;
-}
-.certs-extra strong { color: var(--text); }
 .award {
 max-width: 720px;
 margin: clamp(30px, 4vw, 52px) auto 0;
@@ -1929,12 +1920,6 @@ color: var(--muted-2);
 font-variant-numeric: tabular-nums;
 }
 @media (max-width: 700px) { .dim { display: none; } }
-.certs-note {
-margin-top: 8px;
-font-size: var(--text-m);
-color: var(--muted-2);
-text-align: center;
-}
 .sheet-rule, .sheet-reg, .sheet-datum, .sheet-block { position: absolute; pointer-events: none; z-index: 1; }
 .sheet-rule {
 top: calc(var(--nav-h) + 40px);
@@ -4560,7 +4545,6 @@ border-color: rgba(255, 255, 255, 0.85);
 .stats-photo .corners,
 .co-people-img .corners,
 .srv-deep-photos figure .corners { opacity: 0.45; }
-.certs-note { max-width: 68ch; margin-left: auto; margin-right: auto; }
 .booking-note { max-width: 68ch; }
 .privacy-list li, .prose li { max-width: 72ch; }
 .apply-form input:focus-visible,
