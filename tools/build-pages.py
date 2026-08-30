@@ -30,6 +30,11 @@ SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 # rootify now lives in tools/paths.py: the translation build needs the same
 # rewriting for the language trees, and two copies would drift.
 from paths import rootify, clean_urls  # noqa: E402
+import minify  # noqa: E402
+
+# Before anything is stamped: the ?v= hash is taken from the minified file,
+# so it has to be rewritten first or every page would ship last run's hash.
+minify.run()
 
 
 HEADER_R, FOOTER_R, SPRITE_R = rootify(HEADER), rootify(FOOTER), rootify(SPRITE)
@@ -65,7 +70,7 @@ def page(title, description, body, noindex=False, canonical=None, head_extra="",
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.min.css">
 {head_extra}</head>
 <body>
 
@@ -79,7 +84,7 @@ def page(title, description, body, noindex=False, canonical=None, head_extra="",
 
 {sprite}
 
-  <script src="/js/main.js"></script>
+  <script src="/js/main.min.js"></script>
 </body>
 </html>
 """.format(title=title, description=description, canon=canon, robots=robots,
@@ -96,7 +101,10 @@ LASTMOD = datetime.date.today().isoformat()
 # iOS Safari especially -- can keep showing an old stylesheet long after a
 # deploy, which reads as "the fix didn't work". Stamping the content hash into
 # the URL makes every deploy a new URL, so a stale file can never win.
-VERSIONED = ("css/style.css", "css/fonts.css", "js/main.js")
+# The pages load the minified copies, so those are what the ?v= hash has to
+# follow: stamping the source would have left a changed stylesheet behind a
+# cached filename.
+VERSIONED = ("css/style.min.css", "css/fonts.css", "js/main.min.js")
 _hashes = {}
 
 
@@ -115,9 +123,47 @@ def stamp(html):
     return html
 
 
+# Which navigation link a generated page sits under. The header is lifted out
+# of index.html verbatim, so every page shipped with class="active" on Home --
+# with scripting off, /company told the visitor they were on the home page.
+# privacy and 404 belong to no section and get no marker at all, which is
+# better than pointing at the wrong one. The four /sectors/ pages are not in
+# the nav either -- they hang off the homepage grid, and calling them
+# "Projects" would contradict the runtime rule in js/main.js, which matches
+# on the path alone. Build and script therefore agree with no shared table.
+NAV_SECTION = [
+    ("services/", "/services"), ("services.html", "/services"),
+    ("projects/", "/projects"), ("projects.html", "/projects"),
+    ("news/",     "/news/"),
+    ("company.html",  "/company"),
+    ("careers.html",  "/careers"),
+    ("contacts.html", "/contacts"),
+]
+
+
+def mark_nav(html, path):
+    """Move the header's current-page marker to the section this page is in.
+
+    The nav links are pages, not anchors, so which one is current is a
+    build-time fact -- js/main.js applies the identical path rule at runtime so
+    index.html (which this script does not write) and the language trees agree.
+    Scoped to the markup before <main so a body link to /services is untouched.
+    """
+    cut = html.find("<main")
+    if cut < 0:
+        return html
+    head, body = html[:cut], html[cut:]
+    head = head.replace('<a href="/" class="active">', '<a href="/">')
+    href = next((h for pre, h in NAV_SECTION if path == pre or path.startswith(pre)), None)
+    if href:
+        head = head.replace('<a href="%s">' % href,
+                            '<a href="%s" class="active" aria-current="page">' % href)
+    return head + body
+
+
 def write(path, html):
     if path.endswith(".html"):
-        html = clean_urls(stamp(html))
+        html = clean_urls(stamp(mark_nav(html, path)))
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     io.open(full, "w", encoding="utf-8").write(html)
@@ -1641,7 +1687,21 @@ PROJECTS = """
       wrong are not.</p>
     </div>
 
-    <div class="container prose">
+
+    <div class="container">
+      <h2 class="sub-head">Recent work</h2>
+      <p class="sub-lead">Four scopes, photographed as they were built.</p>
+      <div class="case-grid">
+""" + cases_html() + """
+      </div>
+    </div>
+
+    <!-- The four sector paragraphs sit below the photographed cases, not
+         above them: a visitor who clicked "See our projects" scrolled
+         926px of prose before the first photograph. The reading order
+         is unchanged for a screen reader -- this is document order, so
+         it moves for everyone. -->
+    <div class="container prose prose-after-cases">
       <h2>Shipbuilding</h2>
       <p>Piping and mechanical installation on vessels under construction — seawater,
       bilge and fuel systems routed through compartments that are already full of
@@ -1668,14 +1728,6 @@ PROJECTS = """
       ran from September 2025 to April 2026 with 12 specialists and over 11,000 hours
       on site — a useful figure for anyone planning work of that size.</p>
 
-    </div>
-
-    <div class="container">
-      <h2 class="sub-head">Recent work</h2>
-      <p class="sub-lead">Four scopes, photographed as they were built.</p>
-      <div class="case-grid">
-""" + cases_html() + """
-      </div>
     </div>
 
     <div class="container">
@@ -1774,7 +1826,12 @@ CONTACTS = """
     <div class="container">
       <!-- Filled in from BOOKING_URL in js/main.js. Stays hidden while that is
            empty, so an unconfigured calendar never ships as a dead panel. -->
-      <section class="booking" data-booking-embed hidden aria-labelledby="booking-h">
+      <!-- Ships visible. It used to ship hidden for the script to reveal,
+           which pushed the enquiry form down after load: CLS 0.276 on a
+           phone as soon as main.js is 400ms late, which on 4G it is. The
+           script now hides it instead, and only when BOOKING_URL is blank
+           -- so the no-JS visitor keeps the booking panel too. -->
+      <section class="booking" data-booking-embed aria-labelledby="booking-h">
         <span class="booking-corner" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         <div class="booking-in">
           <p class="eyebrow">Book a call</p>
@@ -1863,6 +1920,18 @@ CONTACTS = """
               <label for="ctMessage">How can we help?</label>
               <textarea id="ctMessage" name="message" rows="6" required aria-required="true"
                         placeholder="Scope, location, standards and dates."></textarea>
+            </div>
+            <!-- The copy has asked for the drawings since launch and there was
+                 nowhere to put them. Same component as the careers form: the
+                 input comes first so the label can be styled from its focus
+                 state with a sibling selector. -->
+            <div class="field field-wide">
+              <input type="file" id="ctFiles" name="attachment" multiple class="sr-file"
+                     accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.iges,.zip,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png,application/zip">
+              <label class="drop" id="ctDropZone" for="ctFiles">
+                <b>Attach drawings or a specification</b> <span>Choose files, or drag them here. PDF, DWG, STEP, images or ZIP, up to 10 MB each.</span>
+              </label>
+              <ul class="files" id="ctFileList"></ul>
             </div>
           </fieldset>
 
@@ -2539,3 +2608,44 @@ for _name in ("index.html", "404.html"):
     if _after != _before:
         io.open(_path, "w", encoding="utf-8").write(_after)
         print("stamped %s" % _name)
+
+
+# The pages this script writes carry no hreflang alternates -- tools/i18n_build.py
+# adds them, because only it knows which languages are published. So a bare
+# `python3 tools/build-pages.py` leaves every English page without them, and
+# nothing about the output says so: the same failure the sitemap had above, in
+# the one place the delegation trick does not fit (running the whole translation
+# build from here would run it twice in the documented two-command workflow).
+# Count them instead and say it out loud.
+def _warn_if_alternates_missing():
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import i18n
+        if not any(i18n.PUBLISH.get(l) for l in i18n.LANGS if l != i18n.DEFAULT):
+            return
+        missing = []
+        for dirpath, dirnames, filenames in os.walk(ROOT):
+            if ".git" in dirpath:
+                continue
+            for name in filenames:
+                if not name.endswith(".html"):
+                    continue
+                rel = os.path.relpath(os.path.join(dirpath, name), ROOT)
+                if rel.split(os.sep)[0] in i18n.LANGS and rel.split(os.sep)[0] != i18n.DEFAULT:
+                    continue                      # language trees are i18n_build's own output
+                body = io.open(os.path.join(dirpath, name), encoding="utf-8").read()
+                if 'hreflang="x-default"' not in body:
+                    missing.append(rel)
+        if missing:
+            print("\n  !! %d page(s) have no hreflang alternates -- run "
+                  "`python3 tools/i18n_build.py` now, or they ship without them."
+                  % len(missing))
+            for rel in sorted(missing)[:5]:
+                print("     %s" % rel)
+            if len(missing) > 5:
+                print("     ... and %d more" % (len(missing) - 5))
+    except Exception as exc:                      # a warning must never fail a build
+        print("alternates check skipped (%s)" % exc)
+
+
+_warn_if_alternates_missing()

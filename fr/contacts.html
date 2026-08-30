@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=2881e15e">
+  <link rel="stylesheet" href="/css/style.min.css?v=0bc04aaf">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -99,12 +99,12 @@
 
       <nav class="main-nav" aria-label="Navigation principale">
         <ul>
-          <li><a href="/fr/" class="active"><span class="txt">Accueil</span></a></li>
+          <li><a href="/fr/"><span class="txt">Accueil</span></a></li>
           <li><a href="/fr/company"><span class="txt">Entreprise</span></a></li>
           <li><a href="/fr/services"><span class="txt">Services</span></a></li>
           <li><a href="/fr/projects"><span class="txt">Projets</span></a></li>
           <li><a href="/fr/careers"><span class="txt">Carrières</span></a></li>
-          <li><a href="/fr/contacts"><span class="txt">Contact</span></a></li>
+          <li><a href="/fr/contacts" class="active" aria-current="page"><span class="txt">Contact</span></a></li>
           <li><a href="/fr/news/"><span class="txt">Actualités</span></a></li>
         </ul>
       </nav>
@@ -134,7 +134,7 @@
     <a href="/fr/services">Services</a>
     <a href="/fr/projects">Projets</a>
     <a href="/fr/careers">Carrières</a>
-    <a href="/fr/contacts">Contact</a>
+    <a href="/fr/contacts" class="active" aria-current="page">Contact</a>
     <a href="/fr/news/">Actualités</a>
     <div class="langs langs-menu" data-langs role="group" aria-label="Langue"><a href="/contacts" hreflang="en" lang="en"><span class="sr-only">English</span><span aria-hidden="true">EN</span></a><a href="/fr/contacts" hreflang="fr" lang="fr" aria-current="true"><span class="sr-only">Français</span><span aria-hidden="true">FR</span></a><a href="/de/contacts" hreflang="de" lang="de"><span class="sr-only">Deutsch</span><span aria-hidden="true">DE</span></a><a href="/it/contacts" hreflang="it" lang="it"><span class="sr-only">Italiano</span><span aria-hidden="true">IT</span></a></div>
     <a class="btn-solid menu-cta" data-booking href="/fr/contacts">Réserver un appel</a>
@@ -151,7 +151,12 @@
     <div class="container">
       <!-- Filled in from BOOKING_URL in js/main.js. Stays hidden while that is
            empty, so an unconfigured calendar never ships as a dead panel. -->
-      <section class="booking" data-booking-embed hidden aria-labelledby="booking-h">
+      <!-- Ships visible. It used to ship hidden for the script to reveal,
+           which pushed the enquiry form down after load: CLS 0.276 on a
+           phone as soon as main.js is 400ms late, which on 4G it is. The
+           script now hides it instead, and only when BOOKING_URL is blank
+           -- so the no-JS visitor keeps the booking panel too. -->
+      <section class="booking" data-booking-embed aria-labelledby="booking-h">
         <span class="booking-corner" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         <div class="booking-in">
           <p class="eyebrow">Réserver un appel</p>
@@ -233,6 +238,18 @@
               <label for="ctMessage">Comment pouvons-nous vous aider ?</label>
               <textarea id="ctMessage" name="message" rows="6" required aria-required="true"
                         placeholder="Périmètre, lieu, normes et dates."></textarea>
+            </div>
+            <!-- The copy has asked for the drawings since launch and there was
+                 nowhere to put them. Same component as the careers form: the
+                 input comes first so the label can be styled from its focus
+                 state with a sibling selector. -->
+            <div class="field field-wide">
+              <input type="file" id="ctFiles" name="attachment" multiple class="sr-file"
+                     accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.iges,.zip,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png,application/zip">
+              <label class="drop" id="ctDropZone" for="ctFiles">
+                <b>Joignez vos plans ou votre cahier des charges</b> <span>Choisissez des fichiers ou déposez-les ici. PDF, DWG, STEP, images ou ZIP, 10 Mo maximum chacun.</span>
+              </label>
+              <ul class="files" id="ctFileList"></ul>
             </div>
           </fieldset>
 
@@ -422,6 +439,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=ab044f1f"></script>
+  <script src="/js/main.min.js?v=5b205dbc"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=2881e15e">
+  <link rel="stylesheet" href="/css/style.min.css?v=0bc04aaf">
 </head>
 <body>
 
@@ -45,9 +45,9 @@
 
       <nav class="main-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="/" class="active"><span class="txt">Home</span></a></li>
+          <li><a href="/"><span class="txt">Home</span></a></li>
           <li><a href="/company"><span class="txt">Company</span></a></li>
-          <li><a href="/services"><span class="txt">Services</span></a></li>
+          <li><a href="/services" class="active" aria-current="page"><span class="txt">Services</span></a></li>
           <li><a href="/projects"><span class="txt">Projects</span></a></li>
           <li><a href="/careers"><span class="txt">Careers</span></a></li>
           <li><a href="/contacts"><span class="txt">Contacts</span></a></li>
@@ -77,7 +77,7 @@
   <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
     <a href="/">Home</a>
     <a href="/company">Company</a>
-    <a href="/services">Services</a>
+    <a href="/services" class="active" aria-current="page">Services</a>
     <a href="/projects">Projects</a>
     <a href="/careers">Careers</a>
     <a href="/contacts">Contacts</a>
@@ -294,6 +294,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=ab044f1f"></script>
+  <script src="/js/main.min.js?v=5b205dbc"></script>
 </body>
 </html>

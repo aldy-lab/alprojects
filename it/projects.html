@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=2881e15e">
+  <link rel="stylesheet" href="/css/style.min.css?v=0bc04aaf">
 </head>
 <body>
 
@@ -45,10 +45,10 @@
 
       <nav class="main-nav" aria-label="Navigazione principale">
         <ul>
-          <li><a href="/it/" class="active"><span class="txt">Home</span></a></li>
+          <li><a href="/it/"><span class="txt">Home</span></a></li>
           <li><a href="/it/company"><span class="txt">Azienda</span></a></li>
           <li><a href="/it/services"><span class="txt">Servizi</span></a></li>
-          <li><a href="/it/projects"><span class="txt">Progetti</span></a></li>
+          <li><a href="/it/projects" class="active" aria-current="page"><span class="txt">Progetti</span></a></li>
           <li><a href="/it/careers"><span class="txt">Lavora con noi</span></a></li>
           <li><a href="/it/contacts"><span class="txt">Contatti</span></a></li>
           <li><a href="/it/news/"><span class="txt">Notizie</span></a></li>
@@ -78,7 +78,7 @@
     <a href="/it/">Homepage</a>
     <a href="/it/company">Azienda</a>
     <a href="/it/services">Servizi</a>
-    <a href="/it/projects">Progetti</a>
+    <a href="/it/projects" class="active" aria-current="page">Progetti</a>
     <a href="/it/careers">Lavora con noi</a>
     <a href="/it/contacts">Contatti</a>
     <a href="/it/news/">Notizie</a>
@@ -94,20 +94,6 @@
       <p class="page-lead">Quattro tipi di progetto, un’unica base di mestieri. L’ingegneria è in gran parte la stessa; l’ambiente, le norme e le conseguenze di un errore no.</p>
     </div>
 
-    <div class="container prose">
-      <h2>Cantieristica navale</h2>
-      <p>Tubazioni e montaggio meccanico su navi in costruzione — impianti acqua mare, sentina e combustibile che attraversano locali già pieni di macchinari, struttura e altri mestieri. Prefabbricazione e montaggio si gestiscono insieme, perché uno spool conforme al disegno ma non al locale reale è materiale di scarto.</p>
-
-      <h2>Offshore</h2>
-      <p>Ispezioni, accesso e lavori meccanici su impianti offshore, dove mobilitare una squadra costa caro e una fermata costa ancora di più. Lavori su fune e CND coprono la maggior parte di queste attività; il controllo visivo è centrale per confermare la sicurezza e l’integrità operativa degli asset oil, gas ed eolici.</p>
-
-      <h2>Progetti industriali</h2>
-      <p>Montaggio di impianti, tubazioni di processo e pacchetti meccanici. Un esempio recente è un pacchetto meccanico per trasformatore — tubazioni in acciaio inox e sistemi di raffreddamento &mdash; <a href="/it/news/transformer-mechanical-package">realizzato in cinque Paesi europei</a>, dove la coerenza tra Paesi era tanto un problema di documentazione quanto di fabbricazione.</p>
-
-      <h2>Progetti energia e rinnovabili</h2>
-      <p>Infrastrutture per la movimentazione di combustibili e supporto eolico. La nostra <a href="/it/news/fuel-loading-terminal-completed">commessa al terminale di carico</a> è andata da settembre 2025 ad aprile 2026 con 12 specialisti e oltre 11.000 ore in cantiere — un riferimento utile per chi pianifica lavori di queste dimensioni.</p>
-
-    </div>
 
     <div class="container">
       <h2 class="sub-head">Lavori recenti</h2>
@@ -174,6 +160,26 @@
           </span>
         </a>
       </div>
+    </div>
+
+    <!-- The four sector paragraphs sit below the photographed cases, not
+         above them: a visitor who clicked "See our projects" scrolled
+         926px of prose before the first photograph. The reading order
+         is unchanged for a screen reader -- this is document order, so
+         it moves for everyone. -->
+    <div class="container prose prose-after-cases">
+      <h2>Cantieristica navale</h2>
+      <p>Tubazioni e montaggio meccanico su navi in costruzione — impianti acqua mare, sentina e combustibile che attraversano locali già pieni di macchinari, struttura e altri mestieri. Prefabbricazione e montaggio si gestiscono insieme, perché uno spool conforme al disegno ma non al locale reale è materiale di scarto.</p>
+
+      <h2>Offshore</h2>
+      <p>Ispezioni, accesso e lavori meccanici su impianti offshore, dove mobilitare una squadra costa caro e una fermata costa ancora di più. Lavori su fune e CND coprono la maggior parte di queste attività; il controllo visivo è centrale per confermare la sicurezza e l’integrità operativa degli asset oil, gas ed eolici.</p>
+
+      <h2>Progetti industriali</h2>
+      <p>Montaggio di impianti, tubazioni di processo e pacchetti meccanici. Un esempio recente è un pacchetto meccanico per trasformatore — tubazioni in acciaio inox e sistemi di raffreddamento &mdash; <a href="/it/news/transformer-mechanical-package">realizzato in cinque Paesi europei</a>, dove la coerenza tra Paesi era tanto un problema di documentazione quanto di fabbricazione.</p>
+
+      <h2>Progetti energia e rinnovabili</h2>
+      <p>Infrastrutture per la movimentazione di combustibili e supporto eolico. La nostra <a href="/it/news/fuel-loading-terminal-completed">commessa al terminale di carico</a> è andata da settembre 2025 ad aprile 2026 con 12 specialisti e oltre 11.000 ore in cantiere — un riferimento utile per chi pianifica lavori di queste dimensioni.</p>
+
     </div>
 
     <div class="container">
@@ -553,6 +559,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=ab044f1f"></script>
+  <script src="/js/main.min.js?v=5b205dbc"></script>
 </body>
 </html>

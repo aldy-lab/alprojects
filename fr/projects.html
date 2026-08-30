@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=2881e15e">
+  <link rel="stylesheet" href="/css/style.min.css?v=0bc04aaf">
 </head>
 <body>
 
@@ -45,10 +45,10 @@
 
       <nav class="main-nav" aria-label="Navigation principale">
         <ul>
-          <li><a href="/fr/" class="active"><span class="txt">Accueil</span></a></li>
+          <li><a href="/fr/"><span class="txt">Accueil</span></a></li>
           <li><a href="/fr/company"><span class="txt">Entreprise</span></a></li>
           <li><a href="/fr/services"><span class="txt">Services</span></a></li>
-          <li><a href="/fr/projects"><span class="txt">Projets</span></a></li>
+          <li><a href="/fr/projects" class="active" aria-current="page"><span class="txt">Projets</span></a></li>
           <li><a href="/fr/careers"><span class="txt">Carrières</span></a></li>
           <li><a href="/fr/contacts"><span class="txt">Contact</span></a></li>
           <li><a href="/fr/news/"><span class="txt">Actualités</span></a></li>
@@ -78,7 +78,7 @@
     <a href="/fr/">Accueil</a>
     <a href="/fr/company">Entreprise</a>
     <a href="/fr/services">Services</a>
-    <a href="/fr/projects">Projets</a>
+    <a href="/fr/projects" class="active" aria-current="page">Projets</a>
     <a href="/fr/careers">Carrières</a>
     <a href="/fr/contacts">Contact</a>
     <a href="/fr/news/">Actualités</a>
@@ -94,20 +94,6 @@
       <p class="page-lead">Quatre types de projets, un même socle de métiers. L’ingénierie est en grande partie la même ; l’environnement, les normes et les conséquences d’une erreur ne le sont pas.</p>
     </div>
 
-    <div class="container prose">
-      <h2>Construction navale</h2>
-      <p>Tuyauterie et montage mécanique sur navires en construction — circuits d’eau de mer, de cale et de combustible cheminant dans des compartiments déjà encombrés de machines, de structure et d’autres corps de métier. Préfabrication et montage sont traités ensemble, car un tronçon conforme au plan mais pas au compartiment réel part à la ferraille.</p>
-
-      <h2>Offshore</h2>
-      <p>Inspection, accès et travaux mécaniques sur installations offshore, où mobiliser une équipe coûte cher et un arrêt coûte plus cher encore. Les travaux sur cordes et les CND portent l’essentiel de ces prestations ; le contrôle visuel joue un rôle central pour confirmer la sécurité et l’intégrité opérationnelle des actifs pétroliers, gaziers et éoliens.</p>
-
-      <h2>Projets industriels</h2>
-      <p>Installation d’unités, tuyauterie process et ensembles mécaniques. Exemple récent : un ensemble mécanique de transformateur — tuyauterie inox et circuits de refroidissement &mdash; <a href="/fr/news/transformer-mechanical-package">livré dans cinq pays européens</a>, où la constance d’un pays à l’autre relevait autant de la documentation que de la fabrication.</p>
-
-      <h2>Projets énergies renouvelables</h2>
-      <p>Infrastructures de manutention de carburant et support éolien. Notre <a href="/fr/news/fuel-loading-terminal-completed">lot de terminal de chargement</a> s’est déroulé de septembre 2025 à avril 2026 avec 12 spécialistes et plus de 11 000 heures sur site — un repère utile pour qui planifie un chantier de cette taille.</p>
-
-    </div>
 
     <div class="container">
       <h2 class="sub-head">Travaux récents</h2>
@@ -174,6 +160,26 @@
           </span>
         </a>
       </div>
+    </div>
+
+    <!-- The four sector paragraphs sit below the photographed cases, not
+         above them: a visitor who clicked "See our projects" scrolled
+         926px of prose before the first photograph. The reading order
+         is unchanged for a screen reader -- this is document order, so
+         it moves for everyone. -->
+    <div class="container prose prose-after-cases">
+      <h2>Construction navale</h2>
+      <p>Tuyauterie et montage mécanique sur navires en construction — circuits d’eau de mer, de cale et de combustible cheminant dans des compartiments déjà encombrés de machines, de structure et d’autres corps de métier. Préfabrication et montage sont traités ensemble, car un tronçon conforme au plan mais pas au compartiment réel part à la ferraille.</p>
+
+      <h2>Offshore</h2>
+      <p>Inspection, accès et travaux mécaniques sur installations offshore, où mobiliser une équipe coûte cher et un arrêt coûte plus cher encore. Les travaux sur cordes et les CND portent l’essentiel de ces prestations ; le contrôle visuel joue un rôle central pour confirmer la sécurité et l’intégrité opérationnelle des actifs pétroliers, gaziers et éoliens.</p>
+
+      <h2>Projets industriels</h2>
+      <p>Installation d’unités, tuyauterie process et ensembles mécaniques. Exemple récent : un ensemble mécanique de transformateur — tuyauterie inox et circuits de refroidissement &mdash; <a href="/fr/news/transformer-mechanical-package">livré dans cinq pays européens</a>, où la constance d’un pays à l’autre relevait autant de la documentation que de la fabrication.</p>
+
+      <h2>Projets énergies renouvelables</h2>
+      <p>Infrastructures de manutention de carburant et support éolien. Notre <a href="/fr/news/fuel-loading-terminal-completed">lot de terminal de chargement</a> s’est déroulé de septembre 2025 à avril 2026 avec 12 spécialistes et plus de 11 000 heures sur site — un repère utile pour qui planifie un chantier de cette taille.</p>
+
     </div>
 
     <div class="container">
@@ -553,6 +559,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=ab044f1f"></script>
+  <script src="/js/main.min.js?v=5b205dbc"></script>
 </body>
 </html>

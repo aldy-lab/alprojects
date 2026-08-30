@@ -1118,6 +1118,8 @@ S = {
         '<span>Plateformes offshore</span><span>Éoliennes</span><span>Tours industrielles</span><span>Structures navales</span>',
     '<strong>Calendly LLC</strong> &mdash; the scheduling calendar on the contacts page, and only if you choose to open it.':
         '<strong>Calendly LLC</strong> &mdash; le calendrier de prise de rendez-vous de la page contact, et uniquement si vous choisissez de l’ouvrir.',
+    '<b>Attach drawings or a specification</b> <span>Choose files, or drag them here. PDF, DWG, STEP, images or ZIP, up to 10 MB each.</span>':
+        '<b>Joignez vos plans ou votre cahier des charges</b> <span>Choisissez des fichiers ou déposez-les ici. PDF, DWG, STEP, images ou ZIP, 10 Mo maximum chacun.</span>',
     '<b>Attach your CV and certificates</b> <span>Choose files, or drag them here. PDF, JPG or PNG, up to 10 MB each.</span>':
         '<b>Joignez votre CV et vos certificats</b> <span>Choisissez des fichiers ou déposez-les ici. PDF, JPG ou PNG, 10 Mo maximum chacun.</span>',
     '<span class="sector-name">INDUSTRIAL</span> <span class="sector-fact">Plant installation and transformer packages</span>':

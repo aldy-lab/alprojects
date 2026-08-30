@@ -16,12 +16,23 @@ privacy.html       — privacy policy
 404.html           — custom not-found page (GitHub Pages serves it automatically)
 news/index.html    — news listing
 news/*.html        — five article pages
-css/style.css      — design tokens + all styles, responsive down to mobile
+css/style.css      — design tokens + all styles, responsive down to mobile (SOURCE)
+css/style.min.css  — what the pages load; written by tools/minify.py on every build
 css/fonts.css      — self-hosted Montserrat @font-face
-js/main.js         — config block, nav, reveals, counters, newsletter
+js/main.js         — config block, nav, reveals, counters, newsletter (SOURCE)
+js/main.min.js     — what the pages load; written by tools/minify.py on every build
 assets/            — images (WebP) and fonts
 tools/build-pages.py — regenerates the sub-pages from index.html's header/footer
+tools/minify.py    — writes the .min copies (called by build-pages.py)
 ```
+
+> **Edit `css/style.css` and `js/main.js`, never the `.min` files, then run
+> `python3 tools/build-pages.py && python3 tools/i18n_build.py`.** The build
+> rewrites the minified copies, restamps the `?v=` hash on every page and
+> rebuilds the three language trees. A CSS change committed without the build
+> ships the previous minified file and nothing warns you: the page is simply
+> still wrong. The `.min` files are committed because GitHub Pages serves the
+> repository as-is — there is no build step on the host.
 
 The sub-pages are committed as plain HTML — nothing needs to run to serve the
 site. Re-run `python3 tools/build-pages.py` only after editing the header or
@@ -179,7 +190,20 @@ is expected.
   files, latin + latin-ext). This removes the render-blocking round trip to
   fonts.googleapis.com *and* the disclosure of visitor IPs to Google — which is
   why the privacy policy can state the site loads no third-party resources.
-- HTML/CSS/JS are served gzipped by GitHub Pages (7.4 / 6.8 / 3.2 KB).
+- HTML/CSS/JS are served gzipped by GitHub Pages. The stylesheet had grown to
+  237 KB, 40% of it comments, and shipped as written -- 61 KB over the wire and
+  render-blocking, the largest single item on a first load. The pages now load
+  `css/style.min.css` and `js/main.min.js`, written by `tools/minify.py` inside
+  the build: 26 KB and 14 KB gzipped, 44 KB less per first visit. The minifier
+  is deliberately dumb and dependency-free -- comments, indentation and blank
+  lines, nothing else -- so the output is the same on every machine and no
+  toolchain is needed to rebuild it. It refuses to write a JavaScript file if
+  any output line is not present verbatim in the source, which is the whole
+  guarantee: it cannot have rewritten a line of code. Equivalence was checked
+  by comparing 45 computed properties on every element of 11 page types at two
+  widths in three languages -- 28,580 elements, no difference outside the
+  animated loading bar, which drifts by the same amount when the unminified
+  file is compared against itself.
 - `cache-control: max-age=600` is GitHub Pages' fixed default and cannot be
   changed on this host. A CDN in front would be the only way to improve it.
 

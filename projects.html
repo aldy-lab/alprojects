@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=2881e15e">
+  <link rel="stylesheet" href="/css/style.min.css?v=0bc04aaf">
 </head>
 <body>
 
@@ -45,10 +45,10 @@
 
       <nav class="main-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="/" class="active"><span class="txt">Home</span></a></li>
+          <li><a href="/"><span class="txt">Home</span></a></li>
           <li><a href="/company"><span class="txt">Company</span></a></li>
           <li><a href="/services"><span class="txt">Services</span></a></li>
-          <li><a href="/projects"><span class="txt">Projects</span></a></li>
+          <li><a href="/projects" class="active" aria-current="page"><span class="txt">Projects</span></a></li>
           <li><a href="/careers"><span class="txt">Careers</span></a></li>
           <li><a href="/contacts"><span class="txt">Contacts</span></a></li>
           <li><a href="/news/"><span class="txt">News</span></a></li>
@@ -78,7 +78,7 @@
     <a href="/">Home</a>
     <a href="/company">Company</a>
     <a href="/services">Services</a>
-    <a href="/projects">Projects</a>
+    <a href="/projects" class="active" aria-current="page">Projects</a>
     <a href="/careers">Careers</a>
     <a href="/contacts">Contacts</a>
     <a href="/news/">News</a>
@@ -96,34 +96,6 @@
       wrong are not.</p>
     </div>
 
-    <div class="container prose">
-      <h2>Shipbuilding</h2>
-      <p>Piping and mechanical installation on vessels under construction — seawater,
-      bilge and fuel systems routed through compartments that are already full of
-      machinery, structure and other trades. Prefabrication and installation are handled
-      together, because a spool built to drawing but not to the as-built compartment is
-      scrap.</p>
-
-      <h2>Offshore</h2>
-      <p>Inspection, access and mechanical works on offshore facilities, where mobilising
-      a team is expensive and a shutdown is more expensive still. Rope access and NDT
-      carry most of this work; visual inspection plays a central role in confirming the
-      safety and operational integrity of oil, gas and wind energy assets.</p>
-
-      <h2>Industrial projects</h2>
-      <p>Plant installation, process piping and mechanical packages. A recent example is a
-      transformer mechanical package — stainless steel piping and cooling systems &mdash;
-      <a href="/news/transformer-mechanical-package">delivered across five European
-      countries</a>, where consistency across borders was as much a documentation problem
-      as a fabrication one.</p>
-
-      <h2>Renewable and energy projects</h2>
-      <p>Fuel handling infrastructure and wind energy support. Our
-      <a href="/news/fuel-loading-terminal-completed">fuel loading terminal scope</a>
-      ran from September 2025 to April 2026 with 12 specialists and over 11,000 hours
-      on site — a useful figure for anyone planning work of that size.</p>
-
-    </div>
 
     <div class="container">
       <h2 class="sub-head">Recent work</h2>
@@ -194,6 +166,40 @@
           </span>
         </a>
       </div>
+    </div>
+
+    <!-- The four sector paragraphs sit below the photographed cases, not
+         above them: a visitor who clicked "See our projects" scrolled
+         926px of prose before the first photograph. The reading order
+         is unchanged for a screen reader -- this is document order, so
+         it moves for everyone. -->
+    <div class="container prose prose-after-cases">
+      <h2>Shipbuilding</h2>
+      <p>Piping and mechanical installation on vessels under construction — seawater,
+      bilge and fuel systems routed through compartments that are already full of
+      machinery, structure and other trades. Prefabrication and installation are handled
+      together, because a spool built to drawing but not to the as-built compartment is
+      scrap.</p>
+
+      <h2>Offshore</h2>
+      <p>Inspection, access and mechanical works on offshore facilities, where mobilising
+      a team is expensive and a shutdown is more expensive still. Rope access and NDT
+      carry most of this work; visual inspection plays a central role in confirming the
+      safety and operational integrity of oil, gas and wind energy assets.</p>
+
+      <h2>Industrial projects</h2>
+      <p>Plant installation, process piping and mechanical packages. A recent example is a
+      transformer mechanical package — stainless steel piping and cooling systems &mdash;
+      <a href="/news/transformer-mechanical-package">delivered across five European
+      countries</a>, where consistency across borders was as much a documentation problem
+      as a fabrication one.</p>
+
+      <h2>Renewable and energy projects</h2>
+      <p>Fuel handling infrastructure and wind energy support. Our
+      <a href="/news/fuel-loading-terminal-completed">fuel loading terminal scope</a>
+      ran from September 2025 to April 2026 with 12 specialists and over 11,000 hours
+      on site — a useful figure for anyone planning work of that size.</p>
+
     </div>
 
     <div class="container">
@@ -584,6 +590,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=ab044f1f"></script>
+  <script src="/js/main.min.js?v=5b205dbc"></script>
 </body>
 </html>

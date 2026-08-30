@@ -82,6 +82,7 @@
       apply_fail: "Could not send. Please email info@alprojects.eu instead.",
       sub_invalid: "Enter a valid email address to subscribe.",
       sub_consent: "Please tick the consent box before subscribing.",
+      sub_ok: "Subscribed. You will receive our next update.",
       sub_fail: "Subscription failed. Email us at info@alprojects.eu.",
       sub_mail: "Your mail app opened with a pre-filled subscription request.",
       need_name: "Please enter your name.",
@@ -97,6 +98,7 @@
       need_message: "Please tell us how we can help.",
       contact_sent: "Message sent. We will be in touch.",
       contact_mail: "Your mail app opened with the enquiry filled in — press send.",
+      contact_mail_files: "Your mail app opened \u2014 the drawings do not travel with it, so attach them now:",
       apply_mail: "Your mail app opened with the details filled in — attach your CV and send.",
       file_remove: "Remove",
       file_too_big: "Too large (10 MB maximum):",
@@ -115,6 +117,7 @@
       apply_fail: "Envoi impossible. \u00c9crivez-nous \u00e0 info@alprojects.eu.",
       sub_invalid: "Saisissez une adresse e-mail valide pour vous abonner.",
       sub_consent: "Veuillez cocher la case de consentement avant de vous abonner.",
+      sub_ok: "Abonnement confirm\u00e9. Vous recevrez notre prochaine actualit\u00e9.",
       sub_fail: "\u00c9chec de l\u2019abonnement. \u00c9crivez-nous \u00e0 info@alprojects.eu.",
       sub_mail: "Votre messagerie s\u2019est ouverte avec une demande d\u2019abonnement pr\u00e9-remplie.",
       need_name: "Veuillez saisir votre nom.",
@@ -130,6 +133,7 @@
       need_message: "Veuillez nous indiquer comment nous pouvons vous aider.",
       contact_sent: "Message envoyé. Nous vous recontacterons.",
       contact_mail: "Votre messagerie s’est ouverte avec la demande préremplie — cliquez sur envoyer.",
+      contact_mail_files: "Votre messagerie s\u2019est ouverte \u2014 les plans ne partent pas avec elle, joignez-les maintenant\u00a0:",
       apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez.",
       file_remove: "Retirer",
       file_too_big: "Trop volumineux (10 Mo maximum) :",
@@ -148,6 +152,7 @@
       apply_fail: "Senden nicht m\u00f6glich. Bitte schreiben Sie an info@alprojects.eu.",
       sub_invalid: "Bitte geben Sie eine g\u00fcltige E-Mail-Adresse ein.",
       sub_consent: "Bitte kreuzen Sie das Einwilligungsfeld an, bevor Sie sich anmelden.",
+      sub_ok: "Anmeldung best\u00e4tigt. Sie erhalten unser n\u00e4chstes Update.",
       sub_fail: "Anmeldung fehlgeschlagen. Schreiben Sie an info@alprojects.eu.",
       sub_mail: "Ihr E-Mail-Programm wurde mit einer vorausgef\u00fcllten Anmeldung ge\u00f6ffnet.",
       need_name: "Bitte geben Sie Ihren Namen ein.",
@@ -163,6 +168,7 @@
       need_message: "Bitte teilen Sie uns mit, wie wir helfen können.",
       contact_sent: "Nachricht gesendet. Wir melden uns.",
       contact_mail: "Ihr E-Mail-Programm wurde mit der ausgefüllten Anfrage geöffnet — bitte absenden.",
+      contact_mail_files: "Ihr E-Mail-Programm wurde ge\u00f6ffnet \u2014 die Zeichnungen gehen nicht mit, bitte jetzt anh\u00e4ngen:",
       apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie.",
       file_remove: "Entfernen",
       file_too_big: "Zu groß (maximal 10 MB):",
@@ -181,6 +187,7 @@
       apply_fail: "Invio non riuscito. Scriveteci a info@alprojects.eu.",
       sub_invalid: "Inserisci un indirizzo e-mail valido per iscriverti.",
       sub_consent: "Spunta la casella di consenso prima di iscriverti.",
+      sub_ok: "Iscrizione confermata. Riceverete il nostro prossimo aggiornamento.",
       sub_fail: "Iscrizione non riuscita. Scriveteci a info@alprojects.eu.",
       sub_mail: "Il programma di posta si \u00e8 aperto con una richiesta di iscrizione precompilata.",
       need_name: "Inserisci il tuo nome.",
@@ -195,7 +202,8 @@
       need_last: "Inserisci il tuo cognome.",
       need_message: "Indicaci come possiamo aiutarti.",
       contact_sent: "Messaggio inviato. Vi ricontatteremo.",
-      contact_mail: "Il programma di posta si è aperto con la richiesta compilata — premi invia.",
+      contact_mail: "Il programma di posta si è aperto con la richiesta compilata — premete invia.",
+      contact_mail_files: "Il programma di posta si \u00e8 aperto \u2014 i disegni non partono con esso, allegateli ora:",
       apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia.",
       file_remove: "Rimuovi",
       file_too_big: "Troppo grande (massimo 10 MB):",
@@ -285,8 +293,12 @@
      overlay -- there is nothing to return to behind it. Same click-to-load
      rule, same shared loader. */
   var bookingPanel = document.querySelector("[data-booking-embed]");
+  /* The panel is in the markup, visible. Hiding it here rather than revealing
+     it keeps the blank-URL rule (no BOOKING_URL, no panel) without paying a
+     layout shift for it on every load: revealing pushed the form below it
+     down the page the moment this file arrived late. */
+  if (bookingPanel && !BOOKING_URL) bookingPanel.setAttribute("hidden", "");
   if (bookingPanel && BOOKING_URL) {
-    bookingPanel.removeAttribute("hidden");
     var loadBtn = bookingPanel.querySelector("[data-booking-load]");
     var isCalendly = /(^|\.)calendly\.com$/i.test(
       (function () { try { return new URL(BOOKING_URL).hostname; } catch (e) { return ""; } })()
@@ -935,29 +947,30 @@
     });
   }
 
-  /* ---------- active nav link by section ---------- */
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".main-nav a"));
-  var sectionsForNav = ["top", "company", "services", "projects", "team", "contacts", "news"]
-    .map(function (id) { return document.getElementById(id); })
-    .filter(Boolean);
+  /* ---------- current page in the navigation ----------
+     The nav links are pages, not anchors. This replaced a setActiveNav() left
+     over from the one-page build, which compared each href to "#" + sectionId
+     -- no href ever matched, so at load it stripped .active from all seven
+     links and no page ever showed where you were. The build stamps the same
+     marker server-side (mark_nav in tools/build-pages.py) so it also holds
+     with scripting off; this only has to agree with it, and cover index.html,
+     which the build does not rewrite. */
+  (function () {
+    var here = location.pathname.replace(/index\.html$/, "").replace(/\.html$/, "");
+    var links = document.querySelectorAll(".main-nav a, .mobile-menu > a");
+    Array.prototype.forEach.call(links, function (a) {
+      var href = (a.getAttribute("href") || "").replace(/\/$/, "");
+      /* "/" and "/de" are the home of their tree: exact match only, or every
+         page below them would light up Home as well as its own section. */
+      var isHome = href === "" || /^\/(fr|de|it)$/.test(href);
+      var on = isHome ? here.replace(/\/$/, "") === href
+                      : here === href || here.indexOf(href + "/") === 0;
+      a.classList.toggle("active", on);
+      if (on) a.setAttribute("aria-current", "page");
+      else if (a.getAttribute("aria-current") === "page") a.removeAttribute("aria-current");
+    });
+  })();
 
-  function setActiveNav() {
-    var y = window.scrollY + window.innerHeight * 0.35;
-    var currentId = "top";
-    var bestTop = -Infinity;
-    sectionsForNav.forEach(function (sec) {
-      var top = sec.getBoundingClientRect().top + window.scrollY;
-      if (top <= y && top > bestTop) {
-        bestTop = top;
-        currentId = sec.id;
-      }
-    });
-    navLinks.forEach(function (a) {
-      a.classList.toggle("active", a.getAttribute("href") === "#" + currentId);
-    });
-  }
-  window.addEventListener("scroll", setActiveNav, { passive: true });
-  setActiveNav();
 
   /* ---------- hero parallax ----------
      The frame travels slower than the page as the hero scrolls out. CSS gives
@@ -1123,6 +1136,85 @@
       window.addEventListener("resize", updateHeadline);
       updateHeadline();
     }
+  }
+
+  /* ---------- file attachments (careers + contacts) ----------
+     One component for both forms. The zone is a <label for>, so the browser
+     opens the picker itself; this only adds drag-and-drop, the size check,
+     duplicate rejection and the list with remove buttons. It was bound to the
+     careers form's element ids; the enquiry form on /contacts needs exactly
+     the same thing for drawings, and two copies would have drifted.
+     Returns the picked files so each submit handler can post them as
+     multipart or name them in the email it opens. */
+  function attachFiles(ids) {
+    var noteEl = ids.note;
+    var picked = [];
+    var dz = document.getElementById(ids.zone);
+    var fileInput = document.getElementById(ids.input);
+    var fileList = document.getElementById(ids.list);
+    var MAX = 10 * 1024 * 1024;
+
+    function renderFiles() {
+      if (!fileList) return;
+      fileList.innerHTML = "";
+      picked.forEach(function (f, i) {
+        var li = document.createElement("li");
+        var nm = document.createElement("span");
+        nm.textContent = f.name;
+        var sz = document.createElement("span");
+        sz.textContent = Math.max(1, Math.round(f.size / 1024)) + " KB";
+        var rm = document.createElement("button");
+        rm.type = "button";
+        rm.className = "file-x";
+        rm.setAttribute("aria-label", TXT.file_remove + " " + f.name);
+        rm.textContent = "\u00d7";
+        rm.addEventListener("click", function () {
+          picked.splice(i, 1);
+          renderFiles();
+          if (fileInput) fileInput.focus();
+        });
+        li.appendChild(nm); li.appendChild(sz); li.appendChild(rm);
+        fileList.appendChild(li);
+      });
+    }
+
+    if (dz && fileInput) {
+      var takeFiles = function (list) {
+        var over = [];
+        [].slice.call(list).forEach(function (f) {
+          if (f.size > MAX) { over.push(f.name); return; }
+          /* the same file twice is a mis-click, not an intention */
+          var dup = picked.some(function (x) { return x.name === f.name && x.size === f.size; });
+          if (!dup) picked.push(f);
+        });
+        if (over.length && noteEl) {
+          noteEl.textContent = TXT.file_too_big + " " + over.join(", ");
+          noteEl.classList.add("show", "is-error");
+        }
+        renderFiles();
+      };
+      /* No click handler on the drop zone: it is a <label for>, so the browser
+         opens the picker itself. JavaScript only adds drag-and-drop. */
+      fileInput.addEventListener("change", function () {
+        takeFiles(fileInput.files);
+        fileInput.value = "";     /* so re-picking the same file still fires change */
+      });
+      ["dragenter", "dragover"].forEach(function (e) {
+        dz.addEventListener(e, function (ev) { ev.preventDefault(); dz.classList.add("is-over"); });
+      });
+      ["dragleave", "drop"].forEach(function (e) {
+        dz.addEventListener(e, function (ev) { ev.preventDefault(); dz.classList.remove("is-over"); });
+      });
+      dz.addEventListener("drop", function (ev) {
+        ev.preventDefault();
+        takeFiles(ev.dataTransfer.files);
+      });
+    }
+    return {
+      picked: picked,
+      names: function () { return picked.map(function (f) { return f.name; }).join(", "); },
+      reset: function () { picked.length = 0; renderFiles(); }
+    };
   }
 
   /* ---------- careers application form ---------- */
@@ -1322,68 +1414,9 @@
          CAREERS_ENDPOINT empty -> named in the email that opens, so the
                                    applicant knows exactly what to attach
        What it never does is accept a file and quietly lose it. */
-    var picked = [];
-    var dz = document.getElementById("dropZone");
-    var fileInput = document.getElementById("apFiles");
-    var fileList = document.getElementById("fileList");
-    var MAX = 10 * 1024 * 1024;
-
-    function renderFiles() {
-      if (!fileList) return;
-      fileList.innerHTML = "";
-      picked.forEach(function (f, i) {
-        var li = document.createElement("li");
-        var nm = document.createElement("span");
-        nm.textContent = f.name;
-        var sz = document.createElement("span");
-        sz.textContent = Math.max(1, Math.round(f.size / 1024)) + " KB";
-        var rm = document.createElement("button");
-        rm.type = "button";
-        rm.className = "file-x";
-        rm.setAttribute("aria-label", TXT.file_remove + " " + f.name);
-        rm.textContent = "\u00d7";
-        rm.addEventListener("click", function () {
-          picked.splice(i, 1);
-          renderFiles();
-          if (fileInput) fileInput.focus();
-        });
-        li.appendChild(nm); li.appendChild(sz); li.appendChild(rm);
-        fileList.appendChild(li);
-      });
-    }
-
-    if (dz && fileInput) {
-      var takeFiles = function (list) {
-        var over = [];
-        [].slice.call(list).forEach(function (f) {
-          if (f.size > MAX) { over.push(f.name); return; }
-          /* the same file twice is a mis-click, not an intention */
-          var dup = picked.some(function (x) { return x.name === f.name && x.size === f.size; });
-          if (!dup) picked.push(f);
-        });
-        if (over.length && applyNote) {
-          applyNote.textContent = TXT.file_too_big + " " + over.join(", ");
-          applyNote.classList.add("show", "is-error");
-        }
-        renderFiles();
-      };
-      /* No click handler on the drop zone: it is a <label for>, so the browser
-         opens the picker itself. JavaScript only adds drag-and-drop. */
-      fileInput.addEventListener("change", function () {
-        takeFiles(fileInput.files);
-        fileInput.value = "";     /* so re-picking the same file still fires change */
-      });
-      ["dragenter", "dragover"].forEach(function (e) {
-        dz.addEventListener(e, function (ev) { ev.preventDefault(); dz.classList.add("is-over"); });
-      });
-      ["dragleave", "drop"].forEach(function (e) {
-        dz.addEventListener(e, function (ev) { ev.preventDefault(); dz.classList.remove("is-over"); });
-      });
-      dz.addEventListener("drop", function (ev) {
-        ev.preventDefault();
-        takeFiles(ev.dataTransfer.files);
-      });
-    }
+    var docs = attachFiles({ zone: "dropZone", input: "apFiles",
+                            list: "fileList", note: applyNote });
+    var picked = docs.picked;
 
     applyForm.addEventListener("submit", function (ev) {
       ev.preventDefault();
@@ -1431,11 +1464,9 @@
               applyNote.textContent = TXT.apply_sent;
               applyNote.classList.remove("is-error");
               f.reset();
-              picked.length = 0;
+              docs.reset();
               document.querySelectorAll(".apply-form .chip[aria-pressed=true]")
                 .forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
-              var fl = document.getElementById("fileList");
-              if (fl) fl.innerHTML = "";
             } else { fail(TXT.apply_fail); }
           })
           .catch(function () { fail(TXT.apply_fail); });
@@ -1523,6 +1554,8 @@
   var contactForm = document.getElementById("contactForm");
   var contactNote = document.getElementById("contactNote");
   if (contactForm && contactNote) {
+    var ctDocs = attachFiles({ zone: "ctDropZone", input: "ctFiles",
+                              list: "ctFileList", note: contactNote });
     contactForm.addEventListener("submit", function (ev) {
       ev.preventDefault();
       var f = contactForm;
@@ -1560,12 +1593,14 @@
         contactNote.classList.add("show");
         var fd = new FormData();
         Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
+        ctDocs.picked.forEach(function (file) { fd.append("attachment", file, file.name); });
         fetch(CONTACT_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: fd })
           .then(function (r) {
             if (r.ok) {
               contactNote.textContent = TXT.contact_sent;
               contactNote.classList.remove("is-error");
               f.reset();
+              ctDocs.reset();
             } else { fail(TXT.apply_fail); }
           })
           .catch(function () { fail(TXT.apply_fail); });
@@ -1581,13 +1616,21 @@
         line("Email", data.email),
         line("Phone", data.phone),
         "",
-        data.message
+        data.message,
+        "",
+        ctDocs.picked.length ? "(To attach: " + ctDocs.names() + ")" : ""
       ].join("\n");
       window.location.href =
         "mailto:info@alprojects.eu?subject=" +
         encodeURIComponent(data.topic + " \u2014 " + (data.company || data.last)) +
         "&body=" + encodeURIComponent(body);
-      contactNote.textContent = TXT.contact_mail;
+      /* A mailto: cannot carry an attachment. Naming the files rather than
+         letting the visitor assume the drawings went with the message --
+         accepting a file and quietly losing it is the one thing this must
+         never do. */
+      contactNote.textContent = ctDocs.picked.length
+        ? TXT.contact_mail_files + " " + ctDocs.names()
+        : TXT.contact_mail;
       contactNote.classList.remove("is-error");
       contactNote.classList.add("show");
     });
@@ -1626,9 +1669,10 @@
           body: JSON.stringify({ email: email })
         })
           .then(function (r) {
-            note.textContent = r.ok
-              ? "Subscribed. You will receive our next update."
-              : "Subscription failed. Email us at info@alprojects.eu.";
+            /* Both strings come from TXT: hard-coded here, a French visitor
+               who subscribed successfully was answered in English, while the
+               network-failure branch below was already translated. */
+            note.textContent = r.ok ? TXT.sub_ok : TXT.sub_fail;
             note.classList.add("show");
             if (r.ok) form.reset();
           })

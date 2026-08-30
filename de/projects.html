@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=6a29218c">
-  <link rel="stylesheet" href="/css/style.css?v=2881e15e">
+  <link rel="stylesheet" href="/css/style.min.css?v=0bc04aaf">
 </head>
 <body>
 
@@ -45,10 +45,10 @@
 
       <nav class="main-nav" aria-label="Hauptnavigation">
         <ul>
-          <li><a href="/de/" class="active"><span class="txt">Startseite</span></a></li>
+          <li><a href="/de/"><span class="txt">Startseite</span></a></li>
           <li><a href="/de/company"><span class="txt">Unternehmen</span></a></li>
           <li><a href="/de/services"><span class="txt">Leistungen</span></a></li>
-          <li><a href="/de/projects"><span class="txt">Projekte</span></a></li>
+          <li><a href="/de/projects" class="active" aria-current="page"><span class="txt">Projekte</span></a></li>
           <li><a href="/de/careers"><span class="txt">Karriere</span></a></li>
           <li><a href="/de/contacts"><span class="txt">Kontakt</span></a></li>
           <li><a href="/de/news/"><span class="txt">Aktuelles</span></a></li>
@@ -78,7 +78,7 @@
     <a href="/de/">Startseite</a>
     <a href="/de/company">Unternehmen</a>
     <a href="/de/services">Leistungen</a>
-    <a href="/de/projects">Projekte</a>
+    <a href="/de/projects" class="active" aria-current="page">Projekte</a>
     <a href="/de/careers">Karriere</a>
     <a href="/de/contacts">Kontakt</a>
     <a href="/de/news/">Aktuelles</a>
@@ -94,20 +94,6 @@
       <p class="page-lead">Vier Projektarten, ein Satz an Gewerken. Die Technik ist weitgehend dieselbe; die Umgebung, die Normen und die Folgen eines Fehlers sind es nicht.</p>
     </div>
 
-    <div class="container prose">
-      <h2>Schiffbau</h2>
-      <p>Rohrleitungs- und Maschinenmontage auf Schiffen im Bau — Seewasser-, Bilge- und Kraftstoffsysteme, geführt durch Räume, die bereits voller Maschinen, Struktur und anderer Gewerke sind. Vorfertigung und Montage laufen zusammen, denn ein Spool, der zur Zeichnung, aber nicht zum realen Raum passt, ist Ausschuss.</p>
-
-      <h2>Offshore</h2>
-      <p>Prüf-, Zugangs- und Montagearbeiten an Offshore-Anlagen, wo die Mobilisierung eines Teams teuer und ein Stillstand noch teurer ist. Seilzugangstechnik und ZfP tragen den größten Teil dieser Arbeit; die Sichtprüfung ist zentral für den Nachweis von Sicherheit und Betriebsintegrität von Öl-, Gas- und Windenergieanlagen.</p>
-
-      <h2>Industrieprojekte</h2>
-      <p>Anlagenmontage, Prozessrohrleitungen und mechanische Pakete. Ein aktuelles Beispiel ist ein mechanisches Transformatorenpaket — Edelstahlrohrleitungen und Kühlsysteme &mdash; <a href="/de/news/transformer-mechanical-package">in fünf europäischen Ländern ausgeführt</a>, wo gleichbleibende Qualität über Ländergrenzen hinweg ebenso eine Frage der Dokumentation wie der Fertigung war.</p>
-
-      <h2>Projekte für erneuerbare Energien</h2>
-      <p>Kraftstoffinfrastruktur und Unterstützung im Windbereich. Unser <a href="/de/news/fuel-loading-terminal-completed">Umfang am Verladeterminal</a> lief von September 2025 bis April 2026 mit 12 Fachkräften und über 11.000 Stunden vor Ort — ein nützlicher Anhaltspunkt für alle, die Arbeiten dieser Größe planen.</p>
-
-    </div>
 
     <div class="container">
       <h2 class="sub-head">Aktuelle Projekte</h2>
@@ -174,6 +160,26 @@
           </span>
         </a>
       </div>
+    </div>
+
+    <!-- The four sector paragraphs sit below the photographed cases, not
+         above them: a visitor who clicked "See our projects" scrolled
+         926px of prose before the first photograph. The reading order
+         is unchanged for a screen reader -- this is document order, so
+         it moves for everyone. -->
+    <div class="container prose prose-after-cases">
+      <h2>Schiffbau</h2>
+      <p>Rohrleitungs- und Maschinenmontage auf Schiffen im Bau — Seewasser-, Bilge- und Kraftstoffsysteme, geführt durch Räume, die bereits voller Maschinen, Struktur und anderer Gewerke sind. Vorfertigung und Montage laufen zusammen, denn ein Spool, der zur Zeichnung, aber nicht zum realen Raum passt, ist Ausschuss.</p>
+
+      <h2>Offshore</h2>
+      <p>Prüf-, Zugangs- und Montagearbeiten an Offshore-Anlagen, wo die Mobilisierung eines Teams teuer und ein Stillstand noch teurer ist. Seilzugangstechnik und ZfP tragen den größten Teil dieser Arbeit; die Sichtprüfung ist zentral für den Nachweis von Sicherheit und Betriebsintegrität von Öl-, Gas- und Windenergieanlagen.</p>
+
+      <h2>Industrieprojekte</h2>
+      <p>Anlagenmontage, Prozessrohrleitungen und mechanische Pakete. Ein aktuelles Beispiel ist ein mechanisches Transformatorenpaket — Edelstahlrohrleitungen und Kühlsysteme &mdash; <a href="/de/news/transformer-mechanical-package">in fünf europäischen Ländern ausgeführt</a>, wo gleichbleibende Qualität über Ländergrenzen hinweg ebenso eine Frage der Dokumentation wie der Fertigung war.</p>
+
+      <h2>Projekte für erneuerbare Energien</h2>
+      <p>Kraftstoffinfrastruktur und Unterstützung im Windbereich. Unser <a href="/de/news/fuel-loading-terminal-completed">Umfang am Verladeterminal</a> lief von September 2025 bis April 2026 mit 12 Fachkräften und über 11.000 Stunden vor Ort — ein nützlicher Anhaltspunkt für alle, die Arbeiten dieser Größe planen.</p>
+
     </div>
 
     <div class="container">
@@ -553,6 +559,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.js?v=ab044f1f"></script>
+  <script src="/js/main.min.js?v=5b205dbc"></script>
 </body>
 </html>
