@@ -2255,4 +2255,54 @@ S = {
         'Secteur de la construction navale — ALPROJECTS Group',
     'Project updates and engineering insights from ALPROJECTS Group — welding, piping, NDT and offshore scopes across Northern and Western Europe.':
         'Actualités de chantiers et retours d’ingénierie d’ALPROJECTS Group — soudage, tuyauterie, CND et lots offshore en Europe du Nord et de l’Ouest.',
+
+    # --- case: engine room piping and machinery installation -------------
+    'Engine room piping and machinery installation':
+        'Tuyauterie et montage des machines en salle des machines',
+    'Engine room piping and machinery installation — ALPROJECTS Group':
+        'Tuyauterie et montage des machines en salle des machines — ALPROJECTS Group',
+    'Mechanical installation and piping · Shipbuilding':
+        'Montage mécanique et tuyauterie · Construction navale',
+    'Project &middot; Mechanical installation and piping · Shipbuilding':
+        'Chantier &middot; Montage mécanique et tuyauterie · Construction navale',
+    'Vessel under construction, machinery spaces':
+        'Navire en construction, locaux machines',
+    'Machinery on resilient mounts, and the seawater, bilge and fuel lines that connect it. The mounts went down first; the piping followed, through a compartment that was already full.':
+        'Des machines sur supports élastiques, et les circuits d’eau de mer, de cale et de combustible qui les relient. Les supports d’abord, la tuyauterie ensuite, dans un local déjà encombré.',
+    'The mounts go down before anything else. We land the machine on them all at once, check the height of every mount, and shim the ones that sit low until the load is shared. The alignment is checked and recorded before we make up the first flange.':
+        'Les supports sont posés avant tout le reste. Nous reposons la machine sur l’ensemble des supports en une seule fois, contrôlons la hauteur de chacun d’eux et calons ceux qui sont trop bas jusqu’à ce que la charge soit répartie. L’alignement est contrôlé et consigné avant que nous n’assemblions la première bride.',
+    'Dimensions come off the steel, not the drawing. By the time the piping starts the space is full, so we build the valves, the strainer and the branches up on one frame outside the compartment and land the group as a unit, with the bolt holes matching and the flange faces square. Set out that way, somebody standing in front of it can reach every handwheel.':
+        'Les cotes sont relevées sur l’acier, pas sur le plan. Quand la tuyauterie commence, le local est déjà plein : nous montons donc les vannes, le filtre et les piquages sur un même châssis à l’extérieur du compartiment et posons l’ensemble d’un seul tenant, trous de boulons en correspondance et faces de brides d’équerre. Disposé ainsi, quelqu’un qui se tient devant atteint chaque volant.',
+    'We set the valve groups out to keep the tank access clear, because the covers have to come off in service. Every open end stays capped until the system is blanked for test, and each line is tagged to the drawing as it is finished.':
+        'Nous disposons les ensembles de vannes de manière à dégager l’accès aux capacités, car les trappes doivent pouvoir être déposées en exploitation. Chaque extrémité ouverte reste obturée jusqu’à ce que le circuit soit bridé pour l’épreuve, et chaque ligne est repérée d’après le plan à mesure qu’elle est terminée.',
+    'Resiliently mounted machinery moves, and the hull works at sea. Flexible hoses take that movement at the machine connections. On the runs, mechanical couplings take up misalignment, and we anchor and guide the pipe either side of them so the coupling is not left carrying the line.':
+        'Une machine sur supports élastiques bouge, et la coque travaille en mer. Aux raccordements de la machine, des flexibles absorbent ce mouvement. Sur les lignes, des raccords mécaniques rattrapent le désalignement, et nous ancrons et guidons la tuyauterie de part et d’autre pour que le raccord ne se retrouve pas à porter la ligne.',
+    'Resilient mounts on the machined seating.':
+        'Supports élastiques sur l’assise usinée.',
+    'The seating, with the mounts set and the first lines alongside.':
+        'L’assise, supports posés et premières lignes le long.',
+    'Valve and strainer group on the bulkhead.':
+        'Ensemble vannes et filtre sur la cloison.',
+    'Mechanical couplings on the large-bore runs.':
+        'Raccords mécaniques sur les lignes de gros diamètre.',
+    'Valve group around the tank access cover.':
+        'Ensemble de vannes autour de la trappe de visite.',
+    'Machined seating in an engine room with resilient mounts bolted down, studs and nuts set, and timber packing alongside':
+        'Assise usinée en salle des machines avec supports élastiques boulonnés, goujons et écrous posés, et cales en bois à côté',
+    'A row of resilient mounts along the machined seating, with the first pipe runs and capped flanges laid in beside them':
+        'Une rangée de supports élastiques le long de l’assise usinée, avec les premières lignes et des brides obturées posées à côté',
+    'Valve and strainer group made up on a frame against an engine room bulkhead, with globe valves, a basket strainer and capped branches':
+        'Ensemble vannes et filtre préfabriqué sur châssis contre une cloison de salle des machines, avec robinets à soupape, filtre à panier et piquages obturés',
+    'Large-bore pipe runs under a deckhead, with mechanical couplings on the vertical drop and anchors either side of them':
+        'Lignes de gros diamètre sous plafond, avec raccords mécaniques sur la descente verticale et points fixes de part et d’autre',
+    'Valve group set out around a bolted tank access cover, with the covers left clear and every open end capped':
+        'Ensemble de vannes disposé autour d’une trappe de visite boulonnée, les trappes restant dégagées et chaque extrémité ouverte obturée',
+    'Send the drawings or the scope and we will come back with a price and crew dates. If it is a yard slot, tell us the window.':
+        'Envoyez les plans ou le périmètre et nous reviendrons avec un prix et des dates d’équipe. S’il s’agit d’un créneau au chantier naval, précisez-nous la fenêtre.',
+    'Send us the drawings':
+        'Envoyez-nous les plans',
+    '<span class="case-num">01</span> <span class="case-kicker">Mechanical installation and piping · Shipbuilding</span>':
+        '<span class="case-num">01</span> <span class="case-kicker">Montage mécanique et tuyauterie · Construction navale</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Engine room piping and machinery installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Tuyauterie et montage des machines en salle des machines</span> <span class="arr" aria-hidden="true">&#8593;</span>',
 }

@@ -2232,4 +2232,54 @@ S = {
         'Sektor Schiffbau — ALPROJECTS Group',
     'Project updates and engineering insights from ALPROJECTS Group — welding, piping, NDT and offshore scopes across Northern and Western Europe.':
         'Projektberichte und Erfahrungen aus der Praxis von ALPROJECTS Group — Schweißen, Rohrleitungsbau, ZfP und Offshore-Lose in Nord- und Westeuropa.',
+
+    # --- case: engine room piping and machinery installation -------------
+    'Engine room piping and machinery installation':
+        'Rohrleitungsbau und Maschinenmontage im Maschinenraum',
+    'Engine room piping and machinery installation — ALPROJECTS Group':
+        'Rohrleitungsbau und Maschinenmontage im Maschinenraum — ALPROJECTS Group',
+    'Mechanical installation and piping · Shipbuilding':
+        'Mechanische Montage und Rohrleitungsbau · Schiffbau',
+    'Project &middot; Mechanical installation and piping · Shipbuilding':
+        'Projekt &middot; Mechanische Montage und Rohrleitungsbau · Schiffbau',
+    'Vessel under construction, machinery spaces':
+        'Schiff im Bau, Maschinenräume',
+    'Machinery on resilient mounts, and the seawater, bilge and fuel lines that connect it. The mounts went down first; the piping followed, through a compartment that was already full.':
+        'Maschinen auf elastischer Lagerung und die Seewasser-, Bilge- und Brennstoffleitungen, die sie verbinden. Zuerst kam die Lagerung, dann die Rohrleitung — durch einen Raum, der bereits voll war.',
+    'The mounts go down before anything else. We land the machine on them all at once, check the height of every mount, and shim the ones that sit low until the load is shared. The alignment is checked and recorded before we make up the first flange.':
+        'Die Lager kommen vor allem anderen. Wir setzen die Maschine in einem Zug auf alle Lager ab, prüfen die Höhe jedes einzelnen Lagers und unterlegen die zu tief sitzenden, bis die Last gleichmäßig getragen wird. Die Ausrichtung wird geprüft und dokumentiert, bevor wir die erste Flanschverbindung herstellen.',
+    'Dimensions come off the steel, not the drawing. By the time the piping starts the space is full, so we build the valves, the strainer and the branches up on one frame outside the compartment and land the group as a unit, with the bolt holes matching and the flange faces square. Set out that way, somebody standing in front of it can reach every handwheel.':
+        'Die Maße werden am Stahl abgenommen, nicht der Zeichnung entnommen. Wenn der Rohrleitungsbau beginnt, ist der Raum bereits voll; deshalb bauen wir Armaturen, Filter und Abzweige außerhalb des Raums auf einem Rahmen auf und setzen die Gruppe als Einheit ein — mit passenden Schraubenlöchern und planparallelen Flanschflächen. So angeordnet erreicht jemand, der davorsteht, jedes Handrad.',
+    'We set the valve groups out to keep the tank access clear, because the covers have to come off in service. Every open end stays capped until the system is blanked for test, and each line is tagged to the drawing as it is finished.':
+        'Wir ordnen die Armaturengruppen so an, dass der Tankzugang frei bleibt, denn die Deckel müssen im Betrieb abgenommen werden können. Jedes offene Ende bleibt verschlossen, bis das System für die Prüfung abgeblindet wird, und jede Leitung wird nach Fertigstellung entsprechend der Zeichnung gekennzeichnet.',
+    'Resiliently mounted machinery moves, and the hull works at sea. Flexible hoses take that movement at the machine connections. On the runs, mechanical couplings take up misalignment, and we anchor and guide the pipe either side of them so the coupling is not left carrying the line.':
+        'Elastisch gelagerte Maschinen bewegen sich, und der Schiffskörper arbeitet auf See. An den Maschinenanschlüssen nehmen flexible Schlauchleitungen diese Bewegung auf. In den Strängen gleichen mechanische Kupplungen den Versatz aus, und wir setzen beiderseits davon Festpunkte und Führungen, damit die Kupplung die Leitung nicht tragen muss.',
+    'Resilient mounts on the machined seating.':
+        'Elastische Lager auf dem bearbeiteten Fundament.',
+    'The seating, with the mounts set and the first lines alongside.':
+        'Das Fundament mit gesetzten Lagern und den ersten Leitungen daneben.',
+    'Valve and strainer group on the bulkhead.':
+        'Armaturen- und Filtergruppe am Schott.',
+    'Mechanical couplings on the large-bore runs.':
+        'Mechanische Kupplungen an den Leitungen großer Nennweite.',
+    'Valve group around the tank access cover.':
+        'Armaturengruppe rund um den Tankdeckel.',
+    'Machined seating in an engine room with resilient mounts bolted down, studs and nuts set, and timber packing alongside':
+        'Bearbeitetes Fundament im Maschinenraum mit verschraubten elastischen Lagern, gesetzten Stiftschrauben und Muttern und Holzunterlagen daneben',
+    'A row of resilient mounts along the machined seating, with the first pipe runs and capped flanges laid in beside them':
+        'Eine Reihe elastischer Lager entlang des bearbeiteten Fundaments, daneben die ersten Rohrstränge und verschlossene Flansche',
+    'Valve and strainer group made up on a frame against an engine room bulkhead, with globe valves, a basket strainer and capped branches':
+        'Auf einem Rahmen vormontierte Armaturen- und Filtergruppe an einem Maschinenraumschott, mit Absperrventilen, einem Korbfilter und verschlossenen Abzweigen',
+    'Large-bore pipe runs under a deckhead, with mechanical couplings on the vertical drop and anchors either side of them':
+        'Rohrleitungen großer Nennweite unter der Decke, mit mechanischen Kupplungen am senkrechten Strang und Festpunkten beiderseits',
+    'Valve group set out around a bolted tank access cover, with the covers left clear and every open end capped':
+        'Armaturengruppe rund um einen verschraubten Tankdeckel angeordnet, die Deckel bleiben frei und jedes offene Ende ist verschlossen',
+    'Send the drawings or the scope and we will come back with a price and crew dates. If it is a yard slot, tell us the window.':
+        'Senden Sie die Zeichnungen oder den Leistungsumfang und wir melden uns mit Preis und Einsatzterminen. Bei einem Werfttermin nennen Sie uns bitte das Zeitfenster.',
+    'Send us the drawings':
+        'Schicken Sie uns die Zeichnungen',
+    '<span class="case-num">01</span> <span class="case-kicker">Mechanical installation and piping · Shipbuilding</span>':
+        '<span class="case-num">01</span> <span class="case-kicker">Mechanische Montage und Rohrleitungsbau · Schiffbau</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Engine room piping and machinery installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Rohrleitungsbau und Maschinenmontage im Maschinenraum</span> <span class="arr" aria-hidden="true">&#8593;</span>',
 }
