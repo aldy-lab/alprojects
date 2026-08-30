@@ -4742,9 +4742,9 @@ min-height: 44px;
 align-items: center;
 }
 }
-#service-pipe .bg { filter: saturate(0.7) brightness(0.62) contrast(1.04); }
-#service-welding .bg { filter: saturate(0.7) brightness(0.45) contrast(1.05); }
-#service-rope .bg    { filter: saturate(0.7) brightness(0.55) contrast(1.04); }
+#service-pipe .bg { filter: saturate(0.7) brightness(var(--bg-bright, 0.62)) contrast(1.04); }
+#service-welding .bg { filter: saturate(0.7) brightness(var(--bg-bright, 0.45)) contrast(1.05); }
+#service-rope .bg    { filter: saturate(0.7) brightness(var(--bg-bright, 0.55)) contrast(1.04); }
 :root {
 --gap-section: clamp(44px, 5vw, 80px);
 --gap-major: clamp(60px, 7vw, 112px);
@@ -4810,4 +4810,11 @@ font-family: var(--font-display);
 }
 @media (pointer: coarse) {
 .langs a { height: 44px; }
+}
+@media (max-width: 700px) {
+.service-slide { padding-top: clamp(130px, 22vh, 200px); }
+#service-welding { --bg-bright: 0.78; }
+#service-pipe    { --bg-bright: 0.92; }
+#service-rope    { --bg-bright: 0.86; }
+.service-slide:not(:first-of-type) .service-nav { display: none; }
 }

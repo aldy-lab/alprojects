@@ -6302,7 +6302,7 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
    every target here, so it gets no extra scrim. Measured with the slide
    pinned and the type hidden: paragraph 4.63, list 5.12, chips 9.27,
    headline 8.18. */
-#service-pipe .bg { filter: saturate(0.7) brightness(0.62) contrast(1.04); }
+#service-pipe .bg { filter: saturate(0.7) brightness(var(--bg-bright, 0.62)) contrast(1.04); }
 
 /* Measuring all five slides rather than only the one that was reported found
    two more: welding at 1.69 for its service list, and rope access at 3.08 for
@@ -6311,8 +6311,8 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
    to what each frame needs.
      welding  desc 7.93  nav 5.14  chips 9.43  h3 10.08
      rope     desc 5.97  nav 6.58  chips 9.36  h3 11.53 */
-#service-welding .bg { filter: saturate(0.7) brightness(0.45) contrast(1.05); }
-#service-rope .bg    { filter: saturate(0.7) brightness(0.55) contrast(1.04); }
+#service-welding .bg { filter: saturate(0.7) brightness(var(--bg-bright, 0.45)) contrast(1.05); }
+#service-rope .bg    { filter: saturate(0.7) brightness(var(--bg-bright, 0.55)) contrast(1.04); }
 
 /* ============================================================
    VERTICAL RHYTHM
@@ -6531,4 +6531,31 @@ html:not(.js) .booking [data-booking-load] { display: none; }
    has 810 of them, and the width is not what makes it hard to hit. */
 @media (pointer: coarse) {
   .langs a { height: 44px; }
+}
+
+
+/* ---------- the service stack on a phone ----------
+   Five cards, 672px each, 5.4 screens for five paragraphs -- and a third of
+   every card was a 226px window on a photograph graded for the desktop layout,
+   where the frame runs full-bleed behind all the type. In a narrow band on a
+   phone that grading leaves nothing: the window read as black, not as a
+   photograph, and it was the single largest thing on the page.
+
+   Three changes, none of them structural. The window is smaller. The grading
+   lifts -- per slide, keeping the order the frames were tuned in, welding
+   darkest as before -- because the paragraph on a phone sits below the band
+   under its own scrim, not on the frame. And the "all twelve services" link,
+   which repeated identically in all five cards, appears once, on the first -- a visitor who does not reach card five
+   still learns there are twelve.
+
+   Re-measured with the type hidden, which is the only way to sample the ground
+   rather than the glyphs: white text against its background reads 8.9 to 18.7
+   to one across the five, against the 4.5 the standard asks. Card 672 -> 520px,
+   the section 5.4 -> 4.4 screens. */
+@media (max-width: 700px) {
+  .service-slide { padding-top: clamp(130px, 22vh, 200px); }
+  #service-welding { --bg-bright: 0.78; }
+  #service-pipe    { --bg-bright: 0.92; }
+  #service-rope    { --bg-bright: 0.86; }
+  .service-slide:not(:first-of-type) .service-nav { display: none; }
 }
