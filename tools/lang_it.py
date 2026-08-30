@@ -2437,4 +2437,50 @@ S = {
         '<span class="case-num">08</span> <span class="case-kicker">Montaggio meccanico</span>',
     'Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the...':
         'Sostituzione dei barrotti di griglia nella camera di combustione di un termovalorizzatore durante la fermata. I barrotti vecchi sono usciti una fila per volta, tagliati dove erano grippati, e i...',
+
+    # --- case: offshore rope access welding (draft until consent) ---
+    'Offshore rope access welding':
+        'Saldatura su fune in offshore',
+    'Offshore rope access welding — ALPROJECTS Group':
+        'Saldatura su fune in offshore — ALPROJECTS Group',
+    'Welding and rope access · Offshore':
+        'Saldatura e lavori su fune · Offshore',
+    'Project &middot; Welding and rope access · Offshore':
+        'Progetto &middot; Saldatura e lavori su fune · Offshore',
+    'Offshore platform, Northern Europe':
+        'Piattaforma offshore, Europa settentrionale',
+    'Welding on the outside of an offshore platform, carried out on rope access. There is no scaffold and no basket over the side, so the welder reaches the joint on ropes and works from the harness.':
+        'Saldatura sul lato esterno di una piattaforma offshore, eseguita con lavori su fune. Non ci sono ponteggi né cestelli fuori bordo: il saldatore raggiunge il giunto sulle funi e lavora dall’imbracatura.',
+    'The platform has no quay and no road. Crew, tools and consumables arrive by vessel or helicopter and stay for the shift, and the working window is set by wind and sea state rather than by the programme.':
+        'La piattaforma non ha né banchina né strada. Squadra, attrezzatura e materiali di consumo arrivano via nave o elicottero e restano per il turno, e la finestra di lavoro la stabiliscono il vento e lo stato del mare, non il programma.',
+    'Welding is carried out from the harness, on a working line and a backup rigged from the structure above, with the team working in pairs. The joint is prepared before the arc is struck and completed in short runs. The return clamp is placed on the work close to the joint — over water the return path is part of the safety case, not a detail.':
+        'La saldatura si esegue dall’imbracatura, su una fune di lavoro e una di sicurezza ancorate alla struttura sovrastante, e sempre in coppia. Il giunto viene preparato prima di innescare l’arco e completato in passate corte. Il morsetto di massa si applica sul pezzo vicino al giunto — sull’acqua il circuito di ritorno fa parte dell’analisi di sicurezza, non dei dettagli.',
+    'Rope access over open water.':
+        'Lavori su fune sopra il mare aperto.',
+    'Access by vessel or helicopter only.':
+        'Accesso solo via nave o elicottero.',
+    'Welding carried out from the harness.':
+        'Saldatura eseguita dall’imbracatura.',
+    'Rope access technician suspended in a harness on the outside of an offshore platform, with wind turbines on the horizon':
+        'Tecnico su fune sospeso nell’imbracatura sul lato esterno di una piattaforma offshore, con aerogeneratori all’orizzonte',
+    'Side of an offshore platform above the sea, with wind turbines in low cloud on the horizon':
+        'Fianco di una piattaforma offshore sopra il mare, con aerogeneratori tra le nubi basse all’orizzonte',
+    'Two rope access technicians suspended on twin ropes at a yellow structure on an offshore platform, one wearing a welding helmet, with cables run down from the deck above':
+        'Due tecnici su fune sospesi su funi gemelle a una struttura gialla di una piattaforma offshore, uno con la maschera da saldatura, con i cavi calati dal ponte soprastante',
+    'Send us the scope and we will come back with a price and crew dates. For offshore work tell us the access, the vessel and the weather window.':
+        'Inviateci l’ambito dei lavori e vi risponderemo con un prezzo e le date delle squadre. Per i lavori offshore indicateci l’accesso, la nave e la finestra meteo.',
+    'Nine scopes, photographed as they were built.':
+        'Nove cantieri, fotografati durante l’esecuzione.',
+    '<span class="case-num">05</span> <span class="case-kicker">Welding and rope access · Offshore</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Saldatura e lavori su fune · Offshore</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Offshore rope access welding</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Saldatura su fune in offshore</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Costruzione e saldatura in officina</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Montaggio meccanico e saldatura &middot; parco serbatoi</span>',
+    '<span class="case-num">08</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">08</span> <span class="case-kicker">Montaggio meccanico e saldatura</span>',
+    '<span class="case-num">09</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">09</span> <span class="case-kicker">Montaggio meccanico</span>',
 }

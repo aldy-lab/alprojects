@@ -2440,4 +2440,50 @@ S = {
         '<span class="case-num">08</span> <span class="case-kicker">Mechanische Montage</span>',
     'Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the...':
         'Austausch der Roststäbe im Feuerraum eines Müllheizkraftwerks während der Revision. Die alten Stäbe kamen reihenweise heraus, dort freigeschnitten, wo sie festgefressen waren, und die neuen gingen...',
+
+    # --- case: offshore rope access welding (draft until consent) ---
+    'Offshore rope access welding':
+        'Schweißen mit Seilzugangstechnik offshore',
+    'Offshore rope access welding — ALPROJECTS Group':
+        'Schweißen mit Seilzugangstechnik offshore — ALPROJECTS Group',
+    'Welding and rope access · Offshore':
+        'Schweißen und Seilzugangstechnik · Offshore',
+    'Project &middot; Welding and rope access · Offshore':
+        'Projekt &middot; Schweißen und Seilzugangstechnik · Offshore',
+    'Offshore platform, Northern Europe':
+        'Offshore-Plattform, Nordeuropa',
+    'Welding on the outside of an offshore platform, carried out on rope access. There is no scaffold and no basket over the side, so the welder reaches the joint on ropes and works from the harness.':
+        'Schweißarbeiten an der Außenseite einer Offshore-Plattform, ausgeführt mit Seilzugangstechnik. Es gibt weder Gerüst noch Arbeitskorb über der Bordwand, also erreicht der Schweißer die Naht am Seil und arbeitet aus dem Gurt.',
+    'The platform has no quay and no road. Crew, tools and consumables arrive by vessel or helicopter and stay for the shift, and the working window is set by wind and sea state rather than by the programme.':
+        'Die Plattform hat weder Kai noch Straße. Mannschaft, Werkzeug und Verbrauchsmaterial kommen per Schiff oder Hubschrauber und bleiben für die Schicht, und das Arbeitsfenster bestimmen Wind und Seegang, nicht der Terminplan.',
+    'Welding is carried out from the harness, on a working line and a backup rigged from the structure above, with the team working in pairs. The joint is prepared before the arc is struck and completed in short runs. The return clamp is placed on the work close to the joint — over water the return path is part of the safety case, not a detail.':
+        'Geschweißt wird aus dem Gurt, an einem Arbeits- und einem Sicherungsseil, die von der Konstruktion darüber eingerichtet sind, und immer zu zweit. Die Naht wird vorbereitet, bevor der Lichtbogen gezündet wird, und in kurzen Raupen fertiggestellt. Die Masseklemme sitzt nah an der Naht am Werkstück — über Wasser gehört die Rückleitung zum Sicherheitskonzept und nicht zu den Details.',
+    'Rope access over open water.':
+        'Seilzugangstechnik über offenem Wasser.',
+    'Access by vessel or helicopter only.':
+        'Zugang nur per Schiff oder Hubschrauber.',
+    'Welding carried out from the harness.':
+        'Geschweißt wird aus dem Gurt.',
+    'Rope access technician suspended in a harness on the outside of an offshore platform, with wind turbines on the horizon':
+        'Seilzugangstechniker im Gurt an der Außenseite einer Offshore-Plattform, am Horizont Windkraftanlagen',
+    'Side of an offshore platform above the sea, with wind turbines in low cloud on the horizon':
+        'Flanke einer Offshore-Plattform über der See, am Horizont Windkraftanlagen in tiefer Bewölkung',
+    'Two rope access technicians suspended on twin ropes at a yellow structure on an offshore platform, one wearing a welding helmet, with cables run down from the deck above':
+        'Zwei Seilzugangstechniker an Doppelseilen an einer gelben Konstruktion auf einer Offshore-Plattform, einer mit Schweißerhelm, die Kabel sind vom Deck darüber herabgeführt',
+    'Send us the scope and we will come back with a price and crew dates. For offshore work tell us the access, the vessel and the weather window.':
+        'Senden Sie uns den Leistungsumfang und wir melden uns mit Preis und Einsatzterminen. Bei Offshore-Arbeiten nennen Sie uns bitte den Zugang, das Schiff und das Wetterfenster.',
+    'Nine scopes, photographed as they were built.':
+        'Neun Projekte, fotografiert während der Ausführung.',
+    '<span class="case-num">05</span> <span class="case-kicker">Welding and rope access · Offshore</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Schweißen und Seilzugangstechnik · Offshore</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Offshore rope access welding</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Schweißen mit Seilzugangstechnik offshore</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Fertigung und Schweißen in der Werkstatt</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Mechanische Montage und Schweißen &middot; Tanklager</span>',
+    '<span class="case-num">08</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">08</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
+    '<span class="case-num">09</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">09</span> <span class="case-kicker">Mechanische Montage</span>',
 }
