@@ -37,7 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=1c5ecca8">
+  <link rel="stylesheet" href="/css/style.min.css?v=10818395">
 
   <script type="application/ld+json">
   {
@@ -127,6 +127,11 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
+      <!-- The isometric drawing lives in drawing mode only. js/main.js fetches
+           assets/hero-isometric.svg and puts it here the first time the mode is
+           switched on: inline so it can take currentColor and animate its own
+           strokes, fetched so 140 pages do not each carry 7 KB of it. -->
+      <div class="hero-iso" aria-hidden="true"></div>
       <span class="hero-grid" aria-hidden="true"></span>
 
       <!-- Drawing-sheet furniture from the brand artwork: outline circles,
@@ -894,6 +899,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.min.js?v=7f068b30"></script>
+  <script src="/js/main.min.js?v=246da589"></script>
 </body>
 </html>
