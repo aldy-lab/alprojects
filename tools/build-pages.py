@@ -2903,6 +2903,30 @@ SECTOR_PAGES = [
 ]
 
 
+# The one sector with no photograph of its own: every frame the client has
+# sent is a tank farm, a shipyard or a plant, and renewables is carried by a
+# stock-looking hero and a list. The drawing is the section's own subject
+# stated in the site's own language -- and the rotor turns, which is the one
+# thing a still photograph of a wind farm cannot do.
+#
+# Referenced with <img> rather than inlined: the animation and the
+# reduced-motion switch live inside the file, so the page needs no JavaScript
+# and the asset is cached like any other. See tools/make_wind_turbine.py.
+TURBINE = """
+    <section class="sector-drawing">
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:12%; top:18%"></span>
+        <span class="sheet-plus" style="left:86%; top:64%"></span>
+      </span>
+      <div class="container">
+        <img src="/assets/wind-turbine.svg" alt="" width="1000" height="720"
+             loading="lazy" decoding="async">
+      </div>
+    </section>
+"""
+
+
 def sector_body(slug, name, img, lead, service_slugs):
     by_slug = {sv["slug"]: sv for sv in SERVICES_FLAT}
     links = "\n".join(
@@ -2925,7 +2949,7 @@ def sector_body(slug, name, img, lead, service_slugs):
         <p class="sector-hero-lead hero-rise hero-rise-2">%(lead)s</p>
       </div>
     </section>
-
+%(drawing)s
     <div class="container sector-body">
       <div class="sector-cols">
         <div>
@@ -2944,7 +2968,8 @@ def sector_body(slug, name, img, lead, service_slugs):
         </div>
       </div>
     </div>
-""" % dict(img=img, name=name, lead=lead, links=links)
+""" % dict(img=img, name=name, lead=lead, links=links,
+            drawing=TURBINE if slug == "renewables" else "")
 
 
 for _slug, _name, _img, _lead, _svcs in SECTOR_PAGES:
