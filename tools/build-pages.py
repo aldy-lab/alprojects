@@ -42,6 +42,36 @@ minify.run()
 HEADER_R, FOOTER_R, SPRITE_R = rootify(HEADER), rootify(FOOTER), rootify(SPRITE)
 
 
+def drawing_band(slug, src=None, dims=(1000, 620)):
+    """The band that carries one generated drawing.
+
+    Placed directly under the page's opening block -- the hero photograph on
+    Company, the page head on Projects, the service panel on a service page.
+    It used to sit at the foot of the page, and measuring the ground rather
+    than looking at it showed why that read as "a different background": the
+    page's own cool gradients had run out by then, so the band landed on the
+    bare body colour at (7,7,8) while the section above it sat at (5,6,16),
+    and at the very bottom it picked up the warm wash near the footer at
+    (16,15,15) -- r above b, which on this palette reads cheap.
+
+    So it carries its own cool ground now as well, and no longer depends on
+    what happens to be behind it.
+    """
+    return ("""
+    <section class="sector-drawing%s">
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:11%%; top:20%%"></span>
+        <span class="sheet-plus" style="left:87%%; top:66%%"></span>
+      </span>
+      <div class="container">
+        <img src="%s" alt="" width="%d" height="%d"
+             loading="lazy" decoding="async" id="srvDraw">
+      </div>
+    </section>
+""" % ("", src or ("/assets/drawings/%s.svg" % slug), dims[0], dims[1]))
+
+
 def page(title, description, body, noindex=False, canonical=None, head_extra="", og="home"):
     robots = ('  <meta name="robots" content="noindex, follow">\n' if noindex
               else '  <meta name="robots" content="index, follow">\n')
@@ -876,6 +906,8 @@ COMPANY = """
         </div>
       </div>
     </section>
+""" + drawing_band("wind-turbine", src="/assets/wind-turbine.svg",
+                   dims=(1000, 720)) + """
 
     <!-- ================= VISION / MISSION ================= -->
     <div class="container">
@@ -2102,6 +2134,7 @@ PROJECTS = """
       largely the same; the environment, the standards and the consequences of getting it
       wrong are not.</p>
     </div>
+""" + drawing_band("projects") + """
 
 
     <section class="case-sheet">
@@ -2758,29 +2791,6 @@ def service_panel(sv):
                                         h1=sv["h1"], lead=sv["lead"], points=points)
 
 
-def drawing_band(slug, extra_class=""):
-    """The band that carries one generated drawing.
-
-    Same three layers as the sector hero and the /projects card sheet: module
-    behind, registration marks over it, content above. The drawing itself is an
-    <img>: its animation and its reduced-motion switch live inside the SVG, so
-    no page needs JavaScript for it. See tools/make_drawings.py.
-    """
-    return ("""
-    <section class="sector-drawing%s">
-      <span class="sheet-grid" aria-hidden="true"></span>
-      <span class="sheet-furniture" aria-hidden="true">
-        <span class="sheet-plus" style="left:11%%; top:20%%"></span>
-        <span class="sheet-plus" style="left:87%%; top:66%%"></span>
-      </span>
-      <div class="container">
-        <img src="/assets/drawings/%s.svg" alt="" width="1000" height="620"
-             loading="lazy" decoding="async" id="srvDraw">
-      </div>
-    </section>
-""" % (extra_class, slug))
-
-
 def service_page_body(sv):
     """The two-column block with one service open. Only the active service is
     rendered as HTML -- one h1 per page, and no twelve-fold duplicate content
@@ -2805,10 +2815,11 @@ def service_page_body(sv):
             '        </div>\n'
             '      </div>\n'
             '    </section>\n'
-            '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
+            # The drawing sits directly under the panel, not at the foot of the
+            # page: down there it had run out of the page's own gradients.
             + drawing_band(sv["slug"])
-            + 
-            '    <script type="application/json" id="srv-data">{payload}</script>\n'
+            + '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
+            + '    <script type="application/json" id="srv-data">{payload}</script>\n'
             ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
                      num=sv["num"], deep=sv["deep"], payload=payload)
 
@@ -2826,7 +2837,7 @@ write("careers.html", page("Careers",
 
 write("company.html", page("Company",
       "ALPROJECTS Group is a European provider of industrial services for the shipbuilding, offshore, industrial and energy sectors.",
-      COMPANY + drawing_band("company"), canonical="/company.html", og="company"))
+      COMPANY, canonical="/company.html", og="company"))
 
 # --- services: one URL per service, plus /services.html as the index ---
 def _service_desc(sv):
@@ -2853,7 +2864,7 @@ write("services.html", page("Services",
 
 write("projects.html", page("Projects",
       "Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.",
-      PROJECTS + drawing_band("projects"), canonical="/projects.html", og="projects"))
+      PROJECTS, canonical="/projects.html", og="projects"))
 
 # --- one page per project case, under /projects/ ---
 # /projects.html wins over the /projects/ directory on GitHub Pages, the same

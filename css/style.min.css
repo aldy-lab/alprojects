@@ -5035,3 +5035,17 @@ margin: 0 auto;
 width: min(100%, 940px);
 height: auto;
 }
+.sector-drawing::before {
+content: "";
+position: absolute;
+inset: 0;
+z-index: -2;
+pointer-events: none;
+background:
+radial-gradient(76% 88% at 50% 44%,
+rgba(21, 53, 95, 0.30) 0%, rgba(13, 38, 71, 0.13) 46%, transparent 76%);
+}
+.sector-drawing {
+-webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}

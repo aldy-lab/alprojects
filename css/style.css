@@ -6918,3 +6918,26 @@ html.blueprint .hero-iso { opacity: 1; }
   width: min(100%, 940px);
   height: auto;
 }
+
+/* The band carries its own ground. It used to inherit whatever was behind it,
+   and measuring the pixels rather than looking at them showed the fault: at
+   the foot of a page the section above sat at (5,6,16) -- cool -- while the
+   band landed on the bare body colour at (7,7,8), and lower still it picked
+   up the warm wash near the footer at (16,15,15), r above b. The band is
+   higher up the page now, and it no longer depends on what is under it. */
+.sector-drawing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(76% 88% at 50% 44%,
+      rgba(21, 53, 95, 0.30) 0%, rgba(13, 38, 71, 0.13) 46%, transparent 76%);
+}
+/* Its top and bottom edges dissolve rather than butt against the block above
+   and below, which is what made it read as a panel dropped on the page. */
+.sector-drawing {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}
