@@ -2134,7 +2134,6 @@ PROJECTS = """
       largely the same; the environment, the standards and the consequences of getting it
       wrong are not.</p>
     </div>
-""" + drawing_band("projects") + """
 
 
     <section class="case-sheet">
@@ -2815,9 +2814,6 @@ def service_page_body(sv):
             '        </div>\n'
             '      </div>\n'
             '    </section>\n'
-            # The drawing sits directly under the panel, not at the foot of the
-            # page: down there it had run out of the page's own gradients.
-            + drawing_band(sv["slug"])
             + '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
             + '    <script type="application/json" id="srv-data">{payload}</script>\n'
             ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),

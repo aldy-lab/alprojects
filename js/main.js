@@ -896,11 +896,6 @@
 
       /* The longer block below the shell belongs to one service, and switching
          never reloads the page, so it has to be swapped with the panel. */
-      /* The drawing belongs to the service, not to the URL: switching never
-         reloads, so it has to be swapped with the panel and the deep block. */
-      var draw = document.getElementById("srvDraw");
-      if (draw) draw.src = "/assets/drawings/" + sv.slug + ".svg";
-
       var deep = document.getElementById("srvDeep");
       if (deep) {
         deep.innerHTML = sv.deep || "";
