@@ -2758,6 +2758,29 @@ def service_panel(sv):
                                         h1=sv["h1"], lead=sv["lead"], points=points)
 
 
+def drawing_band(slug, extra_class=""):
+    """The band that carries one generated drawing.
+
+    Same three layers as the sector hero and the /projects card sheet: module
+    behind, registration marks over it, content above. The drawing itself is an
+    <img>: its animation and its reduced-motion switch live inside the SVG, so
+    no page needs JavaScript for it. See tools/make_drawings.py.
+    """
+    return ("""
+    <section class="sector-drawing%s">
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:11%%; top:20%%"></span>
+        <span class="sheet-plus" style="left:87%%; top:66%%"></span>
+      </span>
+      <div class="container">
+        <img src="/assets/drawings/%s.svg" alt="" width="1000" height="620"
+             loading="lazy" decoding="async" id="srvDraw">
+      </div>
+    </section>
+""" % (extra_class, slug))
+
+
 def service_page_body(sv):
     """The two-column block with one service open. Only the active service is
     rendered as HTML -- one h1 per page, and no twelve-fold duplicate content
@@ -2783,6 +2806,8 @@ def service_page_body(sv):
             '      </div>\n'
             '    </section>\n'
             '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
+            + drawing_band(sv["slug"])
+            + 
             '    <script type="application/json" id="srv-data">{payload}</script>\n'
             ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
                      num=sv["num"], deep=sv["deep"], payload=payload)
@@ -2801,7 +2826,7 @@ write("careers.html", page("Careers",
 
 write("company.html", page("Company",
       "ALPROJECTS Group is a European provider of industrial services for the shipbuilding, offshore, industrial and energy sectors.",
-      COMPANY, canonical="/company.html", og="company"))
+      COMPANY + drawing_band("company"), canonical="/company.html", og="company"))
 
 # --- services: one URL per service, plus /services.html as the index ---
 def _service_desc(sv):
@@ -2828,7 +2853,7 @@ write("services.html", page("Services",
 
 write("projects.html", page("Projects",
       "Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.",
-      PROJECTS, canonical="/projects.html", og="projects"))
+      PROJECTS + drawing_band("projects"), canonical="/projects.html", og="projects"))
 
 # --- one page per project case, under /projects/ ---
 # /projects.html wins over the /projects/ directory on GitHub Pages, the same

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" role="img" aria-label="">
+  <style>
+    path, circle, rect, ellipse, polygon, polyline, line {
+      fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .l  { stroke: rgba(185, 196, 216, 0.50); }
+    .f  { stroke: rgba(185, 196, 216, 0.22); }
+    .ff { stroke: rgba(185, 196, 216, 0.13); }
+    .dash    { stroke-dasharray: 5 7; }
+    .dashdot { stroke-dasharray: 14 5 2 5; }
+    .fill  { fill: rgba(185, 196, 216, 0.10); stroke: none; }
+
+
+    .anim-frame { stroke-dasharray: 1; stroke-dashoffset: 1;
+           animation: anim-frame-draw 11s linear 0s infinite; }
+    @keyframes anim-frame-draw {
+      0% { stroke-dashoffset: 1; }
+      60.0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .f0 { animation-delay: 0.00s; }
+    .f1 { animation-delay: 0.70s; }
+    .f2 { animation-delay: 1.40s; }
+    .f3 { animation-delay: 2.10s; }
+    .f4 { animation-delay: 2.80s; }
+    .f5 { animation-delay: 3.50s; }
+    .f6 { animation-delay: 4.20s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      [class*="anim"] { animation: none !important; }
+    }
+  </style>
+  <path class="l" d="M 40.0 560.0 L 960.0 560.0"/>
+  <path class="ff" d="M 40.0 560.0 L 30.9 573.0"/>
+  <path class="ff" d="M 75.4 560.0 L 66.3 573.0"/>
+  <path class="ff" d="M 110.8 560.0 L 101.7 573.0"/>
+  <path class="ff" d="M 146.2 560.0 L 137.1 573.0"/>
+  <path class="ff" d="M 181.5 560.0 L 172.4 573.0"/>
+  <path class="ff" d="M 216.9 560.0 L 207.8 573.0"/>
+  <path class="ff" d="M 252.3 560.0 L 243.2 573.0"/>
+  <path class="ff" d="M 287.7 560.0 L 278.6 573.0"/>
+  <path class="ff" d="M 323.1 560.0 L 314.0 573.0"/>
+  <path class="ff" d="M 358.5 560.0 L 349.4 573.0"/>
+  <path class="ff" d="M 393.8 560.0 L 384.7 573.0"/>
+  <path class="ff" d="M 429.2 560.0 L 420.1 573.0"/>
+  <path class="ff" d="M 464.6 560.0 L 455.5 573.0"/>
+  <path class="ff" d="M 500.0 560.0 L 490.9 573.0"/>
+  <path class="ff" d="M 535.4 560.0 L 526.3 573.0"/>
+  <path class="ff" d="M 570.8 560.0 L 561.7 573.0"/>
+  <path class="ff" d="M 606.2 560.0 L 597.1 573.0"/>
+  <path class="ff" d="M 641.5 560.0 L 632.4 573.0"/>
+  <path class="ff" d="M 676.9 560.0 L 667.8 573.0"/>
+  <path class="ff" d="M 712.3 560.0 L 703.2 573.0"/>
+  <path class="ff" d="M 747.7 560.0 L 738.6 573.0"/>
+  <path class="ff" d="M 783.1 560.0 L 774.0 573.0"/>
+  <path class="ff" d="M 818.5 560.0 L 809.4 573.0"/>
+  <path class="ff" d="M 853.8 560.0 L 844.7 573.0"/>
+  <path class="ff" d="M 889.2 560.0 L 880.1 573.0"/>
+  <path class="ff" d="M 924.6 560.0 L 915.5 573.0"/>
+  <path class="ff" d="M 960.0 560.0 L 950.9 573.0"/>
+  <path class="l" d="M 120.0 500.0 L 880.0 500.0"/>
+  <path class="f" d="M 150.0 474.0 L 850.0 474.0"/>
+  <path class="l anim-frame f0" d="M 150.0 200.0 L 155.6 460.0 Q 190.0 500.0 224.4 460.0 L 230.0 200.0" pathLength="1"/>
+  <path class="ff dashdot" d="M 190.0 200.0 L 190.0 500.0"/>
+  <path class="l anim-frame f1" d="M 256.0 200.0 L 265.0 460.0 Q 320.0 500.0 375.0 460.0 L 384.0 200.0" pathLength="1"/>
+  <path class="ff dashdot" d="M 320.0 200.0 L 320.0 500.0"/>
+  <path class="l anim-frame f2" d="M 374.0 200.0 L 384.6 460.0 Q 450.0 500.0 515.4 460.0 L 526.0 200.0" pathLength="1"/>
+  <path class="ff dashdot" d="M 450.0 200.0 L 450.0 500.0"/>
+  <path class="l anim-frame f3" d="M 504.0 200.0 L 514.6 460.0 Q 580.0 500.0 645.4 460.0 L 656.0 200.0" pathLength="1"/>
+  <path class="ff dashdot" d="M 580.0 200.0 L 580.0 500.0"/>
+  <path class="l anim-frame f4" d="M 648.0 200.0 L 656.7 460.0 Q 710.0 500.0 763.3 460.0 L 772.0 200.0" pathLength="1"/>
+  <path class="ff dashdot" d="M 710.0 200.0 L 710.0 500.0"/>
+  <path class="l anim-frame f5" d="M 792.0 200.0 L 797.3 460.0 Q 830.0 500.0 862.7 460.0 L 868.0 200.0" pathLength="1"/>
+  <path class="ff dashdot" d="M 830.0 200.0 L 830.0 500.0"/>
+  <path class="f anim-frame f6" d="M 150.0 218.0 Q 500.0 166.0 870.0 218.0" pathLength="1"/>
+  <path class="f" d="M 190.0 545.0 L 830.0 545.0"/>
+  <path class="f" d="M 190.0 538.0 L 190.0 552.0"/>
+  <path class="f" d="M 830.0 538.0 L 830.0 552.0"/>
+  <path class="f" d="M 151.0 260.0 L 169.0 260.0"/>
+  <path class="f" d="M 160.0 251.0 L 160.0 269.0"/>
+  <path class="f" d="M 861.0 300.0 L 879.0 300.0"/>
+  <path class="f" d="M 870.0 291.0 L 870.0 309.0"/>
+</svg>

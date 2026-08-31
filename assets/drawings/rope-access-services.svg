@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" role="img" aria-label="">
+  <style>
+    path, circle, rect, ellipse, polygon, polyline, line {
+      fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .l  { stroke: rgba(185, 196, 216, 0.50); }
+    .f  { stroke: rgba(185, 196, 216, 0.22); }
+    .ff { stroke: rgba(185, 196, 216, 0.13); }
+    .dash    { stroke-dasharray: 5 7; }
+    .dashdot { stroke-dasharray: 14 5 2 5; }
+    .fill  { fill: rgba(185, 196, 216, 0.10); stroke: none; }
+
+
+    .anim-desc { animation: descend 12s ease-in-out infinite; }
+    @keyframes descend {
+      0%   { transform: translateY(0); }
+      55%  { transform: translateY(250px); }
+      70%  { transform: translateY(250px); }
+      100% { transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [class*="anim"] { animation: none !important; }
+    }
+  </style>
+  <rect class="l" x="120.0" y="120.0" width="180.0" height="460.0" rx="0.0"/>
+  <path class="ff" d="M 126.0 124.0 L -190.4 576.0"/>
+  <path class="ff" d="M 154.0 124.0 L -162.4 576.0"/>
+  <path class="ff" d="M 182.0 124.0 L -134.4 576.0"/>
+  <path class="ff" d="M 210.0 124.0 L -106.4 576.0"/>
+  <path class="ff" d="M 238.0 124.0 L -78.4 576.0"/>
+  <path class="ff" d="M 266.0 124.0 L -50.4 576.0"/>
+  <path class="ff" d="M 294.0 124.0 L -22.4 576.0"/>
+  <path class="l" d="M 120.0 120.0 L 860.0 120.0"/>
+  <circle class="l" cx="340.0" cy="104.0" r="9.0"/>
+  <circle class="l" cx="396.0" cy="104.0" r="9.0"/>
+  <path class="f" d="M 340.0 104.0 L 340.0 540.0"/>
+  <path class="f" d="M 396.0 104.0 L 396.0 540.0"/>
+  <path class="l" d="M 324.0 120.0 q 16 -14 32 0"/>
+  <path class="l" d="M 380.0 120.0 q 16 -14 32 0"/>
+  <g class="anim-desc"><rect class="l" x="326.0" y="190.0" width="84.0" height="12.0" rx="6.0"/><path class="l" d="M 340.0 202.0 L 340.0 236.0"/><path class="l" d="M 396.0 202.0 L 396.0 236.0"/><path class="l" d="M 342.0 236.0 l 26 44 l 26 -44"/><circle class="l" cx="368.0" cy="176.0" r="13.0"/></g>
+  <path class="f" d="M 340.0 560.0 L 396.0 560.0"/>
+  <path class="f" d="M 340.0 553.0 L 340.0 567.0"/>
+  <path class="f" d="M 396.0 553.0 L 396.0 567.0"/>
+  <path class="f" d="M 751.0 240.0 L 769.0 240.0"/>
+  <path class="f" d="M 760.0 231.0 L 760.0 249.0"/>
+  <path class="f" d="M 821.0 400.0 L 839.0 400.0"/>
+  <path class="f" d="M 830.0 391.0 L 830.0 409.0"/>
+</svg>
