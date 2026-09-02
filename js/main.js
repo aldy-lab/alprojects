@@ -555,6 +555,69 @@
   var bpHint = document.querySelector(".bp-hint");
   var bpHintLabel = bpHint && bpHint.querySelector(".bp-hint-label");
 
+  /* ---------- the isometric drawing, drawing mode only ----------
+     Fetched and inlined the first time the mode is switched on, never in the
+     markup: inline is what lets it take currentColor from the stylesheet and
+     animate its own strokes, and fetching is what keeps 7 KB out of all 140
+     pages for a picture most visitors never ask for. One request, cached, and
+     a failure leaves the mode working with nothing drawn. */
+  var isoLoaded = false;
+  function loadHeroIso() {
+    var box = document.querySelector(".hero-iso");
+    if (!box) return;
+    if (isoLoaded) { drawIso(box); return; }
+    isoLoaded = true;
+    fetch("/assets/hero-isometric.svg")
+      .then(function (r) { return r.ok ? r.text() : ""; })
+      .then(function (svg) {
+        if (!svg) return;
+        box.innerHTML = svg;
+        drawIso(box);
+      })
+      .catch(function () {});
+  }
+
+  /* Each path draws itself: the dash pattern is set to the path's own length,
+     so the offset runs from "entirely gap" to zero. Length is read per path
+     rather than one number for all of them -- a 600px base edge and a 40px
+     handwheel spoke given the same duration look like two animations, not one
+     drawing. */
+  function drawIso(box) {
+    /* Not the flow chevrons: they carry their own animateMotion, and giving
+       them a dash pattern as well would take them apart. */
+    var paths = box.querySelectorAll("svg > g > path, svg > g > g:not(.flow) > path");
+    if (!paths.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      Array.prototype.forEach.call(paths, function (p) {
+        p.style.transition = "none";
+        p.style.strokeDasharray = "none";
+        p.style.strokeDashoffset = "0";
+      });
+      return;
+    }
+    var longest = 0;
+    Array.prototype.forEach.call(paths, function (p, i) {
+      var len = 0;
+      try { len = p.getTotalLength(); } catch (e) { len = 0; }
+      if (!len) return;
+      p.style.transition = "none";
+      p.style.strokeDasharray = len + " " + len;
+      p.style.strokeDashoffset = len;
+      void p.getBoundingClientRect();   /* so the transition starts from here */
+      p.style.transition = "stroke-dashoffset "
+        + Math.min(1.4, 0.35 + len / 900).toFixed(2) + "s cubic-bezier(.22,.61,.36,1) "
+        + (i * 0.012 + 0.05).toFixed(3) + "s";
+      p.style.strokeDashoffset = "0";
+      if (len > longest) longest = len;
+    });
+    /* the arrows start once the drawing they run along exists */
+    var flow = box.querySelector(".flow");
+    if (flow) {
+      flow.style.opacity = "0";
+      setTimeout(function () { flow.style.opacity = ""; }, 900);
+    }
+  }
+
   function setBlueprint(on, announce) {
     document.documentElement.classList.toggle("blueprint", on);
     if (bpHint) {
@@ -562,6 +625,7 @@
       if (bpHintLabel) bpHintLabel.textContent = on ? TXT.bp_on : TXT.bp_off;
     }
     if (on) buildSheet();
+    if (on) loadHeroIso();
     if (on) measure();
     try { sessionStorage.setItem(BLUEPRINT_KEY, on ? "1" : "0"); } catch (e) {}
     if (announce) {

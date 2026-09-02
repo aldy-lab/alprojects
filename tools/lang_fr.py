@@ -22,6 +22,28 @@ TERMINOLOGY
 """
 
 S = {
+    '3 photographs, 2 stages':
+        '3 photographies, 2 étapes',
+    '5 photographs, 4 stages':
+        '5 photographies, 4 étapes',
+    '6 photographs, 5 stages':
+        '6 photographies, 5 étapes',
+    '<span class="case-num">02</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montage mécanique</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">01 / 04</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">01 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">02 / 04</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">02 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">03 / 04</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">03 / 04</span>',
+    '<span class="slide-label">Stage</span> <span class="slide-count">04 / 04</span>':
+        '<span class="slide-label">Étape</span> <span class="slide-count">04 / 04</span>',
     '<span>© 2019–2026 ALPROJECTS GROUP. All rights reserved.</span> <span class="legal-ids">Company code 305137109 &middot; VAT LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Made by <b>ALDY</b></a>':
         '<span>© 2019–2026 ALPROJECTS GROUP. Tous droits réservés.</span> <span class="legal-ids">Code d’entreprise 305137109 &middot; TVA LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Réalisé par <b>ALDY</b></a>',
     'Company code 305137109 &middot; VAT LT100012753216':
@@ -2231,4 +2253,260 @@ S = {
         'Secteur de la construction navale — ALPROJECTS Group',
     'Project updates and engineering insights from ALPROJECTS Group — welding, piping, NDT and offshore scopes across Northern and Western Europe.':
         'Actualités de chantiers et retours d’ingénierie d’ALPROJECTS Group — soudage, tuyauterie, CND et lots offshore en Europe du Nord et de l’Ouest.',
+
+    # --- case: engine room piping and machinery installation -------------
+    'Engine room piping and machinery installation':
+        'Tuyauterie et montage des machines en salle des machines',
+    'Engine room piping and machinery installation — ALPROJECTS Group':
+        'Tuyauterie et montage des machines en salle des machines — ALPROJECTS Group',
+    'Mechanical installation and piping · Shipbuilding':
+        'Montage mécanique et tuyauterie · Construction navale',
+    'Project &middot; Mechanical installation and piping · Shipbuilding':
+        'Chantier &middot; Montage mécanique et tuyauterie · Construction navale',
+    'Vessel under construction, machinery spaces':
+        'Navire en construction, locaux machines',
+    'Machinery on resilient mounts, and the seawater, bilge and fuel lines that connect it. The mounts went down first; the piping followed, through a compartment that was already full.':
+        'Des machines sur supports élastiques, et les circuits d’eau de mer, de cale et de combustible qui les relient. Les supports d’abord, la tuyauterie ensuite, dans un local déjà encombré.',
+    'The mounts go down before anything else. We land the machine on them all at once, then set each mount so it takes its share of the load and sits within the deflection the maker allows. The alignment is checked and recorded before the first flange is made up, and again once the lines are connected.':
+        'Les supports sont posés avant tout le reste. Nous reposons la machine sur l’ensemble des supports en une seule fois, puis réglons chacun d’eux pour qu’il porte sa part de la charge et reste dans la flèche admise par le constructeur. L’alignement est contrôlé et consigné avant l’assemblage de la première bride, puis de nouveau une fois les lignes raccordées.',
+    'The drawing gives the route; the dimensions come off the steel. By the time the piping starts the space is full, so we build the valves, the strainer and the branches up on one frame outside the compartment and land the group as a unit, with the bolt holes matching and the flange faces square. Set out that way, somebody standing in front of it can reach every handwheel.':
+        'Le plan donne le tracé ; les cotes sont relevées sur l’acier. Quand la tuyauterie commence, le local est déjà plein : nous montons donc les vannes, le filtre et les piquages sur un même châssis à l’extérieur du compartiment et posons l’ensemble d’un seul tenant, trous de boulons en correspondance et faces de brides d’équerre. Disposé ainsi, quelqu’un qui se tient devant atteint chaque volant.',
+    'We set the valve groups out to keep the tank access clear, because the covers have to come off in service. Open ends are capped whenever work stops on a line, and the system is blanked at its boundaries for the pressure test. Each line is tagged to the drawing as it is finished.':
+        'Nous disposons les ensembles de vannes de manière à dégager l’accès aux capacités, car les trappes doivent pouvoir être déposées en exploitation. Les extrémités ouvertes sont obturées dès que le travail s’arrête sur une ligne, et le circuit est bridé à ses limites pour l’épreuve en pression. Chaque ligne est repérée d’après le plan à mesure qu’elle est terminée.',
+    'Resiliently mounted machinery moves, and the hull works at sea. Flexible hoses take that movement at the machine connections. On the runs, mechanical couplings take up misalignment, and we anchor and guide the pipe either side of them so the coupling is not left carrying the line.':
+        'Une machine sur supports élastiques bouge, et la coque travaille en mer. Aux raccordements de la machine, des flexibles absorbent ce mouvement. Sur les lignes, des raccords mécaniques rattrapent le désalignement, et nous ancrons et guidons la tuyauterie de part et d’autre pour que le raccord ne se retrouve pas à porter la ligne.',
+    'Resilient mounts on the machined seating.':
+        'Supports élastiques sur l’assise usinée.',
+    'The seating, with the mounts set and the first lines alongside.':
+        'L’assise, supports posés et premières lignes le long.',
+    'Valve and strainer group on the bulkhead.':
+        'Ensemble vannes et filtre sur la cloison.',
+    'Mechanical couplings on the large-bore runs.':
+        'Raccords mécaniques sur les lignes de gros diamètre.',
+    'Valve group around the tank access cover.':
+        'Ensemble de vannes autour de la trappe de visite.',
+    'Machined seating in an engine room with resilient mounts bolted down, studs and nuts set, and timber packing alongside':
+        'Assise usinée en salle des machines avec supports élastiques boulonnés, goujons et écrous posés, et cales en bois à côté',
+    'A row of resilient mounts along the machined seating, with the first pipe runs and capped flanges laid in beside them':
+        'Une rangée de supports élastiques le long de l’assise usinée, avec les premières lignes et des brides obturées posées à côté',
+    'Valve and strainer group made up on a frame against an engine room bulkhead, with globe valves, a basket strainer and capped branches':
+        'Ensemble vannes et filtre préfabriqué sur châssis contre une cloison de salle des machines, avec robinets à soupape, filtre à panier et piquages obturés',
+    'Large-bore pipe runs under a deckhead, with mechanical couplings on the vertical drop and anchors either side of them':
+        'Lignes de gros diamètre sous plafond, avec raccords mécaniques sur la descente verticale et points fixes de part et d’autre',
+    'Valve group set out around a bolted tank access cover, with the covers left clear and every open end capped':
+        'Ensemble de vannes disposé autour d’une trappe de visite boulonnée, les trappes restant dégagées et chaque extrémité ouverte obturée',
+    'Send the drawings or the scope and we will come back with a price and crew dates. If it is a yard slot, tell us the window.':
+        'Envoyez les plans ou le périmètre et nous reviendrons avec un prix et des dates d’équipe. S’il s’agit d’un créneau au chantier naval, précisez-nous la fenêtre.',
+    'Send us the drawings':
+        'Envoyez-nous les plans',
+    '<span class="case-num">01</span> <span class="case-kicker">Mechanical installation and piping · Shipbuilding</span>':
+        '<span class="case-num">01</span> <span class="case-kicker">Montage mécanique et tuyauterie · Construction navale</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Engine room piping and machinery installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Tuyauterie et montage des machines en salle des machines</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+
+    # --- case: foundations, penetrations and equipment installation -----
+    'Foundations, penetrations and equipment installation':
+        'Berceaux, traversées de cloison et montage des équipements',
+    'Foundations, penetrations and equipment installation — ALPROJECTS Group':
+        'Berceaux, traversées de cloison et montage des équipements — ALPROJECTS Group',
+    'Steel fabrication and mechanical installation · Shipbuilding':
+        'Fabrication acier et montage mécanique · Construction navale',
+    'Project &middot; Steel fabrication and mechanical installation · Shipbuilding':
+        'Chantier &middot; Fabrication acier et montage mécanique · Construction navale',
+    'Vessel under construction, machinery and tank spaces':
+        'Navire en construction, locaux machines et capacités',
+    'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and pipe routes.':
+        'L’acier qui doit être en place avant les équipements. Nous avons fabriqué et posé les berceaux et les châssis, découpé les ouvertures et soudé les traversées de cloison, et monté les supports des cheminements de câbles et de tuyauteries.',
+    'Frames and seats are fabricated to the drawing, then set to the steel that is actually there. We land the frame on the marked position, check it for position and level, and weld it down once it sits right. A unit light enough to be landed with its frame goes in first. Anything heavier goes on after the frame is welded down, and stays under cover until commissioning.':
+        'Les châssis et les berceaux sont fabriqués d’après le plan, puis ajustés à l’acier réellement en place. Nous posons le châssis sur la position tracée, contrôlons sa position et son niveau, et le soudons dès qu’il porte correctement. Un ensemble assez léger pour être descendu avec son châssis entre en premier. Tout ce qui est plus lourd vient après le soudage du châssis et reste sous bâche jusqu’à la mise en service.',
+    'We mark the opening from the ring that goes into it, cut it, and prepare the edge before the ring is offered up. That way the root gap is even the whole way round. On a watertight boundary the gap is what the weld has to close, and an uneven one shows up at the tightness test.':
+        'Nous traçons l’ouverture d’après la virole qui doit y prendre place, la découpons et préparons le bord avant de présenter la virole. Le jeu à la racine est ainsi régulier sur tout le pourtour. Sur un cloisonnement étanche, c’est ce jeu que la soudure doit refermer, et une irrégularité se voit à l’essai d’étanchéité.',
+    'The ring is worked from both sides at once. One fitter checks the alignment inside the opening while another dresses the prep outside, and we tack in a balanced sequence so the ring does not pull as it is welded out.':
+        'La virole est travaillée des deux côtés à la fois. Un monteur contrôle l’alignement à l’intérieur de l’ouverture pendant qu’un autre reprend le chanfrein à l’extérieur, et nous pointons selon une séquence équilibrée pour que la virole ne tire pas au fur et à mesure du soudage.',
+    'Supports for cable and pipe routes go on before the boundary is closed in. We set the brackets clear of the insulation and the pins that hold it, so the tray runs at its own height and nothing has to be cut back when the lining goes on.':
+        'Les supports des cheminements de câbles et de tuyauteries sont posés avant la fermeture du cloisonnement. Nous plaçons les consoles à l’écart de l’isolation et des goujons qui la tiennent, pour que le chemin de câbles reste à sa propre hauteur et que rien n’ait à être recoupé lors de la pose de l’habillage.',
+    'Coming down on the marked position.':
+        'Descente sur la position tracée.',
+    'The unit on its frame, covered until commissioning.':
+        'L’ensemble sur son châssis, sous bâche jusqu’à la mise en service.',
+    'The opening cut, and the penetration piece ready to go in.':
+        'L’ouverture découpée et la pièce de traversée prête à être posée.',
+    'Dressing the prep before the penetration is welded out.':
+        'Reprise du chanfrein avant le soudage de la traversée.',
+    'Cable tray supports on an insulated boundary.':
+        'Supports de chemin de câbles sur un cloisonnement isolé.',
+    'Cylindrical steel unit in a fabricated frame, suspended on chain hoists over its marked position on the deck of a vessel under construction':
+        'Ensemble cylindrique en acier dans un châssis fabriqué, suspendu à des palans à chaîne au-dessus de sa position tracée sur le pont d’un navire en construction',
+    'Machinery unit under protective covers on a fabricated steel frame in a shipyard hall':
+        'Ensemble mécanique sous bâches de protection sur un châssis acier fabriqué, dans un hall de chantier naval',
+    'Circular opening cut in a bulkhead, with the penetration piece standing ready on the deck beside it':
+        'Ouverture circulaire découpée dans une cloison, la pièce de traversée posée prête sur le pont à côté',
+    'Two fitters at a bulkhead penetration, one checking alignment inside the opening while the other dresses the edge with a grinder':
+        'Deux monteurs à une traversée de cloison, l’un contrôlant l’alignement à l’intérieur de l’ouverture pendant que l’autre reprend le bord à la meuleuse',
+    'Cable trays and brackets fitted to an insulated bulkhead, with insulation pins welded across the plate':
+        'Chemins de câbles et consoles posés sur une cloison isolée, avec des goujons d’isolation soudés sur toute la tôle',
+    '<span class="case-num">02</span> <span class="case-kicker">Steel fabrication and mechanical installation · Shipbuilding</span>':
+        '<span class="case-num">02</span> <span class="case-kicker">Fabrication acier et montage mécanique · Construction navale</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Foundations, penetrations and equipment installation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Berceaux, traversées de cloison et montage des équipements</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">03</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Montage mécanique</span>',
+    'The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and...':
+        'L’acier qui doit être en place avant les équipements. Nous avons fabriqué et posé les berceaux et les châssis, découpé les ouvertures et soudé les traversées de cloison, et monté les supports des...',
+
+    # --- case: large-bore pipe replacement -------------------------------
+    'Large-bore pipe replacement':
+        'Remplacement de tuyauterie de gros diamètre',
+    'Large-bore pipe replacement — ALPROJECTS Group':
+        'Remplacement de tuyauterie de gros diamètre — ALPROJECTS Group',
+    'Mechanical installation and welding · Industrial':
+        'Montage mécanique et soudage · Industrie',
+    'Project &middot; Mechanical installation and welding · Industrial':
+        'Chantier &middot; Montage mécanique et soudage · Industrie',
+    'Existing plant, scaffolded work fronts':
+        'Installation existante, fronts de travail échafaudés',
+    'Large-bore pipework replaced inside an existing plant. We prefabricated the spools, rigged them into position on chain hoists off the plant steel, and welded them in place.':
+        'Remplacement de tuyauterie de gros diamètre dans une installation existante. Nous avons préfabriqué les tronçons, les avons mis en place sur des palans à chaîne accrochés à la charpente de l’installation, et les avons soudés en place.',
+    'We put the covers down before anything hot starts — blankets under the work front, sheeting across what is behind it, and the grating below closed off. A spark that goes through the grating lands on whatever is on the level under you.':
+        'Les protections sont posées avant tout travail à chaud — couvertures sous le front de travail, bâches sur tout ce qui se trouve derrière, et le caillebotis en dessous obturé. Une étincelle qui passe à travers le caillebotis retombe sur ce qui se trouve au niveau inférieur.',
+    'Branches and stubs go on at floor level, where the piece can be turned and the weld is made in the flat position. The spool goes up as one piece with its openings already in it. Every branch done down here is one less weld made overhead.':
+        'Les piquages et les embouts sont soudés au sol, où la pièce peut être tournée et la soudure exécutée à plat. Le tronçon monte d’une seule pièce, ses ouvertures déjà réalisées. Chaque piquage fait en bas est une soudure de moins à faire en plafond.',
+    'There is no crane over the work front, so the load comes off the plant steel. We agree the attachment points with the plant first, then hang beam clamps and chain hoists at each end and walk the spool into line by hand.':
+        'Il n’y a pas de pont roulant au-dessus du front de travail : la charge est donc reprise sur la charpente de l’installation. Nous validons d’abord les points d’accrochage avec l’exploitant, puis suspendons des pinces à poutre et des palans à chaîne à chaque extrémité et amenons le tronçon dans l’axe à la main.',
+    'Fit-up decides the joint. We set the gap and hold it the whole way round before an arc is struck, and the root goes in first — in this frame it is part way round, with the gap above still open. The joint is cleaned and checked before the fill and cap go on.':
+        'L’accostage décide du joint. Nous réglons le jeu et le maintenons sur tout le pourtour avant d’amorcer, et la passe de racine passe en premier — sur cette image, elle est faite sur une partie du tour, le jeu au-dessus étant encore ouvert. Le joint est nettoyé et contrôlé avant les passes de remplissage et de finition.',
+    'The new run in place.':
+        'La nouvelle ligne en place.',
+    'The work front covered before hot work starts.':
+        'Le front de travail protégé avant le début des travaux à chaud.',
+    'Branch and stub welded on before the spool goes up.':
+        'Piquage et embout soudés avant le levage du tronçon.',
+    'Beam clamps and chain hoists off the existing steel.':
+        'Pinces à poutre et palans à chaîne sur la charpente existante.',
+    'The root run part way round the joint.':
+        'La passe de racine exécutée sur une partie du tour du joint.',
+    'New large-bore pipework and a fabricated bend installed among existing lines and ducts inside an industrial plant':
+        'Nouvelle tuyauterie de gros diamètre et coude fabriqué, posés entre des lignes et des gaines existantes dans une installation industrielle',
+    'Protective sheeting and welding blankets laid over plant grating around a pipe spool standing ready for installation':
+        'Bâches de protection et couvertures de soudage étalées sur le caillebotis autour d’un tronçon de tuyauterie prêt à être posé',
+    'Prefabricated pipe bend with a welded branch and stub, standing on timber on plant grating':
+        'Coude de tuyauterie préfabriqué avec piquage et embout soudés, posé sur des cales en bois sur le caillebotis',
+    'Two beam clamps and chain hoists rigged from overhead steel, taking the weight of a large-bore pipe':
+        'Deux pinces à poutre et leurs palans à chaîne accrochés à la charpente en hauteur, reprenant le poids d’un tuyau de gros diamètre',
+    'Close-up of a pipe butt joint with an even root gap and the root run part way round':
+        'Gros plan d’un joint bout à bout avec un jeu à la racine régulier et la passe de racine exécutée sur une partie du tour',
+    '<span class="case-num">03</span> <span class="case-kicker">Mechanical installation and welding · Industrial</span>':
+        '<span class="case-num">03</span> <span class="case-kicker">Montage mécanique et soudage · Industrie</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Large-bore pipe replacement</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Remplacement de tuyauterie de gros diamètre</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">04</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Montage mécanique</span>',
+
+    # --- case: grate bar replacement -------------------------------------
+    'Grate bar replacement':
+        'Remplacement des barreaux de grille',
+    'Grate bar replacement — ALPROJECTS Group':
+        'Remplacement des barreaux de grille — ALPROJECTS Group',
+    'Mechanical maintenance · Waste to energy':
+        'Maintenance mécanique · Valorisation énergétique des déchets',
+    'Project &middot; Mechanical maintenance · Waste to energy':
+        'Chantier &middot; Maintenance mécanique · Valorisation énergétique des déchets',
+    'Waste-to-energy plant, furnace during outage':
+        'Usine de valorisation énergétique, foyer pendant l’arrêt de tranche',
+    'Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the specified gap.':
+        'Remplacement des barreaux de grille dans le foyer d’une usine de valorisation énergétique des déchets pendant l’arrêt de tranche. Les anciens barreaux sont sortis rangée par rangée, découpés là où ils étaient grippés, et les nouveaux sont remontés au jeu prescrit.',
+    'How it was done':
+        'Le déroulement de l’intervention',
+    'The furnace is cold by the time we go in, but it is not clean. Everything inside is coated in fly ash and combustion residue, so the crew works in disposable coveralls and P3 respirators, and the suits come off at the door. Entry is under permit, with the space ventilated and the atmosphere monitored.':
+        'Quand nous entrons, le foyer est froid mais pas propre. Tout y est couvert de cendres volantes et de résidus de combustion : l’équipe travaille donc en combinaisons jetables et masques P3, et les combinaisons restent à la porte. L’entrée se fait sous permis, l’espace ventilé et l’atmosphère surveillée.',
+    'The bars sit in rows across the grate, and after a full run most of them are seized in place. They come out one row at a time — cut free where they will not move, lifted out by hand and stacked. The new ones go back set to the gap the maker specifies, because that gap is how the primary air reaches the bed.':
+        'Les barreaux sont disposés en rangées sur la grille et, après une campagne complète, la plupart sont grippés. Ils sortent rangée par rangée — découpés là où ils ne bougent plus, dégagés à la main et empilés. Les neufs sont remontés au jeu prescrit par le constructeur, car c’est par ce jeu que l’air primaire atteint le lit de combustible.',
+    'Cutting seized steel free.':
+        'Découpe de l’acier grippé.',
+    'Disposable coveralls and P3 respirators.':
+        'Combinaisons jetables et masques P3.',
+    'Old bars out, one row at a time.':
+        'Anciens barreaux déposés, rangée par rangée.',
+    'Worker in disposable coveralls and respirator cutting seized steel free with an oxy-fuel torch at the grate, with removed grate blocks in the foreground':
+        'Ouvrier en combinaison jetable et masque découpant à la grille de l’acier grippé au chalumeau oxycoupeur, blocs de grille déposés au premier plan',
+    'Worker in a hard hat, goggles and P3 respirator inside the cold furnace of a waste-to-energy plant':
+        'Ouvrier en casque, lunettes et masque P3 dans le foyer froid d’une usine de valorisation énergétique des déchets',
+    'Two workers in disposable coveralls levering an old grate bar out of its row, with removed bars stacked behind them':
+        'Deux ouvriers en combinaisons jetables extrayant au levier un ancien barreau de sa rangée, barreaux déposés empilés derrière eux',
+    'Send us the scope and we will come back with a price and crew dates. If it is an outage, tell us the window.':
+        'Envoyez-nous le périmètre et nous reviendrons avec un prix et des dates d’équipe. S’il s’agit d’un arrêt de tranche, précisez-nous la fenêtre.',
+    'Eight scopes, photographed as they were built.':
+        'Huit chantiers, photographiés pendant leur exécution.',
+    '<span class="case-num">04</span> <span class="case-kicker">Mechanical maintenance · Waste to energy</span>':
+        '<span class="case-num">04</span> <span class="case-kicker">Maintenance mécanique · Valorisation énergétique des déchets</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Grate bar replacement</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Remplacement des barreaux de grille</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">05</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">08</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">08</span> <span class="case-kicker">Montage mécanique</span>',
+    'Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the...':
+        'Remplacement des barreaux de grille dans le foyer d’une usine de valorisation énergétique des déchets pendant l’arrêt de tranche. Les anciens barreaux sont sortis rangée par rangée, découpés là où...',
+
+    # --- case: offshore rope access welding (draft until consent) ---
+    'Offshore rope access welding':
+        'Soudage sur cordes en offshore',
+    'Offshore rope access welding — ALPROJECTS Group':
+        'Soudage sur cordes en offshore — ALPROJECTS Group',
+    'Welding and rope access · Offshore':
+        'Soudage et travaux sur cordes · Offshore',
+    'Project &middot; Welding and rope access · Offshore':
+        'Chantier &middot; Soudage et travaux sur cordes · Offshore',
+    'Offshore platform, Northern Europe':
+        'Plateforme offshore, Europe du Nord',
+    'Welding on the outside of an offshore platform, carried out on rope access. There is no scaffold and no basket over the side, so the welder reaches the joint on ropes and works from the harness.':
+        'Soudage sur la face extérieure d’une plateforme offshore, réalisé en travaux sur cordes. Il n’y a ni échafaudage ni nacelle par-dessus bord : le soudeur rejoint le joint sur cordes et travaille depuis son harnais.',
+    'The platform has no quay and no road. Crew, tools and consumables arrive by vessel or helicopter and stay for the shift, and the working window is set by wind and sea state rather than by the programme.':
+        'La plateforme n’a ni quai ni route. L’équipe, l’outillage et les consommables arrivent par navire ou par hélicoptère et restent pour le poste, et la fenêtre de travail est fixée par le vent et l’état de la mer, non par le planning.',
+    'Welding is carried out from the harness, on a working line and a backup rigged from the structure above, with the team working in pairs. The joint is prepared before the arc is struck and completed in short runs. The return clamp is placed on the work close to the joint — over water the return path is part of the safety case, not a detail.':
+        'Le soudage se fait depuis le harnais, sur une corde de travail et une corde de sécurité amarrées à la structure au-dessus, et toujours en binôme. Le joint est préparé avant l’amorçage et exécuté en passes courtes. La pince de masse est posée sur la pièce près du joint — au-dessus de l’eau, le circuit de retour fait partie de la démonstration de sécurité, pas des détails.',
+    'Rope access over open water.':
+        'Travaux sur cordes au-dessus de l’eau libre.',
+    'Access by vessel or helicopter only.':
+        'Accès uniquement par navire ou hélicoptère.',
+    'Welding carried out from the harness.':
+        'Soudage réalisé depuis le harnais.',
+    'Rope access technician suspended in a harness on the outside of an offshore platform, with wind turbines on the horizon':
+        'Technicien cordiste suspendu dans son harnais sur la face extérieure d’une plateforme offshore, éoliennes à l’horizon',
+    'Side of an offshore platform above the sea, with wind turbines in low cloud on the horizon':
+        'Flanc d’une plateforme offshore au-dessus de la mer, éoliennes dans les nuages bas à l’horizon',
+    'Two rope access technicians suspended on twin ropes at a yellow structure on an offshore platform, one wearing a welding helmet, with cables run down from the deck above':
+        'Deux techniciens cordistes suspendus sur cordes jumelées à une structure jaune d’une plateforme offshore, l’un portant un casque de soudage, les câbles descendus depuis le pont au-dessus',
+    'Send us the scope and we will come back with a price and crew dates. For offshore work tell us the access, the vessel and the weather window.':
+        'Envoyez-nous le périmètre et nous reviendrons avec un prix et des dates d’équipe. Pour des travaux offshore, précisez l’accès, le navire et la fenêtre météo.',
+    'Nine scopes, photographed as they were built.':
+        'Neuf chantiers, photographiés pendant leur exécution.',
+    '<span class="case-num">05</span> <span class="case-kicker">Welding and rope access · Offshore</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Soudage et travaux sur cordes · Offshore</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Offshore rope access welding</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Soudage sur cordes en offshore</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    '<span class="case-num">06</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Fabrication et soudage en atelier</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Montage mécanique et soudage &middot; parc de stockage</span>',
+    '<span class="case-num">08</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">08</span> <span class="case-kicker">Montage mécanique et soudage</span>',
+    '<span class="case-num">09</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">09</span> <span class="case-kicker">Montage mécanique</span>',
 }

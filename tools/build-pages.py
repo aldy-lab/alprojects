@@ -31,13 +31,45 @@ SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 # rewriting for the language trees, and two copies would drift.
 from paths import rootify, clean_urls  # noqa: E402
 import minify  # noqa: E402
+import thumbs  # noqa: E402
 
 # Before anything is stamped: the ?v= hash is taken from the minified file,
 # so it has to be rewritten first or every page would ship last run's hash.
+thumbs.run()
 minify.run()
 
 
 HEADER_R, FOOTER_R, SPRITE_R = rootify(HEADER), rootify(FOOTER), rootify(SPRITE)
+
+
+def drawing_band(slug, src=None, dims=(1000, 620)):
+    """The band that carries one generated drawing.
+
+    Placed directly under the page's opening block -- the hero photograph on
+    Company, the page head on Projects, the service panel on a service page.
+    It used to sit at the foot of the page, and measuring the ground rather
+    than looking at it showed why that read as "a different background": the
+    page's own cool gradients had run out by then, so the band landed on the
+    bare body colour at (7,7,8) while the section above it sat at (5,6,16),
+    and at the very bottom it picked up the warm wash near the footer at
+    (16,15,15) -- r above b, which on this palette reads cheap.
+
+    So it carries its own cool ground now as well, and no longer depends on
+    what happens to be behind it.
+    """
+    return ("""
+    <section class="sector-drawing%s">
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:11%%; top:20%%"></span>
+        <span class="sheet-plus" style="left:87%%; top:66%%"></span>
+      </span>
+      <div class="container">
+        <img src="%s" alt="" width="%d" height="%d"
+             loading="lazy" decoding="async" id="srvDraw">
+      </div>
+    </section>
+""" % ("", src or ("/assets/drawings/%s.svg" % slug), dims[0], dims[1]))
 
 
 def page(title, description, body, noindex=False, canonical=None, head_extra="", og="home"):
@@ -874,6 +906,8 @@ COMPANY = """
         </div>
       </div>
     </section>
+""" + drawing_band("wind-turbine", src="/assets/wind-turbine.svg",
+                   dims=(1000, 720)) + """
 
     <!-- ================= VISION / MISSION ================= -->
     <div class="container">
@@ -1288,6 +1322,311 @@ def shots_html():
 # data-shot attribute.
 CASES = [
     dict(
+        slug="engine-room-piping-and-machinery-installation",
+        title="Engine room piping and machinery installation",
+        kicker="Mechanical installation and piping \u00b7 Shipbuilding",
+        setting="Vessel under construction, machinery spaces",
+        lead="Machinery on resilient mounts, and the seawater, bilge and fuel lines "
+             "that connect it. The mounts went down first; the piping followed, "
+             "through a compartment that was already full.",
+        intro=[],
+        stages=[
+            (2, ["The mounts go down before anything else. We land the machine "
+                 "on them all at once, then set each mount so it takes its "
+                 "share of the load and sits within the deflection the maker "
+                 "allows. The alignment is checked and recorded before the "
+                 "first flange is made up, and again once the lines are "
+                 "connected."]),
+            (3, ["The drawing gives the route; the dimensions come off the "
+                 "steel. By the time the piping starts the space is full, so we "
+                 "build the valves, the strainer and the branches up on one "
+                 "frame outside the compartment and land the group as a unit, "
+                 "with the bolt holes matching and the flange faces square. Set "
+                 "out that way, somebody standing in front of it can reach "
+                 "every handwheel."]),
+            (4, ["Resiliently mounted machinery moves, and the hull works at sea. "
+                 "Flexible hoses take that movement at the machine connections. On the "
+                 "runs, mechanical couplings take up misalignment, and we anchor and "
+                 "guide the pipe either side of them so the coupling is not left "
+                 "carrying the line."]),
+            (5, ["We set the valve groups out to keep the tank access clear, "
+                 "because the covers have to come off in service. Open ends are "
+                 "capped whenever work stops on a line, and the system is "
+                 "blanked at its boundaries for the pressure test. Each line is "
+                 "tagged to the drawing as it is finished."]),
+        ],
+        note="",
+        og="engine-room-piping",
+        cta="Send us the drawings.",
+        # A new build has no shutdown to work round; it has a slot at the yard.
+        cta_note="Send the drawings or the scope and we will come back with a price and "
+                 "crew dates. If it is a yard slot, tell us the window.",
+        # Heading, body and button say the same thing here. The other four say
+        # three different things; this page is the pattern if that gets swept.
+        cta_btn="Send us the drawings",
+        services=["pipe-fitting", "welding-services", "mechanical-contracting",
+                  "shipbuilding", "quality-control"],
+        photos=[
+            ("Machined seating in an engine room with resilient mounts bolted down, "
+             "studs and nuts set, and timber packing alongside",
+             "Resilient mounts on the machined seating.", 1200, 1600),
+            ("A row of resilient mounts along the machined seating, with the first pipe "
+             "runs and capped flanges laid in beside them",
+             "The seating, with the mounts set and the first lines alongside.", 1200, 900),
+            ("Valve and strainer group made up on a frame against an engine room "
+             "bulkhead, with globe valves, a basket strainer and capped branches",
+             "Valve and strainer group on the bulkhead.", 1200, 900),
+            ("Large-bore pipe runs under a deckhead, with mechanical couplings on the "
+             "vertical drop and anchors either side of them",
+             "Mechanical couplings on the large-bore runs.", 1200, 1600),
+            ("Valve group set out around a bolted tank access cover, with the covers "
+             "left clear and every open end capped",
+             "Valve group around the tank access cover.", 1200, 1600),
+        ],
+    ),
+    dict(
+        slug="foundations-penetrations-and-equipment-installation",
+        title="Foundations, penetrations and equipment installation",
+        kicker="Steel fabrication and mechanical installation \u00b7 Shipbuilding",
+        setting="Vessel under construction, machinery and tank spaces",
+        lead="The steel that has to be in place before the equipment. We made and set "
+             "the seats and frames, cut the openings and welded in the bulkhead "
+             "penetrations, and fitted the supports for the cable and pipe routes.",
+        intro=[],
+        stages=[
+            (2, ["Frames and seats are fabricated to the drawing, then set to the "
+                 "steel that is actually there. We land the frame on the marked "
+                 "position, check it for position and level, and weld it down once "
+                 "it sits right. A unit light enough to be landed with its frame "
+                 "goes in first. Anything heavier goes on after the frame is welded "
+                 "down, and stays under cover until commissioning."]),
+            (3, ["We mark the opening from the ring that goes into it, cut it, and "
+                 "prepare the edge before the ring is offered up. That way the root "
+                 "gap is even the whole way round. On a watertight boundary the gap "
+                 "is what the weld has to close, and an uneven one shows up at the "
+                 "tightness test."]),
+            (4, ["The ring is worked from both sides at once. One fitter checks the "
+                 "alignment inside the opening while another dresses the prep "
+                 "outside, and we tack in a balanced sequence so the ring does not "
+                 "pull as it is welded out."]),
+            (5, ["Supports for cable and pipe routes go on before the boundary is "
+                 "closed in. We set the brackets clear of the insulation and the "
+                 "pins that hold it, so the tray runs at its own height and nothing "
+                 "has to be cut back when the lining goes on."]),
+        ],
+        note="",
+        og="foundations-penetrations",
+        cta="Send us the drawings.",
+        cta_note="Send the drawings or the scope and we will come back with a price and "
+                 "crew dates. If it is a yard slot, tell us the window.",
+        cta_btn="Send us the drawings",
+        services=["mechanical-contracting", "welding-services", "shipbuilding",
+                  "rigging-technical-support", "quality-control"],
+        photos=[
+            ("Cylindrical steel unit in a fabricated frame, suspended on chain hoists "
+             "over its marked position on the deck of a vessel under construction",
+             "Coming down on the marked position.", 1200, 1600),
+            ("Machinery unit under protective covers on a fabricated steel frame in a "
+             "shipyard hall",
+             "The unit on its frame, covered until commissioning.", 1200, 900),
+            ("Circular opening cut in a bulkhead, with the penetration piece standing "
+             "ready on the deck beside it",
+             "The opening cut, and the penetration piece ready to go in.", 1200, 1600),
+            ("Two fitters at a bulkhead penetration, one checking alignment inside the "
+             "opening while the other dresses the edge with a grinder",
+             "Dressing the prep before the penetration is welded out.", 1200, 1600),
+            ("Cable trays and brackets fitted to an insulated bulkhead, with insulation "
+             "pins welded across the plate",
+             "Cable tray supports on an insulated boundary.", 1200, 1600),
+        ],
+    ),
+    dict(
+        slug="large-bore-pipe-replacement",
+        title="Large-bore pipe replacement",
+        kicker="Mechanical installation and welding \u00b7 Industrial",
+        # The client has to confirm this one: the package offers "Plant
+        # shutdown" and "Live plant" as the two alternatives, and says not to
+        # guess. This is the neutral value, and it is what the photographs show.
+        setting="Existing plant, scaffolded work fronts",
+        lead="Large-bore pipework replaced inside an existing plant. We prefabricated "
+             "the spools, rigged them into position on chain hoists off the plant "
+             "steel, and welded them in place.",
+        intro=[],
+        stages=[
+            (2, ["We put the covers down before anything hot starts \u2014 blankets "
+                 "under the work front, sheeting across what is behind it, and the "
+                 "grating below closed off. A spark that goes through the grating "
+                 "lands on whatever is on the level under you."]),
+            (3, ["Branches and stubs go on at floor level, where the piece can be "
+                 "turned and the weld is made in the flat position. The spool goes "
+                 "up as one piece with its openings already in it. Every branch "
+                 "done down here is one less weld made overhead."]),
+            # This stage claims the attachment points were agreed with the plant.
+            # If that agreement did not happen, the sentence has to go -- the
+            # package flags it as the kind of claim that gets a crew removed.
+            (4, ["There is no crane over the work front, so the load comes off the "
+                 "plant steel. We agree the attachment points with the plant first, "
+                 "then hang beam clamps and chain hoists at each end and walk the "
+                 "spool into line by hand."]),
+            (5, ["Fit-up decides the joint. We set the gap and hold it the whole way "
+                 "round before an arc is struck, and the root goes in first \u2014 in "
+                 "this frame it is part way round, with the gap above still open. "
+                 "The joint is cleaned and checked before the fill and cap go on."]),
+        ],
+        note="",
+        og="large-bore-pipe-replacement",
+        cta="Send us the drawings.",
+        # Back to the site's original wording: this job has a shutdown, where the
+        # two shipbuilding cases have a yard slot.
+        cta_note="Send the drawings or the scope and we will come back with a price and "
+                 "crew dates. If it is a shutdown, tell us the window.",
+        cta_btn="Send us the drawings",
+        services=["pipe-fitting", "welding-services", "mechanical-contracting",
+                  "rigging-technical-support", "quality-control"],
+        photos=[
+            ("New large-bore pipework and a fabricated bend installed among existing "
+             "lines and ducts inside an industrial plant",
+             "The new run in place.", 1200, 1600),
+            ("Protective sheeting and welding blankets laid over plant grating around "
+             "a pipe spool standing ready for installation",
+             "The work front covered before hot work starts.", 1200, 1600),
+            ("Prefabricated pipe bend with a welded branch and stub, standing on "
+             "timber on plant grating",
+             "Branch and stub welded on before the spool goes up.", 1200, 900),
+            ("Two beam clamps and chain hoists rigged from overhead steel, taking the "
+             "weight of a large-bore pipe",
+             "Beam clamps and chain hoists off the existing steel.", 1200, 1600),
+            ("Close-up of a pipe butt joint with an even root gap and the root run "
+             "part way round",
+             "The root run part way round the joint.", 1200, 1600),
+        ],
+    ),
+    dict(
+        slug="grate-bar-replacement",
+        title="Grate bar replacement",
+        kicker="Mechanical maintenance \u00b7 Waste to energy",
+        setting="Waste-to-energy plant, furnace during outage",
+        lead="Grate bars replaced inside the furnace of a waste-to-energy plant "
+             "during the outage. The old bars came out one row at a time, cut "
+             "free where they were seized, and the new ones went back set to the "
+             "specified gap.",
+        intro=[],
+        # Nothing was built here; something worn was replaced.
+        seq_head="How it was done",
+        stages=[
+            (2, ["The furnace is cold by the time we go in, but it is not clean. "
+                 "Everything inside is coated in fly ash and combustion residue, "
+                 "so the crew works in disposable coveralls and P3 respirators, "
+                 "and the suits come off at the door. Entry is under permit, with "
+                 "the space ventilated and the atmosphere monitored."]),
+            (3, ["The bars sit in rows across the grate, and after a full run most "
+                 "of them are seized in place. They come out one row at a time "
+                 "\u2014 cut free where they will not move, lifted out by hand and "
+                 "stacked. The new ones go back set to the gap the maker "
+                 "specifies, because that gap is how the primary air reaches the "
+                 "bed."]),
+        ],
+        note="",
+        og="grate-bar-replacement",
+        # Scope, not drawings: nobody sends drawings for an outage, they send
+        # the scope and the window. The other three new cases say "drawings".
+        cta="Send us the scope.",
+        cta_note="Send us the scope and we will come back with a price and crew "
+                 "dates. If it is an outage, tell us the window.",
+        cta_btn="Send us the scope",
+        # No welding: the three frames show oxy-fuel cutting and nothing else.
+        # The client has been asked whether welding was in scope.
+        services=["mechanical-contracting", "mobile-repair-teams",
+                  "quality-control"],
+        photos=[
+            ("Worker in disposable coveralls and respirator cutting seized steel "
+             "free with an oxy-fuel torch at the grate, with removed grate blocks "
+             "in the foreground",
+             "Cutting seized steel free.", 1200, 1600),
+            ("Worker in a hard hat, goggles and P3 respirator inside the cold "
+             "furnace of a waste-to-energy plant",
+             "Disposable coveralls and P3 respirators.", 1200, 1600),
+            ("Two workers in disposable coveralls levering an old grate bar out of "
+             "its row, with removed bars stacked behind them",
+             "Old bars out, one row at a time.", 1200, 1600),
+        ],
+    ),
+    dict(
+        slug="offshore-rope-access-welding",
+        title="Offshore rope access welding",
+        kicker="Welding and rope access \u00b7 Offshore",
+        # The package supplied "Offshore platform, North Sea" and then said in
+        # its own stop-list that the sea area was read off the platform name on
+        # the frame we are NOT publishing. An unverified geography claim is the
+        # one thing this site does not ship, so it stays at what the frames
+        # actually show: open water and an offshore wind farm. The client can
+        # confirm the North Sea separately and it goes back.
+        setting="Offshore platform, Northern Europe",
+        lead="Welding on the outside of an offshore platform, carried out on rope "
+             "access. There is no scaffold and no basket over the side, so the "
+             "welder reaches the joint on ropes and works from the harness.",
+        intro=[],
+        seq_head="How it was done",
+        # THE SHORT VARIANT, and deliberately so. The package ships four frames;
+        # its own frame 03 has the platform name painted across the shell, large
+        # and fully legible, and it cannot be cropped out without cutting one of
+        # the two technicians in half. That file is not in this repository at
+        # all -- not gated, not renamed, absent -- so no flag can publish it.
+        # What is here as 03-*.webp is the package's 04.
+        #
+        # If written permission to name the platform arrives: copy the package's
+        # 03 in as 03-*.webp, move this file to 04-*.webp, add the access stage
+        # back as (3, [...]) and restore this stage's first sentence to
+        # "Welding is carried out from the harness, with the set on deck and the
+        # cables run down to the joint." The package's strings file has both.
+        stages=[
+            (2, ["The platform has no quay and no road. Crew, tools and "
+                 "consumables arrive by vessel or helicopter and stay for the "
+                 "shift, and the working window is set by wind and sea state "
+                 "rather than by the programme."]),
+            (3, ["Welding is carried out from the harness, on a working line and "
+                 "a backup rigged from the structure above, with the team working "
+                 "in pairs. The joint is prepared before the arc is struck and "
+                 "completed in short runs. The return clamp is placed on the work "
+                 "close to the joint \u2014 over water the return path is part of "
+                 "the safety case, not a detail."]),
+        ],
+        note="",
+        og="offshore-rope-access-welding",
+        cta="Send us the scope.",
+        cta_note="Send us the scope and we will come back with a price and crew "
+                 "dates. For offshore work tell us the access, the vessel and the "
+                 "weather window.",
+        cta_btn="Send us the scope",
+        # The package says there is no rope access service page and not to invent
+        # the link. There is one -- /services/rope-access-services, live -- and
+        # it is the single thing an offshore buyer comes to this page looking
+        # for, so it goes first.
+        services=["rope-access-services", "welding-services",
+                  "rigging-technical-support", "mobile-repair-teams"],
+        photos=[
+            ("Rope access technician suspended in a harness on the outside of an "
+             "offshore platform, with wind turbines on the horizon",
+             "Rope access over open water.", 1200, 900),
+            ("Side of an offshore platform above the sea, with wind turbines in "
+             "low cloud on the horizon",
+             "Access by vessel or helicopter only.", 1200, 900),
+            # The package's own alt for this frame describes one welder; the
+            # frame has two technicians, one of them in a welding helmet.
+            ("Two rope access technicians suspended on twin ropes at a yellow "
+             "structure on an offshore platform, one wearing a welding helmet, "
+             "with cables run down from the deck above",
+             "Welding carried out from the harness.", 1200, 900),
+        ],
+        # NOT PUBLISHED. The opening frame -- which is also the card on
+        # /projects and the OG image, so it reaches further than this page --
+        # shows one employee's face in full. The package is unambiguous: without
+        # that person's written consent the page is not assembled, and there is
+        # nothing to swap the frame for. Set draft=False when the consent is in
+        # hand and the case ships: page, card, chain, sitemap, all of it.
+        draft=True,
+    ),
+    dict(
         slug="tank-and-vessel-fabrication",
         title="Tank and vessel fabrication",
         kicker="Shop fabrication and welding",
@@ -1312,7 +1651,8 @@ CASES = [
                  "plate."]),
             (5, ["Lifting is done on the overhead crane, using slings and a spreader "
                  "beam. Bottom plates are cut and fitted on the shop floor."]),
-            (6, ["In the shop the welding is done under cover and under a crane."]),
+            (6, ["In the shop the welding is done under cover and under a "
+                 "crane."]),
         ],
         note="",
         cta="Send us the drawings.",
@@ -1449,6 +1789,45 @@ CASES = [
 # Every frame has to appear exactly once, as the hero or as one stage's plate.
 # Without this a re-ordered stage list silently drops a photograph -- the page
 # still builds, the lightbox still works, and the frame is just gone.
+# A case with draft=True is written down here in full -- text, frames,
+# translations -- and reaches the site nowhere: no page, no card on /projects,
+# no link in the Next-project ring, no sitemap entry. It is the same shape as
+# the config block at the top of js/main.js, where a blank URL removes the
+# element rather than shipping a dead link: the worst case is something
+# missing, never something published that should not have been.
+#
+# Everything below builds from LIVE. CASES itself is only the source list.
+LIVE = [_c for _c in CASES if not _c.get("draft")]
+
+# A draft case keeps its text here but its photographs are deliberately NOT in
+# the repository -- an unreferenced file under assets/ is still fetchable by
+# URL once the site is live, which is not the same thing as unpublished. So
+# clearing the flag without bringing the frames in would ship broken images.
+# Fail the build instead: loud beats silent.
+for _c in LIVE:
+    for _n in range(1, len(_c["photos"]) + 1):
+        _f = os.path.join(ROOT, "assets", "projects", "cases", _c["slug"],
+                          "%02d-1200.webp" % _n)
+        assert os.path.exists(_f), (
+            "%s is live but %s is missing -- if this case was a draft, copy its "
+            "frames in before clearing the flag" % (_c["slug"], os.path.relpath(_f, ROOT)))
+
+# The block subtitle spells the case count as a word, so nothing finds it by
+# searching for a digit -- and every package so far has had to say "change
+# Seven to Eight in four languages". It is derived now: add, remove or
+# un-draft a case and the sentence follows, in the source and in all three
+# translations, because the whole sentence is the translation key.
+COUNT_WORD = {
+    1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six",
+    7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve",
+}
+
+
+def cases_sub_lead():
+    return ("%s scopes, photographed as they were built."
+            % COUNT_WORD.get(len(LIVE), str(len(LIVE))))
+
+
 for _c in CASES:
     _used = [n for n, _ in _c["stages"]]
     assert _used == sorted(_used), "%s: stages must run in photo order" % _c["slug"]
@@ -1583,14 +1962,14 @@ def case_body(c, nxt):
         </div>
         <div class="fact">
           <p class="fact-label">Plates</p>
-          <p class="fact-value">%(n)d photographs</p>
+          <p class="fact-value">%(plates)s</p>
         </div>
       </div>
     </div>
 
 %(intro)s    <section class="case-seq">
       <div class="container seq-head">
-        <h2 class="sub-head">How it was built</h2>
+        <h2 class="sub-head">%(seq_head)s</h2>
         <p class="sub-lead">One plate to a stage. Press a plate to open it full size.</p>
       </div>
       <div class="container case-deck">
@@ -1610,10 +1989,9 @@ def case_body(c, nxt):
         </div>
         <div class="case-ask">
           <p class="case-ask-h">%(cta)s</p>
-          <p>Send the drawings or the scope and we will come back with a price and crew
-          dates. If it is a shutdown, tell us the window.</p>
+          <p>%(cta_note)s</p>
           <p class="back">
-            <a class="btn-solid" href="/contacts.html">Start a project</a>
+            <a class="btn-solid" href="/contacts.html">%(cta_btn)s</a>
           </p>
         </div>
       </div>
@@ -1641,19 +2019,64 @@ def case_body(c, nxt):
            title=c["title"], lead=c["lead"], setting=c["setting"],
            hero_plate=_plate(c, 1, eager=True).replace('class="plate',
                                                        'class="case-fig plate'),
-           n=len(c["photos"]), intro=intro, stages=_deck(c),
+           n=len(c["photos"]),
+           # A photograph count on its own contradicted the counter at the foot
+           # of the deck: the header said "6 photographs" and the last plate said
+           # "05 / 05", because the opening plate is a photograph but not a stage.
+           # Both numbers are named now.
+           plates="%d photographs, %d stages" % (len(c["photos"]), len(c["stages"])),
+           intro=intro, stages=_deck(c),
            lightbox=LIGHTBOX, note=note, links=links, cta=c["cta"],
+           # Optional per case; the defaults are what the four existing pages say,
+           # so adding the fields changed none of them.
+           cta_note=c.get("cta_note", "Send the drawings or the scope and we will "
+                          "come back with a price and crew dates. If it is a "
+                          "shutdown, tell us the window."),
+           cta_btn=c.get("cta_btn", "Start a project"),
+           # "How it was built" is wrong on a maintenance job -- nothing was
+           # built there, something worn was replaced. Per case, defaulting to
+           # what the pages that ARE about building already say.
+           seq_head=c.get("seq_head", "How it was built"),
            nxt_slug=nxt["slug"], nxt_title=_html.escape(nxt["title"]))
 
 
 def cases_html():
+    """The card grid on /projects.
+
+    Two things here are computed rather than fixed, because both broke the
+    moment a case was added:
+
+    * The grid is two columns. With an odd number of cases the last card sat
+      alone beside an empty half-row -- 600px of nothing, the kind of dead
+      space this site gets judged on. So on an odd count the FIRST card spans
+      both columns, which leaves an even number behind it and fills every row.
+      Add or remove a case and the layout stays whole; nothing to remember.
+
+    * The thumbnail used to be the 600px file with no srcset, in a box that
+      measures 627 CSS px at a 1440 viewport -- 1254 device px on a retina
+      laptop, so the photograph was being blown up 2.09x and looked soft.
+      Both widths are offered now and the browser picks.
+    """
+    lead = len(LIVE) % 2 == 1
     cards = []
-    for i, c in enumerate(CASES):
-        alt, _cap, w, h = c["photos"][0]
+    for i, c in enumerate(LIVE):
+        alt, _cap, _w, _h = c["photos"][0]
+        # the cover is the 4:3 crop tools/thumbs.py writes, not the plate
+        w, h = 1200, 900
+        is_lead = lead and i == 0
+        # The lead card's plate is about half the container; the others about a
+        # quarter of the viewport, capped by the container at 670px.
+        sizes = ("(max-width: 700px) 92vw, (max-width: 1440px) 50vw, 700px"
+                 if is_lead else
+                 "(max-width: 700px) 92vw, (max-width: 1440px) 47vw, 670px")
         cards.append(
-            '        <a class="case-card" href="/projects/%s.html">\n'
+            '        <a class="case-card%s" href="/projects/%s.html">\n'
             '          <span class="case-thumb">\n'
-            '            <img src="/assets/projects/cases/%s/01-600.webp"\n'
+            '            <img src="/assets/projects/cases/%s/card-600.webp"\n'
+            '                 srcset="/assets/projects/cases/%s/card-600.webp 600w,'
+            ' /assets/projects/cases/%s/card-900.webp 900w,'
+            ' /assets/projects/cases/%s/card-1200.webp 1200w"\n'
+            '                 sizes="%s"\n'
             '                 alt="%s" width="%d" height="%d" loading="%s" decoding="async">\n'
             '            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>\n'
             '          </span>\n'
@@ -1667,7 +2090,9 @@ def cases_html():
             '            <span class="case-more">Read the job <span class="arr">&#8593;</span></span>\n'
             '          </span>\n'
             '        </a>'
-            % (c["slug"], c["slug"], _html.escape(alt, quote=True), w, h,
+            % (" case-wide" if is_lead else "", c["slug"],
+               c["slug"], c["slug"], c["slug"], c["slug"], sizes,
+               _html.escape(alt, quote=True), w, h,
                "eager" if i < 2 else "lazy", i + 1, c["kicker"],
                _html.escape(c["title"]), c["lead"]))
     return "\n".join(cards)
@@ -1711,13 +2136,22 @@ PROJECTS = """
     </div>
 
 
-    <div class="container">
-      <h2 class="sub-head">Projects</h2>
-      <p class="sub-lead">Four scopes, photographed as they were built.</p>
-      <div class="case-grid">
+    <section class="case-sheet">
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:2.4%; top:4%"></span>
+        <span class="sheet-plus" style="left:95%; top:4%"></span>
+        <span class="sheet-plus" style="left:2.4%; top:52%"></span>
+        <span class="sheet-plus" style="left:95%; top:52%"></span>
+      </span>
+      <div class="container">
+        <h2 class="sub-head">Projects</h2>
+        <p class="sub-lead">""" + cases_sub_lead() + """</p>
+        <div class="case-grid">
 """ + cases_html() + """
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- The four sector paragraphs sit below the photographed cases, not
          above them: a visitor who clicked "See our projects" scrolled
@@ -2380,8 +2814,8 @@ def service_page_body(sv):
             '        </div>\n'
             '      </div>\n'
             '    </section>\n'
-            '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
-            '    <script type="application/json" id="srv-data">{payload}</script>\n'
+            + '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
+            + '    <script type="application/json" id="srv-data">{payload}</script>\n'
             ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
                      num=sv["num"], deep=sv["deep"], payload=payload)
 
@@ -2431,12 +2865,20 @@ write("projects.html", page("Projects",
 # --- one page per project case, under /projects/ ---
 # /projects.html wins over the /projects/ directory on GitHub Pages, the same
 # way /services.html does, so the index keeps its URL and the cases sit under it.
-for _i, _c in enumerate(CASES):
+for _i, _c in enumerate(LIVE):
     write("projects/%s.html" % _c["slug"],
-          page(_c["title"], _c["lead"][:152].rsplit(" ", 1)[0] + "...",
-               case_body(_c, CASES[(_i + 1) % len(CASES)]),
+          # 200, not 152: the cut was landing mid-sentence. The valve-station lead
+          # is 179 characters and shipped as "...through a..."; a complete sentence
+          # reads better in a result than a tidy length does.
+          page(_c["title"],
+               _c["lead"] if len(_c["lead"]) <= 200
+               else _c["lead"][:197].rsplit(" ", 1)[0] + "...",
+               case_body(_c, LIVE[(_i + 1) % len(LIVE)]),
                canonical="/projects/%s.html" % _c["slug"],
-               og="projects",
+               # All four cases shared /assets/og/projects.jpg, so five different
+               # projects previewed identically in LinkedIn. Per case where a card
+               # exists, the shared one until the other four have theirs.
+               og=_c.get("og", "projects"),
                head_extra=breadcrumb_ld([("Home", "/"), ("Projects", "/projects.html"),
                                          (_c["title"], "/projects/%s.html" % _c["slug"])])))
 
@@ -2493,6 +2935,30 @@ SECTOR_PAGES = [
 ]
 
 
+# The one sector with no photograph of its own: every frame the client has
+# sent is a tank farm, a shipyard or a plant, and renewables is carried by a
+# stock-looking hero and a list. The drawing is the section's own subject
+# stated in the site's own language -- and the rotor turns, which is the one
+# thing a still photograph of a wind farm cannot do.
+#
+# Referenced with <img> rather than inlined: the animation and the
+# reduced-motion switch live inside the file, so the page needs no JavaScript
+# and the asset is cached like any other. See tools/make_wind_turbine.py.
+TURBINE = """
+    <section class="sector-drawing">
+      <span class="sheet-grid" aria-hidden="true"></span>
+      <span class="sheet-furniture" aria-hidden="true">
+        <span class="sheet-plus" style="left:12%; top:18%"></span>
+        <span class="sheet-plus" style="left:86%; top:64%"></span>
+      </span>
+      <div class="container">
+        <img src="/assets/wind-turbine.svg" alt="" width="1000" height="720"
+             loading="lazy" decoding="async">
+      </div>
+    </section>
+"""
+
+
 def sector_body(slug, name, img, lead, service_slugs):
     by_slug = {sv["slug"]: sv for sv in SERVICES_FLAT}
     links = "\n".join(
@@ -2515,7 +2981,7 @@ def sector_body(slug, name, img, lead, service_slugs):
         <p class="sector-hero-lead hero-rise hero-rise-2">%(lead)s</p>
       </div>
     </section>
-
+%(drawing)s
     <div class="container sector-body">
       <div class="sector-cols">
         <div>
@@ -2534,7 +3000,8 @@ def sector_body(slug, name, img, lead, service_slugs):
         </div>
       </div>
     </div>
-""" % dict(img=img, name=name, lead=lead, links=links)
+""" % dict(img=img, name=name, lead=lead, links=links,
+            drawing=TURBINE if slug == "renewables" else "")
 
 
 for _slug, _name, _img, _lead, _svcs in SECTOR_PAGES:
@@ -2556,7 +3023,7 @@ SITEMAP = [
 ] + [("/services/%s" % sv["slug"], "monthly", "0.7") for sv in SERVICES_FLAT] \
   + [("/sectors/%s" % s0, "monthly", "0.7") for s0, _n, _i, _l, _v in SECTOR_PAGES] + [
     ("/projects", "monthly", "0.9"),
-] + [("/projects/%s" % c["slug"], "monthly", "0.7") for c in CASES] + [
+] + [("/projects/%s" % c["slug"], "monthly", "0.7") for c in LIVE] + [
     ("/company.html",  "monthly", "0.8"),
     ("/news/",         "weekly",  "0.8"),
     ("/contacts", "yearly",  "0.7"),

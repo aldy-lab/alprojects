@@ -6729,3 +6729,215 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
 @media (max-width: 700px) {
   .footer-bottom .legal-ids { display: block; margin-top: 6px; }
 }
+
+/* ============================================================
+   /projects — the card grid as a drawing sheet
+   Three faults, all visible in one screenshot of the seven-card grid:
+   the odd card sat alone next to 600px of black, the thumbnails were the
+   600px file blown up past 2x on a retina laptop, and the section carried
+   none of the sheet furniture the case pages are built on, so the
+   photographs sat on flat ground with nothing tying them to the drawing.
+   ============================================================ */
+
+/* The sheet the cards sit on. Same three layers as .case-hero: module at -1,
+   registration marks at 0, content at 1. `isolation` keeps the negative
+   z-index inside this section instead of sliding under the page background. */
+.case-sheet {
+  position: relative;
+  isolation: isolate;
+}
+.case-sheet > .container { position: relative; z-index: 1; }
+.case-sheet > .sheet-grid {
+  /* Taller module than the hero's 104px: at this size the lines land in the
+     gutters between cards rather than crossing every plate. */
+  background-size: 116px 116px;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 9%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 9%, #000 84%, transparent 100%);
+}
+.case-sheet > .sheet-furniture .sheet-plus { opacity: 0.4; }
+
+/* The caption block stops being an opaque tile and becomes a panel laid on the
+   sheet: the module reads through it at about a fifth of its strength, which
+   is enough to register and not enough to sit behind the text. Backdrop blur
+   would be the obvious way and is the wrong one -- it costs a compositing
+   layer per card and blurs a grid that is already 5% white. */
+.case-card { background: color-mix(in srgb, var(--panel) 82%, transparent); }
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  .case-card { background: rgba(16, 17, 29, 0.82); }
+}
+.case-card:hover { background: var(--panel-2); }
+
+/* ---------- the lead card ----------
+   Set by the builder on the first card when the case count is odd, so the
+   remaining cards always pair off. Plate left, type right, and the plate gets
+   a wider crop than the 4:3 the small cards use -- at this width 4:3 was tall
+   enough to push the type block off the fold. */
+.case-card.case-wide { grid-column: 1 / -1; }
+/* The row layout starts exactly where the grid becomes two columns, not later.
+   Held back to 901px it left the band from 701 to 900 as a full-width column
+   card: a 816px-wide panel holding a 52ch paragraph, so half of it was empty.
+   Below 701px the grid is one column and the card is an ordinary one. */
+@media (min-width: 701px) {
+  .case-card.case-wide { flex-direction: row; align-items: stretch; }
+  .case-card.case-wide .case-thumb { flex: 0 0 48%; min-width: 0; }
+  .case-card.case-wide .case-thumb img { height: 100%; aspect-ratio: 16 / 10; }
+  .case-card.case-wide .case-txt {
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-content: center;
+    padding: clamp(22px, 2.6vw, 48px);
+    gap: 12px;
+  }
+  .case-card.case-wide .case-blurb { max-width: 46ch; }
+  /* .case-more is margin-top:auto on the column cards; centred here it would
+     be pushed to the bottom of a box that is no longer the type's own height. */
+  .case-card.case-wide .case-more { margin-top: 6px; }
+}
+/* Only once the type column is genuinely wide does the heading step up. */
+@media (min-width: 1100px) {
+  .case-card.case-wide .case-thumb { flex: 0 0 52%; }
+  .case-card.case-wide .case-txt { gap: 14px; }
+  .case-card.case-wide h3 { font-size: var(--h4); max-width: 20ch; }
+}
+
+/* ---------- the resting grade on a card plate ----------
+   Measured, not judged by eye. The page ground sits at b* -2.1 (cool); the
+   seven plates averaged b* +5.1 and the worst two -- a yellow bracket and an
+   ochre tarpaulin -- reached +9.8. Seven points of yellow against a cool
+   ground is what reads as "the photographs do not go with the site".
+
+   Desaturating harder does almost nothing on frames this dark: saturate(.62)
+   moved the average to +4.4. What works is a small amount of the brandbook
+   deep blue laid over the plate. Nine percent takes the average to +1.5 and
+   the worst card to +5.4, for 7% of luminance -- measured across all seven.
+
+   Both the grade and the wash come off on hover, because the photograph is
+   evidence and the visitor asked to see it. The case page's own gallery is
+   never graded at all. */
+.case-thumb img { filter: saturate(0.64) contrast(1.04); }
+.case-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;                 /* under .corners, which is 3 */
+  background: var(--accent-deep);
+  opacity: 0.09;
+  pointer-events: none;
+  transition: opacity var(--dur-3) var(--ease);
+}
+.case-card:hover .case-thumb::after,
+.case-card:focus-visible .case-thumb::after { opacity: 0; }
+
+/* Touch has no hover, so the wash would never lift and the plate would be
+   permanently graded on a phone. Held much lighter there. */
+@media (hover: none) {
+  .case-thumb::after { opacity: 0.05; }
+  .case-thumb img { filter: saturate(0.78) contrast(1.02); }
+}
+
+/* ---------- the isometric drawing, in drawing mode only ----------
+   Not part of the hero as it stands: the mode is where a technical drawing
+   belongs, and #39a9ff next to a near-monochrome page read as a colour accent
+   rather than as draughting. The colour is `color` on the container, so the
+   SVG's currentColor picks it up -- the same cool grey-blue the mode already
+   uses for its grid, not a hue of its own.
+
+   Empty and inert until js/main.js fetches the file, so a visitor who never
+   presses B pays nothing for it. */
+.hero-iso {
+  position: absolute;
+  inset: 0 -4% 0 auto;
+  width: 52%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  color: rgba(185, 196, 216, 0.55);
+  transition: opacity var(--dur-4) var(--ease);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
+}
+html.blueprint .hero-iso { opacity: 1; }
+.hero-iso svg {
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: right center;
+}
+@media (max-width: 1250px) {
+  .hero-iso {
+    width: 46%; right: -3%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 40%, #000 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 40%, #000 100%);
+  }
+}
+@media (max-width: 980px) {
+  .hero-iso {
+    right: -16%; width: 68%;
+    color: rgba(185, 196, 216, 0.3);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-iso { transition: none; }
+}
+
+/* The flow chevrons fade in once the drawing has drawn itself, and stand still
+   for anyone who asked for less motion -- animateMotion has no CSS switch, so
+   the group is simply not shown rather than left running invisibly. */
+.hero-iso .flow { transition: opacity var(--dur-3) var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-iso .flow { display: none; }
+}
+
+/* ---------- the turbine drawing on /sectors/renewables ----------
+   A quiet band between the hero photograph and the service list. The drawing
+   is tall and narrow, so it is capped by height rather than width -- capping
+   by width made it 790px tall on a phone and pushed the list off two screens.
+   The sheet furniture is the same the sector hero above it already carries. */
+.sector-drawing {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(40px, 6vw, 88px) 0 clamp(24px, 3vw, 48px);
+  overflow: hidden;
+}
+.sector-drawing > .container { position: relative; z-index: 1; text-align: center; }
+.sector-drawing > .sheet-grid {
+  background-size: 104px 104px;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 76%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 76%, transparent 100%);
+}
+.sector-drawing > .sheet-furniture .sheet-plus { opacity: 0.35; }
+/* The canvas is wide now, so it is sized by width and lets its own aspect set
+   the height. Capped a little under the container: at full container width the
+   sea line ran into the type either side of it. */
+.sector-drawing img {
+  display: block;
+  margin: 0 auto;
+  width: min(100%, 940px);
+  height: auto;
+}
+
+/* The band carries its own ground. It used to inherit whatever was behind it,
+   and measuring the pixels rather than looking at them showed the fault: at
+   the foot of a page the section above sat at (5,6,16) -- cool -- while the
+   band landed on the bare body colour at (7,7,8), and lower still it picked
+   up the warm wash near the footer at (16,15,15), r above b. The band is
+   higher up the page now, and it no longer depends on what is under it. */
+.sector-drawing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(76% 88% at 50% 44%,
+      rgba(21, 53, 95, 0.30) 0%, rgba(13, 38, 71, 0.13) 46%, transparent 76%);
+}
+/* Its top and bottom edges dissolve rather than butt against the block above
+   and below, which is what made it read as a panel dropped on the page. */
+.sector-drawing {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}

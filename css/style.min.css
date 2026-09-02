@@ -4921,3 +4921,131 @@ border-bottom: 1px solid rgba(207, 208, 215, 0.16);
 @media (max-width: 700px) {
 .footer-bottom .legal-ids { display: block; margin-top: 6px; }
 }
+.case-sheet {
+position: relative;
+isolation: isolate;
+}
+.case-sheet > .container { position: relative; z-index: 1; }
+.case-sheet > .sheet-grid {
+background-size: 116px 116px;
+-webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 9%, #000 84%, transparent 100%);
+mask-image: linear-gradient(180deg, transparent 0%, #000 9%, #000 84%, transparent 100%);
+}
+.case-sheet > .sheet-furniture .sheet-plus { opacity: 0.4; }
+.case-card { background: color-mix(in srgb, var(--panel) 82%, transparent); }
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+.case-card { background: rgba(16, 17, 29, 0.82); }
+}
+.case-card:hover { background: var(--panel-2); }
+.case-card.case-wide { grid-column: 1 / -1; }
+@media (min-width: 701px) {
+.case-card.case-wide { flex-direction: row; align-items: stretch; }
+.case-card.case-wide .case-thumb { flex: 0 0 48%; min-width: 0; }
+.case-card.case-wide .case-thumb img { height: 100%; aspect-ratio: 16 / 10; }
+.case-card.case-wide .case-txt {
+flex: 1 1 auto;
+min-width: 0;
+justify-content: center;
+padding: clamp(22px, 2.6vw, 48px);
+gap: 12px;
+}
+.case-card.case-wide .case-blurb { max-width: 46ch; }
+.case-card.case-wide .case-more { margin-top: 6px; }
+}
+@media (min-width: 1100px) {
+.case-card.case-wide .case-thumb { flex: 0 0 52%; }
+.case-card.case-wide .case-txt { gap: 14px; }
+.case-card.case-wide h3 { font-size: var(--h4); max-width: 20ch; }
+}
+.case-thumb img { filter: saturate(0.64) contrast(1.04); }
+.case-thumb::after {
+content: "";
+position: absolute;
+inset: 0;
+z-index: 1;
+background: var(--accent-deep);
+opacity: 0.09;
+pointer-events: none;
+transition: opacity var(--dur-3) var(--ease);
+}
+.case-card:hover .case-thumb::after,
+.case-card:focus-visible .case-thumb::after { opacity: 0; }
+@media (hover: none) {
+.case-thumb::after { opacity: 0.05; }
+.case-thumb img { filter: saturate(0.78) contrast(1.02); }
+}
+.hero-iso {
+position: absolute;
+inset: 0 -4% 0 auto;
+width: 52%;
+z-index: 0;
+pointer-events: none;
+overflow: hidden;
+opacity: 0;
+color: rgba(185, 196, 216, 0.55);
+transition: opacity var(--dur-4) var(--ease);
+-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
+mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
+}
+html.blueprint .hero-iso { opacity: 1; }
+.hero-iso svg {
+width: 100%; height: 100%;
+display: block;
+object-fit: contain;
+object-position: right center;
+}
+@media (max-width: 1250px) {
+.hero-iso {
+width: 46%; right: -3%;
+-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 40%, #000 100%);
+mask-image: linear-gradient(to right, transparent 0%, #000 40%, #000 100%);
+}
+}
+@media (max-width: 980px) {
+.hero-iso {
+right: -16%; width: 68%;
+color: rgba(185, 196, 216, 0.3);
+-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+}
+}
+@media (prefers-reduced-motion: reduce) {
+.hero-iso { transition: none; }
+}
+.hero-iso .flow { transition: opacity var(--dur-3) var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+.hero-iso .flow { display: none; }
+}
+.sector-drawing {
+position: relative;
+isolation: isolate;
+padding: clamp(40px, 6vw, 88px) 0 clamp(24px, 3vw, 48px);
+overflow: hidden;
+}
+.sector-drawing > .container { position: relative; z-index: 1; text-align: center; }
+.sector-drawing > .sheet-grid {
+background-size: 104px 104px;
+-webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 76%, transparent 100%);
+mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 76%, transparent 100%);
+}
+.sector-drawing > .sheet-furniture .sheet-plus { opacity: 0.35; }
+.sector-drawing img {
+display: block;
+margin: 0 auto;
+width: min(100%, 940px);
+height: auto;
+}
+.sector-drawing::before {
+content: "";
+position: absolute;
+inset: 0;
+z-index: -2;
+pointer-events: none;
+background:
+radial-gradient(76% 88% at 50% 44%,
+rgba(21, 53, 95, 0.30) 0%, rgba(13, 38, 71, 0.13) 46%, transparent 76%);
+}
+.sector-drawing {
+-webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}
