@@ -572,6 +572,16 @@
       .then(function (svg) {
         if (!svg) return;
         box.innerHTML = svg;
+        /* The flow chevrons ride the centreline on SMIL animateMotion, and SMIL
+           has no CSS switch: `display: none` on the group under
+           prefers-reduced-motion left a 214x37 band still repainting every
+           frame -- measured, not assumed. Removing the group is the only
+           deterministic answer. */
+        if (window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          var flow = box.querySelector(".flow");
+          if (flow) flow.parentNode.removeChild(flow);
+        }
         drawIso(box);
       })
       .catch(function () {});

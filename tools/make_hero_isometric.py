@@ -129,8 +129,28 @@ for i in range(13):
 centre.append((-120, 0, 0)); centre.append(END)
 FLOW_D = "M" + " ".join("%.1f %.1f"%iso(q) for q in centre)
 
+# ---------- аннотации: то, что отличает чертёж от объёма ----------
+# Изометрия трубы без размеров, отметок и швов -- это объём. Чертёж состоит
+# ровно из этих подписей: размер по оси, EL на каждой смене уровня, точка на
+# заводском шве и флаг на монтажном, номер линии, метка опоры, север и обрыв
+# трассы. Текст здесь не язык, а обозначения -- он не переводится, как и
+# 1200X1600 в остальной оснастке листа, и SVG всё равно вставляется скриптом,
+# так что в собранный HTML он не попадает и i18n его не видит.
+ANNO = []          # тексты; рисуются последним слоем
+
+def label(pt, txt, dx=0.0, dy=0.0, anchor="middle", size=9.0, rot=None):
+    x, y = iso(pt); x += dx; y += dy
+    tr = ' transform="rotate(%.1f %.1f %.1f)"' % (rot, x, y) if rot else ""
+    ANNO.append('<text x="%.1f" y="%.1f" text-anchor="%s" font-size="%.1f"%s>%s</text>'
+                % (x, y, anchor, size, tr, txt))
+
+def screen_angle(p1, p2):
+    (ax, ay), (bx, by) = iso(p1), iso(p2)
+    a = math.degrees(math.atan2(by - ay, bx - ax))
+    return a + 180 if a > 90 or a < -90 else a      # цифра всегда читается
+
 # размерные линии
-def dimline(p1,p2,off):
+def dimline(p1,p2,off,txt=None):
     a,b=add(p1,off),add(p2,off)
     (ax,ay),(bx,by)=iso(a),iso(b); L=math.hypot(bx-ax,by-ay) or 1
     ux,uy=(bx-ax)/L,(by-ay)/L; k=8
@@ -141,23 +161,110 @@ def dimline(p1,p2,off):
             px,py, px+s*ux*k+uy*k*.45, py+s*uy*k-ux*k*.45))
     for p,q in ((p1,a),(p2,b)):
         d.append("M%.1f %.1f L%.1f %.1f"%(*iso(p), *iso(q)))
+    if txt:
+        mid = mul(add(a, b), 0.5)
+        ang = screen_angle(a, b)
+        # цифра стоит над линией по её нормали, как на настоящем листе
+        rad = math.radians(ang)
+        label(mid, txt, dx=math.sin(rad) * 7.5, dy=-math.cos(rad) * 7.5,
+              size=8.5, rot=ang)
     return d
-dim += dimline((GX0,GY1,GZ),(GX1,GY1,GZ),(0,30,0))
-dim += dimline((GX1,GY0,GZ),(GX1,GY1,GZ),(32,0,0))
-dim += dimline((END[0],GY0,GZ),(END[0],GY0,0),(0,-30,0))
+
+
+def weld(pt, field=False):
+    """Заводской шов -- точка. Монтажный -- точка с флагом."""
+    x, y = iso(pt)
+    thin.append('M%.1f %.1f m-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0' % (x, y))
+    if field:
+        thin.append("M%.1f %.1f L%.1f %.1f L%.1f %.1f Z"
+                    % (x, y, x, y - 15, x + 9, y - 11))
+
+
+def leader(pt, dx, dy, txt, size=8.5, shelf=16.0):
+    """Полка с выноской -- так на чертеже подписывают опору или линию."""
+    x, y = iso(pt)
+    dim.append("M%.1f %.1f L%.1f %.1f L%.1f %.1f"
+               % (x, y, x + dx, y + dy, x + dx + shelf, y + dy))
+    ANNO.append('<text x="%.1f" y="%.1f" text-anchor="start" font-size="%.1f">%s</text>'
+                % (x + dx + 3, y + dy - 4, size, txt))
+
+
+def elev(pt, txt, side=1):
+    """Отметка уровня: короткая горизонталь и EL над ней."""
+    x, y = iso(pt)
+    dim.append("M%.1f %.1f L%.1f %.1f" % (x, y, x + side * 46, y))
+    dim.append("M%.1f %.1f l%.1f -5 l%.1f 10 Z" % (x + side * 46, y, side * -9, side * 9))
+    ANNO.append('<text x="%.1f" y="%.1f" text-anchor="%s" font-size="8.5">%s</text>'
+                % (x + side * 50, y - 5, "start" if side > 0 else "end", txt))
+# размеры по трём изометрическим осям -- как на листе
+dim += dimline(RISER_TOP, (RISER_TOP[0],0,0), (0,-46,0), "1300")      # высота стояка
+# размеры трассы отнесены дальше, чем стояк: при -46 цифра ложилась на трубу
+dim += dimline((-120,0,0), (V[0]-52,0,0), (0,-88,0), "1420")          # до фланца
+dim += dimline((V[0]+52,0,0), END, (0,-88,0), "1630")                 # до открытого торца
+dim += dimline((GX0,GY1,GZ), (GX1,GY1,GZ), (0,34,0), "4650")          # плита по X
+dim += dimline((GX1,GY0,GZ), (GX1,GY1,GZ), (36,0,0), "1240")          # плита по Y
+
+# Отметки ставятся там, где меняется уровень, а не где попало. У открытого
+# торца EL налезала на CONT ON DRG 2, и по существу ей там не место: вся
+# горизонталь на одной отметке, поэтому она называется у колена.
+elev(RISER_TOP, "EL +14300", 1)
+elev((-120,0,0), "EL +13000", -1)
+# Третьей отметки нет, и по существу тоже: EL ставят на осях труб и на
+# оборудовании, а не на плите основания. Плюс оба края контейнера для подписи
+# непригодны -- слева маска растворяет чертёж, справа он уходит за край героя,
+# и подпись обрезалась на любой ширине от 390 до 1728.
+
+# швы: заводские на врезках, монтажные на фланцах задвижки
+weld((-160,0,40)); weld((-120,0,0))
+weld((V[0]-52,0,0), field=True); weld((V[0]+52,0,0), field=True)
+
+# номер линии и класс -- то, по чему монтажник находит трассу в спецификации
+# Выноски уходят вверх от трассы: при коротких полках вторая попадала на
+# маховик задвижки.
+leader((-60,0,R), 20, -120, "150-PG-1204-A1")
+leader((-20,0,R), 30, -96, "DN 150 / SCH 40")
+
+# метки опор
+for sx, tag in ((-45, "SUP-0100"), (165, "SUP-0101")):
+    leader((sx,0,-72), -46, 40, tag)
+
+# север -- на изометрии он обязателен, иначе трасса не привязана. Слева от
+# плиты, а не справа: справа он уходил за край листа и буква вставала на
+# буквенную разметку рамки.
+NX, NY = iso((GX0-30, GY0-30, GZ))
+dim.append("M%.1f %.1f L%.1f %.1f" % (NX, NY, NX+26, NY-15))
+dim.append("M%.1f %.1f l-11 -1 l4 9 Z" % (NX+26, NY-15))
+ANNO.append('<text x="%.1f" y="%.1f" text-anchor="middle" font-size="9">N</text>'
+            % (NX+31, NY-19))
+
+# обрыв трассы: продолжение на другом листе
+BX, BY = iso(END)
+dim.append("M%.1f %.1f l10 -13 l6 26 l10 -13" % (BX+16, BY))
+ANNO.append('<text x="%.1f" y="%.1f" text-anchor="start" font-size="8">CONT ON DRG 2</text>'
+            % (BX+48, BY+3))
 
 # ================= вывод =================
 pts=[]
 for g in (main,thin,dim):
     for d in g:
         pts += [(float(m.group(1)),float(m.group(2))) for m in re.finditer(r'(-?\d+\.?\d*) (-?\d+\.?\d*)', d)]
-xs=[p[0] for p in pts]; ys=[p[1] for p in pts]; pad=16
+# подписи выходят за обводку -- их координаты тоже идут в рамку, иначе
+# EL и CONT ON DRG 2 обрезаются по краю
+for t in ANNO:
+    m=re.search(r'x="(-?\d+\.?\d*)" y="(-?\d+\.?\d*)"', t)
+    if m: pts.append((float(m.group(1)), float(m.group(2))))
+xs=[p[0] for p in pts]; ys=[p[1] for p in pts]; pad=30
 vb=(min(xs)-pad, min(ys)-pad, max(xs)-min(xs)+2*pad, max(ys)-min(ys)+2*pad)
 svg=['<svg xmlns="http://www.w3.org/2000/svg" width="%.0f" height="%.0f" viewBox="%.1f %.1f %.1f %.1f" preserveAspectRatio="xMidYMid meet" role="presentation" aria-hidden="true" focusable="false">'%(vb[2],vb[3],*vb),
  '<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">',
  '<g stroke-width="2.4">']+['<path d="%s"/>'%d for d in main]+['</g>',
  '<g stroke-width="1.5" opacity=".85">']+['<path d="%s"/>'%d for d in thin]+['</g>',
- '<g stroke-width="1" opacity=".45">']+['<path d="%s"/>'%d for d in dim]+['</g>']
+ '<g stroke-width="1" opacity=".45">']+['<path d="%s"/>'%d for d in dim]+['</g>',
+ # Текст -- отдельным слоем: он не обводка, у него своя заливка и гарнитура.
+ # Montserrat через переменную сайта, потому что SVG вставляется в документ
+ # скриптом и наследует его шрифты.
+ '<g fill="currentColor" stroke="none" opacity=".6" letter-spacing="0.06em"'
+ ' font-family="var(--font-display), Montserrat, sans-serif">']+ANNO+['</g>']
 
 # ---------- движущиеся стрелки потока ----------
 # Шеврон едет по осевой линии. animateMotion с rotate="auto" разворачивает его
