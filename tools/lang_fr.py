@@ -2537,4 +2537,12 @@ S = {
         'Remplacement d’un ventilateur d’extraction sur une plateforme de procédé. Les gaines en place ne convenaient pas au nouvel appareil : nous les avons recoupées, fabriqué les pièces de transition...',
     'Some projects overview':
         'Aperçu de quelques chantiers',
+    '200+ specialists, and a schedule that does not wait':
+        '200+ spécialistes, et un planning qui n’attend pas',
+    '<b>200+</b><span>Specialists on the books</span>':
+        '<b>200+</b><span>Sp\u00e9cialistes inscrits</span>',
+    '<span class="value" data-count="200" data-suffix="+">200+</span> <span class="label">Certified specialists on the roster</span>':
+        '<span class="value" data-count="200" data-suffix="+">200+</span> <span class="label">Spécialistes certifiés dans le vivier</span>',
+    'We draw on a roster of 200+ certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'Nous nous appuyons sur un vivier de 200+ spécialistes certifiés. Les chantiers sont dotés à partir de ce vivier plutôt que sous-traités, et c’est ce qui donne son sens au système qualité.',
 }

@@ -2514,4 +2514,12 @@ S = {
         'Austausch eines Absaugventilators auf einer Prozessbühne. Die vorhandenen Luftkanäle passten nicht zum neuen Aggregat, deshalb haben wir sie zurückgeschnitten, die Übergangsstücke passgenau...',
     'Some projects overview':
         'Einige Projekte im Überblick',
+    '200+ specialists, and a schedule that does not wait':
+        '200+ Fachkräfte und ein Terminplan, der nicht wartet',
+    '<b>200+</b><span>Specialists on the books</span>':
+        '<b>200+</b><span>Fachkr\u00e4fte im Bestand</span>',
+    '<span class="value" data-count="200" data-suffix="+">200+</span> <span class="label">Certified specialists on the roster</span>':
+        '<span class="value" data-count="200" data-suffix="+">200+</span> <span class="label">Zertifizierte Fachkräfte in der Stammbelegschaft</span>',
+    'We draw on a roster of 200+ certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'Wir greifen auf einen Pool von 200+ zertifizierten Fachkräften zurück. Projekte werden aus diesem Bestand besetzt und nicht weitervergeben, und genau das hält das Qualitätssystem belastbar.',
 }
