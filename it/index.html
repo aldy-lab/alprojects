@@ -37,7 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=45670fa3">
+  <link rel="stylesheet" href="/css/style.min.css?v=d6711530">
 
   <script type="application/ld+json">
   {
@@ -127,11 +127,14 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <!-- The isometric drawing lives in drawing mode only. js/main.js fetches
-           assets/hero-isometric.svg and puts it here the first time the mode is
-           switched on: inline so it can take currentColor and animate its own
-           strokes, fetched so 140 pages do not each carry 7 KB of it. -->
-      <div class="hero-iso" data-src="/assets/hero-isometric.svg?v=42aacd34" aria-hidden="true"></div>
+      <!-- Temporarily the wind field instead of the pipe isometric. It is an
+           <img> rather than something the script fetches and inlines: this
+           drawing carries its own animation and its own reduced-motion switch,
+           so nothing has to be wired to it. -->
+      <div class="hero-iso" aria-hidden="true">
+        <img src="/assets/wind-turbine.svg?v=ef140877" alt="" width="1000" height="720"
+             loading="lazy" decoding="async">
+      </div>
       <span class="hero-grid" aria-hidden="true"></span>
 
       <!-- Drawing-sheet furniture from the brand artwork: outline circles,
@@ -290,35 +293,6 @@
     </section>
 
     <!-- ================= WHY CHOOSE ================= -->
-    <section class="why" id="numbers">
-      <div class="container">
-        <p class="eyebrow reveal">Numeri verificabili</p>
-        <h2 class="reveal">Ogni numero rimanda a un progetto, a un cliente o a un certificato</h2>
-
-        <div class="stats-grid">
-          <div class="stat-card reveal">
-            <span class="value" data-count="11000" data-suffix="+">11.000+</span> <span class="label">Ore su un solo intervento &mdash; terminale di carico, da settembre 2025 ad aprile 2026</span>
-          </div>
-          <div class="stats-photo reveal reveal-d1">
-            <img src="/assets/photo-nozzle-tie-in-900.webp"
-                 srcset="/assets/photo-nozzle-tie-in-600.webp 600w, /assets/photo-nozzle-tie-in-900.webp 900w"
-                 sizes="(max-width: 820px) 88vw, 42vw"
-                 alt="Molatura all’interno del mantello di un serbatoio, accanto a una flangia di bocchello imbullonata, con un secondo montatore al lavoro sull’apertura sopra"
-                 loading="lazy" decoding="async" width="900" height="660">
-            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          </div>
-          <div class="stat-card reveal reveal-d2">
-            <span class="value" data-count="12">12</span> <span class="label">Specialisti su quell’intervento, una sola squadra dall’inizio alla consegna</span>
-          </div>
-          <div class="stat-card reveal reveal-d1">
-            <span class="value" data-count="4">4</span> <span class="label">Progetti offshore ed eolici realizzati &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>
-          </div>
-          <div class="stat-card reveal reveal-d3">
-            <span class="value" data-count="3">3</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ================= ADVANTAGES ================= -->
     <section class="advantages">
@@ -859,6 +833,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.min.js?v=9b532f20"></script>
+  <script src="/js/main.min.js?v=a80fc54b"></script>
 </body>
 </html>

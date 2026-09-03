@@ -1456,18 +1456,6 @@ S = {
         '<span>Impianti industriali</span><span>Progetti energetici</span><span>Offshore</span><span>Strutture in acciaio</span>',
 
     # --- homepage facts block (evidence set) ---
-    'Numbers you can check':
-        'Numeri verificabili',
-    '<span class="value" data-count="11000" data-suffix="+">0+</span> <span class="label">Hours on one scope &mdash; fuel terminal, September 2025 to April 2026</span>':
-        '<span class="value" data-count="11000" data-suffix="+">0+</span> <span class="label">Ore su un solo intervento &mdash; terminale di carico, da settembre 2025 ad aprile 2026</span>',
-    '<span class="value" data-count="12">0</span> <span class="label">Specialists on that scope, one crew from start to handover</span>':
-        '<span class="value" data-count="12">0</span> <span class="label">Specialisti su quell’intervento, una sola squadra dall’inizio alla consegna</span>',
-    '<span class="value" data-count="4">0</span> <span class="label">Offshore and wind projects delivered &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>':
-        '<span class="value" data-count="4">0</span> <span class="label">Progetti offshore ed eolici realizzati &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>',
-    '<span class="value" data-count="3">0</span> <span class="label">ISO management systems, certified independently by DNV</span>':
-        '<span class="value" data-count="3">0</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>',
-    'Every figure points to a project, a client or a certificate':
-        'Ogni numero rimanda a un progetto, a un cliente o a un certificato',
 
     # --- This is ALPROJECTS (TZ part 6) ---
     'This is ALPROJECTS':
@@ -1486,8 +1474,8 @@ S = {
         'Personale certificato in cantiere e una prova indipendente di ciò che ha fatto.',
     'We take mechanical scopes and deliver them with our own supervision. We supply the qualified people a project is short of. And we inspect the result with people who did not do the work.':
         'Prendiamo in carico ambiti meccanici e li consegniamo con la nostra supervisione. Forniamo il personale qualificato che manca a un progetto. E ispezioniamo il risultato con persone che non hanno eseguito il lavoro.',
-    'Three hundred specialists, and a schedule that does not wait':
-        'Trecento specialisti e un programma che non aspetta',
+    '300+ specialists, and a schedule that does not wait':
+        '300+ specialisti e un programma che non aspetta',
     'Welders, pipe fitters, shipbuilders, mechanics, NDT inspectors and rope access technicians. Most carry a second trade, which is why one of our people often covers what usually takes two.':
         'Saldatori, tubisti, carpentieri navali, meccanici, ispettori CND e tecnici su fune. La maggior parte esercita un secondo mestiere: per questo una nostra persona copre spesso ciò che di norma ne richiede due.',
     'They travel. A crew that mobilises to Norway on Monday can be in Rostock the following month. That is the job, and everyone who joins us knows it before the first rotation.':
@@ -1624,8 +1612,6 @@ S = {
         '<span class="value" data-count="6">0</span><span class="label">Paesi in cui operiamo</span>',
     '<span class="value" data-count="4">0</span><span class="label">Sectors, one set of disciplines</span>':
         '<span class="value" data-count="4">0</span><span class="label">Settori, un unico insieme di discipline</span>',
-    '<span class="value" data-count="3">0</span><span class="label">ISO management systems, certified by DNV</span>':
-        '<span class="value" data-count="3">0</span><span class="label">Sistemi di gestione ISO, certificati da DNV</span>',
     'ALPROJECTS, UAB &middot; Šilutės pl. 2, LT-92298 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
         'ALPROJECTS, UAB &middot; Šilutės pl. 2, LT-92298 Klaipėda, Lituania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
     'Standing':
@@ -1704,14 +1690,6 @@ S = {
         '<span class="value" data-count="40" data-suffix="%">40%</span> <span class="label">Tempi di ispezione ridotti grazie a flussi di lavoro ottimizzati</span>',
     '<span class="value" data-count="1200" data-suffix="+">1,200+</span> <span class="label">Safe execution in complex and confined environments</span>':
         '<span class="value" data-count="1200" data-suffix="+">1.200+</span> <span class="label">Esecuzione sicura in ambienti complessi e confinati</span>',
-    '<span class="value" data-count="11000" data-suffix="+">11,000+</span> <span class="label">Hours on one scope &mdash; fuel terminal, September 2025 to April 2026</span>':
-        '<span class="value" data-count="11000" data-suffix="+">11.000+</span> <span class="label">Ore su un solo intervento &mdash; terminale di carico, da settembre 2025 ad aprile 2026</span>',
-    '<span class="value" data-count="12">12</span> <span class="label">Specialists on that scope, one crew from start to handover</span>':
-        '<span class="value" data-count="12">12</span> <span class="label">Specialisti su quell’intervento, una sola squadra dall’inizio alla consegna</span>',
-    '<span class="value" data-count="4">4</span> <span class="label">Offshore and wind projects delivered &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>':
-        '<span class="value" data-count="4">4</span> <span class="label">Progetti offshore ed eolici realizzati &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>',
-    '<span class="value" data-count="3">3</span> <span class="label">ISO management systems, certified independently by DNV</span>':
-        '<span class="value" data-count="3">3</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>',
     '03 &middot; Industrial Projects':
         '03 &middot; Progetti industriali',
     '<span class="num">03</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8593;</span>':
@@ -2147,8 +2125,8 @@ S = {
         'I programmi dei cantieri navali si spostano e la penale ricade sul subappaltatore. Lo mettiamo in conto e ci assumiamo le tubazioni di sala macchine, le carpenterie e l’allestimento come lotti completi.',
     'Head office in Klaipėda, Lithuania, with project bases in <strong>six countries</strong>, serving offshore, shipbuilding and industry across Northern and Western Europe.':
         'Sede centrale a Klaipėda, in Lituania, con basi di progetto in <strong>sei paesi</strong>, al servizio di offshore, cantieristica navale e industria nell’Europa settentrionale e occidentale.',
-    'We draw on a roster of more than 300 certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
-        'Contiamo su un organico di oltre 300 specialisti certificati. I progetti vengono coperti attingendo a questo organico anziché essere subappaltati, ed è questo a rendere significativo il sistema qualità.',
+    'We draw on a roster of 300+ certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'Contiamo su un organico di 300+ specialisti certificati. I progetti vengono coperti attingendo a questo organico anziché essere subappaltati, ed è questo a rendere significativo il sistema qualità.',
     'Lithuania &middot; Norway &middot; United Kingdom &middot; Netherlands &middot; Germany &middot; Belgium &mdash; offshore, shipbuilding and industry across Northern and Western Europe.':
         'Lituania &middot; Norvegia &middot; Regno Unito &middot; Paesi Bassi &middot; Germania &middot; Belgio &mdash; offshore, cantieristica navale e industria nell’Europa settentrionale e occidentale.',
     'Scaffolding costs more in downtime than in steel. IRATA-certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site reach the same place on rope, inspect it and repair it while the plant keeps running.':
@@ -2209,8 +2187,6 @@ S = {
         'Tubazioni di collegamento e stazione valvole in un parco serbatoi, con valvole a saracinesca e a globo poste su supporti e la linea collegata al pipe rack esistente',
 
     # ---- stats photo, nozzle tie-in, 29 Aug 2026 ----
-    'Grinding inside a tank shell beside a bolted nozzle flange, with a second fitter working at the opening above':
-        'Molatura all’interno del mantello di un serbatoio, accanto a una flangia di bocchello imbullonata, con un secondo montatore al lavoro sull’apertura sopra',
 
     # ---- hero foot, 29 Aug 2026 ----
     '<span>Klaip&#279;da, Lithuania</span> <span class="hero-scroll">Scroll<i></i></span>':
@@ -2533,4 +2509,6 @@ S = {
         '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Sostituzione del ventilatore e adattamento dei canali</span> <span class="arr" aria-hidden="true">&#8593;</span>',
     'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both...':
         'Sostituzione di un ventilatore di estrazione su una piattaforma di processo. I canali esistenti non erano adatti alla nuova macchina, perciò li abbiamo ritagliati, costruito i pezzi di transizione...',
+    'Some projects overview':
+        'Alcuni progetti in sintesi',
 }

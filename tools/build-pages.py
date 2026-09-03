@@ -415,7 +415,7 @@ CERTIFICATES = [
     "IRATA L3", "VCA / SCC", "NDT VT", "NDT PT/MT", "NDT UT", "GWO",
     "Medical certificate",
 ]
-ROTATIONS = ["4 / 2", "3 / 3", "2 / 2", "6 / 2", "Continuous", "Local, no rotation"]
+ROTATIONS = ["8 / 2", "6 / 2", "4 / 2", "Continuous", "Local, no rotation"]
 WORK_COUNTRIES = ["Norway", "Germany", "Netherlands", "United Kingdom",
                   "Lithuania", "Denmark", "Belgium", "Poland"]
 EXPERIENCE = ["Less than 2 years", "2 to 5 years", "5 to 10 years", "More than 10 years"]
@@ -581,8 +581,8 @@ CAREERS = """
             <div class="field field-wide">
               <span class="label" id="certLabel">Certificates you hold
                 <span class="opt">(optional, select all that apply)</span></span>
-              <div class="chips chips-sm" id="certChips" role="group" aria-labelledby="certLabel">
-""" + chips(CERTIFICATES, "data-cert", "chip chip-sm") + """
+              <div class="chips" id="certChips" role="group" aria-labelledby="certLabel">
+""" + chips(CERTIFICATES, "data-cert", "chip") + """
               </div>
               <p class="hint">Not on the list? Add it in the notes field below.</p>
             </div>
@@ -597,15 +597,15 @@ CAREERS = """
             <div class="field">
               <span class="label" id="rotLabel">Preferred rotation
                 <span class="opt">(optional)</span></span>
-              <div class="chips chips-sm" id="rotChips" role="group" aria-labelledby="rotLabel">
-""" + chips(ROTATIONS, "data-rotation", "chip chip-sm") + """
+              <div class="chips" id="rotChips" role="group" aria-labelledby="rotLabel">
+""" + chips(ROTATIONS, "data-rotation", "chip") + """
               </div>
             </div>
             <div class="field field-wide">
               <span class="label" id="ctryLabel">Countries you can work in
                 <span class="opt">(optional)</span></span>
-              <div class="chips chips-sm" id="ctryChips" role="group" aria-labelledby="ctryLabel">
-""" + chips(WORK_COUNTRIES, "data-country", "chip chip-sm") + """
+              <div class="chips" id="ctryChips" role="group" aria-labelledby="ctryLabel">
+""" + chips(WORK_COUNTRIES, "data-country", "chip") + """
               </div>
             </div>
             <div class="field field-wide">
@@ -913,8 +913,6 @@ COMPANY = """
         </div>
       </div>
     </section>
-""" + drawing_band("wind-turbine", src="/assets/wind-turbine.svg",
-                   dims=(1000, 720)) + """
 
     <!-- ================= VISION / MISSION ================= -->
     <div class="container">
@@ -983,7 +981,7 @@ COMPANY = """
       <p class="eyebrow">Our people</p>
       <div class="co-people">
         <div class="reveal">
-          <h2 class="sub-head">Three hundred specialists, and a schedule that does not wait</h2>
+          <h2 class="sub-head">300+ specialists, and a schedule that does not wait</h2>
           <p class="co-body">Welders, pipe fitters, shipbuilders, mechanics, NDT inspectors and
           rope access technicians. Most carry a second trade, which is why one of our people
           often covers what usually takes two.</p>
@@ -1146,7 +1144,7 @@ COMPANY = """
           <p class="co-body">Head office in Klaipėda, Lithuania, with project bases in
           <strong>six countries</strong>, serving offshore, shipbuilding
           and industry across Northern and Western Europe.</p>
-          <p class="co-note">We draw on a roster of more than 300 certified specialists. Projects are resourced from that
+          <p class="co-note">We draw on a roster of 300+ certified specialists. Projects are resourced from that
           roster rather than subcontracted on, which is what keeps the quality system
           meaningful.</p>
         </div>
@@ -2239,84 +2237,13 @@ PROJECTS = """
         <span class="sheet-plus" style="left:95%; top:52%"></span>
       </span>
       <div class="container">
-        <h2 class="sub-head">Projects</h2>
+        <h2 class="sub-head">Some projects overview</h2>
         <p class="sub-lead">""" + cases_sub_lead() + """</p>
         <div class="case-grid">
 """ + cases_html() + """
         </div>
       </div>
     </section>
-
-    <!-- The four sector paragraphs sit below the photographed cases, not
-         above them: a visitor who clicked "See our projects" scrolled
-         926px of prose before the first photograph. The reading order
-         is unchanged for a screen reader -- this is document order, so
-         it moves for everyone. -->
-    <div class="container prose prose-after-cases">
-      <h2>Shipbuilding</h2>
-      <p>Piping and mechanical installation on vessels under construction — seawater,
-      bilge and fuel systems routed through compartments that are already full of
-      machinery, structure and other trades. Prefabrication and installation are handled
-      together, because a spool built to drawing but not to the as-built compartment is
-      scrap.</p>
-
-      <h2>Offshore</h2>
-      <p>Inspection, access and mechanical works on offshore facilities, where mobilising
-      a team is expensive and a shutdown is more expensive still. Rope access and NDT
-      carry most of this work; visual inspection plays a central role in confirming the
-      safety and operational integrity of oil, gas and wind energy assets.</p>
-
-      <h2>Industrial projects</h2>
-      <p>Plant installation, process piping and mechanical packages. A recent example is a
-      transformer mechanical package — stainless steel piping and cooling systems &mdash;
-      <a href="/news/transformer-mechanical-package.html">delivered across five European
-      countries</a>, where consistency across borders was as much a documentation problem
-      as a fabrication one.</p>
-
-      <h2>Renewable and energy projects</h2>
-      <p>Fuel handling infrastructure and wind energy support. Our
-      <a href="/news/fuel-loading-terminal-completed.html">fuel loading terminal scope</a>
-      ran from September 2025 to April 2026 with 12 specialists and over 11,000 hours
-      on site — a useful figure for anyone planning work of that size.</p>
-
-    </div>
-
-    <div class="container">
-      <h2 class="sub-head">Where we have delivered</h2>
-      <p class="sub-lead">Onshore project experience.</p>
-      <div class="on-grid">
-        <div class="on-col">
-          <p class="on-country">Germany</p>
-          <p class="on-tag">3 locations</p>
-          <div class="on-item"><p class="on-site">Rostock</p><p class="on-scope">Cruise &amp; river vessels · piping systems · pressure testing · structural welding</p></div>
-          <div class="on-item"><p class="on-site">Frankfurt</p><p class="on-scope">Railway bridges · steel fitting · structural repairs · pipe welding, 5G position</p></div>
-          <div class="on-item"><p class="on-site">Hamburg</p><p class="on-scope">Industrial maintenance · equipment &amp; hydro-turbine repairs</p></div>
-        </div>
-        <div class="on-col">
-          <p class="on-country">Netherlands</p>
-          <p class="on-tag">Offshore / North Sea</p>
-          <div class="on-item"><p class="on-site">HKZ Alpha &amp; Beta — Petrofac</p><p class="on-scope">Offshore commissioning &amp; installation support</p></div>
-          <div class="on-item"><p class="on-site">Thermo Fisher</p><p class="on-scope">Gas pipeline fabrication &amp; installation</p></div>
-          <div class="on-item"><p class="on-site">Seafox</p><p class="on-scope">Jack-up vessel maintenance &amp; repair works</p></div>
-        </div>
-        <div class="on-col">
-          <p class="on-country">United Kingdom</p>
-          <p class="on-tag">1 location</p>
-          <div class="on-item"><p class="on-site">Newcastle</p><p class="on-scope">Jack-up structures · steel erection · welding · offshore support</p></div>
-        </div>
-        <div class="on-col">
-          <p class="on-country">Lithuania</p>
-          <p class="on-tag">Headquarters</p>
-          <div class="on-item"><p class="on-site">BLRT Group · Klaipėda</p><p class="on-scope">Offshore reel manufacturing · ship repair · piping systems · industrial maintenance</p></div>
-        </div>
-        <div class="on-col">
-          <p class="on-country">Norway</p>
-          <p class="on-tag">2 locations</p>
-          <div class="on-item"><p class="on-site">Ålesund</p><p class="on-scope">Refrigeration systems · industrial modifications</p></div>
-          <div class="on-item"><p class="on-site">Orkanger</p><p class="on-scope">Spool base &amp; offshore platforms · pipeline welding · fabrication · offshore support</p></div>
-        </div>
-      </div>
-    </div>
 
     <div class="container">
       <h2 class="sub-head">From site</h2>
