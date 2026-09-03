@@ -2511,4 +2511,12 @@ S = {
         'Sostituzione di un ventilatore di estrazione su una piattaforma di processo. I canali esistenti non erano adatti alla nuova macchina, perciò li abbiamo ritagliati, costruito i pezzi di transizione...',
     'Some projects overview':
         'Alcuni progetti in sintesi',
+    '200+ specialists, and a schedule that does not wait':
+        '200+ specialisti e un programma che non aspetta',
+    '<b>200+</b><span>Specialists on the books</span>':
+        '<b>200+</b><span>Specialisti in organico</span>',
+    '<span class="value" data-count="200" data-suffix="+">200+</span> <span class="label">Certified specialists on the roster</span>':
+        '<span class="value" data-count="200" data-suffix="+">200+</span> <span class="label">Specialisti certificati in organico</span>',
+    'We draw on a roster of 200+ certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'Contiamo su un organico di 200+ specialisti certificati. I progetti vengono coperti attingendo a questo organico anziché essere subappaltati, ed è questo a rendere significativo il sistema qualità.',
 }
