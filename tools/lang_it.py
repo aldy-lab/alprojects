@@ -1456,18 +1456,6 @@ S = {
         '<span>Impianti industriali</span><span>Progetti energetici</span><span>Offshore</span><span>Strutture in acciaio</span>',
 
     # --- homepage facts block (evidence set) ---
-    'Numbers you can check':
-        'Numeri verificabili',
-    '<span class="value" data-count="11000" data-suffix="+">0+</span> <span class="label">Hours on one scope &mdash; fuel terminal, September 2025 to April 2026</span>':
-        '<span class="value" data-count="11000" data-suffix="+">0+</span> <span class="label">Ore su un solo intervento &mdash; terminale di carico, da settembre 2025 ad aprile 2026</span>',
-    '<span class="value" data-count="12">0</span> <span class="label">Specialists on that scope, one crew from start to handover</span>':
-        '<span class="value" data-count="12">0</span> <span class="label">Specialisti su quell’intervento, una sola squadra dall’inizio alla consegna</span>',
-    '<span class="value" data-count="4">0</span> <span class="label">Offshore and wind projects delivered &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>':
-        '<span class="value" data-count="4">0</span> <span class="label">Progetti offshore ed eolici realizzati &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>',
-    '<span class="value" data-count="3">0</span> <span class="label">ISO management systems, certified independently by DNV</span>':
-        '<span class="value" data-count="3">0</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>',
-    'Every figure points to a project, a client or a certificate':
-        'Ogni numero rimanda a un progetto, a un cliente o a un certificato',
 
     # --- This is ALPROJECTS (TZ part 6) ---
     'This is ALPROJECTS':
@@ -1624,8 +1612,6 @@ S = {
         '<span class="value" data-count="6">0</span><span class="label">Paesi in cui operiamo</span>',
     '<span class="value" data-count="4">0</span><span class="label">Sectors, one set of disciplines</span>':
         '<span class="value" data-count="4">0</span><span class="label">Settori, un unico insieme di discipline</span>',
-    '<span class="value" data-count="3">0</span><span class="label">ISO management systems, certified by DNV</span>':
-        '<span class="value" data-count="3">0</span><span class="label">Sistemi di gestione ISO, certificati da DNV</span>',
     'ALPROJECTS, UAB &middot; Šilutės pl. 2, LT-92298 Klaipėda, Lithuania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>':
         'ALPROJECTS, UAB &middot; Šilutės pl. 2, LT-92298 Klaipėda, Lituania<br> <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> &middot; <a href="tel:+37063663744">+370 636 63 744</a>',
     'Standing':
@@ -1704,14 +1690,6 @@ S = {
         '<span class="value" data-count="40" data-suffix="%">40%</span> <span class="label">Tempi di ispezione ridotti grazie a flussi di lavoro ottimizzati</span>',
     '<span class="value" data-count="1200" data-suffix="+">1,200+</span> <span class="label">Safe execution in complex and confined environments</span>':
         '<span class="value" data-count="1200" data-suffix="+">1.200+</span> <span class="label">Esecuzione sicura in ambienti complessi e confinati</span>',
-    '<span class="value" data-count="11000" data-suffix="+">11,000+</span> <span class="label">Hours on one scope &mdash; fuel terminal, September 2025 to April 2026</span>':
-        '<span class="value" data-count="11000" data-suffix="+">11.000+</span> <span class="label">Ore su un solo intervento &mdash; terminale di carico, da settembre 2025 ad aprile 2026</span>',
-    '<span class="value" data-count="12">12</span> <span class="label">Specialists on that scope, one crew from start to handover</span>':
-        '<span class="value" data-count="12">12</span> <span class="label">Specialisti su quell’intervento, una sola squadra dall’inizio alla consegna</span>',
-    '<span class="value" data-count="4">4</span> <span class="label">Offshore and wind projects delivered &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>':
-        '<span class="value" data-count="4">4</span> <span class="label">Progetti offshore ed eolici realizzati &mdash; SylWin Alpha, Thor, Ostwind, Hywind Tampen</span>',
-    '<span class="value" data-count="3">3</span> <span class="label">ISO management systems, certified independently by DNV</span>':
-        '<span class="value" data-count="3">3</span> <span class="label">Sistemi di gestione ISO, certificati in modo indipendente da DNV</span>',
     '03 &middot; Industrial Projects':
         '03 &middot; Progetti industriali',
     '<span class="num">03</span><span>01 Aug 2026 &middot; Industrial Projects</span><span class="arr">&#8593;</span>':
@@ -2209,8 +2187,6 @@ S = {
         'Tubazioni di collegamento e stazione valvole in un parco serbatoi, con valvole a saracinesca e a globo poste su supporti e la linea collegata al pipe rack esistente',
 
     # ---- stats photo, nozzle tie-in, 29 Aug 2026 ----
-    'Grinding inside a tank shell beside a bolted nozzle flange, with a second fitter working at the opening above':
-        'Molatura all’interno del mantello di un serbatoio, accanto a una flangia di bocchello imbullonata, con un secondo montatore al lavoro sull’apertura sopra',
 
     # ---- hero foot, 29 Aug 2026 ----
     '<span>Klaip&#279;da, Lithuania</span> <span class="hero-scroll">Scroll<i></i></span>':
