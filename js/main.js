@@ -567,6 +567,9 @@
     if (!box) return;
     if (isoLoaded) { drawIso(box); return; }
     isoLoaded = true;
+    /* Markup wins: when the container already holds a drawing, it is a
+       self-contained one and there is nothing to fetch or wire up. */
+    if (box.firstElementChild) return;
     fetch(box.getAttribute("data-src") || "/assets/hero-isometric.svg")
       .then(function (r) { return r.ok ? r.text() : ""; })
       .then(function (svg) {

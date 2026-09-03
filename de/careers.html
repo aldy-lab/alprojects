@@ -31,7 +31,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=45670fa3">
+  <link rel="stylesheet" href="/css/style.min.css?v=d6711530">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -284,19 +284,19 @@
             </div>
             <div class="field field-wide">
               <span class="label" id="certLabel">Ihre Zertifikate <span class="opt">(optional, alles Zutreffende auswählen)</span></span>
-              <div class="chips chips-sm" id="certChips" role="group" aria-labelledby="certLabel">
-            <button type="button" class="chip chip-sm" data-cert="EN ISO 9606 (welder)" aria-pressed="false">EN ISO 9606 (Schweißer)</button>
-            <button type="button" class="chip chip-sm" data-cert="TIG 141" aria-pressed="false">TIG 141</button>
-            <button type="button" class="chip chip-sm" data-cert="MIG/MAG 131/135" aria-pressed="false">MIG/MAG 131/135</button>
-            <button type="button" class="chip chip-sm" data-cert="IRATA L1" aria-pressed="false">IRATA L1</button>
-            <button type="button" class="chip chip-sm" data-cert="IRATA L2" aria-pressed="false">IRATA L2</button>
-            <button type="button" class="chip chip-sm" data-cert="IRATA L3" aria-pressed="false">IRATA L3</button>
-            <button type="button" class="chip chip-sm" data-cert="VCA / SCC" aria-pressed="false">VCA / SCC</button>
-            <button type="button" class="chip chip-sm" data-cert="NDT VT" aria-pressed="false">ZfP VT</button>
-            <button type="button" class="chip chip-sm" data-cert="NDT PT/MT" aria-pressed="false">ZfP PT/MT</button>
-            <button type="button" class="chip chip-sm" data-cert="NDT UT" aria-pressed="false">ZfP UT</button>
-            <button type="button" class="chip chip-sm" data-cert="GWO" aria-pressed="false">GWO</button>
-            <button type="button" class="chip chip-sm" data-cert="Medical certificate" aria-pressed="false">Ärztliche Bescheinigung</button>
+              <div class="chips" id="certChips" role="group" aria-labelledby="certLabel">
+            <button type="button" class="chip" data-cert="EN ISO 9606 (welder)" aria-pressed="false">EN ISO 9606 (Schweißer)</button>
+            <button type="button" class="chip" data-cert="TIG 141" aria-pressed="false">TIG 141</button>
+            <button type="button" class="chip" data-cert="MIG/MAG 131/135" aria-pressed="false">MIG/MAG 131/135</button>
+            <button type="button" class="chip" data-cert="IRATA L1" aria-pressed="false">IRATA L1</button>
+            <button type="button" class="chip" data-cert="IRATA L2" aria-pressed="false">IRATA L2</button>
+            <button type="button" class="chip" data-cert="IRATA L3" aria-pressed="false">IRATA L3</button>
+            <button type="button" class="chip" data-cert="VCA / SCC" aria-pressed="false">VCA / SCC</button>
+            <button type="button" class="chip" data-cert="NDT VT" aria-pressed="false">ZfP VT</button>
+            <button type="button" class="chip" data-cert="NDT PT/MT" aria-pressed="false">ZfP PT/MT</button>
+            <button type="button" class="chip" data-cert="NDT UT" aria-pressed="false">ZfP UT</button>
+            <button type="button" class="chip" data-cert="GWO" aria-pressed="false">GWO</button>
+            <button type="button" class="chip" data-cert="Medical certificate" aria-pressed="false">Ärztliche Bescheinigung</button>
               </div>
               <p class="hint">Nicht in der Liste? Tragen Sie es unten im Bemerkungsfeld ein.</p>
             </div>
@@ -310,26 +310,25 @@
             </div>
             <div class="field">
               <span class="label" id="rotLabel">Gewünschte Rotation <span class="opt">(optional)</span></span>
-              <div class="chips chips-sm" id="rotChips" role="group" aria-labelledby="rotLabel">
-            <button type="button" class="chip chip-sm" data-rotation="4 / 2" aria-pressed="false">4 / 2</button>
-            <button type="button" class="chip chip-sm" data-rotation="3 / 3" aria-pressed="false">3 / 3</button>
-            <button type="button" class="chip chip-sm" data-rotation="2 / 2" aria-pressed="false">2 / 2</button>
-            <button type="button" class="chip chip-sm" data-rotation="6 / 2" aria-pressed="false">6 / 2</button>
-            <button type="button" class="chip chip-sm" data-rotation="Continuous" aria-pressed="false">Durchgehend</button>
-            <button type="button" class="chip chip-sm" data-rotation="Local, no rotation" aria-pressed="false">Lokal, keine Rotation</button>
+              <div class="chips" id="rotChips" role="group" aria-labelledby="rotLabel">
+            <button type="button" class="chip" data-rotation="8 / 2" aria-pressed="false">8 / 2</button>
+            <button type="button" class="chip" data-rotation="6 / 2" aria-pressed="false">6 / 2</button>
+            <button type="button" class="chip" data-rotation="4 / 2" aria-pressed="false">4 / 2</button>
+            <button type="button" class="chip" data-rotation="Continuous" aria-pressed="false">Durchgehend</button>
+            <button type="button" class="chip" data-rotation="Local, no rotation" aria-pressed="false">Lokal, keine Rotation</button>
               </div>
             </div>
             <div class="field field-wide">
               <span class="label" id="ctryLabel">Länder, in denen Sie arbeiten können <span class="opt">(optional)</span></span>
-              <div class="chips chips-sm" id="ctryChips" role="group" aria-labelledby="ctryLabel">
-            <button type="button" class="chip chip-sm" data-country="Norway" aria-pressed="false">Norwegen</button>
-            <button type="button" class="chip chip-sm" data-country="Germany" aria-pressed="false">Deutschland</button>
-            <button type="button" class="chip chip-sm" data-country="Netherlands" aria-pressed="false">Niederlande</button>
-            <button type="button" class="chip chip-sm" data-country="United Kingdom" aria-pressed="false">Vereinigtes Königreich</button>
-            <button type="button" class="chip chip-sm" data-country="Lithuania" aria-pressed="false">Litauen</button>
-            <button type="button" class="chip chip-sm" data-country="Denmark" aria-pressed="false">Dänemark</button>
-            <button type="button" class="chip chip-sm" data-country="Belgium" aria-pressed="false">Belgien</button>
-            <button type="button" class="chip chip-sm" data-country="Poland" aria-pressed="false">Polen</button>
+              <div class="chips" id="ctryChips" role="group" aria-labelledby="ctryLabel">
+            <button type="button" class="chip" data-country="Norway" aria-pressed="false">Norwegen</button>
+            <button type="button" class="chip" data-country="Germany" aria-pressed="false">Deutschland</button>
+            <button type="button" class="chip" data-country="Netherlands" aria-pressed="false">Niederlande</button>
+            <button type="button" class="chip" data-country="United Kingdom" aria-pressed="false">Vereinigtes Königreich</button>
+            <button type="button" class="chip" data-country="Lithuania" aria-pressed="false">Litauen</button>
+            <button type="button" class="chip" data-country="Denmark" aria-pressed="false">Dänemark</button>
+            <button type="button" class="chip" data-country="Belgium" aria-pressed="false">Belgien</button>
+            <button type="button" class="chip" data-country="Poland" aria-pressed="false">Polen</button>
               </div>
             </div>
             <div class="field field-wide">
@@ -529,6 +528,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.min.js?v=9b532f20"></script>
+  <script src="/js/main.min.js?v=a80fc54b"></script>
 </body>
 </html>

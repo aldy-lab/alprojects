@@ -1477,8 +1477,8 @@ S = {
         'Zertifizierte Fachkräfte vor Ort und ein unabhängiger Nachweis ihrer Arbeit.',
     'We take mechanical scopes and deliver them with our own supervision. We supply the qualified people a project is short of. And we inspect the result with people who did not do the work.':
         'Wir übernehmen mechanische Gewerke und führen sie mit eigener Bauleitung aus. Wir stellen die Fachkräfte, die einem Projekt fehlen. Und wir prüfen das Ergebnis mit Leuten, die die Arbeit nicht ausgeführt haben.',
-    'Three hundred specialists, and a schedule that does not wait':
-        'Dreihundert Fachkräfte und ein Terminplan, der nicht wartet',
+    '300+ specialists, and a schedule that does not wait':
+        '300+ Fachkräfte und ein Terminplan, der nicht wartet',
     'Welders, pipe fitters, shipbuilders, mechanics, NDT inspectors and rope access technicians. Most carry a second trade, which is why one of our people often covers what usually takes two.':
         'Schweißer, Rohrleitungsmonteure, Schiffbauer, Mechaniker, ZfP-Prüfer und Seilzugangstechniker. Die meisten beherrschen ein zweites Gewerk, weshalb einer von uns oft abdeckt, wofür sonst zwei nötig sind.',
     'They travel. A crew that mobilises to Norway on Monday can be in Rostock the following month. That is the job, and everyone who joins us knows it before the first rotation.':
@@ -1624,7 +1624,7 @@ S = {
     'Often both, on the same site. We specialise in piping prefabrication and installation, steel fabrication and mechanical installation, and we provide certified technical personnel to projects across Europe.':
         'Oft beides, auf derselben Baustelle. Wir sind spezialisiert auf Rohrvorfertigung und -montage, Stahlbau und Maschinenmontage, und wir stellen Projekten in ganz Europa zertifiziertes technisches Personal.',
     'The company employs between 51 and 200 people directly and draws on a roster of more than 300 certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
-        'Das Unternehmen beschäftigt direkt zwischen 51 und 200 Menschen und greift auf einen Pool von mehr als 300 zertifizierten Fachkräften zurück. Projekte werden aus diesem Pool besetzt statt weitervergeben, und genau das hält das Qualitätssystem sinnvoll.',
+        'Das Unternehmen beschäftigt direkt zwischen 51 und 200 Menschen und greift auf einen Pool von 300+ zertifizierten Fachkräften zurück. Projekte werden aus diesem Pool besetzt statt weitervergeben, und genau das hält das Qualitätssystem sinnvoll.',
     'In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through &mdash; a different question from whether the welding is any good, and worth answering separately.':
         'In der Schwerindustrie laufen Projekte über Monate und Verpflichtungen über Jahre. Ein unabhängiger Nachweis finanzieller Stabilität ist der Nachweis, dass wir da sein werden, um die Arbeit zu Ende zu bringen &mdash; eine andere Frage als die, ob die Schweißnähte gut sind, und es wert, getrennt beantwortet zu werden.',
     'More on the award':
@@ -2128,8 +2128,8 @@ S = {
         'Werftterminen verschieben sich, und die Vertragsstrafe trifft den Nachunternehmer. Wir planen das ein und übernehmen Maschinenraumrohrleitungen, Stahlbau und Ausrüstung als vollständige Lose.',
     'Head office in Klaipėda, Lithuania, with project bases in <strong>six countries</strong>, serving offshore, shipbuilding and industry across Northern and Western Europe.':
         'Hauptsitz in Klaipėda, Litauen, mit Projektstützpunkten in <strong>sechs Ländern</strong>, für Offshore, Schiffbau und Industrie in Nord- und Westeuropa.',
-    'We draw on a roster of more than 300 certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
-        'Wir greifen auf einen Pool von mehr als 300 zertifizierten Fachkräften zurück. Projekte werden aus diesem Bestand besetzt und nicht weitervergeben, und genau das hält das Qualitätssystem belastbar.',
+    'We draw on a roster of 300+ certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'Wir greifen auf einen Pool von 300+ zertifizierten Fachkräften zurück. Projekte werden aus diesem Bestand besetzt und nicht weitervergeben, und genau das hält das Qualitätssystem belastbar.',
     'Lithuania &middot; Norway &middot; United Kingdom &middot; Netherlands &middot; Germany &middot; Belgium &mdash; offshore, shipbuilding and industry across Northern and Western Europe.':
         'Litauen &middot; Norwegen &middot; Vereinigtes Königreich &middot; Niederlande &middot; Deutschland &middot; Belgien &mdash; Offshore, Schiffbau und Industrie in Nord- und Westeuropa.',
     'Scaffolding costs more in downtime than in steel. IRATA-certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site reach the same place on rope, inspect it and repair it while the plant keeps running.':
@@ -2512,4 +2512,6 @@ S = {
         '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Ventilatortausch und Anpassung der Luftkanäle</span> <span class="arr" aria-hidden="true">&#8593;</span>',
     'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both...':
         'Austausch eines Absaugventilators auf einer Prozessbühne. Die vorhandenen Luftkanäle passten nicht zum neuen Aggregat, deshalb haben wir sie zurückgeschnitten, die Übergangsstücke passgenau...',
+    'Some projects overview':
+        'Einige Projekte im Überblick',
 }

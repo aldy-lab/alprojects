@@ -1474,8 +1474,8 @@ S = {
         'Personale certificato in cantiere e una prova indipendente di ciò che ha fatto.',
     'We take mechanical scopes and deliver them with our own supervision. We supply the qualified people a project is short of. And we inspect the result with people who did not do the work.':
         'Prendiamo in carico ambiti meccanici e li consegniamo con la nostra supervisione. Forniamo il personale qualificato che manca a un progetto. E ispezioniamo il risultato con persone che non hanno eseguito il lavoro.',
-    'Three hundred specialists, and a schedule that does not wait':
-        'Trecento specialisti e un programma che non aspetta',
+    '300+ specialists, and a schedule that does not wait':
+        '300+ specialisti e un programma che non aspetta',
     'Welders, pipe fitters, shipbuilders, mechanics, NDT inspectors and rope access technicians. Most carry a second trade, which is why one of our people often covers what usually takes two.':
         'Saldatori, tubisti, carpentieri navali, meccanici, ispettori CND e tecnici su fune. La maggior parte esercita un secondo mestiere: per questo una nostra persona copre spesso ciò che di norma ne richiede due.',
     'They travel. A crew that mobilises to Norway on Monday can be in Rostock the following month. That is the job, and everyone who joins us knows it before the first rotation.':
@@ -2125,8 +2125,8 @@ S = {
         'I programmi dei cantieri navali si spostano e la penale ricade sul subappaltatore. Lo mettiamo in conto e ci assumiamo le tubazioni di sala macchine, le carpenterie e l’allestimento come lotti completi.',
     'Head office in Klaipėda, Lithuania, with project bases in <strong>six countries</strong>, serving offshore, shipbuilding and industry across Northern and Western Europe.':
         'Sede centrale a Klaipėda, in Lituania, con basi di progetto in <strong>sei paesi</strong>, al servizio di offshore, cantieristica navale e industria nell’Europa settentrionale e occidentale.',
-    'We draw on a roster of more than 300 certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
-        'Contiamo su un organico di oltre 300 specialisti certificati. I progetti vengono coperti attingendo a questo organico anziché essere subappaltati, ed è questo a rendere significativo il sistema qualità.',
+    'We draw on a roster of 300+ certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'Contiamo su un organico di 300+ specialisti certificati. I progetti vengono coperti attingendo a questo organico anziché essere subappaltati, ed è questo a rendere significativo il sistema qualità.',
     'Lithuania &middot; Norway &middot; United Kingdom &middot; Netherlands &middot; Germany &middot; Belgium &mdash; offshore, shipbuilding and industry across Northern and Western Europe.':
         'Lituania &middot; Norvegia &middot; Regno Unito &middot; Paesi Bassi &middot; Germania &middot; Belgio &mdash; offshore, cantieristica navale e industria nell’Europa settentrionale e occidentale.',
     'Scaffolding costs more in downtime than in steel. IRATA-certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site reach the same place on rope, inspect it and repair it while the plant keeps running.':
@@ -2509,4 +2509,6 @@ S = {
         '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Sostituzione del ventilatore e adattamento dei canali</span> <span class="arr" aria-hidden="true">&#8593;</span>',
     'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both...':
         'Sostituzione di un ventilatore di estrazione su una piattaforma di processo. I canali esistenti non erano adatti alla nuova macchina, perciò li abbiamo ritagliati, costruito i pezzi di transizione...',
+    'Some projects overview':
+        'Alcuni progetti in sintesi',
 }

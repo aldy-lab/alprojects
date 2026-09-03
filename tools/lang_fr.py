@@ -1385,7 +1385,7 @@ S = {
     '<strong>What the eye cannot pick up.</strong> Clean the weld, apply the penetrant, let the developer draw it back out. Surface cracks and porosity that nobody would catch by eye show up in red, and anything outside the limits is repaired on the spot.':
         '<strong>Ce que l’œil ne voit pas.</strong> Nettoyer la soudure, appliquer le pénétrant, laisser le révélateur le faire ressortir. Les fissures de surface et les porosités que personne ne repérerait à l’œil apparaissent en rouge, et tout ce qui sort des limites est repris sur place.',
     'The company employs between 51 and 200 people directly and draws on a roster of more than 300 certified specialists across Europe. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
-        'L’entreprise emploie directement entre 51 et 200 personnes et s’appuie sur un vivier de plus de 300 spécialistes certifiés en Europe. Les projets sont dotés à partir de ce vivier plutôt que sous-traités : c’est ce qui donne sa portée réelle au système qualité.',
+        'L’entreprise emploie directement entre 51 et 200 personnes et s’appuie sur un vivier de 300+ spécialistes certifiés en Europe. Les projets sont dotés à partir de ce vivier plutôt que sous-traités : c’est ce qui donne sa portée réelle au système qualité.',
     'Execution of 3D laser scanning to capture precise as-built geometry of structures and piping systems. Point cloud data supports dimensional control, clash detection and retrofit engineering. Improves accuracy and reduces rework during installation and fabrication.':
         'Relevés par scan laser 3D pour saisir la géométrie exacte des structures et réseaux de tuyauterie existants. Le nuage de points alimente le contrôle dimensionnel, la détection de collisions et les études de rénovation. Il améliore la précision et réduit les reprises en fabrication comme au montage.',
     'A weld is only as good as the paperwork behind it. We weld structural steel and piping systems in TIG, MIG and semi-automatic processes, under an ISO 3834 quality system. The welders hold current qualifications and the procedure is approved before the first arc is struck.':
@@ -1502,8 +1502,8 @@ S = {
         'Du personnel certifié sur site, et une preuve indépendante de son travail.',
     'We take mechanical scopes and deliver them with our own supervision. We supply the qualified people a project is short of. And we inspect the result with people who did not do the work.':
         'Nous prenons des périmètres mécaniques et les livrons avec notre propre encadrement. Nous fournissons le personnel qualifié qui manque à un projet. Et nous contrôlons le résultat avec des personnes qui n’ont pas exécuté les travaux.',
-    'Three hundred specialists, and a schedule that does not wait':
-        'Trois cents spécialistes, et un planning qui n’attend pas',
+    '300+ specialists, and a schedule that does not wait':
+        '300+ spécialistes, et un planning qui n’attend pas',
     'Welders, pipe fitters, shipbuilders, mechanics, NDT inspectors and rope access technicians. Most carry a second trade, which is why one of our people often covers what usually takes two.':
         'Soudeurs, tuyauteurs, constructeurs navals, mécaniciens, contrôleurs CND et cordistes. La plupart exercent un second métier, ce qui explique qu’un des nôtres couvre souvent ce qui demande habituellement deux personnes.',
     'They travel. A crew that mobilises to Norway on Monday can be in Rostock the following month. That is the job, and everyone who joins us knows it before the first rotation.':
@@ -1649,7 +1649,7 @@ S = {
     'Often both, on the same site. We specialise in piping prefabrication and installation, steel fabrication and mechanical installation, and we provide certified technical personnel to projects across Europe.':
         'Souvent les deux, sur le même site. Nous sommes spécialisés dans la préfabrication et la pose de tuyauterie, la construction métallique et le montage mécanique, et nous fournissons du personnel technique certifié à des projets partout en Europe.',
     'The company employs between 51 and 200 people directly and draws on a roster of more than 300 certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
-        'L’entreprise emploie directement entre 51 et 200 personnes et s’appuie sur un vivier de plus de 300 spécialistes certifiés. Les projets sont pourvus à partir de ce vivier plutôt que sous-traités, et c’est ce qui donne du sens au système qualité.',
+        'L’entreprise emploie directement entre 51 et 200 personnes et s’appuie sur un vivier de 300+ spécialistes certifiés. Les projets sont pourvus à partir de ce vivier plutôt que sous-traités, et c’est ce qui donne du sens au système qualité.',
     'In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through &mdash; a different question from whether the welding is any good, and worth answering separately.':
         'Dans l’industrie lourde, les projets durent des mois et les engagements des années. Une preuve indépendante de solidité financière est la preuve que nous serons là pour mener le travail à son terme &mdash; une autre question que celle de la qualité des soudures, et qui mérite d’être traitée à part.',
     'What it is':
@@ -2151,8 +2151,8 @@ S = {
         'Les plannings des chantiers navals bougent, et la pénalité retombe sur le sous-traitant. Nous le prévoyons, et prenons en charge la tuyauterie de salle des machines, la charpente métallique et l’armement comme des lots complets.',
     'Head office in Klaipėda, Lithuania, with project bases in <strong>six countries</strong>, serving offshore, shipbuilding and industry across Northern and Western Europe.':
         'Siège à Klaipėda, en Lituanie, avec des bases projet dans <strong>six pays</strong>, au service de l’offshore, de la construction navale et de l’industrie en Europe du Nord et de l’Ouest.',
-    'We draw on a roster of more than 300 certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
-        'Nous nous appuyons sur un vivier de plus de 300 spécialistes certifiés. Les chantiers sont dotés à partir de ce vivier plutôt que sous-traités, et c’est ce qui donne son sens au système qualité.',
+    'We draw on a roster of 300+ certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
+        'Nous nous appuyons sur un vivier de 300+ spécialistes certifiés. Les chantiers sont dotés à partir de ce vivier plutôt que sous-traités, et c’est ce qui donne son sens au système qualité.',
     'Lithuania &middot; Norway &middot; United Kingdom &middot; Netherlands &middot; Germany &middot; Belgium &mdash; offshore, shipbuilding and industry across Northern and Western Europe.':
         'Lituanie &middot; Norvège &middot; Royaume-Uni &middot; Pays-Bas &middot; Allemagne &middot; Belgique &mdash; offshore, construction navale et industrie en Europe du Nord et de l’Ouest.',
     'Scaffolding costs more in downtime than in steel. IRATA-certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site reach the same place on rope, inspect it and repair it while the plant keeps running.':
@@ -2535,4 +2535,6 @@ S = {
         '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Remplacement d’un ventilateur et adaptation des gaines</span> <span class="arr" aria-hidden="true">&#8593;</span>',
     'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both...':
         'Remplacement d’un ventilateur d’extraction sur une plateforme de procédé. Les gaines en place ne convenaient pas au nouvel appareil : nous les avons recoupées, fabriqué les pièces de transition...',
+    'Some projects overview':
+        'Aperçu de quelques chantiers',
 }
