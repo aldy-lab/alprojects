@@ -567,7 +567,7 @@
     if (!box) return;
     if (isoLoaded) { drawIso(box); return; }
     isoLoaded = true;
-    fetch("/assets/hero-isometric.svg")
+    fetch(box.getAttribute("data-src") || "/assets/hero-isometric.svg")
       .then(function (r) { return r.ok ? r.text() : ""; })
       .then(function (svg) {
         if (!svg) return;
