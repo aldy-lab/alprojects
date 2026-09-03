@@ -2486,4 +2486,54 @@ S = {
         '<span class="case-num">08</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
     '<span class="case-num">09</span> <span class="case-kicker">Mechanical installation</span>':
         '<span class="case-num">09</span> <span class="case-kicker">Mechanische Montage</span>',
+
+    # --- case: fan replacement and duct adaptation ------------------
+    'Fan replacement and duct adaptation':
+        'Ventilatortausch und Anpassung der Luftkanäle',
+    'Fan replacement and duct adaptation — ALPROJECTS Group':
+        'Ventilatortausch und Anpassung der Luftkanäle — ALPROJECTS Group',
+    'Existing plant, outdoor process platform':
+        'Bestandsanlage, Prozessbühne im Freien',
+    'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both sides.':
+        'Austausch eines Absaugventilators auf einer Prozessbühne. Die vorhandenen Luftkanäle passten nicht zum neuen Aggregat, deshalb haben wir sie zurückgeschnitten, die Übergangsstücke passgenau gefertigt und den Ventilator auf beiden Seiten angeschlossen.',
+    'The fan comes to site as one assembly — casing, impeller, motor and base frame together. What decides the job is not the fan itself but its connection dimensions: the inlet, the outlet and the bolt pattern under the frame. On a replacement they rarely match what is already there, and here they did not.':
+        'Der Ventilator kommt als komplette Einheit auf die Baustelle — Gehäuse, Laufrad, Motor und Grundrahmen zusammen. Über die Arbeit entscheidet nicht das Aggregat selbst, sondern seine Anschlussmaße: Saugseite, Druckseite und das Lochbild unter dem Rahmen. Bei einem Austausch passen sie selten zum Bestand, und hier passten sie nicht.',
+    'The fan is landed on its base and stays on the sling until it is fixed down. The old frame did not leave the seats where the new one needs them, so they are made to suit the new footprint before anything is bolted — a fan sitting on a base that is out carries that error straight into its bearings. Anything hot happens over a blanket, with an extinguisher at the work front.':
+        'Der Ventilator wird auf seinem Fundament abgesetzt und bleibt am Anschlagmittel, bis er befestigt ist. Der alte Rahmen hat die Auflager nicht dort hinterlassen, wo der neue sie braucht, deshalb werden sie vor dem Verschrauben auf das neue Aufstellmaß gearbeitet — ein Ventilator auf einem unebenen Fundament trägt diesen Fehler direkt in seine Lager. Alles Heiße geschieht über einer Schweißdecke, mit einem Feuerlöscher an der Arbeitsstelle.',
+    'The inlet side is where the old ducting has to give. We take the weight of the duct on a sling first, so nothing is hanging on the joint once it is open, then cut it back and set a stub into it to suit the fan inlet. The fan drawing gives the size; where the stub lands is measured on the duct itself.':
+        'Auf der Saugseite muss der alte Kanal nachgeben. Zuerst nehmen wir sein Gewicht am Anschlagmittel auf, damit nach dem Öffnen nichts an der Verbindung hängt, dann schneiden wir ihn zurück und setzen einen Stutzen passend zum Saugstutzen des Ventilators ein. Das Maß gibt die Zeichnung des Ventilators vor; wo der Stutzen sitzt, wird am Kanal selbst abgenommen.',
+    'The outlet goes up into the existing stack, and the two do not meet on their own. We make the transition, offer it up with the fan standing on its base, and mark it in position. Nothing is finish-welded until both ends have been proved against the openings they have to land on.':
+        'Die Druckseite geht nach oben in den bestehenden Schornstein, und von allein treffen die beiden nicht zusammen. Wir fertigen das Übergangsstück, setzen es bei auf dem Fundament stehendem Ventilator an und reißen es in Einbaulage an. Endgültig verschweißt wird nichts, bevor beide Enden gegen die Öffnungen geprüft sind, auf die sie treffen müssen.',
+    'Both connections finish on something flexible — a sleeve at the inlet and a bolted expansion joint at the outlet. The frame itself stands on anti-vibration mounts, so the machine is free to move a little; these two joints are what keep that movement out of the ducting, and they let the flanges sit a fraction out of line without loading either side. With those in, the adapter welds are dressed back and the expansion joint is bolted up all round.':
+        'Beide Anschlüsse enden elastisch — eine Manschette auf der Saugseite und ein verschraubter Kompensator auf der Druckseite. Der Rahmen selbst steht auf Schwingungsdämpfern, das Aggregat darf sich also ein wenig bewegen; diese beiden Verbindungen halten diese Bewegung aus den Kanälen heraus und lassen die Flansche einen Bruchteil versetzt sitzen, ohne eine der Seiten zu belasten. Sind sie eingebaut, werden die Nähte der Übergangsstücke nachgearbeitet und der Kompensator rundum verschraubt.',
+    'The new fan, connected on both sides.':
+        'Der neue Ventilator, auf beiden Seiten angeschlossen.',
+    'The new unit as delivered.':
+        'Das neue Aggregat im Lieferzustand.',
+    'Base work before the fan is bolted down.':
+        'Arbeiten am Fundament, bevor der Ventilator verschraubt wird.',
+    'The duct carried on a sling while the joint is open.':
+        'Der Kanal hängt am Anschlagmittel, solange die Verbindung offen ist.',
+    'The outlet transition offered up in position.':
+        'Das Übergangsstück der Druckseite in Einbaulage angesetzt.',
+    'The expansion joint between fan and stack.':
+        'Der Kompensator zwischen Ventilator und Schornstein.',
+    'New blue centrifugal fan installed on a steel base on an outdoor grating platform, its outlet connected through an expansion joint to the existing painted exhaust stack':
+        'Neuer blauer Radialventilator auf einem Stahlfundament auf einer Gitterrostbühne im Freien, die Druckseite über einen Kompensator an den bestehenden lackierten Abluftschornstein angeschlossen',
+    'New centrifugal fan and motor on a pallet as delivered to site, before installation':
+        'Neuer Radialventilator mit Motor auf einer Palette im Lieferzustand, vor der Montage',
+    'Worker at the base of the newly landed fan on the grating platform, with lifting slings, tools and a fire extinguisher laid out beside him':
+        'Arbeiter am Fundament des gerade abgesetzten Ventilators auf der Gitterrostbühne, daneben Anschlagmittel, Werkzeug und ein Feuerlöscher',
+    'Existing rectangular duct supported on a round sling while its open end is connected to the inlet of the new fan':
+        'Bestehender Rechteckkanal an einem Rundschlingen-Anschlagmittel abgefangen, während sein offenes Ende an die Saugseite des neuen Ventilators angeschlossen wird',
+    'New fan standing on its base with the outlet transition piece offered up under the existing stack':
+        'Neuer Ventilator auf seinem Fundament, das Übergangsstück der Druckseite unter dem bestehenden Schornstein angesetzt',
+    'Fabric expansion joint with tie rods bolted between the fan outlet and the adapted exhaust duct above it':
+        'Gewebekompensator mit Zugankern, verschraubt zwischen der Druckseite des Ventilators und dem angepassten Abluftkanal darüber',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding · Industrial</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Mechanische Montage und Schweißen · Industrie</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Fan replacement and duct adaptation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Nächstes Projekt</span> <span class="case-next-t">Ventilatortausch und Anpassung der Luftkanäle</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both...':
+        'Austausch eines Absaugventilators auf einer Prozessbühne. Die vorhandenen Luftkanäle passten nicht zum neuen Aggregat, deshalb haben wir sie zurückgeschnitten, die Übergangsstücke passgenau...',
 }
