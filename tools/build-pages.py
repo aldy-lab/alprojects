@@ -137,7 +137,14 @@ LASTMOD = datetime.date.today().isoformat()
 # The pages load the minified copies, so those are what the ?v= hash has to
 # follow: stamping the source would have left a changed stylesheet behind a
 # cached filename.
-VERSIONED = ("css/style.min.css", "css/fonts.css", "js/main.min.js")
+# Генерируемые ассеты тоже версионируются. Без этого перерисованный чертёж
+# просто не доезжает: js/main.js запрашивал /assets/hero-isometric.svg без
+# ?v=, файл лежал в кэше браузера, и на экране оставалась прошлая версия --
+# при том что в чистом контексте проверки показывали новую. Адрес теперь
+# стоит в разметке (data-src), она проходит через stamp(), а скрипт читает
+# его оттуда, так что переписывать минифицированный JS не нужно.
+VERSIONED = ("css/style.min.css", "css/fonts.css", "js/main.min.js",
+             "assets/hero-isometric.svg", "assets/wind-turbine.svg")
 _hashes = {}
 
 
