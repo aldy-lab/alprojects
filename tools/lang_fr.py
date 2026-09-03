@@ -2509,4 +2509,54 @@ S = {
         '<span class="case-num">08</span> <span class="case-kicker">Montage mécanique et soudage</span>',
     '<span class="case-num">09</span> <span class="case-kicker">Mechanical installation</span>':
         '<span class="case-num">09</span> <span class="case-kicker">Montage mécanique</span>',
+
+    # --- case: fan replacement and duct adaptation ------------------
+    'Fan replacement and duct adaptation':
+        'Remplacement d’un ventilateur et adaptation des gaines',
+    'Fan replacement and duct adaptation — ALPROJECTS Group':
+        'Remplacement d’un ventilateur et adaptation des gaines — ALPROJECTS Group',
+    'Existing plant, outdoor process platform':
+        'Installation existante, plateforme de procédé en extérieur',
+    'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both sides.':
+        'Remplacement d’un ventilateur d’extraction sur une plateforme de procédé. Les gaines en place ne convenaient pas au nouvel appareil : nous les avons recoupées, fabriqué les pièces de transition sur mesure et raccordé le ventilateur des deux côtés.',
+    'The fan comes to site as one assembly — casing, impeller, motor and base frame together. What decides the job is not the fan itself but its connection dimensions: the inlet, the outlet and the bolt pattern under the frame. On a replacement they rarely match what is already there, and here they did not.':
+        'Le ventilateur arrive sur site en un seul ensemble — volute, roue, moteur et châssis de base réunis. Ce qui décide du chantier n’est pas l’appareil lui-même mais ses cotes de raccordement : l’aspiration, le refoulement et les entraxes de fixation sous le châssis. Sur un remplacement, elles correspondent rarement à l’existant, et ici elles ne correspondaient pas.',
+    'The fan is landed on its base and stays on the sling until it is fixed down. The old frame did not leave the seats where the new one needs them, so they are made to suit the new footprint before anything is bolted — a fan sitting on a base that is out carries that error straight into its bearings. Anything hot happens over a blanket, with an extinguisher at the work front.':
+        'Le ventilateur est reposé sur son socle et reste sur l’élingue jusqu’à sa fixation. L’ancien châssis n’a pas laissé les appuis là où le nouveau les demande : ils sont donc reprises à l’emprise du nouveau avant tout boulonnage — un ventilateur posé sur un socle faux transmet ce défaut directement à ses paliers. Tout travail à chaud se fait au-dessus d’une couverture, extincteur au front de travail.',
+    'The inlet side is where the old ducting has to give. We take the weight of the duct on a sling first, so nothing is hanging on the joint once it is open, then cut it back and set a stub into it to suit the fan inlet. The fan drawing gives the size; where the stub lands is measured on the duct itself.':
+        'C’est du côté aspiration que la gaine existante doit céder. Nous reprenons d’abord son poids sur une élingue, pour que rien ne pende sur l’assemblage une fois ouvert, puis nous la recoupons et y montons une manchette adaptée à l’aspiration du ventilateur. Le plan du ventilateur donne la cote ; l’emplacement de la manchette se relève sur la gaine elle-même.',
+    'The outlet goes up into the existing stack, and the two do not meet on their own. We make the transition, offer it up with the fan standing on its base, and mark it in position. Nothing is finish-welded until both ends have been proved against the openings they have to land on.':
+        'Le refoulement monte dans la cheminée existante, et les deux ne se rejoignent pas d’eux-mêmes. Nous fabriquons la pièce de transition, la présentons ventilateur posé sur son socle, et la traçons en place. Rien n’est soudé définitivement avant que les deux extrémités n’aient été vérifiées contre les ouvertures sur lesquelles elles doivent tomber.',
+    'Both connections finish on something flexible — a sleeve at the inlet and a bolted expansion joint at the outlet. The frame itself stands on anti-vibration mounts, so the machine is free to move a little; these two joints are what keep that movement out of the ducting, and they let the flanges sit a fraction out of line without loading either side. With those in, the adapter welds are dressed back and the expansion joint is bolted up all round.':
+        'Les deux raccordements se terminent sur du souple — une manchette à l’aspiration et un compensateur boulonné au refoulement. Le châssis lui-même repose sur des plots antivibratoires : la machine peut donc bouger un peu ; ce sont ces deux liaisons qui empêchent ce mouvement d’atteindre les gaines, et elles laissent les brides se placer légèrement de travers sans charger aucun des deux côtés. Une fois en place, les soudures des pièces de transition sont reprises et le compensateur est boulonné sur tout le pourtour.',
+    'The new fan, connected on both sides.':
+        'Le nouveau ventilateur, raccordé des deux côtés.',
+    'The new unit as delivered.':
+        'L’appareil neuf tel que livré.',
+    'Base work before the fan is bolted down.':
+        'Travaux sur le socle avant boulonnage du ventilateur.',
+    'The duct carried on a sling while the joint is open.':
+        'La gaine reprise sur une élingue pendant que l’assemblage est ouvert.',
+    'The outlet transition offered up in position.':
+        'La pièce de transition du refoulement présentée en place.',
+    'The expansion joint between fan and stack.':
+        'Le compensateur entre le ventilateur et la cheminée.',
+    'New blue centrifugal fan installed on a steel base on an outdoor grating platform, its outlet connected through an expansion joint to the existing painted exhaust stack':
+        'Ventilateur centrifuge bleu neuf installé sur un socle acier sur une plateforme caillebotis extérieure, son refoulement raccordé par un compensateur à la cheminée d’extraction existante peinte',
+    'New centrifugal fan and motor on a pallet as delivered to site, before installation':
+        'Ventilateur centrifuge neuf et son moteur sur palette tels que livrés sur site, avant montage',
+    'Worker at the base of the newly landed fan on the grating platform, with lifting slings, tools and a fire extinguisher laid out beside him':
+        'Ouvrier au pied du ventilateur fraîchement posé sur la plateforme caillebotis, élingues, outillage et extincteur disposés à côté de lui',
+    'Existing rectangular duct supported on a round sling while its open end is connected to the inlet of the new fan':
+        'Gaine rectangulaire existante reprise sur une élingue ronde pendant que son extrémité ouverte est raccordée à l’aspiration du nouveau ventilateur',
+    'New fan standing on its base with the outlet transition piece offered up under the existing stack':
+        'Ventilateur neuf posé sur son socle, la pièce de transition du refoulement présentée sous la cheminée existante',
+    'Fabric expansion joint with tie rods bolted between the fan outlet and the adapted exhaust duct above it':
+        'Compensateur en tissu avec tirants, boulonné entre le refoulement du ventilateur et la gaine d’extraction adaptée au-dessus',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding · Industrial</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montage mécanique et soudage · Industrie</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Fan replacement and duct adaptation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Chantier suivant</span> <span class="case-next-t">Remplacement d’un ventilateur et adaptation des gaines</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both...':
+        'Remplacement d’un ventilateur d’extraction sur une plateforme de procédé. Les gaines en place ne convenaient pas au nouvel appareil : nous les avons recoupées, fabriqué les pièces de transition...',
 }

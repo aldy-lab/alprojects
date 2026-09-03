@@ -1552,6 +1552,93 @@ CASES = [
         ],
     ),
     dict(
+        slug="fan-replacement-and-duct-adaptation",
+        title="Fan replacement and duct adaptation",
+        kicker="Mechanical installation and welding \u00b7 Industrial",
+        # The package offers "Plant shutdown" as the stronger alternative and
+        # says not to guess. This is what the frames show.
+        setting="Existing plant, outdoor process platform",
+        lead="An extraction fan replaced on a process platform. The ducting that "
+             "was already there did not suit the new unit, so we cut it back, "
+             "made the transition pieces to fit, and connected the fan on both "
+             "sides.",
+        intro=[],
+        stages=[
+            (2, ["The fan comes to site as one assembly \u2014 casing, impeller, "
+                 "motor and base frame together. What decides the job is not the "
+                 "fan itself but its connection dimensions: the inlet, the outlet "
+                 "and the bolt pattern under the frame. On a replacement they "
+                 "rarely match what is already there, and here they did not."]),
+            (3, ["The fan is landed on its base and stays on the sling until it is "
+                 "fixed down. The old frame did not leave the seats where the new "
+                 "one needs them, so they are made to suit the new footprint "
+                 "before anything is bolted \u2014 a fan sitting on a base that is "
+                 "out carries that error straight into its bearings. Anything hot "
+                 "happens over a blanket, with an extinguisher at the work front."]),
+            (4, ["The inlet side is where the old ducting has to give. We take the "
+                 "weight of the duct on a sling first, so nothing is hanging on "
+                 "the joint once it is open, then cut it back and set a stub into "
+                 "it to suit the fan inlet. The fan drawing gives the size; where "
+                 "the stub lands is measured on the duct itself."]),
+            (5, ["The outlet goes up into the existing stack, and the two do not "
+                 "meet on their own. We make the transition, offer it up with the "
+                 "fan standing on its base, and mark it in position. Nothing is "
+                 "finish-welded until both ends have been proved against the "
+                 "openings they have to land on."]),
+            # The anti-vibration mounts carry this whole paragraph and the client
+            # has been asked to confirm that is what the black elements are, not
+            # levelling pads.
+            (6, ["Both connections finish on something flexible \u2014 a sleeve at "
+                 "the inlet and a bolted expansion joint at the outlet. The frame "
+                 "itself stands on anti-vibration mounts, so the machine is free "
+                 "to move a little; these two joints are what keep that movement "
+                 "out of the ducting, and they let the flanges sit a fraction out "
+                 "of line without loading either side. With those in, the adapter "
+                 "welds are dressed back and the expansion joint is bolted up all "
+                 "round."]),
+        ],
+        note="",
+        og="fan-replacement-and-duct-adaptation",
+        cta="Send us the scope.",
+        # The package writes "Send the scope or the drawings"; the site already
+        # says "Send the drawings or the scope", translated in three languages.
+        # The flip carries no meaning, so the existing string is used rather
+        # than a near-duplicate key and three more translations of one sentence.
+        cta_note="Send the drawings or the scope and we will come back with a price "
+                 "and crew dates. If it is a shutdown, tell us the window.",
+        cta_btn="Send us the scope",
+        # Quality control is left out: none of the six frames shows a measurement,
+        # an alignment or a record. It goes back in one line if the client
+        # confirms the shaft alignment and vibration check were in scope.
+        services=["mechanical-contracting", "welding-services",
+                  "rigging-technical-support"],
+        photos=[
+            ("New blue centrifugal fan installed on a steel base on an outdoor "
+             "grating platform, its outlet connected through an expansion joint "
+             "to the existing painted exhaust stack",
+             "The new fan, connected on both sides.", 1200, 1600),
+            ("New centrifugal fan and motor on a pallet as delivered to site, "
+             "before installation",
+             "The new unit as delivered.", 1200, 1600),
+            ("Worker at the base of the newly landed fan on the grating platform, "
+             "with lifting slings, tools and a fire extinguisher laid out beside "
+             "him",
+             "Base work before the fan is bolted down.", 1200, 1600),
+            ("Existing rectangular duct supported on a round sling while its open "
+             "end is connected to the inlet of the new fan",
+             "The duct carried on a sling while the joint is open.", 1200, 1600),
+            # The cropped variant, which is the package's own default and carries
+            # no face. The full frame is sharper and is NOT in this repository:
+            # it needs that employee's written consent first.
+            ("New fan standing on its base with the outlet transition piece "
+             "offered up under the existing stack",
+             "The outlet transition offered up in position.", 1200, 1600),
+            ("Fabric expansion joint with tie rods bolted between the fan outlet "
+             "and the adapted exhaust duct above it",
+             "The expansion joint between fan and stack.", 1200, 1600),
+        ],
+    ),
+    dict(
         slug="offshore-rope-access-welding",
         title="Offshore rope access welding",
         kicker="Welding and rope access \u00b7 Offshore",

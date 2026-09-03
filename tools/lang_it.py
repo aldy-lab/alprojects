@@ -2483,4 +2483,54 @@ S = {
         '<span class="case-num">08</span> <span class="case-kicker">Montaggio meccanico e saldatura</span>',
     '<span class="case-num">09</span> <span class="case-kicker">Mechanical installation</span>':
         '<span class="case-num">09</span> <span class="case-kicker">Montaggio meccanico</span>',
+
+    # --- case: fan replacement and duct adaptation ------------------
+    'Fan replacement and duct adaptation':
+        'Sostituzione del ventilatore e adattamento dei canali',
+    'Fan replacement and duct adaptation — ALPROJECTS Group':
+        'Sostituzione del ventilatore e adattamento dei canali — ALPROJECTS Group',
+    'Existing plant, outdoor process platform':
+        'Impianto esistente, piattaforma di processo all’aperto',
+    'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both sides.':
+        'Sostituzione di un ventilatore di estrazione su una piattaforma di processo. I canali esistenti non erano adatti alla nuova macchina, perciò li abbiamo ritagliati, costruito i pezzi di transizione su misura e collegato il ventilatore su entrambi i lati.',
+    'The fan comes to site as one assembly — casing, impeller, motor and base frame together. What decides the job is not the fan itself but its connection dimensions: the inlet, the outlet and the bolt pattern under the frame. On a replacement they rarely match what is already there, and here they did not.':
+        'Il ventilatore arriva in cantiere come un unico gruppo — cassa, girante, motore e telaio di base insieme. Ciò che decide il lavoro non è la macchina in sé, ma le sue quote di collegamento: aspirazione, mandata e gli interassi di fissaggio sotto il telaio. In una sostituzione raramente coincidono con l’esistente, e qui non coincidevano.',
+    'The fan is landed on its base and stays on the sling until it is fixed down. The old frame did not leave the seats where the new one needs them, so they are made to suit the new footprint before anything is bolted — a fan sitting on a base that is out carries that error straight into its bearings. Anything hot happens over a blanket, with an extinguisher at the work front.':
+        'Il ventilatore viene calato sul suo basamento e resta sulla braca finché non è fissato. Il vecchio telaio non ha lasciato gli appoggi dove servono al nuovo, quindi vengono ripresi sull’ingombro del nuovo prima di qualsiasi imbullonatura — un ventilatore appoggiato su un basamento fuori quota porta quell’errore direttamente nei cuscinetti. Ogni lavoro a caldo avviene sopra una coperta antifiamma, con un estintore al fronte di lavoro.',
+    'The inlet side is where the old ducting has to give. We take the weight of the duct on a sling first, so nothing is hanging on the joint once it is open, then cut it back and set a stub into it to suit the fan inlet. The fan drawing gives the size; where the stub lands is measured on the duct itself.':
+        'È sul lato aspirazione che il canale esistente deve cedere. Prima ne riprendiamo il peso su una braca, così che nulla resti appeso al giunto una volta aperto, poi lo ritagliamo e vi inseriamo un tronchetto adatto all’aspirazione del ventilatore. La quota la dà il disegno del ventilatore; dove va il tronchetto si rileva sul canale stesso.',
+    'The outlet goes up into the existing stack, and the two do not meet on their own. We make the transition, offer it up with the fan standing on its base, and mark it in position. Nothing is finish-welded until both ends have been proved against the openings they have to land on.':
+        'La mandata sale nel camino esistente, e i due non si incontrano da soli. Costruiamo il pezzo di transizione, lo presentiamo con il ventilatore appoggiato sul basamento e lo tracciamo in posizione. Nulla viene saldato definitivamente prima che entrambe le estremità siano state verificate sulle aperture su cui devono arrivare.',
+    'Both connections finish on something flexible — a sleeve at the inlet and a bolted expansion joint at the outlet. The frame itself stands on anti-vibration mounts, so the machine is free to move a little; these two joints are what keep that movement out of the ducting, and they let the flanges sit a fraction out of line without loading either side. With those in, the adapter welds are dressed back and the expansion joint is bolted up all round.':
+        'Entrambi i collegamenti terminano su un elemento flessibile — un manicotto all’aspirazione e un giunto di dilatazione imbullonato alla mandata. Il telaio stesso appoggia su antivibranti, quindi la macchina è libera di muoversi un poco; sono questi due collegamenti a tenere quel movimento fuori dai canali, e consentono alle flange di stare leggermente fuori asse senza caricare né l’uno né l’altro lato. Montati quelli, le saldature dei pezzi di transizione vengono rifinite e il giunto di dilatazione viene imbullonato su tutto il giro.',
+    'The new fan, connected on both sides.':
+        'Il nuovo ventilatore, collegato su entrambi i lati.',
+    'The new unit as delivered.':
+        'La macchina nuova come consegnata.',
+    'Base work before the fan is bolted down.':
+        'Lavori sul basamento prima dell’imbullonatura del ventilatore.',
+    'The duct carried on a sling while the joint is open.':
+        'Il canale sostenuto da una braca mentre il giunto è aperto.',
+    'The outlet transition offered up in position.':
+        'Il pezzo di transizione della mandata presentato in posizione.',
+    'The expansion joint between fan and stack.':
+        'Il giunto di dilatazione tra ventilatore e camino.',
+    'New blue centrifugal fan installed on a steel base on an outdoor grating platform, its outlet connected through an expansion joint to the existing painted exhaust stack':
+        'Nuovo ventilatore centrifugo blu installato su un basamento in acciaio su una piattaforma a grigliato all’aperto, con la mandata collegata tramite un giunto di dilatazione al camino di estrazione esistente verniciato',
+    'New centrifugal fan and motor on a pallet as delivered to site, before installation':
+        'Nuovo ventilatore centrifugo e motore su bancale come consegnati in cantiere, prima del montaggio',
+    'Worker at the base of the newly landed fan on the grating platform, with lifting slings, tools and a fire extinguisher laid out beside him':
+        'Operatore alla base del ventilatore appena calato sulla piattaforma a grigliato, con brache, attrezzi ed estintore disposti accanto a lui',
+    'Existing rectangular duct supported on a round sling while its open end is connected to the inlet of the new fan':
+        'Canale rettangolare esistente sostenuto da una braca ad anello mentre la sua estremità aperta viene collegata all’aspirazione del nuovo ventilatore',
+    'New fan standing on its base with the outlet transition piece offered up under the existing stack':
+        'Nuovo ventilatore appoggiato sul basamento, con il pezzo di transizione della mandata presentato sotto il camino esistente',
+    'Fabric expansion joint with tie rods bolted between the fan outlet and the adapted exhaust duct above it':
+        'Giunto di dilatazione in tessuto con tiranti, imbullonato tra la mandata del ventilatore e il canale di estrazione adattato sopra di esso',
+    '<span class="case-num">05</span> <span class="case-kicker">Mechanical installation and welding · Industrial</span>':
+        '<span class="case-num">05</span> <span class="case-kicker">Montaggio meccanico e saldatura · Industria</span>',
+    '<span class="eyebrow">Next project</span> <span class="case-next-t">Fan replacement and duct adaptation</span> <span class="arr" aria-hidden="true">&#8593;</span>':
+        '<span class="eyebrow">Progetto successivo</span> <span class="case-next-t">Sostituzione del ventilatore e adattamento dei canali</span> <span class="arr" aria-hidden="true">&#8593;</span>',
+    'An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both...':
+        'Sostituzione di un ventilatore di estrazione su una piattaforma di processo. I canali esistenti non erano adatti alla nuova macchina, perciò li abbiamo ritagliati, costruito i pezzi di transizione...',
 }
