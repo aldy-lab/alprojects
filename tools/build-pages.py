@@ -1716,7 +1716,7 @@ CASES = [
         # that person's written consent the page is not assembled, and there is
         # nothing to swap the frame for. Set draft=False when the consent is in
         # hand and the case ships: page, card, chain, sitemap, all of it.
-        draft=True,
+        draft=False,
     ),
     dict(
         slug="tank-and-vessel-fabrication",

@@ -2519,4 +2519,18 @@ S = {
         '<span class="value" data-count="200" data-suffix="+">200+</span> <span class="label">Specialisti certificati in organico</span>',
     'We draw on a roster of 200+ certified specialists. Projects are resourced from that roster rather than subcontracted on, which is what keeps the quality system meaningful.':
         'Contiamo su un organico di 200+ specialisti certificati. I progetti vengono coperti attingendo a questo organico anziché essere subappaltati, ed è questo a rendere significativo il sistema qualità.',
+
+    # --- ten cases live ------------------------------------------------
+    'Ten scopes, photographed as they were built.':
+        'Dieci cantieri, fotografati durante l’esecuzione.',
+    '<span class="case-num">06</span> <span class="case-kicker">Welding and rope access · Offshore</span>':
+        '<span class="case-num">06</span> <span class="case-kicker">Saldatura e lavori su fune · Offshore</span>',
+    '<span class="case-num">07</span> <span class="case-kicker">Shop fabrication and welding</span>':
+        '<span class="case-num">07</span> <span class="case-kicker">Costruzione e saldatura in officina</span>',
+    '<span class="case-num">08</span> <span class="case-kicker">Mechanical installation and welding &middot; tank farm</span>':
+        '<span class="case-num">08</span> <span class="case-kicker">Montaggio meccanico e saldatura &middot; parco serbatoi</span>',
+    '<span class="case-num">09</span> <span class="case-kicker">Mechanical installation and welding</span>':
+        '<span class="case-num">09</span> <span class="case-kicker">Montaggio meccanico e saldatura</span>',
+    '<span class="case-num">10</span> <span class="case-kicker">Mechanical installation</span>':
+        '<span class="case-num">10</span> <span class="case-kicker">Montaggio meccanico</span>',
 }
