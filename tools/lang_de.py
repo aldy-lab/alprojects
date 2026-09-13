@@ -2598,4 +2598,90 @@ S = {
         'Ihr Gewerk steht nicht auf der Liste?',
     'We also take on NDT technicians, rope access teams and mechanical fitters between projects. Send your CV and certificates, and we will come back to you when a scope matches.':
         'Zwischen Projekten nehmen wir auch ZfP-Prüfer, Seilzugangsteams und Industriemonteure auf. Senden Sie Lebenslauf und Zertifikate, und wir melden uns, sobald ein Los passt.',
+
+    # --- 13.09 copy revision: hero, four services, careers -----------
+    'One contractor for welding, piping and mechanical scopes across Europe and Scandinavia &mdash; inspection, installation and documentation included.':
+        'Ein Auftragnehmer für Schweiß-, Rohrleitungs- und Montagelose in Europa und Skandinavien &mdash; Prüfung, Montage und Dokumentation inbegriffen.',
+    'NDT Technicians':
+        'ZfP-Prüfer',
+    'What we have built and repaired: shipyards, offshore structures, industrial plants, energy terminals. Every photo is from our own job sites.':
+        'Was wir gebaut und instand gesetzt haben: Werften, Offshore-Konstruktionen, Industrieanlagen, Energieterminals. Jedes Foto ist von unseren eigenen Baustellen.',
+    'We deliver mechanical contracting, welding, inspection and rope access services on industrial and offshore projects across Europe. The work is technical, certified and mostly on site.':
+        'Wir erbringen mechanische Montage, Schweißtechnik, Prüfung und Seilzugangstechnik auf Industrie- und Offshore-Projekten in ganz Europa. Die Arbeit ist technisch, zertifiziert und überwiegend vor Ort.',
+    'We weld steel structures and pipework, in the shop and on site. Every welder holds a valid qualification, and every joint is welded to a procedure approved before work starts.':
+        'Wir schweißen Stahlkonstruktionen und Rohrleitungen, in der Werkstatt und vor Ort. Jeder Schweißer hat eine gültige Prüfung, und jede Naht wird nach einer vor Arbeitsbeginn freigegebenen Schweißanweisung geschweißt.',
+    'We weld steel structures and pipework, in the shop and on site. Every welder holds a valid certificate, and every joint is welded to a procedure agreed before work starts. When we hand over the work, you get the weld records, the welder certificates and the test reports.':
+        'Wir schweißen Stahlkonstruktionen und Rohrleitungen, in der Werkstatt und vor Ort. Jeder Schweißer hat ein gültiges Zeugnis, und jede Naht wird nach einer vor Arbeitsbeginn abgestimmten Schweißanweisung geschweißt. Bei der Übergabe erhalten Sie die Schweißnachweise, die Schweißerzeugnisse und die Prüfberichte.',
+    'MMA (111), MAG (135), flux-cored (136) and TIG (141); MIG (131) for aluminium':
+        'E-Hand (111), MAG (135), Fülldraht (136) und WIG (141); MIG (131) für Aluminium',
+    'TIG for root runs, small-bore piping and stainless steel':
+        'WIG für Wurzellagen, Leitungen kleiner Nennweite und Edelstahl',
+    'Structural steel, pressure piping and pipe supports':
+        'Stahlbau, Druckrohrleitungen und Rohrhalterungen',
+    'Welder qualifications to EN ISO 9606-1, checked before mobilisation':
+        'Schweißerprüfungen nach EN ISO 9606-1, vor der Mobilisierung geprüft',
+    'Welding procedures qualified to EN ISO 15614-1':
+        'Schweißverfahrensprüfungen nach EN ISO 15614-1',
+    'Pressure piping to EN 13480, pressure tested before insulation':
+        'Druckrohrleitungen nach EN 13480, Druckprüfung vor der Isolierung',
+    'We supply pipe fitters for process, utility and engine room systems, instrument fitters for small-bore work, and workshop crews who prefabricate spools on fitting tables. We work from isometric drawings and 3D models, and the dimensions are checked before the welder arrives.':
+        'Wir stellen Rohrleitungsmonteure für Prozess-, Versorgungs- und Maschinenraumsysteme, Messstellenmonteure für kleine Nennweiten und Werkstattmannschaften, die Rohrspools auf Vorrichtungstischen vorfertigen. Gearbeitet wird nach isometrischen Zeichnungen und 3D-Modellen, und die Maße werden geprüft, bevor der Schweißer kommt.',
+    'Process and utility piping in carbon steel and stainless steel, small bore to large bore':
+        'Prozess- und Versorgungsleitungen in Kohlenstoff- und Edelstahl, von kleiner bis großer Nennweite',
+    'Copper piping and Blücher stainless drainage systems':
+        'Kupferleitungen und Blücher-Entwässerungssysteme aus Edelstahl',
+    'Hydraulic piping and tubing, flushed before commissioning':
+        'Hydraulikleitungen und -rohre, vor der Inbetriebnahme gespült',
+    'Instrument fitting: small-bore tubing, impulse lines and instrument hook-ups':
+        'Messstellenmontage: Rohre kleiner Nennweite, Impulsleitungen und Anbindungen',
+    'Marine piping: engine room and system piping on newbuilds and repair':
+        'Schiffsrohrleitungen: Maschinenraum- und Systemleitungen im Neubau und in der Reparatur',
+    'Spool prefabrication on fitting tables, marked and traceable to the drawing':
+        'Vorfertigung von Rohrspools auf Vorrichtungstischen, gekennzeichnet und zur Zeichnung rückverfolgbar',
+    'Complete systems routed and installed on board and on site':
+        'Komplette Systeme verlegt und montiert, an Bord und vor Ort',
+    'Fit-up, alignment and dimensional control before welding, flange assembly and support during pressure testing':
+        'Zusammenbau, Ausrichtung und Maßkontrolle vor dem Schweißen, Flanschmontage und Unterstützung bei der Druckprüfung',
+    'We take a mechanical scope from start to finish: steel fabricated in the shop, equipment installed on site, systems connected and handed over. On transformer work we supply the complete package, from bushings, coolers and conservators to the pipework between them. Our supervisors and QA/QC engineers stay on site for the duration of the job, so the client deals with one contractor instead of coordinating four. We are used to working inside shutdown windows, where the sequence matters as much as the number of people on the job.':
+        'Wir übernehmen ein Montagelos von Anfang bis Ende: Stahl in der Werkstatt gefertigt, Anlagen vor Ort montiert, Systeme angeschlossen und übergeben. Bei Transformatoren liefern wir das komplette Paket, von Durchführungen, Kühlern und Ausdehnungsgefäßen bis zu den Rohrleitungen dazwischen. Unsere Bauleiter und QA/QC-Ingenieure bleiben für die Dauer der Arbeiten vor Ort, damit der Kunde mit einem Auftragnehmer zu tun hat und nicht vier koordiniert. Wir sind es gewohnt, in Stillstandsfenstern zu arbeiten, wo die Reihenfolge genauso zählt wie die Zahl der Leute.',
+    'Shop fabrication of structural steel, platforms, supports and access structures':
+        'Werkstattfertigung von Stahlbau, Bühnen, Halterungen und Zugangskonstruktionen',
+    'Mechanical installation of plant and equipment, including setting and alignment':
+        'Mechanische Montage von Anlagen und Ausrüstung, einschließlich Aufstellen und Ausrichten',
+    'Removal and replacement of existing equipment during shutdowns':
+        'Ausbau und Ersatz vorhandener Ausrüstung während Stillständen',
+    'Lifting and rigging planned together with the installation sequence':
+        'Hebe- und Anschlagarbeiten gemeinsam mit der Montagereihenfolge geplant',
+    'One contract and one schedule for the whole scope':
+        'Ein Vertrag und ein Terminplan für das gesamte Los',
+    'Our own supervisors and QA/QC engineers on site for the duration':
+        'Eigene Bauleiter und QA/QC-Ingenieure für die gesamte Dauer vor Ort',
+    'Punch list cleared and mechanical completion handed over as a package':
+        'Restpunktliste abgearbeitet und mechanische Fertigstellung als Paket übergeben',
+    'We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic particle testing can be done while the plant keeps running. Radiography needs the area cleared, so we plan it around production. Our technicians report to the client, not to the contractor who did the welding.':
+        'Wir prüfen Schweißnähte, ohne sie zu zerschneiden oder zu beschädigen. Ultraschall-, Farbeindring- und Magnetpulverprüfung sind bei laufender Anlage möglich. Für die Durchstrahlung muss der Bereich frei sein, deshalb planen wir sie um die Produktion herum. Unsere Prüfer berichten dem Kunden, nicht dem Auftragnehmer, der geschweißt hat.',
+    'Visual and penetrant testing for defects on the surface':
+        'Sicht- und Farbeindringprüfung für Fehler an der Oberfläche',
+    'Magnetic particle testing for cracks in steel welds':
+        'Magnetpulverprüfung für Risse in Stahlnähten',
+    'Ultrasonic testing for defects inside the weld':
+        'Ultraschallprüfung für Fehler im Inneren der Naht',
+    'Phased array and TOFD where radiography is not practical':
+        'Phased Array und TOFD, wo Durchstrahlung nicht praktikabel ist',
+    'Technicians certified to ISO 9712, Level II and Level III':
+        'Prüfer zertifiziert nach ISO 9712, Stufe II und Stufe III',
+    'Acceptance criteria agreed with the client before testing starts':
+        'Abnahmekriterien vor Prüfbeginn mit dem Kunden abgestimmt',
+    'Testing with the plant running, where the method allows it':
+        'Prüfung bei laufender Anlage, wo das Verfahren es zulässt',
+    'Reports issued to the client in their own format':
+        'Berichte an den Kunden in dessen eigenem Format',
+    'We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic particle testing can be done while the plant keeps running....':
+        'Wir prüfen Schweißnähte, ohne sie zu zerschneiden oder zu beschädigen. Ultraschall-, Farbeindring- und Magnetpulverprüfung sind bei laufender Anlage...',
+    'We supply pipe fitters for process, utility and engine room systems, instrument fitters for small-bore work, and workshop crews who prefabricate spools...':
+        'Wir stellen Rohrleitungsmonteure für Prozess-, Versorgungs- und Maschinenraumsysteme, Messstellenmonteure für kleine Nennweiten und...',
+    'We take a mechanical scope from start to finish: steel fabricated in the shop, equipment installed on site, systems connected and handed over. On...':
+        'Wir übernehmen ein Montagelos von Anfang bis Ende: Stahl in der Werkstatt gefertigt, Anlagen vor Ort montiert, Systeme angeschlossen und übergeben. Bei...',
+    'We weld steel structures and pipework, in the shop and on site. Every welder holds a valid qualification, and every joint is welded to a procedure...':
+        'Wir schweißen Stahlkonstruktionen und Rohrleitungen, in der Werkstatt und vor Ort. Jeder Schweißer hat eine gültige Prüfung, und jede Naht wird nach...',
 }

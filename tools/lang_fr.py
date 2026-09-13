@@ -2621,4 +2621,90 @@ S = {
         'Votre métier n’est pas sur la liste ?',
     'We also take on NDT technicians, rope access teams and mechanical fitters between projects. Send your CV and certificates, and we will come back to you when a scope matches.':
         'Entre deux chantiers, nous recrutons aussi des contrôleurs CND, des équipes cordistes et des monteurs mécaniciens. Envoyez votre CV et vos certificats, et nous reviendrons vers vous dès qu’un périmètre correspond.',
+
+    # --- 13.09 copy revision: hero, four services, careers -----------
+    'One contractor for welding, piping and mechanical scopes across Europe and Scandinavia &mdash; inspection, installation and documentation included.':
+        'Un seul prestataire pour les lots de soudage, de tuyauterie et de montage en Europe et en Scandinavie &mdash; contrôle, installation et documentation inclus.',
+    'NDT Technicians':
+        'Contrôleurs CND',
+    'What we have built and repaired: shipyards, offshore structures, industrial plants, energy terminals. Every photo is from our own job sites.':
+        'Ce que nous avons construit et réparé : chantiers navals, structures offshore, installations industrielles, terminaux énergétiques. Chaque photo vient de nos propres chantiers.',
+    'We deliver mechanical contracting, welding, inspection and rope access services on industrial and offshore projects across Europe. The work is technical, certified and mostly on site.':
+        'Nous réalisons du montage mécanique, du soudage, du contrôle et des travaux sur cordes sur des projets industriels et offshore partout en Europe. Le travail est technique, certifié et se fait surtout sur site.',
+    'We weld steel structures and pipework, in the shop and on site. Every welder holds a valid qualification, and every joint is welded to a procedure approved before work starts.':
+        'Nous soudons des structures en acier et de la tuyauterie, en atelier et sur site. Chaque soudeur détient une qualification valide, et chaque assemblage est soudé selon un mode opératoire approuvé avant le début des travaux.',
+    'We weld steel structures and pipework, in the shop and on site. Every welder holds a valid certificate, and every joint is welded to a procedure agreed before work starts. When we hand over the work, you get the weld records, the welder certificates and the test reports.':
+        'Nous soudons des structures en acier et de la tuyauterie, en atelier et sur site. Chaque soudeur détient un certificat valide, et chaque assemblage est soudé selon un mode opératoire convenu avant le début des travaux. À la remise, vous recevez les relevés de soudage, les certificats des soudeurs et les rapports d’essai.',
+    'MMA (111), MAG (135), flux-cored (136) and TIG (141); MIG (131) for aluminium':
+        'MMA (111), MAG (135), fil fourré (136) et TIG (141) ; MIG (131) pour l’aluminium',
+    'TIG for root runs, small-bore piping and stainless steel':
+        'TIG pour les passes de racine, la tuyauterie de petit diamètre et l’acier inoxydable',
+    'Structural steel, pressure piping and pipe supports':
+        'Charpente métallique, tuyauterie sous pression et supports de tuyauterie',
+    'Welder qualifications to EN ISO 9606-1, checked before mobilisation':
+        'Qualifications de soudeur selon EN ISO 9606-1, vérifiées avant mobilisation',
+    'Welding procedures qualified to EN ISO 15614-1':
+        'Modes opératoires de soudage qualifiés selon EN ISO 15614-1',
+    'Pressure piping to EN 13480, pressure tested before insulation':
+        'Tuyauterie sous pression selon EN 13480, éprouvée avant calorifugeage',
+    'We supply pipe fitters for process, utility and engine room systems, instrument fitters for small-bore work, and workshop crews who prefabricate spools on fitting tables. We work from isometric drawings and 3D models, and the dimensions are checked before the welder arrives.':
+        'Nous fournissons des tuyauteurs pour les circuits procédé, utilités et salle des machines, des monteurs d’instrumentation pour le petit diamètre et des équipes d’atelier qui préfabriquent les tronçons sur tables d’assemblage. Nous travaillons sur plans isométriques et modèles 3D, et les cotes sont contrôlées avant l’arrivée du soudeur.',
+    'Process and utility piping in carbon steel and stainless steel, small bore to large bore':
+        'Tuyauterie procédé et utilités en acier au carbone et inoxydable, du petit au gros diamètre',
+    'Copper piping and Blücher stainless drainage systems':
+        'Tuyauterie cuivre et systèmes d’évacuation inox Blücher',
+    'Hydraulic piping and tubing, flushed before commissioning':
+        'Tuyauterie et tubes hydrauliques, rincés avant mise en service',
+    'Instrument fitting: small-bore tubing, impulse lines and instrument hook-ups':
+        'Montage d’instrumentation : tubes de petit diamètre, lignes d’impulsion et raccordements',
+    'Marine piping: engine room and system piping on newbuilds and repair':
+        'Tuyauterie marine : circuits de salle des machines et de bord, en construction neuve et en réparation',
+    'Spool prefabrication on fitting tables, marked and traceable to the drawing':
+        'Préfabrication de tronçons sur tables d’assemblage, repérés et traçables jusqu’au plan',
+    'Complete systems routed and installed on board and on site':
+        'Circuits complets cheminés et installés à bord et sur site',
+    'Fit-up, alignment and dimensional control before welding, flange assembly and support during pressure testing':
+        'Accostage, alignement et contrôle dimensionnel avant soudage, assemblage des brides et assistance pendant l’épreuve en pression',
+    'We take a mechanical scope from start to finish: steel fabricated in the shop, equipment installed on site, systems connected and handed over. On transformer work we supply the complete package, from bushings, coolers and conservators to the pipework between them. Our supervisors and QA/QC engineers stay on site for the duration of the job, so the client deals with one contractor instead of coordinating four. We are used to working inside shutdown windows, where the sequence matters as much as the number of people on the job.':
+        'Nous prenons un lot mécanique de bout en bout : acier fabriqué en atelier, équipements installés sur site, circuits raccordés et remis. Sur les transformateurs, nous fournissons l’ensemble complet, des traversées, aéroréfrigérants et conservateurs jusqu’à la tuyauterie qui les relie. Nos chefs de chantier et nos ingénieurs QA/QC restent sur site pendant toute la durée des travaux : le client traite avec un seul prestataire au lieu d’en coordonner quatre. Nous avons l’habitude des fenêtres d’arrêt, où la séquence compte autant que le nombre de personnes.',
+    'Shop fabrication of structural steel, platforms, supports and access structures':
+        'Fabrication en atelier de charpente, plateformes, supports et structures d’accès',
+    'Mechanical installation of plant and equipment, including setting and alignment':
+        'Montage mécanique d’installations et d’équipements, mise en place et alignement compris',
+    'Removal and replacement of existing equipment during shutdowns':
+        'Démontage et remplacement d’équipements existants pendant les arrêts',
+    'Lifting and rigging planned together with the installation sequence':
+        'Levage et élingage planifiés avec la séquence de montage',
+    'One contract and one schedule for the whole scope':
+        'Un seul contrat et un seul planning pour tout le lot',
+    'Our own supervisors and QA/QC engineers on site for the duration':
+        'Nos propres chefs de chantier et ingénieurs QA/QC sur site pendant toute la durée',
+    'Punch list cleared and mechanical completion handed over as a package':
+        'Liste de réserves soldée et achèvement mécanique remis en un ensemble',
+    'We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic particle testing can be done while the plant keeps running. Radiography needs the area cleared, so we plan it around production. Our technicians report to the client, not to the contractor who did the welding.':
+        'Nous contrôlons les soudures sans les couper ni les abîmer. Les ultrasons, le ressuage et la magnétoscopie se pratiquent installation en marche. La radiographie exige une zone dégagée : nous la planifions autour de la production. Nos contrôleurs rendent compte au client, pas au prestataire qui a soudé.',
+    'Visual and penetrant testing for defects on the surface':
+        'Contrôle visuel et ressuage pour les défauts de surface',
+    'Magnetic particle testing for cracks in steel welds':
+        'Magnétoscopie pour les fissures dans les soudures acier',
+    'Ultrasonic testing for defects inside the weld':
+        'Ultrasons pour les défauts internes à la soudure',
+    'Phased array and TOFD where radiography is not practical':
+        'Phased array et TOFD là où la radiographie n’est pas praticable',
+    'Technicians certified to ISO 9712, Level II and Level III':
+        'Contrôleurs certifiés ISO 9712, niveaux II et III',
+    'Acceptance criteria agreed with the client before testing starts':
+        'Critères d’acceptation convenus avec le client avant le début des contrôles',
+    'Testing with the plant running, where the method allows it':
+        'Contrôle installation en marche, lorsque la méthode le permet',
+    'Reports issued to the client in their own format':
+        'Rapports remis au client dans son propre format',
+    'We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic particle testing can be done while the plant keeps running....':
+        'Nous contrôlons les soudures sans les couper ni les abîmer. Les ultrasons, le ressuage et la magnétoscopie se pratiquent installation en marche. La...',
+    'We supply pipe fitters for process, utility and engine room systems, instrument fitters for small-bore work, and workshop crews who prefabricate spools...':
+        'Nous fournissons des tuyauteurs pour les circuits procédé, utilités et salle des machines, des monteurs d’instrumentation pour le petit diamètre et des...',
+    'We take a mechanical scope from start to finish: steel fabricated in the shop, equipment installed on site, systems connected and handed over. On...':
+        'Nous prenons un lot mécanique de bout en bout : acier fabriqué en atelier, équipements installés sur site, circuits raccordés et remis. Sur les...',
+    'We weld steel structures and pipework, in the shop and on site. Every welder holds a valid qualification, and every joint is welded to a procedure...':
+        'Nous soudons des structures en acier et de la tuyauterie, en atelier et sur site. Chaque soudeur détient une qualification valide, et chaque assemblage...',
 }
