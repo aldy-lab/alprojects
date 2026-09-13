@@ -630,7 +630,7 @@ CAREERS = """
     <div class="container page-head">
       <p class="eyebrow">Careers</p>
       <h1 class="page-title">Work with ALPROJECTS</h1>
-      <p class="page-lead">We deliver mechanical contracting, welding, inspection and access
+      <p class="page-lead">We deliver mechanical contracting, welding, inspection and rope access
       services on industrial and offshore projects across Europe. The work is technical,
       certified and mostly on site.</p>
     </div>
@@ -673,9 +673,7 @@ CAREERS = """
           matches your profile.</p>
           <div class="apply-alt">
             <p class="eyebrow">Prefer not to fill in a form?</p>
-            <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp +370 636 63 744</a>
             <a href="mailto:info@alprojects.eu?subject=Application">info@alprojects.eu</a>
-            <a href="tel:+37063663744">Call +370 636 63 744</a>
           </div>
         </div>
 
@@ -2738,39 +2736,43 @@ OG_CARDS = {"we-do-not-certify-our-own-welds", "piping-installation-engine-room"
 SERVICE_GROUPS = [
     ("Mechanical & Industrial", [
         dict(slug="welding-services", nav="Welding Services", h1="Welding services",
-             lead="A weld is only as good as the paperwork behind it. We weld structural steel "
-                  "and piping systems by TIG (141), MAG (135) and flux-cored (136) processes, under an ISO 3834-2 "
-                  "quality system. The welders hold current qualifications and the procedure is "
-                  "approved before the first arc is struck.",
-             points=["TIG for piping, root runs and stainless work",
-                     "MAG (135) for structural steel fill and capping passes; MIG (131) for aluminium and non-ferrous work",
-                     "Structural steel, pressure-retaining piping and pipe supports",
-                     "Welder qualifications to EN ISO 9606-1, verified before mobilisation",
-                     "Welding Procedure Specification (WPS) to EN ISO 15609-1, qualified by Welding Procedure Qualification Record (WPQR) to EN ISO 15614-1, written for the project standard",
-                     "Welding coordination and traceability under ISO 3834-2",
-                     "Structural steel welding to EN 1090-1 and EN 1090-2, execution classes EXC2 and EXC3",
-                     "Pressure piping to EN 13480 and PED 2014/68/EU, with pressure testing before insulation"]),
+             lead="We weld steel structures and pipework, in the shop and on site. Every welder holds a valid "
+      "qualification, and every joint is welded to a procedure approved before work starts.",
+             points=["MMA (111), MAG (135), flux-cored (136) and TIG (141); MIG (131) for aluminium",
+                     "TIG for root runs, small-bore piping and stainless steel",
+                     "Structural steel, pressure piping and pipe supports",
+                     "Welder qualifications to EN ISO 9606-1, checked before mobilisation",
+                     "Welding procedures qualified to EN ISO 15614-1",
+                     "Pressure piping to EN 13480, pressure tested before insulation"]),
         dict(slug="pipe-fitting", nav="Pipe Fitting", h1="Pipe fitting",
-             lead="Most delays in piping start with a bad fit-up. We supply fitters for process, "
-                  "utility and engine room systems, instrument fitters for small-bore work, and "
-                  "workshop crews who build spools straight from the isometrics. The dimensions "
-                  "are checked before the welder arrives, not after.",
+             lead="We supply pipe fitters for process, utility and engine room systems, instrument fitters "
+      "for small-bore work, and workshop crews who prefabricate spools on fitting tables. We work "
+      "from isometric drawings and 3D models, and the dimensions are checked before the welder "
+      "arrives.",
              points=["Process and utility piping in carbon steel and stainless steel, small bore to large bore",
-                     "Instrument pipe fitters: small-bore, tubing, impulse lines and instrument hook-ups",
-                     "Marine pipe fitters: engine room and system piping on newbuilds and repair",
-                     "Spool prefabrication from isometrics, marked and traceable to the drawing",
-                     "Fit-up, alignment and dimensional control before welding",
-                     "Site installation, flange assembly and support during pressure testing"]),
+                     "Copper piping and Blücher stainless drainage systems",
+                     "Hydraulic piping and tubing, flushed before commissioning",
+                     "Instrument fitting: small-bore tubing, impulse lines and instrument hook-ups",
+                     "Marine piping: engine room and system piping on newbuilds and repair",
+                     "Spool prefabrication on fitting tables, marked and traceable to the drawing",
+                     "Complete systems routed and installed on board and on site",
+                     "Fit-up, alignment and dimensional control before welding, flange assembly and support during pressure testing"]),
         dict(slug="mechanical-contracting", nav="Mechanical Contracting", h1="Mechanical contracting",
-             lead="Some clients need the whole scope taken off their hands. We install plant and "
-                  "equipment, fabricate steel and build transformer packages, with our own "
-                  "supervisors on site.",
-             points=["Steel fabrication and mechanical installation",
+             lead="We take a mechanical scope from start to finish: steel fabricated in the shop, equipment "
+      "installed on site, systems connected and handed over. On transformer work we supply the "
+      "complete package, from bushings, coolers and conservators to the pipework between them. "
+      "Our supervisors and QA/QC engineers stay on site for the duration of the job, so the "
+      "client deals with one contractor instead of coordinating four. We are used to working "
+      "inside shutdown windows, where the sequence matters as much as the number of people on the "
+      "job.",
+             points=["Shop fabrication of structural steel, platforms, supports and access structures",
+                     "Mechanical installation of plant and equipment, including setting and alignment",
                      "Transformer packages: bushings, coolers, conservators and connecting pipework",
-                     "Equipment alignment and mechanical completion",
-                     "One contract, one schedule, one point of contact",
-                     "Our supervisors and our QA/QC engineers on site",
-                     "Steel fabrication to EN 1090, mechanical completion documented and handed over as a package"]),
+                     "Removal and replacement of existing equipment during shutdowns",
+                     "Lifting and rigging planned together with the installation sequence",
+                     "One contract and one schedule for the whole scope",
+                     "Our own supervisors and QA/QC engineers on site for the duration",
+                     "Punch list cleared and mechanical completion handed over as a package"]),
         dict(slug="heavy-equipment-relocation", nav="Heavy Equipment Relocation",
              h1="Heavy equipment relocation",
              lead="Moving a production line is a scheduling problem before it is a lifting problem. "
@@ -2811,16 +2813,18 @@ SERVICE_GROUPS = [
     ("Inspection & Access", [
         dict(slug="non-destructive-testing", nav="Non-Destructive Testing",
              h1="Non-destructive testing",
-             lead="Nobody should be signing off their own work. UT, PT and MT let us inspect "
-                  "while the plant keeps running; radiography is planned around production "
-                  "windows. We report to the client, not to the contractor who did the welding.",
-             points=["Visual testing (VT) to EN ISO 17637 and penetrant testing (PT) to EN ISO 3452",
-                     "Magnetic particle testing (MT) to EN ISO 17638 and ultrasonic testing (UT) to EN ISO 17640",
-                     "Phased array (PAUT) and TOFD where radiography is not practical",
-                     "Technicians certified to ISO 9712 Level II and Level III",
-                     "Acceptance to EN ISO 5817 and ISO 10675, or to the project specification",
-                     "Inspection with the plant running, where the method allows it",
-                     "Independent third-party verification, reported to the client in their format"]),
+             lead="We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic "
+      "particle testing can be done while the plant keeps running. Radiography needs the area "
+      "cleared, so we plan it around production. Our technicians report to the client, not to the "
+      "contractor who did the welding.",
+             points=["Visual and penetrant testing for defects on the surface",
+                     "Magnetic particle testing for cracks in steel welds",
+                     "Ultrasonic testing for defects inside the weld",
+                     "Phased array and TOFD where radiography is not practical",
+                     "Technicians certified to ISO 9712, Level II and Level III",
+                     "Acceptance criteria agreed with the client before testing starts",
+                     "Testing with the plant running, where the method allows it",
+                     "Reports issued to the client in their own format"]),
         dict(slug="rope-access-services", nav="Rope Access Services", h1="Rope access services",
              lead="Scaffolding costs more in downtime than in steel. Certified technicians reach the "
                   "same place on rope, inspect it and repair it while the plant keeps running.",
