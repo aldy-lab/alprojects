@@ -2536,4 +2536,66 @@ S = {
         '<span class="case-num">09</span> <span class="case-kicker">Mechanische Montage und Schweißen</span>',
     '<span class="case-num">10</span> <span class="case-kicker">Mechanical installation</span>':
         '<span class="case-num">10</span> <span class="case-kicker">Mechanische Montage</span>',
+
+    # --- careers: five open positions (11.09 handoff) -----------------
+    '<i class="position-dot" aria-hidden="true"></i>Hiring now':
+        '<i class="position-dot" aria-hidden="true"></i>Wir stellen ein',
+    '<span>Positions</span><b>Ongoing recruitment</b>':
+        '<span>Positions</span><b>Laufende Rekrutierung</b>',
+    'MIG / MAG / MMA Welder':
+        'MIG-/MAG-/E-Hand-Schweißer',
+    'Pipe Fitter':
+        'Rohrleitungsmonteur',
+    'Site Supervisor':
+        'Montageleiter',
+    'Hull Assembler':
+        'Sektionsbauer',
+    'Piping, root runs and stainless steel systems on shipyard and industrial projects. You weld to an approved procedure, and the fit-up is checked before you start.':
+        'Rohrleitungen, Wurzellagen und Edelstahlsysteme auf Werft- und Industrieprojekten. Geschweißt wird nach freigegebener Schweißanweisung, und der Zusammenbau wird geprüft, bevor Sie anfangen.',
+    'Structural steel, fill and capping passes, fabrication in the workshop and repair work on site. Plate, profiles and supports, mostly in shipyards and industrial plants.':
+        'Stahlbau, Füll- und Decklagen, Fertigung in der Werkstatt und Reparaturen vor Ort. Blech, Profile und Halterungen, überwiegend auf Werften und in Industrieanlagen.',
+    'Spool prefabrication on fitting tables, routing and installation of complete systems, fit-up and alignment before the welder arrives. We work from isometric drawings and 3D models.':
+        'Vorfertigung von Rohrspools auf Vorrichtungstischen, Verlegung und Montage kompletter Systeme, Zusammenbau und Ausrichtung, bevor der Schweißer kommt. Gearbeitet wird nach isometrischen Zeichnungen und 3D-Modellen.',
+    'You run the crew on site. Planning the sequence, holding the schedule, keeping the safety rules and dealing with the client day to day. You report to our project manager, not to the shipyard.':
+        'Sie führen die Mannschaft vor Ort. Ablauf planen, Termine halten, Sicherheitsregeln durchsetzen und den täglichen Kontakt zum Kunden führen. Sie berichten an unseren Projektleiter, nicht an die Werft.',
+    'Assembly of hull sections and blocks in the shipyard. Setting plates and profiles, alignment, tack welding and preparing the joints for the welders, on newbuilds and on repair work.':
+        'Montage von Sektionen und Blöcken auf der Werft. Bleche und Profile setzen, ausrichten, heften und die Nähte für die Schweißer vorbereiten, im Neubau und in der Reparatur.',
+    'Valid TIG qualification with supporting documents':
+        'Gültige WIG-Prüfung mit Nachweisen',
+    'Experience with pipe welding and stainless steel':
+        'Erfahrung im Rohrschweißen und mit Edelstahl',
+    'Able to work from a welding procedure and an isometric drawing':
+        'Kann nach Schweißanweisung und isometrischer Zeichnung arbeiten',
+    'Ready to travel and work on site in several countries':
+        'Reisebereit und bereit, in mehreren Ländern vor Ort zu arbeiten',
+    'Working English, B1 or better':
+        'Englisch auf Arbeitsniveau, B1 oder besser',
+    'Valid qualification for MAG (135), flux-cored (136) or MMA (111)':
+        'Gültige Prüfung für MAG (135), Fülldraht (136) oder E-Hand (111)',
+    'Experience with structural steel and plate work':
+        'Erfahrung im Stahlbau und in der Blechverarbeitung',
+    'Able to read drawings and work to a procedure':
+        'Kann Zeichnungen lesen und nach Anweisung arbeiten',
+    'Experience with process, utility or engine room piping':
+        'Erfahrung mit Prozess-, Versorgungs- oder Maschinenraumleitungen',
+    'Able to work from isometrics and 3D models':
+        'Kann nach Isometrien und 3D-Modellen arbeiten',
+    'Experience leading welding, piping or mechanical crews on site':
+        'Erfahrung in der Führung von Schweiß-, Rohrleitungs- oder Montagemannschaften vor Ort',
+    'Able to plan the work sequence and report progress to the client':
+        'Kann den Arbeitsablauf planen und dem Kunden den Fortschritt berichten',
+    'Confident with safety rules and site documentation':
+        'Sicher im Umgang mit Sicherheitsregeln und Baustellendokumentation',
+    'English at working level, German is an advantage':
+        'Englisch auf Arbeitsniveau, Deutsch ist ein Vorteil',
+    'Experience with hull assembly on newbuilds or ship repair':
+        'Erfahrung im Sektionsbau bei Neubauten oder in der Schiffsreparatur',
+    'Able to read shipbuilding drawings':
+        'Kann Schiffbauzeichnungen lesen',
+    'Tack welding and confident use of alignment tools':
+        'Heftschweißen und sicherer Umgang mit Ausrichtwerkzeugen',
+    'Your trade is not on the list?':
+        'Ihr Gewerk steht nicht auf der Liste?',
+    'We also take on NDT technicians, rope access teams and mechanical fitters between projects. Send your CV and certificates, and we will come back to you when a scope matches.':
+        'Zwischen Projekten nehmen wir auch ZfP-Prüfer, Seilzugangsteams und Industriemonteure auf. Senden Sie Lebenslauf und Zertifikate, und wir melden uns, sobald ein Los passt.',
 }

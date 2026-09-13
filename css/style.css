@@ -6952,3 +6952,16 @@ html.blueprint .hero-iso { opacity: 1; }
   object-fit: contain;
   object-position: right center;
 }
+
+/* The badge dot from the careers handoff. --beige is the brandbook's signal
+   colour and the spec names exactly two places for it; this is one of them.
+   The other is the focus ring, which is NOT changed: the site's ring already
+   matches the spec's geometry -- 2px, 3px offset -- and recolouring it would
+   put a warm accent on every focusable element on 160 pages, which the
+   palette decision here rules out. One line to change if that is wanted. */
+.position-badge { display: inline-flex; align-items: center; gap: 8px; }
+.position-dot {
+  width: 6px; height: 6px; flex: none;
+  border-radius: 50%;
+  background: var(--beige);
+}
