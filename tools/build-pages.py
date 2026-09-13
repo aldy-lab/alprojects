@@ -375,34 +375,162 @@ PRIVACY = """
 # POSITIONS is the only block to edit when a vacancy opens or closes.
 # Set `open: False` to move a role out of the live list without deleting it.
 # ⚠️ Only add roles the company is actually recruiting for.
+#
+# Five roles from the 11 September handoff, whose copy is approved and is not
+# to be edited. They go through this list rather than the handoff's own markup
+# and stylesheet, because the card component the site already has IS the one
+# in the handoff -- main column plus spec rail, badge, lead, "What we need",
+# bullets, apply button, three spec rows -- and .position already carries the
+# golden-ratio split the spec asks for. Feeding the content in here also keeps
+# the JobPosting structured data these five roles need for Google for Jobs,
+# which the handoff's roles.json has no fields for.
+#
+# "Ongoing recruitment" is the approved wording for the count, so vacancies is
+# left unset; nulls are stripped before the JSON-LD is written, so no invented
+# figure reaches Google. The previous card claimed "30 positions", which the
+# handoff itself lists as an open question.
 # ============================================================
 POSITIONS = [
-    dict(id="tig-welder",
-         title="Certified TIG Welder",
-         count="30 positions",
-         location="Project sites across Europe",
-         contract="Project-based",
-         # ⚠️ BLOCKED ON CLIENT. These three are the first thing a rotation
-         # worker looks for, and thirty welders will not be found without a
-         # rate. A row with no value is omitted rather than printed as "to be
-         # confirmed" -- fill these in and the rows appear.
-         rotation="",
-         start="",
-         rate="",
+    dict(id='tig-welder',
+         # Which DISCIPLINES option the apply button selects in the form.
+         # Without it pickRole() compares the job title against the
+         # discipline list, never matches, and the button scrolls to the
+         # form having selected nothing -- which is what it did with one
+         # card too.
+         discipline='Welding (TIG)',
+         title='Certified TIG Welder',
+         count='Ongoing recruitment',
+         location='Project sites across Europe',
+         contract='Project-based',
+         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
+         # value is omitted rather than printed as "to be confirmed".
+         rotation="", start="", rate="",
          open=True,
-         # --- Google for Jobs fields ---
-         posted="2026-07-25",           # keep current; stale posts get demoted
+         posted="2026-09-11",        # date of the handoff
          valid_through="2026-12-31",
          employment_type="CONTRACTOR",
-         vacancies=30,
+         # vacancies intentionally unset -- see the note above
          countries=["LT", "BE", "NO"],
-         summary="We are recruiting 30 certified TIG welders for upcoming project "
-                 "scopes. This is the constraint on our current pipeline, so applications "
-                 "are reviewed quickly.",
-         needs=["Valid TIG welding certification with supporting documentation",
-                "Willingness to travel and work on site across several countries",
-                "Experience with pipe and steel structure welding",
-                "Working level of English (B1 or better)"]),
+         summary='Piping, root runs and stainless steel systems on shipyard and industrial projects. You weld to an approved procedure, and the fit-up is checked before you start.',
+         needs=[
+             'Valid TIG qualification with supporting documents',
+             'Experience with pipe welding and stainless steel',
+             'Able to work from a welding procedure and an isometric drawing',
+             'Ready to travel and work on site in several countries',
+             'Working English, B1 or better',
+         ]),
+    dict(id='mig-mag-mma-welder',
+         # Which DISCIPLINES option the apply button selects in the form.
+         # Without it pickRole() compares the job title against the
+         # discipline list, never matches, and the button scrolls to the
+         # form having selected nothing -- which is what it did with one
+         # card too.
+         discipline='Welding (MIG/MAG)',
+         title='MIG / MAG / MMA Welder',
+         count='Ongoing recruitment',
+         location='Project sites across Europe',
+         contract='Project-based',
+         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
+         # value is omitted rather than printed as "to be confirmed".
+         rotation="", start="", rate="",
+         open=True,
+         posted="2026-09-11",        # date of the handoff
+         valid_through="2026-12-31",
+         employment_type="CONTRACTOR",
+         # vacancies intentionally unset -- see the note above
+         countries=["LT", "BE", "NO"],
+         summary='Structural steel, fill and capping passes, fabrication in the workshop and repair work on site. Plate, profiles and supports, mostly in shipyards and industrial plants.',
+         needs=[
+             'Valid qualification for MAG (135), flux-cored (136) or MMA (111)',
+             'Experience with structural steel and plate work',
+             'Able to read drawings and work to a procedure',
+             'Ready to travel and work on site in several countries',
+             'Working English, B1 or better',
+         ]),
+    dict(id='pipe-fitter',
+         # Which DISCIPLINES option the apply button selects in the form.
+         # Without it pickRole() compares the job title against the
+         # discipline list, never matches, and the button scrolls to the
+         # form having selected nothing -- which is what it did with one
+         # card too.
+         discipline='Pipe fitting',
+         title='Pipe Fitter',
+         count='Ongoing recruitment',
+         location='Project sites across Europe',
+         contract='Project-based',
+         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
+         # value is omitted rather than printed as "to be confirmed".
+         rotation="", start="", rate="",
+         open=True,
+         posted="2026-09-11",        # date of the handoff
+         valid_through="2026-12-31",
+         employment_type="CONTRACTOR",
+         # vacancies intentionally unset -- see the note above
+         countries=["LT", "BE", "NO"],
+         summary='Spool prefabrication on fitting tables, routing and installation of complete systems, fit-up and alignment before the welder arrives. We work from isometric drawings and 3D models.',
+         needs=[
+             'Experience with process, utility or engine room piping',
+             'Able to work from isometrics and 3D models',
+             'Fit-up, alignment and dimensional control before welding',
+             'Ready to travel and work on site in several countries',
+             'Working English, B1 or better',
+         ]),
+    dict(id='site-supervisor',
+         # Which DISCIPLINES option the apply button selects in the form.
+         # Without it pickRole() compares the job title against the
+         # discipline list, never matches, and the button scrolls to the
+         # form having selected nothing -- which is what it did with one
+         # card too.
+         discipline='Site supervision',
+         title='Site Supervisor',
+         count='Ongoing recruitment',
+         location='Project sites across Europe',
+         contract='Project-based',
+         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
+         # value is omitted rather than printed as "to be confirmed".
+         rotation="", start="", rate="",
+         open=True,
+         posted="2026-09-11",        # date of the handoff
+         valid_through="2026-12-31",
+         employment_type="CONTRACTOR",
+         # vacancies intentionally unset -- see the note above
+         countries=["LT", "BE", "NO"],
+         summary='You run the crew on site. Planning the sequence, holding the schedule, keeping the safety rules and dealing with the client day to day. You report to our project manager, not to the shipyard.',
+         needs=[
+             'Experience leading welding, piping or mechanical crews on site',
+             'Able to plan the work sequence and report progress to the client',
+             'Confident with safety rules and site documentation',
+             'Ready to travel and work on site in several countries',
+             'English at working level, German is an advantage',
+         ]),
+    dict(id='hull-assembler',
+         # Which DISCIPLINES option the apply button selects in the form.
+         # Without it pickRole() compares the job title against the
+         # discipline list, never matches, and the button scrolls to the
+         # form having selected nothing -- which is what it did with one
+         # card too.
+         discipline='Shipbuilding',
+         title='Hull Assembler',
+         count='Ongoing recruitment',
+         location='Project sites across Europe',
+         contract='Project-based',
+         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
+         # value is omitted rather than printed as "to be confirmed".
+         rotation="", start="", rate="",
+         open=True,
+         posted="2026-09-11",        # date of the handoff
+         valid_through="2026-12-31",
+         employment_type="CONTRACTOR",
+         # vacancies intentionally unset -- see the note above
+         countries=["LT", "BE", "NO"],
+         summary='Assembly of hull sections and blocks in the shipyard. Setting plates and profiles, alignment, tack welding and preparing the joints for the welders, on newbuilds and on repair work.',
+         needs=[
+             'Experience with hull assembly on newbuilds or ship repair',
+             'Able to read shipbuilding drawings',
+             'Tack welding and confident use of alignment tools',
+             'Ready to travel and work on site in several countries',
+             'Working English, B1 or better',
+         ]),
 ]
 
 DISCIPLINES = [
@@ -468,14 +596,14 @@ def positions_html():
         d["specs"] = spec_rows(p)
         out.append("""      <article class="position" id="{id}">
         <div class="position-main">
-          <p class="position-badge">Hiring now</p>
+          <p class="position-badge"><i class="position-dot" aria-hidden="true"></i>Hiring now</p>
           <h3>{title}</h3>
           <p class="position-lead">{summary}</p>
           <p class="position-label">What we need</p>
           <ul class="position-needs">
 {needs}
           </ul>
-          <p><a class="btn-solid" href="#apply" data-apply="{title}">Apply for this role</a></p>
+          <p><a class="btn-solid" href="#apply" data-apply="{discipline}">Apply for this role</a></p>
         </div>
         <div class="position-specs">
 {specs}
@@ -508,8 +636,20 @@ CAREERS = """
     </div>
 
     <section class="container careers-block">
-      <h2 class="eyebrow">Open position</h2>
+      <h2 class="eyebrow">Open positions</h2>
 """ + positions_html() + """
+    </section>
+
+    <!-- The handoff's closing block. Its copy is approved and names NDT
+         technicians, rope access teams and mechanical fitters -- all three are
+         already in DISCIPLINES below, so the page does not start claiming
+         anything it did not claim before. The handoff still lists confirming
+         them as an open question for the client. -->
+    <section class="container careers-block">
+      <h2 class="sub-head">Your trade is not on the list?</h2>
+      <p class="careers-intro">We also take on NDT technicians, rope access teams and
+      mechanical fitters between projects. Send your CV and certificates, and we will
+      come back to you when a scope matches.</p>
     </section>
 
     <section class="container careers-block">

@@ -2533,4 +2533,66 @@ S = {
         '<span class="case-num">09</span> <span class="case-kicker">Montaggio meccanico e saldatura</span>',
     '<span class="case-num">10</span> <span class="case-kicker">Mechanical installation</span>':
         '<span class="case-num">10</span> <span class="case-kicker">Montaggio meccanico</span>',
+
+    # --- careers: five open positions (11.09 handoff) -----------------
+    '<i class="position-dot" aria-hidden="true"></i>Hiring now':
+        '<i class="position-dot" aria-hidden="true"></i>Selezione in corso',
+    '<span>Positions</span><b>Ongoing recruitment</b>':
+        '<span>Positions</span><b>Selezione continua</b>',
+    'MIG / MAG / MMA Welder':
+        'Saldatore MIG / MAG / MMA',
+    'Pipe Fitter':
+        'Tubista',
+    'Site Supervisor':
+        'Capocantiere',
+    'Hull Assembler':
+        'Carpentiere navale',
+    'Piping, root runs and stainless steel systems on shipyard and industrial projects. You weld to an approved procedure, and the fit-up is checked before you start.':
+        'Tubazioni, passate di radice e circuiti in acciaio inox su cantieri navali e industriali. Si salda secondo una specifica approvata, e l’accoppiamento viene verificato prima che cominciate.',
+    'Structural steel, fill and capping passes, fabrication in the workshop and repair work on site. Plate, profiles and supports, mostly in shipyards and industrial plants.':
+        'Carpenteria metallica, passate di riempimento e di finitura, costruzione in officina e riparazioni in cantiere. Lamiere, profilati e supporti, principalmente in cantieri navali e impianti industriali.',
+    'Spool prefabrication on fitting tables, routing and installation of complete systems, fit-up and alignment before the welder arrives. We work from isometric drawings and 3D models.':
+        'Prefabbricazione di spool su banchi di assemblaggio, percorso e montaggio di circuiti completi, accoppiamento e allineamento prima che arrivi il saldatore. Lavoriamo su disegni isometrici e modelli 3D.',
+    'You run the crew on site. Planning the sequence, holding the schedule, keeping the safety rules and dealing with the client day to day. You report to our project manager, not to the shipyard.':
+        'Guidate la squadra in cantiere. Pianificare la sequenza, tenere i tempi, far rispettare le regole di sicurezza e gestire il rapporto quotidiano con il cliente. Rispondete al nostro project manager, non al cantiere.',
+    'Assembly of hull sections and blocks in the shipyard. Setting plates and profiles, alignment, tack welding and preparing the joints for the welders, on newbuilds and on repair work.':
+        'Montaggio di sezioni e blocchi di scafo in cantiere. Posizionamento di lamiere e profilati, allineamento, puntatura e preparazione dei giunti per i saldatori, su nuove costruzioni e su lavori di riparazione.',
+    'Valid TIG qualification with supporting documents':
+        'Qualifica TIG valida con documentazione',
+    'Experience with pipe welding and stainless steel':
+        'Esperienza nella saldatura di tubazioni e con l’acciaio inox',
+    'Able to work from a welding procedure and an isometric drawing':
+        'In grado di lavorare su specifica di saldatura e disegno isometrico',
+    'Ready to travel and work on site in several countries':
+        'Disponibile a viaggiare e a lavorare in cantiere in più paesi',
+    'Working English, B1 or better':
+        'Inglese a livello operativo, B1 o superiore',
+    'Valid qualification for MAG (135), flux-cored (136) or MMA (111)':
+        'Qualifica valida per MAG (135), filo animato (136) o MMA (111)',
+    'Experience with structural steel and plate work':
+        'Esperienza in carpenteria metallica e lavorazione lamiere',
+    'Able to read drawings and work to a procedure':
+        'In grado di leggere i disegni e di lavorare secondo specifica',
+    'Experience with process, utility or engine room piping':
+        'Esperienza con tubazioni di processo, servizi o sala macchine',
+    'Able to work from isometrics and 3D models':
+        'In grado di lavorare su isometrie e modelli 3D',
+    'Experience leading welding, piping or mechanical crews on site':
+        'Esperienza nella guida di squadre di saldatura, tubisteria o montaggio in cantiere',
+    'Able to plan the work sequence and report progress to the client':
+        'In grado di pianificare la sequenza dei lavori e di riferire al cliente',
+    'Confident with safety rules and site documentation':
+        'Sicuro con le regole di sicurezza e la documentazione di cantiere',
+    'English at working level, German is an advantage':
+        'Inglese a livello operativo, il tedesco è un vantaggio',
+    'Experience with hull assembly on newbuilds or ship repair':
+        'Esperienza nel montaggio dello scafo su nuove costruzioni o riparazioni navali',
+    'Able to read shipbuilding drawings':
+        'In grado di leggere disegni di cantieristica navale',
+    'Tack welding and confident use of alignment tools':
+        'Puntatura e uso sicuro degli attrezzi di allineamento',
+    'Your trade is not on the list?':
+        'Il vostro mestiere non è in elenco?',
+    'We also take on NDT technicians, rope access teams and mechanical fitters between projects. Send your CV and certificates, and we will come back to you when a scope matches.':
+        'Tra un progetto e l’altro prendiamo anche tecnici CND, squadre su fune e montatori meccanici. Inviateci il CV e i certificati, e vi risponderemo quando un lotto corrisponde.',
 }
