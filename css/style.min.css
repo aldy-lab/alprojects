@@ -2,7 +2,7 @@
 --white:    #ffffff;
 --gray-50:  #CFD0D7;
 --gray-100: #8e97ab;
---gray-150: #828195;
+--gray-150: #A3A4B8;
 --gray-200: #4e4e5a;
 --black:    #070708;
 --blue:     #01264B;
@@ -2532,6 +2532,10 @@ min-height: 50px;
 .hero-title { max-width: 20ch; }
 .hero-sub { font-size: 15.5px; }
 .hero-ctas a { flex: 1 1 100%; }
+.btn-solid:not(.menu-cta), .btn-outline:not(.menu-cta) {
+font-size: 14px;
+letter-spacing: 0.12em;
+}
 }
 @media (max-width: 420px) {
 }
@@ -5060,4 +5064,12 @@ object-position: right center;
 width: 6px; height: 6px; flex: none;
 border-radius: 50%;
 background: var(--beige);
+}
+.certs-scope {
+margin: 10px auto 0;
+max-width: 62ch;
+font-size: var(--text-m);
+line-height: 1.6;
+color: var(--muted);
+text-align: center;
 }

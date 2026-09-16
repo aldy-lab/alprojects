@@ -16,7 +16,10 @@
      source of every contrast failure on the site. Same hue and saturation,
      raised until it clears 4.5:1 on the darkest panel with margin (4.8:1).
      Still clearly quieter than --muted (6.2:1), so the hierarchy is intact. */
-  --gray-150: #828195;
+  /* Was #828195: about 3.2:1 at 11-12px on the lightest part of the blue
+     gradient, which fails AA for the numbering, the "(optional)" labels and
+     the certificate numbers on a phone. #A3A4B8 measures about 5:1 there. */
+  --gray-150: #A3A4B8;
   --gray-200: #4e4e5a;
   --black:    #070708;   /* brandbook ground */
   --blue:     #01264B;   /* brandbook deep blue */
@@ -3189,6 +3192,18 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
   .hero-title { max-width: 20ch; }
   .hero-sub { font-size: 15.5px; }
   .hero-ctas a { flex: 1 1 100%; }
+  /* 11.5px uppercase is the brand spec and reads correctly on a desktop, where
+     the label sits in a 50px bracket surrounded by air. On a phone the same
+     label measured 11.5px against 15.5px body text -- a call to action smaller
+     than the paragraph above it. The buttons are already full-width at this
+     breakpoint, so there is room for 14px; the tracking comes in a little so
+     the wider glyphs do not push the label to two lines on a 320px screen.
+     Selector repeated verbatim: the base rule is two classes deep, and a
+     media query adds no specificity of its own. */
+  .btn-solid:not(.menu-cta), .btn-outline:not(.menu-cta) {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+  }
 }
 @media (max-width: 420px) {
 }
@@ -6964,4 +6979,17 @@ html.blueprint .hero-iso { opacity: 1; }
   width: 6px; height: 6px; flex: none;
   border-radius: 50%;
   background: var(--beige);
+}
+
+/* The DNV scope, quoted verbatim under the certificate marks. Secondary to the
+   caption above it -- it is the small print a buyer's auditor reads, not a
+   headline -- but at the readable floor rather than below it, because the
+   audit found 119 elements under 12px and this is not going to be the 120th. */
+.certs-scope {
+  margin: 10px auto 0;
+  max-width: 62ch;
+  font-size: var(--text-m);
+  line-height: 1.6;
+  color: var(--muted);
+  text-align: center;
 }
