@@ -32,6 +32,7 @@ SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 from paths import rootify, clean_urls  # noqa: E402
 import minify  # noqa: E402
 import thumbs  # noqa: E402
+import i18n  # noqa: E402    -- for the shared meta-description length rule
 
 # Before anything is stamped: the ?v= hash is taken from the minified file,
 # so it has to be rewritten first or every page would ship last run's hash.
@@ -204,6 +205,12 @@ def mark_nav(html, path):
 def write(path, html):
     if path.endswith(".html"):
         html = clean_urls(stamp(mark_nav(html, path)))
+        # One length rule for every page, applied after the text is final --
+        # see i18n.clamp_desc. The per-caller cuts (197 for a case lead, 152
+        # for a service page) stay where they are: they keep the *source*
+        # sentence readable, and this is the backstop that keeps what Google
+        # sees inside what Google shows.
+        html = i18n.clamp_page_desc(html)
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     io.open(full, "w", encoding="utf-8").write(html)
@@ -840,10 +847,10 @@ ARTICLES = [
            "Our crew is installing engine room systems on vessels under construction: seawater, bilge, ballast, fuel and service lines running from small bore up to DN200 around the main engine foundations.",
            "<strong>Drawn first, then built.</strong> Isometrics are checked before anything is cut. Spools are prefabricated in the shop, fitted on board and hung so the line can move without loading the welds.",
            "<strong>Manifolds, sea chests, tank connections.</strong> Gate valves, strainers and remote operated units set out and aligned on the tank top. Flange faces stay capped until the system is closed.",
-           "<strong>Welded, tested, then closed.</strong> Welding under ISO 3834. Every joint is documented, and NDT and pressure testing are done before insulation and final coating go on.",
+           "<strong>Welded, tested, then closed.</strong> Welding coordinated to EN ISO 3834-2. Every joint is documented, and NDT and pressure testing are done before insulation and final coating go on.",
            "The order of work stays the same on every job. Most of the time in a machinery space goes on getting the routing right, not on the welding itself.",
          ],
-         facts=[("Certified to", "ISO 3834", "Welding quality requirements"),
+         facts=[("Organised to", "EN ISO 3834-2", "Welding coordination requirements"),
                 ("Working from", "Lithuania, Belgium, Norway", "Offshore, shipbuilding and industry")],
          cta="Send us the drawings and we will come back with a price and crew dates."),
 
@@ -1251,9 +1258,17 @@ COMPANY = """
           where theirs is thinner. Every scope gets a risk assessment and a method statement
           before mobilisation, and both are written for the actual site. Copying the paperwork
           from the last job is how people get hurt.</p>
+          <!-- Two claims came out of this paragraph. "Our welding to ISO 3834" is
+               softened to what can be shown: there is no 3834 certificate on file, no
+               body and no number, while 9001/14001/45001 each have a published PDF.
+               And "accept our documentation without repeating the inspection" told a
+               client their own inspection was unnecessary, which the article of
+               13 August contradicts in our own words. -->
           <p class="co-note">Our management systems are certified to ISO 9001, 14001 and
-          45001, and our welding to ISO 3834. Certification is what lets a client accept our
-          documentation without repeating the inspection.</p>
+          45001 by DNV, and our welding coordination is organised to the requirements of
+          EN ISO 3834-2. Certification means our records are produced under an audited
+          system, so your inspector can rely on them when planning hold and witness
+          points.</p>
         </div>
       </div>
       <div class="co-zeros reveal">
@@ -1266,7 +1281,8 @@ COMPANY = """
       share the figures with clients on request. A target nobody measures is a
       slogan.</p>
       <div class="co-plates reveal">
-        <div class="co-plate"><b>ISO 3834</b><span>Welding quality</span></div>
+        <!-- No 3834 plate beside the three that have certificates: a plate in
+             that row reads as "certified", and it is not. -->
         <div class="co-plate"><b>ISO 9001</b><span>Quality</span></div>
         <div class="co-plate"><b>ISO 14001</b><span>Environment</span></div>
         <div class="co-plate"><b>ISO 45001</b><span>Health and safety</span></div>
@@ -2565,7 +2581,7 @@ CONTACTS = """
       <h2>Phone</h2>
       <ul>
         <li><a href="tel:+37063663744">+370 636 63 744</a></li>
-        <li><a href="tel:+37067020654">+370 670 20654</a></li>
+        <li><a href="tel:+37067020654">+370 670 20 654</a></li>
       </ul>
 
       <p class="back">
@@ -2624,6 +2640,11 @@ def job_postings_ld():
             "employmentType": p["employment_type"],
             "totalJobOpenings": p.get("vacancies"),
             "hiringOrganization": ORG,
+            # The office was the only jobLocation while every card says "Project
+            # sites across Europe". Google matches a jobseeker to the location,
+            # so a welder in Rostock was being shown a Klaipeda vacancy. The
+            # countries the work actually happens in are listed instead, with the
+            # office kept as one of them because it is also where crews mobilise.
             "jobLocation": [{
                 "@type": "Place",
                 "address": {"@type": "PostalAddress",
@@ -2631,11 +2652,18 @@ def job_postings_ld():
                             "postalCode": "LT-92298",
                             "streetAddress": "Šilutės pl. 2",
                             "addressCountry": "LT"},
-            }],
-            "applicantLocationRequirements": [
-                {"@type": "Country", "name": c} for c in p.get("countries", [])
-            ],
-            "directApply": True,
+            }] + [{"@type": "Place",
+                   "address": {"@type": "PostalAddress", "addressCountry": c}}
+                  for c in p.get("countries", []) if c != "LT"],
+            # applicantLocationRequirements is for remote roles and only means
+            # anything beside jobLocationType: TELECOMMUTE, which these are not.
+            # It also said LT/BE/NO while the form offers eight countries, so it
+            # was both wrong and contradicted by the page it sits on. Gone.
+            #
+            # directApply claims the application completes on this site. While the
+            # three form endpoints are empty and the buttons fall back to mailto,
+            # that is not true -- it goes back to True with the endpoints.
+            "directApply": False,
             "industry": "Industrial services, shipbuilding, offshore",
         }))
     return "".join(out)
@@ -2848,7 +2876,7 @@ SERVICE_GROUPS = [
                      "Traceability down to the individual weld",
                      "Support at client and third-party hold and witness points",
                      "Inspection and Test Plans (ITP) with hold, witness and review points agreed before work starts",
-                     "Quality system certified to ISO 9001; welding under ISO 3834-2",
+                     "Quality system certified to ISO 9001 by DNV; welding coordination organised to EN ISO 3834-2",
                      "Manufacturing Record Book (MRB) assembled as the work goes, not at the end"]),
         dict(slug="rigging-technical-support", nav="Rigging &amp; Technical Support",
              h1="Rigging and technical support",

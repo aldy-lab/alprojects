@@ -33,6 +33,10 @@ import os
 import re
 import sys
 import glob
+import io
+import json as _json
+import hashlib
+import datetime
 import html as _html
 import shutil
 from html.parser import HTMLParser
@@ -236,6 +240,8 @@ def translate_page(src, lang, rel, stats):
             continue
         dst = i18n.t(lang, key)
         if dst is None:
+            dst = i18n.t_clamped(lang, key)
+        if dst is None:
             stats["missing"].add(key)
             continue
         src_bag, dst_bag = tag_bag(key), tag_bag(dst)
@@ -251,8 +257,23 @@ def translate_page(src, lang, rel, stats):
         body = body[:start] + out + body[end:]
         stats["done"] += 1
 
+    # The same five vacancies were marked up on all four language versions --
+    # twenty JobPosting records for five real jobs, which Google is entitled to
+    # read as duplicates. The English page keeps them; the translations carry the
+    # human-readable cards and no structured data.
+    if lang != i18n.DEFAULT:
+        body = re.sub(
+            r'  <script type="application/ld\+json">\n  \{(?:(?!</script>).)*?'
+            r'"@type": "JobPosting"(?:(?!</script>).)*?\n  \}\n  </script>\n',
+            "", body, flags=re.S)
+
     # 5. head, links, switcher
     body = fix_head(body, lang, rel)
+
+    # The translation runs 15-25% longer than the English it replaced, so the
+    # cut has to be made again on this side of it -- the English page can be
+    # inside the limit while its German twin is 70 characters over.
+    body = i18n.clamp_page_desc(body)
     # index.html is hand-authored with relative asset paths (assets/logo.svg).
     # At the root they resolve; under /fr/ they become /fr/assets/... and every
     # image, stylesheet and font 404s. Root-relative them BEFORE prefixing, or
@@ -266,31 +287,55 @@ def translate_page(src, lang, rel, stats):
 # ============================================================
 # sitemap
 # ============================================================
+# ------------------------------------------------------------------
+# lastmod, by content rather than by build
+#
+# Asking git when a page last changed does not work here: the cache-busting
+# stamp rewrites every HTML file whenever the CSS or the JS changes, so git
+# sees all 160 pages touched by the same commit and the sitemap ends up with
+# one date on every URL -- which tells a crawler nothing and, once it
+# notices, teaches it to ignore the field.
+#
+# So the date comes from a manifest of content hashes with the version
+# stamps normalised out. A page whose text did not change keeps its date
+# however many times the build runs. The manifest is committed; delete it
+# and every page dates from today, which is wrong but not broken.
+# ------------------------------------------------------------------
+LASTMOD_DB = os.path.join(ROOT, "tools", "lastmod.json")
+try:
+    with io.open(LASTMOD_DB, encoding="utf-8") as fh:
+        _seen = _json.load(fh)
+except Exception:
+    _seen = {}
+_today = datetime.date.today().isoformat()
+_dirty = [False]
+
+def last_changed(rel):
+    try:
+        with io.open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
+            body = fh.read()
+    except Exception:
+        return _today
+    body = re.sub(r"\?v=[0-9a-f]{6,}", "", body)
+    digest = hashlib.sha256(body.encode("utf-8")).hexdigest()[:16]
+    rec = _seen.get(rel)
+    if rec and rec.get("hash") == digest:
+        return rec.get("date", _today)
+    _seen[rel] = {"hash": digest, "date": _today}
+    _dirty[0] = True
+    return _today
+
+
+def save_lastmod():
+    """Only earns its keep if it is written back and committed."""
+    if _dirty[0]:
+        with io.open(LASTMOD_DB, "w", encoding="utf-8") as fh:
+            _json.dump(_seen, fh, indent=1, sort_keys=True)
+
+
 def sitemap(pages):
     langs = [l for l in i18n.LANGS if i18n.PUBLISH.get(l)]
-    import datetime
-    import subprocess
     rows = []
-
-    def last_changed(rel):
-        """When this page actually changed, not when the build ran.
-
-        One date across every URL tells a crawler nothing -- it cannot tell the
-        page that changed today from the twenty-nine that did not. Taken from
-        git, which knows; falls back to the file's mtime outside a checkout."""
-        try:
-            out = subprocess.check_output(
-                ["git", "log", "-1", "--format=%cs", "--", rel],
-                cwd=ROOT, stderr=subprocess.DEVNULL).decode().strip()
-            if out:
-                return out
-        except Exception:
-            pass
-        try:
-            return datetime.date.fromtimestamp(
-                os.path.getmtime(os.path.join(ROOT, rel))).isoformat()
-        except Exception:
-            return datetime.date.today().isoformat()
 
     for rel in pages:
         if rel == "404.html":
@@ -378,6 +423,7 @@ def main():
 
     with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as fh:
         fh.write(sitemap(pages))
+    save_lastmod()
 
     # what still needs writing
     for lang in i18n.LANGS:

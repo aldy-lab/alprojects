@@ -17,7 +17,7 @@
 
   <!-- Open Graph / social share preview -->
   <meta property="og:site_name" content="ALPROJECTS Group">
-  <meta property="og:title" content="ALPROJECTS Group — Ingegneria integrata per industria e offshore">
+  <meta property="og:title" content="ALPROJECTS Group — Ingegneria per industria e offshore">
   <meta property="og:description" content="Montaggi meccanici, tubisteria, saldatura, QA/QC, lavori su fune e CND per industria e offshore.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://alprojects.co/it/">
@@ -27,7 +27,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="ALPROJECTS Group — ingegneria integrata per industria e offshore">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ALPROJECTS Group — Ingegneria integrata per industria e offshore">
+  <meta name="twitter:title" content="ALPROJECTS Group — Ingegneria per industria e offshore">
   <meta name="twitter:description" content="Montaggi meccanici, tubisteria, saldatura, QA/QC, lavori su fune e CND per industria e offshore.">
   <meta name="twitter:image" content="https://alprojects.co/assets/og/home.jpg">
 
@@ -37,7 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=691441fb">
+  <link rel="stylesheet" href="/css/style.min.css?v=6cf471ad">
 
   <script type="application/ld+json">
   {
@@ -175,7 +175,7 @@
              item. Nothing is claimed here that is not evidenced there. -->
         <ul class="hero-proof" aria-label="Dati principali">
           <li><b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certificato da DNV</span></li>
-          <li><b>200+</b><span>Specialisti in organico</span></li>
+          <li><b>200+</b><span>Specialisti nel nostro pool</span></li>
           <li><b>6 paesi</b><span>9 basi operative</span></li>
           <li><b>Azienda più solida di Lituania</b><span>Creditinfo, 2025&ndash;2026</span></li>
         </ul>
@@ -191,7 +191,12 @@
       <div class="container">
         <div class="fp-wrap">
           <div class="fp-intro reveal">
-            <p>Sede centrale a Klaipėda, in Lituania, con basi di progetto attive al servizio di clienti in sei Paesi. Gli uffici in <strong>Lituania</strong>, <strong>Polonia</strong>, <strong>Germania</strong> e <strong>Norvegia</strong> sono vicini ai cantieri, ai porti e ai terminal offshore dei nostri clienti.</p>
+            <!-- The sentence used to name offices in Lithuania, Poland, Germany and
+                 Norway while the list below it gives six countries without Poland --
+                 the page contradicted itself in two adjacent blocks. Naming the
+                 bases, not the offices, removes the contradiction without deciding
+                 a question only the company can answer. -->
+            <p>Con sede a Klaipėda, in Lituania, e basi operative in sei paesi, vicino ai cantieri, ai porti e ai terminali offshore dei nostri clienti.</p>
             <div class="fp-figures">
               <div><p class="fp-num" data-count="6">6</p><p class="fp-num-label">Paesi</p></div>
               <div><p class="fp-num" data-count="9">9</p><p class="fp-num-label">Basi di progetto</p></div>
@@ -476,7 +481,7 @@
               </ul>
               <a class="service-all" href="/it/services">Tutti e dodici i servizi</a>
             </div>
-            <p class="service-desc">Il ponteggio costa più in fermo impianto che in acciaio. Tecnici certificati IRATA, dai livelli 1 a 3, con un supervisore IRATA livello 3 su ogni sito, raggiungono lo stesso punto su fune, lo ispezionano e lo riparano mentre l’impianto resta in esercizio.</p>
+            <p class="service-desc">Il ponteggio costa più in fermo impianto che in acciaio. Tecnici certificati raggiungono lo stesso punto su fune, lo ispezionano e lo riparano mentre l’impianto continua a funzionare.</p>
           </div>
           <div class="service-meta">
             <span class="service-col-label">Settori</span>
@@ -521,7 +526,7 @@
           </div>
           <div class="people-figure reveal reveal-d2">
             <p class="people-num" data-count="200" data-suffix="+">200+</p>
-            <p class="people-num-label">Specialisti in organico</p>
+            <p class="people-num-label">Specialisti nel nostro pool</p>
             <p class="people-note">Mobilitati come squadre complete, con supervisione, attestati di certificazione e documentazione qualità pronti prima del primo turno.</p>
             <a class="btn-bracket" href="/it/careers">Vedi le posizioni aperte</a>
           </div>
@@ -567,7 +572,13 @@
               <p class="cert-meta"><span>EBN Certification</span></p>
             </div>
           </div>
-          <p class="certs-caption">Certificati per garantire sicurezza, qualità e conformità &mdash; <span class="certs-body">certificazione indipendente DNV</span></p>
+          <!-- The old caption put "independently certified by DNV" over four marks,
+               one of which (VCA) is issued by EBN. And it claimed the certification
+               covers the work rather than the management system, so the scope is now
+               quoted verbatim from the certificates -- a buyer's auditor opens the
+               PDF and compares it with the order, so the site should say it first. -->
+          <p class="certs-caption">ISO 9001, 14001 e 45001 certificati da DNV &middot; <span class="certs-body">VCA certificato da EBN</span></p>
+          <p class="certs-scope">Ambito certificato, come indicato sui certificati: &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo;</p>
 
           <div class="award">
             <p class="award-tag">2025 &ndash; 2026</p>
@@ -627,8 +638,8 @@
             <div class="doc-body">
               <p class="doc-num">01</p>
               <h3 class="doc-title">Profilo aziendale</h3>
-              <p class="doc-desc">Chi siamo, dove operiamo, i settori che serviamo e le norme secondo cui siamo certificati. Con la nostra presenza in sei Paesi e una selezione di clienti.</p>
-              <p class="doc-meta"><span>16 pagine</span><span>PDF</span><span>2,1 MB</span></p>
+              <p class="doc-desc">Chi siamo, dove operiamo, i settori che serviamo e le norme secondo cui lavoriamo. Capacità per settore, personale e certificazioni.</p>
+              <p class="doc-meta"><span>13 pagine</span><span>PDF</span><span>2,0 MB</span></p>
               <div class="doc-actions">
                 <a class="btn-bracket" href="/assets/downloads/alprojects-company-profile.pdf" download aria-label="Scarica il profilo aziendale in PDF">Scarica il PDF</a>
                 <a class="doc-view" href="/assets/downloads/alprojects-company-profile.pdf" target="_blank" rel="noopener" aria-label="Apri il profilo aziendale in una nuova scheda">Apri nel browser <span class="arr">&#8593;</span></a>

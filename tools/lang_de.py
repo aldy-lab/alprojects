@@ -2684,4 +2684,32 @@ S = {
         'Wir übernehmen ein Montagelos von Anfang bis Ende: Stahl in der Werkstatt gefertigt, Anlagen vor Ort montiert, Systeme angeschlossen und übergeben. Bei...',
     'We weld steel structures and pipework, in the shop and on site. Every welder holds a valid qualification, and every joint is welded to a procedure...':
         'Wir schweißen Stahlkonstruktionen und Rohrleitungen, in der Werkstatt und vor Ort. Jeder Schweißer hat eine gültige Prüfung, und jede Naht wird nach...',
+
+    # --- 16.09 audit: certification claims brought to what can be shown --
+    '<span>13 pages</span><span>PDF</span><span>2.0 MB</span>':
+        '<span>13 Seiten</span><span>PDF</span><span>2,0 MB</span>',
+    'Who we are, where we operate, the sectors we serve and the standards we work to. Sector capabilities, personnel and certifications.':
+        'Wer wir sind, wo wir arbeiten, welche Sektoren wir bedienen und nach welchen Normen wir arbeiten. Leistungen je Sektor, Personal und Zertifizierungen.',
+    'ISO 9001, 14001 and 45001 certified by DNV &middot; <span class="certs-body">VCA certified by EBN</span>':
+        'ISO 9001, 14001 und 45001 zertifiziert durch DNV &middot; <span class="certs-body">VCA zertifiziert durch EBN</span>',
+    'Certified scope, as stated on the certificates: &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo;':
+        'Zertifizierter Geltungsbereich, wie in den Zertifikaten angegeben: &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo;',
+    'Our management systems are certified to ISO 9001, 14001 and 45001 by DNV, and our welding coordination is organised to the requirements of EN ISO 3834-2. Certification means our records are produced under an audited system, so your inspector can rely on them when planning hold and witness points.':
+        'Unsere Managementsysteme sind von DNV nach ISO 9001, 14001 und 45001 zertifiziert, und unsere Schweißaufsicht ist nach den Anforderungen der EN ISO 3834-2 organisiert. Zertifizierung bedeutet, dass unsere Nachweise in einem auditierten System entstehen, sodass sich Ihr Prüfer bei der Festlegung von Halte- und Beobachtungspunkten darauf stützen kann.',
+    'Quality system certified to ISO 9001 by DNV; welding coordination organised to EN ISO 3834-2':
+        'Qualitätssystem von DNV nach ISO 9001 zertifiziert; Schweißaufsicht nach EN ISO 3834-2 organisiert',
+    '<strong>Welded, tested, then closed.</strong> Welding coordinated to EN ISO 3834-2. Every joint is documented, and NDT and pressure testing are done before insulation and final coating go on.':
+        '<strong>Geschweißt, geprüft, dann geschlossen.</strong> Schweißaufsicht nach EN ISO 3834-2. Jede Naht ist dokumentiert, und ZfP und Druckprüfung erfolgen, bevor Isolierung und Endbeschichtung aufgebracht werden.',
+    'Organised to':
+        'Organisiert nach',
+    'EN ISO 3834-2':
+        'EN ISO 3834-2',
+    'Welding coordination requirements':
+        'Anforderungen an die Schweißaufsicht',
+    'Headquartered in Klaipėda, Lithuania, with project bases in six countries, close to our clients&rsquo; yards, ports and offshore terminals.':
+        'Mit Hauptsitz in Klaipėda, Litauen, und Projektstandorten in sechs Ländern, nahe an den Werften, Häfen und Offshore-Terminals unserer Kunden.',
+    'Specialists on our roster':
+        'Spezialisten in unserem Pool',
+    '<b>200+</b><span>Specialists on our roster</span>':
+        '<b>200+</b><span>Spezialisten in unserem Pool</span>',
 }

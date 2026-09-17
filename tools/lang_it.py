@@ -2681,4 +2681,32 @@ S = {
         'Prendiamo in carico un lotto meccanico dall’inizio alla fine: acciaio costruito in officina, apparecchiature installate in cantiere, circuiti collegati...',
     'We weld steel structures and pipework, in the shop and on site. Every welder holds a valid qualification, and every joint is welded to a procedure...':
         'Saldiamo strutture in acciaio e tubazioni, in officina e in cantiere. Ogni saldatore ha una qualifica valida e ogni giunto viene saldato secondo una...',
+
+    # --- 16.09 audit: certification claims brought to what can be shown --
+    '<span>13 pages</span><span>PDF</span><span>2.0 MB</span>':
+        '<span>13 pagine</span><span>PDF</span><span>2,0 MB</span>',
+    'Who we are, where we operate, the sectors we serve and the standards we work to. Sector capabilities, personnel and certifications.':
+        'Chi siamo, dove operiamo, i settori che serviamo e le norme secondo cui lavoriamo. Capacità per settore, personale e certificazioni.',
+    'ISO 9001, 14001 and 45001 certified by DNV &middot; <span class="certs-body">VCA certified by EBN</span>':
+        'ISO 9001, 14001 e 45001 certificati da DNV &middot; <span class="certs-body">VCA certificato da EBN</span>',
+    'Certified scope, as stated on the certificates: &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo;':
+        'Ambito certificato, come indicato sui certificati: &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo;',
+    'Our management systems are certified to ISO 9001, 14001 and 45001 by DNV, and our welding coordination is organised to the requirements of EN ISO 3834-2. Certification means our records are produced under an audited system, so your inspector can rely on them when planning hold and witness points.':
+        'I nostri sistemi di gestione sono certificati ISO 9001, 14001 e 45001 da DNV, e il nostro coordinamento di saldatura è organizzato secondo i requisiti della EN ISO 3834-2. La certificazione significa che i nostri documenti nascono in un sistema sottoposto ad audit, così il vostro ispettore può basarsi su di essi per definire i punti di sosta e di presenza.',
+    'Quality system certified to ISO 9001 by DNV; welding coordination organised to EN ISO 3834-2':
+        'Sistema qualità certificato ISO 9001 da DNV; coordinamento di saldatura organizzato secondo EN ISO 3834-2',
+    '<strong>Welded, tested, then closed.</strong> Welding coordinated to EN ISO 3834-2. Every joint is documented, and NDT and pressure testing are done before insulation and final coating go on.':
+        '<strong>Saldato, collaudato, poi chiuso.</strong> Saldatura coordinata secondo EN ISO 3834-2. Ogni giunto è documentato, e CND e prova in pressione si eseguono prima della coibentazione e del rivestimento finale.',
+    'Organised to':
+        'Organizzato secondo',
+    'EN ISO 3834-2':
+        'EN ISO 3834-2',
+    'Welding coordination requirements':
+        'Requisiti di coordinamento della saldatura',
+    'Headquartered in Klaipėda, Lithuania, with project bases in six countries, close to our clients&rsquo; yards, ports and offshore terminals.':
+        'Con sede a Klaipėda, in Lituania, e basi operative in sei paesi, vicino ai cantieri, ai porti e ai terminali offshore dei nostri clienti.',
+    'Specialists on our roster':
+        'Specialisti nel nostro pool',
+    '<b>200+</b><span>Specialists on our roster</span>':
+        '<b>200+</b><span>Specialisti nel nostro pool</span>',
 }
