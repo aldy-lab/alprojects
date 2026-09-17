@@ -2709,4 +2709,12 @@ S = {
         'Specialisti nel nostro pool',
     '<b>200+</b><span>Specialists on our roster</span>':
         '<b>200+</b><span>Specialisti nel nostro pool</span>',
+    'Certified scopes, quoted from the certificates. <b>DNV:</b> &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo; <b>EBN, VCA* 2026/6.1:</b> &ldquo;Carrying out work on pipelines and metal structures in the Netherlands and Belgium.&rdquo;':
+        'Ambiti di certificazione, citati dai certificati. <b>DNV:</b> &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo; <b>EBN, VCA* 2026/6.1:</b> &ldquo;Carrying out work on pipelines and metal structures in the Netherlands and Belgium.&rdquo;',
+    'ISO 9001, 14001 and 45001 certified by DNV &middot; <span class="certs-body">VCA* certified by EBN</span>':
+        'ISO 9001, 14001 e 45001 certificati da DNV &middot; <span class="certs-body">VCA* certificato da EBN</span>',
+    '<span>Cert. EBN.VCA.12190.1</span><span>Valid to 17.09.2029</span>':
+        '<span>Cert. EBN.VCA.12190.1</span><span>Valido fino al 17.09.2029</span>',
+    'EBN Certification safety management system certificate — VCA* 2026/6.1, certificate EBN.VCA.12190.1':
+        'Certificato del sistema di gestione della sicurezza EBN Certification — VCA* 2026/6.1, certificato EBN.VCA.12190.1',
 }

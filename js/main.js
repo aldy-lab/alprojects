@@ -39,8 +39,7 @@
      the card becomes a link with a number and a validity date like the three DNV
      ones. Leave them empty and it stays a plain tile that claims nothing beyond
      the mark itself. */
-  var VCA_URL = "";   // e.g. "/assets/certificates/alprojects-vca.pdf"
-  var VCA_META = "";  // e.g. "Cert. 12345|Valid to 01.03.2028"
+  var VCA_URL = "/assets/certificates/alprojects-vca.pdf";
 
   /* Per-person profiles on the team cards. Keys match data-member in the HTML. */
   var MEMBER_SOCIAL = {
@@ -1598,17 +1597,6 @@
   /* ---------- VCA certificate card ---------- */
   var vca = document.querySelector("[data-vca]");
   if (vca) {
-    if (VCA_META) {
-      var meta = vca.querySelector(".cert-meta");
-      if (meta) {
-        meta.innerHTML = "";
-        VCA_META.split("|").forEach(function (part) {
-          var sp = document.createElement("span");
-          sp.textContent = part;
-          meta.appendChild(sp);
-        });
-      }
-    }
     if (VCA_URL) {
       /* becomes a link, the same as the three DNV cards */
       var a = document.createElement("a");
@@ -1616,7 +1604,11 @@
       a.href = VCA_URL;
       a.target = "_blank";
       a.rel = "noopener";
-      a.setAttribute("aria-label", "Open the VCA certificate as a PDF");
+      /* The number is read out of the card rather than repeated here, so the
+         label cannot disagree with what is printed on the tile. */
+      var num = vca.querySelector(".cert-meta span");
+      a.setAttribute("aria-label", "Open the VCA certificate as a PDF"
+        + (num ? ", " + num.textContent.toLowerCase() : ""));
       a.innerHTML = vca.innerHTML;
       vca.parentNode.replaceChild(a, vca);
     }
