@@ -2717,4 +2717,72 @@ S = {
         '<span>Cert. EBN.VCA.12190.1</span><span>Valido fino al 17.09.2029</span>',
     'EBN Certification safety management system certificate — VCA* 2026/6.1, certificate EBN.VCA.12190.1':
         'Certificato del sistema di gestione della sicurezza EBN Certification — VCA* 2026/6.1, certificato EBN.VCA.12190.1',
+    'Where we did this':
+        'Dove lo abbiamo fatto',
+    'On independence':
+        'Sull’indipendenza',
+    'Mechanical, marine and inspection services':
+        'Servizi meccanici, navali e di ispezione',
+    'Mechanical scopes, inspected before we hand them over':
+        'Lavori meccanici, controllati prima della consegna',
+    'Certified people on site, and the inspection records to prove what they did.':
+        'Persone qualificate in cantiere e i rapporti di controllo che documentano il loro lavoro.',
+    'We take mechanical scopes and deliver them with our own supervision. We supply the qualified people a project is short of. On our own scopes we inspect the result ourselves and hand your inspector the records; on work welded by others we act as independent NDT.':
+        'Prendiamo in carico lavori meccanici e li eseguiamo con la nostra supervisione. Forniamo le persone qualificate che mancano a un progetto. Sui nostri lavori controlliamo noi stessi il risultato e consegniamo i rapporti al vostro ispettore; sulle saldature eseguite da altri operiamo come CND indipendente.',
+    'We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic particle testing can be done while the plant keeps running. Radiography needs the area cleared, so we plan it around production. On our own scopes, our NDT is internal quality control: we find our own defects before your inspector does. On work welded by others, we act as independent NDT and report to the client.':
+        'Controlliamo le saldature senza tagliarle né danneggiarle. Ultrasuoni, liquidi penetranti e magnetoscopia si eseguono con l’impianto in funzione. La radiografia richiede l’area libera, quindi la pianifichiamo attorno alla produzione. Sui nostri lavori il nostro CND è controllo qualità interno: troviamo i nostri difetti prima del vostro ispettore. Sulle saldature eseguite da altri operiamo come CND indipendente e riferiamo al committente.',
+    'On our own scopes this is internal quality control, and it never counts as sign-off. We wrote down what that means in <a href="/news/we-do-not-certify-our-own-welds.html">we do not certify our own welds</a>.':
+        'Sui nostri lavori questo è controllo qualità interno e non vale mai come accettazione. Abbiamo scritto cosa significa in <a href="/news/we-do-not-certify-our-own-welds.html">non certifichiamo le nostre saldature</a>.',
+    'Our technicians hold IRATA and SOFT rope access certification and most of them carry a second trade: inspection, welding or mechanical fitting. One person on the rope replaces a scaffold crew and an inspector standing behind them.':
+        'I nostri tecnici hanno la certificazione per l’accesso su corda IRATA e SOFT e la maggior parte esercita un secondo mestiere: controllo, saldatura o montaggio meccanico. Una persona su corda sostituisce una squadra di ponteggi e l’ispettore dietro di essa.',
+    'IRATA and SOFT rope access':
+        'IRATA e SOFT, accesso su corda',
+    'Abnormal load permits, escort and cargo securing to EN 12195-1, arranged with our transport partners':
+        'Autorizzazioni per trasporti eccezionali, scorta e ancoraggio del carico secondo EN 12195-1, organizzati con i nostri partner di trasporto',
+    'Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records. Where a service has published work behind it, its page links to the job.':
+        'Dodici servizi in tre gruppi: i lavori meccanici e industriali che prendiamo in carico direttamente, i lavori navali che eseguiamo in cantiere e a galla, e le discipline di ispezione e accesso che mostrano ciò che è stato costruito. La maggior parte dei progetti ne combina diversi sotto un unico contratto, con una sola supervisione e una sola documentazione. Dove un servizio ha lavori pubblicati alle spalle, la sua pagina vi rimanda.',
+    'Twelve services in three groups -- mechanical and industrial scopes, marine work in yards and afloat, and inspection and access. One contract, one supervisor, one set of records.':
+        'Dodici servizi in tre gruppi &mdash; lavori meccanici e industriali, lavori navali in cantiere e a galla, ispezione e accesso. Un contratto, una supervisione, una documentazione.',
+    'Enquiries and applications sent from this site are answered from <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>.':
+        'Le richieste e le candidature inviate da questo sito ricevono risposta da <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>.',
+    '<strong>Plausible Analytics</strong> &mdash; cookieless visit statistics. No cookies, no cross-site tracking and no personal data; we see page addresses, referrers and country, not people.':
+        '<strong>Plausible Analytics</strong> &mdash; statistiche di visita senza cookie. Nessun cookie, nessun tracciamento tra siti e nessun dato personale; vediamo indirizzi di pagina, sorgenti e paese, non persone.',
+    'ALPROJECTS Group &middot; Value 04':
+        'ALPROJECTS Group &middot; Valore 04',
+    '<b>VCA*</b><span>Certified by EBN</span>':
+        '<b>VCA*</b><span>Certificato da EBN</span>',
+    '12 MM PL':
+        '12 MM PL',
+    '1 project':
+        '1 progetto',
+    '2 projects':
+        '2 progetti',
+    '3 projects':
+        '3 progetti',
+    '<span class="srv-ix-n">01</span> <span class="srv-ix-name">Welding services</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">01</span> <span class="srv-ix-name">Saldatura</span> <span class="srv-ix-proof">3 progetti</span>',
+    '<span class="srv-ix-n">02</span> <span class="srv-ix-name">Pipe fitting</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">02</span> <span class="srv-ix-name">Tubisteria</span> <span class="srv-ix-proof">3 progetti</span>',
+    '<span class="srv-ix-n">03</span> <span class="srv-ix-name">Mechanical contracting</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">03</span> <span class="srv-ix-name">Montaggi meccanici</span> <span class="srv-ix-proof">3 progetti</span>',
+    '<span class="srv-ix-n">04</span> <span class="srv-ix-name">Heavy equipment relocation</span>':
+        '<span class="srv-ix-n">04</span> <span class="srv-ix-name">Trasferimento di impianti pesanti</span>',
+    '<span class="srv-ix-n">05</span> <span class="srv-ix-name">Mobile repair teams</span> <span class="srv-ix-proof">2 projects</span>':
+        '<span class="srv-ix-n">05</span> <span class="srv-ix-name">Squadre mobili di riparazione</span> <span class="srv-ix-proof">2 progetti</span>',
+    '<span class="srv-ix-n">06</span> <span class="srv-ix-name">Shipbuilding</span> <span class="srv-ix-proof">2 projects</span>':
+        '<span class="srv-ix-n">06</span> <span class="srv-ix-name">Cantieristica navale</span> <span class="srv-ix-proof">2 progetti</span>',
+    '<span class="srv-ix-n">07</span> <span class="srv-ix-name">Ship repair</span>':
+        '<span class="srv-ix-n">07</span> <span class="srv-ix-name">Riparazione navale</span>',
+    '<span class="srv-ix-n">08</span> <span class="srv-ix-name">Non-destructive testing</span>':
+        '<span class="srv-ix-n">08</span> <span class="srv-ix-name">Controlli non distruttivi</span>',
+    '<span class="srv-ix-n">09</span> <span class="srv-ix-name">Rope access services</span> <span class="srv-ix-proof">1 project</span>':
+        '<span class="srv-ix-n">09</span> <span class="srv-ix-name">Lavori su fune</span> <span class="srv-ix-proof">1 progetto</span>',
+    '<span class="srv-ix-n">10</span> <span class="srv-ix-name">3D laser scanning</span>':
+        '<span class="srv-ix-n">10</span> <span class="srv-ix-name">Scansione laser 3D</span>',
+    '<span class="srv-ix-n">11</span> <span class="srv-ix-name">Quality assurance and quality control (QA/QC)</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">11</span> <span class="srv-ix-name">Assicurazione e controllo qualità (QA/QC)</span> <span class="srv-ix-proof">3 progetti</span>',
+    '<span class="srv-ix-n">12</span> <span class="srv-ix-name">Rigging and technical support</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">12</span> <span class="srv-ix-name">Sollevamento e supporto tecnico</span> <span class="srv-ix-proof">3 progetti</span>',
+    'On our own scopes this is internal quality control, and it never counts as sign-off. We wrote down what that means in <a href="/news/we-do-not-certify-our-own-welds">we do not certify our own welds</a>.':
+        'Sui nostri lavori questo è controllo qualità interno e non vale mai come accettazione. Abbiamo scritto cosa significa in <a href="/news/we-do-not-certify-our-own-welds">non certifichiamo le nostre saldature</a>.',
 }

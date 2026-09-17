@@ -268,9 +268,19 @@ PRIVACY = """
         <li><strong>GitHub, Inc.</strong> &mdash; website hosting and request logs.</li>
         <li><strong>Calendly LLC</strong> &mdash; the scheduling calendar on the contacts
         page, and only if you choose to open it.</li>
+        <!-- Analytics is off: ANALYTICS_DOMAIN is "" in js/main.js and no request
+             is made to anybody, which is why this row is `hidden` rather than
+             absent. main.js reveals it from the same variable that loads the
+             script, so switching analytics on switches the disclosure on in the
+             same edit -- the one order of operations nobody re-audits later.
+             Plausible is cookieless and stores no personal data, so there is
+             still nothing to consent to; it does have to be named here. -->
+        <li data-analytics-row hidden><strong>Plausible Analytics</strong> &mdash;
+        cookieless visit statistics. No cookies, no cross-site tracking and no
+        personal data; we see page addresses, referrers and country, not people.</li>
       </ul>
-      <p>Simply browsing this site loads no third-party scripts, fonts, analytics or
-      embeds. The typeface is served from our own domain, so reading these pages does not
+      <p data-analytics-off>Simply browsing this site loads no third-party scripts, fonts,
+      analytics or embeds. The typeface is served from our own domain, so reading these pages does not
       disclose your IP address to any advertising or analytics company.</p>
       <p>The one exception is the scheduling calendar on the contacts page. It is supplied
       by Calendly LLC and is <strong>not loaded until you press &ldquo;Open the
@@ -1043,7 +1053,6 @@ COMPANY = """
         <span class="sheet-plus" style="left:58%; top:24%"></span>
         <span class="sheet-plus" style="left:74%; top:52%"></span>
         <span class="sheet-plus" style="left:88%; top:30%"></span>
-        <span class="sheet-dim sheet-dim-br">1900X814</span>
       </span>
       <div class="container sector-hero-in">
         <p class="eyebrow hero-rise">Company</p>
@@ -1071,10 +1080,17 @@ COMPANY = """
         </div>
         <div class="reveal reveal-d1">
           <p class="eyebrow">Our mission</p>
-          <p class="co-big">Certified people on site, and independent proof of what they did.</p>
+          <!-- "independent proof of what they did" and "people who did not do the
+               work" both claim independence on our own scopes, which the 13 August
+               article says we do not have: on our own jobs our NDT is internal
+               quality control and never counts as sign-off. Independence is real
+               on work welded by others, so that is where the word now sits. -->
+          <p class="co-big">Certified people on site, and the inspection records to prove
+          what they did.</p>
           <p class="co-body">We take mechanical scopes and deliver them with our own
-          supervision. We supply the qualified people a project is short of. And we inspect the
-          result with people who did not do the work.</p>
+          supervision. We supply the qualified people a project is short of. On our own
+          scopes we inspect the result ourselves and hand your inspector the records; on
+          work welded by others we act as independent NDT.</p>
         </div>
       </div>
     </div>
@@ -1243,8 +1259,12 @@ COMPANY = """
            width="1700" height="566" loading="lazy" decoding="async">
       <span class="co-band-scrim" aria-hidden="true"></span>
       <div class="container co-band-in">
+        <!-- Signed "Value 02" ("We are responsible for the scope"). Stop-work
+             authority is not a scope-responsibility value; it belongs to 04,
+             "We look after people and the site", whose third bullet is "Nobody
+             on a rope is expected to manage alone". Corrected to 04. -->
         <blockquote>Anyone on our crew can stop a job.</blockquote>
-        <cite>ALPROJECTS Group &middot; Value 02</cite>
+        <cite>ALPROJECTS Group &middot; Value 04</cite>
       </div>
     </section>
 
@@ -2577,6 +2597,14 @@ CONTACTS = """
         <li><span class="contact-label">General</span>
         <a href="mailto:office@alprojects.eu">office@alprojects.eu</a></li>
       </ul>
+      <!-- Two addresses labelled "Project enquiries" and "General" told a
+           visitor nothing about which one to use, and every form, every mailto
+           and the JSON-LD on this site route to info@ -- so the second row read
+           as a choice that does not exist. The line below states only what is
+           verifiable from the site itself. What office@ is actually for is a
+           question for the client; until it is answered, nothing here claims. -->
+      <p class="contact-note">Enquiries and applications sent from this site are
+      answered from <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>.</p>
 
       <h2>Phone</h2>
       <ul>
@@ -2745,6 +2773,48 @@ def breadcrumb_ld(trail):
         ],
     })
 
+def collection_ld(name, url, desc, items):
+    """CollectionPage plus the list it actually shows.
+
+    Company, Services, News, Projects and Privacy had no structured data at all
+    -- the five pages that are not a case, an article or a vacancy. The list is
+    built from the same data that renders the page, so it cannot describe a
+    different set than the one on screen.
+    """
+    return jsonld({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": name,
+        "url": "https://alprojects.co" + url,
+        "description": desc,
+        "isPartOf": {"@type": "WebSite", "name": "ALPROJECTS Group",
+                     "url": "https://alprojects.co/"},
+        "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": len(items),
+            "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "name": n,
+                 "url": "https://alprojects.co" + u}
+                for i, (n, u) in enumerate(items)
+            ],
+        },
+    })
+
+
+def webpage_ld(name, url, desc, kind="WebPage"):
+    return jsonld({
+        "@context": "https://schema.org",
+        "@type": kind,
+        "name": name,
+        "url": "https://alprojects.co" + url,
+        "description": desc,
+        "isPartOf": {"@type": "WebSite", "name": "ALPROJECTS Group",
+                     "url": "https://alprojects.co/"},
+        "publisher": {"@type": "Organization", "name": "ALPROJECTS Group",
+                      "url": "https://alprojects.co/"},
+    })
+
+
 OG_CARDS = {"we-do-not-certify-our-own-welds", "piping-installation-engine-room",
             "strongest-in-lithuania-2025-2026"}
 
@@ -2810,7 +2880,14 @@ SERVICE_GROUPS = [
                      "Disconnection and reconnection of piping and utilities",
                      "Foundation preparation, chocking, grouting and laser shaft alignment",
                      "Site-to-site moves across Europe",
-                     "Abnormal load permits, escort and cargo securing to EN 12195-1, with CMR cover"]),
+                     # "with CMR cover" asserts carrier liability insurance. Nothing
+                     # on file evidences it, and if the haulage is subcontracted the
+                     # cover belongs to the haulier, not to us. This wording is true
+                     # whether the transport is ours or a partner's; the audit asked
+                     # for the same change. Who actually holds the CMR is a client
+                     # question and the claim does not come back until it is answered.
+                     "Abnormal load permits, escort and cargo securing to EN 12195-1, "
+                     "arranged with our transport partners"]),
         dict(slug="mobile-repair-teams", nav="Mobile Repair Teams",
              h1="Mobile repair teams",
              lead="Every hour a unit stays down has a price. Our crews mobilise at short notice for "
@@ -2841,10 +2918,16 @@ SERVICE_GROUPS = [
     ("Inspection & Access", [
         dict(slug="non-destructive-testing", nav="Non-Destructive Testing",
              h1="Non-destructive testing",
+             # "Our technicians report to the client, not to the contractor who did
+             # the welding" is false on our own scopes: the contractor who did the
+             # welding is us. The 13 August article says so in our own words -- it
+             # is the strongest text on the site -- and this page contradicted it.
+             # Replaced with the distinction the article draws, and linked to it.
              lead="We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic "
       "particle testing can be done while the plant keeps running. Radiography needs the area "
-      "cleared, so we plan it around production. Our technicians report to the client, not to the "
-      "contractor who did the welding.",
+      "cleared, so we plan it around production. On our own scopes, our NDT is internal quality "
+      "control: we find our own defects before your inspector does. On work welded by others, we "
+      "act as independent NDT and report to the client.",
              points=["Visual and penetrant testing for defects on the surface",
                      "Magnetic particle testing for cracks in steel welds",
                      "Ultrasonic testing for defects inside the weld",
@@ -2852,7 +2935,19 @@ SERVICE_GROUPS = [
                      "Technicians certified to ISO 9712, Level II and Level III",
                      "Acceptance criteria agreed with the client before testing starts",
                      "Testing with the plant running, where the method allows it",
-                     "Reports issued to the client in their own format"]),
+                     "Reports issued to the client in their own format"],
+             # No published case uses NDT, so this page gets no "Where we did
+             # this" block. What it does get is the 13 August article, which is
+             # where the independence question is answered honestly and in more
+             # words than a service lead can hold. The audit asked for the link
+             # here for that reason: it is stronger than any line on this page.
+             deep='<div class="container srv-where">'
+                  '<p class="eyebrow">On independence</p>'
+                  '<p class="srv-where-note">On our own scopes this is internal quality '
+                  'control, and it never counts as sign-off. We wrote down what that '
+                  'means in <a href="/news/we-do-not-certify-our-own-welds.html">we do '
+                  'not certify our own welds</a>.</p>'
+                  '</div>'),
         dict(slug="rope-access-services", nav="Rope Access Services", h1="Rope access services",
              lead="Scaffolding costs more in downtime than in steel. Certified technicians reach the "
                   "same place on rope, inspect it and repair it while the plant keeps running.",
@@ -2904,14 +2999,21 @@ ROPE_DEEP = """
             <p class="srv-deep-body">Nobody buys rope access because they want ropes. They buy it
             because the alternative is a scaffold, a crane, a vessel day or a shutdown. Each of
             those costs more than the work itself.</p>
-            <p class="srv-deep-body">Our technicians hold IRATA and SOFT certification and most of
+            <!-- The audit asks for SOFT written out, because to a German or
+                 Belgian buyer the acronym alone means nothing. I do not know
+                 which body it stands for and will not invent the name of a
+                 certification scheme, so the words "rope access" are added
+                 instead: the line now parses even if the acronym does not.
+                 The expansion is on the list of things the client owes. -->
+            <p class="srv-deep-body">Our technicians hold IRATA and SOFT rope access
+            certification and most of
             them carry a second trade: inspection, welding or mechanical fitting. One person on the rope
             replaces a scaffold crew and an inspector standing behind them.</p>
             <p class="srv-deep-note">Every crew works with a written rescue plan and a supervisor
             on site. Without both, the job does not start.</p>
           </div>
           <dl class="srv-spec">
-            <div><dt>Certification</dt><dd>IRATA and SOFT</dd></div>
+            <div><dt>Certification</dt><dd>IRATA and SOFT rope access</dd></div>
             <div><dt>Typical mobilisation</dt><dd>short notice, crews of 2&ndash;6</dd></div>
             <div><dt>Sectors</dt><dd>offshore wind, oil and gas, industry, marine</dd></div>
             <div><dt>Deliverable</dt><dd>report in the client&rsquo;s format</dd></div>
@@ -2941,6 +3043,50 @@ SERVICES_FLAT = [sv for _, group in SERVICE_GROUPS for sv in group]
 for _i, _sv in enumerate(SERVICES_FLAT, 1):
     _sv["num"] = "%02d" % _i
 
+
+# ============================================================
+# WHERE WE DID THIS
+# ============================================================
+# The link between services and projects ran one way: every case page lists the
+# disciplines it used and links to them, and not one of the twelve service pages
+# linked back. So the twelve pages a buyer searching for "pipe fitting Klaipeda"
+# lands on were an intro paragraph and a bullet list, with the evidence one
+# level away and no way to reach it.
+#
+# The mapping is DERIVED from each case's own `services` list rather than typed
+# out again: that list is what renders "Disciplines on this job", so the two
+# directions cannot disagree, and a new case wires itself up. A hand-written
+# table here would have been a second source of truth for the same fact, and
+# the one that silently goes stale.
+#
+# Only live cases count -- LIVE, not CASES -- or a draft would be advertised
+# from a service page and answer 404.
+WHERE = {}
+for _c in LIVE:
+    for _slug in _c.get("services", []):
+        WHERE.setdefault(_slug, []).append(_c)
+
+# Order: the case list order, and at most three. Three is the point at which the
+# block stops being evidence and starts being a second projects index.
+for _slug in WHERE:
+    WHERE[_slug] = WHERE[_slug][:3]
+
+
+def where_html(slug):
+    """The block for one service, or "" when no published case used it."""
+    cases = WHERE.get(slug, [])
+    if not cases:
+        return ""
+    items = "\n".join(
+        '            <li><a href="/projects/%s.html">%s</a></li>' % (c["slug"], c["title"])
+        for c in cases)
+    return ('\n      <div class="container srv-where">\n'
+            '        <p class="eyebrow">Where we did this</p>\n'
+            '        <ul class="srv-where-list">\n%s\n        </ul>\n'
+            '      </div>\n' % items)
+
+
+
 # A service may carry a longer block below the shell. Only rope access has one;
 # the rest render nothing there. It travels in the JSON payload with everything
 # else, because switching services never reloads the page -- appended straight
@@ -2948,7 +3094,21 @@ for _i, _sv in enumerate(SERVICES_FLAT, 1):
 # later.
 DEEP_BLOCKS = {"rope-access-services": ROPE_DEEP}
 for _sv in SERVICES_FLAT:
-    _sv["deep"] = DEEP_BLOCKS.get(_sv["slug"], "")
+    # Order matters, and it caught me once: the "Where we did this" block was
+    # first appended where where_html() is defined, which is ABOVE this line --
+    # and this assignment then overwrote all twelve of them with the table
+    # below. The build was clean and the block simply was not in the output.
+    # `deep` on the dict itself (NDT's link to the 13 August article) has to
+    # survive too, so the table only fills in where the dict said nothing.
+    _sv["deep"] = (DEEP_BLOCKS.get(_sv["slug"]) or _sv.get("deep") or "")
+
+# Appended to `deep` rather than rendered beside it: `deep` is the one block the
+# switcher swaps, so riding it means the links change with the service instead
+# of standing under the wrong one after a click. It also carries the block into
+# the JSON payload, where the island pass translates the case titles with
+# everything else.
+for _sv in SERVICES_FLAT:
+    _sv["deep"] = _sv["deep"] + where_html(_sv["slug"])
 
 
 
@@ -3014,9 +3174,11 @@ def service_page_body(sv):
 
 
 # ---------------- write everything ----------------
-write("privacy.html", page("Privacy Policy",
-      "How ALPROJECTS Group handles personal data collected through this website.",
-      PRIVACY, canonical="/privacy.html"))
+_PRIVACY_DESC = "How ALPROJECTS Group handles personal data collected through this website."
+write("privacy.html", page("Privacy Policy", _PRIVACY_DESC,
+      PRIVACY, canonical="/privacy.html",
+      head_extra=webpage_ld("Privacy Policy", "/privacy.html", _PRIVACY_DESC) +
+                 breadcrumb_ld([("Home", "/"), ("Privacy Policy", "/privacy.html")])))
 
 write("careers.html", page("Careers",
       "Work with ALPROJECTS Group — welding, pipe fitting, NDT, rope access and mechanical contracting on industrial and offshore projects across Europe.",
@@ -3024,9 +3186,12 @@ write("careers.html", page("Careers",
       head_extra=job_postings_ld() +
                  breadcrumb_ld([("Home", "/"), ("Careers", "/careers.html")])))
 
-write("company.html", page("Company",
-      "ALPROJECTS Group is a European provider of industrial services for the shipbuilding, offshore, industrial and energy sectors.",
-      COMPANY, canonical="/company.html", og="company"))
+_COMPANY_DESC = ("ALPROJECTS Group is a European provider of industrial services for the "
+                 "shipbuilding, offshore, industrial and energy sectors.")
+write("company.html", page("Company", _COMPANY_DESC,
+      COMPANY, canonical="/company.html", og="company",
+      head_extra=webpage_ld("Company", "/company.html", _COMPANY_DESC, kind="AboutPage") +
+                 breadcrumb_ld([("Home", "/"), ("Company", "/company.html")])))
 
 # --- services: one URL per service, plus /services.html as the index ---
 def _service_desc(sv):
@@ -3046,14 +3211,80 @@ for _sv in SERVICES_FLAT:
                                          (_sv["h1"], "/services/%s.html" % _sv["slug"])])))
 
 # /services.html shows the first service, and is the entry point people link to
-write("services.html", page("Services",
-      "Welding, pipe fitting, mechanical contracting, marine works, NDT, rope access and "
-      "quality control for industrial and offshore projects across Europe.",
-      service_page_body(SERVICES_FLAT[0]), canonical="/services.html", og="services"))
+# ============================================================
+# /services -- THE SECTION'S OWN PAGE
+# ============================================================
+# It used to render service_page_body(SERVICES_FLAT[0]) -- literally the welding
+# page at a second address. Measured 99.6% identical, both self-canonical: two
+# identical pages to a search engine, and no heading of its own for the section.
+#
+# What it is instead: the index of the twelve, in the three groups the nav
+# already uses, with the section's own H1 and a short introduction. The cards
+# carry the number and the name and NOT the lead paragraph -- copying twelve
+# leads here would rebuild the same duplicate-content problem twelve times
+# smaller. What they carry instead is derived and exists nowhere else: how many
+# published projects stand behind each service.
+def services_index_body():
+    groups = []
+    for label, group in SERVICE_GROUPS:
+        cards = []
+        for sv in group:
+            n = len(WHERE.get(sv["slug"], []))
+            if n:
+                proof = ('<span class="srv-ix-proof">%d project%s</span>'
+                         % (n, "" if n == 1 else "s"))
+            else:
+                # Silence, not a zero: "0 projects" on a page meant to sell the
+                # service reads as an admission. Four of the twelve have no
+                # published case yet -- NDT, 3D laser scanning, heavy equipment
+                # relocation and ship repair.
+                proof = ""
+            cards.append(
+                '          <a class="srv-ix-card" href="/services/%s.html">\n'
+                '            <span class="srv-ix-n">%s</span>\n'
+                '            <span class="srv-ix-name">%s</span>\n'
+                '            %s\n'
+                '          </a>' % (sv["slug"], sv["num"], sv["h1"], proof))
+        groups.append(
+            '        <div class="srv-ix-group">\n'
+            '          <p class="srv-ix-label">%s</p>\n'
+            '        </div>\n%s' % (label, "\n".join(cards)))
 
-write("projects.html", page("Projects",
-      "Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe.",
-      PROJECTS, canonical="/projects.html", og="projects"))
+    return ('\n    <section class="srv-ix">\n'
+            '      <div class="container">\n'
+            '        <p class="eyebrow">Our services</p>\n'
+            '        <h1 class="srv-ix-h1">Mechanical, marine and inspection services</h1>\n'
+            '        <p class="srv-ix-lead">Twelve services in three groups: the mechanical '
+            'and industrial scopes we take on directly, the marine work we do in yards and '
+            'afloat, and the inspection and access disciplines that show what was built. '
+            'Most projects use several of them under one contract, with one supervisor and '
+            'one set of records. Where a service has published work behind it, its page '
+            'links to the job.</p>\n'
+            '        <div class="srv-ix-grid">\n%s\n        </div>\n'
+            '      </div>\n'
+            '    </section>\n' % "\n".join(groups))
+
+
+write("services.html", page("Services",
+      "Twelve services in three groups -- mechanical and industrial scopes, marine work in "
+      "yards and afloat, and inspection and access. One contract, one supervisor, one set "
+      "of records.",
+      services_index_body(), canonical="/services.html", og="services",
+      head_extra=collection_ld(
+          "Services", "/services.html",
+          "Twelve services in three groups -- mechanical and industrial scopes, marine "
+          "work in yards and afloat, and inspection and access.",
+          [(sv["h1"], "/services/%s.html" % sv["slug"]) for sv in SERVICES_FLAT]) +
+                 breadcrumb_ld([("Home", "/"), ("Services", "/services.html")])))
+
+_PROJECTS_DESC = ("Shipbuilding, offshore, industrial and renewable energy projects "
+                  "delivered by ALPROJECTS Group across Europe.")
+write("projects.html", page("Projects", _PROJECTS_DESC,
+      PROJECTS, canonical="/projects.html", og="projects",
+      head_extra=collection_ld(
+          "Projects", "/projects.html", _PROJECTS_DESC,
+          [(c["title"], "/projects/%s.html" % c["slug"]) for c in LIVE]) +
+                 breadcrumb_ld([("Home", "/"), ("Projects", "/projects.html")])))
 
 # --- one page per project case, under /projects/ ---
 # /projects.html wins over the /projects/ directory on GitHub Pages, the same
@@ -3081,10 +3312,14 @@ write("contacts.html", page("Contacts",
       head_extra=contact_ld() +
                  breadcrumb_ld([("Home", "/"), ("Contacts", "/contacts.html")])))
 
-write("news/index.html", page("News",
-      "Project updates and engineering insights from ALPROJECTS Group — welding, "
-      "piping, NDT and offshore scopes across Northern and Western Europe.",
-      news_index(), canonical="/news/", og="news"))
+_NEWS_DESC = ("Project updates and engineering insights from ALPROJECTS Group — welding, "
+              "piping, NDT and offshore scopes across Northern and Western Europe.")
+write("news/index.html", page("News", _NEWS_DESC,
+      news_index(), canonical="/news/", og="news",
+      head_extra=collection_ld(
+          "News", "/news/", _NEWS_DESC,
+          [(a["title"], "/news/%s.html" % a["slug"]) for a in ARTICLES]) +
+                 breadcrumb_ld([("Home", "/"), ("News", "/news/")])))
 
 for a in ARTICLES:
     body = dict(a)
@@ -3166,7 +3401,6 @@ def sector_body(slug, name, img, lead, service_slugs):
       <span class="sheet-furniture" aria-hidden="true">
         <span class="sheet-plus" style="left:62%%; top:26%%"></span>
         <span class="sheet-plus" style="left:80%%; top:56%%"></span>
-        <span class="sheet-dim sheet-dim-br">1204X1017</span>
       </span>
       <div class="container sector-hero-in">
         <p class="eyebrow hero-rise">Sector</p>
