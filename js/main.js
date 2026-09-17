@@ -39,8 +39,7 @@
      the card becomes a link with a number and a validity date like the three DNV
      ones. Leave them empty and it stays a plain tile that claims nothing beyond
      the mark itself. */
-  var VCA_URL = "";   // e.g. "/assets/certificates/alprojects-vca.pdf"
-  var VCA_META = "";  // e.g. "Cert. 12345|Valid to 01.03.2028"
+  var VCA_URL = "/assets/certificates/alprojects-vca.pdf";
 
   /* Per-person profiles on the team cards. Keys match data-member in the HTML. */
   var MEMBER_SOCIAL = {
@@ -140,7 +139,9 @@
       contact_sent: "Message envoyé. Nous vous recontacterons.",
       contact_mail: "Votre messagerie s’est ouverte avec la demande préremplie — cliquez sur envoyer.",
       contact_mail_files: "Votre messagerie s\u2019est ouverte \u2014 les plans ne partent pas avec elle, joignez-les maintenant\u00a0:",
-      bar_call: "Appeler", bar_scope: "Envoyer le cahier des charges",
+      /* Short form for the sticky bar only -- the full "Envoyer le cahier des
+         charges" is on the page buttons. At 320px it wrapped to three lines. */
+      bar_call: "Appeler", bar_scope: "Envoyer la demande",
       apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez.",
       file_remove: "Retirer",
       file_too_big: "Trop volumineux (10 Mo maximum) :",
@@ -176,7 +177,7 @@
       contact_sent: "Nachricht gesendet. Wir melden uns.",
       contact_mail: "Ihr E-Mail-Programm wurde mit der ausgefüllten Anfrage geöffnet — bitte absenden.",
       contact_mail_files: "Ihr E-Mail-Programm wurde ge\u00f6ffnet \u2014 die Zeichnungen gehen nicht mit, bitte jetzt anh\u00e4ngen:",
-      bar_call: "Anrufen", bar_scope: "Leistungsumfang senden",
+      bar_call: "Anrufen", bar_scope: "Anfrage senden",
       apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie.",
       file_remove: "Entfernen",
       file_too_big: "Zu groß (maximal 10 MB):",
@@ -212,7 +213,7 @@
       contact_sent: "Messaggio inviato. Vi ricontatteremo.",
       contact_mail: "Il programma di posta si è aperto con la richiesta compilata — premete invia.",
       contact_mail_files: "Il programma di posta si \u00e8 aperto \u2014 i disegni non partono con esso, allegateli ora:",
-      bar_call: "Chiamare", bar_scope: "Inviare il capitolato",
+      bar_call: "Chiamare", bar_scope: "Invia la richiesta",
       apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia.",
       file_remove: "Rimuovi",
       file_too_big: "Troppo grande (massimo 10 MB):",
@@ -230,6 +231,21 @@
     an.src = "https://plausible.io/js/script.js";
     document.head.appendChild(an);
   }
+
+  /* The privacy policy has to agree with what actually loads, and the usual way
+     that breaks is switching the tracker on and forgetting the policy. Both are
+     driven off the one variable above: filling ANALYTICS_DOMAIN in reveals the
+     Plausible row in section 3 and removes the sentence saying no analytics are
+     loaded. Leave it "" and the policy reads exactly as it does today. */
+  (function () {
+    var row = document.querySelector("[data-analytics-row]");
+    var off = document.querySelector("[data-analytics-off]");
+    if (!row && !off) return;
+    if (ANALYTICS_DOMAIN) {
+      if (row) row.hidden = false;
+      if (off) off.parentNode.removeChild(off);
+    }
+  })();
 
   /* ---------- booking ----------
      Calendly, loaded once and shared by the header button and the panel on
@@ -568,8 +584,15 @@
     if (isoLoaded) { drawIso(box); return; }
     isoLoaded = true;
     /* Markup wins: when the container already holds a drawing, it is a
-       self-contained one and there is nothing to fetch or wire up. */
-    if (box.firstElementChild) return;
+       self-contained one and there is nothing to fetch or wire up -- except
+       its own source, which is held back on data-src so the file is not
+       downloaded by visitors who never open the mode. */
+    var held = box.firstElementChild;
+    if (held) {
+      var src = held.getAttribute && held.getAttribute("data-src");
+      if (src && !held.getAttribute("src")) held.setAttribute("src", src);
+      return;
+    }
     fetch(box.getAttribute("data-src") || "/assets/hero-isometric.svg")
       .then(function (r) { return r.ok ? r.text() : ""; })
       .then(function (svg) {
@@ -1598,17 +1621,6 @@
   /* ---------- VCA certificate card ---------- */
   var vca = document.querySelector("[data-vca]");
   if (vca) {
-    if (VCA_META) {
-      var meta = vca.querySelector(".cert-meta");
-      if (meta) {
-        meta.innerHTML = "";
-        VCA_META.split("|").forEach(function (part) {
-          var sp = document.createElement("span");
-          sp.textContent = part;
-          meta.appendChild(sp);
-        });
-      }
-    }
     if (VCA_URL) {
       /* becomes a link, the same as the three DNV cards */
       var a = document.createElement("a");
@@ -1616,7 +1628,11 @@
       a.href = VCA_URL;
       a.target = "_blank";
       a.rel = "noopener";
-      a.setAttribute("aria-label", "Open the VCA certificate as a PDF");
+      /* The number is read out of the card rather than repeated here, so the
+         label cannot disagree with what is printed on the tile. */
+      var num = vca.querySelector(".cert-meta span");
+      a.setAttribute("aria-label", "Open the VCA certificate as a PDF"
+        + (num ? ", " + num.textContent.toLowerCase() : ""));
       a.innerHTML = vca.innerHTML;
       vca.parentNode.replaceChild(a, vca);
     }
@@ -1801,6 +1817,19 @@
     bar.appendChild(scopeA);
     document.body.appendChild(bar);
     document.documentElement.classList.add("has-cta-bar");
+
+    /* The bar's labels wrap in the longer languages, so its height is measured
+       rather than assumed -- the CSS reserves var(--cta-bar-h) under the page
+       and a hard-coded 68px would leave the footer under a two-line bar. Read
+       after the bar is in the document so the height is the real one, and again
+       on resize because a rotation changes how the label breaks. */
+    var setBarHeight = function () {
+      document.documentElement.style.setProperty(
+        "--cta-bar-h", Math.ceil(bar.getBoundingClientRect().height) + "px");
+    };
+    setBarHeight();
+    window.addEventListener("resize", setBarHeight, { passive: true });
+
     var barTick = false;
     var barCheck = function () {
       barTick = false;

@@ -2712,4 +2712,80 @@ S = {
         'Spezialisten in unserem Pool',
     '<b>200+</b><span>Specialists on our roster</span>':
         '<b>200+</b><span>Spezialisten in unserem Pool</span>',
+    'Certified scopes, quoted from the certificates. <b>DNV:</b> &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo; <b>EBN, VCA* 2026/6.1:</b> &ldquo;Carrying out work on pipelines and metal structures in the Netherlands and Belgium.&rdquo;':
+        'Zertifizierte Geltungsbereiche, w&ouml;rtlich aus den Zertifikaten. <b>DNV:</b> &ldquo;Inspection and industrial maintenance services for Onshore and Offshore installations.&rdquo; <b>EBN, VCA* 2026/6.1:</b> &ldquo;Carrying out work on pipelines and metal structures in the Netherlands and Belgium.&rdquo;',
+    'ISO 9001, 14001 and 45001 certified by DNV &middot; <span class="certs-body">VCA* certified by EBN</span>':
+        'ISO 9001, 14001 und 45001 zertifiziert durch DNV &middot; <span class="certs-body">VCA* zertifiziert durch EBN</span>',
+    '<span>Cert. EBN.VCA.12190.1</span><span>Valid to 17.09.2029</span>':
+        '<span>Zert. EBN.VCA.12190.1</span><span>Gültig bis 17.09.2029</span>',
+    'EBN Certification safety management system certificate — VCA* 2026/6.1, certificate EBN.VCA.12190.1':
+        'EBN-Certification-Arbeitsschutzmanagementzertifikat — VCA* 2026/6.1, Zertifikat EBN.VCA.12190.1',
+    'Where we did this':
+        'Wo wir das gemacht haben',
+    'On independence':
+        'Zur Unabhängigkeit',
+    'Mechanical, marine and inspection services':
+        'Maschinenbau-, Schiffbau- und Prüfleistungen',
+    'Mechanical scopes, inspected before we hand them over':
+        'Mechanische Leistungen, geprüft bevor wir sie übergeben',
+    'Certified people on site, and the inspection records to prove what they did.':
+        'Zertifizierte Fachkräfte vor Ort &mdash; und die Prüfnachweise, die belegen, was sie getan haben.',
+    'We take mechanical scopes and deliver them with our own supervision. We supply the qualified people a project is short of. On our own scopes we inspect the result ourselves and hand your inspector the records; on work welded by others we act as independent NDT.':
+        'Wir übernehmen mechanische Leistungen und führen sie unter eigener Aufsicht aus. Wir stellen die qualifizierten Fachkräfte, die einem Projekt fehlen. Bei eigenen Leistungen prüfen wir das Ergebnis selbst und übergeben Ihrem Prüfer die Nachweise; bei Schweißarbeiten Dritter treten wir als unabhängige ZfP auf.',
+    'We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic particle testing can be done while the plant keeps running. Radiography needs the area cleared, so we plan it around production. On our own scopes, our NDT is internal quality control: we find our own defects before your inspector does. On work welded by others, we act as independent NDT and report to the client.':
+        'Wir prüfen Schweißnähte, ohne sie zu zerstören. Ultraschall-, Farbeindring- und Magnetpulverprüfung sind im laufenden Betrieb möglich. Die Durchstrahlungsprüfung erfordert einen freien Bereich und wird um die Produktion herum geplant. Bei eigenen Leistungen ist unsere ZfP interne Qualitätskontrolle: wir finden unsere Fehler, bevor Ihr Prüfer sie findet. Bei Schweißarbeiten Dritter treten wir als unabhängige ZfP auf und berichten an den Auftraggeber.',
+    'On our own scopes this is internal quality control, and it never counts as sign-off. We wrote down what that means in <a href="/news/we-do-not-certify-our-own-welds.html">we do not certify our own welds</a>.':
+        'Bei eigenen Leistungen ist dies interne Qualitätskontrolle und gilt niemals als Abnahme. Was das bedeutet, haben wir in <a href="/news/we-do-not-certify-our-own-welds.html">wir zertifizieren unsere eigenen Schweißnähte nicht</a> aufgeschrieben.',
+    'Our technicians hold IRATA and SOFT rope access certification and most of them carry a second trade: inspection, welding or mechanical fitting. One person on the rope replaces a scaffold crew and an inspector standing behind them.':
+        'Unsere Techniker verfügen über die Seilzugangszertifizierung IRATA und SOFT, und die meisten bringen ein zweites Gewerk mit: Prüfung, Schweißen oder Maschinenmontage. Eine Person am Seil ersetzt eine Gerüstkolonne und den Prüfer dahinter.',
+    'IRATA and SOFT rope access':
+        'IRATA und SOFT, Seilzugang',
+    'Abnormal load permits, escort and cargo securing to EN 12195-1, arranged with our transport partners':
+        'Großraum- und Schwertransportgenehmigungen, Begleitung und Ladungssicherung nach EN 12195-1, organisiert mit unseren Transportpartnern',
+    'Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records. Where a service has published work behind it, its page links to the job.':
+        'Zwölf Leistungen in drei Gruppen: die mechanischen und industriellen Arbeiten, die wir direkt übernehmen, die Schiffbauarbeiten auf der Werft und am Schiff, und die Prüf- und Zugangsdisziplinen, die zeigen, was gebaut wurde. Die meisten Projekte nutzen mehrere davon unter einem Vertrag, mit einer Aufsicht und einer Dokumentation. Wo hinter einer Leistung veröffentlichte Arbeiten stehen, verlinkt ihre Seite darauf.',
+    'Twelve services in three groups -- mechanical and industrial scopes, marine work in yards and afloat, and inspection and access. One contract, one supervisor, one set of records.':
+        'Zwölf Leistungen in drei Gruppen &mdash; mechanische und industrielle Arbeiten, Schiffbau auf der Werft und am Schiff, Prüfung und Zugangstechnik. Ein Vertrag, eine Aufsicht, eine Dokumentation.',
+    'Enquiries and applications sent from this site are answered from <a href="mailto:info@alprojects.eu">info@alprojects.eu</a>.':
+        'Anfragen und Bewerbungen von dieser Website werden von <a href="mailto:info@alprojects.eu">info@alprojects.eu</a> aus beantwortet.',
+    '<strong>Plausible Analytics</strong> &mdash; cookieless visit statistics. No cookies, no cross-site tracking and no personal data; we see page addresses, referrers and country, not people.':
+        '<strong>Plausible Analytics</strong> &mdash; Besuchsstatistik ohne Cookies. Keine Cookies, kein seitenübergreifendes Tracking und keine personenbezogenen Daten; wir sehen Seitenadressen, Verweisquellen und Land, nicht Personen.',
+    'ALPROJECTS Group &middot; Value 04':
+        'ALPROJECTS Group &middot; Wert 04',
+    '<b>VCA*</b><span>Certified by EBN</span>':
+        '<b>VCA*</b><span>Zertifiziert durch EBN</span>',
+    '12 MM PL':
+        '12 MM PL',
+    '1 project':
+        '1 Projekt',
+    '2 projects':
+        '2 Projekte',
+    '3 projects':
+        '3 Projekte',
+    '<span class="srv-ix-n">01</span> <span class="srv-ix-name">Welding services</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">01</span> <span class="srv-ix-name">Schweißtechnik</span> <span class="srv-ix-proof">3 Projekte</span>',
+    '<span class="srv-ix-n">02</span> <span class="srv-ix-name">Pipe fitting</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">02</span> <span class="srv-ix-name">Rohrleitungsbau</span> <span class="srv-ix-proof">3 Projekte</span>',
+    '<span class="srv-ix-n">03</span> <span class="srv-ix-name">Mechanical contracting</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">03</span> <span class="srv-ix-name">Anlagenmontage</span> <span class="srv-ix-proof">3 Projekte</span>',
+    '<span class="srv-ix-n">04</span> <span class="srv-ix-name">Heavy equipment relocation</span>':
+        '<span class="srv-ix-n">04</span> <span class="srv-ix-name">Verlagerung schwerer Anlagen</span>',
+    '<span class="srv-ix-n">05</span> <span class="srv-ix-name">Mobile repair teams</span> <span class="srv-ix-proof">2 projects</span>':
+        '<span class="srv-ix-n">05</span> <span class="srv-ix-name">Mobile Reparaturteams</span> <span class="srv-ix-proof">2 Projekte</span>',
+    '<span class="srv-ix-n">06</span> <span class="srv-ix-name">Shipbuilding</span> <span class="srv-ix-proof">2 projects</span>':
+        '<span class="srv-ix-n">06</span> <span class="srv-ix-name">Schiffbau</span> <span class="srv-ix-proof">2 Projekte</span>',
+    '<span class="srv-ix-n">07</span> <span class="srv-ix-name">Ship repair</span>':
+        '<span class="srv-ix-n">07</span> <span class="srv-ix-name">Schiffsreparatur</span>',
+    '<span class="srv-ix-n">08</span> <span class="srv-ix-name">Non-destructive testing</span>':
+        '<span class="srv-ix-n">08</span> <span class="srv-ix-name">Zerstörungsfreie Prüfung</span>',
+    '<span class="srv-ix-n">09</span> <span class="srv-ix-name">Rope access services</span> <span class="srv-ix-proof">1 project</span>':
+        '<span class="srv-ix-n">09</span> <span class="srv-ix-name">Seilzugangstechnik</span> <span class="srv-ix-proof">1 Projekt</span>',
+    '<span class="srv-ix-n">10</span> <span class="srv-ix-name">3D laser scanning</span>':
+        '<span class="srv-ix-n">10</span> <span class="srv-ix-name">3D-Laserscanning</span>',
+    '<span class="srv-ix-n">11</span> <span class="srv-ix-name">Quality assurance and quality control (QA/QC)</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">11</span> <span class="srv-ix-name">Qualitätssicherung und Qualitätskontrolle (QA/QC)</span> <span class="srv-ix-proof">3 Projekte</span>',
+    '<span class="srv-ix-n">12</span> <span class="srv-ix-name">Rigging and technical support</span> <span class="srv-ix-proof">3 projects</span>':
+        '<span class="srv-ix-n">12</span> <span class="srv-ix-name">Hebetechnik und technische Unterstützung</span> <span class="srv-ix-proof">3 Projekte</span>',
+    'On our own scopes this is internal quality control, and it never counts as sign-off. We wrote down what that means in <a href="/news/we-do-not-certify-our-own-welds">we do not certify our own welds</a>.':
+        'Bei eigenen Leistungen ist dies interne Qualitätskontrolle und gilt niemals als Abnahme. Was das bedeutet, haben wir in <a href="/news/we-do-not-certify-our-own-welds">wir zertifizieren unsere eigenen Schweißnähte nicht</a> aufgeschrieben.',
 }

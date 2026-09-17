@@ -37,7 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=6cf471ad">
+  <link rel="stylesheet" href="/css/style.min.css?v=0c043320">
 
   <script type="application/ld+json">
   {
@@ -127,13 +127,20 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <!-- Temporarily the wind field instead of the pipe isometric. It is an
-           <img> rather than something the script fetches and inlines: this
-           drawing carries its own animation and its own reduced-motion switch,
-           so nothing has to be wired to it. -->
+      <!-- The wind field instead of the pipe isometric. It is an <img> rather
+           than something the script fetches and inlines: this drawing carries
+           its own animation and its own reduced-motion switch, so nothing has
+           to be wired to it.
+
+           data-src, not src. The block above the stylesheet promises that a
+           visitor who never presses B pays nothing for the drawing, and with
+           src= that stopped being true the moment the wind field moved in
+           here: 749x900 of the first screen downloading a 7 KB file at
+           opacity 0. main.js copies data-src to src when Drawing mode opens,
+           and stamp() versions the attribute whatever it is called. -->
       <div class="hero-iso" aria-hidden="true">
-        <img src="/assets/wind-turbine.svg?v=ef140877" alt="" width="1000" height="720"
-             loading="lazy" decoding="async">
+        <img data-src="/assets/wind-turbine.svg?v=ef140877" alt="" width="1000" height="720"
+             decoding="async">
       </div>
       <span class="hero-grid" aria-hidden="true"></span>
 
@@ -147,8 +154,14 @@
       <span class="sheet-plus" style="left:72%; top:17%"  aria-hidden="true"></span>
       <span class="sheet-plus sheet-low" style="left:80%; top:84%"  aria-hidden="true"></span>
       <span class="sheet-plus sheet-low" style="left:8%;  top:84%"  aria-hidden="true"></span>
-      <span class="sheet-dim"  style="left:73.5%; top:14.5%" aria-hidden="true">200X200</span>
-      <span class="sheet-dim sheet-low"  style="left:4%;    top:86%"   aria-hidden="true">200X200</span>
+      <!-- Was "200X200" and "200X200": the pixel size of the background image,
+           left in from laying the sheet out. On the drawing motif a dimension
+           figure is texture, but a figure that is secretly a CSS value reads to
+           an engineer as an unfinished page. These two annotate the subject of
+           the photograph behind them, which is pipe and plate. The same literal
+           on /company and the sector pages annotated nothing and is gone. -->
+      <span class="sheet-dim"  style="left:73.5%; top:14.5%" aria-hidden="true">DN200</span>
+      <span class="sheet-dim sheet-low"  style="left:4%;    top:86%"   aria-hidden="true">12 MM PL</span>
 
       <!-- Sheet furniture, in the drawing's top-right corner under the header.
            Positioned against the same gutter the container uses, so it lines up
@@ -164,7 +177,13 @@
         <div class="hero-note">
           <p class="hero-eyebrow">ALPROJECTS GROUP <span>&middot;</span> KLAIPĖDA, LITHUANIA</p>
         </div>
-        <h1 class="hero-title">Mechanical scopes and independent inspection</h1>
+        <!-- The audit offers three replacements for "Mechanical scopes and
+             independent inspection", which claims independence on our own work.
+             This is the shortest of the three; the other two ("Welding, piping
+             and mechanical scopes -- with the inspection records to prove them"
+             and "Mechanical scopes. Independent NDT on work by others.") run to
+             three and four lines at 96px and break the first screen. -->
+        <h1 class="hero-title">Mechanical scopes, inspected before we hand them over</h1>
         <p class="hero-sub">One contractor for welding, piping and mechanical scopes across Europe
         and Scandinavia &mdash; inspection, installation and documentation included.</p>
         <div class="hero-ctas">
@@ -179,7 +198,12 @@
           <li><b>ISO 9001 &middot; 14001 &middot; 45001</b><span>Certified by DNV</span></li>
           <li><b>200+</b><span>Specialists on our roster</span></li>
           <li><b>6 countries</b><span>9 project bases</span></li>
-          <li><b>Strongest in Lithuania</b><span>Creditinfo, 2025&ndash;2026</span></li>
+          <!-- Was "Strongest in Lithuania / Creditinfo". A credit rating is not a
+               technical fact, and in a strip of three of them it was the one a
+               QA manager would skip. It keeps its own block further down the
+               page and its news item; what stands here instead is the second
+               certificate, which is the kind of proof this strip is for. -->
+          <li><b>VCA*</b><span>Certified by EBN</span></li>
         </ul>
       </div>
     </section>
@@ -324,21 +348,6 @@
 
     <!-- ================= WHY CHOOSE ================= -->
 
-    <!-- ================= ADVANTAGES ================= -->
-    <section class="advantages">
-      <div class="container">
-        <p class="eyebrow reveal">Our advantages</p>
-        <div class="adv-grid">
-          <div class="adv-card reveal"><svg class="adv-icon" viewBox="0 0 48 48" aria-hidden="true"><use href="#ic-decisions"/></svg><p>Engineering-Driven Decisions</p></div>
-          <div class="adv-card reveal reveal-d1"><svg class="adv-icon" viewBox="0 0 48 48" aria-hidden="true"><use href="#ic-control"/></svg><p>Full Project Control</p></div>
-          <div class="adv-card reveal reveal-d2"><svg class="adv-icon" viewBox="0 0 48 48" aria-hidden="true"><use href="#ic-cross-industry"/></svg><p>Cross-Industry Expertise</p></div>
-          <div class="adv-card reveal"><svg class="adv-icon" viewBox="0 0 48 48" aria-hidden="true"><use href="#ic-scalable"/></svg><p>Scalable Project Architecture</p></div>
-          <div class="adv-card reveal reveal-d1"><svg class="adv-icon" viewBox="0 0 48 48" aria-hidden="true"><use href="#ic-standards"/></svg><p>European Quality Standards</p></div>
-          <div class="adv-card reveal reveal-d2"><svg class="adv-icon" viewBox="0 0 48 48" aria-hidden="true"><use href="#ic-workflow"/></svg><p>Integrated Workflow</p></div>
-        </div>
-      </div>
-    </section>
-
     <!-- ================= SERVICES ================= -->
     <section class="services" id="services">
       <div class="section-head">
@@ -348,12 +357,12 @@
 
       <div class="container services-stack">
 
-        <!-- 1 / 5 -->
+        <!-- 1 / 3 -->
         <article class="service-slide" id="service-welding">
           <div class="bg" style="--bg:url('/assets/svc-welding.webp'); --bg-m:url('/assets/svc-welding-m.webp')"></div>
           <div class="service-top">
             <h3>Welding Services</h3>
-            <span class="count">1/5</span>
+            <span class="count">1/3</span>
           </div>
           <div class="service-body">
             <span class="service-col-label">Mechanical & Industrial</span>
@@ -362,8 +371,6 @@
               <li><a class="current" href="#service-welding">Welding Services</a></li>
               <li><a href="#service-pipe">Pipe Fitting</a></li>
               <li><a href="#service-mechanical">Mechanical Contracting</a></li>
-              <li><a href="#service-ndt">Non-Destructive Testing</a></li>
-              <li><a href="#service-rope">Rope Access Services</a></li>
               </ul>
               <a class="service-all" href="/services">All twelve services</a>
             </div>
@@ -378,12 +385,12 @@
           </div>
         </article>
 
-        <!-- 2 / 5 -->
+        <!-- 2 / 3 -->
         <article class="service-slide" id="service-pipe">
           <div class="bg" style="--bg:url('/assets/svc-pipe-fitting-photo.webp'); --bg-m:url('/assets/svc-pipe-fitting-photo-m.webp')"></div>
           <div class="service-top">
             <h3>Pipe Fitting</h3>
-            <span class="count">2/5</span>
+            <span class="count">2/3</span>
           </div>
           <div class="service-body">
             <span class="service-col-label">Mechanical & Industrial</span>
@@ -392,8 +399,6 @@
               <li><a href="#service-welding">Welding Services</a></li>
               <li><a class="current" href="#service-pipe">Pipe Fitting</a></li>
               <li><a href="#service-mechanical">Mechanical Contracting</a></li>
-              <li><a href="#service-ndt">Non-Destructive Testing</a></li>
-              <li><a href="#service-rope">Rope Access Services</a></li>
               </ul>
               <a class="service-all" href="/services">All twelve services</a>
             </div>
@@ -408,7 +413,7 @@
           </div>
         </article>
 
-        <!-- 3 / 5 -->
+        <!-- 3 / 3 -->
         <article class="service-slide" id="service-mechanical">
           <!-- Slide 3 is the one slide served as a real <picture>: the frame has
                a 4:5 phone crop of its own, and the alt text carries meaning the
@@ -432,7 +437,7 @@
           </div>
           <div class="service-top">
             <h3>Mechanical Contracting</h3>
-            <span class="count">3/5</span>
+            <span class="count">3/3</span>
           </div>
           <div class="service-body">
             <span class="service-col-label">Mechanical & Industrial</span>
@@ -441,8 +446,6 @@
               <li><a href="#service-welding">Welding Services</a></li>
               <li><a href="#service-pipe">Pipe Fitting</a></li>
               <li><a class="current" href="#service-mechanical">Mechanical Contracting</a></li>
-              <li><a href="#service-ndt">Non-Destructive Testing</a></li>
-              <li><a href="#service-rope">Rope Access Services</a></li>
               </ul>
               <a class="service-all" href="/services">All twelve services</a>
             </div>
@@ -457,65 +460,6 @@
           </div>
         </article>
 
-        <!-- 4 / 5 -->
-        <article class="service-slide" id="service-ndt">
-          <div class="bg" style="--bg:url('/assets/svc-ndt-weld-gauge.webp'); --bg-m:url('/assets/svc-ndt-weld-gauge-m.webp')"></div>
-          <div class="service-top">
-            <h3>Non-Destructive Testing</h3>
-            <span class="count">4/5</span>
-          </div>
-          <div class="service-body">
-            <span class="service-col-label">Inspection & Access</span>
-            <div class="service-nav">
-              <ul class="service-list">
-              <li><a href="#service-welding">Welding Services</a></li>
-              <li><a href="#service-pipe">Pipe Fitting</a></li>
-              <li><a href="#service-mechanical">Mechanical Contracting</a></li>
-              <li><a class="current" href="#service-ndt">Non-Destructive Testing</a></li>
-              <li><a href="#service-rope">Rope Access Services</a></li>
-              </ul>
-              <a class="service-all" href="/services">All twelve services</a>
-            </div>
-            <p class="service-desc">Nobody should be signing off their own work. We inspect welds, materials and structures without stopping production, and we report to the client, not to the contractor who did the welding.</p>
-          </div>
-          <div class="service-meta">
-            <span class="service-col-label">Industries</span>
-            <div class="industry-tags">
-              <span>Offshore Oil &amp; Gas</span><span>Wind Energy</span><span>Industrial Facilities</span><span>Steel Structures</span>
-            </div>
-            <div class="progress" aria-hidden="true"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i></i></div>
-          </div>
-        </article>
-
-        <!-- 5 / 5 -->
-        <article class="service-slide" id="service-rope">
-          <div class="bg" style="--bg:url('/assets/projects/offshore-wide-1200.webp'); --bg-m:url('/assets/projects/offshore-wide-1200-m.webp')"></div>
-          <div class="service-top">
-            <h3>Rope Access Services</h3>
-            <span class="count">5/5</span>
-          </div>
-          <div class="service-body">
-            <span class="service-col-label">Inspection &amp; Access</span>
-            <div class="service-nav">
-              <ul class="service-list">
-              <li><a href="#service-welding">Welding Services</a></li>
-              <li><a href="#service-pipe">Pipe Fitting</a></li>
-              <li><a href="#service-mechanical">Mechanical Contracting</a></li>
-              <li><a href="#service-ndt">Non-Destructive Testing</a></li>
-              <li><a class="current" href="#service-rope">Rope Access Services</a></li>
-              </ul>
-              <a class="service-all" href="/services">All twelve services</a>
-            </div>
-            <p class="service-desc">Scaffolding costs more in downtime than in steel. Certified technicians reach the same place on rope, inspect it and repair it while the plant keeps running.</p>
-          </div>
-          <div class="service-meta">
-            <span class="service-col-label">Industries</span>
-            <div class="industry-tags">
-              <span>Offshore Oil &amp; Gas</span><span>Wind Energy</span><span>Industrial Facilities</span><span>Marine</span>
-            </div>
-            <div class="progress" aria-hidden="true"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i></div>
-          </div>
-        </article>
 
       </div>
     </section>
@@ -568,34 +512,35 @@
             <a class="cert-card" href="/assets/certificates/alprojects-iso-9001.pdf" target="_blank" rel="noopener"
                aria-label="Open the ISO 9001:2015 certificate as a PDF, certificate number C760290">
               <img src="/assets/cert-iso-9001.webp" alt="DNV management system certificate — ISO 9001:2015, certificate C760290"
-                   loading="lazy" width="636" height="900">
+                   loading="lazy" width="400" height="566">
               <p class="iso">ISO:9001</p>
               <p class="cert-meta"><span>Cert. C760290</span><span>Valid to 28.07.2028</span></p>
             </a>
             <a class="cert-card" href="/assets/certificates/alprojects-iso-14001.pdf" target="_blank" rel="noopener"
                aria-label="Open the ISO 14001:2015 certificate as a PDF, certificate number C550875">
               <img src="/assets/cert-iso-14001.webp" alt="DNV management system certificate — ISO 14001:2015, certificate C550875"
-                   loading="lazy" width="636" height="900">
+                   loading="lazy" width="400" height="566">
               <p class="iso">ISO:14001</p>
               <p class="cert-meta"><span>Cert. C550875</span><span>Valid to 07.08.2028</span></p>
             </a>
             <a class="cert-card" href="/assets/certificates/alprojects-iso-45001.pdf" target="_blank" rel="noopener"
                aria-label="Open the ISO 45001:2018 certificate as a PDF, certificate number C550877">
               <img src="/assets/cert-iso-45001.webp" alt="DNV management system certificate — ISO 45001:2018, certificate C550877"
-                   loading="lazy" width="636" height="900">
+                   loading="lazy" width="400" height="566">
               <p class="iso">ISO:45001</p>
               <p class="cert-meta"><span>Cert. C550877</span><span>Valid to 07.08.2028</span></p>
             </a>
-            <!-- VCA. Not a link and no certificate number, because neither has been
-                 supplied: what exists is the EBN Certification mark. Both switch on
-                 from VCA_URL and VCA_META in js/main.js the moment the certificate
-                 arrives, and until then this card cannot state a number it does not
-                 have. See the README, "TODO before go-live". -->
+            <!-- VCA. The certificate arrived on 17 September 2026 (EBN.VCA.12190.1,
+                 valid to 17.09.2029), so VCA_URL and VCA_META in js/main.js are now
+                 filled and the script turns this tile into a link with the number on
+                 it, exactly like the three DNV cards. The tile keeps the plain "VCA"
+                 mark; the star and the scheme version belong in the caption, where
+                 "VCA*" reads as a scheme name rather than a footnote marker. -->
             <div class="cert-card" data-vca>
-              <img src="/assets/cert-vca-ebn.webp" alt="VCA certification mark issued by EBN Certification"
-                   loading="lazy" width="636" height="900">
+              <img src="/assets/cert-vca-ebn.webp" alt="EBN Certification safety management system certificate &mdash; VCA* 2026/6.1, certificate EBN.VCA.12190.1"
+                   loading="lazy" width="400" height="566">
               <p class="iso">VCA</p>
-              <p class="cert-meta"><span>EBN Certification</span></p>
+              <p class="cert-meta"><span>Cert. EBN.VCA.12190.1</span><span>Valid to 17.09.2029</span></p>
             </div>
           </div>
           <!-- The old caption put "independently certified by DNV" over four marks,
@@ -604,10 +549,18 @@
                quoted verbatim from the certificates -- a buyer's auditor opens the
                PDF and compares it with the order, so the site should say it first. -->
           <p class="certs-caption">ISO 9001, 14001 and 45001 certified by DNV &middot;
-          <span class="certs-body">VCA certified by EBN</span></p>
-          <p class="certs-scope">Certified scope, as stated on the certificates:
-          &ldquo;Inspection and industrial maintenance services for Onshore and
-          Offshore installations.&rdquo;</p>
+          <span class="certs-body">VCA* certified by EBN</span></p>
+          <!-- Two certificates, two different scopes, so "as stated on the
+               certificates" can no longer be followed by one quotation. The VCA
+               scope is the narrower of the two and names two countries; a VCA mark
+               standing alone beside a site that sells across Europe and Scandinavia
+               would read as VCA everywhere, which is the same overclaim the DNV
+               scope was quoted to avoid. -->
+          <p class="certs-scope">Certified scopes, quoted from the certificates.
+          <b>DNV:</b> &ldquo;Inspection and industrial maintenance services for
+          Onshore and Offshore installations.&rdquo; <b>EBN, VCA* 2026/6.1:</b>
+          &ldquo;Carrying out work on pipelines and metal structures in the
+          Netherlands and Belgium.&rdquo;</p>
 
           <div class="award">
             <p class="award-tag">2025 &ndash; 2026</p>
@@ -828,34 +781,6 @@
       <path id="i-x" d="M17.7 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L2 3h6.4l4.4 5.9L17.7 3zm-1.1 16.1h1.7L7.5 4.7H5.7l10.9 14.4z"/>
       <path id="i-mail" d="M2 5.5c0-.8.7-1.5 1.5-1.5h17c.8 0 1.5.7 1.5 1.5v13c0 .8-.7 1.5-1.5 1.5h-17C2.7 20 2 19.3 2 18.5v-13zM4 7l8 5.5L20 7v-.9l-8 5.4-8-5.4V7z"/>
       <path id="i-tel" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/>
-      <symbol id="ic-decisions" viewBox="0 0 48 48">
-        <circle cx="24" cy="10" r="3"/><path d="M22.6 12.8 14 38M25.4 12.8 34 38"/>
-        <path d="M18.4 27h11.2"/><path d="M14 38h-3M34 38h3"/>
-      </symbol>
-      <symbol id="ic-control" viewBox="0 0 48 48">
-        <path d="M8 12h22M8 22h30M8 32h16"/>
-        <path d="M30 12v-3M38 22v-3M24 32v-3"/>
-        <circle cx="34" cy="34" r="6"/><path d="M34 30.5v7M30.5 34h7"/>
-      </symbol>
-      <symbol id="ic-cross-industry" viewBox="0 0 48 48">
-        <rect x="7" y="7" width="12" height="12"/><rect x="29" y="7" width="12" height="12"/>
-        <rect x="7" y="29" width="12" height="12"/><rect x="29" y="29" width="12" height="12"/>
-        <path d="M19 13h10M13 19v10M35 19v10M19 35h10"/>
-      </symbol>
-      <symbol id="ic-scalable" viewBox="0 0 48 48">
-        <rect x="7" y="30" width="10" height="11"/><rect x="19" y="21" width="10" height="20"/>
-        <rect x="31" y="12" width="10" height="29"/>
-        <path d="M7 8h34M7 6v4M41 6v4"/>
-      </symbol>
-      <symbol id="ic-standards" viewBox="0 0 48 48">
-        <path d="M24 6 39 11v13c0 8-6.6 14.4-15 18-8.4-3.6-15-10-15-18V11z"/>
-        <path d="M17.5 23.5 22 28l9-9"/>
-      </symbol>
-      <symbol id="ic-workflow" viewBox="0 0 48 48">
-        <circle cx="11" cy="24" r="4"/><circle cx="24" cy="11" r="4"/>
-        <circle cx="24" cy="37" r="4"/><circle cx="37" cy="24" r="4"/>
-        <path d="M14 21.2 21.2 14M26.8 14 34 21.2M34 26.8 26.8 34M21.2 34 14 26.8"/>
-      </symbol>
       <symbol id="i-ig" viewBox="0 0 24 24">
         <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4.8"
               style="fill:none;stroke:currentColor;stroke-width:1.7"/>
@@ -881,6 +806,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.min.js?v=a80fc54b"></script>
+  <script src="/js/main.min.js?v=63658cb8"></script>
 </body>
 </html>

@@ -198,6 +198,108 @@ def fix_head(body, lang, rel):
 # ============================================================
 # translating one page
 # ============================================================
+# ============================================================
+# THE JSON ISLAND ON /services
+# ============================================================
+# /services carries all twelve services as JSON so the panel can be re-rendered
+# without a reload. unit_spans() does not look inside <script>, so that payload
+# stayed English on every locale: the German page painted German, and the first
+# click replaced it with English. Coverage reported 100% throughout, because the
+# gate could not see the strings either -- which is the part worth fixing. The
+# island is translated here AND counted in stats, so a future service added
+# without its translation now fails the gate instead of shipping in English.
+#
+# Almost every string in the payload is already a unit: the same h1, lead and
+# bullet text is rendered as HTML on that service's own page, so it was
+# translated there. Only `deep` is a block of markup rather than one sentence,
+# and that is handed to the same span-based substitution the page pass uses.
+
+_ISLAND = re.compile(r'(<script type="application/json" id="srv-data">)(.*?)(</script>)',
+                     re.S)
+
+
+def _sub_units(frag, lang, stats):
+    """Substitute every translatable unit inside one HTML fragment."""
+    spans, attr_spans = unit_spans(frag)
+    edits = [(a, b, norm(frag[a:b]), True, False) for a, b in spans]
+    for a0, b0, _name, val in attr_spans:
+        if not any(s0 <= a0 and b0 <= e0 for s0, e0 in spans):
+            edits.append((a0, b0, norm(_html.unescape(val)), False, True))
+    for start, end, key, keep_ws, esc in sorted(edits, key=lambda e: -e[0]):
+        if skip(key):
+            continue
+        stats["units"].add(key)
+        if lang == i18n.DEFAULT:
+            continue
+        dst = i18n.t(lang, key)
+        if dst is None:
+            stats["missing"].add(key)
+            continue
+        if tag_bag(key) != tag_bag(dst):
+            stats["tag_mismatch"].append((key, dst, tag_bag(key), tag_bag(dst)))
+            continue
+        out = _html.escape(dst, quote=True) if esc else dst
+        if keep_ws:
+            raw = frag[start:end]
+            out = (raw[:len(raw) - len(raw.lstrip())] + out
+                   + raw[len(raw.rstrip()):])
+        frag = frag[:start] + out + frag[end:]
+    return frag
+
+
+def _translate_string(val, lang, stats):
+    """One payload value: a plain sentence, or markup to be walked."""
+    if not val or not val.strip():
+        return val
+    key = norm(val)
+    if not skip(key) and "<" not in val:
+        stats["units"].add(key)
+        if lang == i18n.DEFAULT:
+            return val
+        dst = i18n.t(lang, key)
+        if dst is None:
+            dst = i18n.t_clamped(lang, key)
+        if dst is None:
+            stats["missing"].add(key)
+            return val
+        return dst
+    return _sub_units(val, lang, stats)
+
+
+def translate_island(body, lang, stats):
+    m = _ISLAND.search(body)
+    if not m:
+        return body
+    try:
+        data = _json.loads(m.group(2))
+    except Exception:
+        return body                      # malformed: leave it rather than lose it
+
+    # Prose fields are named, not detected. The first version walked every
+    # string in the payload and so offered `slug` to the translator: twelve
+    # identifiers that indexOfSlug() and the address bar both depend on, which
+    # would have made the panel unclickable in three languages the moment
+    # somebody "translated" them. Naming the prose keys also means a new
+    # machine-readable field is left alone by default rather than by luck.
+    PROSE = ("h1", "lead", "deep", "points")
+
+    def walk(node, key=None):
+        if isinstance(node, dict):
+            return dict((k, walk(v, k)) for k, v in node.items())
+        if isinstance(node, list):
+            return [walk(v, key) for v in node]
+        if isinstance(node, str):
+            return (_translate_string(node, lang, stats)
+                    if key in PROSE else node)
+        return node
+
+    # The payload sits inside <script>, so the one sequence that could close the
+    # element early is escaped. json.dumps gives no other way out of the tag.
+    payload = _json.dumps(walk(data), ensure_ascii=False,
+                          separators=(",", ":")).replace("</", "<\\/")
+    return body[:m.start(2)] + payload + body[m.end(2):]
+
+
 def translate_page(src, lang, rel, stats):
     body = src
 
@@ -269,6 +371,8 @@ def translate_page(src, lang, rel, stats):
 
     # 5. head, links, switcher
     body = fix_head(body, lang, rel)
+
+    body = translate_island(body, lang, stats)
 
     # The translation runs 15-25% longer than the English it replaced, so the
     # cut has to be made again on this side of it -- the English page can be

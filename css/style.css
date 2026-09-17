@@ -62,8 +62,26 @@
   --text-l: 15px;
   --text-m: 13px;
   --text-s: 12px;
-  --tag: 11px;
-  --numbers: 11px;
+  /* 12px is the floor for anything a person reads, uppercase labels included.
+     --tag and --numbers were 11px and between them fed the eyebrows, the
+     stamps, the form labels and the case numbers -- 414 text elements across
+     the site sat under 12px, and at 11px with 0.16em tracking on a dark ground
+     they were the first things to go. Both are now the same 12px as --text-s:
+     the scale keeps SEVEN steps (h1..h5, then 18/15/13/12) instead of the
+     eighteen rendered sizes the audit counted, because a separate 11px tier
+     was never a design decision, only three files that each picked their own
+     small number. */
+  --tag: 12px;
+  --numbers: 12px;
+  /* ONE exception to the floor, and it is deliberate: the drawing-furniture
+     layer -- .sheet-dim, .dim b, .sheet-datum b, .sheet-block b, .draft-dim-h b,
+     .draft-mark b and the [data-dim] figures in Drawing mode -- stays at 8-10px.
+     Every one of those is inside aria-hidden="true": they are dimension figures,
+     datum flags and zone letters drawn as ornament on the sheet, the way a
+     hairline or a corner tick is ornament. Set at 12px they stop reading as a
+     drawing and start reading as a page of captions, and a screen reader never
+     sees them either way. Checked in the browser, not assumed: 2 of 2 .sheet-dim
+     and 3 of 3 .dim b resolve inside an aria-hidden subtree. */
 
   /* TZ §2.3: Montserrat for headings, numbers and stamps; Poppins for body
      text and captions. Both self-hosted. */
@@ -436,7 +454,7 @@ html.menu-open .site-header {
   transition: color var(--dur-2);
 }
 .main-nav a .n {
-  font-size: 9px;
+  font-size: var(--tag);
   color: var(--muted-2);
 }
 .main-nav a:hover, .main-nav a.active, .main-nav a[aria-current="page"] { color: var(--text); }
@@ -801,7 +819,7 @@ html.menu-open .site-header {
 }
 .industry-tags { display: flex; flex-wrap: wrap; gap: 8px 10px; }
 .industry-tags span {
-  font-size: 10px;
+  font-size: var(--tag);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1855,7 +1873,7 @@ html.blueprint .plate, html.blueprint .case-card, html.blueprint .case-next-link
   margin: -12px 0 0 0;
   padding: 3px 8px;
   translate: -50% -100%;
-  font-size: 10px;
+  font-size: var(--tag);
   letter-spacing: 0.12em;
   white-space: nowrap;
   color: var(--black);
@@ -1903,7 +1921,7 @@ html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint te
   .service-list a, .service-list a.current { display: inline-block; padding: 6px 0; }
   .service-list a.current { padding: 6px 6px; margin: 0 -6px; }
   .apply-form .field-check label a { display: inline-block; padding: 4px 0; }
-  .industry-tags span { font-size: 11px; }
+  .industry-tags span { font-size: var(--tag); }
   .apply-form .field-check input { font-size: 16px; }
 }
 
@@ -2977,7 +2995,7 @@ a.cert-card:hover img { border-color: var(--accent); }
 .sector-fact {
   display: block;
   margin-top: 6px;
-  font-size: 10.5px;               /* §4.2 */
+  font-size: var(--tag);               /* §4.2 */
   line-height: 1.45;
   letter-spacing: 0.06em;
   color: rgba(255, 255, 255, 0.6); /* §4.2 */
@@ -3157,7 +3175,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
 }
 /* §2.3 — надзаголовок: 10 / uppercase / 0.30em. The one warm element. */
 .hero-eyebrow {
-  font-size: 10px;
+  font-size: var(--tag);
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--warm);
@@ -3167,7 +3185,10 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
 /* §2.3 — H1 first screen: 50–52 / 1.05 / Montserrat Light / −0.5% */
 /* §2.3 — body: 15.5–17 / 1.65–1.75 / Poppins Regular */
 .hero-sub {
-  font-size: 16.5px;
+  /* 18px, the --text-xl step, not a 16.5px of its own. It is the first
+     paragraph a buyer reads, it was the only 16.5 on the site, and the step
+     above it already existed. */
+  font-size: var(--text-xl);
   line-height: 1.7;
   color: rgba(255,255,255,0.78);
   max-width: 52ch;                /* §4.1 */
@@ -3177,7 +3198,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
 
 /* §2.3 — buttons: 11.5 / uppercase / 0.18em / padding 15×26 */
 .btn-solid:not(.menu-cta), .btn-outline:not(.menu-cta) {
-  font-size: 11.5px;
+  font-size: var(--text-s);
   letter-spacing: 0.16em;
   padding: 0 26px;
   min-height: 50px;
@@ -3337,7 +3358,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .section-title, .srv-title, .sector-hero-ti
   .hero-eyebrow {
     /* five country names wrap to three lines at this width and push the
        headline down the screen */
-    font-size: 9px;
+    font-size: var(--tag);
     letter-spacing: 0.2em;
     line-height: 1.7;
     margin-bottom: 18px;
@@ -3383,7 +3404,10 @@ html.blueprint .srv-link { border-bottom-color: rgba(207, 208, 215, 0.28); }
 .footprint .fp-intro { margin-bottom: clamp(20px, 2.4vw, 32px); }
 .footprint .fp-intro > p { font-size: var(--text-l); line-height: 1.7; }
 .footprint .fp-figures { gap: clamp(22px, 3vw, 42px); }
-.footprint .fp-num { font-size: clamp(30px, 3.2vw, 44px); }
+/* Same again, one step up: clamp(30px, 3.2vw, 44px) tracked --h2 exactly and
+   then capped 8px lower, so the figures rendered at 44 against a 46.1 scale.
+   On the step, where they grow with everything else. */
+.footprint .fp-num { font-size: var(--h2); }
 .footprint .euromap { max-width: 460px; }
 .footprint .fp-row { padding: 11px 14px 10px 0; }
 .footprint .fp-name { font-size: var(--h6); }
@@ -3454,7 +3478,7 @@ html.blueprint .bp-sheet { opacity: 1; }
 }
 .bp-zone {
   position: absolute;
-  font-size: 9px;
+  font-size: var(--tag);
   letter-spacing: 0.14em;
   color: rgba(207, 208, 215, 0.65);
   font-variant-numeric: tabular-nums;
@@ -3476,7 +3500,7 @@ html.blueprint .bp-sheet { opacity: 1; }
 }
 .bp-title b {
   display: block;
-  font-size: 10px;
+  font-size: var(--tag);
   font-weight: 500;
   letter-spacing: 0.2em;
   padding-bottom: 8px;
@@ -3817,7 +3841,11 @@ body::after {
   padding-top: 0;
 }
 .footprint .section-title {
-  font-size: clamp(24px, 2.5vw, 38px);
+  /* Was clamp(24px, 2.5vw, 38px) -- 36px at 1440, sitting 1.4px away from the
+     --h3 step this site already has, and 10px away from every other
+     .section-title on the page. One section quietly inventing its own heading
+     size is what the audit counted as a chaotic scale; it is now on the step. */
+  font-size: var(--h3);
   line-height: 1.12;
 }
 .footprint .section-head .eyebrow { margin-bottom: 10px; }
@@ -3837,19 +3865,21 @@ body::after {
 .hero-note .hero-eyebrow { margin-bottom: 0; }
 .hero-note { margin-bottom: 24px; }
 .bp-hint {
-  /* Top-right corner of the drawing, under the header. `right` reproduces the
-     container's own gutter -- 40px once the viewport is narrower than the
-     1360px container, half the leftover plus 40 once it is wider -- so the
-     legend lines up with the right edge of the content column at every width
-     rather than with the viewport. */
+  /* Top-right corner of the drawing, under the header. It had been centred
+     across the sheet -- and centred, under the header, it sits directly above
+     the H1 and competes with it: an easter egg arguing with the headline of a
+     company selling welding. The comment describing the corner was still here
+     while the rules below it centred the thing, which is how it survived two
+     reviews.
+
+     `right` reproduces the container's own gutter -- 40px once the viewport is
+     narrower than the 1360px container, half the leftover plus 40 once it is
+     wider -- so the legend lines up with the right edge of the content column
+     at every width rather than with the viewport. No translate: the entry
+     animation owns `transform` and would wipe one out the moment it runs. */
   position: absolute;
-  /* Centred across the sheet, below the header. left:0/right:0 with an auto
-     inline margin rather than a translate: the entry animation already owns
-     `transform`, and a translateX here would be wiped out the moment it runs. */
   top: calc(var(--nav-h) + 34px + clamp(26px, 5vh, 58px));
-  left: 0;
-  right: 0;
-  margin-inline: auto;
+  right: max(40px, calc((100% - 1360px) / 2 + 40px));
   width: fit-content;
   z-index: 3;
   display: inline-flex; align-items: center; gap: 9px;
@@ -3857,7 +3887,7 @@ body::after {
   background: transparent; border: 1px solid rgba(255,255,255,.14);
   border-radius: 2px; color: var(--gray-100); cursor: pointer;
   font-family: var(--font-display);
-  font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  font-size: var(--tag); font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
   opacity: 0; transform: translateY(4px);
   transition: opacity var(--dur-3) ease, transform var(--dur-3) ease,
               color var(--dur-2) ease, border-color var(--dur-2) ease;
@@ -3872,9 +3902,11 @@ body::after {
 .bp-hint:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 .bp-key {
   display: grid; place-items: center;
-  width: 20px; height: 20px; flex: none;
+  /* 22px, not 20: the cap holds the glyph at the 12px floor now, and at 20px
+     the "B" touched the border top and bottom. */
+  width: 22px; height: 22px; flex: none;
   border: 1px solid rgba(255,255,255,.32); border-radius: 2px;
-  font-size: 10px; letter-spacing: 0; line-height: 1; color: var(--white);
+  font-size: var(--tag); letter-spacing: 0; line-height: 1; color: var(--white);
 }
 .bp-hint:hover .bp-key, .bp-hint:focus-visible .bp-key { border-color: rgba(255,255,255,.6); }
 /* Once the mode is on the label tells you how to leave. */
@@ -3886,7 +3918,7 @@ body::after {
 }
 @media (max-width: 700px) {
   .hero-note { gap: 14px; margin-bottom: 30px; }
-  .bp-hint { font-size: 9px; letter-spacing: .14em; }
+  .bp-hint { font-size: var(--tag); letter-spacing: .12em; }
 }
 
 /* ---------- booking panel (contacts) ----------
@@ -4026,7 +4058,7 @@ body .calendly-overlay .calendly-popup {
   display: grid; place-items: center;
   min-width: 34px; height: 34px; padding: 0 6px;
   font-family: var(--font-display);
-  font-size: 10px; font-weight: 500; letter-spacing: .12em;
+  font-size: var(--tag); font-weight: 500; letter-spacing: .12em;
   color: var(--gray-100);
   border: 1px solid transparent; border-radius: 2px;
   transition: color var(--dur-2) ease, border-color var(--dur-2) ease;
@@ -4522,7 +4554,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   }
   .cert-card { padding: 10px 6px; }
   .cert-card img { max-height: 130px; width: auto; margin-inline: auto; }
-  .cert-card figcaption, .cert-meta { font-size: 9px; letter-spacing: .06em; }
+  .cert-card figcaption, .cert-meta { font-size: var(--tag); letter-spacing: .06em; }
 }
 
 /* Below ~400px the cover-beside-text card leaves too little room for the two
@@ -4679,7 +4711,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 .co-val:first-child { border-top: 0; padding-top: 0; }
 .co-val-n {
   font-family: var(--font-display);
-  font-size: 11px;
+  font-size: var(--tag);
   letter-spacing: 0.12em;
   color: var(--warm);
   padding-top: 7px;
@@ -4771,7 +4803,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   display: block;
   margin-top: 14px;
   font-style: normal;
-  font-size: 10px;
+  font-size: var(--tag);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--warm);
@@ -4854,7 +4886,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
   margin-bottom: 8px;
 }
 .co-plate span {
-  font-size: 11px;
+  font-size: var(--tag);
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--muted-2);
@@ -5080,7 +5112,7 @@ html.lb-open, html.lb-open body { overflow: hidden; }
 .srv-spec > div:first-child { padding-top: 0; }
 .srv-spec > div:last-child { border-bottom: 0; }
 .srv-spec dt {
-  font-size: 10px;
+  font-size: var(--tag);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted-2);
@@ -6392,7 +6424,14 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
    lines the design asks for. */
 @media (max-width: 700px) {
   .section-head { padding-inline: var(--pad); }
-  .section-title { font-size: clamp(21px, 5.6vw, 26px); }
+  /* .footprint .section-title is named again here on purpose. It is two
+     classes deep, this rule is one, and specificity beats source order inside
+     a media query as well as outside it -- so putting the footprint title on
+     var(--h3) left it at that clamp's 24px MINIMUM on a phone while every
+     other section title stepped down to 21.8, making the one title that used
+     to be smaller the largest on the page. Measured at 390px, not assumed. */
+  .section-title,
+  .footprint .section-title { font-size: clamp(21px, 5.6vw, 26px); }
 }
 
 
@@ -6655,7 +6694,10 @@ html:not(.js) .booking [data-booking-load] { display: none; }
 .cta-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-bar);
   display: none;
-  grid-template-columns: minmax(96px, 0.8fr) 1.6fr; gap: 10px;
+  /* 108px, not 96: with hyphenation off the longest of the four call labels
+     ("ANRUFEN") needs about 100px at the 12px floor, and at 96 it dropped to
+     two lines on its own. Measured at 320px in all four languages. */
+  grid-template-columns: minmax(108px, 0.8fr) 1.6fr; gap: 10px;
   padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
   background: rgba(7, 7, 8, 0.9);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
@@ -6665,17 +6707,37 @@ html:not(.js) .booking [data-booking-load] { display: none; }
 }
 .cta-bar.is-on { transform: none; }
 .cta-bar a {
-  min-height: 46px; padding: 0 14px;
+  min-height: 46px; padding: 7px 12px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 11.5px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--font-display); font-size: var(--tag); font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  /* It used to be nowrap with an ellipsis, which at 320px turned the site's
+     primary mobile call to action into "Leistungsumfang send..." in German and
+     "Envoyer le cahier des..." in French -- measured 212px of label in 182px
+     of button. The English fitted, so it never showed in review. A wrapped
+     label keeps all of its words; a truncated one loses the verb. Tracking
+     comes in from 0.12em to 0.1em to buy some of it back. */
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+  text-wrap: balance;
+  /* No hyphenation here. With wrapping allowed, the German bar broke inside
+     the words -- "ANRU-FEN" and "LEISTUNGSUM-FANG SENDEN" -- because the page
+     carries hyphens:auto and lang="de" gives the browser a dictionary to do
+     it with. A hyphen inside a two-word call to action reads as a rendering
+     fault. Breaks at spaces only. */
+  hyphens: none;
+  -webkit-hyphens: none;
 }
 .cta-bar-call { border: 1px solid var(--line-strong); color: var(--text); }
 .cta-bar-scope { background: var(--white); color: var(--black); }
 @media (max-width: 700px) and (pointer: coarse) {
   .cta-bar { display: grid; }
-  html.has-cta-bar body { padding-bottom: 68px; }
+  /* The bar can now be two lines tall in the longer languages, so the space
+     kept clear under the page is measured from the bar rather than guessed:
+     main.js writes --cta-bar-h from its actual height. 68px stays as the
+     fallback for the first paint, before the script has measured anything. */
+  html.has-cta-bar body { padding-bottom: var(--cta-bar-h, 68px); }
 }
 html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { display: none; }
 @media (prefers-reduced-motion: reduce) { .cta-bar { transition: none; } }
@@ -6722,7 +6784,7 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
   /* nowrap on the value: German broke "CREDITINFO, 2025-2026" across two
      lines mid-range, which reads as a typo. Checked in all four languages
      at 360 and 390 -- nothing leaves the screen. */
-  .hero-proof span { font-size: 10.5px; letter-spacing: 0.1em; text-align: right; white-space: nowrap; }
+  .hero-proof span { font-size: var(--tag); letter-spacing: 0.08em; text-align: right; }
 }
 
 
@@ -6993,3 +7055,178 @@ html.blueprint .hero-iso { opacity: 1; }
   color: var(--muted);
   text-align: center;
 }
+
+/* ============================================================
+   WHERE WE DID THIS — the service pages' link back to the work
+   ============================================================
+   Eleven of the twelve service pages were an intro paragraph and a bullet
+   list. The evidence existed one level away -- every case page names the
+   disciplines it used and links to them -- but nothing came back the other
+   way, so the page a buyer actually lands on carried no proof at all.
+
+   Deliberately a rule-separated list rather than cards: it sits under the
+   panel, and a row of cards there would read as a second projects index and
+   compete with the one on /projects. Same construction as .sector-services,
+   which is the same gesture on the sector pages -- a list of links closing a
+   page -- but scoped separately: that class also carries the corner-mark
+   rules used beside a photograph, and the block here has none. */
+.srv-where {
+  padding: clamp(34px, 4.5vw, 58px) var(--pad) clamp(44px, 6vw, 76px);
+  border-top: 1px solid var(--line);
+}
+.srv-where .eyebrow { margin-bottom: 14px; }
+.srv-where-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  /* The rules run the width of the prose column, not the page: a hairline
+     crossing 1360px of empty space reads as a section divider rather than as
+     the edge of a list. */
+  max-width: 62ch;
+}
+.srv-where-list li { border-bottom: 1px solid var(--line); }
+.srv-where-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 0;
+  font-size: var(--text-s);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur-2) var(--ease);
+}
+.srv-where-list a::after {
+  content: "\2197";                 /* the same arrow the case cards use */
+  margin-left: auto;
+  font-size: 0.9em;
+  opacity: 0.55;
+  transition: opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
+}
+.srv-where-list a:hover, .srv-where-list a:focus-visible { color: var(--text); }
+.srv-where-list a:hover::after { opacity: 1; transform: translate(2px, -2px); }
+@media (hover: none) {
+  /* The arrow is the affordance on a touch screen, so it does not hide. */
+  .srv-where-list a::after { opacity: 1; }
+  .srv-where-list a:hover::after { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .srv-where-list a::after { transition: none; }
+  .srv-where-list a:hover::after { transform: none; }
+}
+.srv-where-note {
+  max-width: 62ch;
+  font-size: var(--text-l);
+  line-height: 1.75;
+  color: var(--muted);
+}
+.srv-where-note a { color: var(--text); text-decoration: underline;
+                    text-decoration-color: var(--line-strong);
+                    text-underline-offset: 3px; }
+.srv-where-note a:hover { text-decoration-color: currentColor; }
+
+/* ============================================================
+   /services — the section index
+   ============================================================
+   Twelve links, grouped. Laid out as a drawing index rather than as marketing
+   cards: number, name, and the count of published work behind it. The group
+   label spans the full row so the three groups read as headings within one
+   grid instead of as three separate grids with their own margins — one grid
+   means the cards stay on a single column rhythm across all three. */
+.srv-ix { padding: clamp(96px, 12vh, 150px) 0 clamp(72px, 9vw, 120px); }
+.srv-ix-h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(30px, 4.4vw, 46px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  max-width: 24ch;
+  text-wrap: balance;
+  margin: 10px 0 24px;
+}
+.srv-ix-lead {
+  max-width: 62ch;
+  font-size: var(--text-l);
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: clamp(44px, 6vw, 76px);
+}
+.srv-ix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* The rules are borders on the cards, not a 1px gap over a line-coloured
+     grid background. Twelve items in three columns leaves a trailing cell in
+     two of the three groups, and with the background technique that empty cell
+     rendered as a pale filled box -- a visible hole at the end of a row. Drawn
+     as borders, an empty cell is simply page. */
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.srv-ix-group {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+.srv-ix-label {
+  font-family: var(--font-display);
+  font-size: var(--tag);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-150);
+  padding: 20px 22px 14px;
+}
+.srv-ix-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 14px;
+  align-content: start;
+  /* No min-height. 132px was set before the cards had content, and with a
+     number, a name and one label they filled about 90 of it -- so every row
+     carried 40px of dead space under the text, which is the first thing the
+     eye finds in a grid. The row now takes its height from the tallest card
+     in it, which is the two-line "Quality assurance and quality control". */
+  padding: 20px 22px 22px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background var(--dur-2) var(--ease);
+}
+.srv-ix-card:hover, .srv-ix-card:focus-visible { background: var(--bg-2, rgba(255,255,255,.03)); }
+.srv-ix-n {
+  font-family: var(--font-display);
+  font-size: var(--tag);
+  letter-spacing: 0.14em;
+  color: var(--gray-150);
+  font-variant-numeric: tabular-nums;
+  padding-top: 4px;
+}
+.srv-ix-name {
+  font-size: var(--text-l);
+  line-height: 1.35;
+  color: var(--text);
+  /* min-width:0 so a long service name wraps inside its column instead of
+     forcing the grid track wider -- the automatic minimum of a grid item is
+     its content, and "Quality assurance and quality control (QA/QC)" is the
+     longest of the twelve. */
+  min-width: 0;
+}
+.srv-ix-proof {
+  grid-column: 2;
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: var(--tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-150);
+}
+@media (max-width: 900px) { .srv-ix-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .srv-ix-grid { grid-template-columns: 1fr; } }
+.contact-note {
+  max-width: 52ch;
+  margin-top: 14px;
+  font-size: var(--text-m);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.contact-note a { color: var(--text); }
