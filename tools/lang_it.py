@@ -2785,4 +2785,6 @@ S = {
         '<span class="srv-ix-n">12</span> <span class="srv-ix-name">Sollevamento e supporto tecnico</span> <span class="srv-ix-proof">3 progetti</span>',
     'On our own scopes this is internal quality control, and it never counts as sign-off. We wrote down what that means in <a href="/news/we-do-not-certify-our-own-welds">we do not certify our own welds</a>.':
         'Sui nostri lavori questo è controllo qualità interno e non vale mai come accettazione. Abbiamo scritto cosa significa in <a href="/news/we-do-not-certify-our-own-welds">non certifichiamo le nostre saldature</a>.',
+    '<strong data-processor-name>The form processor</strong> &mdash; receives what you send through the enquiry, application and subscription forms, including any documents you attach, and passes it to us.':
+        '<strong data-processor-name>Il fornitore dei moduli</strong> &mdash; riceve quanto inviate tramite i moduli di richiesta, candidatura e iscrizione, compresi i documenti allegati, e ce lo trasmette.',
 }

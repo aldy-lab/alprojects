@@ -268,6 +268,18 @@ PRIVACY = """
         <li><strong>GitHub, Inc.</strong> &mdash; website hosting and request logs.</li>
         <li><strong>Calendly LLC</strong> &mdash; the scheduling calendar on the contacts
         page, and only if you choose to open it.</li>
+        <!-- The form processor. Hidden while the three endpoints are "" and the
+             forms fall back to mailto, because until then no third party
+             receives anything. main.js reveals it from the same variables the
+             forms POST to, and writes the service's name into the placeholder,
+             so switching the forms on discloses the recipient in the same edit.
+             GDPR Art. 13(1)(e) wants the recipients named; a form that quietly
+             starts sending CVs to a processor nobody listed is the version of
+             this that goes wrong. -->
+        <li data-processor-row hidden><strong data-processor-name>The form
+        processor</strong> &mdash; receives what you send through the enquiry,
+        application and subscription forms, including any documents you attach,
+        and passes it to us.</li>
         <!-- Analytics is off: ANALYTICS_DOMAIN is "" in js/main.js and no request
              is made to anybody, which is why this row is `hidden` rather than
              absent. main.js reveals it from the same variable that loads the

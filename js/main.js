@@ -223,6 +223,34 @@
     return T[LANG] || T.en;
   })();
 
+  /* ---------- the consent record ----------
+     All three forms gate on a consent box and none of them told the recipient
+     that the box had been ticked: the careers POST carried eleven fields and
+     no consent, the contact POST eight and no consent. GDPR Art. 7(1) puts the
+     burden of demonstrating consent on the controller, and the only copy of it
+     was a checkbox in a browser that has since been closed.
+
+     What travels is the state, the exact sentence the person agreed to, the
+     page and the language -- enough to reconstruct what was shown, without
+     storing anything extra about them. The sentence is read out of the DOM
+     rather than repeated here so it cannot drift from what was on screen, and
+     it is the translated one on a translated page. */
+  function consentRecord(boxId) {
+    var box = document.getElementById(boxId);
+    var out = { consent: box && box.checked ? "yes" : "no" };
+    /* Two shapes on this site: the newsletter wraps its box in the label, the
+       two big forms put the label beside it with for=. Reading only the
+       wrapper found the first and silently missed the other two -- which is
+       the whole point of this record, so both are handled. An <input>
+       contributes no text, so the wrapper case needs no special casing. */
+    var label = box && (box.closest("label")
+                        || document.querySelector('label[for="' + boxId + '"]'));
+    if (label) out.consent_text = label.textContent.replace(/\s+/g, " ").trim();
+    out.consent_page = location.pathname;
+    out.consent_lang = document.documentElement.lang || "en";
+    return out;
+  }
+
   /* ---------- apply config ---------- */
   if (ANALYTICS_DOMAIN) {
     var an = document.createElement("script");
@@ -231,6 +259,28 @@
     an.src = "https://plausible.io/js/script.js";
     document.head.appendChild(an);
   }
+
+  /* Section 3 of the policy has to name whoever receives a form. The row is
+     hidden while all three endpoints are "" -- nothing is sent to anybody then
+     -- and revealed as soon as one is filled in. The name is taken from the
+     endpoint's own host, so it cannot be filled in wrongly by hand, and
+     PROCESSOR_NAME overrides it when the host is not the company's name (a
+     self-hosted endpoint on the client's own domain, for instance). */
+  var PROCESSOR_NAME = "";   // e.g. "Formspree, Inc." -- overrides the host
+  (function () {
+    var row = document.querySelector("[data-processor-row]");
+    if (!row) return;
+    var url = CAREERS_ENDPOINT || CONTACT_ENDPOINT || FORM_ENDPOINT;
+    if (!url) return;
+    var name = PROCESSOR_NAME;
+    if (!name) {
+      try { name = new URL(url, location.href).hostname.replace(/^www\./, ""); }
+      catch (e) { name = ""; }
+    }
+    var slot = row.querySelector("[data-processor-name]");
+    if (slot && name) slot.textContent = name;
+    row.hidden = false;
+  })();
 
   /* The privacy policy has to agree with what actually loads, and the usual way
      that breaks is switching the tracker on and forgetting the policy. Both are
@@ -1565,7 +1615,20 @@
         applyNote.classList.add("show");
         var fd = new FormData();
         Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
-        picked.forEach(function (file) { fd.append("attachment", file, file.name); });
+        var rec = consentRecord("apConsent");
+        Object.keys(rec).forEach(function (k) { fd.append(k, rec[k]); });
+        /* "attachment[]", not "attachment". PHP builds $_FILES arrays only when
+           the field name ends in brackets; without them it keeps the LAST part
+           under that name and throws the rest away -- so an application with a
+           CV and a certificate scan would have arrived with the certificate and
+           no CV, silently. That is the exact failure this endpoint exists to
+           prevent, and it was found by reading the raw multipart body: both
+           parts were going out under the same bare name.
+
+           A hosted service documenting "attachment" would want the brackets
+           dropped again; endpoint/form.php reads both shapes, so only the
+           service's own convention decides it. */
+        picked.forEach(function (file) { fd.append("attachment[]", file, file.name); });
         fetch(CAREERS_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: fd })
           .then(function (r) {
             if (r.ok) {
@@ -1694,7 +1757,9 @@
         contactNote.classList.add("show");
         var fd = new FormData();
         Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
-        ctDocs.picked.forEach(function (file) { fd.append("attachment", file, file.name); });
+        var crec = consentRecord(f.consent.id);
+        Object.keys(crec).forEach(function (k) { fd.append(k, crec[k]); });
+        ctDocs.picked.forEach(function (file) { fd.append("attachment[]", file, file.name); });
         fetch(CONTACT_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: fd })
           .then(function (r) {
             if (r.ok) {
@@ -1767,7 +1832,8 @@
         fetch(FORM_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ email: email })
+          body: JSON.stringify(Object.assign({ email: email },
+                                             consentRecord("nlConsent")))
         })
           .then(function (r) {
             /* Both strings come from TXT: hard-coded here, a French visitor

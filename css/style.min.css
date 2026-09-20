@@ -32,6 +32,7 @@
 --text-s: 12px;
 --tag: 12px;
 --numbers: 12px;
+color-scheme: dark;
 --font: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
 --font-display: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
 --container: 1360px;
@@ -4749,6 +4750,7 @@ text-align: center;
 @media (max-width: 700px) {
 .section-head { padding-inline: var(--pad); }
 .section-title,
+.team-headline,
 .footprint .section-title { font-size: clamp(21px, 5.6vw, 26px); }
 }
 @media (max-width: 700px) {
@@ -5070,12 +5072,17 @@ border-radius: 50%;
 background: var(--beige);
 }
 .certs-scope {
-margin: 10px auto 0;
+margin: 14px auto 0;
 max-width: 62ch;
 font-size: var(--text-m);
-line-height: 1.6;
+line-height: 1.65;
 color: var(--muted);
-text-align: center;
+text-align: left;
+text-wrap: pretty;
+}
+@media (max-width: 900px) {
+.certs-scope b { display: block; margin-top: 8px; }
+.certs-scope b:first-of-type { margin-top: 0; }
 }
 .srv-where {
 padding: clamp(34px, 4.5vw, 58px) var(--pad) clamp(44px, 6vw, 76px);

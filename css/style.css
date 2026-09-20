@@ -85,6 +85,17 @@
 
   /* TZ §2.3: Montserrat for headings, numbers and stamps; Poppins for body
      text and captions. Both self-hosted. */
+  /* The browser paints its own pieces -- the date picker's calendar button and
+     its dropdown panel, the <select> list, the scrollbars -- from the colour
+     scheme, and with no declaration it uses the light one. On this ground that
+     put a BLACK calendar glyph inside a black field on /careers: measured, it
+     was the only native control on the site and it looked like a rendering
+     fault. Declared here rather than per control, so the picker panel and the
+     select list come out dark too. Checked first that nothing depends on a
+     default background: every input, select and textarea on the site sets its
+     own, and not one computed value moves. */
+  color-scheme: dark;
+
   --font: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-display: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
   --container: 1360px;   /* TZ §2.1 */
@@ -6430,7 +6441,13 @@ main { padding-bottom: clamp(56px, 7vw, 104px); }
      var(--h3) left it at that clamp's 24px MINIMUM on a phone while every
      other section title stepped down to 21.8, making the one title that used
      to be smaller the largest on the page. Measured at 390px, not assumed. */
+  /* .team-headline joins them. It is a 103-character sentence set in caps and
+     it was the ONE heading that never got this step-down -- so on a phone the
+     longest heading on the site was also the largest, at 26px against every
+     section title's 21.8, and it ran to eight lines at 320px. Same step, and
+     the sentence loses a line. */
   .section-title,
+  .team-headline,
   .footprint .section-title { font-size: clamp(21px, 5.6vw, 26px); }
 }
 
@@ -7048,12 +7065,26 @@ html.blueprint .hero-iso { opacity: 1; }
    headline -- but at the readable floor rather than below it, because the
    audit found 119 elements under 12px and this is not going to be the 120th. */
 .certs-scope {
-  margin: 10px auto 0;
+  /* Centred, this ran to six lines at 390px and eight at 320 -- two quoted
+     scopes with bold attributions inside them, every line starting in a
+     different place. It is prose, not a caption: the caption above it is one
+     short label and stays centred, this reads left like every other paragraph
+     on the site. Centred as a block, left inside it, which is the usual answer
+     for a paragraph inside a centred composition. */
+  margin: 14px auto 0;
   max-width: 62ch;
   font-size: var(--text-m);
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--muted);
-  text-align: center;
+  text-align: left;
+  text-wrap: pretty;
+}
+/* The two scopes are separate statements and were running together into one
+   block of grey. Each starts on its own line from the tablet width down, where
+   the paragraph is tall enough for the run-on to be the problem. */
+@media (max-width: 900px) {
+  .certs-scope b { display: block; margin-top: 8px; }
+  .certs-scope b:first-of-type { margin-top: 0; }
 }
 
 /* ============================================================
