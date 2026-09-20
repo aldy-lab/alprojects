@@ -31,7 +31,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=4ccbab44">
-  <link rel="stylesheet" href="/css/style.min.css?v=0c043320">
+  <link rel="stylesheet" href="/css/style.min.css?v=aaecde7d">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -162,6 +162,15 @@
       <ul>
         <li><strong>GitHub, Inc.</strong> &mdash; hébergement du site et journaux de requêtes.</li>
         <li><strong>Calendly LLC</strong> &mdash; le calendrier de prise de rendez-vous de la page contact, et uniquement si vous choisissez de l’ouvrir.</li>
+        <!-- The form processor. Hidden while the three endpoints are "" and the
+             forms fall back to mailto, because until then no third party
+             receives anything. main.js reveals it from the same variables the
+             forms POST to, and writes the service's name into the placeholder,
+             so switching the forms on discloses the recipient in the same edit.
+             GDPR Art. 13(1)(e) wants the recipients named; a form that quietly
+             starts sending CVs to a processor nobody listed is the version of
+             this that goes wrong. -->
+        <li data-processor-row hidden><strong data-processor-name>Le prestataire de formulaires</strong> &mdash; reçoit ce que vous envoyez via les formulaires de demande, de candidature et d’abonnement, y compris les documents joints, et nous le transmet.</li>
         <!-- Analytics is off: ANALYTICS_DOMAIN is "" in js/main.js and no request
              is made to anybody, which is why this row is `hidden` rather than
              absent. main.js reveals it from the same variable that loads the
@@ -352,6 +361,6 @@
     </defs>
   </svg>
 
-  <script src="/js/main.min.js?v=63658cb8"></script>
+  <script src="/js/main.min.js?v=6c132bd9"></script>
 </body>
 </html>
