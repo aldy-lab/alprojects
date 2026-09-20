@@ -1617,7 +1617,18 @@
         Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
         var rec = consentRecord("apConsent");
         Object.keys(rec).forEach(function (k) { fd.append(k, rec[k]); });
-        picked.forEach(function (file) { fd.append("attachment", file, file.name); });
+        /* "attachment[]", not "attachment". PHP builds $_FILES arrays only when
+           the field name ends in brackets; without them it keeps the LAST part
+           under that name and throws the rest away -- so an application with a
+           CV and a certificate scan would have arrived with the certificate and
+           no CV, silently. That is the exact failure this endpoint exists to
+           prevent, and it was found by reading the raw multipart body: both
+           parts were going out under the same bare name.
+
+           A hosted service documenting "attachment" would want the brackets
+           dropped again; endpoint/form.php reads both shapes, so only the
+           service's own convention decides it. */
+        picked.forEach(function (file) { fd.append("attachment[]", file, file.name); });
         fetch(CAREERS_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: fd })
           .then(function (r) {
             if (r.ok) {
@@ -1748,7 +1759,7 @@
         Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
         var crec = consentRecord(f.consent.id);
         Object.keys(crec).forEach(function (k) { fd.append(k, crec[k]); });
-        ctDocs.picked.forEach(function (file) { fd.append("attachment", file, file.name); });
+        ctDocs.picked.forEach(function (file) { fd.append("attachment[]", file, file.name); });
         fetch(CONTACT_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: fd })
           .then(function (r) {
             if (r.ok) {
