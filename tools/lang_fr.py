@@ -89,7 +89,7 @@ S = {
     'Phone':
         'Téléphone',
     'Scale':
-        'Effectif',
+        'Échelle',
     'Marine':
         'Naval',
     'NDT UT':
@@ -2813,4 +2813,14 @@ S = {
         'Sur nos propres prestations, il s’agit d’un contrôle qualité interne, qui ne vaut jamais réception. Nous avons écrit ce que cela signifie dans <a href="/news/we-do-not-certify-our-own-welds">nous ne certifions pas nos propres soudures</a>.',
     '<strong data-processor-name>The form processor</strong> &mdash; receives what you send through the enquiry, application and subscription forms, including any documents you attach, and passes it to us.':
         '<strong data-processor-name>Le prestataire de formulaires</strong> &mdash; reçoit ce que vous envoyez via les formulaires de demande, de candidature et d’abonnement, y compris les documents joints, et nous le transmet.',
+    'Sheet':
+        'Feuille',
+    'Rev':
+        'Rév.',
+    'Projection':
+        'Projection',
+    'ALPROJECTS, UAB':
+        'ALPROJECTS, UAB',
+    'Šilutės pl. 2, LT-92298<br>Klaipėda, Lithuania':
+        'Šilutės pl. 2, LT-92298<br>Klaipėda, Lituanie',
 }

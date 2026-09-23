@@ -202,6 +202,63 @@ def mark_nav(html, path):
     return head + body
 
 
+# ============================================================
+# THE TITLE BLOCK'S SHEET AND REVISION FIELDS
+# ============================================================
+# SHEET and REV are fields of a drawing's title block, so they hold real
+# values or they hold nothing. SHEET is the page's language and its position in
+# the sheet set; REV is the date this page's content last actually changed,
+# read from the hash manifest in tools/lastmod.json -- the same manifest the
+# sitemap's lastmod comes from, so the footer and the sitemap can never
+# disagree about when a page changed.
+#
+# The date is printed INSIDE the page whose hash decides it, which would make
+# every build move every date. i18n_build.last_changed() strips this span
+# before hashing for exactly that reason; the two belong together and neither
+# works alone.
+# Seeded with the home page. index.html is stamped in its own pass AFTER the
+# thirty-nine generated pages, so left to arrive in build order it came out as
+# sheet 40 -- the first page of the set numbered last.
+_SHEET_ORDER = ["index.html"]
+
+
+def _rev_for(rel):
+    """The stored revision date for one page, or today if it is new."""
+    import json as _j
+    try:
+        db = _j.load(io.open(os.path.join(ROOT, "tools", "lastmod.json"),
+                             encoding="utf-8"))
+    except Exception:
+        db = {}
+    rec = db.get(rel)
+    return (rec or {}).get("date") or datetime.date.today().isoformat()
+
+
+def fill_stamp(html, path):
+    """Put the sheet number and revision date into the footer's title block."""
+    if 'data-sheet' not in html:
+        return html
+    if path not in _SHEET_ORDER:
+        _SHEET_ORDER.append(path)
+    n = _SHEET_ORDER.index(path) + 1
+    sheet = "%02d" % n
+    rev = _rev_for(path).replace("-", ".")
+    # Matched on the ATTRIBUTE, never on the element. Both of these named a
+    # tag once; the markup changed under them and they stopped substituting in
+    # silence -- every sheet in the set then printed 01, because the value left
+    # in the page was whatever index.html happened to carry. Nothing raises
+    # when a re.sub matches nothing.
+    #
+    # A lambda rather than a replacement template, too: the date starts with a
+    # digit, and "\1" followed by "2026..." is read as group 12 and printed
+    # "P26.09.17" into the page without complaining.
+    html = re.sub(r'(<\w+[^>]* data-sheet>)[^<]*',
+                  lambda m: m.group(1) + sheet, html)
+    html = re.sub(r'(<\w+[^>]* data-rev>)[^<]*',
+                  lambda m: m.group(1) + rev, html)
+    return html
+
+
 def write(path, html):
     if path.endswith(".html"):
         html = clean_urls(stamp(mark_nav(html, path)))
@@ -211,6 +268,7 @@ def write(path, html):
         # sentence readable, and this is the backstop that keeps what Google
         # sees inside what Google shows.
         html = i18n.clamp_page_desc(html)
+        html = fill_stamp(html, path)
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     io.open(full, "w", encoding="utf-8").write(html)
@@ -3510,7 +3568,7 @@ _write_sitemap()
 for _name in ("index.html", "404.html"):
     _path = os.path.join(ROOT, _name)
     _before = io.open(_path, encoding="utf-8").read()
-    _after = clean_urls(stamp(_before))
+    _after = fill_stamp(clean_urls(stamp(_before)), _name)
     if _after != _before:
         io.open(_path, "w", encoding="utf-8").write(_after)
         print("stamped %s" % _name)

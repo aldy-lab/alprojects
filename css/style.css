@@ -7261,3 +7261,208 @@ html.blueprint .hero-iso { opacity: 1; }
   color: var(--muted);
 }
 .contact-note a { color: var(--text); }
+
+/* ============================================================
+   THE TITLE BLOCK — the footer
+   ============================================================
+   Replaces four borderless columns of links under wide-tracked headings. The
+   cells are drawn, the field name sits inside its cell, and a metadata strip
+   runs along the foot. The brand's drafting supplement asks for a title block
+   with a projection symbol and it existed only inside Drawing mode; this is
+   that block, made permanent.
+
+   The rules are borders on the cells, not a gap over a line-coloured
+   background: the last row of a four-cell grid can end short, and with the
+   background technique the empty remainder renders as a filled box. Learned
+   on the /services index. */
+.site-footer .stamp {
+  display: grid;
+  grid-template-columns: 1.15fr 1.25fr 0.85fr 1fr;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.site-footer .stamp-cell {
+  padding: 18px 22px 26px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;                 /* a long service name must wrap, not widen the track */
+}
+/* `.stamp`, not `.stamp-cell`: the metadata strip's cells are .stamp-mcell and
+   were getting none of this — the four foot labels rendered as 15px sentence
+   case while the four above them were 12px uppercase. Both live inside .stamp.
+   Still two classes, so it stays above `.newsletter p` at (0,1,1). */
+.stamp .stamp-field {
+  font-family: var(--font-display);
+  font-size: var(--tag);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-150);
+  margin: 0 0 16px;
+  max-width: none;
+}
+.stamp-cell .stamp-org {
+  font-family: var(--font-display);
+  font-size: var(--text-l);
+  letter-spacing: 0.04em;
+  color: var(--text);
+  margin: 0 0 8px;
+  max-width: none;
+}
+.stamp-cell .addr {
+  font-size: var(--text-m);
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 0 16px;
+  max-width: none;
+}
+/* The contact cell stacks its children rather than each child declaring
+   `display: block`. A tel: or mailto: link is inline-block by a deliberate
+   rule — `a[href^="tel:"]:not([class*="btn-"])`, which buys the 44px tap
+   target on a phone — and that selector is (0,2,1) against a two-class
+   (0,2,0), so it wins. Overriding it would have taken the tap target with it.
+   A flex column stacks them whatever their display value is. */
+.site-footer .stamp-wide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.stamp-cell .big {
+  font-size: var(--text-m);
+  color: var(--text);
+  /* The old markup wrapped these in .group, and `.group .big` is where their
+     44px tap target came from. Removing the wrapper took it with it and left
+     them 26px high -- a regression I introduced, caught by measuring the boxes
+     rather than by looking at them. min-height alone, because the deliberate
+     `a[href^="tel:"]` rule owns `display` and outranks this selector. */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.stamp-cell .big:hover { color: var(--white); }
+.stamp-cell .socials { display: flex; gap: 10px; margin-top: 18px; }
+.stamp-cell .stamp-note {
+  font-size: var(--text-m);
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 0 18px;
+  max-width: 34ch;
+}
+
+/* The twelve services as a schedule of items. counter-reset on the list and a
+   counter in the marker rather than typed-in numbers: the list is generated
+   from one place in the build and hand-written indices would drift the first
+   time a service is added. */
+.stamp-list, .stamp-links { list-style: none; margin: 0; padding: 0; }
+.stamp-list { counter-reset: srv; columns: 2; column-gap: 20px; }
+.stamp-list li { counter-increment: srv; break-inside: avoid; }
+.stamp-list a, .stamp-links a {
+  display: block;
+  padding: 5px 0;
+  /* min-width:0 so a two-word service wraps inside its column instead of
+     widening the track -- a grid item's automatic minimum is its content. */
+  min-width: 0;
+  font-size: var(--text-m);
+  line-height: 1.45;
+  color: var(--muted);
+  transition: color var(--dur-2) var(--ease);
+}
+/* The old footer gave every link a 44px row. Rebuilding it as a schedule took
+   that with it -- measured against the previous commit rather than guessed: 1
+   link under 44px became 21. On a pointer a 29px row is precise and keeps the
+   block compact; on a finger it is a miss. So the 44 comes back only where
+   there is a finger, which is also why the footer is taller on a phone than on
+   a desktop and should be. */
+@media (pointer: coarse) {
+  .stamp-links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
+  }
+  /* Keeps the two tracks; only the row height changes. Switching this to flex
+     would have put the number and the label side by side as flex items and
+     lost the hanging indent on exactly the screens where the labels wrap most. */
+  .stamp-list a { align-items: center; min-height: 44px; padding: 0; }
+  .stamp-cell .socials a { min-width: 44px; min-height: 44px; }
+}
+/* Grid, not an inline marker: with the number inline, "Mechanical Contracting"
+   wrapped its second word back under the number instead of under the first
+   word. Two tracks give the index its own column and the label a hanging
+   indent, which is how a schedule is set on a drawing. */
+.stamp-list a {
+  display: grid;
+  grid-template-columns: 2.2em 1fr;
+  align-items: baseline;
+}
+.stamp-list a::before {
+  content: counter(srv, decimal-leading-zero);
+  width: auto;
+  font-family: var(--font-display);
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  color: var(--gray-150);
+  font-variant-numeric: tabular-nums;
+}
+.stamp-list a:hover, .stamp-links a:hover,
+.stamp-list a:focus-visible, .stamp-links a:focus-visible { color: var(--text); }
+
+/* The foot of the block. Fixed-width fields first, then the legal cell taking
+   the remainder — the same shape a real title block has. */
+.site-footer .stamp-meta {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(88px, 0.42fr)) minmax(150px, 0.6fr) 1fr;
+  border-left: 1px solid var(--line);
+  margin-left: -1px;            /* sits on the block's own left rule, not beside it */
+}
+.site-footer .stamp-mcell {
+  padding: 12px 18px 14px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+.stamp-mcell .stamp-field { margin-bottom: 6px; }
+.stamp-mcell .stamp-v {
+  font-family: var(--font-display);
+  font-size: var(--text-m);
+  letter-spacing: 0.08em;
+  color: var(--text);
+  margin: 0;
+  max-width: none;
+  font-variant-numeric: tabular-nums;
+}
+.proj-mark { display: block; width: 54px; height: 22px; color: var(--muted); }
+.stamp-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 6px 22px;
+  font-size: var(--text-s);
+  letter-spacing: 0.04em;
+  color: var(--gray-150);
+}
+.stamp-legal .made-by { margin-left: auto; }
+
+@media (max-width: 1100px) {
+  .site-footer .stamp { grid-template-columns: 1fr 1fr; }
+  .site-footer .stamp-meta { grid-template-columns: repeat(3, 1fr); }
+  .stamp-legal { grid-column: 1 / -1; }
+  .stamp-proj { grid-column: 1 / -1; }
+}
+@media (max-width: 620px) {
+  .site-footer .stamp { grid-template-columns: 1fr; }
+  .site-footer .stamp-meta { grid-template-columns: 1fr 1fr; }
+  .stamp-list { columns: 1; }
+  .stamp-legal { gap: 6px 14px; }
+  .stamp-legal .made-by { margin-left: 0; }
+}
+/* The SHEET field is two block children so neither becomes a translation unit
+   (see the note in the markup); flex puts them back on one line. */
+.stamp-sheet { display: flex; align-items: baseline; }
+.stamp-sheet p { margin: 0; }
+.stamp-sheet [data-sheet]::before {
+  content: "\00B7";
+  margin: 0 0.5em;
+  color: var(--gray-150);
+}

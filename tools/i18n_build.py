@@ -372,6 +372,16 @@ def translate_page(src, lang, rel, stats):
     # 5. head, links, switcher
     body = fix_head(body, lang, rel)
 
+    # The title block's SHEET field states which language sheet you are on.
+    # That is state, like <html lang>, not copy: the extractor already skips a
+    # bare "EN", so left alone it would print EN on every locale.
+    # Tag-agnostic on purpose: this matched <span class="stamp-lang"> and the
+    # markup became a <p> two edits later, so it silently stopped firing and
+    # every locale printed EN. Matching the class rather than the element
+    # cannot go stale the same way.
+    body = re.sub(r'(<(\w+) class="stamp-lang">)[^<]*',
+                  lambda m: m.group(1) + lang.upper(), body)
+
     body = translate_island(body, lang, stats)
 
     # The translation runs 15-25% longer than the English it replaced, so the
@@ -421,6 +431,11 @@ def last_changed(rel):
     except Exception:
         return _today
     body = re.sub(r"\?v=[0-9a-f]{6,}", "", body)
+    # The footer's REV field prints this very date, so it has to come out
+    # before the hash is taken. Left in, the date would change the hash that
+    # decides the date: every build would move every page's REV, and the
+    # manifest this function exists to keep would churn on every run.
+    body = re.sub(r'(<p class="stamp-v" data-rev>)[^<]*', r"\1", body)
     digest = hashlib.sha256(body.encode("utf-8")).hexdigest()[:16]
     rec = _seen.get(rel)
     if rec and rec.get("hash") == digest:

@@ -740,7 +740,7 @@ corners span in the markup, its selector folded into the block at the end of
       The header button opens Calendly's **popup** over the page
       (`Calendly.initPopupWidget`), so nobody leaves the tab; the contacts panel
       uses the inline widget, since there is nothing behind it to return to.
-      Both share one loader. Same pattern as the litprofit repo.
+      Both share one loader.
 
       **The calendar is click-to-load and must stay that way.** Calendly's embed
       sets cookies and sees the visitor's IP, so loading it on every page view

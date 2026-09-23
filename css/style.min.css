@@ -5217,3 +5217,153 @@ line-height: 1.7;
 color: var(--muted);
 }
 .contact-note a { color: var(--text); }
+.site-footer .stamp {
+display: grid;
+grid-template-columns: 1.15fr 1.25fr 0.85fr 1fr;
+border-top: 1px solid var(--line);
+border-left: 1px solid var(--line);
+}
+.site-footer .stamp-cell {
+padding: 18px 22px 26px;
+border-right: 1px solid var(--line);
+border-bottom: 1px solid var(--line);
+min-width: 0;
+}
+.stamp .stamp-field {
+font-family: var(--font-display);
+font-size: var(--tag);
+font-weight: 400;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(--gray-150);
+margin: 0 0 16px;
+max-width: none;
+}
+.stamp-cell .stamp-org {
+font-family: var(--font-display);
+font-size: var(--text-l);
+letter-spacing: 0.04em;
+color: var(--text);
+margin: 0 0 8px;
+max-width: none;
+}
+.stamp-cell .addr {
+font-size: var(--text-m);
+line-height: 1.7;
+color: var(--muted);
+margin: 0 0 16px;
+max-width: none;
+}
+.site-footer .stamp-wide {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
+.stamp-cell .big {
+font-size: var(--text-m);
+color: var(--text);
+min-height: 44px;
+display: inline-flex;
+align-items: center;
+}
+.stamp-cell .big:hover { color: var(--white); }
+.stamp-cell .socials { display: flex; gap: 10px; margin-top: 18px; }
+.stamp-cell .stamp-note {
+font-size: var(--text-m);
+line-height: 1.65;
+color: var(--muted);
+margin: 0 0 18px;
+max-width: 34ch;
+}
+.stamp-list, .stamp-links { list-style: none; margin: 0; padding: 0; }
+.stamp-list { counter-reset: srv; columns: 2; column-gap: 20px; }
+.stamp-list li { counter-increment: srv; break-inside: avoid; }
+.stamp-list a, .stamp-links a {
+display: block;
+padding: 5px 0;
+min-width: 0;
+font-size: var(--text-m);
+line-height: 1.45;
+color: var(--muted);
+transition: color var(--dur-2) var(--ease);
+}
+@media (pointer: coarse) {
+.stamp-links a {
+display: flex;
+align-items: center;
+min-height: 44px;
+padding: 0;
+}
+.stamp-list a { align-items: center; min-height: 44px; padding: 0; }
+.stamp-cell .socials a { min-width: 44px; min-height: 44px; }
+}
+.stamp-list a {
+display: grid;
+grid-template-columns: 2.2em 1fr;
+align-items: baseline;
+}
+.stamp-list a::before {
+content: counter(srv, decimal-leading-zero);
+width: auto;
+font-family: var(--font-display);
+font-size: 0.85em;
+letter-spacing: 0.08em;
+color: var(--gray-150);
+font-variant-numeric: tabular-nums;
+}
+.stamp-list a:hover, .stamp-links a:hover,
+.stamp-list a:focus-visible, .stamp-links a:focus-visible { color: var(--text); }
+.site-footer .stamp-meta {
+grid-column: 1 / -1;
+display: grid;
+grid-template-columns: repeat(3, minmax(88px, 0.42fr)) minmax(150px, 0.6fr) 1fr;
+border-left: 1px solid var(--line);
+margin-left: -1px;
+}
+.site-footer .stamp-mcell {
+padding: 12px 18px 14px;
+border-right: 1px solid var(--line);
+border-bottom: 1px solid var(--line);
+min-width: 0;
+}
+.stamp-mcell .stamp-field { margin-bottom: 6px; }
+.stamp-mcell .stamp-v {
+font-family: var(--font-display);
+font-size: var(--text-m);
+letter-spacing: 0.08em;
+color: var(--text);
+margin: 0;
+max-width: none;
+font-variant-numeric: tabular-nums;
+}
+.proj-mark { display: block; width: 54px; height: 22px; color: var(--muted); }
+.stamp-legal {
+display: flex;
+flex-wrap: wrap;
+align-items: flex-end;
+gap: 6px 22px;
+font-size: var(--text-s);
+letter-spacing: 0.04em;
+color: var(--gray-150);
+}
+.stamp-legal .made-by { margin-left: auto; }
+@media (max-width: 1100px) {
+.site-footer .stamp { grid-template-columns: 1fr 1fr; }
+.site-footer .stamp-meta { grid-template-columns: repeat(3, 1fr); }
+.stamp-legal { grid-column: 1 / -1; }
+.stamp-proj { grid-column: 1 / -1; }
+}
+@media (max-width: 620px) {
+.site-footer .stamp { grid-template-columns: 1fr; }
+.site-footer .stamp-meta { grid-template-columns: 1fr 1fr; }
+.stamp-list { columns: 1; }
+.stamp-legal { gap: 6px 14px; }
+.stamp-legal .made-by { margin-left: 0; }
+}
+.stamp-sheet { display: flex; align-items: baseline; }
+.stamp-sheet p { margin: 0; }
+.stamp-sheet [data-sheet]::before {
+content: "\00B7";
+margin: 0 0.5em;
+color: var(--gray-150);
+}
