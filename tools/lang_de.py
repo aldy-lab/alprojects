@@ -2800,4 +2800,16 @@ S = {
         'ALPROJECTS, UAB',
     'Šilutės pl. 2, LT-92298<br>Klaipėda, Lithuania':
         'Šilutės pl. 2, LT-92298<br>Klaipėda, Litauen',
+    'No.':
+        'Nr.',
+    'Role':
+        'Position',
+    'Location':
+        'Einsatzort',
+    'Contract':
+        'Vertrag',
+    'Project sites across Europe':
+        'Projektstandorte in ganz Europa',
+    'Project-based':
+        'Projektbezogen',
 }

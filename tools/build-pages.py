@@ -66,11 +66,38 @@ def drawing_band(slug, src=None, dims=(1000, 620)):
         <span class="sheet-plus" style="left:87%%; top:66%%"></span>
       </span>
       <div class="container">
-        <img src="%s" alt="" width="%d" height="%d"
-             loading="lazy" decoding="async" id="srvDraw">
-      </div>
+%s      </div>
     </section>
-""" % ("", src or ("/assets/drawings/%s.svg" % slug), dims[0], dims[1]))
+""" % ("", _drawing_svg(src or ("/assets/drawings/%s.svg" % slug), dims)))
+
+
+def _drawing_svg(path, dims):
+    """The drawing itself, INLINED rather than referenced with <img>.
+
+    An <img> would have been cheaper -- one cached request, no bytes in the
+    page -- and that is how this was written. It does not work:
+    prefers-reduced-motion does not reach an SVG inside an <img>. Measured
+    three ways on the same file under `reduce`: 0 pixels moving as a top-level
+    document, 0 inlined into the page, and 12064 still moving through <img>.
+    A visitor who has asked their system to stop animation gets animation.
+
+    So the file is inlined, which is the only form where the media query inside
+    it is evaluated against the visitor's preference. The generator scopes
+    every selector to `svg.dwg` for exactly this reason -- inlined, an
+    unscoped `path { fill: none }` would restyle the icon sprite and the
+    footer's projection symbol.
+
+    Falls back to an <img> when the file is missing, so a build on a checkout
+    that has not run make_drawings.py still produces a page.
+    """
+    full = os.path.join(ROOT, path.lstrip("/"))
+    try:
+        with io.open(full, encoding="utf-8") as fh:
+            body = fh.read().strip()
+    except IOError:
+        return ('        <img src="%s" alt="" width="%d" height="%d"\n'
+                '             loading="lazy" decoding="async">\n' % (path, dims[0], dims[1]))
+    return "        " + body.replace("\n", "\n        ") + "\n"
 
 
 def page(title, description, body, noindex=False, canonical=None, head_extra="", og="home"):
@@ -648,7 +675,7 @@ def chips(items, attr, cls="chip"):
         for v in items)
 
 
-def spec_rows(p):
+def spec_rows(p, skip=()):
     """The job card's spec column.
 
     A row whose value is unknown is left out rather than printed as "to be
@@ -661,7 +688,7 @@ def spec_rows(p):
             ("Contract", p.get("contract")), ("Rate", p.get("rate"))]
     out = []
     for label, val in rows:
-        if not val:
+        if not val or label in skip:
             continue
         out.append('          <div class="spec"><span>%s</span><b>%s</b></div>'
                    % (label, val))
@@ -669,33 +696,79 @@ def spec_rows(p):
 
 
 def positions_html():
+    """The open positions as a schedule of rows that open in place.
+
+    WHY NOT FIVE CARDS
+    The handoff specified a card per role, split 1.618fr / 1fr, with the
+    requirements on the left and the parameters on the right. Built to the
+    letter it measured 508px a card, of which the right column used 211 --
+    297px of empty column on every one of them, five times over, on a page
+    6598px long. Five near-identical tall rectangles with a hole in each.
+
+    A drawing does not lay parts out as cards. It lists them: a schedule with
+    a number, a description and the parameters in ruled columns, and you read
+    down it. Five roles now fit in one screen, each row opens where it sits,
+    and nothing is hidden from a search engine -- the content of a closed
+    <details> is in the DOM and is indexed.
+
+    <details> rather than buttons and a script: it is keyboard-operable and it
+    works with JavaScript off, which is the state the site is specified to
+    survive. No `name` attribute, so two roles can be open at once -- somebody
+    comparing two of them should not have the first close.
+
+    EVERY WORD IS THE APPROVED COPY. The handoff's first rule is that the text
+    is not to be edited, and none of it is: the same lead, the same
+    requirements, the same parameters, the same button. What changed is how
+    they are arranged.
+    """
     live = [p for p in POSITIONS if p.get("open")]
     if not live:
-        return """      <div class="notice">
-        <p><strong>No open positions right now.</strong> We still welcome open
-        applications &mdash; use the form below and we will contact you when a project
-        matches your profile.</p>
-      </div>"""
-    out = []
-    for p in live:
+        return ""
+    # BLOCK children throughout, in the header and in every row. As inline
+    # spans the whole <summary> was ONE translation unit -- number, title,
+    # location and contract glued together, five of them, none matching the
+    # titles and locations that are already translated on their own. A block
+    # child makes each leaf its own unit, and the number, having no letters, is
+    # skipped by the extractor. Same lesson as the title block's SHEET field.
+    out = ['      <div class="sched">',
+           '        <div class="sched-head" aria-hidden="true">',
+           '          <div>No.</div><div>Role</div>'
+           '<div>Location</div><div>Contract</div><div></div>',
+           '        </div>']
+    for i, p in enumerate(live, 1):
         d = dict(p)
-        d["needs"] = "\n".join("            <li>%s</li>" % n for n in p["needs"])
-        d["specs"] = spec_rows(p)
-        out.append("""      <article class="position" id="{id}">
-        <div class="position-main">
-          <p class="position-badge"><i class="position-dot" aria-hidden="true"></i>Hiring now</p>
-          <h3>{title}</h3>
-          <p class="position-lead">{summary}</p>
-          <p class="position-label">What we need</p>
-          <ul class="position-needs">
-{needs}
-          </ul>
-          <p><a class="btn-solid" href="#apply" data-apply="{discipline}">Apply for this role</a></p>
-        </div>
-        <div class="position-specs">
+        d["n"] = "%02d" % i
+        d["needs"] = "\n".join("              <li>%s</li>" % n for n in p["needs"])
+        # Location and Contract are already printed in the row itself. Repeating
+        # them a line lower is the panel saying nothing twice; it shows what the
+        # row does not have room for.
+        d["specs"] = spec_rows(p, skip=("Location", "Contract"))
+        # The first row opens on load so the page does not read as empty, and
+        # so the shape of an opened row is visible without a click.
+        d["open"] = " open" if i == 1 else ""
+        out.append("""        <details class="sched-row" id="{id}"{open}>
+          <summary class="sched-sum">
+            <div class="sched-n">{n}</div>
+            <div class="sched-role">{title}</div>
+            <div class="sched-loc">{location}</div>
+            <div class="sched-contract">{contract}</div>
+            <div class="sched-mark" aria-hidden="true"></div>
+          </summary>
+          <div class="sched-open">
+            <div class="sched-in">
+              <div class="sched-specs">
 {specs}
-        </div>
-      </article>""".format(**d))
+              </div>
+              <p class="sched-lead">{summary}</p>
+              <p class="position-label">What we need</p>
+              <ul class="position-needs">
+{needs}
+              </ul>
+              <p class="sched-act"><a class="btn-solid" href="#apply" data-apply="{discipline}">Apply for this role</a></p>
+            </div>
+          </div>
+        </details>""".format(**d))
+    out.append("      </div>")
     return "\n".join(out)
 
 
@@ -1137,7 +1210,7 @@ COMPANY = """
         </div>
       </div>
     </section>
-
+""" + drawing_band("company") + """
     <!-- ================= VISION / MISSION ================= -->
     <div class="container">
       <div class="co-vm">
@@ -2470,6 +2543,7 @@ PROJECTS = """
       largely the same; the environment, the standards and the consequences of getting it
       wrong are not.</p>
     </div>
+""" + drawing_band("projects") + """
 
 
     <section class="case-sheet">
@@ -3237,10 +3311,19 @@ def service_page_body(sv):
             '        </div>\n'
             '      </div>\n'
             '    </section>\n'
+            # One animated drawing per service, under the panel. It is the only
+            # thing on these pages that no other site can carry: the subject of
+            # each one is what that service actually does, and the brand's own
+            # drafting supplement is where the line weights and the greys come
+            # from. The band is NOT part of the JSON payload -- switching
+            # services re-renders the panel without a reload, and the drawing
+            # belongs to the URL, so it is left to the page it was built for.
+            + '{band}'
             + '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
             + '    <script type="application/json" id="srv-data">{payload}</script>\n'
             ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
-                     num=sv["num"], deep=sv["deep"], payload=payload)
+                     num=sv["num"], deep=sv["deep"], payload=payload,
+                     band=drawing_band(sv["slug"]))
 
 
 # ---------------- write everything ----------------

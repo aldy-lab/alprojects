@@ -1,11 +1,11 @@
 {
  "careers.html": {
-  "date": "2026-09-23",
-  "hash": "9f6a9c2d230ca040"
+  "date": "2026-09-24",
+  "hash": "e7704f7413e25f0f"
  },
  "company.html": {
-  "date": "2026-09-23",
-  "hash": "2c154c918e8f4563"
+  "date": "2026-09-24",
+  "hash": "ba3867e2d0cc268b"
  },
  "contacts.html": {
   "date": "2026-09-23",
@@ -48,8 +48,8 @@
   "hash": "5a3593de61052f1b"
  },
  "projects.html": {
-  "date": "2026-09-23",
-  "hash": "30158544cf59986b"
+  "date": "2026-09-24",
+  "hash": "dc17b2983b9d814a"
  },
  "projects/agitator-replacement.html": {
   "date": "2026-09-23",
@@ -112,51 +112,51 @@
   "hash": "60b5ea4f592d2255"
  },
  "services/3d-laser-scanning.html": {
-  "date": "2026-09-23",
-  "hash": "586da3728ffc4710"
+  "date": "2026-09-24",
+  "hash": "f5cd62cefbb5e6db"
  },
  "services/heavy-equipment-relocation.html": {
-  "date": "2026-09-23",
-  "hash": "a8825bb50e28420d"
+  "date": "2026-09-24",
+  "hash": "978dcd333d8eac29"
  },
  "services/mechanical-contracting.html": {
-  "date": "2026-09-23",
-  "hash": "06f72fa678db4a66"
+  "date": "2026-09-24",
+  "hash": "c8235239c503b254"
  },
  "services/mobile-repair-teams.html": {
-  "date": "2026-09-23",
-  "hash": "4a2865193f557630"
+  "date": "2026-09-24",
+  "hash": "7e29c1a940746413"
  },
  "services/non-destructive-testing.html": {
-  "date": "2026-09-23",
-  "hash": "f577cd38070ed54e"
+  "date": "2026-09-24",
+  "hash": "8d6674a399b1755f"
  },
  "services/pipe-fitting.html": {
-  "date": "2026-09-23",
-  "hash": "4134f39c41a68fa6"
+  "date": "2026-09-24",
+  "hash": "387b0c40a7c507a2"
  },
  "services/quality-control.html": {
-  "date": "2026-09-23",
-  "hash": "f9c4dc77067fbefd"
+  "date": "2026-09-24",
+  "hash": "3a4709892a8634eb"
  },
  "services/rigging-technical-support.html": {
-  "date": "2026-09-23",
-  "hash": "ca7a351398920127"
+  "date": "2026-09-24",
+  "hash": "7bbaf3481431541f"
  },
  "services/rope-access-services.html": {
-  "date": "2026-09-23",
-  "hash": "04ce82e2ee3bf2f0"
+  "date": "2026-09-24",
+  "hash": "eeed7fc4d35b1576"
  },
  "services/ship-repair.html": {
-  "date": "2026-09-23",
-  "hash": "badbe41daaa2f5f3"
+  "date": "2026-09-24",
+  "hash": "5edda7ccb582521e"
  },
  "services/shipbuilding.html": {
-  "date": "2026-09-23",
-  "hash": "2a22aa84094bc746"
+  "date": "2026-09-24",
+  "hash": "65ffbf0fc8e9599b"
  },
  "services/welding-services.html": {
-  "date": "2026-09-23",
-  "hash": "c48bf175cb0aa8fe"
+  "date": "2026-09-24",
+  "hash": "133d6668c8a9e850"
  }
 }
