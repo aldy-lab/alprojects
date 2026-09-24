@@ -46,6 +46,13 @@ HEADER_R, FOOTER_R, SPRITE_R = rootify(HEADER), rootify(FOOTER), rootify(SPRITE)
 def drawing_band(slug, src=None, dims=(1000, 620)):
     """The band that carries one generated drawing.
 
+    NOT CALLED at the moment, and deliberately. The fourteen drawings were put
+    on the twelve service pages, /company and /projects, and fourteen animated
+    bands across the site turned a restrained idea into a tic -- every page
+    answering with the same gesture. One drawing on the home page carries it;
+    the rest were noise. The generator and the assets stay, so a band is one
+    call away wherever it earns its place again.
+
     Placed directly under the page's opening block -- the hero photograph on
     Company, the page head on Projects, the service panel on a service page.
     It used to sit at the foot of the page, and measuring the ground rather
@@ -713,8 +720,8 @@ def positions_html():
 
     <details> rather than buttons and a script: it is keyboard-operable and it
     works with JavaScript off, which is the state the site is specified to
-    survive. No `name` attribute, so two roles can be open at once -- somebody
-    comparing two of them should not have the first close.
+    survive. `name="positions"` makes the set exclusive, so one row is open at
+    a time -- the browser closes the previous one itself, with no script.
 
     EVERY WORD IS THE APPROVED COPY. The handoff's first rule is that the text
     is not to be edited, and none of it is: the same lead, the same
@@ -743,10 +750,15 @@ def positions_html():
         # them a line lower is the panel saying nothing twice; it shows what the
         # row does not have room for.
         d["specs"] = spec_rows(p, skip=("Location", "Contract"))
-        # The first row opens on load so the page does not read as empty, and
-        # so the shape of an opened row is visible without a click.
-        d["open"] = " open" if i == 1 else ""
-        out.append("""        <details class="sched-row" id="{id}"{open}>
+        # All closed on load. The page then reads as what it is -- a list of
+        # five open positions you pick from -- instead of one role with four
+        # afterthoughts under it.
+        d["open"] = ""
+        # name= makes the set exclusive: opening one closes the other, natively,
+        # with no script and with the keyboard still working. Where it is not
+        # supported the rows merely stay independently openable, which is a
+        # degradation and not a break.
+        out.append("""        <details class="sched-row" id="{id}" name="positions"{open}>
           <summary class="sched-sum">
             <div class="sched-n">{n}</div>
             <div class="sched-role">{title}</div>
@@ -1210,7 +1222,7 @@ COMPANY = """
         </div>
       </div>
     </section>
-""" + drawing_band("company") + """
+
     <!-- ================= VISION / MISSION ================= -->
     <div class="container">
       <div class="co-vm">
@@ -2543,7 +2555,6 @@ PROJECTS = """
       largely the same; the environment, the standards and the consequences of getting it
       wrong are not.</p>
     </div>
-""" + drawing_band("projects") + """
 
 
     <section class="case-sheet">
@@ -3311,19 +3322,10 @@ def service_page_body(sv):
             '        </div>\n'
             '      </div>\n'
             '    </section>\n'
-            # One animated drawing per service, under the panel. It is the only
-            # thing on these pages that no other site can carry: the subject of
-            # each one is what that service actually does, and the brand's own
-            # drafting supplement is where the line weights and the greys come
-            # from. The band is NOT part of the JSON payload -- switching
-            # services re-renders the panel without a reload, and the drawing
-            # belongs to the URL, so it is left to the page it was built for.
-            + '{band}'
             + '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
             + '    <script type="application/json" id="srv-data">{payload}</script>\n'
             ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
-                     num=sv["num"], deep=sv["deep"], payload=payload,
-                     band=drawing_band(sv["slug"]))
+                     num=sv["num"], deep=sv["deep"], payload=payload)
 
 
 # ---------------- write everything ----------------
@@ -3522,22 +3524,15 @@ SECTOR_PAGES = [
 # stated in the site's own language -- and the rotor turns, which is the one
 # thing a still photograph of a wind farm cannot do.
 #
-# Referenced with <img> rather than inlined: the animation and the
-# reduced-motion switch live inside the file, so the page needs no JavaScript
-# and the asset is cached like any other. See tools/make_wind_turbine.py.
-TURBINE = """
-    <section class="sector-drawing">
-      <span class="sheet-grid" aria-hidden="true"></span>
-      <span class="sheet-furniture" aria-hidden="true">
-        <span class="sheet-plus" style="left:12%; top:18%"></span>
-        <span class="sheet-plus" style="left:86%; top:64%"></span>
-      </span>
-      <div class="container">
-        <img src="/assets/wind-turbine.svg" alt="" width="1000" height="720"
-             loading="lazy" decoding="async">
-      </div>
-    </section>
-"""
+# EMPTY on purpose as of 24 Sep 2026. The wind field was the animated drawing
+# on this page; the instruction was to leave animated drawings on the home page
+# only, and this is not the home page. One line to bring it back -- the asset
+# and the generator are untouched.
+#
+# It also carried the <img> defect: prefers-reduced-motion does not reach an
+# SVG inside an <img> (measured: 12064 pixels still moving under `reduce`), so
+# if it does come back it comes back inlined, the way the hero does it.
+TURBINE = ""
 
 
 def sector_body(slug, name, img, lead, service_slugs):

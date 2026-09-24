@@ -628,6 +628,11 @@
      pages for a picture most visitors never ask for. One request, cached, and
      a failure leaves the mode working with nothing drawn. */
   var isoLoaded = false;
+  /* Fetched on load now, not only when Drawing mode opens: the drawing is part
+     of the first screen rather than a reward for pressing B. It is still a
+     fetch and not markup, so the 10 KB is one cached request and the file's own
+     reduced-motion media query is evaluated once it is in the DOM -- which is
+     the whole reason it is inlined rather than referenced with <img>. */
   function loadHeroIso() {
     var box = document.querySelector(".hero-iso");
     if (!box) return;
@@ -648,6 +653,9 @@
       .then(function (svg) {
         if (!svg) return;
         box.innerHTML = svg;
+        /* Only now is there anything to show, so this is where it is revealed.
+           Setting it earlier would have faded in an empty box. */
+        box.classList.add("is-on");
         /* The flow chevrons ride the centreline on SMIL animateMotion, and SMIL
            has no CSS switch: `display: none` on the group under
            prefers-reduced-motion left a 214x37 band still repainting every
@@ -958,15 +966,39 @@
       var art = srvPanel.querySelector(".srv-item");
       if (!art) return;
 
+      /* ---- the transition ----
+         What it used to do: fade the text out and back over 8px of vertical
+         nudge, while the panel's height changed INSTANTLY. The twelve services
+         run from 452px to 931px tall, so the footer and everything below it
+         lurched up to 479px in one frame while the only thing that looked like
+         it was moving was an 8px dissolve. That is the strange part -- the
+         motion you saw and the motion that happened were in different places.
+
+         Now the content leaves in the direction of travel (forward down the
+         list is out to the left, in from the right) and the panel's height is
+         animated from the old value to the new one, so the page below follows
+         the change instead of arriving at the end of it.
+
+         Direction comes from the index delta, so the list, the arrows and the
+         back button all agree about which way "next" is. */
+      var prevIdx = indexOfSlug(art.getAttribute("data-panel") || "");
+      var dir = (prevIdx < 0 || prevIdx === i) ? 0 : (i > prevIdx ? 1 : -1);
       art.setAttribute("data-panel", sv.slug);
-      /* restart the entrance animation on every switch */
+
+      /* Height must be pinned to a number before the content is replaced, or
+         there is nothing to transition FROM. */
+      var fromH = srvPanel.offsetHeight;
+      srvPanel.style.height = fromH + "px";
+
       /* Reset to the out state only if the panel is at rest. Clicking a second
-         service while the first is still fading in should let that fade carry
-         on to the new content, not snap back to invisible -- which is exactly
-         what the old @keyframes did: measured opacity 0.97, then 0 one click
-         later. */
+         service while the first is still coming in should let that carry on to
+         the new content, not snap back to invisible -- which is exactly what
+         the old @keyframes did: measured opacity 0.97, then 0 one click later. */
       var settled = parseFloat(getComputedStyle(art).opacity) > 0.99;
-      if (settled) art.classList.add("is-entering");
+      if (settled) {
+        art.classList.add("is-entering");
+        art.classList.toggle("is-back", dir < 0);
+      }
       art.querySelector(".srv-count").textContent = sv.num + " / 12";
       art.querySelector(".srv-title").textContent = sv.h1;
       art.querySelector(".srv-lead").innerHTML = sv.lead;
@@ -999,12 +1031,36 @@
         history.pushState({ srv: sv.slug }, "", PREFIX + "/services/" + sv.slug);
       }
       /* Release on the next frame: the browser has to paint the out state once
-         before the transition back to rest will run. */
-      if (settled) {
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () { art.classList.remove("is-entering"); });
-        });
-      }
+         before the transition back to rest will run. The height goes to its new
+         value in the same frame, so the two move together instead of one after
+         the other.
+
+         The natural height is read with the pin lifted and restored inside one
+         synchronous block, so the browser lays out once and nothing is ever
+         painted at the intermediate value. */
+      srvPanel.style.height = "auto";
+      var toH = srvPanel.offsetHeight;
+      srvPanel.style.height = fromH + "px";
+
+      requestAnimationFrame(function () {
+        srvPanel.style.height = toH + "px";
+        if (settled) {
+          requestAnimationFrame(function () {
+            art.classList.remove("is-entering");
+            art.classList.remove("is-back");
+          });
+        }
+      });
+
+      /* Let go of the pin once the height has arrived, so the panel sizes
+         itself again -- left pinned, a window resize or a late font swap would
+         be stuck at a number measured at the old width. */
+      var release = function (ev) {
+        if (ev.propertyName !== "height" || ev.target !== srvPanel) return;
+        srvPanel.style.height = "";
+        srvPanel.removeEventListener("transitionend", release);
+      };
+      srvPanel.addEventListener("transitionend", release);
 
       /* the panel is what changed, so that is what should be announced */
       art.setAttribute("tabindex", "-1");
@@ -1858,6 +1914,36 @@
       }
     });
   }
+
+  /* The hero drawing is part of the first screen, so it is fetched on load.
+     loadHeroIso() is idempotent -- it keeps its own isoLoaded flag -- so
+     pressing B afterwards costs nothing. */
+  loadHeroIso();
+
+  /* ---------- the sheet scale ----------
+     A drawing carries a scale up its edge and you read your position off it.
+     This is that: a ruled vertical rule on the right margin with an index that
+     travels as the page scrolls, so how far through the sheet you are is a
+     thing you can see rather than a scrollbar you have to find.
+
+     Injected here rather than put in the markup for two reasons: it is one
+     empty decorative element that would otherwise have to be added to the
+     page template, index.html and 404.html separately, and being absent from
+     the markup it can never become a translation unit.
+
+     The motion is a CSS scroll timeline -- there is no scroll listener and no
+     rAF loop in this file for it. Where scroll timelines are unsupported the
+     element is not shown at all (see the @supports in the stylesheet), which
+     is why there is nothing to check here. */
+  (function () {
+    if (document.querySelector(".sheet-scale")) return;
+    var sc = document.createElement("div");
+    sc.className = "sheet-scale";
+    sc.setAttribute("aria-hidden", "true");
+    sc.innerHTML = '<span class="sheet-scale-rule"></span>'
+                 + '<span class="sheet-scale-index"></span>';
+    document.body.appendChild(sc);
+  })();
 
   /* ---------- phone action bar ----------
      Fixed to the bottom edge, revealed only after the first screen has been

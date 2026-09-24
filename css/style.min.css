@@ -2150,8 +2150,8 @@ grid-template-columns: 38.2% 1fr;
 gap: clamp(28px, 5vw, 90px);
 align-items: start;
 }
-.srv-nav .eyebrow { margin-bottom: clamp(22px, 3vw, 38px); }
-.srv-group + .srv-group { margin-top: clamp(24px, 3vw, 38px); }
+.srv-nav .eyebrow { margin-bottom: clamp(16px, 2vw, 24px); }
+.srv-group + .srv-group { margin-top: clamp(18px, 2.2vw, 26px); }
 .srv-group-label {
 font-size: var(--tag);
 letter-spacing: 0.16em;
@@ -2165,7 +2165,7 @@ display: grid;
 grid-template-columns: 30px 1fr;
 align-items: baseline;
 gap: 12px;
-padding: 13px 0 12px;
+padding: 9px 0 8px;
 border-bottom: 1px solid var(--line);
 color: var(--muted);
 transition: color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
@@ -2207,19 +2207,34 @@ pointer-events: none;
 .srv-link.is-active::before { top: -1px;  left: -1px;  border-right: 0; border-bottom: 0; }
 .srv-link.is-active::after { bottom: -1px; right: -1px; border-left: 0;  border-top: 0; }
 .srv-link { position: relative; }
-.srv-panel { padding-top: 4px; min-height: 520px; }
+.srv-panel { padding-top: 4px; }
+.srv-nav {
+position: sticky;
+top: calc(var(--nav-h) + 26px);
+align-self: start;
+max-height: calc(100vh - var(--nav-h) - 52px);
+overflow-y: auto;
+overscroll-behavior: contain;
+scrollbar-width: thin;
+}
+@media (max-width: 1000px) {
+.srv-nav { position: static; max-height: none; overflow: visible; }
+}
 .srv-item {
 opacity: 1;
 transform: none;
 transition: opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
 }
+.srv-panel { transition: height var(--dur-3) var(--ease); }
 .srv-item.is-entering {
 opacity: 0;
-transform: translateY(8px);
+transform: translateX(34px);
 transition: none;
 }
+.srv-item.is-entering.is-back { transform: translateX(-34px); }
 @media (prefers-reduced-motion: reduce) {
-.srv-item, .srv-item.is-entering { transform: none; }
+.srv-item, .srv-item.is-entering, .srv-item.is-entering.is-back { transform: none; }
+.srv-panel { transition: none; }
 }
 .srv-count {
 font-size: var(--numbers);
@@ -2312,7 +2327,7 @@ linear-gradient(180deg, rgba(5,6,15,0.94) 0%, rgba(5,6,15,0.9) 60%, var(--bg) 10
 padding-top: 26px;
 border-top: 1px solid var(--line);
 }
-.srv-link { padding: 14px 0 13px; }
+.srv-link { padding: 12px 0 11px; }
 }
 @media (max-width: 560px) {
 .srv-lead { font-size: var(--text-l); }
@@ -4997,7 +5012,7 @@ transition: opacity var(--dur-4) var(--ease);
 -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
 mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
 }
-html.blueprint .hero-iso { opacity: 1; }
+.hero-iso.is-on, html.blueprint .hero-iso { opacity: 1; }
 .hero-iso svg {
 width: 100%; height: 100%;
 display: block;
@@ -5498,4 +5513,68 @@ padding-left: calc(3.2em + 18px);
 .sched { --sched-cols: 2.6em minmax(0, 1fr) 2.2em; }
 .sched-in { padding-left: 0; }
 .sched-sum { padding: 16px 4px; }
+}
+@media (pointer: coarse) {
+.srv-link { padding: 0; min-height: 44px; align-items: center; }
+}
+@supports (animation-timeline: scroll()) {
+.sheet-scale {
+position: fixed;
+top: 50%;
+right: 18px;
+transform: translateY(-50%);
+width: 22px;
+height: min(46vh, 420px);
+z-index: var(--z-header);
+pointer-events: none;
+}
+.sheet-scale-rule {
+position: absolute;
+inset: 0 auto 0 0;
+width: 1px;
+background: linear-gradient(var(--line-strong), var(--line-strong));
+}
+.sheet-scale-rule::before,
+.sheet-scale-rule::after {
+content: "";
+position: absolute;
+left: 0;
+width: 5px;
+height: 100%;
+background-repeat: repeat-y;
+}
+.sheet-scale-rule::before {
+background-image: linear-gradient(var(--line-strong) 1px, transparent 1px);
+background-size: 100% calc(100% / 12);
+}
+.sheet-scale-rule::after {
+width: 10px;
+background-image: linear-gradient(var(--gray-150) 1px, transparent 1px);
+background-size: 100% calc(100% / 4);
+}
+.sheet-scale-index {
+position: absolute;
+left: -3px;
+top: 0;
+width: 15px;
+height: 1px;
+background: var(--text);
+animation: sheet-scale-run linear;
+animation-timeline: scroll();
+animation-duration: auto !important;
+}
+.sheet-scale-index::after {
+content: "";
+position: absolute;
+right: -9px;
+top: 0;
+width: 7px;
+height: 1px;
+background: var(--gray-150);
+}
+@keyframes sheet-scale-run {
+from { transform: translateY(0); }
+to   { transform: translateY(calc(min(46vh, 420px) - 1px)); }
+}
+@media (max-width: 1100px) { .sheet-scale { display: none; } }
 }

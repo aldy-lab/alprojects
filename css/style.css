@@ -2713,8 +2713,8 @@ a.cert-card:hover img { border-color: var(--accent); }
 }
 
 /* ---------- left: the twelve ---------- */
-.srv-nav .eyebrow { margin-bottom: clamp(22px, 3vw, 38px); }
-.srv-group + .srv-group { margin-top: clamp(24px, 3vw, 38px); }
+.srv-nav .eyebrow { margin-bottom: clamp(16px, 2vw, 24px); }
+.srv-group + .srv-group { margin-top: clamp(18px, 2.2vw, 26px); }
 .srv-group-label {
   font-size: var(--tag);
   letter-spacing: 0.16em;
@@ -2728,7 +2728,14 @@ a.cert-card:hover img { border-color: var(--accent); }
   grid-template-columns: 30px 1fr;
   align-items: baseline;
   gap: 12px;
-  padding: 13px 0 12px;
+  /* 9/8, not 13/12. Twelve rows at 45px made the index 754px tall while the
+     shortest service panel beside it is 556 -- 269px of empty column under the
+     panel's own controls, measured on four services. On a pointer a 30px row
+     is precise; the 44 comes back under (pointer: coarse).
+     Edited HERE and not in the narrower rule below: that one lives in a media
+     query, so at 1440 this was always the padding in effect. Checked with the
+     engine's own matched-rule list rather than by reading the file. */
+  padding: 9px 0 8px;
   border-bottom: 1px solid var(--line);
   color: var(--muted);
   transition: color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
@@ -2776,7 +2783,37 @@ a.cert-card:hover img { border-color: var(--accent); }
 .srv-link { position: relative; }
 
 /* ---------- right: the open service ---------- */
-.srv-panel { padding-top: 4px; min-height: 520px; }   /* §4.3: height must not jump */
+/* min-height is gone. It existed to stop the panel collapsing, and with the
+   height now animated between measured values it only fought that: the pin
+   would animate to a real 452px while the floor held the box at 520, so the
+   transition ended on a value the panel was not actually going to keep. */
+.srv-panel { padding-top: 4px; }
+
+/* The index sticks.
+   The twelve rows and three group labels are 754px tall; the shortest service
+   panel beside them is 452. So the block's height was set by the INDEX, and a
+   third of the row was empty whenever a short service was open. Sticking the
+   index makes that irrelevant -- it stays in view while the panel is read, and
+   the mismatch stops being dead space and becomes the index still being there.
+   It is also what an index is for.
+   No ancestor clips overflow on this page, checked before relying on it; and
+   the offset clears the fixed header. */
+.srv-nav {
+  position: sticky;
+  top: calc(var(--nav-h) + 26px);
+  align-self: start;
+  /* If the list ever grows past the viewport it scrolls inside itself rather
+     than sticking half off-screen. */
+  max-height: calc(100vh - var(--nav-h) - 52px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+@media (max-width: 1000px) {
+  /* Stacked one above the other at this width: an index stuck above the thing
+     it indexes would cover it. */
+  .srv-nav { position: static; max-height: none; overflow: visible; }
+}   /* §4.3: height must not jump */
 /* Content change is animated so the switch reads as a movement rather than a
    flicker. 260ms, the standard step on the motion scale.
 
@@ -2786,22 +2823,43 @@ a.cert-card:hover img { border-color: var(--accent); }
    Measured on the old version: opacity 0.97, one click later 0. A transition
    retargets from wherever it currently is, so a fast second click continues
    from the middle instead of flashing back to invisible. */
+/* The panel pages sideways. Out to the LEFT going forward, to the RIGHT going
+   back, so the content leaves the way you are travelling and the next one
+   arrives from the other side. That is what makes the change legible on a page
+   where the height moves as well. 34px, not the 8 it was: at 8 the movement
+   read as a twitch rather than a direction. */
 .srv-item {
   opacity: 1;
   transform: none;
   transition: opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
 }
+/* The height is animated on the PANEL, not on the item: the item is what
+   moves, the panel is what the rest of the page is standing on. The twelve
+   services run 452px to 931px, and without this the footer arrived at the new
+   position in one frame. */
+.srv-panel { transition: height var(--dur-3) var(--ease); }
 /* The out state is applied with the transition switched off, so it lands
    instantly; removing the class on the next frame runs the transition back to
    rest. That is the same "enter" the keyframes gave, but as a transition -- so
    when it is interrupted it continues from where it is. */
+/* is-entering is the state the NEW content starts FROM, applied before the swap
+   and released after it. So forward -- next in the list -- starts to the RIGHT
+   and travels left into place, the way a page turns; back starts to the left.
+   Had these the wrong way round first: "next" arrived from the left, which
+   reads as going backwards. */
 .srv-item.is-entering {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateX(34px);
   transition: none;
 }
+.srv-item.is-entering.is-back { transform: translateX(-34px); }
 @media (prefers-reduced-motion: reduce) {
-  .srv-item, .srv-item.is-entering { transform: none; }
+  /* Under reduced motion neither the slide nor the height animation runs. The
+     global rule already drops transform and height from the allowed transition
+     properties; these make the out state a plain fade, so the content does not
+     start 34px off to one side and stay there. */
+  .srv-item, .srv-item.is-entering, .srv-item.is-entering.is-back { transform: none; }
+  .srv-panel { transition: none; }
 }
 .srv-count {
   font-size: var(--numbers);
@@ -2899,7 +2957,7 @@ a.cert-card:hover img { border-color: var(--accent); }
     padding-top: 26px;
     border-top: 1px solid var(--line);
   }
-  .srv-link { padding: 14px 0 13px; }
+  .srv-link { padding: 12px 0 11px; }
 }
 @media (max-width: 560px) {
   .srv-lead { font-size: var(--text-l); }
@@ -6947,13 +7005,20 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  /* Visible by default as of 24 Sep 2026. It was opacity:0 until you pressed B,
+     which left the right 52% of the first screen a bare gradient -- the audit's
+     own first design finding -- and made the only animated drawing on the site
+     an easter egg. The drawings came off every other page, so this is the one
+     that carries the idea, and a drawing nobody sees carries nothing.
+     Still 0 until the script has fetched it, so there is no flash of an empty
+     box; main.js sets .is-on when the SVG is in place. */
   opacity: 0;
   color: rgba(185, 196, 216, 0.55);
   transition: opacity var(--dur-4) var(--ease);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
 }
-html.blueprint .hero-iso { opacity: 1; }
+.hero-iso.is-on, html.blueprint .hero-iso { opacity: 1; }
 .hero-iso svg {
   width: 100%; height: 100%;
   display: block;
@@ -7641,4 +7706,96 @@ html.blueprint .hero-iso { opacity: 1; }
   .sched { --sched-cols: 2.6em minmax(0, 1fr) 2.2em; }
   .sched-in { padding-left: 0; }
   .sched-sum { padding: 16px 4px; }
+}
+/* The index's rows are tight for a pointer; a finger needs the 44 back. Placed
+   after the tightening so it wins without a specificity fight. */
+@media (pointer: coarse) {
+  .srv-link { padding: 0; min-height: 44px; align-items: center; }
+}
+
+/* ============================================================
+   THE SHEET SCALE — scroll position read off a drawing's edge
+   ============================================================
+   A drawing has a scale up its margin and you read your position off it. The
+   rule is ticked; the index travels down it as the page scrolls.
+
+   Behind @supports on purpose. The whole thing is driven by a scroll timeline,
+   and where that is unsupported (Firefox, at the time of writing) a static rule
+   with a mark parked at the top would read as a broken widget. Unsupported ->
+   not shown, and nothing is lost: it is an indicator, not content. */
+@supports (animation-timeline: scroll()) {
+  .sheet-scale {
+    position: fixed;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    width: 22px;
+    height: min(46vh, 420px);
+    z-index: var(--z-header);
+    pointer-events: none;      /* it reports, it is not a control */
+  }
+  /* The ruled rule: a hairline with a tick every 1/12 of its length, because
+     twelve is the number this site keeps -- twelve services, twelve months of
+     a revision year. Major ticks every third. */
+  .sheet-scale-rule {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 1px;
+    background: linear-gradient(var(--line-strong), var(--line-strong));
+  }
+  .sheet-scale-rule::before,
+  .sheet-scale-rule::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-repeat: repeat-y;
+  }
+  .sheet-scale-rule::before {
+    background-image: linear-gradient(var(--line-strong) 1px, transparent 1px);
+    background-size: 100% calc(100% / 12);
+  }
+  .sheet-scale-rule::after {
+    width: 10px;
+    background-image: linear-gradient(var(--gray-150) 1px, transparent 1px);
+    background-size: 100% calc(100% / 4);
+  }
+  /* The index. A short bar with a hairline whisker, the way a cursor sits on a
+     scale rule, travelling the length of the scale in step with the document.
+     `animation-timeline: scroll()` takes the nearest scrollable ancestor in the
+     block direction, which is the document here. */
+  .sheet-scale-index {
+    position: absolute;
+    left: -3px;
+    top: 0;
+    width: 15px;
+    height: 1px;
+    background: var(--text);
+    animation: sheet-scale-run linear;
+    animation-timeline: scroll();
+    /* A scroll timeline needs `auto`, and the global reduced-motion rule sets
+       animation-duration to 0.01ms on everything with !important -- which would
+       finish this on the first frame and park the index at the bottom. It is
+       restated here, also !important, because an indicator that tracks the
+       reader's own scrolling is not the kind of motion that rule exists to
+       stop: it adds no movement the reader did not ask for. */
+    animation-duration: auto !important;
+  }
+  .sheet-scale-index::after {
+    content: "";
+    position: absolute;
+    right: -9px;
+    top: 0;
+    width: 7px;
+    height: 1px;
+    background: var(--gray-150);
+  }
+  @keyframes sheet-scale-run {
+    from { transform: translateY(0); }
+    to   { transform: translateY(calc(min(46vh, 420px) - 1px)); }
+  }
+  /* No room for it beside the content on a phone, and the sticky call bar is
+     already on that edge. */
+  @media (max-width: 1100px) { .sheet-scale { display: none; } }
 }
