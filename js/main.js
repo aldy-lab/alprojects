@@ -104,6 +104,11 @@
       contact_mail: "Your mail app opened with the enquiry filled in — press send.",
       contact_mail_files: "Your mail app opened \u2014 the drawings do not travel with it, so attach them now:",
       bar_call: "Call", bar_scope: "Send the scope",
+      /* Used when the deck rebuilds a sheet after leaving the cover, which
+         has no bullets to patch. Without them the German page printed the
+         English fallback. */
+      srv_cta: "Discuss a project",
+      services_title: "Services \u2014 ALPROJECTS Group",
       apply_mail: "Your mail app opened with the details filled in — attach your CV and send.",
       file_remove: "Remove",
       file_too_big: "Too large (10 MB maximum):",
@@ -142,6 +147,8 @@
       /* Short form for the sticky bar only -- the full "Envoyer le cahier des
          charges" is on the page buttons. At 320px it wrapped to three lines. */
       bar_call: "Appeler", bar_scope: "Envoyer la demande",
+      srv_cta: "Discuter d\u2019un projet",
+      services_title: "Services \u2014 ALPROJECTS Group",
       apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez.",
       file_remove: "Retirer",
       file_too_big: "Trop volumineux (10 Mo maximum) :",
@@ -178,6 +185,8 @@
       contact_mail: "Ihr E-Mail-Programm wurde mit der ausgefüllten Anfrage geöffnet — bitte absenden.",
       contact_mail_files: "Ihr E-Mail-Programm wurde ge\u00f6ffnet \u2014 die Zeichnungen gehen nicht mit, bitte jetzt anh\u00e4ngen:",
       bar_call: "Anrufen", bar_scope: "Anfrage senden",
+      srv_cta: "Projekt besprechen",
+      services_title: "Leistungen \u2014 ALPROJECTS Group",
       apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie.",
       file_remove: "Entfernen",
       file_too_big: "Zu groß (maximal 10 MB):",
@@ -214,6 +223,8 @@
       contact_mail: "Il programma di posta si è aperto con la richiesta compilata — premete invia.",
       contact_mail_files: "Il programma di posta si \u00e8 aperto \u2014 i disegni non partono con esso, allegateli ora:",
       bar_call: "Chiamare", bar_scope: "Invia la richiesta",
+      srv_cta: "Parliamo del progetto",
+      services_title: "Servizi \u2014 ALPROJECTS Group",
       apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia.",
       file_remove: "Rimuovi",
       file_too_big: "Troppo grande (massimo 10 MB):",
@@ -628,11 +639,10 @@
      pages for a picture most visitors never ask for. One request, cached, and
      a failure leaves the mode working with nothing drawn. */
   var isoLoaded = false;
-  /* Fetched on load now, not only when Drawing mode opens: the drawing is part
-     of the first screen rather than a reward for pressing B. It is still a
-     fetch and not markup, so the 10 KB is one cached request and the file's own
-     reduced-motion media query is evaluated once it is in the DOM -- which is
-     the whole reason it is inlined rather than referenced with <img>. */
+  /* Fetched when Drawing mode opens, not on load: nobody who has not pressed B
+     pays for it. Inlined rather than referenced with <img>, which is what makes
+     the file's own reduced-motion media query work -- see the note in
+     tools/make_wind_turbine.py. */
   function loadHeroIso() {
     var box = document.querySelector(".hero-iso");
     if (!box) return;
@@ -653,9 +663,6 @@
       .then(function (svg) {
         if (!svg) return;
         box.innerHTML = svg;
-        /* Only now is there anything to show, so this is where it is revealed.
-           Setting it earlier would have faded in an empty box. */
-        box.classList.add("is-on");
         /* The flow chevrons ride the centreline on SMIL animateMotion, and SMIL
            has no CSS switch: `display: none` on the group under
            prefers-reduced-motion left a 214x37 band still repainting every
@@ -954,9 +961,68 @@
       for (var i = 0; i < services.length; i++) if (services[i].slug === slug) return i;
       return -1;
     };
+    /* "" means the cover sheet is open. It used to fall back to the first
+       service, which made the arrows and the arrow keys skip sheet 01 entirely
+       when you started from /services: forward from the cover landed on 02. */
     var currentSlug = function () {
       var a = document.querySelector(".srv-link.is-active");
-      return a ? a.getAttribute("data-service") : (services[0] && services[0].slug);
+      if (a) return a.getAttribute("data-service");
+      var open = srvPanel.querySelector(".srv-item");
+      if (open && open.getAttribute("data-panel") === "") return "";
+      return services[0] && services[0].slug;
+    };
+
+    /* The cover is not in the JSON payload -- it is the section's own copy, not
+       a service -- so its markup is kept from the page it was served with and
+       put back when the deck returns to it. Cheaper and more honest than
+       rebuilding copy in the script, where it could drift from the build. */
+    var coverEl = srvPanel.querySelector('.srv-item[data-panel=""]');
+    var coverHTML = coverEl ? coverEl.outerHTML : null;
+
+    /* Returning to the cover uses the same transition as any other sheet: the
+       height is pinned and animated, the content leaves in the direction of
+       travel. Going back to the cover is always "back", so the direction is
+       fixed rather than derived. */
+    var renderCover = function (push) {
+      var art = srvPanel.querySelector(".srv-item");
+      if (!art || !coverHTML) return;
+      var fromH = srvPanel.offsetHeight;
+      srvPanel.style.height = fromH + "px";
+
+      art.classList.add("is-entering", "is-back");
+      art.outerHTML = coverHTML;
+      var fresh = srvPanel.querySelector(".srv-item");
+      fresh.classList.add("is-entering", "is-back");
+
+      srvPanel.style.height = "auto";
+      var toH = srvPanel.offsetHeight;
+      srvPanel.style.height = fromH + "px";
+
+      requestAnimationFrame(function () {
+        srvPanel.style.height = toH + "px";
+        requestAnimationFrame(function () {
+          fresh.classList.remove("is-entering", "is-back");
+        });
+      });
+      var release = function (ev) {
+        if (ev.propertyName !== "height" || ev.target !== srvPanel) return;
+        srvPanel.style.height = "";
+        srvPanel.removeEventListener("transitionend", release);
+      };
+      srvPanel.addEventListener("transitionend", release);
+
+      var pos = srvPanel.querySelector(".srv-pos");
+      if (pos) pos.textContent = "00 / 12";
+      var deep = document.getElementById("srvDeep");
+      if (deep) { deep.innerHTML = ""; deep.classList.remove("is-on"); }
+      document.querySelectorAll(".srv-link").forEach(function (a) {
+        a.classList.remove("is-active");
+        a.removeAttribute("aria-current");
+      });
+      document.title = TXT.services_title || document.title;
+      if (push && window.history && history.pushState) {
+        history.pushState({ srv: "" }, "", PREFIX + "/services");
+      }
     };
 
     var renderService = function (slug, push) {
@@ -982,7 +1048,10 @@
          Direction comes from the index delta, so the list, the arrows and the
          back button all agree about which way "next" is. */
       var prevIdx = indexOfSlug(art.getAttribute("data-panel") || "");
-      var dir = (prevIdx < 0 || prevIdx === i) ? 0 : (i > prevIdx ? 1 : -1);
+      var wasCover = art.getAttribute("data-panel") === "";
+      /* Leaving the cover is always forward: the cover is sheet 00 and every
+         service is after it. */
+      var dir = wasCover ? 1 : ((prevIdx < 0 || prevIdx === i) ? 0 : (i > prevIdx ? 1 : -1));
       art.setAttribute("data-panel", sv.slug);
 
       /* Height must be pinned to a number before the content is replaced, or
@@ -998,6 +1067,17 @@
       if (settled) {
         art.classList.add("is-entering");
         art.classList.toggle("is-back", dir < 0);
+      }
+      /* The cover has no <ul> of points, so coming off it the sheet is rebuilt
+         rather than patched -- patching left the cover's CTA in place under the
+         first service's bullets. */
+      if (wasCover && !art.querySelector(".srv-points")) {
+        art.classList.remove("srv-cover");
+        art.innerHTML = '<p class="srv-count"></p><h1 class="srv-title"></h1>'
+                      + '<p class="srv-lead"></p><ul class="srv-points"></ul>'
+                      + '<a class="srv-cta" href="' + PREFIX + '/contacts">'
+                      + (TXT.srv_cta || "Discuss a project")
+                      + ' <span class="ar-e" aria-hidden="true">&#8593;</span></a>';
       }
       art.querySelector(".srv-count").textContent = sv.num + " / 12";
       art.querySelector(".srv-title").textContent = sv.h1;
@@ -1083,9 +1163,19 @@
     });
 
     var step = function (delta) {
-      var i = indexOfSlug(currentSlug());
+      var cur = currentSlug();
+      if (cur === "") {
+        /* Off the cover: forward opens the first sheet, back opens the last. */
+        renderService(services[delta > 0 ? 0 : services.length - 1].slug, true);
+        return;
+      }
+      var i = indexOfSlug(cur);
       if (i < 0) return;
-      var next = (i + delta + services.length) % services.length;
+      var next = i + delta;
+      /* Stepping back off sheet 01 returns to the cover when there is one,
+         rather than wrapping to sheet 12 past a cover the reader has seen. */
+      if (next < 0 && coverHTML) { renderCover(true); return; }
+      next = (next + services.length) % services.length;
       renderService(services[next].slug, true);
     };
     var prev = srvPanel.querySelector("[data-srv-prev]");
@@ -1103,7 +1193,11 @@
 
     window.addEventListener("popstate", function () {
       var m = location.pathname.match(/\/services\/([a-z0-9-]+)\.html$/);
-      renderService(m ? m[1] : services[0].slug, false);
+      if (m) { renderService(m[1], false); return; }
+      /* Back out of a service lands on /services, which is the cover -- not
+         sheet 01, which is what it used to show and which made the back button
+         disagree with the address bar. */
+      if (coverHTML) renderCover(false); else renderService(services[0].slug, false);
     });
   }
 
@@ -1914,11 +2008,6 @@
       }
     });
   }
-
-  /* The hero drawing is part of the first screen, so it is fetched on load.
-     loadHeroIso() is idempotent -- it keeps its own isoLoaded flag -- so
-     pressing B afterwards costs nothing. */
-  loadHeroIso();
 
   /* ---------- the sheet scale ----------
      A drawing carries a scale up its edge and you read your position off it.

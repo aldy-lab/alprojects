@@ -2809,4 +2809,8 @@ S = {
         'Cantieri in tutta Europa',
     'Project-based':
         'A progetto',
+    'Open the first sheet <span class="ar-e" aria-hidden="true">&#8593;</span>':
+        'Apri il primo foglio <span class="ar-e" aria-hidden="true">&#8593;</span>',
+    'Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records.':
+        'Dodici servizi in tre gruppi: i lavori meccanici e industriali che prendiamo in carico direttamente, i lavori navali che eseguiamo in cantiere e a galla, e le discipline di ispezione e accesso che mostrano ciò che è stato costruito. La maggior parte dei progetti ne combina diversi sotto un unico contratto, con una sola supervisione e una sola documentazione.',
 }

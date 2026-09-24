@@ -2725,7 +2725,7 @@ a.cert-card:hover img { border-color: var(--accent); }
 .srv-list { list-style: none; margin: 0; padding: 0; }
 .srv-link {
   display: grid;
-  grid-template-columns: 30px 1fr;
+  grid-template-columns: 30px 1fr auto;
   align-items: baseline;
   gap: 12px;
   /* 9/8, not 13/12. Twelve rows at 45px made the index 754px tall while the
@@ -7005,20 +7005,22 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  /* Visible by default as of 24 Sep 2026. It was opacity:0 until you pressed B,
-     which left the right 52% of the first screen a bare gradient -- the audit's
-     own first design finding -- and made the only animated drawing on the site
-     an easter egg. The drawings came off every other page, so this is the one
-     that carries the idea, and a drawing nobody sees carries nothing.
-     Still 0 until the script has fetched it, so there is no flash of an empty
-     box; main.js sets .is-on when the SVG is in place. */
+  /* Hidden until Drawing mode is opened. It was briefly shown by default to
+     fill the right half of the first screen, and that was wrong for this brand:
+     the drawing layer is an easter egg by design -- "hidden easter eggs are
+     welcome but must stay invisible until sought" -- and a wind field greeting
+     every visitor to a welding contractor is not the first thing the page
+     should say. Back behind the B key.
+
+     The audit's finding about the empty right half stands and is a separate
+     question: what belongs there is a photograph from a job, not this. */
   opacity: 0;
   color: rgba(185, 196, 216, 0.55);
   transition: opacity var(--dur-4) var(--ease);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 26%, #000 100%);
 }
-.hero-iso.is-on, html.blueprint .hero-iso { opacity: 1; }
+html.blueprint .hero-iso { opacity: 1; }
 .hero-iso svg {
   width: 100%; height: 100%;
   display: block;
@@ -7230,94 +7232,17 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
    label spans the full row so the three groups read as headings within one
    grid instead of as three separate grids with their own margins — one grid
    means the cards stay on a single column rhythm across all three. */
-.srv-ix { padding: clamp(96px, 12vh, 150px) 0 clamp(72px, 9vw, 120px); }
-.srv-ix-h1 {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(30px, 4.4vw, 46px);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  max-width: 24ch;
-  text-wrap: balance;
-  margin: 10px 0 24px;
-}
-.srv-ix-lead {
-  max-width: 62ch;
-  font-size: var(--text-l);
-  line-height: 1.75;
-  color: var(--muted);
-  margin-bottom: clamp(44px, 6vw, 76px);
-}
-.srv-ix-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  /* The rules are borders on the cards, not a 1px gap over a line-coloured
-     grid background. Twelve items in three columns leaves a trailing cell in
-     two of the three groups, and with the background technique that empty cell
-     rendered as a pale filled box -- a visible hole at the end of a row. Drawn
-     as borders, an empty cell is simply page. */
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-}
-.srv-ix-group {
-  grid-column: 1 / -1;
-  border-bottom: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-}
-.srv-ix-label {
-  font-family: var(--font-display);
-  font-size: var(--tag);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gray-150);
-  padding: 20px 22px 14px;
-}
-.srv-ix-card {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  column-gap: 14px;
-  align-content: start;
-  /* No min-height. 132px was set before the cards had content, and with a
-     number, a name and one label they filled about 90 of it -- so every row
-     carried 40px of dead space under the text, which is the first thing the
-     eye finds in a grid. The row now takes its height from the tallest card
-     in it, which is the two-line "Quality assurance and quality control". */
-  padding: 20px 22px 22px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  transition: background var(--dur-2) var(--ease);
-}
-.srv-ix-card:hover, .srv-ix-card:focus-visible { background: var(--bg-2, rgba(255,255,255,.03)); }
-.srv-ix-n {
-  font-family: var(--font-display);
-  font-size: var(--tag);
-  letter-spacing: 0.14em;
-  color: var(--gray-150);
-  font-variant-numeric: tabular-nums;
-  padding-top: 4px;
-}
-.srv-ix-name {
-  font-size: var(--text-l);
-  line-height: 1.35;
-  color: var(--text);
-  /* min-width:0 so a long service name wraps inside its column instead of
-     forcing the grid track wider -- the automatic minimum of a grid item is
-     its content, and "Quality assurance and quality control (QA/QC)" is the
-     longest of the twelve. */
-  min-width: 0;
-}
-.srv-ix-proof {
-  grid-column: 2;
-  margin-top: 10px;
-  font-family: var(--font-display);
-  font-size: var(--tag);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gray-150);
-}
-@media (max-width: 900px) { .srv-ix-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .srv-ix-grid { grid-template-columns: 1fr; } }
+
+
+
+
+
+
+
+
+
+
+
 .contact-note {
   max-width: 52ch;
   margin-top: 14px;
@@ -7799,3 +7724,40 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
      already on that edge. */
   @media (max-width: 1100px) { .sheet-scale { display: none; } }
 }
+
+/* ---------- the deck: contents row's work count, and the cover sheet ----------
+   /services used to be a grid of twelve cards in front of twelve nav-and-panel
+   pages about the same twelve things. One design now: the same deck, opened at
+   its cover. The count the grid carried moved into the contents row, beside the
+   service you are choosing. */
+/* Third column of the row, not a second line. On its own line the count turned
+   every row into two and took the contents from 620px to 870 -- looser rhythm
+   and a taller column for the same twelve items. It stays a block element,
+   because that is what keeps the number, the name and the count as three
+   separate translation units; a grid item can be a block and still sit on one
+   visual line. */
+.srv-proof {
+  grid-column: 3;
+  justify-self: end;
+  align-self: baseline;
+  font-family: var(--font-display);
+  font-size: var(--tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-150);
+}
+.srv-link.is-active .srv-proof { color: var(--muted); }
+
+/* The cover sheet. Larger measure than a service sheet -- it is one paragraph
+   about the section, not a specification, so it can run wider without the line
+   getting hard to track. */
+.srv-cover .srv-lead { max-width: 60ch; font-size: var(--text-xl); }
+/* The section title is four words longer than any service name and set in the
+   same caps, which put it on four lines. A step down and a wider measure make
+   it two. */
+.srv-cover .srv-title {
+  font-size: clamp(26px, 3vw, 40px);
+  max-width: 26ch;
+  margin-bottom: 26px;
+}
+.srv-cover .srv-cta { margin-top: 30px; }

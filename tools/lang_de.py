@@ -2812,4 +2812,8 @@ S = {
         'Projektstandorte in ganz Europa',
     'Project-based':
         'Projektbezogen',
+    'Open the first sheet <span class="ar-e" aria-hidden="true">&#8593;</span>':
+        'Das erste Blatt öffnen <span class="ar-e" aria-hidden="true">&#8593;</span>',
+    'Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records.':
+        'Zwölf Leistungen in drei Gruppen: die mechanischen und industriellen Arbeiten, die wir direkt übernehmen, die Schiffbauarbeiten auf der Werft und am Schiff, und die Prüf- und Zugangsdisziplinen, die zeigen, was gebaut wurde. Die meisten Projekte nutzen mehrere davon unter einem Vertrag, mit einer Aufsicht und einer Dokumentation.',
 }

@@ -2835,4 +2835,8 @@ S = {
         'Sites de projet partout en Europe',
     'Project-based':
         'Au projet',
+    'Open the first sheet <span class="ar-e" aria-hidden="true">&#8593;</span>':
+        'Ouvrir la première feuille <span class="ar-e" aria-hidden="true">&#8593;</span>',
+    'Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records.':
+        'Douze services en trois groupes : les prestations mécaniques et industrielles que nous prenons en charge directement, les travaux navals que nous réalisons au chantier et à flot, et les disciplines d’inspection et d’accès qui montrent ce qui a été construit. La plupart des chantiers en combinent plusieurs sous un seul contrat, avec un seul encadrement et une seule documentation.',
 }

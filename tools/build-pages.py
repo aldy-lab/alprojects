@@ -3268,7 +3268,18 @@ for _sv in SERVICES_FLAT:
 
 
 def service_nav(active_slug):
-    """Left column: the twelve services in their three groups."""
+    """The deck's contents: twelve sheets in three groups.
+
+    Carries the published-work count per service, which used to be the only
+    thing the separate /services card grid said that this column did not. With
+    the grid gone the count belongs here, beside the service you are choosing
+    between -- not on a second page about the same twelve things.
+
+    The count is a block element so it is its own translation unit. As an inline
+    span it would have been glued into the row's unit together with the number
+    and the name, which is the trap the careers schedule and the title block's
+    sheet field both fell into.
+    """
     out = ['        <p class="eyebrow">All services</p>']
     for label, group in SERVICE_GROUPS:
         out.append('        <div class="srv-group">')
@@ -3277,9 +3288,22 @@ def service_nav(active_slug):
         for sv in group:
             cls = "srv-link is-active" if sv["slug"] == active_slug else "srv-link"
             aria = ' aria-current="page"' if sv["slug"] == active_slug else ''
+            n = len(WHERE.get(sv["slug"], []))
+            # Silence, not "0 projects": four of the twelve have no published
+            # case yet, and a zero on the row you are trying to sell reads as
+            # an admission.
+            # A <div>, not a <span>. The docstring above says the count has to
+            # be a block element and the first version emitted a span anyway,
+            # which glued the number, the name and the count into ONE unit --
+            # eight composite units that matched none of the names and counts
+            # already translated. A block child stops the <a> being a leaf, and
+            # each piece is then its own unit: the number has no letters and is
+            # skipped, the name and the count are keys that already exist.
+            proof = ('<div class="srv-proof">%d project%s</div>'
+                     % (n, "" if n == 1 else "s")) if n else ""
             out.append('            <li><a class="%s" href="/services/%s.html" data-service="%s"%s>'
-                       '<span class="srv-n">%s</span><span class="srv-name">%s</span></a></li>'
-                       % (cls, sv["slug"], sv["slug"], aria, sv["num"], sv["nav"]))
+                       '<span class="srv-n">%s</span><span class="srv-name">%s</span>%s</a></li>'
+                       % (cls, sv["slug"], sv["slug"], aria, sv["num"], sv["nav"], proof))
         out.append('          </ul>')
         out.append('        </div>')
     return "\n".join(out)
@@ -3298,10 +3322,40 @@ def service_panel(sv):
                                         h1=sv["h1"], lead=sv["lead"], points=points)
 
 
+SERVICES_COVER_H1 = "Mechanical, marine and inspection services"
+SERVICES_COVER_LEAD = (
+    "Twelve services in three groups: the mechanical and industrial scopes we take on "
+    "directly, the marine work we do in yards and afloat, and the inspection and access "
+    "disciplines that show what was built. Most projects use several of them under one "
+    "contract, with one supervisor and one set of records.")
+
+
+def service_cover():
+    """Sheet 00 of the deck: what the section is, before any one service.
+
+    /services used to be a different page with a different design -- a grid of
+    twelve cards -- sitting in front of twelve nav-and-panel pages about the
+    same twelve things. Two presentations of one set. This is the same deck as
+    every service URL, opened at its cover, so there is one design and /services
+    still has copy of its own rather than being a duplicate of sheet 01.
+    """
+    return ('        <article class="srv-item srv-cover" data-panel="">\n'
+            '          <p class="srv-count">00 / 12</p>\n'
+            '          <h1 class="srv-title">%s</h1>\n'
+            '          <p class="srv-lead">%s</p>\n'
+            '          <a class="srv-cta" href="/services/welding-services.html" '
+            'data-service="welding-services">Open the first sheet '
+            '<span class="ar-e" aria-hidden="true">&#8593;</span></a>\n'
+            '        </article>' % (SERVICES_COVER_H1, SERVICES_COVER_LEAD))
+
+
 def service_page_body(sv):
-    """The two-column block with one service open. Only the active service is
-    rendered as HTML -- one h1 per page, and no twelve-fold duplicate content
-    across twelve URLs. The rest travel as JSON so switching is instant."""
+    """The two-column deck: contents on the left, one sheet on the right.
+
+    `sv` is None on /services, which shows the cover sheet instead of a
+    service. Only the open sheet is rendered as HTML -- one h1 per page, and no
+    twelve-fold duplicate content across twelve URLs. The rest travel as JSON so
+    switching is instant."""
     payload = _json.dumps(
         [{k: x[k] for k in ("slug", "num", "h1", "lead", "points", "deep")} for x in SERVICES_FLAT],
         ensure_ascii=False, separators=(",", ":"))
@@ -3324,8 +3378,10 @@ def service_page_body(sv):
             '    </section>\n'
             + '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
             + '    <script type="application/json" id="srv-data">{payload}</script>\n'
-            ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
-                     num=sv["num"], deep=sv["deep"], payload=payload)
+            ).format(nav=service_nav(sv["slug"] if sv else ""),
+                     panel=service_panel(sv) if sv else service_cover(),
+                     num=sv["num"] if sv else "00",
+                     deep=(sv["deep"] if sv else ""), payload=payload)
 
 
 # ---------------- write everything ----------------
@@ -3366,65 +3422,13 @@ for _sv in SERVICES_FLAT:
                                          (_sv["h1"], "/services/%s.html" % _sv["slug"])])))
 
 # /services.html shows the first service, and is the entry point people link to
-# ============================================================
-# /services -- THE SECTION'S OWN PAGE
-# ============================================================
-# It used to render service_page_body(SERVICES_FLAT[0]) -- literally the welding
-# page at a second address. Measured 99.6% identical, both self-canonical: two
-# identical pages to a search engine, and no heading of its own for the section.
-#
-# What it is instead: the index of the twelve, in the three groups the nav
-# already uses, with the section's own H1 and a short introduction. The cards
-# carry the number and the name and NOT the lead paragraph -- copying twelve
-# leads here would rebuild the same duplicate-content problem twelve times
-# smaller. What they carry instead is derived and exists nowhere else: how many
-# published projects stand behind each service.
-def services_index_body():
-    groups = []
-    for label, group in SERVICE_GROUPS:
-        cards = []
-        for sv in group:
-            n = len(WHERE.get(sv["slug"], []))
-            if n:
-                proof = ('<span class="srv-ix-proof">%d project%s</span>'
-                         % (n, "" if n == 1 else "s"))
-            else:
-                # Silence, not a zero: "0 projects" on a page meant to sell the
-                # service reads as an admission. Four of the twelve have no
-                # published case yet -- NDT, 3D laser scanning, heavy equipment
-                # relocation and ship repair.
-                proof = ""
-            cards.append(
-                '          <a class="srv-ix-card" href="/services/%s.html">\n'
-                '            <span class="srv-ix-n">%s</span>\n'
-                '            <span class="srv-ix-name">%s</span>\n'
-                '            %s\n'
-                '          </a>' % (sv["slug"], sv["num"], sv["h1"], proof))
-        groups.append(
-            '        <div class="srv-ix-group">\n'
-            '          <p class="srv-ix-label">%s</p>\n'
-            '        </div>\n%s' % (label, "\n".join(cards)))
-
-    return ('\n    <section class="srv-ix">\n'
-            '      <div class="container">\n'
-            '        <p class="eyebrow">Our services</p>\n'
-            '        <h1 class="srv-ix-h1">Mechanical, marine and inspection services</h1>\n'
-            '        <p class="srv-ix-lead">Twelve services in three groups: the mechanical '
-            'and industrial scopes we take on directly, the marine work we do in yards and '
-            'afloat, and the inspection and access disciplines that show what was built. '
-            'Most projects use several of them under one contract, with one supervisor and '
-            'one set of records. Where a service has published work behind it, its page '
-            'links to the job.</p>\n'
-            '        <div class="srv-ix-grid">\n%s\n        </div>\n'
-            '      </div>\n'
-            '    </section>\n' % "\n".join(groups))
-
-
 write("services.html", page("Services",
-      "Twelve services in three groups -- mechanical and industrial scopes, marine work in "
-      "yards and afloat, and inspection and access. One contract, one supervisor, one set "
-      "of records.",
-      services_index_body(), canonical="/services.html", og="services",
+      "Twelve services in three groups -- mechanical and industrial scopes, marine "
+      "work in yards and afloat, and inspection and access. One contract, one supervisor, "
+      "one set of records.",
+      # The same deck as every service URL, opened at its cover. One design for
+      # the section instead of a card grid in front of twelve panel pages.
+      service_page_body(None), canonical="/services.html", og="services",
       head_extra=collection_ld(
           "Services", "/services.html",
           "Twelve services in three groups -- mechanical and industrial scopes, marine "
