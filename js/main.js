@@ -2086,31 +2086,6 @@
     barCheck();
   }
 
-  /* ---------- the plate wipe ----------
-     A photograph is uncovered by a straightedge drawn across it rather than
-     faded in. The clipped start state lives behind `html.js` and behind
-     no-preference in the stylesheet, so a reader with scripting off or with
-     reduced motion set never meets a plate that has to be revealed.
-
-     The plates are found here rather than marked in the markup: they are
-     generated in four different places, and a class on each would be four
-     edits and a fifth one forgotten. Nothing is added to the DOM, so nothing
-     can become a translation unit. */
-  (function () {
-    if (reduceMotion || !("IntersectionObserver" in window)) return;
-    var plates = document.querySelectorAll(
-      ".case-grid .case-thumb, .news-grid.plate-grid .thumb, .plate, .shot");
-    if (!plates.length) return;
-    var wio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add("is-wiped");
-        wio.unobserve(e.target);
-      });
-    }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
-    [].forEach.call(plates, function (el) { wio.observe(el); });
-  })();
-
   /* ---------- the field label ----------
      A drawing names the field you are reading in the margin of the sheet. The
      right margin already carries the scale; this is the left one, and it says

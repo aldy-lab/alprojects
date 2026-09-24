@@ -7993,12 +7993,8 @@ html.blueprint .hero-iso { opacity: 1; }
   overflow: hidden;
 }
 .case-grid .case-thumb img { aspect-ratio: 1 / 1; }
-/* 7% of headroom inside the frame, so the drift below has somewhere to go and
-   never uncovers the ground behind the plate. Set with `scale` rather than
-   inside `transform`, because the hover zoom owns `transform` and the two
-   compose instead of overwriting each other. */
-.case-grid .case-thumb img,
-.plate-grid .news-card .thumb img { scale: 1.07; }
+/* No scale here any more. The 1.07 was headroom for the drift, and with the
+   drift gone it was 7% of every plate cropped away for nothing. */
 
 /* ---------- the caption, as a title block ---------- */
 .case-grid .case-txt {
@@ -8072,31 +8068,6 @@ html.blueprint .hero-iso { opacity: 1; }
     margin-top: 18px;
     padding-top: 15px;
     border-top: 1px solid var(--line);
-  }
-}
-
-/* ---------- the drift ----------
-   The photograph moves a little inside its own frame as the card crosses the
-   viewport: a window on to a plate rather than a picture pasted on the page.
-   `translate`, not `transform`, so the hover zoom keeps working; 3% against
-   7% of headroom, so no edge is ever exposed.
-
-   Behind the same two gates as the filmstrip. Reduced motion gets a still
-   plate -- this one moves without being asked, unlike an indicator that only
-   reports where the reader already is. */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .case-grid .case-thumb img,
-    .plate-grid .news-card .thumb img {
-      animation: plate-drift linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
-      animation-duration: auto;
-    }
-    @keyframes plate-drift {
-      from { translate: 0 -3%; }
-      to   { translate: 0 3%; }
-    }
   }
 }
 
@@ -8258,11 +8229,20 @@ html.blueprint .hero-iso { opacity: 1; }
   right: -4px;
   opacity: 0.35;
 }
+/* The dial no longer prints the number. "03 / 12" was set twice in the same
+   row -- once as the sheet's count at the left and again inside the instrument
+   at the right, 800px apart. The count stays; the dial is the instrument. The
+   element stays in the page because it is the live region that announces the
+   change, so it is hidden the way the site hides its other announcements
+   rather than removed. */
 .srv-dial .srv-pos {
+  position: absolute;
+  width: 1px;
+  height: 1px;
   margin: 0;
-  letter-spacing: 0.1em;
-  font-size: 11px;
-  color: var(--muted-2);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* ---------- the leader line ----------
@@ -8317,69 +8297,11 @@ html.blueprint .hero-iso { opacity: 1; }
   .srv-stage { perspective: none; }
 }
 
-/* ============================================================
-   THE STRAIGHTEDGE WIPE — a plate is uncovered, not faded in
-   ============================================================
-   Every photograph on the site arrived by fading up through 18px of nudge,
-   which is the one reveal every website has. A plate is uncovered instead: a
-   straightedge drawn across it, with a bright rule riding the edge it leaves
-   behind. The same gesture a drawing gets when it comes off the board.
-
-   The clipped start state is gated twice. Behind `html.js`, so a reader with
-   scripting off sees the photographs and not ten empty frames -- the class
-   that uncovers them is added by the script. And behind no-preference,
-   because a picture that has to move before it can be seen is content
-   waiting on motion, which is exactly what that preference is about. */
-@media (prefers-reduced-motion: no-preference) {
-  .js .case-grid .case-thumb,
-  .js .news-grid.plate-grid .thumb,
-  .js .plate,
-  .js .shot {
-    clip-path: inset(0 100% 0 0);
-    transition: clip-path 880ms cubic-bezier(0.22, 0.61, 0.36, 1);
-  }
-  .js .case-grid .case-thumb.is-wiped,
-  .js .news-grid.plate-grid .thumb.is-wiped,
-  .js .plate.is-wiped,
-  .js .shot.is-wiped { clip-path: inset(0 0 0 0); }
-
-  /* The straightedge itself: a 1px rule travelling with the cut, gone by the
-     time it reaches the far side. It sits on the frame rather than inside the
-     clip, or it would be clipped away with everything else. */
-  .js .case-grid .case-thumb,
-  .js .news-grid.plate-grid .thumb { position: relative; }
-  .js .case-grid .case-thumb::after,
-  .js .news-grid.plate-grid .thumb::after,
-  .js .plate::after,
-  .js .shot::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 1px;
-    background: var(--accent);
-    opacity: 0;
-    z-index: 4;
-    pointer-events: none;
-    transition: left 880ms cubic-bezier(0.22, 0.61, 0.36, 1),
-                opacity 880ms linear;
-  }
-  .js .case-grid .case-thumb.is-wiped::after,
-  .js .news-grid.plate-grid .thumb.is-wiped::after,
-  .js .plate.is-wiped::after,
-  .js .shot.is-wiped::after { left: 100%; opacity: 0; }
-  /* Visible only while it is travelling: 0 at rest, 0 on arrival, up in
-     between -- which a two-keyframe transition cannot do, so the opacity is
-     carried by an animation that runs once on the same curve. */
-  .js .is-wiped::after { animation: wipe-edge 880ms linear 1; }
-  @keyframes wipe-edge {
-    0%   { opacity: 0; }
-    12%  { opacity: 0.85; }
-    88%  { opacity: 0.5; }
-    100% { opacity: 0; }
-  }
-}
+/* The straightedge wipe was here: photographs uncovered by a cut drawn
+   across them. Removed on request -- the photographs are not animated at all
+   now, and neither is the drift that used to move them inside their frames.
+   Both were behind prefers-reduced-motion, so nothing about those gates
+   changes; there is simply nothing left to gate. */
 
 /* ============================================================
    THE FIELD LABEL — the left margin says which field you are in
@@ -8515,4 +8437,133 @@ html.blueprint .hero-iso { opacity: 1; }
   font-variant-numeric: tabular-nums;
   color: rgba(255, 255, 255, 0.75);
   white-space: pre;
+}
+
+/* ============================================================
+   THE DECK, ON ONE SCREEN
+   ============================================================
+   Measured at 1440x800: the shell ran from 898px on the shortest service to
+   1376 on the tallest, under a header that already takes 78. Nothing fitted --
+   the reader had to scroll to see either the index or the bottom of the sheet,
+   on a page whose whole point is that you can see all twelve and read one.
+
+   Where the height was going, in order of size: 196px of section padding, a
+   168px controls row under the sheet, and a sheet that stacked its count, its
+   heading, its lead, eight bullets and its call one on top of the other in a
+   719px column. All three are addressed rather than the type being shrunk
+   until it fits.
+
+   Target: the whole deck inside 100svh at 1440x800 and at 1280x720, with the
+   index no taller than the sheet beside it. */
+
+/* 1. The index does not need 38.2% of the page. The longest name set at 12px
+      in caps measures about 240px, so the column is sized to the content and
+      the 190px it gives back go to the sheet -- which is what makes two
+      columns inside the sheet possible at all. */
+.srv { grid-template-columns: clamp(262px, 21vw, 316px) minmax(0, 1fr); }
+@media (min-width: 901px) {
+  .srv { gap: clamp(28px, 3.4vw, 62px); }
+}
+
+/* 2. Less section padding. 86 over and 110 under was a third of a screen. */
+.srv-shell { padding: clamp(22px, 2.6vw, 44px) 0 clamp(28px, 3.2vw, 54px); }
+
+/* 3. The controls leave the flow. They were a 112px row with a 56px margin
+      above it, under a sheet whose bottom right corner is empty -- the call to
+      action is at the bottom left. Absolutely placed into that corner they
+      cost nothing at all, and the instrument ends up on the sheet it belongs
+      to rather than under it. */
+@media (min-width: 901px) {
+  .srv-panel { position: relative; }
+  /* The controls are a sibling of the sheet, not a child of it: the script
+     rewrites the sheet's contents when the deck comes off its cover, and
+     anything inside would be rewritten with it. So they are placed rather
+     than laid out -- and placed where the sheet has room to spare.
+
+     Where that is took three tries. Bottom right cost 84px of reserved space,
+     because on the eight-bullet services the right column is the tall one and
+     its last bullet reaches the corner. Under the index cost the same, once
+     the index became the taller of the two columns. The top right corner is
+     free on every service: the count is in the left column and the bullets
+     start on the heading's line, one row below. */
+  .srv-controls {
+    position: absolute;
+    top: clamp(16px, 1.7vw, 23px);
+    right: clamp(18px, 2vw, 32px);
+    margin-top: 0;
+    gap: 9px;
+    align-items: center;
+  }
+  /* The arrows went into the gutters first -- vertically centred on the edges
+     the sheet turns about, which costs no height whatever. At 1280 the right
+     gutter is 40px and the button is 36 plus its offset, so the page grew a
+     horizontal scrollbar: 1300 against a 1280 viewport. Measured at five
+     sizes, caught at one. They are back beside the dial, in the row that was
+     already reserved for it. */
+  .srv-arrow { width: 34px; height: 34px; }
+  .srv-dial { width: 64px; height: 64px; margin-left: 4px; }
+}
+
+/* 4. The sheet is two columns: what the service is on the left, what it
+      includes on the right. The heights stop adding up and start being the
+      larger of the two -- which for the eight-bullet services is most of the
+      saving. Only where there is width for it; below 1100 the sheet is the
+      single column it was. */
+@media (min-width: 1100px) {
+  .srv-item:not(.srv-cover) {
+    display: grid;
+    /* The left column is the wider of the two, which is not where I started.
+       At 1280 the sheet's height was being set by the LEAD, not by the eight
+       bullets: 353px of it in a 377px column, thirteen lines. Widening the
+       column it sits in and lifting its own measure takes four lines off it,
+       and the two columns come out within 12px of each other -- which is what
+       a two-column sheet is for. */
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    column-gap: clamp(26px, 3vw, 52px);
+    align-items: start;
+  }
+  .srv-item:not(.srv-cover) .srv-count { grid-column: 1; grid-row: 1; }
+  .srv-item:not(.srv-cover) .srv-title { grid-column: 1; grid-row: 2; max-width: 18ch; }
+  .srv-item:not(.srv-cover) .srv-lead  { grid-column: 1; grid-row: 3; max-width: 52ch; }
+  .srv-item:not(.srv-cover) .srv-cta   { grid-column: 1; grid-row: 4; justify-self: start; }
+  /* Beside the heading, not beside the count: the bullets and the title start
+     on the same line. */
+  .srv-item:not(.srv-cover) .srv-points {
+    grid-column: 2;
+    grid-row: 2 / span 3;
+    margin-top: 4px;
+    max-width: none;
+  }
+  /* Row one is the sheet's title block: the count on the left, the dial on
+     the right. 62px rather than the count's own 26 -- 36px of reserved space
+     for the instrument, against the 84 the bottom corner wanted. */
+  .srv-item:not(.srv-cover) { grid-template-rows: minmax(60px, auto) auto auto auto; }
+}
+
+/* 5. The rest is rhythm rather than size: the same type, closer together. */
+.srv-item { padding: clamp(22px, 2.2vw, 30px) clamp(22px, 2.4vw, 36px) clamp(22px, 2.2vw, 30px); }
+.srv-count { margin-bottom: 11px; }
+.srv-title { font-size: clamp(24px, 2.6vw, 37px); }
+.srv-lead { margin-top: clamp(14px, 1.4vw, 19px); font-size: 16px; line-height: 1.7; }
+.srv-points { margin-top: clamp(16px, 1.8vw, 24px); }
+.srv-points li { margin-bottom: 9px; line-height: 1.5; }
+.srv-cta { margin-top: clamp(18px, 2vw, 26px); }
+/* The index: twelve rows at 32 rather than 37, and the group labels tightened
+   to match, so the column lands under the sheet's height instead of over it. */
+@media (min-width: 901px) {
+  .srv-link { padding: 7px 0 6px; }
+  .srv-group + .srv-group { margin-top: clamp(14px, 1.6vw, 22px); }
+  .srv-group-label { margin-bottom: 6px; }
+}
+
+/* The last 22px, for a 1280x720 screen. At that height the two eight-bullet
+   services were still hanging 22px below the fold after the sheet went to two
+   columns; the section's own padding and the instrument's row give it back.
+   Kept to the narrow range so the roomier sizes are not tightened for the
+   benefit of the tightest one. */
+@media (min-width: 901px) and (max-width: 1360px) {
+  .srv-shell { padding: clamp(20px, 2.2vw, 30px) 0 clamp(24px, 2.6vw, 34px); }
+  .srv-item:not(.srv-cover) { grid-template-rows: minmax(54px, auto) auto auto auto; }
+  .srv-dial { width: 58px; height: 58px; }
+  .srv-arrow { width: 32px; height: 32px; }
 }
