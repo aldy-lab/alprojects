@@ -2847,17 +2847,15 @@ a.cert-card:hover img { border-color: var(--accent); }
    and travels left into place, the way a page turns; back starts to the left.
    Had these the wrong way round first: "next" arrived from the left, which
    reads as going backwards. */
+/* The out state itself is in THE DECK AS A SHEET ON A SPINDLE at the end of
+   this file: a 34px sideways slide became a turn about the edge the sheet is
+   leaving by. Only the opacity and the switched-off transition are here,
+   because those are what the script's two-frame handoff depends on. */
 .srv-item.is-entering {
   opacity: 0;
-  transform: translateX(34px);
   transition: none;
 }
-.srv-item.is-entering.is-back { transform: translateX(-34px); }
 @media (prefers-reduced-motion: reduce) {
-  /* Under reduced motion neither the slide nor the height animation runs. The
-     global rule already drops transform and height from the allowed transition
-     properties; these make the out state a plain fade, so the content does not
-     start 34px off to one side and stay there. */
   .srv-item, .srv-item.is-entering, .srv-item.is-entering.is-back { transform: none; }
   .srv-panel { transition: none; }
 }
@@ -8100,4 +8098,421 @@ html.blueprint .hero-iso { opacity: 1; }
       to   { translate: 0 3%; }
     }
   }
+}
+
+/* ============================================================
+   THE DECK AS A SHEET ON A SPINDLE
+   ============================================================
+   The services page was two columns of type: an index on the left and a slab
+   of text on the right that slid 34px sideways when it changed. It is a deck
+   of twelve sheets, so it is built as one now -- the open sheet is framed and
+   sits on the two edges of the ones behind it, and changing sheets turns it on
+   its spindle rather than sliding it.
+
+   Nothing about the navigation changed: same twelve links, same arrows, same
+   keys, same URLs, same single <h1>. The rotation is a property of the out
+   state that the script already sets, so this is a stylesheet change with one
+   line of script behind it (the dial's position). */
+.srv-stage {
+  position: relative;
+  /* Deep enough that the turn reads as a turn and not as a fisheye. */
+  perspective: 1600px;
+  perspective-origin: 28% 42%;
+}
+/* The sheet. A frame and a faint raking light across it, the way a sheet on a
+   board catches the light -- not a panel fill, which would make it a card. */
+.srv-item {
+  position: relative;
+  padding: clamp(24px, 2.4vw, 38px) clamp(24px, 2.6vw, 42px) clamp(28px, 2.8vw, 44px);
+  border: 1px solid var(--line-strong);
+  background:
+    linear-gradient(152deg,
+      rgba(255, 255, 255, 0.035) 0%,
+      rgba(255, 255, 255, 0.012) 42%,
+      rgba(255, 255, 255, 0) 74%);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+/* Corner ticks on the open sheet, the brandbook's угловая рамка, so the frame
+   is closed at the corners without being drawn twice. */
+.srv-item::before,
+.srv-item::after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border: 1px solid var(--accent);
+  opacity: 0.5;
+  pointer-events: none;
+}
+.srv-item::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.srv-item::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+/* The rest of the deck: two edges behind the open sheet. Empty elements, so
+   they carry no text and cannot become translation units, and where 3D is off
+   they are two hairlines offset to the corner -- still a stack, just flat. */
+.srv-stack {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+/* Only the right and bottom edges. A full frame drew its left and top edges
+   through the open sheet -- whose ground is a faint gradient, not a fill -- so
+   two stray verticals appeared 10 and 20px inside it. */
+.srv-stack i {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+/* Offset in the plane, not in depth. Pushed back in Z they were also scaled
+   towards the stage's vanishing point, which is up and to the left of the
+   panel -- so the two edges came out WIDER than the sheet and read as a
+   misaligned double border rather than as sheets underneath it. Measured
+   before and after; they sit inside the sheet's own footprint now. */
+.srv-stack i:nth-child(1) { transform: translate(10px, 11px); opacity: 0.85; }
+.srv-stack i:nth-child(2) { transform: translate(20px, 22px); opacity: 0.5; }
+
+/* The turn. The out state rotates about the edge the sheet is leaving by, so
+   forward and back turn opposite ways, and it is fully transparent at the
+   extreme -- which is also why the projected overhang never shows: at maximum
+   rotation there is nothing left to see. */
+.srv-item.is-entering {
+  opacity: 0;
+  transform-origin: 100% 50%;
+  transform: rotateY(-13deg) translateZ(-22px);
+  transition: none;
+}
+.srv-item.is-entering.is-back {
+  transform-origin: 0% 50%;
+  transform: rotateY(13deg) translateZ(-22px);
+}
+
+/* ---------- the dial ----------
+   The position readout was "01 / 12" in 12px grey. It is the same text, inside
+   the instrument that points at it: twelve ticks, one per sheet, and a hand
+   that sweeps 30 degrees per sheet -- so the twelve services are one full turn
+   of the dial. */
+.srv-dial {
+  position: relative;
+  flex: none;
+  width: 112px;
+  height: 112px;
+  margin-left: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+.srv-dial-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  /* One tick per sheet, from twelve o'clock. 2.4deg, not 0.6: at this radius
+     0.6deg is a quarter of a pixel and twelve ticks came out as a ring of
+     faint dots. 2.4deg lands on about 1px, which is the width every other
+     rule on this site is drawn at. */
+  background: repeating-conic-gradient(from -1.2deg,
+    var(--line-strong) 0 2.4deg, transparent 2.4deg 30deg);
+  /* Cut to an annulus, so the ticks are ticks and not spokes. */
+  -webkit-mask: radial-gradient(circle at 50% 50%,
+    transparent 0 38%, #000 38% 49.4%, transparent 49.4%);
+  mask: radial-gradient(circle at 50% 50%,
+    transparent 0 38%, #000 38% 49.4%, transparent 49.4%);
+}
+/* A mark riding the rim rather than a hand from the centre. A full-length
+   hand crossed the readout sitting in the middle of the dial, which is where
+   an instrument puts its numbers. */
+.srv-dial-needle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 50%;
+  background: linear-gradient(to top,
+    transparent 0 58%, var(--accent) 58% 78%, var(--text) 78% 100%);
+  transform-origin: 50% 100%;
+  transform: translate(-50%, -100%) rotate(calc(var(--dial, 0) * 30deg));
+  transition: transform var(--dur-3) var(--ease);
+}
+/* The hand's own pivot, and the index mark it reads against at twelve. */
+.srv-dial::before,
+.srv-dial::after {
+  content: "";
+  position: absolute;
+  background: var(--accent);
+}
+/* The index mark the hand reads against, at twelve, drawn outside the ring. */
+.srv-dial::before {
+  width: 1px;
+  height: 6px;
+  top: -4px;
+  left: 50%;
+}
+.srv-dial::after {
+  width: 6px;
+  height: 1px;
+  top: 50%;
+  right: -4px;
+  opacity: 0.35;
+}
+.srv-dial .srv-pos {
+  margin: 0;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+/* ---------- the leader line ----------
+   A drawing points at the thing it is describing. The open row sends a leader
+   out of the index and across the gutter towards its sheet; it grows from
+   nothing when the row becomes the open one, so the connection is drawn rather
+   than just present. */
+.srv-leader {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 0;
+  /* Hidden, not merely zero-width: the end tick is positioned against the
+     leader's right edge, and a zero-width element still has one -- so a tick
+     was drawn at the end of all twelve rows, not just the open one. */
+  opacity: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), rgba(255, 255, 255, 0.08));
+  transition: width var(--dur-3) var(--ease), opacity var(--dur-2) var(--ease);
+  pointer-events: none;
+}
+.srv-leader::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: var(--accent);
+  opacity: 0.7;
+}
+.srv-link.is-active .srv-leader { width: clamp(14px, 2.8vw, 54px); opacity: 1; }
+
+@media (max-width: 900px) {
+  /* One column below 900: there is no gutter for a leader to cross, and a
+     sheet with two edges behind it at 92vw would put them off the screen. */
+  .srv-leader { display: none; }
+  .srv-item { padding: clamp(20px, 5vw, 30px); }
+  .srv-dial { width: 88px; height: 88px; }
+}
+/* The stack needs margin to sit in. Between 900 and 1000 the second edge came
+   within 2px of the viewport's right edge -- no document overflow, measured at
+   ten widths, but a sheet apparently resting against the window. It appears
+   only where there is room for it. */
+@media (max-width: 1120px) { .srv-stack { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  /* The global rule already drops transform from what may transition; these
+     make the out state a plain fade, so a sheet never stops mid-turn. */
+  .srv-item.is-entering,
+  .srv-item.is-entering.is-back { transform: none; }
+  .srv-stage { perspective: none; }
+}
+
+/* ============================================================
+   THE STRAIGHTEDGE WIPE — a plate is uncovered, not faded in
+   ============================================================
+   Every photograph on the site arrived by fading up through 18px of nudge,
+   which is the one reveal every website has. A plate is uncovered instead: a
+   straightedge drawn across it, with a bright rule riding the edge it leaves
+   behind. The same gesture a drawing gets when it comes off the board.
+
+   The clipped start state is gated twice. Behind `html.js`, so a reader with
+   scripting off sees the photographs and not ten empty frames -- the class
+   that uncovers them is added by the script. And behind no-preference,
+   because a picture that has to move before it can be seen is content
+   waiting on motion, which is exactly what that preference is about. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .case-grid .case-thumb,
+  .js .news-grid.plate-grid .thumb,
+  .js .plate,
+  .js .shot {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 880ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .js .case-grid .case-thumb.is-wiped,
+  .js .news-grid.plate-grid .thumb.is-wiped,
+  .js .plate.is-wiped,
+  .js .shot.is-wiped { clip-path: inset(0 0 0 0); }
+
+  /* The straightedge itself: a 1px rule travelling with the cut, gone by the
+     time it reaches the far side. It sits on the frame rather than inside the
+     clip, or it would be clipped away with everything else. */
+  .js .case-grid .case-thumb,
+  .js .news-grid.plate-grid .thumb { position: relative; }
+  .js .case-grid .case-thumb::after,
+  .js .news-grid.plate-grid .thumb::after,
+  .js .plate::after,
+  .js .shot::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: var(--accent);
+    opacity: 0;
+    z-index: 4;
+    pointer-events: none;
+    transition: left 880ms cubic-bezier(0.22, 0.61, 0.36, 1),
+                opacity 880ms linear;
+  }
+  .js .case-grid .case-thumb.is-wiped::after,
+  .js .news-grid.plate-grid .thumb.is-wiped::after,
+  .js .plate.is-wiped::after,
+  .js .shot.is-wiped::after { left: 100%; opacity: 0; }
+  /* Visible only while it is travelling: 0 at rest, 0 on arrival, up in
+     between -- which a two-keyframe transition cannot do, so the opacity is
+     carried by an animation that runs once on the same curve. */
+  .js .is-wiped::after { animation: wipe-edge 880ms linear 1; }
+  @keyframes wipe-edge {
+    0%   { opacity: 0; }
+    12%  { opacity: 0.85; }
+    88%  { opacity: 0.5; }
+    100% { opacity: 0; }
+  }
+}
+
+/* ============================================================
+   THE FIELD LABEL — the left margin says which field you are in
+   ============================================================
+   The right margin carries the scale. This is the other margin: the name of
+   the section being read, set across the sheet's edge the way a drawing labels
+   its fields. The text is read off the section's own eyebrow by the script, so
+   it is already in the reader's language and there is no string here to
+   translate or to keep in step with the build.
+
+   Same rules as the scale: it is an indicator, so it is not shown where there
+   is no room beside the content, and it never moves under the reader -- only
+   the words change. */
+.sheet-field {
+  position: fixed;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: var(--z-header);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--ease);
+}
+.sheet-field.is-on { opacity: 1; }
+.sheet-field span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-size: var(--tag);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-150);
+  max-height: 44vh;
+  overflow: hidden;
+}
+/* The rule the label is written against. */
+.sheet-field::before {
+  content: "";
+  width: 1px;
+  height: min(30vh, 260px);
+  background: linear-gradient(transparent, var(--line-strong) 12%,
+                              var(--line-strong) 88%, transparent);
+}
+@media (max-width: 1100px) { .sheet-field { display: none; } }
+
+/* ============================================================
+   DIMENSION LINES — the figures are dimensioned, not just printed
+   ============================================================
+   Four numbers on the Company page that already count up to their value. A
+   dimension line is drawn over each as it arrives: an extension line at either
+   end and the rule between them, which is how a drawing states a quantity.
+   One pseudo-element per figure -- the ticks are the box's own left and right
+   borders, the rule is its top one. */
+.co-figs > div { position: relative; padding-top: 16px; }
+.co-figs > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* The full width of the field, not of the number. A dimension line spans
+     the feature being measured and the figure is the value written against
+     it -- and four of them across the row read as a dimension chain, which is
+     how a drawing states a run of adjacent measurements. Over the cell
+     holding "6" a line sized to the number would have been 25px long and
+     looked like it was measuring nothing. */
+  right: 0;
+  height: 8px;
+  border: 1px solid var(--line-strong);
+  border-bottom: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--dur-4) var(--ease);
+}
+/* Drawn on the reveal the section already has, in the reading order of the
+   figures rather than all four at once. */
+.co-figs.in > div::before { transform: scaleX(1); }
+.co-figs.in > div:nth-child(2)::before { transition-delay: 90ms; }
+.co-figs.in > div:nth-child(3)::before { transition-delay: 180ms; }
+.co-figs.in > div:nth-child(4)::before { transition-delay: 270ms; }
+@media (prefers-reduced-motion: reduce) {
+  .co-figs > div::before { transform: scaleX(1); }
+}
+
+/* ============================================================
+   THE VIEWER'S CROSSHAIR — the photograph, read off like an instrument
+   ============================================================
+   In the viewer the frame is the evidence, so the pointer behaves like one: a
+   crosshair on the photograph and the position in the photograph's own pixels.
+   Injected by the script and only where there is a real pointer, so there is
+   no markup here and nothing to translate; the readout is digits and two
+   letters. */
+.lb-cross {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms linear;
+  z-index: 3;
+}
+.lb-cross.is-on { opacity: 1; }
+.lb-cross i {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.55);
+}
+/* The lines belong to the photograph, not to the figure box that holds it, so
+   the script hands over the pointer's position and the image's rectangle in
+   the figure's own pixels. Percentages cannot do this: a percentage of the
+   figure is not a percentage of the picture inside it, and CSS will not
+   multiply a percentage by a length to convert between them. */
+.lb-cross-v {
+  width: 1px;
+  left: var(--px, 50%);
+  top: var(--iy, 0px);
+  height: var(--ih, 100%);
+}
+.lb-cross-h {
+  height: 1px;
+  top: var(--py, 50%);
+  left: var(--ix, 0px);
+  width: var(--iw, 100%);
+}
+.lb-cross-read {
+  position: absolute;
+  left: var(--px, 50%);
+  top: var(--py, 50%);
+  margin: 9px 0 0 11px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: pre;
 }

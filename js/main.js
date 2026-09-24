@@ -1013,6 +1013,9 @@
 
       var pos = srvPanel.querySelector(".srv-pos");
       if (pos) pos.textContent = "00 / 12";
+      /* The dial's hand reads off this: one variable, 30 degrees per sheet,
+         and the sweep is a CSS transition. Nothing else in here animates. */
+      srvPanel.style.setProperty("--dial", "0");
       var deep = document.getElementById("srvDeep");
       if (deep) { deep.innerHTML = ""; deep.classList.remove("is-on"); }
       document.querySelectorAll(".srv-link").forEach(function (a) {
@@ -1091,6 +1094,7 @@
       });
       var pos = srvPanel.querySelector(".srv-pos");
       if (pos) pos.textContent = sv.num + " / 12";
+      srvPanel.style.setProperty("--dial", String(parseInt(sv.num, 10)));
 
       /* The longer block below the shell belongs to one service, and switching
          never reloads the page, so it has to be swapped with the panel. */
@@ -2080,5 +2084,143 @@
       if (!barTick) { barTick = true; requestAnimationFrame(barCheck); }
     }, { passive: true });
     barCheck();
+  }
+
+  /* ---------- the plate wipe ----------
+     A photograph is uncovered by a straightedge drawn across it rather than
+     faded in. The clipped start state lives behind `html.js` and behind
+     no-preference in the stylesheet, so a reader with scripting off or with
+     reduced motion set never meets a plate that has to be revealed.
+
+     The plates are found here rather than marked in the markup: they are
+     generated in four different places, and a class on each would be four
+     edits and a fifth one forgotten. Nothing is added to the DOM, so nothing
+     can become a translation unit. */
+  (function () {
+    if (reduceMotion || !("IntersectionObserver" in window)) return;
+    var plates = document.querySelectorAll(
+      ".case-grid .case-thumb, .news-grid.plate-grid .thumb, .plate, .shot");
+    if (!plates.length) return;
+    var wio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-wiped");
+        wio.unobserve(e.target);
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
+    [].forEach.call(plates, function (el) { wio.observe(el); });
+  })();
+
+  /* ---------- the field label ----------
+     A drawing names the field you are reading in the margin of the sheet. The
+     right margin already carries the scale; this is the left one, and it says
+     which section of the page you are in.
+
+     The text is never authored: it is read off the section's own eyebrow, so
+     it is already in the reader's language and there is no key to translate,
+     nothing to keep in step with the build, and no new string on any page.
+
+     The band is a slice a third of the way down the viewport. Between two
+     eyebrows nothing fires and the label keeps the last one it was given,
+     which is the correct answer for the whole of that section. */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    var marks = document.querySelectorAll(".eyebrow");
+    if (marks.length < 2) return;
+    var field = document.createElement("div");
+    field.className = "sheet-field";
+    field.setAttribute("aria-hidden", "true");
+    var txt = document.createElement("span");
+    field.appendChild(txt);
+    document.body.appendChild(field);
+    /* Eyebrows are not all short. A case page's is a trail -- "Project ·
+       Mechanical maintenance · Waste to energy" -- and set across the margin
+       that ran past the bottom of the screen and was cut off mid-word by the
+       overflow, which read as three labels stacked on each other rather than
+       as one truncated. The first segment is the field; the cap is a backstop
+       for anything that is long without being a trail. */
+    var shorten = function (v) {
+      v = v.split("\u00b7")[0].trim();
+      return v.length > 30 ? v.slice(0, 28).trim() + "\u2026" : v;
+    };
+    var set = function (v) {
+      v = v ? shorten(v) : "";
+      if (txt.textContent === v) return;
+      txt.textContent = v;
+      field.classList.toggle("is-on", !!v);
+    };
+    /* The field is the last eyebrow above the reading line, recomputed rather
+       than latched on a crossing. A thin IntersectionObserver band looked
+       right and was wrong twice: an eyebrow held still by a pinned section
+       never enters the band at all, and a jump longer than the band -- an
+       anchor, a restored scroll position, a flick on a trackpad -- steps over
+       it without a callback, so the margin went on naming a section the reader
+       had left. Scanning is nine rects on a frame that was going to happen
+       anyway. */
+    var line = function () { return window.innerHeight * 0.38; };
+    var pick = function () {
+      var cut = line(), best = "";
+      [].forEach.call(marks, function (el) {
+        if (el.getBoundingClientRect().top < cut) best = (el.textContent || "").trim();
+      });
+      set(best);
+    };
+    var fieldTick = false;
+    window.addEventListener("scroll", function () {
+      if (fieldTick) return;
+      fieldTick = true;
+      requestAnimationFrame(function () { fieldTick = false; pick(); });
+    }, { passive: true });
+    window.addEventListener("resize", pick, { passive: true });
+    pick();
+  })();
+
+  /* ---------- the viewer's crosshair ----------
+     The photographs are the evidence, and the viewer is where they are
+     inspected, so it behaves like an instrument: a crosshair on the pointer
+     and the position read in the photograph's OWN pixels -- not the box's, so
+     the numbers mean something about the frame rather than about the window it
+     is being shown in.
+
+     Injected, pointer-driven, and only where there is a real pointer: on a
+     touch screen there is no hover to follow and the crosshair would sit
+     wherever the last tap landed. */
+  if (lb && shotBtns.length && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    (function () {
+      var fig = lb.querySelector(".lb-fig");
+      var img = document.getElementById("lbImage");
+      if (!fig || !img) return;
+      var cross = document.createElement("div");
+      cross.className = "lb-cross";
+      cross.setAttribute("aria-hidden", "true");
+      cross.innerHTML = '<i class="lb-cross-v"></i><i class="lb-cross-h"></i>'
+                      + '<b class="lb-cross-read"></b>';
+      fig.appendChild(cross);
+      var read = cross.querySelector(".lb-cross-read");
+      var pad = function (n) { return (n < 10 ? "000" : n < 100 ? "00" : n < 1000 ? "0" : "") + n; };
+      var move = function (ev) {
+        var b = img.getBoundingClientRect();
+        if (!b.width || !b.height) return;
+        var x = ev.clientX - b.left, y = ev.clientY - b.top;
+        if (x < 0 || y < 0 || x > b.width || y > b.height) { cross.classList.remove("is-on"); return; }
+        cross.classList.add("is-on");
+        /* Everything in the figure's own pixels: where the photograph sits
+           inside it, how big it is, and where the pointer is. The lines belong
+           to the photograph, and the figure box is a different rectangle. */
+        var f = fig.getBoundingClientRect();
+        cross.style.setProperty("--ix", Math.round(b.left - f.left) + "px");
+        cross.style.setProperty("--iy", Math.round(b.top - f.top) + "px");
+        cross.style.setProperty("--iw", Math.round(b.width) + "px");
+        cross.style.setProperty("--ih", Math.round(b.height) + "px");
+        cross.style.setProperty("--px", Math.round(b.left - f.left + x) + "px");
+        cross.style.setProperty("--py", Math.round(b.top - f.top + y) + "px");
+        var nw = img.naturalWidth || Math.round(b.width);
+        var nh = img.naturalHeight || Math.round(b.height);
+        read.textContent = "X " + pad(Math.round(x / b.width * nw))
+                         + "   Y " + pad(Math.round(y / b.height * nh));
+      };
+      fig.addEventListener("pointermove", move);
+      fig.addEventListener("pointerleave", function () { cross.classList.remove("is-on"); });
+    })();
   }
 })();

@@ -3357,7 +3357,8 @@ def service_nav(active_slug):
             # span lay out identically here: measured, 37px rows and a 620px
             # column either way.
             out.append('            <li><a class="%s" href="/services/%s.html" data-service="%s"%s>'
-                       '<span class="srv-n">%s</span><div class="srv-name">%s</div></a></li>'
+                       '<span class="srv-n">%s</span><div class="srv-name">%s</div>'
+                       '<i class="srv-leader" aria-hidden="true"></i></a></li>'
                        % (cls, sv["slug"], sv["slug"], aria, sv["num"], sv["nav"]))
         out.append('          </ul>')
         out.append('        </div>')
@@ -3419,14 +3420,28 @@ def service_page_body(sv):
             '        <nav class="srv-nav" aria-label="Services">\n'
             '{nav}\n'
             '        </nav>\n'
-            '        <div class="srv-panel">\n'
+            '        <div class="srv-panel" style="--dial: {num}">\n'
+            # The stage is the spindle: the sheet turns on its left edge and the
+            # two edges behind it are the rest of the deck. Both are empty
+            # decoration -- no text, so no translation unit, and with the 3D
+            # gates off they are a flat frame and two hairlines.
+            '          <div class="srv-stage">\n'
+            '            <span class="srv-stack" aria-hidden="true"><i></i><i></i></span>\n'
             '{panel}\n'
+            '          </div>\n'
             '          <div class="srv-controls">\n'
             '            <button class="srv-arrow" type="button" data-srv-prev '
             'aria-label="Previous service"><span class="ar-w">&#8593;</span></button>\n'
             '            <button class="srv-arrow" type="button" data-srv-next '
             'aria-label="Next service"><span class="ar-e">&#8593;</span></button>\n'
-            '            <span class="srv-pos" aria-live="polite">{num} / 12</span>\n'
+            # The position readout sits inside the instrument that points at it.
+            # The dial is not aria-hidden, because the live region is its child;
+            # its own parts are empty elements and announce nothing.
+            '            <span class="srv-dial">\n'
+            '              <i class="srv-dial-ring"></i>\n'
+            '              <i class="srv-dial-needle"></i>\n'
+            '              <span class="srv-pos" aria-live="polite">{num} / 12</span>\n'
+            '            </span>\n'
             '          </div>\n'
             '        </div>\n'
             '      </div>\n'
