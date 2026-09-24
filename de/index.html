@@ -127,21 +127,22 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <!-- The wind field instead of the pipe isometric. It is an <img> rather
-           than something the script fetches and inlines: this drawing carries
-           its own animation and its own reduced-motion switch, so nothing has
-           to be wired to it.
+      <!-- The wind field instead of the pipe isometric.
 
-           data-src, not src. The block above the stylesheet promises that a
-           visitor who never presses B pays nothing for the drawing, and with
-           src= that stopped being true the moment the wind field moved in
-           here: 749x900 of the first screen downloading a 7 KB file at
-           opacity 0. main.js copies data-src to src when Drawing mode opens,
-           and stamp() versions the attribute whatever it is called. -->
-      <div class="hero-iso" aria-hidden="true">
-        <img data-src="/assets/wind-turbine.svg?v=ef140877" alt="" width="1000" height="720"
-             decoding="async">
-      </div>
+           EMPTY, with the file named on data-src. It was an <img> and that was
+           wrong twice over. prefers-reduced-motion does not reach an SVG inside
+           an <img> -- measured on a sibling drawing: 0 pixels moving under
+           `reduce` inlined, 12064 still moving through <img> -- so the rotors
+           turned for anyone who had asked their system to stop them. And with
+           src= the 10 KB was downloaded on every visit to sit at opacity 0,
+           which the block above the stylesheet promises it is not.
+
+           main.js fetches it and puts it in the DOM when Drawing mode opens,
+           the path that was already there for the pipe isometric. Inlined, the
+           media query inside the file is evaluated against the preference and
+           the rotors stop. The file's CSS is scoped to `svg.wind` because an
+           inlined <style> otherwise applies to the whole page. -->
+      <div class="hero-iso" aria-hidden="true" data-src="/assets/wind-turbine.svg?v=2f6804ba"></div>
       <span class="hero-grid" aria-hidden="true"></span>
 
       <!-- Drawing-sheet furniture from the brand artwork: outline circles,
@@ -778,7 +779,7 @@
           </div>
           <div class="stamp-mcell">
             <p class="stamp-field">Änd.</p>
-            <p class="stamp-v" data-rev>2026.09.23</p>
+            <p class="stamp-v" data-rev>2026.09.24</p>
           </div>
           <div class="stamp-mcell stamp-proj">
             <p class="stamp-field">Projektionsmethode</p>
