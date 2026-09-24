@@ -7761,3 +7761,441 @@ html.blueprint .hero-iso { opacity: 1; }
   margin-bottom: 26px;
 }
 .srv-cover .srv-cta { margin-top: 30px; }
+
+/* ---------- the filmstrip's inert base ----------
+   Outside the three gates below, .strip is scaffolding and nothing else: a
+   section, a block, and the stack of fields it always was. The geometry the
+   surrounding .container used to give this section is carried by the head and
+   the track themselves, because in strip mode they need a different left edge
+   and a .container wrapper would fight it. */
+.strip { padding-top: clamp(44px, 6vw, 84px); }
+.strip-head,
+.strip-track {
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+/* A rule that never fills would read as a broken widget where the timeline
+   that drives it is unsupported, so it is shown only inside the gates. */
+.strip-gauge { display: none; }
+
+/* ============================================================
+   THE FILMSTRIP — one sheet, pulled sideways by the page's own scroll
+   ============================================================
+   The values section was the longest stack of text on the site: six numbered
+   blocks of four bullets each, 1600px of vertical reading that every visitor
+   scrolled past. It is now one wide sheet divided into six fields, pinned
+   under its own title block while the page's vertical scroll pulls it
+   sideways. The reader does the same gesture; the text arrives differently.
+
+   No horizontal scroll container is involved. The viewport clips, the track is
+   translated by a scroll-driven animation, and the document's own scrollWidth
+   never grows -- which is the whole reason it is built this way rather than as
+   an overflow-x scroller.
+
+   Three gates, and each one has a reason:
+
+   * `@supports (animation-timeline: view())`. Without scroll timelines there
+     is no honest fallback that keeps the pinning, so the section stays the
+     stack it is today. Nothing is lost, nothing is broken.
+   * `min-width: 1000px`. Pinning a section for a screen and a half of scroll
+     on a phone, where the pin is most of the page, is disorienting and the
+     fields would be narrower than the text wants.
+   * `prefers-reduced-motion: no-preference`. Unlike the sheet scale on the
+     right margin -- an indicator that reports the reader's own position and
+     adds no movement they did not ask for -- this holds the page still and
+     moves the content. That is exactly the motion the preference is about.
+
+   The range is `contain`, and that is load-bearing. For a subject TALLER than
+   the scrollport, `contain` is the range through which the subject fully
+   covers the scrollport -- which is precisely the period the sticky viewport
+   is pinned. `cover` would start the slide while the section was still
+   arriving, and `entry`/`exit` map to the wrong screenful. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @media (min-width: 1000px) {
+      .strip {
+        /* The first field has to start on the same vertical as every other
+           line of text on the page, so the track carries the container's own
+           left edge as its padding. 100vw rather than a percentage: a
+           percentage inside the track resolves against the track's own width,
+           which is several viewports wide. */
+        --edge: calc(max(0px, (100vw - var(--container)) / 2) + var(--pad));
+        --field: 400px;
+        /* The gap is a variable because the travel formula has to agree with
+           it exactly. It did not on the first pass: the fields carried a
+           margin the formula did not know about, the track came out 173px
+           wider than the travel, and the sixth field stayed cut off at the
+           right edge for the whole of the strip -- a section that ends just
+           short of showing you its last panel. */
+        --gap: clamp(26px, 2.4vw, 40px);
+        /* How far the track has to travel for its last field to land flush
+           with the right edge. Clamped at 0 so a strip that already fits --
+           fewer fields, or a very wide screen -- simply does not move, rather
+           than sliding backwards. */
+        --travel: max(0px, var(--n) * var(--field) + (var(--n) - 1) * var(--gap)
+                           + 2 * var(--edge) - 100vw);
+        position: relative;
+        /* The extra height IS the travel: one pixel of scroll, one pixel of
+           slide. It costs scroll rather than saving it -- measured at 1440,
+           the pinned section is 2193px against the stack's 1489, because six
+           400px fields are 2400px of sheet and the stack set its bullets in
+           two columns. That is the trade: one gesture and one screen instead
+           of a screen and a half of re-reading, for 700px more travel. */
+        height: calc(100svh + var(--travel));
+        view-timeline-name: --strip;
+        view-timeline-axis: block;
+      }
+      .strip-vp {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        /* The head sits at the top and the fields take the rest of the height,
+           so the rules between them run the full depth of the sheet. Centring
+           the block instead left 185px of nothing under the shortest field,
+           which is the dead space this site gets judged on. */
+        padding-bottom: clamp(24px, 4vh, 56px);
+        /* clip, not hidden: hidden on an ancestor kills sticky. Here it is on
+           the sticky element itself, which is safe -- but clip also cannot
+           become a scroll container by accident, which hidden can. */
+        overflow: clip;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: calc(var(--nav-h) + clamp(22px, 5vh, 62px));
+      }
+      .strip { padding-top: 0; }
+      .strip-head {
+        max-width: none;
+        margin: 0;
+        padding-inline: var(--edge);
+      }
+      .strip-head .eyebrow { margin: 0 0 16px; }
+      .strip-head .strip-title { margin: 0; max-width: 34ch; }
+      .strip-track {
+        display: flex;
+        align-items: stretch;
+        flex: 1;
+        min-height: 0;
+        max-width: none;
+        margin: 0;
+        padding-block: clamp(18px, 2.6vh, 30px) 0;
+        padding-inline: var(--edge);
+        animation: strip-run linear both;
+        animation-timeline: --strip;
+        animation-range: contain 0% contain 100%;
+        /* A progress-based timeline needs `auto` to span its whole range, and
+           `animation-duration` still defaults to 0s in the shorthand above. */
+        animation-duration: auto;
+        will-change: transform;
+      }
+      @keyframes strip-run {
+        to { transform: translate3d(calc(-1 * var(--travel)), 0, 0); }
+      }
+      /* The fields. Not cards: a drawing sheet divided by rules, which is the
+         point -- a row of bordered boxes is the one shape this site is trying
+         to stop resembling. */
+      .strip-track > * {
+        flex: none;
+        width: var(--field);
+        padding: 4px var(--gap) 4px 0;
+        margin-right: var(--gap);
+        border-right: 1px solid var(--line);
+      }
+      .strip-track > :last-child { border-right: 0; margin-right: 0; }
+      /* The gauge: the same travel, read as a filled rule under the title
+         block, so the reader can see there is more sheet to the right before
+         they have scrolled far enough to find out. */
+      .strip-gauge {
+        display: block;
+        position: relative;
+        width: auto;
+        height: 1px;
+        background: var(--line);
+        margin-top: clamp(22px, 3.4vh, 44px);
+      }
+      .strip-gauge i {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 100%;
+        background: var(--text);
+        transform-origin: 0 50%;
+        animation: strip-gauge linear both;
+        animation-timeline: --strip;
+        animation-range: contain 0% contain 100%;
+        animation-duration: auto;
+      }
+      @keyframes strip-gauge {
+        from { transform: scaleX(0.04); }
+        to   { transform: scaleX(1); }
+      }
+      /* Two end ticks, the way a dimension line is terminated. */
+      .strip-gauge::before,
+      .strip-gauge::after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        width: 1px;
+        height: 9px;
+        background: var(--line-strong);
+      }
+      .strip-gauge::before { left: 0; }
+      .strip-gauge::after { right: 0; }
+      /* The values, as fields of the sheet rather than rows of a list. The
+         number goes above the heading -- in a 400px field a number gutter
+         would take an eighth of the measure. */
+      /* The sheet scale lives in the page's right gutter, and a filmstrip
+         paints into that gutter on purpose -- the cut field at the right edge
+         is what says there is more sheet to come. The two crossed: the scale's
+         ticks were drawn over the text of the field being cut. The indicator
+         gives way, because on a page that pins a section its reading of
+         "distance through the document" is the less true of the two anyway.
+
+         :has() is safe to rely on here without a fallback: this rule only
+         exists inside a block gated on scroll timelines, and a browser old
+         enough to lack :has() lacks those too -- so where the rule would not
+         apply there is no pinned strip to collide with. */
+      body:has(.strip) .sheet-scale { display: none; }
+
+      .strip-track.co-vals { padding-bottom: 0; }
+      .strip-track .co-val {
+        display: block;
+        border-top: 0;
+        padding-top: 0;
+      }
+      .strip-track .co-val-n { display: block; padding: 0 0 14px; }
+      .strip-track .co-val h3 { min-height: 2.6em; }
+      .strip-track .co-val-list { columns: 1; }
+    }
+  }
+}
+/* ============================================================
+   THE INDEX LEDGER — a card grid re-cut as a numbered drawing index
+   ============================================================
+   /projects was ten cards in a two-column grid and /news was six of the same,
+   which is the single most generic shape on the web and the one the client
+   recognised on a competitor's site. Same markup, same words, different
+   arrangement: one row per item, the number in the margin, the plate small and
+   on the right, a hairline between rows. Ten projects now read in 1500px
+   instead of 3000, and nothing about it says "cards".
+
+   Done entirely in the stylesheet. `display: contents` dissolves the two
+   wrapper spans so their children become items of the row's own grid, which is
+   why not one line of the generated markup -- and therefore not one
+   translation key -- had to change to get a new layout. */
+.case-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+}
+.case-grid .case-card {
+  display: grid;
+  /* Four columns: the number in the margin, the job, its discipline, its
+     plate. The third column is `auto` rather than a fraction so the kicker
+     sits against the plate instead of stranded in the middle of the row with
+     200px of nothing on either side of it. Zero horizontal padding, because
+     the row's hairline runs the full container width and text that starts 14px
+     inside it is a misalignment you can see against every other line on the
+     page. */
+  grid-template-columns: 46px minmax(0, 1fr) auto clamp(140px, 13vw, 180px);
+  /* The plate is taller than the two lines of text beside it, and with only
+     two auto rows the surplus was shared out between them -- title and blurb
+     drifting 40px apart for no reason. A third row takes the slack. */
+  grid-template-rows: auto auto 1fr;
+  column-gap: clamp(18px, 2vw, 34px);
+  row-gap: 10px;
+  align-items: start;
+  padding: clamp(20px, 2.2vw, 30px) 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--line);
+  /* A row that lifts reads as a card again, and a 1px lift on a full-width
+     row is a wobble rather than a response. The row answers with its ground
+     and its own rule instead. */
+  transition: background var(--dur-2) var(--ease);
+}
+.case-grid .case-card:hover { transform: none; background: var(--panel); }
+.case-grid .case-txt,
+.case-grid .case-top { display: contents; }
+/* Nudged so the number's baseline reads level with the title's first line
+   rather than with the top of its line box. */
+.case-grid .case-num { grid-column: 1; grid-row: 1; padding-top: 6px; }
+.case-grid .case-card h3 {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: clamp(18px, 1.6vw, 24px);
+  max-width: 30ch;
+}
+.case-grid .case-blurb { grid-column: 2; grid-row: 2; max-width: 62ch; }
+/* The discipline and the read-more share the third column across all three
+   rows -- one pinned to the top, one to the bottom -- rather than sitting in
+   rows 1 and 2. In the rows they set row 1's height whenever they ran to two
+   lines and the title did not, and the space between a title and its blurb
+   then changed from row to row: 10px under the long titles, 22 under the short
+   ones. Nothing in the markup said so; the column was quietly taller. */
+.case-grid .case-kicker {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  align-self: start;
+  padding-top: 6px;
+  max-width: 30ch;
+  text-align: right;
+  justify-self: end;
+}
+.case-grid .case-more {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  margin-top: 0;
+  padding-top: 0;
+  text-align: right;
+  justify-self: end;
+  align-self: end;
+}
+.case-grid .case-thumb {
+  grid-column: 4;
+  grid-row: 1 / span 3;
+  align-self: start;
+  border: 1px solid var(--line);
+}
+.case-grid .case-thumb img { aspect-ratio: 3 / 2; }
+/* The lead card exists to fill an odd row in a two-column grid. There are no
+   columns to balance in a ledger, so it stops being a special case -- the
+   class stays in the markup and simply stops meaning anything here. */
+.case-grid .case-wide { grid-column: auto; }
+
+/* The news index, same grammar. Scoped with .ledger because the home page
+   carries three of these cards in a real grid, and that section is not part of
+   this change. */
+.news-grid.ledger {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+}
+.ledger .news-card {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto clamp(140px, 13vw, 180px);
+  /* The plate is taller than the two lines of text beside it, and with only
+     two auto rows the surplus was shared out between them -- title and blurb
+     drifting 40px apart for no reason. A third row takes the slack. */
+  grid-template-rows: auto auto 1fr;
+  column-gap: clamp(18px, 2vw, 34px);
+  row-gap: 10px;
+  align-items: start;
+  padding: clamp(20px, 2.2vw, 30px) 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--line);
+  transition: background var(--dur-2) var(--ease);
+}
+.ledger .news-card:hover { transform: none; background: var(--panel); }
+.ledger .news-top { display: contents; }
+.ledger .news-card .num { grid-column: 1; grid-row: 1; padding-top: 6px; }
+/* On a card this heading is a small uppercase label (.news-card :is(h2, h3)),
+   which at ledger size came out as three lines of shouting -- only the size
+   and the measure were being overridden, so the tracking, the weight and the
+   uppercase all survived. In an index it is a title and it is set like one. */
+.ledger .news-card h2 {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  line-height: 1.35;
+  max-width: 34ch;
+}
+/* Card-era margins on the children are dead weight in a grid row -- the row
+   gap is the spacing here, and a stray 12px on the excerpt plus whatever the
+   heading carries is how a title and its lead end up 38px apart. */
+.ledger .news-excerpt { grid-column: 2; grid-row: 2; max-width: 62ch; margin: 0; }
+.ledger .news-card h2, .case-grid .case-card h3 { margin: 0; }
+/* The date and the category are one span with no class of its own -- the only
+   child of the top row that is neither the number nor the arrow. */
+.ledger .news-top > span:not(.num):not(.arr) {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  align-self: start;
+  padding-top: 6px;
+  max-width: 30ch;
+  text-align: right;
+  justify-self: end;
+}
+/* Bottom right of the row, level with the plate's lower edge, the way a
+   corner tick sits on a drawing. In the middle of the row it read as an
+   orphan. */
+.ledger .news-card .arr {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  justify-self: end;
+  align-self: end;
+  margin-left: 0;
+}
+.ledger .news-card .thumb {
+  margin: 0;
+  width: 100%;
+  grid-column: 4;
+  grid-row: 1 / span 3;
+  align-self: start;
+  border: 1px solid var(--line);
+}
+.ledger .news-card .thumb img { aspect-ratio: 3 / 2; object-fit: cover; }
+
+/* ---------- the ledger on a narrow screen ----------
+   Four columns become two: the plate keeps the right edge but loses two
+   thirds of its width, and the kicker moves under the number where there is
+   room for it. Below 620 the plate takes the full width of the row as a band
+   -- still a row with a hairline, not a bordered card. */
+@media (max-width: 900px) {
+  .case-grid .case-card,
+  .ledger .news-card {
+    grid-template-columns: 34px minmax(0, 1fr) 96px;
+    grid-template-rows: auto auto auto auto;
+    align-items: start;
+    column-gap: 14px;
+    row-gap: 8px;
+  }
+  .case-grid .case-num, .ledger .news-card .num { grid-row: 1; }
+  .case-grid .case-kicker,
+  .ledger .news-top > span:not(.num):not(.arr) {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 0;
+    text-align: left;
+    justify-self: start;
+    max-width: none;
+  }
+  .case-grid .case-card h3, .ledger .news-card h2 { grid-column: 2; grid-row: 2; }
+  .case-grid .case-blurb, .ledger .news-excerpt { grid-column: 2; grid-row: 3; }
+  .case-grid .case-more, .ledger .news-card .arr {
+    grid-column: 2;
+    grid-row: 4;
+    text-align: left;
+    justify-self: start;
+    align-self: start;
+  }
+  .case-grid .case-thumb, .ledger .news-card .thumb { grid-column: 3; grid-row: 1 / span 4; }
+}
+/* One column of text with the plate as a band across it. The plate goes under
+   the title, not above the number: an index entry that opens with a
+   photograph and names the job underneath it reads backwards. */
+@media (max-width: 620px) {
+  .case-grid .case-card,
+  .ledger .news-card {
+    grid-template-columns: 30px minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto auto;
+  }
+  .case-grid .case-num, .ledger .news-card .num { grid-row: 1; }
+  .case-grid .case-kicker,
+  .ledger .news-top > span:not(.num):not(.arr) { grid-row: 1; }
+  .case-grid .case-card h3, .ledger .news-card h2 { grid-row: 2; }
+  .case-grid .case-thumb, .ledger .news-card .thumb {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    margin-top: 6px;
+  }
+  .case-grid .case-blurb, .ledger .news-excerpt { grid-row: 4; }
+  .case-grid .case-more, .ledger .news-card .arr { grid-row: 5; align-self: start; }
+  .case-grid .case-thumb img, .ledger .news-card .thumb img { aspect-ratio: 16 / 9; }
+}

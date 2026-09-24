@@ -1188,7 +1188,7 @@ def news_index():
     </div>
 
     <div class="container">
-      <div class="news-grid">
+      <div class="news-grid ledger">
 %s
       </div>
     </div>
@@ -1328,11 +1328,23 @@ COMPANY = """
     </div>
 
     <!-- ================= VALUES ================= -->
-    <div class="container co-sec">
-      <p class="eyebrow">Our values</p>
-      <h2 class="sub-head co-vhead reveal">Values are worth writing down only if someone can
-      hold you to them. Ours are written so a client can.</h2>
-      <div class="co-vals">
+    <!-- Six fields of one wide sheet rather than six blocks of a stack. The
+         section is pinned and the sheet is pulled sideways by the page's own
+         scroll; see THE FILMSTRIP in the stylesheet for the three gates it
+         sits behind and what this markup does when they are off (it is the
+         stack it used to be, which is why the wrappers are inert).
+
+         --n is the field count and the stylesheet computes the travel from it,
+         so adding a seventh value needs nothing here but the number. -->
+    <section class="strip" style="--n: 6">
+      <div class="strip-vp">
+        <div class="strip-head">
+          <p class="eyebrow">Our values</p>
+          <h2 class="sub-head co-vhead strip-title reveal">Values are worth writing down only if someone can
+          hold you to them. Ours are written so a client can.</h2>
+          <span class="strip-gauge" aria-hidden="true"><i></i></span>
+        </div>
+        <div class="co-vals strip-track">
         <div class="co-val reveal">
           <span class="co-val-n">01</span>
           <div>
@@ -1405,8 +1417,9 @@ COMPANY = """
             </ul>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- ================= QUOTE BAND ================= -->
     <section class="co-band">
