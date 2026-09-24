@@ -1137,8 +1137,21 @@ def facts_html(facts):
     return '      <div class="fact-strip">\n%s\n      </div>' % cells
 
 
-def thumb_sources(img):
+# Derived here rather than in the thumbs.run() call at the top of this file,
+# because that runs before the article table exists.
+thumbs.news_variants([_a["img"] for _a in ARTICLES])
+
+CARD_SIZES = "(max-width: 760px) 92vw, (max-width: 1440px) 44vw, 625px"
+
+
+def thumb_sources(img, sizes=None):
     """srcset/sizes for a news thumbnail, when a smaller variant exists.
+
+    `sizes` is the caller's, because the same card is 417px wide in the home
+    page's three-up grid and 625 in the news index's two-up one. Left at the
+    three-up default the index served 600px files into 625px boxes -- the
+    browser picks from `sizes`, not from the box, and a stale `sizes` is a
+    soft photograph that nothing reports.
 
     The -600 files were generated at some point and never wired up: every
     thumbnail was pulling its full 1200px original into a box 270 to 371 CSS
@@ -1154,14 +1167,20 @@ def thumb_sources(img):
     small = stem + "-600.webp"
     if not os.path.exists(os.path.join(ROOT, "assets", small)):
         return ""
+    mid = stem + "-900.webp"
+    has_mid = os.path.exists(os.path.join(ROOT, "assets", mid))
     from PIL import Image  # only to read the header; the build has Pillow already
     try:
         big_w = Image.open(os.path.join(ROOT, "assets", img)).size[0]
     except Exception:
         big_w = 1200
-    return (' srcset="/assets/%s 600w, /assets/%s %dw"'
-            ' sizes="(max-width: 640px) 75vw, (max-width: 1400px) 26vw, 371px"'
-            % (small, img, big_w))
+    cands = ["/assets/%s 600w" % small]
+    if has_mid and big_w > 900:
+        cands.append("/assets/%s 900w" % mid)
+    cands.append("/assets/%s %dw" % (img, big_w))
+    return (' srcset="%s" sizes="%s"'
+            % (", ".join(cands),
+               sizes or "(max-width: 640px) 75vw, (max-width: 1400px) 26vw, 371px"))
 
 
 def news_index():
@@ -1171,7 +1190,7 @@ def news_index():
         # by a round trip. Everything from row two down stays lazy.
         eager = i < 3
         card = dict(a, loading="eager" if eager else "lazy",
-                    srcset=thumb_sources(a["img"]),
+                    srcset=thumb_sources(a["img"], CARD_SIZES),
                     prio=' fetchpriority="high"' if i == 0 else "")
         cards.append("""        <a class="news-card" href="/news/{slug}.html">
           <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8593;</span></span>
@@ -1188,7 +1207,7 @@ def news_index():
     </div>
 
     <div class="container">
-      <div class="news-grid ledger">
+      <div class="news-grid plate-grid">
 %s
       </div>
     </div>
@@ -2495,21 +2514,28 @@ def cases_html():
     cards = []
     for i, c in enumerate(LIVE):
         alt, _cap, _w, _h = c["photos"][0]
-        # the cover is the 4:3 crop tools/thumbs.py writes, not the plate
-        w, h = 1200, 900
+        # The cover is the square crop tools/thumbs.py writes, not the plate.
+        # Which widths exist is read off the disk rather than assumed: a
+        # landscape plate cannot yield a 1200px square, so two of the ten stop
+        # at 900 and must not be advertised at a width they do not have.
+        have = [wd for wd in (1200, 900, 600)
+                if os.path.exists(os.path.join(
+                    ROOT, "assets", "projects", "cases", c["slug"],
+                    "card-%d.webp" % wd))]
+        w = h = have[0]
         is_lead = lead and i == 0
         # The lead card's plate is about half the container; the others about a
         # quarter of the viewport, capped by the container at 670px.
-        sizes = ("(max-width: 700px) 92vw, (max-width: 1440px) 50vw, 700px"
-                 if is_lead else
-                 "(max-width: 700px) 92vw, (max-width: 1440px) 47vw, 670px")
+        # The lead card is a plate beside its text now rather than a
+        # full-width banner, so it asks for about the same width as the rest.
+        sizes = CARD_SIZES
+        srcset = ", ".join("/assets/projects/cases/%s/card-%d.webp %dw"
+                           % (c["slug"], wd, wd) for wd in sorted(have))
         cards.append(
             '        <a class="case-card%s" href="/projects/%s.html">\n'
             '          <span class="case-thumb">\n'
             '            <img src="/assets/projects/cases/%s/card-600.webp"\n'
-            '                 srcset="/assets/projects/cases/%s/card-600.webp 600w,'
-            ' /assets/projects/cases/%s/card-900.webp 900w,'
-            ' /assets/projects/cases/%s/card-1200.webp 1200w"\n'
+            '                 srcset="%s"\n'
             '                 sizes="%s"\n'
             '                 alt="%s" width="%d" height="%d" loading="%s" decoding="async">\n'
             '            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>\n'
@@ -2525,7 +2551,7 @@ def cases_html():
             '          </span>\n'
             '        </a>'
             % (" case-wide" if is_lead else "", c["slug"],
-               c["slug"], c["slug"], c["slug"], c["slug"], sizes,
+               c["slug"], srcset, sizes,
                _html.escape(alt, quote=True), w, h,
                "eager" if i < 2 else "lazy", i + 1, c["kicker"],
                _html.escape(c["title"]), c["lead"]))

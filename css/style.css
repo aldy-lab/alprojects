@@ -7971,231 +7971,151 @@ html.blueprint .hero-iso { opacity: 1; }
     }
   }
 }
+
 /* ============================================================
-   THE INDEX LEDGER — a card grid re-cut as a numbered drawing index
+   THE PLATE GRID — the card grid with the box taken away
    ============================================================
-   /projects was ten cards in a two-column grid and /news was six of the same,
-   which is the single most generic shape on the web and the one the client
-   recognised on a competitor's site. Same markup, same words, different
-   arrangement: one row per item, the number in the margin, the plate small and
-   on the right, a hairline between rows. Ten projects now read in 1500px
-   instead of 3000, and nothing about it says "cards".
+   The card grid came back because the photographs are the argument on these
+   two pages and an index shrinks them to a thumbnail. What is gone is the
+   card: the panel fill and the 1px box around it. A plate sitting on the
+   sheet with its caption under a hairline is the same grid doing the same job
+   and reads as a drawing rather than as a web component -- and it takes the
+   dead space with it, because there is no longer an outline to show that one
+   column's text stopped 60px short of the other's.
 
-   Done entirely in the stylesheet. `display: contents` dissolves the two
-   wrapper spans so their children become items of the row's own grid, which is
-   why not one line of the generated markup -- and therefore not one
-   translation key -- had to change to get a new layout. */
-.case-grid {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0;
-  border-bottom: 1px solid var(--line);
-}
-.case-grid .case-card {
-  display: grid;
-  /* Four columns: the number in the margin, the job, its discipline, its
-     plate. The third column is `auto` rather than a fraction so the kicker
-     sits against the plate instead of stranded in the middle of the row with
-     200px of nothing on either side of it. Zero horizontal padding, because
-     the row's hairline runs the full container width and text that starts 14px
-     inside it is a misalignment you can see against every other line on the
-     page. */
-  grid-template-columns: 46px minmax(0, 1fr) auto clamp(140px, 13vw, 180px);
-  /* The plate is taller than the two lines of text beside it, and with only
-     two auto rows the surplus was shared out between them -- title and blurb
-     drifting 40px apart for no reason. A third row takes the slack. */
-  grid-template-rows: auto auto 1fr;
-  column-gap: clamp(18px, 2vw, 34px);
-  row-gap: 10px;
-  align-items: start;
-  padding: clamp(20px, 2.2vw, 30px) 0;
+   The picture also got bigger, in the place where that costs nothing: the
+   window is square rather than 4:3, which is 33% more area at the same column
+   width. On the eight portrait plates a square window shows 75% of the frame
+   instead of 56%, so the crop is looser as well as larger; the two landscape
+   plates lose their sides instead. See tools/thumbs.py. Two of the ten stop
+   at 900px because a 1200px square cannot honestly be cut from a 1200x900
+   plate -- 1.44x on a 627px column rather than 1.91x, which is the one place
+   this change is a step down. */
+.case-card,
+.plate-grid .news-card {
   background: transparent;
   border: 0;
-  border-top: 1px solid var(--line);
-  /* A row that lifts reads as a card again, and a 1px lift on a full-width
-     row is a wobble rather than a response. The row answers with its ground
-     and its own rule instead. */
-  transition: background var(--dur-2) var(--ease);
-}
-.case-grid .case-card:hover { transform: none; background: var(--panel); }
-.case-grid .case-txt,
-.case-grid .case-top { display: contents; }
-/* Nudged so the number's baseline reads level with the title's first line
-   rather than with the top of its line box. */
-.case-grid .case-num { grid-column: 1; grid-row: 1; padding-top: 6px; }
-.case-grid .case-card h3 {
-  grid-column: 2;
-  grid-row: 1;
-  font-size: clamp(18px, 1.6vw, 24px);
-  max-width: 30ch;
-}
-.case-grid .case-blurb { grid-column: 2; grid-row: 2; max-width: 62ch; }
-/* The discipline and the read-more share the third column across all three
-   rows -- one pinned to the top, one to the bottom -- rather than sitting in
-   rows 1 and 2. In the rows they set row 1's height whenever they ran to two
-   lines and the title did not, and the space between a title and its blurb
-   then changed from row to row: 10px under the long titles, 22 under the short
-   ones. Nothing in the markup said so; the column was quietly taller. */
-.case-grid .case-kicker {
-  grid-column: 3;
-  grid-row: 1 / span 3;
+  padding: 0;
+  /* Without the outline there is nothing to gain from equal-height cards, and
+     stretching them is what pushed the last line of the shorter one to the
+     bottom of an invisible box. */
   align-self: start;
-  padding-top: 6px;
-  max-width: 30ch;
-  text-align: right;
-  justify-self: end;
 }
-.case-grid .case-more {
-  grid-column: 3;
-  grid-row: 1 / span 3;
-  margin-top: 0;
-  padding-top: 0;
-  text-align: right;
-  justify-self: end;
-  align-self: end;
-}
-.case-grid .case-thumb {
-  grid-column: 4;
-  grid-row: 1 / span 3;
-  align-self: start;
-  border: 1px solid var(--line);
-}
-.case-grid .case-thumb img { aspect-ratio: 3 / 2; }
-/* The lead card exists to fill an odd row in a two-column grid. There are no
-   columns to balance in a ledger, so it stops being a special case -- the
-   class stays in the markup and simply stops meaning anything here. */
-.case-grid .case-wide { grid-column: auto; }
+.case-card:hover,
+.plate-grid .news-card:hover { border-color: transparent; }
 
-/* The news index, same grammar. Scoped with .ledger because the home page
-   carries three of these cards in a real grid, and that section is not part of
-   this change. */
-.news-grid.ledger {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0;
-  border-bottom: 1px solid var(--line);
+/* ---------- the plate ---------- */
+.case-grid .case-thumb,
+.plate-grid .news-card .thumb {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
 }
-.ledger .news-card {
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr) auto clamp(140px, 13vw, 180px);
-  /* The plate is taller than the two lines of text beside it, and with only
-     two auto rows the surplus was shared out between them -- title and blurb
-     drifting 40px apart for no reason. A third row takes the slack. */
-  grid-template-rows: auto auto 1fr;
-  column-gap: clamp(18px, 2vw, 34px);
-  row-gap: 10px;
-  align-items: start;
-  padding: clamp(20px, 2.2vw, 30px) 0;
-  background: transparent;
-  border: 0;
-  border-top: 1px solid var(--line);
-  transition: background var(--dur-2) var(--ease);
+.case-grid .case-thumb img { aspect-ratio: 1 / 1; }
+/* 7% of headroom inside the frame, so the drift below has somewhere to go and
+   never uncovers the ground behind the plate. Set with `scale` rather than
+   inside `transform`, because the hover zoom owns `transform` and the two
+   compose instead of overwriting each other. */
+.case-grid .case-thumb img,
+.plate-grid .news-card .thumb img { scale: 1.07; }
+
+/* ---------- the caption, as a title block ---------- */
+.case-grid .case-txt {
+  padding: 15px 0 0;
+  margin-top: 18px;
+  gap: 11px;
+  border-top: 1px solid var(--line-strong);
+  transition: border-color var(--dur-2) var(--ease);
 }
-.ledger .news-card:hover { transform: none; background: var(--panel); }
-.ledger .news-top { display: contents; }
-.ledger .news-card .num { grid-column: 1; grid-row: 1; padding-top: 6px; }
-/* On a card this heading is a small uppercase label (.news-card :is(h2, h3)),
-   which at ledger size came out as three lines of shouting -- only the size
-   and the measure were being overridden, so the tracking, the weight and the
-   uppercase all survived. In an index it is a title and it is set like one. */
-.ledger .news-card h2 {
-  grid-column: 2;
-  grid-row: 1;
-  font-size: clamp(18px, 1.6vw, 24px);
+.case-card:hover .case-txt { border-color: var(--accent); }
+.case-grid .case-more { margin-top: 4px; padding-top: 0; }
+.case-grid .case-card h3 { font-size: clamp(19px, 1.7vw, 25px); max-width: 28ch; }
+.case-grid .case-blurb { max-width: 54ch; }
+
+/* The news card's caption is in the markup before its photograph, because on
+   a small card the date line reads first. On a 629px plate the photograph
+   reads first whatever the source order says, so the order is set here rather
+   than by moving the markup -- which would have moved four translation keys
+   for a layout change. */
+.plate-grid .news-card { display: flex; flex-direction: column; }
+.plate-grid .news-card .thumb { order: 1; }
+.plate-grid .news-top {
+  order: 2;
+  margin: 18px 0 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--line-strong);
+  transition: border-color var(--dur-2) var(--ease);
+}
+.plate-grid .news-card:hover .news-top { border-color: var(--accent); }
+.plate-grid .news-card :is(h2, h3) {
+  order: 3;
+  margin-top: 12px;
+  /* At this size the heading is a title, not the small uppercase label a
+     narrow card wants. The home page keeps the label -- its cards are 417px
+     wide, where a 25px title would run to four lines. */
+  font-size: clamp(19px, 1.7vw, 25px);
   font-weight: 400;
   letter-spacing: 0.01em;
   text-transform: none;
   line-height: 1.35;
-  max-width: 34ch;
+  max-width: 28ch;
 }
-/* Card-era margins on the children are dead weight in a grid row -- the row
-   gap is the spacing here, and a stray 12px on the excerpt plus whatever the
-   heading carries is how a title and its lead end up 38px apart. */
-.ledger .news-excerpt { grid-column: 2; grid-row: 2; max-width: 62ch; margin: 0; }
-.ledger .news-card h2, .case-grid .case-card h3 { margin: 0; }
-/* The date and the category are one span with no class of its own -- the only
-   child of the top row that is neither the number nor the arrow. */
-.ledger .news-top > span:not(.num):not(.arr) {
-  grid-column: 3;
-  grid-row: 1 / span 3;
-  align-self: start;
-  padding-top: 6px;
-  max-width: 30ch;
-  text-align: right;
-  justify-self: end;
-}
-/* Bottom right of the row, level with the plate's lower edge, the way a
-   corner tick sits on a drawing. In the middle of the row it read as an
-   orphan. */
-.ledger .news-card .arr {
-  grid-column: 3;
-  grid-row: 1 / span 3;
-  justify-self: end;
-  align-self: end;
-  margin-left: 0;
-}
-.ledger .news-card .thumb {
-  margin: 0;
-  width: 100%;
-  grid-column: 4;
-  grid-row: 1 / span 3;
-  align-self: start;
-  border: 1px solid var(--line);
-}
-.ledger .news-card .thumb img { aspect-ratio: 3 / 2; object-fit: cover; }
+.plate-grid .news-excerpt { order: 4; max-width: 54ch; }
+.plate-grid .news-card .thumb img { aspect-ratio: 3 / 2; }
 
-/* ---------- the ledger on a narrow screen ----------
-   Four columns become two: the plate keeps the right edge but loses two
-   thirds of its width, and the kicker moves under the number where there is
-   room for it. Below 620 the plate takes the full width of the row as a band
-   -- still a row with a hairline, not a bordered card. */
-@media (max-width: 900px) {
-  .case-grid .case-card,
-  .ledger .news-card {
-    grid-template-columns: 34px minmax(0, 1fr) 96px;
-    grid-template-rows: auto auto auto auto;
-    align-items: start;
-    column-gap: 14px;
-    row-gap: 8px;
-  }
-  .case-grid .case-num, .ledger .news-card .num { grid-row: 1; }
-  .case-grid .case-kicker,
-  .ledger .news-top > span:not(.num):not(.arr) {
-    grid-column: 2;
-    grid-row: 1;
-    padding-top: 0;
-    text-align: left;
-    justify-self: start;
-    max-width: none;
-  }
-  .case-grid .case-card h3, .ledger .news-card h2 { grid-column: 2; grid-row: 2; }
-  .case-grid .case-blurb, .ledger .news-excerpt { grid-column: 2; grid-row: 3; }
-  .case-grid .case-more, .ledger .news-card .arr {
-    grid-column: 2;
-    grid-row: 4;
-    text-align: left;
-    justify-self: start;
-    align-self: start;
-  }
-  .case-grid .case-thumb, .ledger .news-card .thumb { grid-column: 3; grid-row: 1 / span 4; }
+/* ---------- the grids ---------- */
+.case-grid { gap: clamp(30px, 3.4vw, 52px) clamp(18px, 2vw, 30px); }
+/* Two columns, to match /projects. Six articles as three-up made the plate
+   371px wide, which is a thumbnail. */
+.news-grid.plate-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(30px, 3.4vw, 52px) clamp(18px, 2vw, 30px);
 }
-/* One column of text with the plate as a band across it. The plate goes under
-   the title, not above the number: an index entry that opens with a
-   photograph and names the job underneath it reads backwards. */
-@media (max-width: 620px) {
-  .case-grid .case-card,
-  .ledger .news-card {
-    grid-template-columns: 30px minmax(0, 1fr);
-    grid-template-rows: auto auto auto auto auto;
+/* The lead card -- present only when the case count is odd, so that the grid
+   never ends on a half-empty row. It used to span both columns, which made
+   its plate 1280px wide and pulled a 1200px file up to fill it. Plate beside
+   text instead: the same column width as every other plate, and the row still
+   gets filled. */
+.case-grid .case-wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(18px, 2vw, 30px);
+  align-items: center;
+}
+.case-grid .case-wide .case-txt { margin-top: 0; border-top: 0; padding-top: 0; }
+@media (max-width: 760px) {
+  .news-grid.plate-grid { grid-template-columns: minmax(0, 1fr); }
+  .case-grid .case-wide { grid-template-columns: minmax(0, 1fr); }
+  .case-grid .case-wide .case-txt {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid var(--line);
   }
-  .case-grid .case-num, .ledger .news-card .num { grid-row: 1; }
-  .case-grid .case-kicker,
-  .ledger .news-top > span:not(.num):not(.arr) { grid-row: 1; }
-  .case-grid .case-card h3, .ledger .news-card h2 { grid-row: 2; }
-  .case-grid .case-thumb, .ledger .news-card .thumb {
-    grid-column: 1 / span 2;
-    grid-row: 3;
-    margin-top: 6px;
+}
+
+/* ---------- the drift ----------
+   The photograph moves a little inside its own frame as the card crosses the
+   viewport: a window on to a plate rather than a picture pasted on the page.
+   `translate`, not `transform`, so the hover zoom keeps working; 3% against
+   7% of headroom, so no edge is ever exposed.
+
+   Behind the same two gates as the filmstrip. Reduced motion gets a still
+   plate -- this one moves without being asked, unlike an indicator that only
+   reports where the reader already is. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .case-grid .case-thumb img,
+    .plate-grid .news-card .thumb img {
+      animation: plate-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      animation-duration: auto;
+    }
+    @keyframes plate-drift {
+      from { translate: 0 -3%; }
+      to   { translate: 0 3%; }
+    }
   }
-  .case-grid .case-blurb, .ledger .news-excerpt { grid-row: 4; }
-  .case-grid .case-more, .ledger .news-card .arr { grid-row: 5; align-self: start; }
-  .case-grid .case-thumb img, .ledger .news-card .thumb img { aspect-ratio: 16 / 9; }
 }
