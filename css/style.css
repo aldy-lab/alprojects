@@ -2725,7 +2725,7 @@ a.cert-card:hover img { border-color: var(--accent); }
 .srv-list { list-style: none; margin: 0; padding: 0; }
 .srv-link {
   display: grid;
-  grid-template-columns: 30px 1fr auto;
+  grid-template-columns: 30px 1fr;
   align-items: baseline;
   gap: 12px;
   /* 9/8, not 13/12. Twelve rows at 45px made the index 754px tall while the
@@ -7730,24 +7730,6 @@ html.blueprint .hero-iso { opacity: 1; }
    pages about the same twelve things. One design now: the same deck, opened at
    its cover. The count the grid carried moved into the contents row, beside the
    service you are choosing. */
-/* Third column of the row, not a second line. On its own line the count turned
-   every row into two and took the contents from 620px to 870 -- looser rhythm
-   and a taller column for the same twelve items. It stays a block element,
-   because that is what keeps the number, the name and the count as three
-   separate translation units; a grid item can be a block and still sit on one
-   visual line. */
-.srv-proof {
-  grid-column: 3;
-  justify-self: end;
-  align-self: baseline;
-  font-family: var(--font-display);
-  font-size: var(--tag);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gray-150);
-}
-.srv-link.is-active .srv-proof { color: var(--muted); }
-
 /* The cover sheet. Larger measure than a service sheet -- it is one paragraph
    about the section, not a specification, so it can run wider without the line
    getting hard to track. */

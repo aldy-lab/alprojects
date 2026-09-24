@@ -690,6 +690,12 @@ def spec_rows(p, skip=()):
     card that answers nothing a rotation worker asks is worse than a shorter
     one. Fill the value in POSITIONS and the row appears.
     """
+    # "Positions" is skipped by the caller: it printed "Ongoing recruitment"
+    # identically on all five rows, which is the schedule's own subject said
+    # five more times in a bordered cell. The value stays in POSITIONS as the
+    # approved wording, in case it is wanted somewhere it says something --
+    # nothing else reads it today, the JSON-LD included, which is why removing
+    # the row removed the string from the page entirely.
     rows = [("Positions", p.get("count")), ("Location", p.get("location")),
             ("Rotation", p.get("rotation")), ("Start", p.get("start")),
             ("Contract", p.get("contract")), ("Rate", p.get("rate"))]
@@ -749,7 +755,16 @@ def positions_html():
         # Location and Contract are already printed in the row itself. Repeating
         # them a line lower is the panel saying nothing twice; it shows what the
         # row does not have room for.
-        d["specs"] = spec_rows(p, skip=("Location", "Contract"))
+        # The whole strip goes when there is nothing in it, not just its
+        # rows. With Positions gone, Location and Contract already on the
+        # summary line and rotation, start and rate still blank on the client's
+        # side, every role's strip is empty -- and an empty .sched-specs is not
+        # nothing on the page: it has a 1px border and a 24px margin, so it
+        # renders as a hairline box with a gap under it. Fill any of the three
+        # in POSITIONS and the strip comes back with them.
+        rows = spec_rows(p, skip=("Positions", "Location", "Contract"))
+        d["specs"] = ('              <div class="sched-specs">\n%s\n'
+                      '              </div>' % rows) if rows else ""
         # All closed on load. The page then reads as what it is -- a list of
         # five open positions you pick from -- instead of one role with four
         # afterthoughts under it.
@@ -768,9 +783,7 @@ def positions_html():
           </summary>
           <div class="sched-open">
             <div class="sched-in">
-              <div class="sched-specs">
 {specs}
-              </div>
               <p class="sched-lead">{summary}</p>
               <p class="position-label">What we need</p>
               <ul class="position-needs">
@@ -3327,22 +3340,25 @@ def service_nav(active_slug):
         for sv in group:
             cls = "srv-link is-active" if sv["slug"] == active_slug else "srv-link"
             aria = ' aria-current="page"' if sv["slug"] == active_slug else ''
-            n = len(WHERE.get(sv["slug"], []))
-            # Silence, not "0 projects": four of the twelve have no published
-            # case yet, and a zero on the row you are trying to sell reads as
-            # an admission.
-            # A <div>, not a <span>. The docstring above says the count has to
-            # be a block element and the first version emitted a span anyway,
-            # which glued the number, the name and the count into ONE unit --
-            # eight composite units that matched none of the names and counts
-            # already translated. A block child stops the <a> being a leaf, and
-            # each piece is then its own unit: the number has no letters and is
-            # skipped, the name and the count are keys that already exist.
-            proof = ('<div class="srv-proof">%d project%s</div>'
-                     % (n, "" if n == 1 else "s")) if n else ""
+            # No work count on the row. It was here to say how much
+            # published evidence stood behind each service, but on eight of
+            # the twelve rows it printed "3 projects" over and over down the
+            # column and read as filler rather than as proof. The evidence is
+            # on the panel, under "Where we have done this".
+            #
+            # The name is a <div>, and that is the whole reason this row has
+            # not collapsed into one translation unit. An element is a unit
+            # when it holds text and no BLOCK descendant, so with two spans
+            # inside it the <a> became a leaf and each row turned into a key
+            # of its own -- markup, row number and name in one string, twelve
+            # new keys where twelve translated names already existed. The
+            # count used to be the block that kept them apart; removing it
+            # put that job on the name. Both are grid items, so a div and a
+            # span lay out identically here: measured, 37px rows and a 620px
+            # column either way.
             out.append('            <li><a class="%s" href="/services/%s.html" data-service="%s"%s>'
-                       '<span class="srv-n">%s</span><span class="srv-name">%s</span>%s</a></li>'
-                       % (cls, sv["slug"], sv["slug"], aria, sv["num"], sv["nav"], proof))
+                       '<span class="srv-n">%s</span><div class="srv-name">%s</div></a></li>'
+                       % (cls, sv["slug"], sv["slug"], aria, sv["num"], sv["nav"]))
         out.append('          </ul>')
         out.append('        </div>')
     return "\n".join(out)
