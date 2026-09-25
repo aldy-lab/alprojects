@@ -35,6 +35,12 @@ import content  # noqa: E402    -- the site's copy, see tools/content.py
 import thumbs  # noqa: E402
 import i18n  # noqa: E402    -- for the shared meta-description length rule
 
+# Everything that belongs to no collection -- page titles and meta
+# descriptions, the form's option lists, the number words, the photo
+# captions on /projects, the services cover and the organisation's name.
+SITE = content.site(content.load("site"))
+
+
 # Before anything is stamped: the ?v= hash is taken from the minified file,
 # so it has to be rewritten first or every page would ship last run's hash.
 thumbs.run()
@@ -525,20 +531,11 @@ POSITIONS = content.positions(content.load("positions"))
 # in DISCIPLINES exactly or the Apply button selects nothing, so an editor gets
 # it as a list to pick from.
 
-DISCIPLINES = [
-    "Welding (TIG)", "Welding (MIG/MAG)", "Pipe fitting", "Instrument pipe fitting",
-    "Mechanical installation", "Shipbuilding", "Ship repair", "NDT inspection",
-    "Rope access", "Quality control (QA/QC)", "Rigging", "Site supervision",
-]
-CERTIFICATES = [
-    "EN ISO 9606 (welder)", "TIG 141", "MIG/MAG 131/135", "IRATA L1", "IRATA L2",
-    "IRATA L3", "VCA / SCC", "NDT VT", "NDT PT/MT", "NDT UT", "GWO",
-    "Medical certificate",
-]
-ROTATIONS = ["8 / 2", "6 / 2", "4 / 2", "Continuous", "Local, no rotation"]
-WORK_COUNTRIES = ["Norway", "Germany", "Netherlands", "United Kingdom",
-                  "Lithuania", "Denmark", "Belgium", "Poland"]
-EXPERIENCE = ["Less than 2 years", "2 to 5 years", "5 to 10 years", "More than 10 years"]
+DISCIPLINES = SITE["disciplines"]
+CERTIFICATES = SITE["certificates"]
+ROTATIONS = SITE["rotations"]
+WORK_COUNTRIES = SITE["countries"]
+EXPERIENCE = SITE["experience"]
 
 
 def chips(items, attr, cls="chip"):
@@ -1419,22 +1416,7 @@ SERVICES = """
     </div>
 """
 
-SHOTS = [
-    ("welding-tig-pipe", 'TIG root pass on a prefabricated spool', 900, 1200),
-    ("piping-roof-crew", 'Carbon steel lines being set out on a plant roof', 900, 1200),
-    ("piping-roof-duct", 'Process lines run alongside insulated ductwork', 900, 1200),
-    ("transformer-overhead", 'Stainless pipework around a transformer package', 1200, 900),
-    ("substation-sky", 'Completed pipe runs at a substation', 1200, 900),
-    ("facade-pipe-crane", 'Pipe runs erected along a plant facade', 900, 1200),
-    ("transformer-bushing", 'Mechanical package installed beneath the bushings', 1200, 900),
-    ("transformer-plant", 'Cooling and process lines at the transformer plant', 1200, 900),
-    ("facade-tank-pipe", 'Vessel and pipe run carried along the building line', 1200, 900),
-    ("terminal-rack-tanks", 'Pipe rack running to storage tanks at a fuel terminal', 1200, 900),
-    ("terminal-pumps", 'Pump skids and valve stations, terminal loading area', 900, 1200),
-    ("terminal-rack-trays", 'Pipe rack and cable trays on the loading gantry', 900, 1200),
-    ("terminal-valves", 'Valve manifolds over the bund', 1200, 900),
-    ("terminal-tankfarm", 'Completed tank farm pipe racks', 900, 1200),
-]
+SHOTS = SITE["shots"]
 
 
 def shots_html():
@@ -1529,10 +1511,7 @@ for _c in LIVE:
 # Seven to Eight in four languages". It is derived now: add, remove or
 # un-draft a case and the sentence follows, in the source and in all three
 # translations, because the whole sentence is the translation key.
-COUNT_WORD = {
-    1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six",
-    7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve",
-}
+COUNT_WORD = SITE["count_word"]
 
 
 def cases_sub_lead():
@@ -2081,14 +2060,7 @@ CONTACTS = """
 # ============================================================
 import json
 
-ORG = {
-    "@type": "Organization",
-    "vatID": "LT100012753216",
-    "taxID": "305137109",
-    "name": "ALPROJECTS Group",
-    "sameAs": "https://alprojects.co/",
-    "logo": "https://alprojects.co/assets/logo-1200.png",
-}
+ORG = SITE["org"]
 
 def _strip(o):
     """Google rejects null-valued properties — drop them rather than emit null."""
@@ -2490,12 +2462,8 @@ def service_panel(sv):
                                         h1=sv["h1"], lead=sv["lead"], points=points)
 
 
-SERVICES_COVER_H1 = "Mechanical, marine and inspection services"
-SERVICES_COVER_LEAD = (
-    "Twelve services in three groups: the mechanical and industrial scopes we take on "
-    "directly, the marine work we do in yards and afloat, and the inspection and access "
-    "disciplines that show what was built. Most projects use several of them under one "
-    "contract, with one supervisor and one set of records.")
+SERVICES_COVER_H1 = SITE["cover_h1"]
+SERVICES_COVER_LEAD = SITE["cover_lead"]
 
 
 def service_cover():
@@ -2567,21 +2535,20 @@ def service_page_body(sv):
 
 
 # ---------------- write everything ----------------
-_PRIVACY_DESC = "How ALPROJECTS Group handles personal data collected through this website."
-write("privacy.html", page("Privacy Policy", _PRIVACY_DESC,
+_PRIVACY_DESC = SITE["pages"]["privacy"]["description"]
+write("privacy.html", page(SITE["pages"]["privacy"]["title"], _PRIVACY_DESC,
       PRIVACY, canonical="/privacy.html",
       head_extra=webpage_ld("Privacy Policy", "/privacy.html", _PRIVACY_DESC) +
                  breadcrumb_ld([("Home", "/"), ("Privacy Policy", "/privacy.html")])))
 
-write("careers.html", page("Careers",
-      "Work with ALPROJECTS Group — welding, pipe fitting, NDT, rope access and mechanical contracting on industrial and offshore projects across Europe.",
+write("careers.html", page(SITE["pages"]["careers"]["title"],
+      SITE["pages"]["careers"]["description"],
       CAREERS, canonical="/careers.html", og="careers",
       head_extra=job_postings_ld() +
                  breadcrumb_ld([("Home", "/"), ("Careers", "/careers.html")])))
 
-_COMPANY_DESC = ("ALPROJECTS Group is a European provider of industrial services for the "
-                 "shipbuilding, offshore, industrial and energy sectors.")
-write("company.html", page("Company", _COMPANY_DESC,
+_COMPANY_DESC = SITE["pages"]["company"]["description"]
+write("company.html", page(SITE["pages"]["company"]["title"], _COMPANY_DESC,
       COMPANY, canonical="/company.html", og="company",
       head_extra=webpage_ld("Company", "/company.html", _COMPANY_DESC, kind="AboutPage") +
                  breadcrumb_ld([("Home", "/"), ("Company", "/company.html")])))
@@ -2604,10 +2571,8 @@ for _sv in SERVICES_FLAT:
                                          (_sv["h1"], "/services/%s.html" % _sv["slug"])])))
 
 # /services.html shows the first service, and is the entry point people link to
-write("services.html", page("Services",
-      "Twelve services in three groups -- mechanical and industrial scopes, marine "
-      "work in yards and afloat, and inspection and access. One contract, one supervisor, "
-      "one set of records.",
+write("services.html", page(SITE["pages"]["services"]["title"],
+      SITE["pages"]["services"]["description"],
       # The same deck as every service URL, opened at its cover. One design for
       # the section instead of a card grid in front of twelve panel pages.
       service_page_body(None), canonical="/services.html", og="services",
@@ -2618,9 +2583,8 @@ write("services.html", page("Services",
           [(sv["h1"], "/services/%s.html" % sv["slug"]) for sv in SERVICES_FLAT]) +
                  breadcrumb_ld([("Home", "/"), ("Services", "/services.html")])))
 
-_PROJECTS_DESC = ("Shipbuilding, offshore, industrial and renewable energy projects "
-                  "delivered by ALPROJECTS Group across Europe.")
-write("projects.html", page("Projects", _PROJECTS_DESC,
+_PROJECTS_DESC = SITE["pages"]["projects"]["description"]
+write("projects.html", page(SITE["pages"]["projects"]["title"], _PROJECTS_DESC,
       PROJECTS, canonical="/projects.html", og="projects",
       head_extra=collection_ld(
           "Projects", "/projects.html", _PROJECTS_DESC,
@@ -2647,15 +2611,14 @@ for _i, _c in enumerate(LIVE):
                head_extra=breadcrumb_ld([("Home", "/"), ("Projects", "/projects.html"),
                                          (_c["title"], "/projects/%s.html" % _c["slug"])])))
 
-write("contacts.html", page("Contacts",
-      "Contact ALPROJECTS Group — Šilutės pl. 2, Klaipėda, Lithuania. Project enquiries and personnel requests.",
+write("contacts.html", page(SITE["pages"]["contacts"]["title"],
+      SITE["pages"]["contacts"]["description"],
       CONTACTS, canonical="/contacts.html", og="contacts",
       head_extra=contact_ld() +
                  breadcrumb_ld([("Home", "/"), ("Contacts", "/contacts.html")])))
 
-_NEWS_DESC = ("Project updates and engineering insights from ALPROJECTS Group — welding, "
-              "piping, NDT and offshore scopes across Northern and Western Europe.")
-write("news/index.html", page("News", _NEWS_DESC,
+_NEWS_DESC = SITE["pages"]["news"]["description"]
+write("news/index.html", page(SITE["pages"]["news"]["title"], _NEWS_DESC,
       news_index(), canonical="/news/", og="news",
       head_extra=collection_ld(
           "News", "/news/", _NEWS_DESC,

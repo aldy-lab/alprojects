@@ -207,3 +207,38 @@ def cases(doc):
                            for p in r["photos"]]
         out.append(c)
     return out
+
+
+# ---------------- site-wide odds ----------------
+def site(doc):
+    """The copy that belongs to no collection: the services cover, the page
+    titles and meta descriptions, the form's option lists, the number words,
+    the photo captions on /projects, and the organisation's own name.
+
+    Returned in the shapes build-pages.py already used, so the call sites did
+    not have to change shape when the literals left them."""
+    # Rebuilt in the file's own key order, not in a convenient one. The first
+    # version put @type and name first and the rest after, which is the same
+    # Organization to every reader but a different byte sequence in the
+    # JSON-LD -- and that turned up as 30 changed pages against the assertion
+    # that this refactor changes nothing. The order is data now, so it stays.
+    org = {}
+    for k, v in doc["org"].items():
+        org["@type" if k == "_type" else (k[1:] if k.startswith("_") else k)] = v
+    return {
+        "cover_h1": doc["services_cover"]["h1"],
+        "cover_lead": doc["services_cover"]["lead"],
+        "pages": doc["pages"],
+        "disciplines": list(doc["form_options"]["disciplines"]),
+        "certificates": list(doc["form_options"]["certificates"]),
+        "rotations": list(doc["form_options"]["rotations"]),
+        "countries": list(doc["form_options"]["countries"]),
+        "experience": list(doc["form_options"]["experience"]),
+        # 1-based in the template, a list in the file: a JSON object cannot
+        # have integer keys, and "1".."12" as strings invites an off-by-one at
+        # the one place that reads it.
+        "count_word": {i: w for i, w in enumerate(doc["count_words"], 1)},
+        "shots": [(s["_stem"], s["caption"], s["_w"], s["_h"])
+                  for s in doc["shots"]],
+        "org": org,
+    }
