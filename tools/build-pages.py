@@ -31,6 +31,7 @@ SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 # rewriting for the language trees, and two copies would drift.
 from paths import rootify, clean_urls  # noqa: E402
 import minify  # noqa: E402
+import content  # noqa: E402    -- the site's copy, see tools/content.py
 import thumbs  # noqa: E402
 import i18n  # noqa: E402    -- for the shared meta-description length rule
 
@@ -3038,158 +3039,24 @@ OG_CARDS = {"we-do-not-certify-our-own-welds", "piping-installation-engine-room"
 # Still unconfirmed: ISO 3834 has no certificate on file, and
 # IRATA/SOFT are unverified.
 # ============================================================
-SERVICE_GROUPS = [
-    ("Mechanical & Industrial", [
-        dict(slug="welding-services", nav="Welding Services", h1="Welding services",
-             lead="We weld steel structures and pipework, in the shop and on site. Every welder holds a valid "
-      "qualification, and every joint is welded to a procedure approved before work starts.",
-             points=["MMA (111), MAG (135), flux-cored (136) and TIG (141); MIG (131) for aluminium",
-                     "TIG for root runs, small-bore piping and stainless steel",
-                     "Structural steel, pressure piping and pipe supports",
-                     "Welder qualifications to EN ISO 9606-1, checked before mobilisation",
-                     "Welding procedures qualified to EN ISO 15614-1",
-                     "Pressure piping to EN 13480, pressure tested before insulation"]),
-        dict(slug="pipe-fitting", nav="Pipe Fitting", h1="Pipe fitting",
-             lead="We supply pipe fitters for process, utility and engine room systems, instrument fitters "
-      "for small-bore work, and workshop crews who prefabricate spools on fitting tables. We work "
-      "from isometric drawings and 3D models, and the dimensions are checked before the welder "
-      "arrives.",
-             points=["Process and utility piping in carbon steel and stainless steel, small bore to large bore",
-                     "Copper piping and Blücher stainless drainage systems",
-                     "Hydraulic piping and tubing, flushed before commissioning",
-                     "Instrument fitting: small-bore tubing, impulse lines and instrument hook-ups",
-                     "Marine piping: engine room and system piping on newbuilds and repair",
-                     "Spool prefabrication on fitting tables, marked and traceable to the drawing",
-                     "Complete systems routed and installed on board and on site",
-                     "Fit-up, alignment and dimensional control before welding, flange assembly and support during pressure testing"]),
-        dict(slug="mechanical-contracting", nav="Mechanical Contracting", h1="Mechanical contracting",
-             lead="We take a mechanical scope from start to finish: steel fabricated in the shop, equipment "
-      "installed on site, systems connected and handed over. On transformer work we supply the "
-      "complete package, from bushings, coolers and conservators to the pipework between them. "
-      "Our supervisors and QA/QC engineers stay on site for the duration of the job, so the "
-      "client deals with one contractor instead of coordinating four. We are used to working "
-      "inside shutdown windows, where the sequence matters as much as the number of people on the "
-      "job.",
-             points=["Shop fabrication of structural steel, platforms, supports and access structures",
-                     "Mechanical installation of plant and equipment, including setting and alignment",
-                     "Transformer packages: bushings, coolers, conservators and connecting pipework",
-                     "Removal and replacement of existing equipment during shutdowns",
-                     "Lifting and rigging planned together with the installation sequence",
-                     "One contract and one schedule for the whole scope",
-                     "Our own supervisors and QA/QC engineers on site for the duration",
-                     "Punch list cleared and mechanical completion handed over as a package"]),
-        dict(slug="heavy-equipment-relocation", nav="Heavy Equipment Relocation",
-             h1="Heavy equipment relocation",
-             lead="Moving a production line is a scheduling problem before it is a lifting problem. "
-                  "We dismantle, move, reinstall and align it, inside a running plant or between "
-                  "two countries.",
-             points=["Dismantling, skidding, jacking and positioning on SPMT or hydraulic gantry",
-                     "Disconnection and reconnection of piping and utilities",
-                     "Foundation preparation, chocking, grouting and laser shaft alignment",
-                     "Site-to-site moves across Europe",
-                     # "with CMR cover" asserts carrier liability insurance. Nothing
-                     # on file evidences it, and if the haulage is subcontracted the
-                     # cover belongs to the haulier, not to us. This wording is true
-                     # whether the transport is ours or a partner's; the audit asked
-                     # for the same change. Who actually holds the CMR is a client
-                     # question and the claim does not come back until it is answered.
-                     "Abnormal load permits, escort and cargo securing to EN 12195-1, "
-                     "arranged with our transport partners"]),
-        dict(slug="mobile-repair-teams", nav="Mobile Repair Teams",
-             h1="Mobile repair teams",
-             lead="Every hour a unit stays down has a price. Our crews mobilise at short notice for "
-                  "turnarounds, shutdowns and breakdowns, and they carry welding, fitting and "
-                  "mechanical skills in the same team.",
-             points=["Short-notice mobilisation",
-                     "One crew, several trades",
-                     "Turnarounds, shutdowns and breakdown repairs",
-                     "Work under the plant&rsquo;s permit and safety regime"]),
-    ]),
-    ("Marine", [
-        dict(slug="shipbuilding", nav="Shipbuilding", h1="Shipbuilding",
-             lead="Yard schedules move, and the penalty lands on the subcontractor. We plan "
-                  "for that, and take engine room piping, structural steel and outfitting "
-                  "as complete scopes.",
-             points=["Engine room piping: fuel, lube oil, cooling water, ballast and bilge systems, including spool prefabrication",
-                     "Hull structural fitting and welding to class-approved procedures",
-                     "Outfitting and mechanical installation",
-                     "Scopes delivered to the yard&rsquo;s schedule and class-approved drawings"]),
-        dict(slug="ship-repair", nav="Ship Repair", h1="Ship repair",
-             lead="Repair work is decided in days, not months. We take steel renewal, piping "
-                  "replacement and mechanical repairs to class and to the owner&rsquo;s requirements.",
-             points=["Steel renewal and piping replacement",
-                     "On-board mechanical repairs",
-                     "Drydock and afloat (alongside) repair scopes",
-                     "Fast mobilisation to the vessel"]),
-    ]),
-    ("Inspection & Access", [
-        dict(slug="non-destructive-testing", nav="Non-Destructive Testing",
-             h1="Non-destructive testing",
-             # "Our technicians report to the client, not to the contractor who did
-             # the welding" is false on our own scopes: the contractor who did the
-             # welding is us. The 13 August article says so in our own words -- it
-             # is the strongest text on the site -- and this page contradicted it.
-             # Replaced with the distinction the article draws, and linked to it.
-             lead="We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic "
-      "particle testing can be done while the plant keeps running. Radiography needs the area "
-      "cleared, so we plan it around production. On our own scopes, our NDT is internal quality "
-      "control: we find our own defects before your inspector does. On work welded by others, we "
-      "act as independent NDT and report to the client.",
-             points=["Visual and penetrant testing for defects on the surface",
-                     "Magnetic particle testing for cracks in steel welds",
-                     "Ultrasonic testing for defects inside the weld",
-                     "Phased array and TOFD where radiography is not practical",
-                     "Technicians certified to ISO 9712, Level II and Level III",
-                     "Acceptance criteria agreed with the client before testing starts",
-                     "Testing with the plant running, where the method allows it",
-                     "Reports issued to the client in their own format"],
-             # No published case uses NDT, so this page gets no "Where we did
-             # this" block. What it does get is the 13 August article, which is
-             # where the independence question is answered honestly and in more
-             # words than a service lead can hold. The audit asked for the link
-             # here for that reason: it is stronger than any line on this page.
-             deep='<div class="container srv-where">'
-                  '<p class="eyebrow">On independence</p>'
-                  '<p class="srv-where-note">On our own scopes this is internal quality '
-                  'control, and it never counts as sign-off. We wrote down what that '
-                  'means in <a href="/news/we-do-not-certify-our-own-welds.html">we do '
-                  'not certify our own welds</a>.</p>'
-                  '</div>'),
-        dict(slug="rope-access-services", nav="Rope Access Services", h1="Rope access services",
-             lead="Scaffolding costs more in downtime than in steel. Certified technicians reach the "
-                  "same place on rope, inspect it and repair it while the plant keeps running.",
-             points=["Industrial Rope Access Trade Association (IRATA) certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site",
-                     "Inspection and mechanical work at height",
-                     "Rescue plan and supervision on every job",
-                     "Often without scaffolding, and usually without a shutdown"]),
-        dict(slug="3d-laser-scanning", nav="3D Laser Scanning", h1="3D laser scanning",
-             lead="Old drawings lie. We measure what is really there and hand the data to your "
-                  "engineers, so the clash shows up on a screen instead of on site.",
-             points=["As-built survey of existing installations",
-                     "Dimensional control of structures and piping",
-                     "Clash detection before fabrication",
-                     "Data in the client&rsquo;s CAD format"]),
-        dict(slug="quality-control", nav="Quality control (QA/QC)", h1="Quality assurance and quality control (QA/QC)",
-             seo="Quality control and QA/QC",
-             lead="Quality is what you can prove afterwards. We inspect piping and steel structures "
-                  "and leave documentation that holds up when the client, the surveyor or the "
-                  "auditor asks for it.",
-             points=["Piping and steel structure verification",
-                     "Traceability down to the individual weld",
-                     "Support at client and third-party hold and witness points",
-                     "Inspection and Test Plans (ITP) with hold, witness and review points agreed before work starts",
-                     "Quality system certified to ISO 9001 by DNV; welding coordination organised to EN ISO 3834-2",
-                     "Manufacturing Record Book (MRB) assembled as the work goes, not at the end"]),
-        dict(slug="rigging-technical-support", nav="Rigging &amp; Technical Support",
-             h1="Rigging and technical support",
-             lead="Lifts go wrong at the planning stage. We plan them, and we send the people who "
-                  "run them on site.",
-             points=["Lift planning and execution",
-                     "Load handling and installation support",
-                     "Site coordination and supervision",
-                     "Offshore and industrial projects"]),
-    ]),
-]
+# ---------------- the twelve services ----------------
+# The words are in content/services.json, not here: twelve names, twelve
+# headings, twelve leads and sixty-odd bullets that the client is the one who
+# should be able to change. This file keeps what is not copy -- the slugs, the
+# order of the three groups, and the raw HTML of a deep block.
+#
+# Asserted after the move: every generated page byte-identical to the build
+# from the literals it replaced.
+NDT_ON_INDEPENDENCE = (
+    '<div class="container srv-where"><p class="eyebrow">On independence</p>'
+    '<p class="srv-where-note">On our own scopes this is internal quality '
+    'control, and it never counts as sign-off. We wrote down what that means '
+    'in <a href="/news/we-do-not-certify-our-own-welds.html">we do not certify '
+    'our own welds</a>.</p></div>')
+
+SERVICES_DOC = content.load("services")
+SERVICE_GROUPS = content.services_groups(
+    SERVICES_DOC, deep={"non-destructive-testing": NDT_ON_INDEPENDENCE})
 
 ROPE_DEEP = """
       <div class="srv-deep-band">
