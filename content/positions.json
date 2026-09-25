@@ -1,0 +1,144 @@
+{
+  "_order": [
+    "tig-welder",
+    "mig-mag-mma-welder",
+    "pipe-fitter",
+    "site-supervisor",
+    "hull-assembler"
+  ],
+  "tig-welder": {
+    "_discipline": "Welding (TIG)",
+    "title": "Certified TIG Welder",
+    "count": "Ongoing recruitment",
+    "location": "Project sites across Europe",
+    "contract": "Project-based",
+    "rotation": "",
+    "start": "",
+    "rate": "",
+    "_open": true,
+    "_posted": "2026-09-11",
+    "_valid_through": "2026-12-31",
+    "_employment_type": "CONTRACTOR",
+    "_countries": [
+      "LT",
+      "BE",
+      "NO"
+    ],
+    "summary": "Piping, root runs and stainless steel systems on shipyard and industrial projects. You weld to an approved procedure, and the fit-up is checked before you start.",
+    "needs": [
+      "Valid TIG qualification with supporting documents",
+      "Experience with pipe welding and stainless steel",
+      "Able to work from a welding procedure and an isometric drawing",
+      "Ready to travel and work on site in several countries",
+      "Working English, B1 or better"
+    ]
+  },
+  "mig-mag-mma-welder": {
+    "_discipline": "Welding (MIG/MAG)",
+    "title": "MIG / MAG / MMA Welder",
+    "count": "Ongoing recruitment",
+    "location": "Project sites across Europe",
+    "contract": "Project-based",
+    "rotation": "",
+    "start": "",
+    "rate": "",
+    "_open": true,
+    "_posted": "2026-09-11",
+    "_valid_through": "2026-12-31",
+    "_employment_type": "CONTRACTOR",
+    "_countries": [
+      "LT",
+      "BE",
+      "NO"
+    ],
+    "summary": "Structural steel, fill and capping passes, fabrication in the workshop and repair work on site. Plate, profiles and supports, mostly in shipyards and industrial plants.",
+    "needs": [
+      "Valid qualification for MAG (135), flux-cored (136) or MMA (111)",
+      "Experience with structural steel and plate work",
+      "Able to read drawings and work to a procedure",
+      "Ready to travel and work on site in several countries",
+      "Working English, B1 or better"
+    ]
+  },
+  "pipe-fitter": {
+    "_discipline": "Pipe fitting",
+    "title": "Pipe Fitter",
+    "count": "Ongoing recruitment",
+    "location": "Project sites across Europe",
+    "contract": "Project-based",
+    "rotation": "",
+    "start": "",
+    "rate": "",
+    "_open": true,
+    "_posted": "2026-09-11",
+    "_valid_through": "2026-12-31",
+    "_employment_type": "CONTRACTOR",
+    "_countries": [
+      "LT",
+      "BE",
+      "NO"
+    ],
+    "summary": "Spool prefabrication on fitting tables, routing and installation of complete systems, fit-up and alignment before the welder arrives. We work from isometric drawings and 3D models.",
+    "needs": [
+      "Experience with process, utility or engine room piping",
+      "Able to work from isometrics and 3D models",
+      "Fit-up, alignment and dimensional control before welding",
+      "Ready to travel and work on site in several countries",
+      "Working English, B1 or better"
+    ]
+  },
+  "site-supervisor": {
+    "_discipline": "Site supervision",
+    "title": "Site Supervisor",
+    "count": "Ongoing recruitment",
+    "location": "Project sites across Europe",
+    "contract": "Project-based",
+    "rotation": "",
+    "start": "",
+    "rate": "",
+    "_open": true,
+    "_posted": "2026-09-11",
+    "_valid_through": "2026-12-31",
+    "_employment_type": "CONTRACTOR",
+    "_countries": [
+      "LT",
+      "BE",
+      "NO"
+    ],
+    "summary": "You run the crew on site. Planning the sequence, holding the schedule, keeping the safety rules and dealing with the client day to day. You report to our project manager, not to the shipyard.",
+    "needs": [
+      "Experience leading welding, piping or mechanical crews on site",
+      "Able to plan the work sequence and report progress to the client",
+      "Confident with safety rules and site documentation",
+      "Ready to travel and work on site in several countries",
+      "English at working level, German is an advantage"
+    ]
+  },
+  "hull-assembler": {
+    "_discipline": "Shipbuilding",
+    "title": "Hull Assembler",
+    "count": "Ongoing recruitment",
+    "location": "Project sites across Europe",
+    "contract": "Project-based",
+    "rotation": "",
+    "start": "",
+    "rate": "",
+    "_open": true,
+    "_posted": "2026-09-11",
+    "_valid_through": "2026-12-31",
+    "_employment_type": "CONTRACTOR",
+    "_countries": [
+      "LT",
+      "BE",
+      "NO"
+    ],
+    "summary": "Assembly of hull sections and blocks in the shipyard. Setting plates and profiles, alignment, tack welding and preparing the joints for the welders, on newbuilds and on repair work.",
+    "needs": [
+      "Experience with hull assembly on newbuilds or ship repair",
+      "Able to read shipbuilding drawings",
+      "Tack welding and confident use of alignment tools",
+      "Ready to travel and work on site in several countries",
+      "Working English, B1 or better"
+    ]
+  }
+}
