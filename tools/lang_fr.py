@@ -89,7 +89,7 @@ S = {
     'Phone':
         'Téléphone',
     'Scale':
-        'Effectif',
+        'Échelle',
     'Marine':
         'Naval',
     'NDT UT':
@@ -2813,4 +2813,30 @@ S = {
         'Sur nos propres prestations, il s’agit d’un contrôle qualité interne, qui ne vaut jamais réception. Nous avons écrit ce que cela signifie dans <a href="/news/we-do-not-certify-our-own-welds">nous ne certifions pas nos propres soudures</a>.',
     '<strong data-processor-name>The form processor</strong> &mdash; receives what you send through the enquiry, application and subscription forms, including any documents you attach, and passes it to us.':
         '<strong data-processor-name>Le prestataire de formulaires</strong> &mdash; reçoit ce que vous envoyez via les formulaires de demande, de candidature et d’abonnement, y compris les documents joints, et nous le transmet.',
+    'Sheet':
+        'Feuille',
+    'Rev':
+        'Rév.',
+    'Projection':
+        'Projection',
+    'ALPROJECTS, UAB':
+        'ALPROJECTS, UAB',
+    'Šilutės pl. 2, LT-92298<br>Klaipėda, Lithuania':
+        'Šilutės pl. 2, LT-92298<br>Klaipėda, Lituanie',
+    'No.':
+        'N°',
+    'Role':
+        'Poste',
+    'Location':
+        'Lieu',
+    'Contract':
+        'Contrat',
+    'Project sites across Europe':
+        'Sites de projet partout en Europe',
+    'Project-based':
+        'Au projet',
+    'Open the first sheet <span class="ar-e" aria-hidden="true">&#8593;</span>':
+        'Ouvrir la première feuille <span class="ar-e" aria-hidden="true">&#8593;</span>',
+    'Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records.':
+        'Douze services en trois groupes : les prestations mécaniques et industrielles que nous prenons en charge directement, les travaux navals que nous réalisons au chantier et à flot, et les disciplines d’inspection et d’accès qui montrent ce qui a été construit. La plupart des chantiers en combinent plusieurs sous un seul contrat, avec un seul encadrement et une seule documentation.',
 }

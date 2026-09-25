@@ -9,12 +9,24 @@ translation key that no build step can see.
 
 The rotors turn, each at its own rate: three locked in step read as a repeated
 stamp, which is what they would be. The animation lives inside the file rather
-than in the page, so the drawing can be referenced with a plain <img>: no
-JavaScript, cached like any other asset, and `prefers-reduced-motion` is
-honoured by the SVG's own media query rather than by anything the page has to
-remember. The cost is the stroke colour, which has to be baked in instead of
-taken from currentColor -- acceptable here, where the ground is dark on every
-page.
+than in the page.
+
+⚠️ IT MUST BE INLINED, NOT REFERENCED WITH <img>. This file used to say the
+opposite -- that a plain <img> was enough because `prefers-reduced-motion` is
+answered by the SVG's own media query. It is not. Measured on a sibling drawing,
+three ways, under `reduce`: 0 pixels moving as a top-level document, 0 inlined
+into the page, and 12064 still moving through <img>. The preference does not
+reach the isolated document an <img> creates, so for as long as the hero
+carried this file in an <img> the rotors turned for someone who had asked their
+system to stop them.
+
+Inlined, the media query below is evaluated against the visitor's preference and
+works. That is why every selector here is scoped to `svg.wind`: a <style> inside
+an inlined SVG applies to the whole page, and a bare `path, circle, rect { fill:
+none }` would restyle the icon sprite and the footer's projection symbol.
+
+The stroke colour is baked in rather than taken from currentColor -- acceptable
+here, where the ground is dark on every page.
 
 One machine on its own measured 21% of the viewport at 1440 and read as a
 small object adrift in a wide band. The horizontal element in this subject is
@@ -135,31 +147,37 @@ def build():
                  % (SEABED_Y, W - 6, SEABED_Y))
     for i in range(30):
         parts.append('<path class="f0" d="M %.1f %.1f l -9 12"/>' % (14 + i * 33, SEABED_Y))
-    css.append(".l0 { stroke: rgba(%s, 0.42); }\n    .f0 { stroke: rgba(%s, 0.18); }"
-               % (STROKE, STROKE))
+    css.append("svg.wind .l0 { stroke: rgba(%s, 0.42); }\n"
+               "    svg.wind .f0 { stroke: rgba(%s, 0.18); }" % (STROKE, STROKE))
 
     # smallest first, so the near machine overlaps the ones standing off
     for idx, (cx, k, hub_h, turn, alpha) in enumerate(
             sorted(MACHINES, key=lambda m: m[1]), start=1):
         svg, hub_y = machine(cx, k, hub_h, idx)
         parts.append(svg)
+        # Scoped here too, not only in the shared block: the file is inlined
+        # into the page, so an unscoped `.l1` would reach any element on the
+        # site that happens to carry that class.
         css.append(
-            ".l%d { stroke: rgba(%s, %.2f); }\n    .f%d { stroke: rgba(%s, %.2f); }\n"
-            "    .s%d { transform-box: view-box; transform-origin: %.1fpx %.1fpx;\n"
+            "svg.wind .l%d { stroke: rgba(%s, %.2f); }\n"
+            "    svg.wind .f%d { stroke: rgba(%s, %.2f); }\n"
+            "    svg.wind .s%d { transform-box: view-box;\n"
+            "           transform-origin: %.1fpx %.1fpx;\n"
             "           animation: turbine-spin %ds linear infinite; }"
             % (idx, STROKE, alpha, idx, STROKE, alpha * 0.45, idx, cx, hub_y, turn))
 
-    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d"
-     width="%d" height="%d" role="img" aria-label="">
+    return '''<svg xmlns="http://www.w3.org/2000/svg" class="wind" viewBox="0 0 %d %d"
+     width="%d" height="%d" aria-hidden="true" focusable="false">
   <style>
-    path, circle, rect { fill: none; stroke-width: 1.2;
+    svg.wind path, svg.wind circle, svg.wind rect {
+                         fill: none; stroke-width: 1.2;
                          stroke-linecap: round; stroke-linejoin: round; }
-    .dash    { stroke-dasharray: 5 7; }
-    .dashdot { stroke-dasharray: 14 5 2 5; }
+    svg.wind .dash    { stroke-dasharray: 5 7; }
+    svg.wind .dashdot { stroke-dasharray: 14 5 2 5; }
     %s
     @keyframes turbine-spin { to { transform: rotate(360deg); } }
     @media (prefers-reduced-motion: reduce) {
-      .s1, .s2, .s3 { animation: none; }
+      svg.wind .s1, svg.wind .s2, svg.wind .s3 { animation: none; }
     }
   </style>
   %s

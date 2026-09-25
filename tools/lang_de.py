@@ -92,7 +92,7 @@ S = {
     'Phone':
         'Telefon',
     'Scale':
-        'Größe',
+        'Maßstab',
     'Marine':
         'Schiffbau',
     'NDT UT':
@@ -2790,4 +2790,30 @@ S = {
         'Bei eigenen Leistungen ist dies interne Qualitätskontrolle und gilt niemals als Abnahme. Was das bedeutet, haben wir in <a href="/news/we-do-not-certify-our-own-welds">wir zertifizieren unsere eigenen Schweißnähte nicht</a> aufgeschrieben.',
     '<strong data-processor-name>The form processor</strong> &mdash; receives what you send through the enquiry, application and subscription forms, including any documents you attach, and passes it to us.':
         '<strong data-processor-name>Der Formularanbieter</strong> &mdash; erhält, was Sie über das Anfrage-, Bewerbungs- und Abonnementformular senden, einschließlich beigefügter Dokumente, und leitet es an uns weiter.',
+    'Sheet':
+        'Blatt',
+    'Rev':
+        'Änd.',
+    'Projection':
+        'Projektionsmethode',
+    'ALPROJECTS, UAB':
+        'ALPROJECTS, UAB',
+    'Šilutės pl. 2, LT-92298<br>Klaipėda, Lithuania':
+        'Šilutės pl. 2, LT-92298<br>Klaipėda, Litauen',
+    'No.':
+        'Nr.',
+    'Role':
+        'Position',
+    'Location':
+        'Einsatzort',
+    'Contract':
+        'Vertrag',
+    'Project sites across Europe':
+        'Projektstandorte in ganz Europa',
+    'Project-based':
+        'Projektbezogen',
+    'Open the first sheet <span class="ar-e" aria-hidden="true">&#8593;</span>':
+        'Das erste Blatt öffnen <span class="ar-e" aria-hidden="true">&#8593;</span>',
+    'Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records.':
+        'Zwölf Leistungen in drei Gruppen: die mechanischen und industriellen Arbeiten, die wir direkt übernehmen, die Schiffbauarbeiten auf der Werft und am Schiff, und die Prüf- und Zugangsdisziplinen, die zeigen, was gebaut wurde. Die meisten Projekte nutzen mehrere davon unter einem Vertrag, mit einer Aufsicht und einer Dokumentation.',
 }

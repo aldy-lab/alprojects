@@ -46,6 +46,13 @@ HEADER_R, FOOTER_R, SPRITE_R = rootify(HEADER), rootify(FOOTER), rootify(SPRITE)
 def drawing_band(slug, src=None, dims=(1000, 620)):
     """The band that carries one generated drawing.
 
+    NOT CALLED at the moment, and deliberately. The fourteen drawings were put
+    on the twelve service pages, /company and /projects, and fourteen animated
+    bands across the site turned a restrained idea into a tic -- every page
+    answering with the same gesture. One drawing on the home page carries it;
+    the rest were noise. The generator and the assets stay, so a band is one
+    call away wherever it earns its place again.
+
     Placed directly under the page's opening block -- the hero photograph on
     Company, the page head on Projects, the service panel on a service page.
     It used to sit at the foot of the page, and measuring the ground rather
@@ -66,11 +73,38 @@ def drawing_band(slug, src=None, dims=(1000, 620)):
         <span class="sheet-plus" style="left:87%%; top:66%%"></span>
       </span>
       <div class="container">
-        <img src="%s" alt="" width="%d" height="%d"
-             loading="lazy" decoding="async" id="srvDraw">
-      </div>
+%s      </div>
     </section>
-""" % ("", src or ("/assets/drawings/%s.svg" % slug), dims[0], dims[1]))
+""" % ("", _drawing_svg(src or ("/assets/drawings/%s.svg" % slug), dims)))
+
+
+def _drawing_svg(path, dims):
+    """The drawing itself, INLINED rather than referenced with <img>.
+
+    An <img> would have been cheaper -- one cached request, no bytes in the
+    page -- and that is how this was written. It does not work:
+    prefers-reduced-motion does not reach an SVG inside an <img>. Measured
+    three ways on the same file under `reduce`: 0 pixels moving as a top-level
+    document, 0 inlined into the page, and 12064 still moving through <img>.
+    A visitor who has asked their system to stop animation gets animation.
+
+    So the file is inlined, which is the only form where the media query inside
+    it is evaluated against the visitor's preference. The generator scopes
+    every selector to `svg.dwg` for exactly this reason -- inlined, an
+    unscoped `path { fill: none }` would restyle the icon sprite and the
+    footer's projection symbol.
+
+    Falls back to an <img> when the file is missing, so a build on a checkout
+    that has not run make_drawings.py still produces a page.
+    """
+    full = os.path.join(ROOT, path.lstrip("/"))
+    try:
+        with io.open(full, encoding="utf-8") as fh:
+            body = fh.read().strip()
+    except IOError:
+        return ('        <img src="%s" alt="" width="%d" height="%d"\n'
+                '             loading="lazy" decoding="async">\n' % (path, dims[0], dims[1]))
+    return "        " + body.replace("\n", "\n        ") + "\n"
 
 
 def page(title, description, body, noindex=False, canonical=None, head_extra="", og="home"):
@@ -202,6 +236,63 @@ def mark_nav(html, path):
     return head + body
 
 
+# ============================================================
+# THE TITLE BLOCK'S SHEET AND REVISION FIELDS
+# ============================================================
+# SHEET and REV are fields of a drawing's title block, so they hold real
+# values or they hold nothing. SHEET is the page's language and its position in
+# the sheet set; REV is the date this page's content last actually changed,
+# read from the hash manifest in tools/lastmod.json -- the same manifest the
+# sitemap's lastmod comes from, so the footer and the sitemap can never
+# disagree about when a page changed.
+#
+# The date is printed INSIDE the page whose hash decides it, which would make
+# every build move every date. i18n_build.last_changed() strips this span
+# before hashing for exactly that reason; the two belong together and neither
+# works alone.
+# Seeded with the home page. index.html is stamped in its own pass AFTER the
+# thirty-nine generated pages, so left to arrive in build order it came out as
+# sheet 40 -- the first page of the set numbered last.
+_SHEET_ORDER = ["index.html"]
+
+
+def _rev_for(rel):
+    """The stored revision date for one page, or today if it is new."""
+    import json as _j
+    try:
+        db = _j.load(io.open(os.path.join(ROOT, "tools", "lastmod.json"),
+                             encoding="utf-8"))
+    except Exception:
+        db = {}
+    rec = db.get(rel)
+    return (rec or {}).get("date") or datetime.date.today().isoformat()
+
+
+def fill_stamp(html, path):
+    """Put the sheet number and revision date into the footer's title block."""
+    if 'data-sheet' not in html:
+        return html
+    if path not in _SHEET_ORDER:
+        _SHEET_ORDER.append(path)
+    n = _SHEET_ORDER.index(path) + 1
+    sheet = "%02d" % n
+    rev = _rev_for(path).replace("-", ".")
+    # Matched on the ATTRIBUTE, never on the element. Both of these named a
+    # tag once; the markup changed under them and they stopped substituting in
+    # silence -- every sheet in the set then printed 01, because the value left
+    # in the page was whatever index.html happened to carry. Nothing raises
+    # when a re.sub matches nothing.
+    #
+    # A lambda rather than a replacement template, too: the date starts with a
+    # digit, and "\1" followed by "2026..." is read as group 12 and printed
+    # "P26.09.17" into the page without complaining.
+    html = re.sub(r'(<\w+[^>]* data-sheet>)[^<]*',
+                  lambda m: m.group(1) + sheet, html)
+    html = re.sub(r'(<\w+[^>]* data-rev>)[^<]*',
+                  lambda m: m.group(1) + rev, html)
+    return html
+
+
 def write(path, html):
     if path.endswith(".html"):
         html = clean_urls(stamp(mark_nav(html, path)))
@@ -211,6 +302,7 @@ def write(path, html):
         # sentence readable, and this is the backstop that keeps what Google
         # sees inside what Google shows.
         html = i18n.clamp_page_desc(html)
+        html = fill_stamp(html, path)
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     io.open(full, "w", encoding="utf-8").write(html)
@@ -590,7 +682,7 @@ def chips(items, attr, cls="chip"):
         for v in items)
 
 
-def spec_rows(p):
+def spec_rows(p, skip=()):
     """The job card's spec column.
 
     A row whose value is unknown is left out rather than printed as "to be
@@ -598,12 +690,18 @@ def spec_rows(p):
     card that answers nothing a rotation worker asks is worse than a shorter
     one. Fill the value in POSITIONS and the row appears.
     """
+    # "Positions" is skipped by the caller: it printed "Ongoing recruitment"
+    # identically on all five rows, which is the schedule's own subject said
+    # five more times in a bordered cell. The value stays in POSITIONS as the
+    # approved wording, in case it is wanted somewhere it says something --
+    # nothing else reads it today, the JSON-LD included, which is why removing
+    # the row removed the string from the page entirely.
     rows = [("Positions", p.get("count")), ("Location", p.get("location")),
             ("Rotation", p.get("rotation")), ("Start", p.get("start")),
             ("Contract", p.get("contract")), ("Rate", p.get("rate"))]
     out = []
     for label, val in rows:
-        if not val:
+        if not val or label in skip:
             continue
         out.append('          <div class="spec"><span>%s</span><b>%s</b></div>'
                    % (label, val))
@@ -611,33 +709,91 @@ def spec_rows(p):
 
 
 def positions_html():
+    """The open positions as a schedule of rows that open in place.
+
+    WHY NOT FIVE CARDS
+    The handoff specified a card per role, split 1.618fr / 1fr, with the
+    requirements on the left and the parameters on the right. Built to the
+    letter it measured 508px a card, of which the right column used 211 --
+    297px of empty column on every one of them, five times over, on a page
+    6598px long. Five near-identical tall rectangles with a hole in each.
+
+    A drawing does not lay parts out as cards. It lists them: a schedule with
+    a number, a description and the parameters in ruled columns, and you read
+    down it. Five roles now fit in one screen, each row opens where it sits,
+    and nothing is hidden from a search engine -- the content of a closed
+    <details> is in the DOM and is indexed.
+
+    <details> rather than buttons and a script: it is keyboard-operable and it
+    works with JavaScript off, which is the state the site is specified to
+    survive. `name="positions"` makes the set exclusive, so one row is open at
+    a time -- the browser closes the previous one itself, with no script.
+
+    EVERY WORD IS THE APPROVED COPY. The handoff's first rule is that the text
+    is not to be edited, and none of it is: the same lead, the same
+    requirements, the same parameters, the same button. What changed is how
+    they are arranged.
+    """
     live = [p for p in POSITIONS if p.get("open")]
     if not live:
-        return """      <div class="notice">
-        <p><strong>No open positions right now.</strong> We still welcome open
-        applications &mdash; use the form below and we will contact you when a project
-        matches your profile.</p>
-      </div>"""
-    out = []
-    for p in live:
+        return ""
+    # BLOCK children throughout, in the header and in every row. As inline
+    # spans the whole <summary> was ONE translation unit -- number, title,
+    # location and contract glued together, five of them, none matching the
+    # titles and locations that are already translated on their own. A block
+    # child makes each leaf its own unit, and the number, having no letters, is
+    # skipped by the extractor. Same lesson as the title block's SHEET field.
+    out = ['      <div class="sched">',
+           '        <div class="sched-head" aria-hidden="true">',
+           '          <div>No.</div><div>Role</div>'
+           '<div>Location</div><div>Contract</div><div></div>',
+           '        </div>']
+    for i, p in enumerate(live, 1):
         d = dict(p)
-        d["needs"] = "\n".join("            <li>%s</li>" % n for n in p["needs"])
-        d["specs"] = spec_rows(p)
-        out.append("""      <article class="position" id="{id}">
-        <div class="position-main">
-          <p class="position-badge"><i class="position-dot" aria-hidden="true"></i>Hiring now</p>
-          <h3>{title}</h3>
-          <p class="position-lead">{summary}</p>
-          <p class="position-label">What we need</p>
-          <ul class="position-needs">
-{needs}
-          </ul>
-          <p><a class="btn-solid" href="#apply" data-apply="{discipline}">Apply for this role</a></p>
-        </div>
-        <div class="position-specs">
+        d["n"] = "%02d" % i
+        d["needs"] = "\n".join("              <li>%s</li>" % n for n in p["needs"])
+        # Location and Contract are already printed in the row itself. Repeating
+        # them a line lower is the panel saying nothing twice; it shows what the
+        # row does not have room for.
+        # The whole strip goes when there is nothing in it, not just its
+        # rows. With Positions gone, Location and Contract already on the
+        # summary line and rotation, start and rate still blank on the client's
+        # side, every role's strip is empty -- and an empty .sched-specs is not
+        # nothing on the page: it has a 1px border and a 24px margin, so it
+        # renders as a hairline box with a gap under it. Fill any of the three
+        # in POSITIONS and the strip comes back with them.
+        rows = spec_rows(p, skip=("Positions", "Location", "Contract"))
+        d["specs"] = ('              <div class="sched-specs">\n%s\n'
+                      '              </div>' % rows) if rows else ""
+        # All closed on load. The page then reads as what it is -- a list of
+        # five open positions you pick from -- instead of one role with four
+        # afterthoughts under it.
+        d["open"] = ""
+        # name= makes the set exclusive: opening one closes the other, natively,
+        # with no script and with the keyboard still working. Where it is not
+        # supported the rows merely stay independently openable, which is a
+        # degradation and not a break.
+        out.append("""        <details class="sched-row" id="{id}" name="positions"{open}>
+          <summary class="sched-sum">
+            <div class="sched-n">{n}</div>
+            <div class="sched-role">{title}</div>
+            <div class="sched-loc">{location}</div>
+            <div class="sched-contract">{contract}</div>
+            <div class="sched-mark" aria-hidden="true"></div>
+          </summary>
+          <div class="sched-open">
+            <div class="sched-in">
 {specs}
-        </div>
-      </article>""".format(**d))
+              <p class="sched-lead">{summary}</p>
+              <p class="position-label">What we need</p>
+              <ul class="position-needs">
+{needs}
+              </ul>
+              <p class="sched-act"><a class="btn-solid" href="#apply" data-apply="{discipline}">Apply for this role</a></p>
+            </div>
+          </div>
+        </details>""".format(**d))
+    out.append("      </div>")
     return "\n".join(out)
 
 
@@ -994,8 +1150,21 @@ def facts_html(facts):
     return '      <div class="fact-strip">\n%s\n      </div>' % cells
 
 
-def thumb_sources(img):
+# Derived here rather than in the thumbs.run() call at the top of this file,
+# because that runs before the article table exists.
+thumbs.news_variants([_a["img"] for _a in ARTICLES])
+
+CARD_SIZES = "(max-width: 760px) 92vw, (max-width: 1440px) 44vw, 625px"
+
+
+def thumb_sources(img, sizes=None):
     """srcset/sizes for a news thumbnail, when a smaller variant exists.
+
+    `sizes` is the caller's, because the same card is 417px wide in the home
+    page's three-up grid and 625 in the news index's two-up one. Left at the
+    three-up default the index served 600px files into 625px boxes -- the
+    browser picks from `sizes`, not from the box, and a stale `sizes` is a
+    soft photograph that nothing reports.
 
     The -600 files were generated at some point and never wired up: every
     thumbnail was pulling its full 1200px original into a box 270 to 371 CSS
@@ -1011,14 +1180,20 @@ def thumb_sources(img):
     small = stem + "-600.webp"
     if not os.path.exists(os.path.join(ROOT, "assets", small)):
         return ""
+    mid = stem + "-900.webp"
+    has_mid = os.path.exists(os.path.join(ROOT, "assets", mid))
     from PIL import Image  # only to read the header; the build has Pillow already
     try:
         big_w = Image.open(os.path.join(ROOT, "assets", img)).size[0]
     except Exception:
         big_w = 1200
-    return (' srcset="/assets/%s 600w, /assets/%s %dw"'
-            ' sizes="(max-width: 640px) 75vw, (max-width: 1400px) 26vw, 371px"'
-            % (small, img, big_w))
+    cands = ["/assets/%s 600w" % small]
+    if has_mid and big_w > 900:
+        cands.append("/assets/%s 900w" % mid)
+    cands.append("/assets/%s %dw" % (img, big_w))
+    return (' srcset="%s" sizes="%s"'
+            % (", ".join(cands),
+               sizes or "(max-width: 640px) 75vw, (max-width: 1400px) 26vw, 371px"))
 
 
 def news_index():
@@ -1028,7 +1203,7 @@ def news_index():
         # by a round trip. Everything from row two down stays lazy.
         eager = i < 3
         card = dict(a, loading="eager" if eager else "lazy",
-                    srcset=thumb_sources(a["img"]),
+                    srcset=thumb_sources(a["img"], CARD_SIZES),
                     prio=' fetchpriority="high"' if i == 0 else "")
         cards.append("""        <a class="news-card" href="/news/{slug}.html">
           <span class="news-top"><span class="num">{num}</span><span>{date} &middot; {cat}</span><span class="arr">&#8593;</span></span>
@@ -1045,7 +1220,7 @@ def news_index():
     </div>
 
     <div class="container">
-      <div class="news-grid">
+      <div class="news-grid plate-grid">
 %s
       </div>
     </div>
@@ -1185,11 +1360,23 @@ COMPANY = """
     </div>
 
     <!-- ================= VALUES ================= -->
-    <div class="container co-sec">
-      <p class="eyebrow">Our values</p>
-      <h2 class="sub-head co-vhead reveal">Values are worth writing down only if someone can
-      hold you to them. Ours are written so a client can.</h2>
-      <div class="co-vals">
+    <!-- Six fields of one wide sheet rather than six blocks of a stack. The
+         section is pinned and the sheet is pulled sideways by the page's own
+         scroll; see THE FILMSTRIP in the stylesheet for the three gates it
+         sits behind and what this markup does when they are off (it is the
+         stack it used to be, which is why the wrappers are inert).
+
+         --n is the field count and the stylesheet computes the travel from it,
+         so adding a seventh value needs nothing here but the number. -->
+    <section class="strip" style="--n: 6">
+      <div class="strip-vp">
+        <div class="strip-head">
+          <p class="eyebrow">Our values</p>
+          <h2 class="sub-head co-vhead strip-title reveal">Values are worth writing down only if someone can
+          hold you to them. Ours are written so a client can.</h2>
+          <span class="strip-gauge" aria-hidden="true"><i></i></span>
+        </div>
+        <div class="co-vals strip-track">
         <div class="co-val reveal">
           <span class="co-val-n">01</span>
           <div>
@@ -1262,8 +1449,9 @@ COMPANY = """
             </ul>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- ================= QUOTE BAND ================= -->
     <section class="co-band">
@@ -2339,21 +2527,28 @@ def cases_html():
     cards = []
     for i, c in enumerate(LIVE):
         alt, _cap, _w, _h = c["photos"][0]
-        # the cover is the 4:3 crop tools/thumbs.py writes, not the plate
-        w, h = 1200, 900
+        # The cover is the square crop tools/thumbs.py writes, not the plate.
+        # Which widths exist is read off the disk rather than assumed: a
+        # landscape plate cannot yield a 1200px square, so two of the ten stop
+        # at 900 and must not be advertised at a width they do not have.
+        have = [wd for wd in (1200, 900, 600)
+                if os.path.exists(os.path.join(
+                    ROOT, "assets", "projects", "cases", c["slug"],
+                    "card-%d.webp" % wd))]
+        w = h = have[0]
         is_lead = lead and i == 0
         # The lead card's plate is about half the container; the others about a
         # quarter of the viewport, capped by the container at 670px.
-        sizes = ("(max-width: 700px) 92vw, (max-width: 1440px) 50vw, 700px"
-                 if is_lead else
-                 "(max-width: 700px) 92vw, (max-width: 1440px) 47vw, 670px")
+        # The lead card is a plate beside its text now rather than a
+        # full-width banner, so it asks for about the same width as the rest.
+        sizes = CARD_SIZES
+        srcset = ", ".join("/assets/projects/cases/%s/card-%d.webp %dw"
+                           % (c["slug"], wd, wd) for wd in sorted(have))
         cards.append(
             '        <a class="case-card%s" href="/projects/%s.html">\n'
             '          <span class="case-thumb">\n'
             '            <img src="/assets/projects/cases/%s/card-600.webp"\n'
-            '                 srcset="/assets/projects/cases/%s/card-600.webp 600w,'
-            ' /assets/projects/cases/%s/card-900.webp 900w,'
-            ' /assets/projects/cases/%s/card-1200.webp 1200w"\n'
+            '                 srcset="%s"\n'
             '                 sizes="%s"\n'
             '                 alt="%s" width="%d" height="%d" loading="%s" decoding="async">\n'
             '            <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>\n'
@@ -2369,7 +2564,7 @@ def cases_html():
             '          </span>\n'
             '        </a>'
             % (" case-wide" if is_lead else "", c["slug"],
-               c["slug"], c["slug"], c["slug"], c["slug"], sizes,
+               c["slug"], srcset, sizes,
                _html.escape(alt, quote=True), w, h,
                "eager" if i < 2 else "lazy", i + 1, c["kicker"],
                _html.escape(c["title"]), c["lead"]))
@@ -3125,7 +3320,18 @@ for _sv in SERVICES_FLAT:
 
 
 def service_nav(active_slug):
-    """Left column: the twelve services in their three groups."""
+    """The deck's contents: twelve sheets in three groups.
+
+    Carries the published-work count per service, which used to be the only
+    thing the separate /services card grid said that this column did not. With
+    the grid gone the count belongs here, beside the service you are choosing
+    between -- not on a second page about the same twelve things.
+
+    The count is a block element so it is its own translation unit. As an inline
+    span it would have been glued into the row's unit together with the number
+    and the name, which is the trap the careers schedule and the title block's
+    sheet field both fell into.
+    """
     out = ['        <p class="eyebrow">All services</p>']
     for label, group in SERVICE_GROUPS:
         out.append('        <div class="srv-group">')
@@ -3134,8 +3340,25 @@ def service_nav(active_slug):
         for sv in group:
             cls = "srv-link is-active" if sv["slug"] == active_slug else "srv-link"
             aria = ' aria-current="page"' if sv["slug"] == active_slug else ''
+            # No work count on the row. It was here to say how much
+            # published evidence stood behind each service, but on eight of
+            # the twelve rows it printed "3 projects" over and over down the
+            # column and read as filler rather than as proof. The evidence is
+            # on the panel, under "Where we have done this".
+            #
+            # The name is a <div>, and that is the whole reason this row has
+            # not collapsed into one translation unit. An element is a unit
+            # when it holds text and no BLOCK descendant, so with two spans
+            # inside it the <a> became a leaf and each row turned into a key
+            # of its own -- markup, row number and name in one string, twelve
+            # new keys where twelve translated names already existed. The
+            # count used to be the block that kept them apart; removing it
+            # put that job on the name. Both are grid items, so a div and a
+            # span lay out identically here: measured, 37px rows and a 620px
+            # column either way.
             out.append('            <li><a class="%s" href="/services/%s.html" data-service="%s"%s>'
-                       '<span class="srv-n">%s</span><span class="srv-name">%s</span></a></li>'
+                       '<span class="srv-n">%s</span><div class="srv-name">%s</div>'
+                       '<i class="srv-leader" aria-hidden="true"></i></a></li>'
                        % (cls, sv["slug"], sv["slug"], aria, sv["num"], sv["nav"]))
         out.append('          </ul>')
         out.append('        </div>')
@@ -3155,10 +3378,40 @@ def service_panel(sv):
                                         h1=sv["h1"], lead=sv["lead"], points=points)
 
 
+SERVICES_COVER_H1 = "Mechanical, marine and inspection services"
+SERVICES_COVER_LEAD = (
+    "Twelve services in three groups: the mechanical and industrial scopes we take on "
+    "directly, the marine work we do in yards and afloat, and the inspection and access "
+    "disciplines that show what was built. Most projects use several of them under one "
+    "contract, with one supervisor and one set of records.")
+
+
+def service_cover():
+    """Sheet 00 of the deck: what the section is, before any one service.
+
+    /services used to be a different page with a different design -- a grid of
+    twelve cards -- sitting in front of twelve nav-and-panel pages about the
+    same twelve things. Two presentations of one set. This is the same deck as
+    every service URL, opened at its cover, so there is one design and /services
+    still has copy of its own rather than being a duplicate of sheet 01.
+    """
+    return ('        <article class="srv-item srv-cover" data-panel="">\n'
+            '          <p class="srv-count">00 / 12</p>\n'
+            '          <h1 class="srv-title">%s</h1>\n'
+            '          <p class="srv-lead">%s</p>\n'
+            '          <a class="srv-cta" href="/services/welding-services.html" '
+            'data-service="welding-services">Open the first sheet '
+            '<span class="ar-e" aria-hidden="true">&#8593;</span></a>\n'
+            '        </article>' % (SERVICES_COVER_H1, SERVICES_COVER_LEAD))
+
+
 def service_page_body(sv):
-    """The two-column block with one service open. Only the active service is
-    rendered as HTML -- one h1 per page, and no twelve-fold duplicate content
-    across twelve URLs. The rest travel as JSON so switching is instant."""
+    """The two-column deck: contents on the left, one sheet on the right.
+
+    `sv` is None on /services, which shows the cover sheet instead of a
+    service. Only the open sheet is rendered as HTML -- one h1 per page, and no
+    twelve-fold duplicate content across twelve URLs. The rest travel as JSON so
+    switching is instant."""
     payload = _json.dumps(
         [{k: x[k] for k in ("slug", "num", "h1", "lead", "points", "deep")} for x in SERVICES_FLAT],
         ensure_ascii=False, separators=(",", ":"))
@@ -3167,22 +3420,38 @@ def service_page_body(sv):
             '        <nav class="srv-nav" aria-label="Services">\n'
             '{nav}\n'
             '        </nav>\n'
-            '        <div class="srv-panel">\n'
+            '        <div class="srv-panel" style="--dial: {num}">\n'
+            # The stage is the spindle: the sheet turns on its left edge and the
+            # two edges behind it are the rest of the deck. Both are empty
+            # decoration -- no text, so no translation unit, and with the 3D
+            # gates off they are a flat frame and two hairlines.
+            '          <div class="srv-stage">\n'
+            '            <span class="srv-stack" aria-hidden="true"><i></i><i></i></span>\n'
             '{panel}\n'
+            '          </div>\n'
             '          <div class="srv-controls">\n'
             '            <button class="srv-arrow" type="button" data-srv-prev '
             'aria-label="Previous service"><span class="ar-w">&#8593;</span></button>\n'
             '            <button class="srv-arrow" type="button" data-srv-next '
             'aria-label="Next service"><span class="ar-e">&#8593;</span></button>\n'
-            '            <span class="srv-pos" aria-live="polite">{num} / 12</span>\n'
+            # The position readout sits inside the instrument that points at it.
+            # The dial is not aria-hidden, because the live region is its child;
+            # its own parts are empty elements and announce nothing.
+            '            <span class="srv-dial">\n'
+            '              <i class="srv-dial-ring"></i>\n'
+            '              <i class="srv-dial-needle"></i>\n'
+            '              <span class="srv-pos" aria-live="polite">{num} / 12</span>\n'
+            '            </span>\n'
             '          </div>\n'
             '        </div>\n'
             '      </div>\n'
             '    </section>\n'
             + '    <section class="srv-deep" id="srvDeep">{deep}</section>\n'
             + '    <script type="application/json" id="srv-data">{payload}</script>\n'
-            ).format(nav=service_nav(sv["slug"]), panel=service_panel(sv),
-                     num=sv["num"], deep=sv["deep"], payload=payload)
+            ).format(nav=service_nav(sv["slug"] if sv else ""),
+                     panel=service_panel(sv) if sv else service_cover(),
+                     num=sv["num"] if sv else "00",
+                     deep=(sv["deep"] if sv else ""), payload=payload)
 
 
 # ---------------- write everything ----------------
@@ -3223,65 +3492,13 @@ for _sv in SERVICES_FLAT:
                                          (_sv["h1"], "/services/%s.html" % _sv["slug"])])))
 
 # /services.html shows the first service, and is the entry point people link to
-# ============================================================
-# /services -- THE SECTION'S OWN PAGE
-# ============================================================
-# It used to render service_page_body(SERVICES_FLAT[0]) -- literally the welding
-# page at a second address. Measured 99.6% identical, both self-canonical: two
-# identical pages to a search engine, and no heading of its own for the section.
-#
-# What it is instead: the index of the twelve, in the three groups the nav
-# already uses, with the section's own H1 and a short introduction. The cards
-# carry the number and the name and NOT the lead paragraph -- copying twelve
-# leads here would rebuild the same duplicate-content problem twelve times
-# smaller. What they carry instead is derived and exists nowhere else: how many
-# published projects stand behind each service.
-def services_index_body():
-    groups = []
-    for label, group in SERVICE_GROUPS:
-        cards = []
-        for sv in group:
-            n = len(WHERE.get(sv["slug"], []))
-            if n:
-                proof = ('<span class="srv-ix-proof">%d project%s</span>'
-                         % (n, "" if n == 1 else "s"))
-            else:
-                # Silence, not a zero: "0 projects" on a page meant to sell the
-                # service reads as an admission. Four of the twelve have no
-                # published case yet -- NDT, 3D laser scanning, heavy equipment
-                # relocation and ship repair.
-                proof = ""
-            cards.append(
-                '          <a class="srv-ix-card" href="/services/%s.html">\n'
-                '            <span class="srv-ix-n">%s</span>\n'
-                '            <span class="srv-ix-name">%s</span>\n'
-                '            %s\n'
-                '          </a>' % (sv["slug"], sv["num"], sv["h1"], proof))
-        groups.append(
-            '        <div class="srv-ix-group">\n'
-            '          <p class="srv-ix-label">%s</p>\n'
-            '        </div>\n%s' % (label, "\n".join(cards)))
-
-    return ('\n    <section class="srv-ix">\n'
-            '      <div class="container">\n'
-            '        <p class="eyebrow">Our services</p>\n'
-            '        <h1 class="srv-ix-h1">Mechanical, marine and inspection services</h1>\n'
-            '        <p class="srv-ix-lead">Twelve services in three groups: the mechanical '
-            'and industrial scopes we take on directly, the marine work we do in yards and '
-            'afloat, and the inspection and access disciplines that show what was built. '
-            'Most projects use several of them under one contract, with one supervisor and '
-            'one set of records. Where a service has published work behind it, its page '
-            'links to the job.</p>\n'
-            '        <div class="srv-ix-grid">\n%s\n        </div>\n'
-            '      </div>\n'
-            '    </section>\n' % "\n".join(groups))
-
-
 write("services.html", page("Services",
-      "Twelve services in three groups -- mechanical and industrial scopes, marine work in "
-      "yards and afloat, and inspection and access. One contract, one supervisor, one set "
-      "of records.",
-      services_index_body(), canonical="/services.html", og="services",
+      "Twelve services in three groups -- mechanical and industrial scopes, marine "
+      "work in yards and afloat, and inspection and access. One contract, one supervisor, "
+      "one set of records.",
+      # The same deck as every service URL, opened at its cover. One design for
+      # the section instead of a card grid in front of twelve panel pages.
+      service_page_body(None), canonical="/services.html", og="services",
       head_extra=collection_ld(
           "Services", "/services.html",
           "Twelve services in three groups -- mechanical and industrial scopes, marine "
@@ -3381,22 +3598,15 @@ SECTOR_PAGES = [
 # stated in the site's own language -- and the rotor turns, which is the one
 # thing a still photograph of a wind farm cannot do.
 #
-# Referenced with <img> rather than inlined: the animation and the
-# reduced-motion switch live inside the file, so the page needs no JavaScript
-# and the asset is cached like any other. See tools/make_wind_turbine.py.
-TURBINE = """
-    <section class="sector-drawing">
-      <span class="sheet-grid" aria-hidden="true"></span>
-      <span class="sheet-furniture" aria-hidden="true">
-        <span class="sheet-plus" style="left:12%; top:18%"></span>
-        <span class="sheet-plus" style="left:86%; top:64%"></span>
-      </span>
-      <div class="container">
-        <img src="/assets/wind-turbine.svg" alt="" width="1000" height="720"
-             loading="lazy" decoding="async">
-      </div>
-    </section>
-"""
+# EMPTY on purpose as of 24 Sep 2026. The wind field was the animated drawing
+# on this page; the instruction was to leave animated drawings on the home page
+# only, and this is not the home page. One line to bring it back -- the asset
+# and the generator are untouched.
+#
+# It also carried the <img> defect: prefers-reduced-motion does not reach an
+# SVG inside an <img> (measured: 12064 pixels still moving under `reduce`), so
+# if it does come back it comes back inlined, the way the hero does it.
+TURBINE = ""
 
 
 def sector_body(slug, name, img, lead, service_slugs):
@@ -3510,7 +3720,7 @@ _write_sitemap()
 for _name in ("index.html", "404.html"):
     _path = os.path.join(ROOT, _name)
     _before = io.open(_path, encoding="utf-8").read()
-    _after = clean_urls(stamp(_before))
+    _after = fill_stamp(clean_urls(stamp(_before)), _name)
     if _after != _before:
         io.open(_path, "w", encoding="utf-8").write(_after)
         print("stamped %s" % _name)

@@ -104,6 +104,11 @@
       contact_mail: "Your mail app opened with the enquiry filled in — press send.",
       contact_mail_files: "Your mail app opened \u2014 the drawings do not travel with it, so attach them now:",
       bar_call: "Call", bar_scope: "Send the scope",
+      /* Used when the deck rebuilds a sheet after leaving the cover, which
+         has no bullets to patch. Without them the German page printed the
+         English fallback. */
+      srv_cta: "Discuss a project",
+      services_title: "Services \u2014 ALPROJECTS Group",
       apply_mail: "Your mail app opened with the details filled in — attach your CV and send.",
       file_remove: "Remove",
       file_too_big: "Too large (10 MB maximum):",
@@ -142,6 +147,8 @@
       /* Short form for the sticky bar only -- the full "Envoyer le cahier des
          charges" is on the page buttons. At 320px it wrapped to three lines. */
       bar_call: "Appeler", bar_scope: "Envoyer la demande",
+      srv_cta: "Discuter d\u2019un projet",
+      services_title: "Services \u2014 ALPROJECTS Group",
       apply_mail: "Votre messagerie s’est ouverte avec les informations pré-remplies — joignez votre CV et envoyez.",
       file_remove: "Retirer",
       file_too_big: "Trop volumineux (10 Mo maximum) :",
@@ -178,6 +185,8 @@
       contact_mail: "Ihr E-Mail-Programm wurde mit der ausgefüllten Anfrage geöffnet — bitte absenden.",
       contact_mail_files: "Ihr E-Mail-Programm wurde ge\u00f6ffnet \u2014 die Zeichnungen gehen nicht mit, bitte jetzt anh\u00e4ngen:",
       bar_call: "Anrufen", bar_scope: "Anfrage senden",
+      srv_cta: "Projekt besprechen",
+      services_title: "Leistungen \u2014 ALPROJECTS Group",
       apply_mail: "Ihr E-Mail-Programm wurde mit den Angaben geöffnet — hängen Sie Ihren Lebenslauf an und senden Sie.",
       file_remove: "Entfernen",
       file_too_big: "Zu groß (maximal 10 MB):",
@@ -214,6 +223,8 @@
       contact_mail: "Il programma di posta si è aperto con la richiesta compilata — premete invia.",
       contact_mail_files: "Il programma di posta si \u00e8 aperto \u2014 i disegni non partono con esso, allegateli ora:",
       bar_call: "Chiamare", bar_scope: "Invia la richiesta",
+      srv_cta: "Parliamo del progetto",
+      services_title: "Servizi \u2014 ALPROJECTS Group",
       apply_mail: "Il programma di posta si è aperto con i dati precompilati — allega il CV e invia.",
       file_remove: "Rimuovi",
       file_too_big: "Troppo grande (massimo 10 MB):",
@@ -628,6 +639,10 @@
      pages for a picture most visitors never ask for. One request, cached, and
      a failure leaves the mode working with nothing drawn. */
   var isoLoaded = false;
+  /* Fetched when Drawing mode opens, not on load: nobody who has not pressed B
+     pays for it. Inlined rather than referenced with <img>, which is what makes
+     the file's own reduced-motion media query work -- see the note in
+     tools/make_wind_turbine.py. */
   function loadHeroIso() {
     var box = document.querySelector(".hero-iso");
     if (!box) return;
@@ -946,9 +961,71 @@
       for (var i = 0; i < services.length; i++) if (services[i].slug === slug) return i;
       return -1;
     };
+    /* "" means the cover sheet is open. It used to fall back to the first
+       service, which made the arrows and the arrow keys skip sheet 01 entirely
+       when you started from /services: forward from the cover landed on 02. */
     var currentSlug = function () {
       var a = document.querySelector(".srv-link.is-active");
-      return a ? a.getAttribute("data-service") : (services[0] && services[0].slug);
+      if (a) return a.getAttribute("data-service");
+      var open = srvPanel.querySelector(".srv-item");
+      if (open && open.getAttribute("data-panel") === "") return "";
+      return services[0] && services[0].slug;
+    };
+
+    /* The cover is not in the JSON payload -- it is the section's own copy, not
+       a service -- so its markup is kept from the page it was served with and
+       put back when the deck returns to it. Cheaper and more honest than
+       rebuilding copy in the script, where it could drift from the build. */
+    var coverEl = srvPanel.querySelector('.srv-item[data-panel=""]');
+    var coverHTML = coverEl ? coverEl.outerHTML : null;
+
+    /* Returning to the cover uses the same transition as any other sheet: the
+       height is pinned and animated, the content leaves in the direction of
+       travel. Going back to the cover is always "back", so the direction is
+       fixed rather than derived. */
+    var renderCover = function (push) {
+      var art = srvPanel.querySelector(".srv-item");
+      if (!art || !coverHTML) return;
+      var fromH = srvPanel.offsetHeight;
+      srvPanel.style.height = fromH + "px";
+
+      art.classList.add("is-entering", "is-back");
+      art.outerHTML = coverHTML;
+      var fresh = srvPanel.querySelector(".srv-item");
+      fresh.classList.add("is-entering", "is-back");
+
+      srvPanel.style.height = "auto";
+      var toH = srvPanel.offsetHeight;
+      srvPanel.style.height = fromH + "px";
+
+      requestAnimationFrame(function () {
+        srvPanel.style.height = toH + "px";
+        requestAnimationFrame(function () {
+          fresh.classList.remove("is-entering", "is-back");
+        });
+      });
+      var release = function (ev) {
+        if (ev.propertyName !== "height" || ev.target !== srvPanel) return;
+        srvPanel.style.height = "";
+        srvPanel.removeEventListener("transitionend", release);
+      };
+      srvPanel.addEventListener("transitionend", release);
+
+      var pos = srvPanel.querySelector(".srv-pos");
+      if (pos) pos.textContent = "00 / 12";
+      /* The dial's hand reads off this: one variable, 30 degrees per sheet,
+         and the sweep is a CSS transition. Nothing else in here animates. */
+      srvPanel.style.setProperty("--dial", "0");
+      var deep = document.getElementById("srvDeep");
+      if (deep) { deep.innerHTML = ""; deep.classList.remove("is-on"); }
+      document.querySelectorAll(".srv-link").forEach(function (a) {
+        a.classList.remove("is-active");
+        a.removeAttribute("aria-current");
+      });
+      document.title = TXT.services_title || document.title;
+      if (push && window.history && history.pushState) {
+        history.pushState({ srv: "" }, "", PREFIX + "/services");
+      }
     };
 
     var renderService = function (slug, push) {
@@ -958,15 +1035,53 @@
       var art = srvPanel.querySelector(".srv-item");
       if (!art) return;
 
+      /* ---- the transition ----
+         What it used to do: fade the text out and back over 8px of vertical
+         nudge, while the panel's height changed INSTANTLY. The twelve services
+         run from 452px to 931px tall, so the footer and everything below it
+         lurched up to 479px in one frame while the only thing that looked like
+         it was moving was an 8px dissolve. That is the strange part -- the
+         motion you saw and the motion that happened were in different places.
+
+         Now the content leaves in the direction of travel (forward down the
+         list is out to the left, in from the right) and the panel's height is
+         animated from the old value to the new one, so the page below follows
+         the change instead of arriving at the end of it.
+
+         Direction comes from the index delta, so the list, the arrows and the
+         back button all agree about which way "next" is. */
+      var prevIdx = indexOfSlug(art.getAttribute("data-panel") || "");
+      var wasCover = art.getAttribute("data-panel") === "";
+      /* Leaving the cover is always forward: the cover is sheet 00 and every
+         service is after it. */
+      var dir = wasCover ? 1 : ((prevIdx < 0 || prevIdx === i) ? 0 : (i > prevIdx ? 1 : -1));
       art.setAttribute("data-panel", sv.slug);
-      /* restart the entrance animation on every switch */
+
+      /* Height must be pinned to a number before the content is replaced, or
+         there is nothing to transition FROM. */
+      var fromH = srvPanel.offsetHeight;
+      srvPanel.style.height = fromH + "px";
+
       /* Reset to the out state only if the panel is at rest. Clicking a second
-         service while the first is still fading in should let that fade carry
-         on to the new content, not snap back to invisible -- which is exactly
-         what the old @keyframes did: measured opacity 0.97, then 0 one click
-         later. */
+         service while the first is still coming in should let that carry on to
+         the new content, not snap back to invisible -- which is exactly what
+         the old @keyframes did: measured opacity 0.97, then 0 one click later. */
       var settled = parseFloat(getComputedStyle(art).opacity) > 0.99;
-      if (settled) art.classList.add("is-entering");
+      if (settled) {
+        art.classList.add("is-entering");
+        art.classList.toggle("is-back", dir < 0);
+      }
+      /* The cover has no <ul> of points, so coming off it the sheet is rebuilt
+         rather than patched -- patching left the cover's CTA in place under the
+         first service's bullets. */
+      if (wasCover && !art.querySelector(".srv-points")) {
+        art.classList.remove("srv-cover");
+        art.innerHTML = '<p class="srv-count"></p><h1 class="srv-title"></h1>'
+                      + '<p class="srv-lead"></p><ul class="srv-points"></ul>'
+                      + '<a class="srv-cta" href="' + PREFIX + '/contacts">'
+                      + (TXT.srv_cta || "Discuss a project")
+                      + ' <span class="ar-e" aria-hidden="true">&#8593;</span></a>';
+      }
       art.querySelector(".srv-count").textContent = sv.num + " / 12";
       art.querySelector(".srv-title").textContent = sv.h1;
       art.querySelector(".srv-lead").innerHTML = sv.lead;
@@ -979,6 +1094,7 @@
       });
       var pos = srvPanel.querySelector(".srv-pos");
       if (pos) pos.textContent = sv.num + " / 12";
+      srvPanel.style.setProperty("--dial", String(parseInt(sv.num, 10)));
 
       /* The longer block below the shell belongs to one service, and switching
          never reloads the page, so it has to be swapped with the panel. */
@@ -999,12 +1115,36 @@
         history.pushState({ srv: sv.slug }, "", PREFIX + "/services/" + sv.slug);
       }
       /* Release on the next frame: the browser has to paint the out state once
-         before the transition back to rest will run. */
-      if (settled) {
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () { art.classList.remove("is-entering"); });
-        });
-      }
+         before the transition back to rest will run. The height goes to its new
+         value in the same frame, so the two move together instead of one after
+         the other.
+
+         The natural height is read with the pin lifted and restored inside one
+         synchronous block, so the browser lays out once and nothing is ever
+         painted at the intermediate value. */
+      srvPanel.style.height = "auto";
+      var toH = srvPanel.offsetHeight;
+      srvPanel.style.height = fromH + "px";
+
+      requestAnimationFrame(function () {
+        srvPanel.style.height = toH + "px";
+        if (settled) {
+          requestAnimationFrame(function () {
+            art.classList.remove("is-entering");
+            art.classList.remove("is-back");
+          });
+        }
+      });
+
+      /* Let go of the pin once the height has arrived, so the panel sizes
+         itself again -- left pinned, a window resize or a late font swap would
+         be stuck at a number measured at the old width. */
+      var release = function (ev) {
+        if (ev.propertyName !== "height" || ev.target !== srvPanel) return;
+        srvPanel.style.height = "";
+        srvPanel.removeEventListener("transitionend", release);
+      };
+      srvPanel.addEventListener("transitionend", release);
 
       /* the panel is what changed, so that is what should be announced */
       art.setAttribute("tabindex", "-1");
@@ -1027,9 +1167,19 @@
     });
 
     var step = function (delta) {
-      var i = indexOfSlug(currentSlug());
+      var cur = currentSlug();
+      if (cur === "") {
+        /* Off the cover: forward opens the first sheet, back opens the last. */
+        renderService(services[delta > 0 ? 0 : services.length - 1].slug, true);
+        return;
+      }
+      var i = indexOfSlug(cur);
       if (i < 0) return;
-      var next = (i + delta + services.length) % services.length;
+      var next = i + delta;
+      /* Stepping back off sheet 01 returns to the cover when there is one,
+         rather than wrapping to sheet 12 past a cover the reader has seen. */
+      if (next < 0 && coverHTML) { renderCover(true); return; }
+      next = (next + services.length) % services.length;
       renderService(services[next].slug, true);
     };
     var prev = srvPanel.querySelector("[data-srv-prev]");
@@ -1047,7 +1197,11 @@
 
     window.addEventListener("popstate", function () {
       var m = location.pathname.match(/\/services\/([a-z0-9-]+)\.html$/);
-      renderService(m ? m[1] : services[0].slug, false);
+      if (m) { renderService(m[1], false); return; }
+      /* Back out of a service lands on /services, which is the cover -- not
+         sheet 01, which is what it used to show and which made the back button
+         disagree with the address bar. */
+      if (coverHTML) renderCover(false); else renderService(services[0].slug, false);
     });
   }
 
@@ -1859,6 +2013,31 @@
     });
   }
 
+  /* ---------- the sheet scale ----------
+     A drawing carries a scale up its edge and you read your position off it.
+     This is that: a ruled vertical rule on the right margin with an index that
+     travels as the page scrolls, so how far through the sheet you are is a
+     thing you can see rather than a scrollbar you have to find.
+
+     Injected here rather than put in the markup for two reasons: it is one
+     empty decorative element that would otherwise have to be added to the
+     page template, index.html and 404.html separately, and being absent from
+     the markup it can never become a translation unit.
+
+     The motion is a CSS scroll timeline -- there is no scroll listener and no
+     rAF loop in this file for it. Where scroll timelines are unsupported the
+     element is not shown at all (see the @supports in the stylesheet), which
+     is why there is nothing to check here. */
+  (function () {
+    if (document.querySelector(".sheet-scale")) return;
+    var sc = document.createElement("div");
+    sc.className = "sheet-scale";
+    sc.setAttribute("aria-hidden", "true");
+    sc.innerHTML = '<span class="sheet-scale-rule"></span>'
+                 + '<span class="sheet-scale-index"></span>';
+    document.body.appendChild(sc);
+  })();
+
   /* ---------- phone action bar ----------
      Fixed to the bottom edge, revealed only after the first screen has been
      read so nothing ever covers the hero, never on /contacts (the form is
@@ -1905,5 +2084,118 @@
       if (!barTick) { barTick = true; requestAnimationFrame(barCheck); }
     }, { passive: true });
     barCheck();
+  }
+
+  /* ---------- the field label ----------
+     A drawing names the field you are reading in the margin of the sheet. The
+     right margin already carries the scale; this is the left one, and it says
+     which section of the page you are in.
+
+     The text is never authored: it is read off the section's own eyebrow, so
+     it is already in the reader's language and there is no key to translate,
+     nothing to keep in step with the build, and no new string on any page.
+
+     The band is a slice a third of the way down the viewport. Between two
+     eyebrows nothing fires and the label keeps the last one it was given,
+     which is the correct answer for the whole of that section. */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    var marks = document.querySelectorAll(".eyebrow");
+    if (marks.length < 2) return;
+    var field = document.createElement("div");
+    field.className = "sheet-field";
+    field.setAttribute("aria-hidden", "true");
+    var txt = document.createElement("span");
+    field.appendChild(txt);
+    document.body.appendChild(field);
+    /* Eyebrows are not all short. A case page's is a trail -- "Project ·
+       Mechanical maintenance · Waste to energy" -- and set across the margin
+       that ran past the bottom of the screen and was cut off mid-word by the
+       overflow, which read as three labels stacked on each other rather than
+       as one truncated. The first segment is the field; the cap is a backstop
+       for anything that is long without being a trail. */
+    var shorten = function (v) {
+      v = v.split("\u00b7")[0].trim();
+      return v.length > 30 ? v.slice(0, 28).trim() + "\u2026" : v;
+    };
+    var set = function (v) {
+      v = v ? shorten(v) : "";
+      if (txt.textContent === v) return;
+      txt.textContent = v;
+      field.classList.toggle("is-on", !!v);
+    };
+    /* The field is the last eyebrow above the reading line, recomputed rather
+       than latched on a crossing. A thin IntersectionObserver band looked
+       right and was wrong twice: an eyebrow held still by a pinned section
+       never enters the band at all, and a jump longer than the band -- an
+       anchor, a restored scroll position, a flick on a trackpad -- steps over
+       it without a callback, so the margin went on naming a section the reader
+       had left. Scanning is nine rects on a frame that was going to happen
+       anyway. */
+    var line = function () { return window.innerHeight * 0.38; };
+    var pick = function () {
+      var cut = line(), best = "";
+      [].forEach.call(marks, function (el) {
+        if (el.getBoundingClientRect().top < cut) best = (el.textContent || "").trim();
+      });
+      set(best);
+    };
+    var fieldTick = false;
+    window.addEventListener("scroll", function () {
+      if (fieldTick) return;
+      fieldTick = true;
+      requestAnimationFrame(function () { fieldTick = false; pick(); });
+    }, { passive: true });
+    window.addEventListener("resize", pick, { passive: true });
+    pick();
+  })();
+
+  /* ---------- the viewer's crosshair ----------
+     The photographs are the evidence, and the viewer is where they are
+     inspected, so it behaves like an instrument: a crosshair on the pointer
+     and the position read in the photograph's OWN pixels -- not the box's, so
+     the numbers mean something about the frame rather than about the window it
+     is being shown in.
+
+     Injected, pointer-driven, and only where there is a real pointer: on a
+     touch screen there is no hover to follow and the crosshair would sit
+     wherever the last tap landed. */
+  if (lb && shotBtns.length && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    (function () {
+      var fig = lb.querySelector(".lb-fig");
+      var img = document.getElementById("lbImage");
+      if (!fig || !img) return;
+      var cross = document.createElement("div");
+      cross.className = "lb-cross";
+      cross.setAttribute("aria-hidden", "true");
+      cross.innerHTML = '<i class="lb-cross-v"></i><i class="lb-cross-h"></i>'
+                      + '<b class="lb-cross-read"></b>';
+      fig.appendChild(cross);
+      var read = cross.querySelector(".lb-cross-read");
+      var pad = function (n) { return (n < 10 ? "000" : n < 100 ? "00" : n < 1000 ? "0" : "") + n; };
+      var move = function (ev) {
+        var b = img.getBoundingClientRect();
+        if (!b.width || !b.height) return;
+        var x = ev.clientX - b.left, y = ev.clientY - b.top;
+        if (x < 0 || y < 0 || x > b.width || y > b.height) { cross.classList.remove("is-on"); return; }
+        cross.classList.add("is-on");
+        /* Everything in the figure's own pixels: where the photograph sits
+           inside it, how big it is, and where the pointer is. The lines belong
+           to the photograph, and the figure box is a different rectangle. */
+        var f = fig.getBoundingClientRect();
+        cross.style.setProperty("--ix", Math.round(b.left - f.left) + "px");
+        cross.style.setProperty("--iy", Math.round(b.top - f.top) + "px");
+        cross.style.setProperty("--iw", Math.round(b.width) + "px");
+        cross.style.setProperty("--ih", Math.round(b.height) + "px");
+        cross.style.setProperty("--px", Math.round(b.left - f.left + x) + "px");
+        cross.style.setProperty("--py", Math.round(b.top - f.top + y) + "px");
+        var nw = img.naturalWidth || Math.round(b.width);
+        var nh = img.naturalHeight || Math.round(b.height);
+        read.textContent = "X " + pad(Math.round(x / b.width * nw))
+                         + "   Y " + pad(Math.round(y / b.height * nh));
+      };
+      fig.addEventListener("pointermove", move);
+      fig.addEventListener("pointerleave", function () { cross.classList.remove("is-on"); });
+    })();
   }
 })();

@@ -1,162 +1,162 @@
 {
  "careers.html": {
-  "date": "2026-09-17",
-  "hash": "3c6c1bfe93617551"
+  "date": "2026-09-24",
+  "hash": "20ed4b0c4993dfab"
  },
  "company.html": {
-  "date": "2026-09-17",
-  "hash": "a53ca2920319f5c5"
+  "date": "2026-09-24",
+  "hash": "4ed48261df040378"
  },
  "contacts.html": {
-  "date": "2026-09-17",
-  "hash": "e6b92e741ff4dfa3"
+  "date": "2026-09-23",
+  "hash": "b9478692362a437d"
  },
  "index.html": {
-  "date": "2026-09-20",
-  "hash": "d3f509663dc7aa9d"
+  "date": "2026-09-24",
+  "hash": "c03e66ef0aa3211b"
  },
  "news/europe-tig-welder-shortage.html": {
-  "date": "2026-09-17",
-  "hash": "e45af544ae9b26e2"
+  "date": "2026-09-23",
+  "hash": "d83b086147112499"
  },
  "news/fuel-loading-terminal-completed.html": {
-  "date": "2026-09-17",
-  "hash": "f27e7aedf9b13dbd"
+  "date": "2026-09-23",
+  "hash": "ce0aeeed34094448"
  },
  "news/index.html": {
-  "date": "2026-09-17",
-  "hash": "88ae465c4be867f3"
+  "date": "2026-09-24",
+  "hash": "604db25c1b7bfa24"
  },
  "news/piping-installation-engine-room.html": {
-  "date": "2026-09-17",
-  "hash": "2faa150e0036e80d"
+  "date": "2026-09-23",
+  "hash": "2686bcbfabcc5af8"
  },
  "news/strongest-in-lithuania-2025-2026.html": {
-  "date": "2026-09-17",
-  "hash": "f5de0c3712dc4df7"
+  "date": "2026-09-23",
+  "hash": "981164291da21c0f"
  },
  "news/transformer-mechanical-package.html": {
-  "date": "2026-09-17",
-  "hash": "09cc8e11f08d7527"
+  "date": "2026-09-23",
+  "hash": "1d88a12f1356d342"
  },
  "news/we-do-not-certify-our-own-welds.html": {
-  "date": "2026-09-17",
-  "hash": "c04df0665f22b1c6"
+  "date": "2026-09-23",
+  "hash": "b292c153e8c56c50"
  },
  "privacy.html": {
-  "date": "2026-09-20",
-  "hash": "c1f892460bed8427"
+  "date": "2026-09-23",
+  "hash": "5a3593de61052f1b"
  },
  "projects.html": {
-  "date": "2026-09-17",
-  "hash": "dd4bde8311d9f7bf"
+  "date": "2026-09-24",
+  "hash": "fb3bc8059c6c926d"
  },
  "projects/agitator-replacement.html": {
-  "date": "2026-09-17",
-  "hash": "1ad3429fb6d582e3"
+  "date": "2026-09-23",
+  "hash": "877e4f3b1f4cf219"
  },
  "projects/engine-room-piping-and-machinery-installation.html": {
-  "date": "2026-09-17",
-  "hash": "9278a3886790ad3c"
+  "date": "2026-09-23",
+  "hash": "e1b0f693aeab560b"
  },
  "projects/fan-replacement-and-duct-adaptation.html": {
-  "date": "2026-09-17",
-  "hash": "b458a253a1392586"
+  "date": "2026-09-23",
+  "hash": "4b37e355f4406f13"
  },
  "projects/foundations-penetrations-and-equipment-installation.html": {
-  "date": "2026-09-17",
-  "hash": "dc36825494976bae"
+  "date": "2026-09-23",
+  "hash": "a8a69eb5a3d30e4a"
  },
  "projects/grate-bar-replacement.html": {
-  "date": "2026-09-17",
-  "hash": "0e555beaf7537f99"
+  "date": "2026-09-23",
+  "hash": "8243f62f43395759"
  },
  "projects/large-bore-pipe-replacement.html": {
-  "date": "2026-09-17",
-  "hash": "e93462691cba8297"
+  "date": "2026-09-23",
+  "hash": "ec46b4498b56b63d"
  },
  "projects/offshore-rope-access-welding.html": {
-  "date": "2026-09-17",
-  "hash": "620c55979ab88f7c"
+  "date": "2026-09-23",
+  "hash": "393b3b55c494065e"
  },
  "projects/tank-and-vessel-fabrication.html": {
-  "date": "2026-09-17",
-  "hash": "480d3d14b25fc88f"
+  "date": "2026-09-23",
+  "hash": "7391985e72fa8f81"
  },
  "projects/tank-internals-and-attachments.html": {
-  "date": "2026-09-17",
-  "hash": "d0b7f80f0ff89527"
+  "date": "2026-09-23",
+  "hash": "092925946c8a4d4f"
  },
  "projects/valve-station-tie-in-piping.html": {
-  "date": "2026-09-17",
-  "hash": "35fae1692bda8bd3"
+  "date": "2026-09-23",
+  "hash": "3581108f4f4f4438"
  },
  "sectors/industrial.html": {
-  "date": "2026-09-17",
-  "hash": "220c82ee05238259"
+  "date": "2026-09-23",
+  "hash": "4e835e6f6bf530bd"
  },
  "sectors/offshore.html": {
-  "date": "2026-09-17",
-  "hash": "c68e6b4099423b50"
+  "date": "2026-09-23",
+  "hash": "f5c8a9692e63c9be"
  },
  "sectors/renewables.html": {
-  "date": "2026-09-17",
-  "hash": "f5ccc7df73e4799f"
+  "date": "2026-09-24",
+  "hash": "dcd21c56c559d2bd"
  },
  "sectors/shipbuilding.html": {
-  "date": "2026-09-17",
-  "hash": "6c30b00f4da080d8"
+  "date": "2026-09-23",
+  "hash": "95513722ab9c4b1f"
  },
  "services.html": {
-  "date": "2026-09-17",
-  "hash": "9874a6ed268a9b69"
+  "date": "2026-09-24",
+  "hash": "9d17250ccd4257ef"
  },
  "services/3d-laser-scanning.html": {
-  "date": "2026-09-17",
-  "hash": "94ea95f764e3244d"
+  "date": "2026-09-24",
+  "hash": "dc4c608861e680d4"
  },
  "services/heavy-equipment-relocation.html": {
-  "date": "2026-09-17",
-  "hash": "dc8746ea9a62b48d"
+  "date": "2026-09-24",
+  "hash": "c45f10db8d7a8d15"
  },
  "services/mechanical-contracting.html": {
-  "date": "2026-09-17",
-  "hash": "174d90c502dfe5ed"
+  "date": "2026-09-24",
+  "hash": "ad4d0beca28ace8a"
  },
  "services/mobile-repair-teams.html": {
-  "date": "2026-09-17",
-  "hash": "b7a26ddaa76626d9"
+  "date": "2026-09-24",
+  "hash": "fd15b9e1f7fcc648"
  },
  "services/non-destructive-testing.html": {
-  "date": "2026-09-17",
-  "hash": "f2ab5a14eab2b850"
+  "date": "2026-09-24",
+  "hash": "b8be81f111ccb7f1"
  },
  "services/pipe-fitting.html": {
-  "date": "2026-09-17",
-  "hash": "f3581ddf6ca3d842"
+  "date": "2026-09-24",
+  "hash": "aa2334fce156b87e"
  },
  "services/quality-control.html": {
-  "date": "2026-09-17",
-  "hash": "1fe0bb01f2a268ce"
+  "date": "2026-09-24",
+  "hash": "1dae355c1365c01c"
  },
  "services/rigging-technical-support.html": {
-  "date": "2026-09-17",
-  "hash": "1aba8934365fb974"
+  "date": "2026-09-24",
+  "hash": "4216fbc936e20c9b"
  },
  "services/rope-access-services.html": {
-  "date": "2026-09-17",
-  "hash": "c0183aa429cfa9c8"
+  "date": "2026-09-24",
+  "hash": "93eec2f51c7535f1"
  },
  "services/ship-repair.html": {
-  "date": "2026-09-17",
-  "hash": "8ccd9a88435e9730"
+  "date": "2026-09-24",
+  "hash": "5702e620a91cb34a"
  },
  "services/shipbuilding.html": {
-  "date": "2026-09-17",
-  "hash": "f888c986adb5478e"
+  "date": "2026-09-24",
+  "hash": "bcfc97771f8ce51b"
  },
  "services/welding-services.html": {
-  "date": "2026-09-17",
-  "hash": "0c10191e1920ec3d"
+  "date": "2026-09-24",
+  "hash": "236662336aba54a8"
  }
 }

@@ -89,7 +89,7 @@ S = {
     'Phone':
         'Telefono',
     'Scale':
-        'Dimensione',
+        'Scala',
     'Marine':
         'Navale',
     'NDT UT':
@@ -2787,4 +2787,30 @@ S = {
         'Sui nostri lavori questo è controllo qualità interno e non vale mai come accettazione. Abbiamo scritto cosa significa in <a href="/news/we-do-not-certify-our-own-welds">non certifichiamo le nostre saldature</a>.',
     '<strong data-processor-name>The form processor</strong> &mdash; receives what you send through the enquiry, application and subscription forms, including any documents you attach, and passes it to us.':
         '<strong data-processor-name>Il fornitore dei moduli</strong> &mdash; riceve quanto inviate tramite i moduli di richiesta, candidatura e iscrizione, compresi i documenti allegati, e ce lo trasmette.',
+    'Sheet':
+        'Foglio',
+    'Rev':
+        'Rev.',
+    'Projection':
+        'Proiezione',
+    'ALPROJECTS, UAB':
+        'ALPROJECTS, UAB',
+    'Šilutės pl. 2, LT-92298<br>Klaipėda, Lithuania':
+        'Šilutės pl. 2, LT-92298<br>Klaipėda, Lituania',
+    'No.':
+        'N.',
+    'Role':
+        'Ruolo',
+    'Location':
+        'Sede',
+    'Contract':
+        'Contratto',
+    'Project sites across Europe':
+        'Cantieri in tutta Europa',
+    'Project-based':
+        'A progetto',
+    'Open the first sheet <span class="ar-e" aria-hidden="true">&#8593;</span>':
+        'Apri il primo foglio <span class="ar-e" aria-hidden="true">&#8593;</span>',
+    'Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records.':
+        'Dodici servizi in tre gruppi: i lavori meccanici e industriali che prendiamo in carico direttamente, i lavori navali che eseguiamo in cantiere e a galla, e le discipline di ispezione e accesso che mostrano ciò che è stato costruito. La maggior parte dei progetti ne combina diversi sotto un unico contratto, con una sola supervisione e una sola documentazione.',
 }
