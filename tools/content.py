@@ -120,3 +120,90 @@ def services_groups(doc, deep=None):
             svs.append(sv)
         groups.append((g["label"], svs))
     return groups
+
+
+# ---------------- the generic shape ----------------
+# A collection file is one JSON document:
+#
+#   {"_order": ["slug", ...], "<slug>": {copy fields..., "_structural": ...}}
+#
+# Copy and structure live in the SAME file on purpose. The alternative was a
+# JSON of words beside a Python table of everything else, and then every added
+# record has to be added in two places -- which is the drift this whole move is
+# supposed to end. The underscore is the whole convention: an editor and the
+# publish gate see the keys without one, build-pages.py reads both.
+def records(doc):
+    """The records in their published order, as (slug, dict) pairs."""
+    return [(slug, doc[slug]) for slug in doc["_order"]]
+
+
+def sector_pages(doc):
+    """SECTOR_PAGES as build-pages.py has always taken it: a tuple per sector
+    of (slug, name, image stem, lead, service slugs)."""
+    return [(slug, r["name"], r["_img"], r["lead"], list(r["_services"]))
+            for slug, r in records(doc)]
+
+
+def positions(doc):
+    """POSITIONS, with the underscore taken off the structural keys.
+
+    `discipline` is one of them, and that is deliberate: it has to match an
+    option in DISCIPLINES exactly or the Apply button selects nothing in the
+    form, so it is a value with a constraint rather than a sentence -- an
+    editor gets it as a list to pick from, never as a text box."""
+    out = []
+    for slug, r in records(doc):
+        p = {k: v for k, v in r.items() if not k.startswith("_")}
+        p.update({k[1:]: v for k, v in r.items() if k.startswith("_")})
+        p["id"] = slug
+        out.append(p)
+    return out
+
+
+def articles(doc):
+    """ARTICLES. `facts` is a list of triples in the template and a list of
+    named objects in the file, because a three-item array in an editor is three
+    unlabelled boxes."""
+    out = []
+    for slug, r in records(doc):
+        a = {k: v for k, v in r.items() if not k.startswith("_")}
+        a.update({k[1:]: v for k, v in r.items() if k.startswith("_")})
+        a["slug"] = slug
+        # Three fields, not two: label, value and the note printed under it.
+        # The first pass here dropped the note, which the round-trip caught --
+        # the page would have rendered two thirds of every fact.
+        a["facts"] = [(f["label"], f["value"], f["note"])
+                      for f in r.get("facts", [])]
+        out.append(a)
+    return out
+
+
+def cases(doc):
+    """CASES. Two nested shapes are flattened out for the editor and put back
+    here:
+
+      stages  (photo number, [paragraphs])  ->  {"_photo": n, "text": [...]}
+      photos  (alt, caption, w, h)          ->  {"alt", "caption", "_w", "_h"}
+
+    A stage's photo number and a frame's pixel size are structure; the alt text
+    and the caption are copy, and they are two different sentences that used to
+    sit next to each other in one anonymous tuple. Optional keys are rebuilt
+    only if the file has them: the templates ask with .get(), so inventing an
+    empty one would change what they render."""
+    out = []
+    for slug, r in records(doc):
+        c = {"slug": slug}
+        for k, v in r.items():
+            if k.startswith("_") or k in ("stages", "photos"):
+                continue
+            c[k] = list(v) if isinstance(v, list) else v
+        for k, v in r.items():
+            if k.startswith("_"):
+                c[k[1:]] = list(v) if isinstance(v, list) else v
+        if "stages" in r:
+            c["stages"] = [(s["_photo"], list(s["text"])) for s in r["stages"]]
+        if "photos" in r:
+            c["photos"] = [(p["alt"], p["caption"], p["_w"], p["_h"])
+                           for p in r["photos"]]
+        out.append(c)
+    return out

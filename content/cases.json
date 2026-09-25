@@ -1,0 +1,680 @@
+{
+  "_order": [
+    "engine-room-piping-and-machinery-installation",
+    "foundations-penetrations-and-equipment-installation",
+    "large-bore-pipe-replacement",
+    "grate-bar-replacement",
+    "fan-replacement-and-duct-adaptation",
+    "offshore-rope-access-welding",
+    "tank-and-vessel-fabrication",
+    "valve-station-tie-in-piping",
+    "tank-internals-and-attachments",
+    "agitator-replacement"
+  ],
+  "engine-room-piping-and-machinery-installation": {
+    "title": "Engine room piping and machinery installation",
+    "kicker": "Mechanical installation and piping · Shipbuilding",
+    "setting": "Vessel under construction, machinery spaces",
+    "lead": "Machinery on resilient mounts, and the seawater, bilge and fuel lines that connect it. The mounts went down first; the piping followed, through a compartment that was already full.",
+    "intro": [],
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "The mounts go down before anything else. We land the machine on them all at once, then set each mount so it takes its share of the load and sits within the deflection the maker allows. The alignment is checked and recorded before the first flange is made up, and again once the lines are connected."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "The drawing gives the route; the dimensions come off the steel. By the time the piping starts the space is full, so we build the valves, the strainer and the branches up on one frame outside the compartment and land the group as a unit, with the bolt holes matching and the flange faces square. Set out that way, somebody standing in front of it can reach every handwheel."
+        ]
+      },
+      {
+        "_photo": 4,
+        "text": [
+          "Resiliently mounted machinery moves, and the hull works at sea. Flexible hoses take that movement at the machine connections. On the runs, mechanical couplings take up misalignment, and we anchor and guide the pipe either side of them so the coupling is not left carrying the line."
+        ]
+      },
+      {
+        "_photo": 5,
+        "text": [
+          "We set the valve groups out to keep the tank access clear, because the covers have to come off in service. Open ends are capped whenever work stops on a line, and the system is blanked at its boundaries for the pressure test. Each line is tagged to the drawing as it is finished."
+        ]
+      }
+    ],
+    "note": "",
+    "_og": "engine-room-piping",
+    "cta": "Send us the drawings.",
+    "cta_note": "Send the drawings or the scope and we will come back with a price and crew dates. If it is a yard slot, tell us the window.",
+    "cta_btn": "Send us the drawings",
+    "_services": [
+      "pipe-fitting",
+      "welding-services",
+      "mechanical-contracting",
+      "shipbuilding",
+      "quality-control"
+    ],
+    "photos": [
+      {
+        "alt": "Machined seating in an engine room with resilient mounts bolted down, studs and nuts set, and timber packing alongside",
+        "caption": "Resilient mounts on the machined seating.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "A row of resilient mounts along the machined seating, with the first pipe runs and capped flanges laid in beside them",
+        "caption": "The seating, with the mounts set and the first lines alongside.",
+        "_w": 1200,
+        "_h": 900
+      },
+      {
+        "alt": "Valve and strainer group made up on a frame against an engine room bulkhead, with globe valves, a basket strainer and capped branches",
+        "caption": "Valve and strainer group on the bulkhead.",
+        "_w": 1200,
+        "_h": 900
+      },
+      {
+        "alt": "Large-bore pipe runs under a deckhead, with mechanical couplings on the vertical drop and anchors either side of them",
+        "caption": "Mechanical couplings on the large-bore runs.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Valve group set out around a bolted tank access cover, with the covers left clear and every open end capped",
+        "caption": "Valve group around the tank access cover.",
+        "_w": 1200,
+        "_h": 1600
+      }
+    ]
+  },
+  "foundations-penetrations-and-equipment-installation": {
+    "title": "Foundations, penetrations and equipment installation",
+    "kicker": "Steel fabrication and mechanical installation · Shipbuilding",
+    "setting": "Vessel under construction, machinery and tank spaces",
+    "lead": "The steel that has to be in place before the equipment. We made and set the seats and frames, cut the openings and welded in the bulkhead penetrations, and fitted the supports for the cable and pipe routes.",
+    "intro": [],
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "Frames and seats are fabricated to the drawing, then set to the steel that is actually there. We land the frame on the marked position, check it for position and level, and weld it down once it sits right. A unit light enough to be landed with its frame goes in first. Anything heavier goes on after the frame is welded down, and stays under cover until commissioning."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "We mark the opening from the ring that goes into it, cut it, and prepare the edge before the ring is offered up. That way the root gap is even the whole way round. On a watertight boundary the gap is what the weld has to close, and an uneven one shows up at the tightness test."
+        ]
+      },
+      {
+        "_photo": 4,
+        "text": [
+          "The ring is worked from both sides at once. One fitter checks the alignment inside the opening while another dresses the prep outside, and we tack in a balanced sequence so the ring does not pull as it is welded out."
+        ]
+      },
+      {
+        "_photo": 5,
+        "text": [
+          "Supports for cable and pipe routes go on before the boundary is closed in. We set the brackets clear of the insulation and the pins that hold it, so the tray runs at its own height and nothing has to be cut back when the lining goes on."
+        ]
+      }
+    ],
+    "note": "",
+    "_og": "foundations-penetrations",
+    "cta": "Send us the drawings.",
+    "cta_note": "Send the drawings or the scope and we will come back with a price and crew dates. If it is a yard slot, tell us the window.",
+    "cta_btn": "Send us the drawings",
+    "_services": [
+      "mechanical-contracting",
+      "welding-services",
+      "shipbuilding",
+      "rigging-technical-support",
+      "quality-control"
+    ],
+    "photos": [
+      {
+        "alt": "Cylindrical steel unit in a fabricated frame, suspended on chain hoists over its marked position on the deck of a vessel under construction",
+        "caption": "Coming down on the marked position.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Machinery unit under protective covers on a fabricated steel frame in a shipyard hall",
+        "caption": "The unit on its frame, covered until commissioning.",
+        "_w": 1200,
+        "_h": 900
+      },
+      {
+        "alt": "Circular opening cut in a bulkhead, with the penetration piece standing ready on the deck beside it",
+        "caption": "The opening cut, and the penetration piece ready to go in.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Two fitters at a bulkhead penetration, one checking alignment inside the opening while the other dresses the edge with a grinder",
+        "caption": "Dressing the prep before the penetration is welded out.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Cable trays and brackets fitted to an insulated bulkhead, with insulation pins welded across the plate",
+        "caption": "Cable tray supports on an insulated boundary.",
+        "_w": 1200,
+        "_h": 1600
+      }
+    ]
+  },
+  "large-bore-pipe-replacement": {
+    "title": "Large-bore pipe replacement",
+    "kicker": "Mechanical installation and welding · Industrial",
+    "setting": "Existing plant, scaffolded work fronts",
+    "lead": "Large-bore pipework replaced inside an existing plant. We prefabricated the spools, rigged them into position on chain hoists off the plant steel, and welded them in place.",
+    "intro": [],
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "We put the covers down before anything hot starts — blankets under the work front, sheeting across what is behind it, and the grating below closed off. A spark that goes through the grating lands on whatever is on the level under you."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "Branches and stubs go on at floor level, where the piece can be turned and the weld is made in the flat position. The spool goes up as one piece with its openings already in it. Every branch done down here is one less weld made overhead."
+        ]
+      },
+      {
+        "_photo": 4,
+        "text": [
+          "There is no crane over the work front, so the load comes off the plant steel. We agree the attachment points with the plant first, then hang beam clamps and chain hoists at each end and walk the spool into line by hand."
+        ]
+      },
+      {
+        "_photo": 5,
+        "text": [
+          "Fit-up decides the joint. We set the gap and hold it the whole way round before an arc is struck, and the root goes in first — in this frame it is part way round, with the gap above still open. The joint is cleaned and checked before the fill and cap go on."
+        ]
+      }
+    ],
+    "note": "",
+    "_og": "large-bore-pipe-replacement",
+    "cta": "Send us the drawings.",
+    "cta_note": "Send the drawings or the scope and we will come back with a price and crew dates. If it is a shutdown, tell us the window.",
+    "cta_btn": "Send us the drawings",
+    "_services": [
+      "pipe-fitting",
+      "welding-services",
+      "mechanical-contracting",
+      "rigging-technical-support",
+      "quality-control"
+    ],
+    "photos": [
+      {
+        "alt": "New large-bore pipework and a fabricated bend installed among existing lines and ducts inside an industrial plant",
+        "caption": "The new run in place.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Protective sheeting and welding blankets laid over plant grating around a pipe spool standing ready for installation",
+        "caption": "The work front covered before hot work starts.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Prefabricated pipe bend with a welded branch and stub, standing on timber on plant grating",
+        "caption": "Branch and stub welded on before the spool goes up.",
+        "_w": 1200,
+        "_h": 900
+      },
+      {
+        "alt": "Two beam clamps and chain hoists rigged from overhead steel, taking the weight of a large-bore pipe",
+        "caption": "Beam clamps and chain hoists off the existing steel.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Close-up of a pipe butt joint with an even root gap and the root run part way round",
+        "caption": "The root run part way round the joint.",
+        "_w": 1200,
+        "_h": 1600
+      }
+    ]
+  },
+  "grate-bar-replacement": {
+    "title": "Grate bar replacement",
+    "kicker": "Mechanical maintenance · Waste to energy",
+    "setting": "Waste-to-energy plant, furnace during outage",
+    "lead": "Grate bars replaced inside the furnace of a waste-to-energy plant during the outage. The old bars came out one row at a time, cut free where they were seized, and the new ones went back set to the specified gap.",
+    "intro": [],
+    "seq_head": "How it was done",
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "The furnace is cold by the time we go in, but it is not clean. Everything inside is coated in fly ash and combustion residue, so the crew works in disposable coveralls and P3 respirators, and the suits come off at the door. Entry is under permit, with the space ventilated and the atmosphere monitored."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "The bars sit in rows across the grate, and after a full run most of them are seized in place. They come out one row at a time — cut free where they will not move, lifted out by hand and stacked. The new ones go back set to the gap the maker specifies, because that gap is how the primary air reaches the bed."
+        ]
+      }
+    ],
+    "note": "",
+    "_og": "grate-bar-replacement",
+    "cta": "Send us the scope.",
+    "cta_note": "Send us the scope and we will come back with a price and crew dates. If it is an outage, tell us the window.",
+    "cta_btn": "Send us the scope",
+    "_services": [
+      "mechanical-contracting",
+      "mobile-repair-teams",
+      "quality-control"
+    ],
+    "photos": [
+      {
+        "alt": "Worker in disposable coveralls and respirator cutting seized steel free with an oxy-fuel torch at the grate, with removed grate blocks in the foreground",
+        "caption": "Cutting seized steel free.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Worker in a hard hat, goggles and P3 respirator inside the cold furnace of a waste-to-energy plant",
+        "caption": "Disposable coveralls and P3 respirators.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Two workers in disposable coveralls levering an old grate bar out of its row, with removed bars stacked behind them",
+        "caption": "Old bars out, one row at a time.",
+        "_w": 1200,
+        "_h": 1600
+      }
+    ]
+  },
+  "fan-replacement-and-duct-adaptation": {
+    "title": "Fan replacement and duct adaptation",
+    "kicker": "Mechanical installation and welding · Industrial",
+    "setting": "Existing plant, outdoor process platform",
+    "lead": "An extraction fan replaced on a process platform. The ducting that was already there did not suit the new unit, so we cut it back, made the transition pieces to fit, and connected the fan on both sides.",
+    "intro": [],
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "The fan comes to site as one assembly — casing, impeller, motor and base frame together. What decides the job is not the fan itself but its connection dimensions: the inlet, the outlet and the bolt pattern under the frame. On a replacement they rarely match what is already there, and here they did not."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "The fan is landed on its base and stays on the sling until it is fixed down. The old frame did not leave the seats where the new one needs them, so they are made to suit the new footprint before anything is bolted — a fan sitting on a base that is out carries that error straight into its bearings. Anything hot happens over a blanket, with an extinguisher at the work front."
+        ]
+      },
+      {
+        "_photo": 4,
+        "text": [
+          "The inlet side is where the old ducting has to give. We take the weight of the duct on a sling first, so nothing is hanging on the joint once it is open, then cut it back and set a stub into it to suit the fan inlet. The fan drawing gives the size; where the stub lands is measured on the duct itself."
+        ]
+      },
+      {
+        "_photo": 5,
+        "text": [
+          "The outlet goes up into the existing stack, and the two do not meet on their own. We make the transition, offer it up with the fan standing on its base, and mark it in position. Nothing is finish-welded until both ends have been proved against the openings they have to land on."
+        ]
+      },
+      {
+        "_photo": 6,
+        "text": [
+          "Both connections finish on something flexible — a sleeve at the inlet and a bolted expansion joint at the outlet. The frame itself stands on anti-vibration mounts, so the machine is free to move a little; these two joints are what keep that movement out of the ducting, and they let the flanges sit a fraction out of line without loading either side. With those in, the adapter welds are dressed back and the expansion joint is bolted up all round."
+        ]
+      }
+    ],
+    "note": "",
+    "_og": "fan-replacement-and-duct-adaptation",
+    "cta": "Send us the scope.",
+    "cta_note": "Send the drawings or the scope and we will come back with a price and crew dates. If it is a shutdown, tell us the window.",
+    "cta_btn": "Send us the scope",
+    "_services": [
+      "mechanical-contracting",
+      "welding-services",
+      "rigging-technical-support"
+    ],
+    "photos": [
+      {
+        "alt": "New blue centrifugal fan installed on a steel base on an outdoor grating platform, its outlet connected through an expansion joint to the existing painted exhaust stack",
+        "caption": "The new fan, connected on both sides.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "New centrifugal fan and motor on a pallet as delivered to site, before installation",
+        "caption": "The new unit as delivered.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Worker at the base of the newly landed fan on the grating platform, with lifting slings, tools and a fire extinguisher laid out beside him",
+        "caption": "Base work before the fan is bolted down.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Existing rectangular duct supported on a round sling while its open end is connected to the inlet of the new fan",
+        "caption": "The duct carried on a sling while the joint is open.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "New fan standing on its base with the outlet transition piece offered up under the existing stack",
+        "caption": "The outlet transition offered up in position.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Fabric expansion joint with tie rods bolted between the fan outlet and the adapted exhaust duct above it",
+        "caption": "The expansion joint between fan and stack.",
+        "_w": 1200,
+        "_h": 1600
+      }
+    ]
+  },
+  "offshore-rope-access-welding": {
+    "title": "Offshore rope access welding",
+    "kicker": "Welding and rope access · Offshore",
+    "setting": "Offshore platform, Northern Europe",
+    "lead": "Welding on the outside of an offshore platform, carried out on rope access. There is no scaffold and no basket over the side, so the welder reaches the joint on ropes and works from the harness.",
+    "intro": [],
+    "seq_head": "How it was done",
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "The platform has no quay and no road. Crew, tools and consumables arrive by vessel or helicopter and stay for the shift, and the working window is set by wind and sea state rather than by the programme."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "Welding is carried out from the harness, on a working line and a backup rigged from the structure above, with the team working in pairs. The joint is prepared before the arc is struck and completed in short runs. The return clamp is placed on the work close to the joint — over water the return path is part of the safety case, not a detail."
+        ]
+      }
+    ],
+    "note": "",
+    "_og": "offshore-rope-access-welding",
+    "cta": "Send us the scope.",
+    "cta_note": "Send us the scope and we will come back with a price and crew dates. For offshore work tell us the access, the vessel and the weather window.",
+    "cta_btn": "Send us the scope",
+    "_services": [
+      "rope-access-services",
+      "welding-services",
+      "rigging-technical-support",
+      "mobile-repair-teams"
+    ],
+    "photos": [
+      {
+        "alt": "Rope access technician suspended in a harness on the outside of an offshore platform, with wind turbines on the horizon",
+        "caption": "Rope access over open water.",
+        "_w": 1200,
+        "_h": 900
+      },
+      {
+        "alt": "Side of an offshore platform above the sea, with wind turbines in low cloud on the horizon",
+        "caption": "Access by vessel or helicopter only.",
+        "_w": 1200,
+        "_h": 900
+      },
+      {
+        "alt": "Two rope access technicians suspended on twin ropes at a yellow structure on an offshore platform, one wearing a welding helmet, with cables run down from the deck above",
+        "caption": "Welding carried out from the harness.",
+        "_w": 1200,
+        "_h": 900
+      }
+    ],
+    "_draft": false
+  },
+  "tank-and-vessel-fabrication": {
+    "title": "Tank and vessel fabrication",
+    "kicker": "Shop fabrication and welding",
+    "setting": "Fabrication shop, under a crane",
+    "lead": "We weld the nozzles into the courses before they go on the stack, weld out the seams under a crane, and cut and fit the bottoms on the shop floor.",
+    "intro": [],
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "Nozzles and manways go into the shell courses before they go on the stack, while a course can still be worked from both sides. The welder works downhand and can get at the back of the joint. By the time a course goes on the stack the nozzles are already in it."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "The first course goes on timber packing. The next comes down on it under the crane, landed and held while the seam is tacked, and then welded out."
+        ]
+      },
+      {
+        "_photo": 4,
+        "text": [
+          "The large tanks go together the other way up. The shell is held up on packing and the next course goes on underneath it, with a row of temporary clips round the inside holding it while the seams are welded out.",
+          "Those clips and the lifting lugs come off when the shell is done, and the places where they were welded are dressed back level with the plate."
+        ]
+      },
+      {
+        "_photo": 5,
+        "text": [
+          "Lifting is done on the overhead crane, using slings and a spreader beam. Bottom plates are cut and fitted on the shop floor."
+        ]
+      },
+      {
+        "_photo": 6,
+        "text": [
+          "In the shop the welding is done under cover and under a crane."
+        ]
+      }
+    ],
+    "note": "",
+    "cta": "Send us the drawings.",
+    "_services": [
+      "welding-services",
+      "pipe-fitting",
+      "mechanical-contracting",
+      "quality-control"
+    ],
+    "photos": [
+      {
+        "alt": "Welder working under a tank shell held up and secured on timber packing, with bottom plates laid out on the shop floor",
+        "caption": "Shell held up on packing, work going on underneath.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Vessel shell course being lowered onto the course below by overhead crane, with the nozzles already welded in",
+        "caption": "The nozzles go in before the course goes on the stack.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Assembled vessel standing on blocks, with nozzles, a side manway and a drawing taped to the shell",
+        "caption": "Vessel closed up.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Inside a tank shell, a long pipe on trestles and temporary clips welded round the courses above the bottom plates",
+        "caption": "Inside the shell, with the temporary clips round the courses.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Tank shell lifted on slings from lugs welded to the top course",
+        "caption": "Lifted on slings from welded lugs.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Fabrication hall with tank shells, a vessel on packing, and a spreader beam with slings on the floor",
+        "caption": "The shop floor.",
+        "_w": 1200,
+        "_h": 900
+      }
+    ]
+  },
+  "valve-station-tie-in-piping": {
+    "title": "Valve station and tie-in piping",
+    "kicker": "Mechanical installation and welding &middot; tank farm",
+    "setting": "Live plant, work front under cover",
+    "lead": "A new valve station at the base of a storage tank. We set and levelled the valves, fitted the spools, welded and bolted the joints, and tied the run into the existing pipe rack.",
+    "intro": [
+      "A storage tank needed a new valve station and a connection into the existing pipe rack.",
+      "The valves went on adjustable stands and we levelled them before anything was fixed. We did not tack until the run was straight and the flange faces were parallel."
+    ],
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "The close-up shows a finished root, taken down the bore from the open end of a spool."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "Some of the joints are welded, the rest are flanged and bolted. The spools went in between them."
+        ]
+      }
+    ],
+    "note": "The work front sat under temporary cover, with the plant live around it.",
+    "cta": "Send us the scope.",
+    "_services": [
+      "pipe-fitting",
+      "welding-services",
+      "mechanical-contracting",
+      "quality-control"
+    ],
+    "photos": [
+      {
+        "alt": "Valve station under temporary cover at the base of a storage tank",
+        "caption": "Work front under temporary cover.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Finished root run on a butt weld, photographed down the pipe bore from the open end of a spool",
+        "caption": "Finished root.",
+        "_w": 1200,
+        "_h": 900
+      },
+      {
+        "alt": "Tie-in piping and flanged joints running from the valve station into the existing rack",
+        "caption": "Tied into the existing rack.",
+        "_w": 1200,
+        "_h": 1600
+      }
+    ]
+  },
+  "tank-internals-and-attachments": {
+    "title": "Tank internals, nozzles and attachments",
+    "kicker": "Mechanical installation and welding",
+    "setting": "Tank being fitted out",
+    "lead": "Internal pipe off a shell nozzle, brackets on pad plates, roof rafters into the centre ring.",
+    "intro": [
+      "On this job no bracket went straight onto the shell. Every attachment sat on a pad plate, and the pad was welded to the shell. The close-up above shows one. If the bracket ever has to come off, it comes off the pad and the shell is untouched."
+    ],
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "The internal pipe runs from a shell nozzle across the tank.",
+          "Pads went down on the bottom plates as well, the stands went on the pads and the pipe sat on the stands. When the stands come off, the pads take the damage instead of the bottom plates."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "The roof goes on radial rafters into a centre ring."
+        ]
+      }
+    ],
+    "note": "Temporary steel goes on and comes off all the way through a job like this. Every place it was welded is ground back flush before the tank is painted.",
+    "cta": "Tell us what goes inside and we will price it.",
+    "_services": [
+      "welding-services",
+      "mechanical-contracting",
+      "pipe-fitting",
+      "quality-control"
+    ],
+    "photos": [
+      {
+        "alt": "External bracket welded to a pad plate on the tank shell, with the pad welded all round",
+        "caption": "The pad plate goes on before the bracket.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Internal pipe connected to a shell nozzle inside a tank, with bottom plates below",
+        "caption": "Internal pipe off the shell nozzle.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Tank roof on radial rafters into the centre ring, with a nozzle opening cut",
+        "caption": "Roof rafters into the centre ring.",
+        "_w": 1200,
+        "_h": 900
+      }
+    ]
+  },
+  "agitator-replacement": {
+    "title": "Agitator replacement inside a storage tank",
+    "kicker": "Mechanical installation",
+    "setting": "Tank out of service",
+    "lead": "The shaft runs from the drive mounting on the roof down to a bearing at the floor, with two impellers on it.",
+    "intro": [
+      "The agitator in this tank was being replaced. The shaft runs the full height of the tank, from the drive mounting on the roof down to a bearing at the floor. Two impellers on it, one low down and one near the roof.",
+      "The fitting work was done inside the tank, with the tank out of service."
+    ],
+    "stages": [
+      {
+        "_photo": 2,
+        "text": [
+          "The bearing at the floor went in first. We levelled it before any of the shaft went in, and checked the shaft once it was down. Everything above depends on that bearing."
+        ]
+      },
+      {
+        "_photo": 3,
+        "text": [
+          "We fitted the lower impeller from the tank floor and the upper one from temporary access."
+        ]
+      }
+    ],
+    "note": "",
+    "cta": "Tell us what is going in and we will look at it.",
+    "_services": [
+      "mechanical-contracting",
+      "rigging-technical-support",
+      "pipe-fitting",
+      "quality-control"
+    ],
+    "photos": [
+      {
+        "alt": "Agitator shaft running the full height of a storage tank up to the roof, with the upper impeller near the top",
+        "caption": "Looking up the shaft to the roof.",
+        "_w": 1200,
+        "_h": 900
+      },
+      {
+        "alt": "Agitator bearing at the tank floor, with levelling tools in place",
+        "caption": "The bearing at the floor.",
+        "_w": 1200,
+        "_h": 1600
+      },
+      {
+        "alt": "Lower agitator impeller bolted to the shaft inside a storage tank, with the bearing on the floor below it",
+        "caption": "Lower impeller on the shaft.",
+        "_w": 1200,
+        "_h": 900
+      }
+    ]
+  }
+}
