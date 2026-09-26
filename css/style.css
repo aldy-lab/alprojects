@@ -152,8 +152,17 @@ html.dragging .dir-card:hover::after { opacity: 1; }
 
 /* Phone and email are the actions people actually come to a contacts page to
    perform. WCAG exempts links inside a sentence from the 24px minimum, but
-   these are worth enlarging anyway -- they are tapped, not read. */
-a[href^="tel:"]:not([class*="btn-"]), a[href^="mailto:"]:not([class*="btn-"]) {
+   these are worth enlarging anyway -- they are tapped, not read.
+
+   This is for a phone number sitting in prose, and the exclusion list is what
+   keeps it there. It missed the phone bar's own call button, whose class is
+   cta-bar-call and contains no "btn-": at (0,2,1) against .cta-bar a's
+   (0,1,1) it took over both `display` and `padding-block`, so the button lost
+   its flex centring and its label sat 12px above the middle of a 46px box
+   while the button beside it was centred. Measured, not spotted -- the text's
+   own client rect against the button's. */
+a[href^="tel:"]:not([class*="btn-"]):not(.cta-bar-call),
+a[href^="mailto:"]:not([class*="btn-"]):not(.cta-bar-call) {
   display: inline-block;
   padding-block: 3px;
 }
@@ -1202,6 +1211,37 @@ html.menu-open .site-header {
   padding: 13px 14px;
   outline: none;
 }
+/* The placeholder is longer than the field in three of the four languages.
+   Measured at 320: the field has 155px of inner width, English needs 128 and
+   fits with room over, French and Italian are 19 short, German is 48 --
+   "E-Mail-Adresse eingeben" against 155px -- and the browser's default is to
+   clip, which cut it mid-letter: "E-Mail-Adresse eing".
+
+   Two answers, because neither is enough alone. The ellipsis ends the hint on
+   purpose wherever it still does not fit, and below 360 the field takes its
+   own row, where 267px of inner width holds every one of the four. At 390 the
+   field is already wide enough for all of them, so nothing changes there.
+
+   The field cannot simply be shrunk to fit: 16px is what stops iOS Safari
+   zooming the page on focus. text-overflow goes on the input, not on
+   ::placeholder -- it applies to the element's own overflow, and a
+   placeholder is not a box of its own. */
+.newsletter input { text-overflow: ellipsis; }
+@media (max-width: 360px) {
+  .newsletter form { flex-wrap: wrap; max-width: none; }
+  /* 10px of side padding rather than 14. On its own row at 320 the field has
+     200px of inner width and German wants 203 -- three pixels, and the hint
+     would have kept its ellipsis for the sake of them. */
+  .newsletter input {
+    flex: 1 0 100%;
+    border-right: 1px solid var(--line);
+    padding-inline: 10px;
+  }
+  .newsletter button {
+    margin: 8px 0 0 auto;
+    min-height: 46px;
+  }
+}
 .newsletter input::placeholder { color: var(--muted-2); }
 .newsletter input:focus { border-color: var(--line-strong); }
 .newsletter button {
@@ -1927,9 +1967,19 @@ html.blueprint a, html.blueprint button, html.blueprint input, html.blueprint te
   .position { padding: clamp(18px, 4.5vw, 26px); }
 
   /* inline text links sat at 15-20px tall — under the 24px WCAG 2.2 minimum.
-     Vertical padding gives them a real hit area without changing the type. */
-  .prose a, .footer-bottom a, /* a.current carries padding: 2px 6px at higher specificity — match it */
-  .service-list a, .service-list a.current { display: inline-block; padding: 6px 0; }
+     Vertical padding gives them a real hit area without changing the type.
+
+     Buttons are excluded, and that is not tidiness. A .btn-bracket inside
+     .prose was matching this at (0,2) against its own (0,1), so it took
+     `display: inline-block` and `padding: 6px 0` -- which switched off the
+     flex centring the button gets its label from and overrode the 12px the
+     phone rule gives it. The label ended up 9px above the middle of a 48px
+     box, on /projects, /contacts, /privacy and the news pages. A button
+     already has a 48px hit area; this rule is for a link in a sentence. */
+  .prose a:not([class*="btn-"]),
+  .footer-bottom a:not([class*="btn-"]), /* a.current carries padding: 2px 6px at higher specificity — match it */
+  .service-list a:not([class*="btn-"]),
+  .service-list a.current { display: inline-block; padding: 6px 0; }
   .service-list a.current { padding: 6px 6px; margin: 0 -6px; }
   .apply-form .field-check label a { display: inline-block; padding: 4px 0; }
   .industry-tags span { font-size: var(--tag); }
@@ -8460,9 +8510,16 @@ html.blueprint .hero-iso { opacity: 1; }
       in caps measures about 240px, so the column is sized to the content and
       the 190px it gives back go to the sheet -- which is what makes two
       columns inside the sheet possible at all. */
-.srv { grid-template-columns: clamp(262px, 21vw, 316px) minmax(0, 1fr); }
+/* Inside the media query, not above it. Unconditional, this rule sat 5500
+   lines below `@media (max-width: 900px) { .srv { grid-template-columns: 1fr } }`
+   at the same specificity, so source order decided and every phone got the
+   two-column desktop grid: a 262px index beside a 50px panel, with the arrow
+   buttons squeezed to 11px wide. The diff read perfectly. */
 @media (min-width: 901px) {
-  .srv { gap: clamp(28px, 3.4vw, 62px); }
+  .srv {
+    grid-template-columns: clamp(262px, 21vw, 316px) minmax(0, 1fr);
+    gap: clamp(28px, 3.4vw, 62px);
+  }
 }
 
 /* 2. Less section padding. 86 over and 110 under was a third of a screen. */

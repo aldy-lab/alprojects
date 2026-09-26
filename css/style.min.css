@@ -61,7 +61,8 @@ color-scheme: dark;
 html.dragging .dir-card:hover, html.dragging .adv-card:hover, html.dragging .news-card:hover, html.dragging .doc-card:hover, html.dragging .shot:hover, html.dragging .member:hover { transform: none; }
 html.dragging .dir-card:hover img, html.dragging .news-card:hover .thumb img, html.dragging .shot:hover img, html.dragging .doc-cover:hover img { transform: none; }
 html.dragging .dir-card:hover::after { opacity: 1; }
-a[href^="tel:"]:not([class*="btn-"]), a[href^="mailto:"]:not([class*="btn-"]) {
+a[href^="tel:"]:not([class*="btn-"]):not(.cta-bar-call),
+a[href^="mailto:"]:not([class*="btn-"]):not(.cta-bar-call) {
 display: inline-block;
 padding-block: 3px;
 }
@@ -916,6 +917,19 @@ font-size: var(--text-m);
 padding: 13px 14px;
 outline: none;
 }
+.newsletter input { text-overflow: ellipsis; }
+@media (max-width: 360px) {
+.newsletter form { flex-wrap: wrap; max-width: none; }
+.newsletter input {
+flex: 1 0 100%;
+border-right: 1px solid var(--line);
+padding-inline: 10px;
+}
+.newsletter button {
+margin: 8px 0 0 auto;
+min-height: 46px;
+}
+}
 .newsletter input::placeholder { color: var(--muted-2); }
 .newsletter input:focus { border-color: var(--line-strong); }
 .newsletter button {
@@ -1519,8 +1533,10 @@ font-size: 16px;
 .footer-contacts .big { display: inline-block; padding: 6px 0; }
 .apply-panel { padding: clamp(20px, 5vw, 32px); }
 .position { padding: clamp(18px, 4.5vw, 26px); }
-.prose a, .footer-bottom a,
-.service-list a, .service-list a.current { display: inline-block; padding: 6px 0; }
+.prose a:not([class*="btn-"]),
+.footer-bottom a:not([class*="btn-"]),
+.service-list a:not([class*="btn-"]),
+.service-list a.current { display: inline-block; padding: 6px 0; }
 .service-list a.current { padding: 6px 6px; margin: 0 -6px; }
 .apply-form .field-check label a { display: inline-block; padding: 4px 0; }
 .industry-tags span { font-size: var(--tag); }
@@ -5937,9 +5953,11 @@ font-variant-numeric: tabular-nums;
 color: rgba(255, 255, 255, 0.75);
 white-space: pre;
 }
-.srv { grid-template-columns: clamp(262px, 21vw, 316px) minmax(0, 1fr); }
 @media (min-width: 901px) {
-.srv { gap: clamp(28px, 3.4vw, 62px); }
+.srv {
+grid-template-columns: clamp(262px, 21vw, 316px) minmax(0, 1fr);
+gap: clamp(28px, 3.4vw, 62px);
+}
 }
 .srv-shell { padding: clamp(22px, 2.6vw, 44px) 0 clamp(28px, 3.2vw, 54px); }
 @media (min-width: 901px) {
