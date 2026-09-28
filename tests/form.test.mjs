@@ -47,7 +47,12 @@ await t("no consent refused",        req("careers", { ...base, consent: "" }, []
 await t("bad email refused",         req("careers", { ...base, email: "nope" }, [], OK, "POST", "9.9.9.3"), 422, b => b.error === "email");
 await t("bad extension refused",     req("careers", base, [{ name: "cv.exe" }], OK, "POST", "9.9.9.4"), 422, b => /file type/.test(b.error));
 await t("too many files refused",    req("careers", base, Array.from({length:7},(_,i)=>({name:"f"+i+".pdf"})), OK, "POST", "9.9.9.5"), 422, b => b.error === "too many files");
-await t("oversize refused",          req("careers", base, [{ name: "big.pdf", bytes: new Uint8Array(5*1024*1024) }], OK, "POST", "9.9.9.6"), 413, b => /too large/.test(b.error));
+await t("5MB is accepted",           req("careers", base, [{ name: "big.pdf", bytes: new Uint8Array(5*1024*1024) }], OK, "POST", "9.9.9.6"), 200, b => b.ok);
+/* 11MB is over the site's own ceiling. A real request this big never reaches
+   the function -- the platform refuses it first -- and the browser then hands
+   the form to the applicant's mail client. This asserts the endpoint's own
+   answer for the case where it does arrive. */
+await t("over the ceiling refused",  req("careers", base, [{ name: "huge.pdf", bytes: new Uint8Array(11*1024*1024) }], OK, "POST", "9.9.9.61"), 413, b => /too large/.test(b.error));
 await t("subscribe, no files",       req("subscribe", { consent: "yes", email: "a@b.co" }, [], OK, "POST", "9.9.9.7"), 200);
 await t("contact honeypot is website", req("contact", { ...base, website: "bot", first: "A" }, [], OK, "POST", "9.9.9.8"), 200, b => b.ok);
 

@@ -40,7 +40,18 @@
    ============================================================ */
 
 const MAX_FILES = 6;
-const MAX_BYTES = 4 * 1024 * 1024;   // see PLATFORM LIMIT below
+/* The same ceiling the page promises and the picker enforces. The platform's
+   own cap on a request body is lower than this, so on a big application the
+   refusal comes from the edge and not from here -- and that is survivable
+   rather than a dead end: the browser's failure branch hands the whole form
+   to the applicant's mail client with every field filled in and the files
+   named, so nothing they typed is lost and the CV gets attached there.
+
+   Which is why this is 10MB and not 4: matching the promise on the page costs
+   nothing, capping it lower would mean changing that promise in four
+   languages, and the outcome for an applicant with a 6MB scan is the same
+   either way. */
+const MAX_BYTES = 10 * 1024 * 1024;
 const ALLOWED_EXT = [
   "pdf", "doc", "docx", "jpg", "jpeg", "png", "webp", "heic",
   "dwg", "dxf", "step", "stp", "igs", "iges", "zip", "txt",
