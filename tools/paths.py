@@ -31,7 +31,7 @@ import re
 # mail as the domain, and removes it from the mail server. The ip4: term keeps
 # the real one working, so nothing breaks loudly. Drop the `a` when the A
 # record moves.
-ORIGIN = "https://alprojects.co"
+ORIGIN = "https://alprojects.eu"
 
 
 # Every host this site has been served from. origin_fix() normalises any of

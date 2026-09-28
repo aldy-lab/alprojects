@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alprojects.co/sitemap.xml
+Sitemap: https://alprojects.eu/sitemap.xml

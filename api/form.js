@@ -70,6 +70,7 @@ const ALLOWED_EXT = [
    moves. That is why the sender is worth verifying on the domain whose DNS is
    in reach rather than on the one the site will end up on. */
 const ALLOWED_ORIGIN = (process.env.SITE_ORIGIN ||
+  "https://alprojects.eu,https://www.alprojects.eu," +
   "https://alprojects.co,https://www.alprojects.co")
   .split(",").map((s) => s.trim()).filter(Boolean);
 
