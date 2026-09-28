@@ -1464,7 +1464,20 @@
     var dz = document.getElementById(ids.zone);
     var fileInput = document.getElementById(ids.input);
     var fileList = document.getElementById(ids.list);
+    /* Per file, and in total. The total is the one that matters and it was
+       missing: four 8MB files each passed the per-file check, and the whole
+       application then failed at the endpoint after the applicant had filled
+       in every field -- the one thing this picker was written not to do.
+
+       MAX_TOTAL has to match what api/form.js accepts. It does not yet, and
+       that is on purpose: the endpoint's ceiling depends on the platform's own
+       request limit, and until that is measured the three endpoint constants
+       are empty and no file is uploaded at all -- the forms name their
+       attachments in the mail they open instead. Settle the ceiling before
+       switching them on, and change it in both files and in file_too_big in
+       all four languages. */
     var MAX = 10 * 1024 * 1024;
+    var MAX_TOTAL = 10 * 1024 * 1024;
 
     function renderFiles() {
       if (!fileList) return;
@@ -1493,11 +1506,15 @@
     if (dz && fileInput) {
       var takeFiles = function (list) {
         var over = [];
+        var total = picked.reduce(function (n, f) { return n + f.size; }, 0);
         [].slice.call(list).forEach(function (f) {
           if (f.size > MAX) { over.push(f.name); return; }
           /* the same file twice is a mis-click, not an intention */
           var dup = picked.some(function (x) { return x.name === f.name && x.size === f.size; });
-          if (!dup) picked.push(f);
+          if (dup) return;
+          if (total + f.size > MAX_TOTAL) { over.push(f.name); return; }
+          total += f.size;
+          picked.push(f);
         });
         if (over.length && noteEl) {
           noteEl.textContent = TXT.file_too_big + " " + over.join(", ");
