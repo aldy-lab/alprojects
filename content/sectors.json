@@ -1,0 +1,56 @@
+{
+  "_order": [
+    "shipbuilding",
+    "offshore",
+    "industrial",
+    "renewables"
+  ],
+  "shipbuilding": {
+    "name": "Shipbuilding",
+    "lead": "Yard schedules move, and the penalty lands on the subcontractor. We plan for that, and take engine room piping, structural steel and outfitting as complete scopes, on newbuilds and on repair.",
+    "_img": "sector-shipbuilding",
+    "_services": [
+      "welding-services",
+      "pipe-fitting",
+      "shipbuilding",
+      "ship-repair",
+      "quality-control"
+    ]
+  },
+  "offshore": {
+    "name": "Offshore",
+    "lead": "Mobilising a team offshore is expensive and a shutdown is more expensive still. Rope access and NDT carry most of this work, with mechanical scopes alongside.",
+    "_img": "sector-offshore",
+    "_services": [
+      "rope-access-services",
+      "non-destructive-testing",
+      "rigging-technical-support",
+      "welding-services",
+      "quality-control"
+    ]
+  },
+  "industrial": {
+    "name": "Industrial",
+    "lead": "Plant installation, process piping and mechanical packages, delivered as a whole scope with our own supervisors and our own QA on site.",
+    "_img": "sector-industry",
+    "_services": [
+      "mechanical-contracting",
+      "pipe-fitting",
+      "heavy-equipment-relocation",
+      "mobile-repair-teams",
+      "3d-laser-scanning"
+    ]
+  },
+  "renewables": {
+    "name": "Renewables",
+    "lead": "Cable installation, rigging and offshore support on wind farms, plus the fuel handling infrastructure that sits behind them.",
+    "_img": "sector-wind",
+    "_services": [
+      "rigging-technical-support",
+      "welding-services",
+      "rope-access-services",
+      "mechanical-contracting",
+      "non-destructive-testing"
+    ]
+  }
+}

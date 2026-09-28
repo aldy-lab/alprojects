@@ -31,8 +31,15 @@ SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 # rewriting for the language trees, and two copies would drift.
 from paths import rootify, clean_urls  # noqa: E402
 import minify  # noqa: E402
+import content  # noqa: E402    -- the site's copy, see tools/content.py
 import thumbs  # noqa: E402
 import i18n  # noqa: E402    -- for the shared meta-description length rule
+
+# Everything that belongs to no collection -- page titles and meta
+# descriptions, the form's option lists, the number words, the photo
+# captions on /projects, the services cover and the organisation's name.
+SITE = content.site(content.load("site"))
+
 
 # Before anything is stamped: the ?v= hash is taken from the minified file,
 # so it has to be rewritten first or every page would ship last run's hash.
@@ -511,163 +518,24 @@ PRIVACY = """
 # figure reaches Google. The previous card claimed "30 positions", which the
 # handoff itself lists as an open question.
 # ============================================================
-POSITIONS = [
-    dict(id='tig-welder',
-         # Which DISCIPLINES option the apply button selects in the form.
-         # Without it pickRole() compares the job title against the
-         # discipline list, never matches, and the button scrolls to the
-         # form having selected nothing -- which is what it did with one
-         # card too.
-         discipline='Welding (TIG)',
-         title='Certified TIG Welder',
-         count='Ongoing recruitment',
-         location='Project sites across Europe',
-         contract='Project-based',
-         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
-         # value is omitted rather than printed as "to be confirmed".
-         rotation="", start="", rate="",
-         open=True,
-         posted="2026-09-11",        # date of the handoff
-         valid_through="2026-12-31",
-         employment_type="CONTRACTOR",
-         # vacancies intentionally unset -- see the note above
-         countries=["LT", "BE", "NO"],
-         summary='Piping, root runs and stainless steel systems on shipyard and industrial projects. You weld to an approved procedure, and the fit-up is checked before you start.',
-         needs=[
-             'Valid TIG qualification with supporting documents',
-             'Experience with pipe welding and stainless steel',
-             'Able to work from a welding procedure and an isometric drawing',
-             'Ready to travel and work on site in several countries',
-             'Working English, B1 or better',
-         ]),
-    dict(id='mig-mag-mma-welder',
-         # Which DISCIPLINES option the apply button selects in the form.
-         # Without it pickRole() compares the job title against the
-         # discipline list, never matches, and the button scrolls to the
-         # form having selected nothing -- which is what it did with one
-         # card too.
-         discipline='Welding (MIG/MAG)',
-         title='MIG / MAG / MMA Welder',
-         count='Ongoing recruitment',
-         location='Project sites across Europe',
-         contract='Project-based',
-         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
-         # value is omitted rather than printed as "to be confirmed".
-         rotation="", start="", rate="",
-         open=True,
-         posted="2026-09-11",        # date of the handoff
-         valid_through="2026-12-31",
-         employment_type="CONTRACTOR",
-         # vacancies intentionally unset -- see the note above
-         countries=["LT", "BE", "NO"],
-         summary='Structural steel, fill and capping passes, fabrication in the workshop and repair work on site. Plate, profiles and supports, mostly in shipyards and industrial plants.',
-         needs=[
-             'Valid qualification for MAG (135), flux-cored (136) or MMA (111)',
-             'Experience with structural steel and plate work',
-             'Able to read drawings and work to a procedure',
-             'Ready to travel and work on site in several countries',
-             'Working English, B1 or better',
-         ]),
-    dict(id='pipe-fitter',
-         # Which DISCIPLINES option the apply button selects in the form.
-         # Without it pickRole() compares the job title against the
-         # discipline list, never matches, and the button scrolls to the
-         # form having selected nothing -- which is what it did with one
-         # card too.
-         discipline='Pipe fitting',
-         title='Pipe Fitter',
-         count='Ongoing recruitment',
-         location='Project sites across Europe',
-         contract='Project-based',
-         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
-         # value is omitted rather than printed as "to be confirmed".
-         rotation="", start="", rate="",
-         open=True,
-         posted="2026-09-11",        # date of the handoff
-         valid_through="2026-12-31",
-         employment_type="CONTRACTOR",
-         # vacancies intentionally unset -- see the note above
-         countries=["LT", "BE", "NO"],
-         summary='Spool prefabrication on fitting tables, routing and installation of complete systems, fit-up and alignment before the welder arrives. We work from isometric drawings and 3D models.',
-         needs=[
-             'Experience with process, utility or engine room piping',
-             'Able to work from isometrics and 3D models',
-             'Fit-up, alignment and dimensional control before welding',
-             'Ready to travel and work on site in several countries',
-             'Working English, B1 or better',
-         ]),
-    dict(id='site-supervisor',
-         # Which DISCIPLINES option the apply button selects in the form.
-         # Without it pickRole() compares the job title against the
-         # discipline list, never matches, and the button scrolls to the
-         # form having selected nothing -- which is what it did with one
-         # card too.
-         discipline='Site supervision',
-         title='Site Supervisor',
-         count='Ongoing recruitment',
-         location='Project sites across Europe',
-         contract='Project-based',
-         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
-         # value is omitted rather than printed as "to be confirmed".
-         rotation="", start="", rate="",
-         open=True,
-         posted="2026-09-11",        # date of the handoff
-         valid_through="2026-12-31",
-         employment_type="CONTRACTOR",
-         # vacancies intentionally unset -- see the note above
-         countries=["LT", "BE", "NO"],
-         summary='You run the crew on site. Planning the sequence, holding the schedule, keeping the safety rules and dealing with the client day to day. You report to our project manager, not to the shipyard.',
-         needs=[
-             'Experience leading welding, piping or mechanical crews on site',
-             'Able to plan the work sequence and report progress to the client',
-             'Confident with safety rules and site documentation',
-             'Ready to travel and work on site in several countries',
-             'English at working level, German is an advantage',
-         ]),
-    dict(id='hull-assembler',
-         # Which DISCIPLINES option the apply button selects in the form.
-         # Without it pickRole() compares the job title against the
-         # discipline list, never matches, and the button scrolls to the
-         # form having selected nothing -- which is what it did with one
-         # card too.
-         discipline='Shipbuilding',
-         title='Hull Assembler',
-         count='Ongoing recruitment',
-         location='Project sites across Europe',
-         contract='Project-based',
-         # ⚠️ BLOCKED ON CLIENT: rotation, start and rate. A row with no
-         # value is omitted rather than printed as "to be confirmed".
-         rotation="", start="", rate="",
-         open=True,
-         posted="2026-09-11",        # date of the handoff
-         valid_through="2026-12-31",
-         employment_type="CONTRACTOR",
-         # vacancies intentionally unset -- see the note above
-         countries=["LT", "BE", "NO"],
-         summary='Assembly of hull sections and blocks in the shipyard. Setting plates and profiles, alignment, tack welding and preparing the joints for the welders, on newbuilds and on repair work.',
-         needs=[
-             'Experience with hull assembly on newbuilds or ship repair',
-             'Able to read shipbuilding drawings',
-             'Tack welding and confident use of alignment tools',
-             'Ready to travel and work on site in several countries',
-             'Working English, B1 or better',
-         ]),
-]
+POSITIONS = content.positions(content.load("positions"))
+# The five vacancies live in content/positions.json. What is copy: the title,
+# the summary, the requirement list, and the four spec values -- location,
+# contract, rotation, start and rate. Three of those five are still empty on
+# the client's side, and a row with no value is left out rather than printed as
+# "to be confirmed", so filling one in is a thing he can now do himself.
+#
+# "Ongoing recruitment" stays as the approved wording for the count even though
+# no row prints it today; vacancies is left unset so no invented figure reaches
+# the JobPosting markup. `discipline` is structural: it has to match an option
+# in DISCIPLINES exactly or the Apply button selects nothing, so an editor gets
+# it as a list to pick from.
 
-DISCIPLINES = [
-    "Welding (TIG)", "Welding (MIG/MAG)", "Pipe fitting", "Instrument pipe fitting",
-    "Mechanical installation", "Shipbuilding", "Ship repair", "NDT inspection",
-    "Rope access", "Quality control (QA/QC)", "Rigging", "Site supervision",
-]
-CERTIFICATES = [
-    "EN ISO 9606 (welder)", "TIG 141", "MIG/MAG 131/135", "IRATA L1", "IRATA L2",
-    "IRATA L3", "VCA / SCC", "NDT VT", "NDT PT/MT", "NDT UT", "GWO",
-    "Medical certificate",
-]
-ROTATIONS = ["8 / 2", "6 / 2", "4 / 2", "Continuous", "Local, no rotation"]
-WORK_COUNTRIES = ["Norway", "Germany", "Netherlands", "United Kingdom",
-                  "Lithuania", "Denmark", "Belgium", "Poland"]
-EXPERIENCE = ["Less than 2 years", "2 to 5 years", "5 to 10 years", "More than 10 years"]
+DISCIPLINES = SITE["disciplines"]
+CERTIFICATES = SITE["certificates"]
+ROTATIONS = SITE["rotations"]
+WORK_COUNTRIES = SITE["countries"]
+EXPERIENCE = SITE["experience"]
 
 
 def chips(items, attr, cls="chip"):
@@ -997,98 +865,13 @@ CAREERS = """
 # posts relatively ("2d", "1w"), so those are derived from 15 Aug 2026 —
 # verify before promoting. The award date is the certificate's own.
 # ============================================================
-ARTICLES = [
-    dict(slug="we-do-not-certify-our-own-welds",
-         date="13 Aug 2026", iso="2026-08-13", cat="Quality Control",
-         img="projects/welding-tig-pipe-1200.webp", w=900, h=1200,
-         alt="TIG root pass being welded on a prefabricated pipe spool",
-         title="We do not certify our own welds",
-         lead="Our NDT does not replace your inspector. We use it to catch our own mistakes first.",
-         body=[
-           "<strong>Where the line sits.</strong> Nobody should be signing off their own work, and we do not try to. Independent verification stays where the contract puts it, normally with the client or the class surveyor, and nothing we do changes that.",
-           "Our own technicians come in before that. They go over the joint while the crew is still on the job, and if something has to come out, it comes out before anyone else is invited to look at it.",
-           "<strong>Measured against the criteria.</strong> Cap height, width, undercut, profile. Each one is checked against the acceptance criteria for the job, and the joint is not presented until the numbers sit inside the limits.",
-           "<strong>What the eye cannot pick up.</strong> Clean the weld, apply the penetrant, let the developer draw it back out. Surface cracks and porosity that nobody would catch by eye show up in red, and anything outside the limits is repaired on the spot.",
-           "So there are two different things with the same equipment behind them. On our own jobs it is internal quality control, and it never counts as sign-off. On somebody else's welds it is independent NDT, because we did not weld it.",
-         ],
-         facts=[("On our own jobs", "Internal quality control", "It never counts as sign off"),
-                ("On somebody else's welds", "Independent NDT", "We did not weld it")],
-         cta="Send us the scope and we will come back with a price and crew dates."),
-
-    dict(slug="piping-installation-engine-room",
-         date="08 Aug 2026", iso="2026-08-08", cat="Shipbuilding",
-         img="projects/sector-shipbuilding-1200.webp", w=1200, h=1017,
-         alt="Fitters working inside a hull block under construction",
-         title="Piping installation in the engine room",
-         lead="Sea water, bilge, ballast and fuel lines going in on board right now.",
-         body=[
-           "Our crew is installing engine room systems on vessels under construction: seawater, bilge, ballast, fuel and service lines running from small bore up to DN200 around the main engine foundations.",
-           "<strong>Drawn first, then built.</strong> Isometrics are checked before anything is cut. Spools are prefabricated in the shop, fitted on board and hung so the line can move without loading the welds.",
-           "<strong>Manifolds, sea chests, tank connections.</strong> Gate valves, strainers and remote operated units set out and aligned on the tank top. Flange faces stay capped until the system is closed.",
-           "<strong>Welded, tested, then closed.</strong> Welding coordinated to EN ISO 3834-2. Every joint is documented, and NDT and pressure testing are done before insulation and final coating go on.",
-           "The order of work stays the same on every job. Most of the time in a machinery space goes on getting the routing right, not on the welding itself.",
-         ],
-         facts=[("Organised to", "EN ISO 3834-2", "Welding coordination requirements"),
-                ("Working from", "Lithuania, Belgium, Norway", "Offshore, shipbuilding and industry")],
-         cta="Send us the drawings and we will come back with a price and crew dates."),
-
-    dict(slug="strongest-in-lithuania-2025-2026",
-         date="23 Jun 2026", iso="2026-06-23", cat="Company",
-         img="projects/engineer-drawings-1200.webp", w=1200, h=954,
-         alt="ALPROJECTS engineer working from isometric drawings on site",
-         title="Among the strongest companies in Lithuania",
-         seo="Among Lithuania's strongest companies",
-         lead="ALPROJECTS, UAB has been awarded the Strongest in Lithuania 2025\u20132026 certificate by Creditinfo Group.",
-         body=[
-           "The certificate recognises companies with a high credit score and a proven record of financial stability. It is issued by Creditinfo Group and was awarded on 23 June 2026 for the 2025\u20132026 period.",
-           "<strong>A stable partner is a safer project.</strong> In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through.",
-           "That matters more than a logo on a wall. It is the difference between a contractor who can carry a scope to completion and one who cannot.",
-         ],
-         facts=[("Award", "Strongest in Lithuania", "2025\u20132026"),
-                ("Issued by", "Creditinfo Group", "23 June 2026")],
-         cta="Planning a project across shipbuilding, piping or industrial services? Let us talk."),
-
-    dict(slug="transformer-mechanical-package",
-         date="01 Aug 2026", iso="2026-08-01", cat="Industrial Projects",
-         img="projects/transformer-overhead-1200.webp", w=1200, h=900,
-         alt="Stainless pipework and transformer package installed at a substation",
-         title="A transformer mechanical package across five countries",
-         seo="Transformer package, five countries",
-         lead="Stainless steel piping, cooling systems and precision installation \u2014 repeated across five European sites.",
-         body=[
-           "A transformer mechanical package covers the stainless steel piping and cooling systems that keep the unit within its operating envelope. The tolerances are tight and the commissioning window is usually short.",
-           "What made this scope demanding was not any single site but the repetition: the same package delivered across five European countries, each with its own site conditions, inspection regime and local requirements.",
-           "Consistency across borders is a documentation problem as much as a fabrication one \u2014 which is where certified personnel and a single quality system earn their place.",
-         ],
-         facts=[], cta="Send us the scope and we will come back with a price and crew dates."),
-
-    dict(slug="fuel-loading-terminal-completed",
-         date="25 Jul 2026", iso="2026-07-25", cat="Energy Projects",
-         img="projects/terminal-rack-tanks-1200.webp", w=1200, h=900,
-         alt="Completed pipe rack running to storage tanks at a fuel loading terminal",
-         title="Fuel loading terminal completed",
-         lead="September 2025 to April 2026. Twelve specialists. Over 11,000 hours on site.",
-         body=[
-           "The scope ran from September 2025 to April 2026 and was delivered by a team of 12 specialists, accumulating more than 11,000 hours on site.",
-           "Fuel handling infrastructure concentrates every discipline we work in \u2014 mechanical installation, pipe fitting, welding, and the inspection and documentation that has to accompany all three when the medium is flammable.",
-           "Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail.",
-         ],
-         facts=[], cta="Send us the scope and we will come back with a price and crew dates."),
-
-    dict(slug="europe-tig-welder-shortage",
-         date="25 Jul 2026", iso="2026-07-25", cat="Industry",
-         img="projects/sector-industry-1200.webp", w=1200, h=1017,
-         alt="TIG welder working on a large-diameter stainless pipe",
-         title="We needed 30 certified TIG welders. Europe could not supply them.",
-         seo="We needed 30 certified TIG welders",
-         lead="The skilled trades shortage is not an abstraction when it is your project that cannot start.",
-         body=[
-           "Recruiting thirty certified TIG welders for a single scope of work turned out to be materially harder than the engineering it supported.",
-           "The shortage is discussed across European industry in general terms. It becomes concrete when a project is resourced, scheduled and funded, and the constraint is simply the number of people who hold the certification and are willing to travel.",
-           "It is worth being direct about this, because the answer is not a recruitment campaign. It is training, certification pathways, and treating the trades as a career rather than a stopgap.",
-         ],
-         facts=[], cta="If you hold the ticket and you are willing to travel, we would like to hear from you."),
-]
+ARTICLES = content.articles(content.load("articles"))
+# The six articles live in content/articles.json. `body` is a list of
+# paragraphs that may carry inline markup -- <strong> and links -- so in an
+# editor it is a text area and not a rich-text field pretending the markup is
+# not there. `facts` is three named fields per fact rather than a bare triple,
+# because three boxes in a row with no labels is how the note ends up in the
+# value.
 
 # Newest first, and the number comes from that order rather than being typed in.
 # The list was hand-ordered and hand-numbered, which put the June award third --
@@ -1633,22 +1416,7 @@ SERVICES = """
     </div>
 """
 
-SHOTS = [
-    ("welding-tig-pipe", 'TIG root pass on a prefabricated spool', 900, 1200),
-    ("piping-roof-crew", 'Carbon steel lines being set out on a plant roof', 900, 1200),
-    ("piping-roof-duct", 'Process lines run alongside insulated ductwork', 900, 1200),
-    ("transformer-overhead", 'Stainless pipework around a transformer package', 1200, 900),
-    ("substation-sky", 'Completed pipe runs at a substation', 1200, 900),
-    ("facade-pipe-crane", 'Pipe runs erected along a plant facade', 900, 1200),
-    ("transformer-bushing", 'Mechanical package installed beneath the bushings', 1200, 900),
-    ("transformer-plant", 'Cooling and process lines at the transformer plant', 1200, 900),
-    ("facade-tank-pipe", 'Vessel and pipe run carried along the building line', 1200, 900),
-    ("terminal-rack-tanks", 'Pipe rack running to storage tanks at a fuel terminal', 1200, 900),
-    ("terminal-pumps", 'Pump skids and valve stations, terminal loading area', 900, 1200),
-    ("terminal-rack-trays", 'Pipe rack and cable trays on the loading gantry', 900, 1200),
-    ("terminal-valves", 'Valve manifolds over the bund', 1200, 900),
-    ("terminal-tankfarm", 'Completed tank farm pipe racks', 900, 1200),
-]
+SHOTS = SITE["shots"]
 
 
 def shots_html():
@@ -1699,558 +1467,18 @@ def shots_html():
 # stage, in ascending order, which is what keeps the lightbox sequence equal to
 # the photo order -- the viewer numbers shots by DOM position, not by the
 # data-shot attribute.
-CASES = [
-    dict(
-        slug="engine-room-piping-and-machinery-installation",
-        title="Engine room piping and machinery installation",
-        kicker="Mechanical installation and piping \u00b7 Shipbuilding",
-        setting="Vessel under construction, machinery spaces",
-        lead="Machinery on resilient mounts, and the seawater, bilge and fuel lines "
-             "that connect it. The mounts went down first; the piping followed, "
-             "through a compartment that was already full.",
-        intro=[],
-        stages=[
-            (2, ["The mounts go down before anything else. We land the machine "
-                 "on them all at once, then set each mount so it takes its "
-                 "share of the load and sits within the deflection the maker "
-                 "allows. The alignment is checked and recorded before the "
-                 "first flange is made up, and again once the lines are "
-                 "connected."]),
-            (3, ["The drawing gives the route; the dimensions come off the "
-                 "steel. By the time the piping starts the space is full, so we "
-                 "build the valves, the strainer and the branches up on one "
-                 "frame outside the compartment and land the group as a unit, "
-                 "with the bolt holes matching and the flange faces square. Set "
-                 "out that way, somebody standing in front of it can reach "
-                 "every handwheel."]),
-            (4, ["Resiliently mounted machinery moves, and the hull works at sea. "
-                 "Flexible hoses take that movement at the machine connections. On the "
-                 "runs, mechanical couplings take up misalignment, and we anchor and "
-                 "guide the pipe either side of them so the coupling is not left "
-                 "carrying the line."]),
-            (5, ["We set the valve groups out to keep the tank access clear, "
-                 "because the covers have to come off in service. Open ends are "
-                 "capped whenever work stops on a line, and the system is "
-                 "blanked at its boundaries for the pressure test. Each line is "
-                 "tagged to the drawing as it is finished."]),
-        ],
-        note="",
-        og="engine-room-piping",
-        cta="Send us the drawings.",
-        # A new build has no shutdown to work round; it has a slot at the yard.
-        cta_note="Send the drawings or the scope and we will come back with a price and "
-                 "crew dates. If it is a yard slot, tell us the window.",
-        # Heading, body and button say the same thing here. The other four say
-        # three different things; this page is the pattern if that gets swept.
-        cta_btn="Send us the drawings",
-        services=["pipe-fitting", "welding-services", "mechanical-contracting",
-                  "shipbuilding", "quality-control"],
-        photos=[
-            ("Machined seating in an engine room with resilient mounts bolted down, "
-             "studs and nuts set, and timber packing alongside",
-             "Resilient mounts on the machined seating.", 1200, 1600),
-            ("A row of resilient mounts along the machined seating, with the first pipe "
-             "runs and capped flanges laid in beside them",
-             "The seating, with the mounts set and the first lines alongside.", 1200, 900),
-            ("Valve and strainer group made up on a frame against an engine room "
-             "bulkhead, with globe valves, a basket strainer and capped branches",
-             "Valve and strainer group on the bulkhead.", 1200, 900),
-            ("Large-bore pipe runs under a deckhead, with mechanical couplings on the "
-             "vertical drop and anchors either side of them",
-             "Mechanical couplings on the large-bore runs.", 1200, 1600),
-            ("Valve group set out around a bolted tank access cover, with the covers "
-             "left clear and every open end capped",
-             "Valve group around the tank access cover.", 1200, 1600),
-        ],
-    ),
-    dict(
-        slug="foundations-penetrations-and-equipment-installation",
-        title="Foundations, penetrations and equipment installation",
-        kicker="Steel fabrication and mechanical installation \u00b7 Shipbuilding",
-        setting="Vessel under construction, machinery and tank spaces",
-        lead="The steel that has to be in place before the equipment. We made and set "
-             "the seats and frames, cut the openings and welded in the bulkhead "
-             "penetrations, and fitted the supports for the cable and pipe routes.",
-        intro=[],
-        stages=[
-            (2, ["Frames and seats are fabricated to the drawing, then set to the "
-                 "steel that is actually there. We land the frame on the marked "
-                 "position, check it for position and level, and weld it down once "
-                 "it sits right. A unit light enough to be landed with its frame "
-                 "goes in first. Anything heavier goes on after the frame is welded "
-                 "down, and stays under cover until commissioning."]),
-            (3, ["We mark the opening from the ring that goes into it, cut it, and "
-                 "prepare the edge before the ring is offered up. That way the root "
-                 "gap is even the whole way round. On a watertight boundary the gap "
-                 "is what the weld has to close, and an uneven one shows up at the "
-                 "tightness test."]),
-            (4, ["The ring is worked from both sides at once. One fitter checks the "
-                 "alignment inside the opening while another dresses the prep "
-                 "outside, and we tack in a balanced sequence so the ring does not "
-                 "pull as it is welded out."]),
-            (5, ["Supports for cable and pipe routes go on before the boundary is "
-                 "closed in. We set the brackets clear of the insulation and the "
-                 "pins that hold it, so the tray runs at its own height and nothing "
-                 "has to be cut back when the lining goes on."]),
-        ],
-        note="",
-        og="foundations-penetrations",
-        cta="Send us the drawings.",
-        cta_note="Send the drawings or the scope and we will come back with a price and "
-                 "crew dates. If it is a yard slot, tell us the window.",
-        cta_btn="Send us the drawings",
-        services=["mechanical-contracting", "welding-services", "shipbuilding",
-                  "rigging-technical-support", "quality-control"],
-        photos=[
-            ("Cylindrical steel unit in a fabricated frame, suspended on chain hoists "
-             "over its marked position on the deck of a vessel under construction",
-             "Coming down on the marked position.", 1200, 1600),
-            ("Machinery unit under protective covers on a fabricated steel frame in a "
-             "shipyard hall",
-             "The unit on its frame, covered until commissioning.", 1200, 900),
-            ("Circular opening cut in a bulkhead, with the penetration piece standing "
-             "ready on the deck beside it",
-             "The opening cut, and the penetration piece ready to go in.", 1200, 1600),
-            ("Two fitters at a bulkhead penetration, one checking alignment inside the "
-             "opening while the other dresses the edge with a grinder",
-             "Dressing the prep before the penetration is welded out.", 1200, 1600),
-            ("Cable trays and brackets fitted to an insulated bulkhead, with insulation "
-             "pins welded across the plate",
-             "Cable tray supports on an insulated boundary.", 1200, 1600),
-        ],
-    ),
-    dict(
-        slug="large-bore-pipe-replacement",
-        title="Large-bore pipe replacement",
-        kicker="Mechanical installation and welding \u00b7 Industrial",
-        # The client has to confirm this one: the package offers "Plant
-        # shutdown" and "Live plant" as the two alternatives, and says not to
-        # guess. This is the neutral value, and it is what the photographs show.
-        setting="Existing plant, scaffolded work fronts",
-        lead="Large-bore pipework replaced inside an existing plant. We prefabricated "
-             "the spools, rigged them into position on chain hoists off the plant "
-             "steel, and welded them in place.",
-        intro=[],
-        stages=[
-            (2, ["We put the covers down before anything hot starts \u2014 blankets "
-                 "under the work front, sheeting across what is behind it, and the "
-                 "grating below closed off. A spark that goes through the grating "
-                 "lands on whatever is on the level under you."]),
-            (3, ["Branches and stubs go on at floor level, where the piece can be "
-                 "turned and the weld is made in the flat position. The spool goes "
-                 "up as one piece with its openings already in it. Every branch "
-                 "done down here is one less weld made overhead."]),
-            # This stage claims the attachment points were agreed with the plant.
-            # If that agreement did not happen, the sentence has to go -- the
-            # package flags it as the kind of claim that gets a crew removed.
-            (4, ["There is no crane over the work front, so the load comes off the "
-                 "plant steel. We agree the attachment points with the plant first, "
-                 "then hang beam clamps and chain hoists at each end and walk the "
-                 "spool into line by hand."]),
-            (5, ["Fit-up decides the joint. We set the gap and hold it the whole way "
-                 "round before an arc is struck, and the root goes in first \u2014 in "
-                 "this frame it is part way round, with the gap above still open. "
-                 "The joint is cleaned and checked before the fill and cap go on."]),
-        ],
-        note="",
-        og="large-bore-pipe-replacement",
-        cta="Send us the drawings.",
-        # Back to the site's original wording: this job has a shutdown, where the
-        # two shipbuilding cases have a yard slot.
-        cta_note="Send the drawings or the scope and we will come back with a price and "
-                 "crew dates. If it is a shutdown, tell us the window.",
-        cta_btn="Send us the drawings",
-        services=["pipe-fitting", "welding-services", "mechanical-contracting",
-                  "rigging-technical-support", "quality-control"],
-        photos=[
-            ("New large-bore pipework and a fabricated bend installed among existing "
-             "lines and ducts inside an industrial plant",
-             "The new run in place.", 1200, 1600),
-            ("Protective sheeting and welding blankets laid over plant grating around "
-             "a pipe spool standing ready for installation",
-             "The work front covered before hot work starts.", 1200, 1600),
-            ("Prefabricated pipe bend with a welded branch and stub, standing on "
-             "timber on plant grating",
-             "Branch and stub welded on before the spool goes up.", 1200, 900),
-            ("Two beam clamps and chain hoists rigged from overhead steel, taking the "
-             "weight of a large-bore pipe",
-             "Beam clamps and chain hoists off the existing steel.", 1200, 1600),
-            ("Close-up of a pipe butt joint with an even root gap and the root run "
-             "part way round",
-             "The root run part way round the joint.", 1200, 1600),
-        ],
-    ),
-    dict(
-        slug="grate-bar-replacement",
-        title="Grate bar replacement",
-        kicker="Mechanical maintenance \u00b7 Waste to energy",
-        setting="Waste-to-energy plant, furnace during outage",
-        lead="Grate bars replaced inside the furnace of a waste-to-energy plant "
-             "during the outage. The old bars came out one row at a time, cut "
-             "free where they were seized, and the new ones went back set to the "
-             "specified gap.",
-        intro=[],
-        # Nothing was built here; something worn was replaced.
-        seq_head="How it was done",
-        stages=[
-            (2, ["The furnace is cold by the time we go in, but it is not clean. "
-                 "Everything inside is coated in fly ash and combustion residue, "
-                 "so the crew works in disposable coveralls and P3 respirators, "
-                 "and the suits come off at the door. Entry is under permit, with "
-                 "the space ventilated and the atmosphere monitored."]),
-            (3, ["The bars sit in rows across the grate, and after a full run most "
-                 "of them are seized in place. They come out one row at a time "
-                 "\u2014 cut free where they will not move, lifted out by hand and "
-                 "stacked. The new ones go back set to the gap the maker "
-                 "specifies, because that gap is how the primary air reaches the "
-                 "bed."]),
-        ],
-        note="",
-        og="grate-bar-replacement",
-        # Scope, not drawings: nobody sends drawings for an outage, they send
-        # the scope and the window. The other three new cases say "drawings".
-        cta="Send us the scope.",
-        cta_note="Send us the scope and we will come back with a price and crew "
-                 "dates. If it is an outage, tell us the window.",
-        cta_btn="Send us the scope",
-        # No welding: the three frames show oxy-fuel cutting and nothing else.
-        # The client has been asked whether welding was in scope.
-        services=["mechanical-contracting", "mobile-repair-teams",
-                  "quality-control"],
-        photos=[
-            ("Worker in disposable coveralls and respirator cutting seized steel "
-             "free with an oxy-fuel torch at the grate, with removed grate blocks "
-             "in the foreground",
-             "Cutting seized steel free.", 1200, 1600),
-            ("Worker in a hard hat, goggles and P3 respirator inside the cold "
-             "furnace of a waste-to-energy plant",
-             "Disposable coveralls and P3 respirators.", 1200, 1600),
-            ("Two workers in disposable coveralls levering an old grate bar out of "
-             "its row, with removed bars stacked behind them",
-             "Old bars out, one row at a time.", 1200, 1600),
-        ],
-    ),
-    dict(
-        slug="fan-replacement-and-duct-adaptation",
-        title="Fan replacement and duct adaptation",
-        kicker="Mechanical installation and welding \u00b7 Industrial",
-        # The package offers "Plant shutdown" as the stronger alternative and
-        # says not to guess. This is what the frames show.
-        setting="Existing plant, outdoor process platform",
-        lead="An extraction fan replaced on a process platform. The ducting that "
-             "was already there did not suit the new unit, so we cut it back, "
-             "made the transition pieces to fit, and connected the fan on both "
-             "sides.",
-        intro=[],
-        stages=[
-            (2, ["The fan comes to site as one assembly \u2014 casing, impeller, "
-                 "motor and base frame together. What decides the job is not the "
-                 "fan itself but its connection dimensions: the inlet, the outlet "
-                 "and the bolt pattern under the frame. On a replacement they "
-                 "rarely match what is already there, and here they did not."]),
-            (3, ["The fan is landed on its base and stays on the sling until it is "
-                 "fixed down. The old frame did not leave the seats where the new "
-                 "one needs them, so they are made to suit the new footprint "
-                 "before anything is bolted \u2014 a fan sitting on a base that is "
-                 "out carries that error straight into its bearings. Anything hot "
-                 "happens over a blanket, with an extinguisher at the work front."]),
-            (4, ["The inlet side is where the old ducting has to give. We take the "
-                 "weight of the duct on a sling first, so nothing is hanging on "
-                 "the joint once it is open, then cut it back and set a stub into "
-                 "it to suit the fan inlet. The fan drawing gives the size; where "
-                 "the stub lands is measured on the duct itself."]),
-            (5, ["The outlet goes up into the existing stack, and the two do not "
-                 "meet on their own. We make the transition, offer it up with the "
-                 "fan standing on its base, and mark it in position. Nothing is "
-                 "finish-welded until both ends have been proved against the "
-                 "openings they have to land on."]),
-            # The anti-vibration mounts carry this whole paragraph and the client
-            # has been asked to confirm that is what the black elements are, not
-            # levelling pads.
-            (6, ["Both connections finish on something flexible \u2014 a sleeve at "
-                 "the inlet and a bolted expansion joint at the outlet. The frame "
-                 "itself stands on anti-vibration mounts, so the machine is free "
-                 "to move a little; these two joints are what keep that movement "
-                 "out of the ducting, and they let the flanges sit a fraction out "
-                 "of line without loading either side. With those in, the adapter "
-                 "welds are dressed back and the expansion joint is bolted up all "
-                 "round."]),
-        ],
-        note="",
-        og="fan-replacement-and-duct-adaptation",
-        cta="Send us the scope.",
-        # The package writes "Send the scope or the drawings"; the site already
-        # says "Send the drawings or the scope", translated in three languages.
-        # The flip carries no meaning, so the existing string is used rather
-        # than a near-duplicate key and three more translations of one sentence.
-        cta_note="Send the drawings or the scope and we will come back with a price "
-                 "and crew dates. If it is a shutdown, tell us the window.",
-        cta_btn="Send us the scope",
-        # Quality control is left out: none of the six frames shows a measurement,
-        # an alignment or a record. It goes back in one line if the client
-        # confirms the shaft alignment and vibration check were in scope.
-        services=["mechanical-contracting", "welding-services",
-                  "rigging-technical-support"],
-        photos=[
-            ("New blue centrifugal fan installed on a steel base on an outdoor "
-             "grating platform, its outlet connected through an expansion joint "
-             "to the existing painted exhaust stack",
-             "The new fan, connected on both sides.", 1200, 1600),
-            ("New centrifugal fan and motor on a pallet as delivered to site, "
-             "before installation",
-             "The new unit as delivered.", 1200, 1600),
-            ("Worker at the base of the newly landed fan on the grating platform, "
-             "with lifting slings, tools and a fire extinguisher laid out beside "
-             "him",
-             "Base work before the fan is bolted down.", 1200, 1600),
-            ("Existing rectangular duct supported on a round sling while its open "
-             "end is connected to the inlet of the new fan",
-             "The duct carried on a sling while the joint is open.", 1200, 1600),
-            # The cropped variant, which is the package's own default and carries
-            # no face. The full frame is sharper and is NOT in this repository:
-            # it needs that employee's written consent first.
-            ("New fan standing on its base with the outlet transition piece "
-             "offered up under the existing stack",
-             "The outlet transition offered up in position.", 1200, 1600),
-            ("Fabric expansion joint with tie rods bolted between the fan outlet "
-             "and the adapted exhaust duct above it",
-             "The expansion joint between fan and stack.", 1200, 1600),
-        ],
-    ),
-    dict(
-        slug="offshore-rope-access-welding",
-        title="Offshore rope access welding",
-        kicker="Welding and rope access \u00b7 Offshore",
-        # The package supplied "Offshore platform, North Sea" and then said in
-        # its own stop-list that the sea area was read off the platform name on
-        # the frame we are NOT publishing. An unverified geography claim is the
-        # one thing this site does not ship, so it stays at what the frames
-        # actually show: open water and an offshore wind farm. The client can
-        # confirm the North Sea separately and it goes back.
-        setting="Offshore platform, Northern Europe",
-        lead="Welding on the outside of an offshore platform, carried out on rope "
-             "access. There is no scaffold and no basket over the side, so the "
-             "welder reaches the joint on ropes and works from the harness.",
-        intro=[],
-        seq_head="How it was done",
-        # THE SHORT VARIANT, and deliberately so. The package ships four frames;
-        # its own frame 03 has the platform name painted across the shell, large
-        # and fully legible, and it cannot be cropped out without cutting one of
-        # the two technicians in half. That file is not in this repository at
-        # all -- not gated, not renamed, absent -- so no flag can publish it.
-        # What is here as 03-*.webp is the package's 04.
-        #
-        # If written permission to name the platform arrives: copy the package's
-        # 03 in as 03-*.webp, move this file to 04-*.webp, add the access stage
-        # back as (3, [...]) and restore this stage's first sentence to
-        # "Welding is carried out from the harness, with the set on deck and the
-        # cables run down to the joint." The package's strings file has both.
-        stages=[
-            (2, ["The platform has no quay and no road. Crew, tools and "
-                 "consumables arrive by vessel or helicopter and stay for the "
-                 "shift, and the working window is set by wind and sea state "
-                 "rather than by the programme."]),
-            (3, ["Welding is carried out from the harness, on a working line and "
-                 "a backup rigged from the structure above, with the team working "
-                 "in pairs. The joint is prepared before the arc is struck and "
-                 "completed in short runs. The return clamp is placed on the work "
-                 "close to the joint \u2014 over water the return path is part of "
-                 "the safety case, not a detail."]),
-        ],
-        note="",
-        og="offshore-rope-access-welding",
-        cta="Send us the scope.",
-        cta_note="Send us the scope and we will come back with a price and crew "
-                 "dates. For offshore work tell us the access, the vessel and the "
-                 "weather window.",
-        cta_btn="Send us the scope",
-        # The package says there is no rope access service page and not to invent
-        # the link. There is one -- /services/rope-access-services, live -- and
-        # it is the single thing an offshore buyer comes to this page looking
-        # for, so it goes first.
-        services=["rope-access-services", "welding-services",
-                  "rigging-technical-support", "mobile-repair-teams"],
-        photos=[
-            ("Rope access technician suspended in a harness on the outside of an "
-             "offshore platform, with wind turbines on the horizon",
-             "Rope access over open water.", 1200, 900),
-            ("Side of an offshore platform above the sea, with wind turbines in "
-             "low cloud on the horizon",
-             "Access by vessel or helicopter only.", 1200, 900),
-            # The package's own alt for this frame describes one welder; the
-            # frame has two technicians, one of them in a welding helmet.
-            ("Two rope access technicians suspended on twin ropes at a yellow "
-             "structure on an offshore platform, one wearing a welding helmet, "
-             "with cables run down from the deck above",
-             "Welding carried out from the harness.", 1200, 900),
-        ],
-        # NOT PUBLISHED. The opening frame -- which is also the card on
-        # /projects and the OG image, so it reaches further than this page --
-        # shows one employee's face in full. The package is unambiguous: without
-        # that person's written consent the page is not assembled, and there is
-        # nothing to swap the frame for. Set draft=False when the consent is in
-        # hand and the case ships: page, card, chain, sitemap, all of it.
-        draft=False,
-    ),
-    dict(
-        slug="tank-and-vessel-fabrication",
-        title="Tank and vessel fabrication",
-        kicker="Shop fabrication and welding",
-        setting="Fabrication shop, under a crane",
-        lead="We weld the nozzles into the courses before they go on the stack, weld out "
-             "the seams under a crane, and cut and fit the bottoms on the shop floor.",
-        intro=[],
-        stages=[
-            (2, ["Nozzles and manways go into the shell courses before they go on the "
-                 "stack, while a course can still be worked from both sides. The welder "
-                 "works downhand and can get at the back of the joint. By the time a "
-                 "course goes on the stack the nozzles are already in it."]),
-            (3, ["The first course goes on timber packing. The next comes down on it "
-                 "under the crane, landed and held while the seam is tacked, and then "
-                 "welded out."]),
-            (4, ["The large tanks go together the other way up. The shell is held up on "
-                 "packing and the next course goes on underneath it, with a row of "
-                 "temporary clips round the inside holding it while the seams are welded "
-                 "out.",
-                 "Those clips and the lifting lugs come off when the shell is done, and "
-                 "the places where they were welded are dressed back level with the "
-                 "plate."]),
-            (5, ["Lifting is done on the overhead crane, using slings and a spreader "
-                 "beam. Bottom plates are cut and fitted on the shop floor."]),
-            (6, ["In the shop the welding is done under cover and under a "
-                 "crane."]),
-        ],
-        note="",
-        cta="Send us the drawings.",
-        services=["welding-services", "pipe-fitting", "mechanical-contracting",
-                  "quality-control"],
-        photos=[
-            ("Welder working under a tank shell held up and secured on timber packing, "
-             "with bottom plates laid out on the shop floor",
-             "Shell held up on packing, work going on underneath.", 1200, 1600),
-            ("Vessel shell course being lowered onto the course below by overhead crane, "
-             "with the nozzles already welded in",
-             "The nozzles go in before the course goes on the stack.", 1200, 1600),
-            ("Assembled vessel standing on blocks, with nozzles, a side manway and a "
-             "drawing taped to the shell",
-             "Vessel closed up.", 1200, 1600),
-            ("Inside a tank shell, a long pipe on trestles and temporary clips welded "
-             "round the courses above the bottom plates",
-             "Inside the shell, with the temporary clips round the courses.", 1200, 1600),
-            ("Tank shell lifted on slings from lugs welded to the top course",
-             "Lifted on slings from welded lugs.", 1200, 1600),
-            ("Fabrication hall with tank shells, a vessel on packing, and a spreader beam "
-             "with slings on the floor",
-             "The shop floor.", 1200, 900),
-        ]),
-    dict(
-        slug="valve-station-tie-in-piping",
-        title="Valve station and tie-in piping",
-        kicker="Mechanical installation and welding &middot; tank farm",
-        setting="Live plant, work front under cover",
-        lead="A new valve station at the base of a storage tank. We set and levelled the "
-             "valves, fitted the spools, welded and bolted the joints, and tied the run "
-             "into the existing pipe rack.",
-        # Two of the five delivered frames are not here. The customer's logo is
-        # legible on the tarpaulin in both -- the retoucher cleaned three frames
-        # and these two were missed -- so they are out of the repo entirely
-        # until they come back cleaned. See README, "Still open on the case
-        # pages". The three that remain carry no customer identification: the
-        # "TENARIS" on the pipe in the tie-in frame is the mill's mark, which
-        # the client asked to keep.
-        intro=["A storage tank needed a new valve station and a connection into the "
-               "existing pipe rack.",
-               "The valves went on adjustable stands and we levelled them before "
-               "anything was fixed. We did not tack until the run was straight and the "
-               "flange faces were parallel."],
-        stages=[
-            (2, ["The close-up shows a finished root, taken down the bore from the open "
-                 "end of a spool."]),
-            (3, ["Some of the joints are welded, the rest are flanged and bolted. The "
-                 "spools went in between them."]),
-        ],
-        note="The work front sat under temporary cover, with the plant live around it.",
-        cta="Send us the scope.",
-        services=["pipe-fitting", "welding-services", "mechanical-contracting",
-                  "quality-control"],
-        photos=[
-            ("Valve station under temporary cover at the base of a storage tank",
-             "Work front under temporary cover.", 1200, 1600),
-            ("Finished root run on a butt weld, photographed down the pipe bore from the "
-             "open end of a spool",
-             "Finished root.", 1200, 900),
-            ("Tie-in piping and flanged joints running from the valve station into the "
-             "existing rack",
-             "Tied into the existing rack.", 1200, 1600),
-        ]),
-    dict(
-        slug="tank-internals-and-attachments",
-        title="Tank internals, nozzles and attachments",
-        kicker="Mechanical installation and welding",
-        setting="Tank being fitted out",
-        lead="Internal pipe off a shell nozzle, brackets on pad plates, roof rafters into "
-             "the centre ring.",
-        # The hero frame IS the close-up this paragraph points at, so it reads as
-        # the lead-in to the sequence rather than as a stage of its own.
-        intro=["On this job no bracket went straight onto the shell. Every attachment sat "
-               "on a pad plate, and the pad was welded to the shell. The close-up above "
-               "shows one. If the bracket ever has to come off, it comes off the pad and "
-               "the shell is untouched."],
-        stages=[
-            (2, ["The internal pipe runs from a shell nozzle across the tank.",
-                 "Pads went down on the bottom plates as well, the stands went on the "
-                 "pads and the pipe sat on the stands. When the stands come off, the pads "
-                 "take the damage instead of the bottom plates."]),
-            (3, ["The roof goes on radial rafters into a centre ring."]),
-        ],
-        note="Temporary steel goes on and comes off all the way through a job like this. "
-             "Every place it was welded is ground back flush before the tank is painted.",
-        cta="Tell us what goes inside and we will price it.",
-        services=["welding-services", "mechanical-contracting", "pipe-fitting",
-                  "quality-control"],
-        photos=[
-            ("External bracket welded to a pad plate on the tank shell, with the pad "
-             "welded all round",
-             "The pad plate goes on before the bracket.", 1200, 1600),
-            ("Internal pipe connected to a shell nozzle inside a tank, with bottom plates "
-             "below",
-             "Internal pipe off the shell nozzle.", 1200, 1600),
-            ("Tank roof on radial rafters into the centre ring, with a nozzle opening cut",
-             "Roof rafters into the centre ring.", 1200, 900),
-        ]),
-    dict(
-        slug="agitator-replacement",
-        title="Agitator replacement inside a storage tank",
-        kicker="Mechanical installation",
-        setting="Tank out of service",
-        lead="The shaft runs from the drive mounting on the roof down to a bearing at the "
-             "floor, with two impellers on it.",
-        intro=["The agitator in this tank was being replaced. The shaft runs the full "
-               "height of the tank, from the drive mounting on the roof down to a bearing "
-               "at the floor. Two impellers on it, one low down and one near the roof.",
-               "The fitting work was done inside the tank, with the tank out of service."],
-        stages=[
-            (2, ["The bearing at the floor went in first. We levelled it before any of the "
-                 "shaft went in, and checked the shaft once it was down. Everything above "
-                 "depends on that bearing."]),
-            (3, ["We fitted the lower impeller from the tank floor and the upper one from "
-                 "temporary access."]),
-        ],
-        note="",
-        cta="Tell us what is going in and we will look at it.",
-        services=["mechanical-contracting", "rigging-technical-support", "pipe-fitting",
-                  "quality-control"],
-        photos=[
-            ("Agitator shaft running the full height of a storage tank up to the roof, "
-             "with the upper impeller near the top",
-             "Looking up the shaft to the roof.", 1200, 900),
-            ("Agitator bearing at the tank floor, with levelling tools in place",
-             "The bearing at the floor.", 1200, 1600),
-            ("Lower agitator impeller bolted to the shaft inside a storage tank, with the "
-             "bearing on the floor below it",
-             "Lower impeller on the shaft.", 1200, 900),
-        ]),
-]
+CASES = content.cases(content.load("cases"))
+# The ten project cases live in content/cases.json -- 189 editable fields, the
+# largest collection on the site and the one the client adds to. Copy: the
+# title, the kicker, the setting, the lead, the intro, the stage paragraphs,
+# the note, the three call-to-action strings, and each frame's alt text and
+# caption. Structure: the slug, which services the job links to, the share
+# card, the draft flag, each frame's pixel size and which frame a stage shows.
+#
+# The alt text and the caption used to sit side by side in one anonymous
+# four-item tuple with two numbers. They are two different sentences for two
+# different readers -- one describes the photograph for somebody who cannot
+# see it, the other says what the job was -- and in the file they are named.
 
 # Every frame has to appear exactly once, as the hero or as one stage's plate.
 # Without this a re-ordered stage list silently drops a photograph -- the page
@@ -2283,10 +1511,7 @@ for _c in LIVE:
 # Seven to Eight in four languages". It is derived now: add, remove or
 # un-draft a case and the sentence follows, in the source and in all three
 # translations, because the whole sentence is the translation key.
-COUNT_WORD = {
-    1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six",
-    7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve",
-}
+COUNT_WORD = SITE["count_word"]
 
 
 def cases_sub_lead():
@@ -2835,14 +2060,7 @@ CONTACTS = """
 # ============================================================
 import json
 
-ORG = {
-    "@type": "Organization",
-    "vatID": "LT100012753216",
-    "taxID": "305137109",
-    "name": "ALPROJECTS Group",
-    "sameAs": "https://alprojects.co/",
-    "logo": "https://alprojects.co/assets/logo-1200.png",
-}
+ORG = SITE["org"]
 
 def _strip(o):
     """Google rejects null-valued properties — drop them rather than emit null."""
@@ -3038,158 +2256,24 @@ OG_CARDS = {"we-do-not-certify-our-own-welds", "piping-installation-engine-room"
 # Still unconfirmed: ISO 3834 has no certificate on file, and
 # IRATA/SOFT are unverified.
 # ============================================================
-SERVICE_GROUPS = [
-    ("Mechanical & Industrial", [
-        dict(slug="welding-services", nav="Welding Services", h1="Welding services",
-             lead="We weld steel structures and pipework, in the shop and on site. Every welder holds a valid "
-      "qualification, and every joint is welded to a procedure approved before work starts.",
-             points=["MMA (111), MAG (135), flux-cored (136) and TIG (141); MIG (131) for aluminium",
-                     "TIG for root runs, small-bore piping and stainless steel",
-                     "Structural steel, pressure piping and pipe supports",
-                     "Welder qualifications to EN ISO 9606-1, checked before mobilisation",
-                     "Welding procedures qualified to EN ISO 15614-1",
-                     "Pressure piping to EN 13480, pressure tested before insulation"]),
-        dict(slug="pipe-fitting", nav="Pipe Fitting", h1="Pipe fitting",
-             lead="We supply pipe fitters for process, utility and engine room systems, instrument fitters "
-      "for small-bore work, and workshop crews who prefabricate spools on fitting tables. We work "
-      "from isometric drawings and 3D models, and the dimensions are checked before the welder "
-      "arrives.",
-             points=["Process and utility piping in carbon steel and stainless steel, small bore to large bore",
-                     "Copper piping and Blücher stainless drainage systems",
-                     "Hydraulic piping and tubing, flushed before commissioning",
-                     "Instrument fitting: small-bore tubing, impulse lines and instrument hook-ups",
-                     "Marine piping: engine room and system piping on newbuilds and repair",
-                     "Spool prefabrication on fitting tables, marked and traceable to the drawing",
-                     "Complete systems routed and installed on board and on site",
-                     "Fit-up, alignment and dimensional control before welding, flange assembly and support during pressure testing"]),
-        dict(slug="mechanical-contracting", nav="Mechanical Contracting", h1="Mechanical contracting",
-             lead="We take a mechanical scope from start to finish: steel fabricated in the shop, equipment "
-      "installed on site, systems connected and handed over. On transformer work we supply the "
-      "complete package, from bushings, coolers and conservators to the pipework between them. "
-      "Our supervisors and QA/QC engineers stay on site for the duration of the job, so the "
-      "client deals with one contractor instead of coordinating four. We are used to working "
-      "inside shutdown windows, where the sequence matters as much as the number of people on the "
-      "job.",
-             points=["Shop fabrication of structural steel, platforms, supports and access structures",
-                     "Mechanical installation of plant and equipment, including setting and alignment",
-                     "Transformer packages: bushings, coolers, conservators and connecting pipework",
-                     "Removal and replacement of existing equipment during shutdowns",
-                     "Lifting and rigging planned together with the installation sequence",
-                     "One contract and one schedule for the whole scope",
-                     "Our own supervisors and QA/QC engineers on site for the duration",
-                     "Punch list cleared and mechanical completion handed over as a package"]),
-        dict(slug="heavy-equipment-relocation", nav="Heavy Equipment Relocation",
-             h1="Heavy equipment relocation",
-             lead="Moving a production line is a scheduling problem before it is a lifting problem. "
-                  "We dismantle, move, reinstall and align it, inside a running plant or between "
-                  "two countries.",
-             points=["Dismantling, skidding, jacking and positioning on SPMT or hydraulic gantry",
-                     "Disconnection and reconnection of piping and utilities",
-                     "Foundation preparation, chocking, grouting and laser shaft alignment",
-                     "Site-to-site moves across Europe",
-                     # "with CMR cover" asserts carrier liability insurance. Nothing
-                     # on file evidences it, and if the haulage is subcontracted the
-                     # cover belongs to the haulier, not to us. This wording is true
-                     # whether the transport is ours or a partner's; the audit asked
-                     # for the same change. Who actually holds the CMR is a client
-                     # question and the claim does not come back until it is answered.
-                     "Abnormal load permits, escort and cargo securing to EN 12195-1, "
-                     "arranged with our transport partners"]),
-        dict(slug="mobile-repair-teams", nav="Mobile Repair Teams",
-             h1="Mobile repair teams",
-             lead="Every hour a unit stays down has a price. Our crews mobilise at short notice for "
-                  "turnarounds, shutdowns and breakdowns, and they carry welding, fitting and "
-                  "mechanical skills in the same team.",
-             points=["Short-notice mobilisation",
-                     "One crew, several trades",
-                     "Turnarounds, shutdowns and breakdown repairs",
-                     "Work under the plant&rsquo;s permit and safety regime"]),
-    ]),
-    ("Marine", [
-        dict(slug="shipbuilding", nav="Shipbuilding", h1="Shipbuilding",
-             lead="Yard schedules move, and the penalty lands on the subcontractor. We plan "
-                  "for that, and take engine room piping, structural steel and outfitting "
-                  "as complete scopes.",
-             points=["Engine room piping: fuel, lube oil, cooling water, ballast and bilge systems, including spool prefabrication",
-                     "Hull structural fitting and welding to class-approved procedures",
-                     "Outfitting and mechanical installation",
-                     "Scopes delivered to the yard&rsquo;s schedule and class-approved drawings"]),
-        dict(slug="ship-repair", nav="Ship Repair", h1="Ship repair",
-             lead="Repair work is decided in days, not months. We take steel renewal, piping "
-                  "replacement and mechanical repairs to class and to the owner&rsquo;s requirements.",
-             points=["Steel renewal and piping replacement",
-                     "On-board mechanical repairs",
-                     "Drydock and afloat (alongside) repair scopes",
-                     "Fast mobilisation to the vessel"]),
-    ]),
-    ("Inspection & Access", [
-        dict(slug="non-destructive-testing", nav="Non-Destructive Testing",
-             h1="Non-destructive testing",
-             # "Our technicians report to the client, not to the contractor who did
-             # the welding" is false on our own scopes: the contractor who did the
-             # welding is us. The 13 August article says so in our own words -- it
-             # is the strongest text on the site -- and this page contradicted it.
-             # Replaced with the distinction the article draws, and linked to it.
-             lead="We check welds without cutting or damaging them. Ultrasonic, penetrant and magnetic "
-      "particle testing can be done while the plant keeps running. Radiography needs the area "
-      "cleared, so we plan it around production. On our own scopes, our NDT is internal quality "
-      "control: we find our own defects before your inspector does. On work welded by others, we "
-      "act as independent NDT and report to the client.",
-             points=["Visual and penetrant testing for defects on the surface",
-                     "Magnetic particle testing for cracks in steel welds",
-                     "Ultrasonic testing for defects inside the weld",
-                     "Phased array and TOFD where radiography is not practical",
-                     "Technicians certified to ISO 9712, Level II and Level III",
-                     "Acceptance criteria agreed with the client before testing starts",
-                     "Testing with the plant running, where the method allows it",
-                     "Reports issued to the client in their own format"],
-             # No published case uses NDT, so this page gets no "Where we did
-             # this" block. What it does get is the 13 August article, which is
-             # where the independence question is answered honestly and in more
-             # words than a service lead can hold. The audit asked for the link
-             # here for that reason: it is stronger than any line on this page.
-             deep='<div class="container srv-where">'
-                  '<p class="eyebrow">On independence</p>'
-                  '<p class="srv-where-note">On our own scopes this is internal quality '
-                  'control, and it never counts as sign-off. We wrote down what that '
-                  'means in <a href="/news/we-do-not-certify-our-own-welds.html">we do '
-                  'not certify our own welds</a>.</p>'
-                  '</div>'),
-        dict(slug="rope-access-services", nav="Rope Access Services", h1="Rope access services",
-             lead="Scaffolding costs more in downtime than in steel. Certified technicians reach the "
-                  "same place on rope, inspect it and repair it while the plant keeps running.",
-             points=["Industrial Rope Access Trade Association (IRATA) certified technicians, Levels 1 to 3, with an IRATA Level 3 supervisor on every site",
-                     "Inspection and mechanical work at height",
-                     "Rescue plan and supervision on every job",
-                     "Often without scaffolding, and usually without a shutdown"]),
-        dict(slug="3d-laser-scanning", nav="3D Laser Scanning", h1="3D laser scanning",
-             lead="Old drawings lie. We measure what is really there and hand the data to your "
-                  "engineers, so the clash shows up on a screen instead of on site.",
-             points=["As-built survey of existing installations",
-                     "Dimensional control of structures and piping",
-                     "Clash detection before fabrication",
-                     "Data in the client&rsquo;s CAD format"]),
-        dict(slug="quality-control", nav="Quality control (QA/QC)", h1="Quality assurance and quality control (QA/QC)",
-             seo="Quality control and QA/QC",
-             lead="Quality is what you can prove afterwards. We inspect piping and steel structures "
-                  "and leave documentation that holds up when the client, the surveyor or the "
-                  "auditor asks for it.",
-             points=["Piping and steel structure verification",
-                     "Traceability down to the individual weld",
-                     "Support at client and third-party hold and witness points",
-                     "Inspection and Test Plans (ITP) with hold, witness and review points agreed before work starts",
-                     "Quality system certified to ISO 9001 by DNV; welding coordination organised to EN ISO 3834-2",
-                     "Manufacturing Record Book (MRB) assembled as the work goes, not at the end"]),
-        dict(slug="rigging-technical-support", nav="Rigging &amp; Technical Support",
-             h1="Rigging and technical support",
-             lead="Lifts go wrong at the planning stage. We plan them, and we send the people who "
-                  "run them on site.",
-             points=["Lift planning and execution",
-                     "Load handling and installation support",
-                     "Site coordination and supervision",
-                     "Offshore and industrial projects"]),
-    ]),
-]
+# ---------------- the twelve services ----------------
+# The words are in content/services.json, not here: twelve names, twelve
+# headings, twelve leads and sixty-odd bullets that the client is the one who
+# should be able to change. This file keeps what is not copy -- the slugs, the
+# order of the three groups, and the raw HTML of a deep block.
+#
+# Asserted after the move: every generated page byte-identical to the build
+# from the literals it replaced.
+NDT_ON_INDEPENDENCE = (
+    '<div class="container srv-where"><p class="eyebrow">On independence</p>'
+    '<p class="srv-where-note">On our own scopes this is internal quality '
+    'control, and it never counts as sign-off. We wrote down what that means '
+    'in <a href="/news/we-do-not-certify-our-own-welds.html">we do not certify '
+    'our own welds</a>.</p></div>')
+
+SERVICES_DOC = content.load("services")
+SERVICE_GROUPS = content.services_groups(
+    SERVICES_DOC, deep={"non-destructive-testing": NDT_ON_INDEPENDENCE})
 
 ROPE_DEEP = """
       <div class="srv-deep-band">
@@ -3378,12 +2462,8 @@ def service_panel(sv):
                                         h1=sv["h1"], lead=sv["lead"], points=points)
 
 
-SERVICES_COVER_H1 = "Mechanical, marine and inspection services"
-SERVICES_COVER_LEAD = (
-    "Twelve services in three groups: the mechanical and industrial scopes we take on "
-    "directly, the marine work we do in yards and afloat, and the inspection and access "
-    "disciplines that show what was built. Most projects use several of them under one "
-    "contract, with one supervisor and one set of records.")
+SERVICES_COVER_H1 = SITE["cover_h1"]
+SERVICES_COVER_LEAD = SITE["cover_lead"]
 
 
 def service_cover():
@@ -3455,21 +2535,20 @@ def service_page_body(sv):
 
 
 # ---------------- write everything ----------------
-_PRIVACY_DESC = "How ALPROJECTS Group handles personal data collected through this website."
-write("privacy.html", page("Privacy Policy", _PRIVACY_DESC,
+_PRIVACY_DESC = SITE["pages"]["privacy"]["description"]
+write("privacy.html", page(SITE["pages"]["privacy"]["title"], _PRIVACY_DESC,
       PRIVACY, canonical="/privacy.html",
       head_extra=webpage_ld("Privacy Policy", "/privacy.html", _PRIVACY_DESC) +
                  breadcrumb_ld([("Home", "/"), ("Privacy Policy", "/privacy.html")])))
 
-write("careers.html", page("Careers",
-      "Work with ALPROJECTS Group — welding, pipe fitting, NDT, rope access and mechanical contracting on industrial and offshore projects across Europe.",
+write("careers.html", page(SITE["pages"]["careers"]["title"],
+      SITE["pages"]["careers"]["description"],
       CAREERS, canonical="/careers.html", og="careers",
       head_extra=job_postings_ld() +
                  breadcrumb_ld([("Home", "/"), ("Careers", "/careers.html")])))
 
-_COMPANY_DESC = ("ALPROJECTS Group is a European provider of industrial services for the "
-                 "shipbuilding, offshore, industrial and energy sectors.")
-write("company.html", page("Company", _COMPANY_DESC,
+_COMPANY_DESC = SITE["pages"]["company"]["description"]
+write("company.html", page(SITE["pages"]["company"]["title"], _COMPANY_DESC,
       COMPANY, canonical="/company.html", og="company",
       head_extra=webpage_ld("Company", "/company.html", _COMPANY_DESC, kind="AboutPage") +
                  breadcrumb_ld([("Home", "/"), ("Company", "/company.html")])))
@@ -3492,10 +2571,8 @@ for _sv in SERVICES_FLAT:
                                          (_sv["h1"], "/services/%s.html" % _sv["slug"])])))
 
 # /services.html shows the first service, and is the entry point people link to
-write("services.html", page("Services",
-      "Twelve services in three groups -- mechanical and industrial scopes, marine "
-      "work in yards and afloat, and inspection and access. One contract, one supervisor, "
-      "one set of records.",
+write("services.html", page(SITE["pages"]["services"]["title"],
+      SITE["pages"]["services"]["description"],
       # The same deck as every service URL, opened at its cover. One design for
       # the section instead of a card grid in front of twelve panel pages.
       service_page_body(None), canonical="/services.html", og="services",
@@ -3506,9 +2583,8 @@ write("services.html", page("Services",
           [(sv["h1"], "/services/%s.html" % sv["slug"]) for sv in SERVICES_FLAT]) +
                  breadcrumb_ld([("Home", "/"), ("Services", "/services.html")])))
 
-_PROJECTS_DESC = ("Shipbuilding, offshore, industrial and renewable energy projects "
-                  "delivered by ALPROJECTS Group across Europe.")
-write("projects.html", page("Projects", _PROJECTS_DESC,
+_PROJECTS_DESC = SITE["pages"]["projects"]["description"]
+write("projects.html", page(SITE["pages"]["projects"]["title"], _PROJECTS_DESC,
       PROJECTS, canonical="/projects.html", og="projects",
       head_extra=collection_ld(
           "Projects", "/projects.html", _PROJECTS_DESC,
@@ -3535,15 +2611,14 @@ for _i, _c in enumerate(LIVE):
                head_extra=breadcrumb_ld([("Home", "/"), ("Projects", "/projects.html"),
                                          (_c["title"], "/projects/%s.html" % _c["slug"])])))
 
-write("contacts.html", page("Contacts",
-      "Contact ALPROJECTS Group — Šilutės pl. 2, Klaipėda, Lithuania. Project enquiries and personnel requests.",
+write("contacts.html", page(SITE["pages"]["contacts"]["title"],
+      SITE["pages"]["contacts"]["description"],
       CONTACTS, canonical="/contacts.html", og="contacts",
       head_extra=contact_ld() +
                  breadcrumb_ld([("Home", "/"), ("Contacts", "/contacts.html")])))
 
-_NEWS_DESC = ("Project updates and engineering insights from ALPROJECTS Group — welding, "
-              "piping, NDT and offshore scopes across Northern and Western Europe.")
-write("news/index.html", page("News", _NEWS_DESC,
+_NEWS_DESC = SITE["pages"]["news"]["description"]
+write("news/index.html", page(SITE["pages"]["news"]["title"], _NEWS_DESC,
       news_index(), canonical="/news/", og="news",
       head_extra=collection_ld(
           "News", "/news/", _NEWS_DESC,
@@ -3568,28 +2643,9 @@ for a in ARTICLES:
 
 
 # ---------------- sector pages (TZ §4.2: each card its own page) ----------------
-SECTOR_PAGES = [
-    ("shipbuilding", "Shipbuilding", "sector-shipbuilding",
-     "Yard schedules move, and the penalty lands on the subcontractor. We plan for "
-     "that, and take engine room piping, structural steel and outfitting as complete "
-     "scopes, on newbuilds and on repair.",
-     ["welding-services", "pipe-fitting", "shipbuilding", "ship-repair", "quality-control"]),
-    ("offshore", "Offshore", "sector-offshore",
-     "Mobilising a team offshore is expensive and a shutdown is more expensive still. "
-     "Rope access and NDT carry most of this work, with mechanical scopes alongside.",
-     ["rope-access-services", "non-destructive-testing", "rigging-technical-support",
-      "welding-services", "quality-control"]),
-    ("industrial", "Industrial", "sector-industry",
-     "Plant installation, process piping and mechanical packages, delivered as a whole "
-     "scope with our own supervisors and our own QA on site.",
-     ["mechanical-contracting", "pipe-fitting", "heavy-equipment-relocation",
-      "mobile-repair-teams", "3d-laser-scanning"]),
-    ("renewables", "Renewables", "sector-wind",
-     "Cable installation, rigging and offshore support on wind farms, plus the fuel "
-     "handling infrastructure that sits behind them.",
-     ["rigging-technical-support", "welding-services", "rope-access-services",
-      "mechanical-contracting", "non-destructive-testing"]),
-]
+SECTOR_PAGES = content.sector_pages(content.load("sectors"))
+# Four sectors, two editable fields each -- the name and the lead. The image
+# stem and the five service slugs each page links to are structure.
 
 
 # The one sector with no photograph of its own: every frame the client has

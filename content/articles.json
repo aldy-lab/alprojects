@@ -1,0 +1,158 @@
+{
+  "_order": [
+    "we-do-not-certify-our-own-welds",
+    "piping-installation-engine-room",
+    "strongest-in-lithuania-2025-2026",
+    "transformer-mechanical-package",
+    "fuel-loading-terminal-completed",
+    "europe-tig-welder-shortage"
+  ],
+  "we-do-not-certify-our-own-welds": {
+    "_date": "13 Aug 2026",
+    "_iso": "2026-08-13",
+    "cat": "Quality Control",
+    "_img": "projects/welding-tig-pipe-1200.webp",
+    "_w": 900,
+    "_h": 1200,
+    "alt": "TIG root pass being welded on a prefabricated pipe spool",
+    "title": "We do not certify our own welds",
+    "lead": "Our NDT does not replace your inspector. We use it to catch our own mistakes first.",
+    "body": [
+      "<strong>Where the line sits.</strong> Nobody should be signing off their own work, and we do not try to. Independent verification stays where the contract puts it, normally with the client or the class surveyor, and nothing we do changes that.",
+      "Our own technicians come in before that. They go over the joint while the crew is still on the job, and if something has to come out, it comes out before anyone else is invited to look at it.",
+      "<strong>Measured against the criteria.</strong> Cap height, width, undercut, profile. Each one is checked against the acceptance criteria for the job, and the joint is not presented until the numbers sit inside the limits.",
+      "<strong>What the eye cannot pick up.</strong> Clean the weld, apply the penetrant, let the developer draw it back out. Surface cracks and porosity that nobody would catch by eye show up in red, and anything outside the limits is repaired on the spot.",
+      "So there are two different things with the same equipment behind them. On our own jobs it is internal quality control, and it never counts as sign-off. On somebody else's welds it is independent NDT, because we did not weld it."
+    ],
+    "facts": [
+      {
+        "label": "On our own jobs",
+        "value": "Internal quality control",
+        "note": "It never counts as sign off"
+      },
+      {
+        "label": "On somebody else's welds",
+        "value": "Independent NDT",
+        "note": "We did not weld it"
+      }
+    ],
+    "cta": "Send us the scope and we will come back with a price and crew dates."
+  },
+  "piping-installation-engine-room": {
+    "_date": "08 Aug 2026",
+    "_iso": "2026-08-08",
+    "cat": "Shipbuilding",
+    "_img": "projects/sector-shipbuilding-1200.webp",
+    "_w": 1200,
+    "_h": 1017,
+    "alt": "Fitters working inside a hull block under construction",
+    "title": "Piping installation in the engine room",
+    "lead": "Sea water, bilge, ballast and fuel lines going in on board right now.",
+    "body": [
+      "Our crew is installing engine room systems on vessels under construction: seawater, bilge, ballast, fuel and service lines running from small bore up to DN200 around the main engine foundations.",
+      "<strong>Drawn first, then built.</strong> Isometrics are checked before anything is cut. Spools are prefabricated in the shop, fitted on board and hung so the line can move without loading the welds.",
+      "<strong>Manifolds, sea chests, tank connections.</strong> Gate valves, strainers and remote operated units set out and aligned on the tank top. Flange faces stay capped until the system is closed.",
+      "<strong>Welded, tested, then closed.</strong> Welding coordinated to EN ISO 3834-2. Every joint is documented, and NDT and pressure testing are done before insulation and final coating go on.",
+      "The order of work stays the same on every job. Most of the time in a machinery space goes on getting the routing right, not on the welding itself."
+    ],
+    "facts": [
+      {
+        "label": "Organised to",
+        "value": "EN ISO 3834-2",
+        "note": "Welding coordination requirements"
+      },
+      {
+        "label": "Working from",
+        "value": "Lithuania, Belgium, Norway",
+        "note": "Offshore, shipbuilding and industry"
+      }
+    ],
+    "cta": "Send us the drawings and we will come back with a price and crew dates."
+  },
+  "strongest-in-lithuania-2025-2026": {
+    "_date": "23 Jun 2026",
+    "_iso": "2026-06-23",
+    "cat": "Company",
+    "_img": "projects/engineer-drawings-1200.webp",
+    "_w": 1200,
+    "_h": 954,
+    "alt": "ALPROJECTS engineer working from isometric drawings on site",
+    "title": "Among the strongest companies in Lithuania",
+    "seo": "Among Lithuania's strongest companies",
+    "lead": "ALPROJECTS, UAB has been awarded the Strongest in Lithuania 2025–2026 certificate by Creditinfo Group.",
+    "body": [
+      "The certificate recognises companies with a high credit score and a proven record of financial stability. It is issued by Creditinfo Group and was awarded on 23 June 2026 for the 2025–2026 period.",
+      "<strong>A stable partner is a safer project.</strong> In heavy industry, projects run for months and commitments run for years. Independent proof of financial stability is proof that we will be there to see the work through.",
+      "That matters more than a logo on a wall. It is the difference between a contractor who can carry a scope to completion and one who cannot."
+    ],
+    "facts": [
+      {
+        "label": "Award",
+        "value": "Strongest in Lithuania",
+        "note": "2025–2026"
+      },
+      {
+        "label": "Issued by",
+        "value": "Creditinfo Group",
+        "note": "23 June 2026"
+      }
+    ],
+    "cta": "Planning a project across shipbuilding, piping or industrial services? Let us talk."
+  },
+  "transformer-mechanical-package": {
+    "_date": "01 Aug 2026",
+    "_iso": "2026-08-01",
+    "cat": "Industrial Projects",
+    "_img": "projects/transformer-overhead-1200.webp",
+    "_w": 1200,
+    "_h": 900,
+    "alt": "Stainless pipework and transformer package installed at a substation",
+    "title": "A transformer mechanical package across five countries",
+    "seo": "Transformer package, five countries",
+    "lead": "Stainless steel piping, cooling systems and precision installation — repeated across five European sites.",
+    "body": [
+      "A transformer mechanical package covers the stainless steel piping and cooling systems that keep the unit within its operating envelope. The tolerances are tight and the commissioning window is usually short.",
+      "What made this scope demanding was not any single site but the repetition: the same package delivered across five European countries, each with its own site conditions, inspection regime and local requirements.",
+      "Consistency across borders is a documentation problem as much as a fabrication one — which is where certified personnel and a single quality system earn their place."
+    ],
+    "facts": [],
+    "cta": "Send us the scope and we will come back with a price and crew dates."
+  },
+  "fuel-loading-terminal-completed": {
+    "_date": "25 Jul 2026",
+    "_iso": "2026-07-25",
+    "cat": "Energy Projects",
+    "_img": "projects/terminal-rack-tanks-1200.webp",
+    "_w": 1200,
+    "_h": 900,
+    "alt": "Completed pipe rack running to storage tanks at a fuel loading terminal",
+    "title": "Fuel loading terminal completed",
+    "lead": "September 2025 to April 2026. Twelve specialists. Over 11,000 hours on site.",
+    "body": [
+      "The scope ran from September 2025 to April 2026 and was delivered by a team of 12 specialists, accumulating more than 11,000 hours on site.",
+      "Fuel handling infrastructure concentrates every discipline we work in — mechanical installation, pipe fitting, welding, and the inspection and documentation that has to accompany all three when the medium is flammable.",
+      "Numbers like 11,000 hours are worth stating plainly: they are what a project of this size actually costs in skilled labour, and planning against a lower figure is how schedules fail."
+    ],
+    "facts": [],
+    "cta": "Send us the scope and we will come back with a price and crew dates."
+  },
+  "europe-tig-welder-shortage": {
+    "_date": "25 Jul 2026",
+    "_iso": "2026-07-25",
+    "cat": "Industry",
+    "_img": "projects/sector-industry-1200.webp",
+    "_w": 1200,
+    "_h": 1017,
+    "alt": "TIG welder working on a large-diameter stainless pipe",
+    "title": "We needed 30 certified TIG welders. Europe could not supply them.",
+    "seo": "We needed 30 certified TIG welders",
+    "lead": "The skilled trades shortage is not an abstraction when it is your project that cannot start.",
+    "body": [
+      "Recruiting thirty certified TIG welders for a single scope of work turned out to be materially harder than the engineering it supported.",
+      "The shortage is discussed across European industry in general terms. It becomes concrete when a project is resourced, scheduled and funded, and the constraint is simply the number of people who hold the certification and are willing to travel.",
+      "It is worth being direct about this, because the answer is not a recruitment campaign. It is training, certification pathways, and treating the trades as a career rather than a stopgap."
+    ],
+    "facts": [],
+    "cta": "If you hold the ticket and you are willing to travel, we would like to hear from you."
+  }
+}

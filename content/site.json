@@ -1,0 +1,197 @@
+{
+  "services_cover": {
+    "h1": "Mechanical, marine and inspection services",
+    "lead": "Twelve services in three groups: the mechanical and industrial scopes we take on directly, the marine work we do in yards and afloat, and the inspection and access disciplines that show what was built. Most projects use several of them under one contract, with one supervisor and one set of records."
+  },
+  "pages": {
+    "company": {
+      "title": "Company",
+      "description": "ALPROJECTS Group is a European provider of industrial services for the shipbuilding, offshore, industrial and energy sectors."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Twelve services in three groups -- mechanical and industrial scopes, marine work in yards and afloat, and inspection and access. One contract, one supervisor, one set of records."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Shipbuilding, offshore, industrial and renewable energy projects delivered by ALPROJECTS Group across Europe."
+    },
+    "careers": {
+      "title": "Careers",
+      "description": "Work with ALPROJECTS Group — welding, pipe fitting, NDT, rope access and mechanical contracting on industrial and offshore projects across Europe."
+    },
+    "contacts": {
+      "title": "Contacts",
+      "description": "Contact ALPROJECTS Group — Šilutės pl. 2, Klaipėda, Lithuania. Project enquiries and personnel requests."
+    },
+    "news": {
+      "title": "News",
+      "description": "Project updates and engineering insights from ALPROJECTS Group — welding, piping, NDT and offshore scopes across Northern and Western Europe."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How ALPROJECTS Group handles personal data collected through this website."
+    }
+  },
+  "form_options": {
+    "disciplines": [
+      "Welding (TIG)",
+      "Welding (MIG/MAG)",
+      "Pipe fitting",
+      "Instrument pipe fitting",
+      "Mechanical installation",
+      "Shipbuilding",
+      "Ship repair",
+      "NDT inspection",
+      "Rope access",
+      "Quality control (QA/QC)",
+      "Rigging",
+      "Site supervision"
+    ],
+    "certificates": [
+      "EN ISO 9606 (welder)",
+      "TIG 141",
+      "MIG/MAG 131/135",
+      "IRATA L1",
+      "IRATA L2",
+      "IRATA L3",
+      "VCA / SCC",
+      "NDT VT",
+      "NDT PT/MT",
+      "NDT UT",
+      "GWO",
+      "Medical certificate"
+    ],
+    "rotations": [
+      "8 / 2",
+      "6 / 2",
+      "4 / 2",
+      "Continuous",
+      "Local, no rotation"
+    ],
+    "countries": [
+      "Norway",
+      "Germany",
+      "Netherlands",
+      "United Kingdom",
+      "Lithuania",
+      "Denmark",
+      "Belgium",
+      "Poland"
+    ],
+    "experience": [
+      "Less than 2 years",
+      "2 to 5 years",
+      "5 to 10 years",
+      "More than 10 years"
+    ]
+  },
+  "count_words": [
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+    "Eleven",
+    "Twelve"
+  ],
+  "shots": [
+    {
+      "caption": "TIG root pass on a prefabricated spool",
+      "_stem": "welding-tig-pipe",
+      "_w": 900,
+      "_h": 1200
+    },
+    {
+      "caption": "Carbon steel lines being set out on a plant roof",
+      "_stem": "piping-roof-crew",
+      "_w": 900,
+      "_h": 1200
+    },
+    {
+      "caption": "Process lines run alongside insulated ductwork",
+      "_stem": "piping-roof-duct",
+      "_w": 900,
+      "_h": 1200
+    },
+    {
+      "caption": "Stainless pipework around a transformer package",
+      "_stem": "transformer-overhead",
+      "_w": 1200,
+      "_h": 900
+    },
+    {
+      "caption": "Completed pipe runs at a substation",
+      "_stem": "substation-sky",
+      "_w": 1200,
+      "_h": 900
+    },
+    {
+      "caption": "Pipe runs erected along a plant facade",
+      "_stem": "facade-pipe-crane",
+      "_w": 900,
+      "_h": 1200
+    },
+    {
+      "caption": "Mechanical package installed beneath the bushings",
+      "_stem": "transformer-bushing",
+      "_w": 1200,
+      "_h": 900
+    },
+    {
+      "caption": "Cooling and process lines at the transformer plant",
+      "_stem": "transformer-plant",
+      "_w": 1200,
+      "_h": 900
+    },
+    {
+      "caption": "Vessel and pipe run carried along the building line",
+      "_stem": "facade-tank-pipe",
+      "_w": 1200,
+      "_h": 900
+    },
+    {
+      "caption": "Pipe rack running to storage tanks at a fuel terminal",
+      "_stem": "terminal-rack-tanks",
+      "_w": 1200,
+      "_h": 900
+    },
+    {
+      "caption": "Pump skids and valve stations, terminal loading area",
+      "_stem": "terminal-pumps",
+      "_w": 900,
+      "_h": 1200
+    },
+    {
+      "caption": "Pipe rack and cable trays on the loading gantry",
+      "_stem": "terminal-rack-trays",
+      "_w": 900,
+      "_h": 1200
+    },
+    {
+      "caption": "Valve manifolds over the bund",
+      "_stem": "terminal-valves",
+      "_w": 1200,
+      "_h": 900
+    },
+    {
+      "caption": "Completed tank farm pipe racks",
+      "_stem": "terminal-tankfarm",
+      "_w": 900,
+      "_h": 1200
+    }
+  ],
+  "org": {
+    "_type": "Organization",
+    "_vatID": "LT100012753216",
+    "_taxID": "305137109",
+    "name": "ALPROJECTS Group",
+    "_sameAs": "https://alprojects.co/",
+    "_logo": "https://alprojects.co/assets/logo-1200.png"
+  }
+}

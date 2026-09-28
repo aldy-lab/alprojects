@@ -1,0 +1,27 @@
+# What the host has no business serving.
+#
+# On GitHub Pages every one of these was downloadable: alprojects.co/endpoint/
+# form.php returned 200 with the PHP in plain text, and so did
+# tools/build-pages.py. The endpoint is the one that matters -- it is the file
+# that will hold a mail configuration, and the standing rule that it must never
+# carry a key exists precisely because the host served it. The rule stays, and
+# now the host does not serve it either.
+#
+# None of this is referenced by any page: checked across every built HTML file
+# for href, src, srcset and action pointing at these directories.
+tools/
+content/
+endpoint/
+README.md
+.github/
+
+# GitHub Pages read this to learn the custom domain. Vercel takes the domain
+# from the project, so the file is only history here -- kept in the repository
+# until Pages is switched off, not shipped to the host.
+CNAME
+
+.DS_Store
+__pycache__/
+.gitignore
+vercel.json
+.vercelignore

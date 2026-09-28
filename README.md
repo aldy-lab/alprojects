@@ -13,7 +13,7 @@ projects/*.html    — four project case pages (see "Project cases" below)
 contacts.html      — address, email, both phone numbers
 careers.html       — careers / open application
 privacy.html       — privacy policy
-404.html           — custom not-found page (GitHub Pages serves it automatically)
+404.html           — custom not-found page (the host serves it on any 404)
 news/index.html    — news listing
 news/*.html        — five article pages
 css/style.css      — design tokens + all styles, responsive down to mobile (SOURCE)
@@ -31,8 +31,35 @@ tools/minify.py    — writes the .min copies (called by build-pages.py)
 > rewrites the minified copies, restamps the `?v=` hash on every page and
 > rebuilds the three language trees. A CSS change committed without the build
 > ships the previous minified file and nothing warns you: the page is simply
-> still wrong. The `.min` files are committed because GitHub Pages serves the
+> still wrong. The `.min` files are committed because the host serves the
 > repository as-is — there is no build step on the host.
+
+## Hosting
+
+Vercel, project `alprojects`, deploying from `main`. A push to `main` is a
+publish, the same as it was on GitHub Pages; there is still no build step on
+the host, so the committed HTML is the site.
+
+`vercel.json` carries the two things the host has to be told:
+
+* **`cleanUrls: true`.** Every link, canonical, hreflang and sitemap entry on
+  this site is extensionless (`/company`, not `/company.html`) because
+  `tools/paths.py` strips it. Without this the host would serve none of them.
+* **`trailingSlash` unset, deliberately.** Eight pages are directory indexes
+  and their URLs keep the slash — `/news/`, `/de/`, `/de/news/` — while the
+  other 7384 links carry neither slash nor extension. Either value of that flag
+  forces a redirect on one group or the other. Undefined, both serve directly;
+  verified on a preview deployment.
+
+`.vercelignore` keeps `tools/`, `content/`, `endpoint/` and the README out of
+the deployment. On GitHub Pages all of them were downloadable —
+`/endpoint/form.php` returned 200 with the PHP in plain text — which is the
+reason that file must never hold a key. The rule stands; the host no longer
+serves it either.
+
+DNS lives at the registrar, not here: an `A` record on the apex and a `CNAME`
+on `www`, both pointing at Vercel. The `CNAME` file in this repository is
+GitHub Pages' way of learning the custom domain and is history now.
 
 The sub-pages are committed as plain HTML — nothing needs to run to serve the
 site. Re-run `python3 tools/build-pages.py` only after editing the header or
