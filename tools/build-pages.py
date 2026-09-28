@@ -29,7 +29,7 @@ SPRITE = block(r'<svg width="0" height="0"', r'^\s*</svg>\s*$')
 
 # rootify now lives in tools/paths.py: the translation build needs the same
 # rewriting for the language trees, and two copies would drift.
-from paths import rootify, clean_urls  # noqa: E402
+from paths import rootify, clean_urls, ORIGIN, origin_fix  # noqa: E402
 import minify  # noqa: E402
 import content  # noqa: E402    -- the site's copy, see tools/content.py
 import thumbs  # noqa: E402
@@ -117,7 +117,7 @@ def _drawing_svg(path, dims):
 def page(title, description, body, noindex=False, canonical=None, head_extra="", og="home"):
     robots = ('  <meta name="robots" content="noindex, follow">\n' if noindex
               else '  <meta name="robots" content="index, follow">\n')
-    canon = ('  <link rel="canonical" href="https://alprojects.co%s">\n' % canonical
+    canon = ('  <link rel="canonical" href="' + ORIGIN + '%s">\n' % canonical
              if canonical else "")
     return """<!DOCTYPE html>
 <html lang="en">
@@ -134,11 +134,11 @@ def page(title, description, body, noindex=False, canonical=None, head_extra="",
   <meta property="og:title" content="{title} — ALPROJECTS Group">
   <meta property="og:description" content="{description}">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://alprojects.co/assets/og/{og}.jpg">
+  <meta property="og:image" content="{origin}/assets/og/{og}.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://alprojects.co/assets/og/{og}.jpg">
+  <meta name="twitter:image" content="{origin}/assets/og/{og}.jpg">
   <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
   <link rel="alternate icon" type="image/png" href="/assets/logo.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -164,7 +164,7 @@ def page(title, description, body, noindex=False, canonical=None, head_extra="",
 </html>
 """.format(title=title, description=description, canon=canon, robots=robots,
            header=HEADER_R, footer=FOOTER_R, sprite=SPRITE_R, body=body,
-           head_extra=head_extra, og=og)
+           head_extra=head_extra, og=og, origin=ORIGIN)
 
 
 # Stamped into <lastmod> in the sitemap on every build.
@@ -310,6 +310,9 @@ def write(path, html):
         # sees inside what Google shows.
         html = i18n.clamp_page_desc(html)
         html = fill_stamp(html, path)
+        # The header, footer and sprite are lifted out of index.html, so an
+        # origin written by hand in any of them travels into all 41 pages.
+        html = origin_fix(html)
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     io.open(full, "w", encoding="utf-8").write(html)
@@ -2127,12 +2130,12 @@ def article_ld(a):
         "@type": "Article",
         "headline": a["title"],
         "description": a["lead"],
-        "image": "https://alprojects.co/assets/" + a["img"],
+        "image": ORIGIN + "/assets/" + a["img"],
         "datePublished": a["iso"],
         "dateModified": a["iso"],
         "author": ORG,
         "publisher": ORG,
-        "mainEntityOfPage": "https://alprojects.co/news/%s.html" % a["slug"],
+        "mainEntityOfPage": ORIGIN + "/news/%s.html" % a["slug"],
     })
 
 def service_ld(sv):
@@ -2146,11 +2149,11 @@ def service_ld(sv):
         "serviceType": sv["h1"],
         "description": _service_desc(sv),
         "provider": {"@type": "Organization", "name": "ALPROJECTS Group",
-                     "url": "https://alprojects.co/"},
+                     "url": ORIGIN + "/"},
         "areaServed": [{"@type": "Country", "name": c} for c in
                        ("Lithuania", "Norway", "United Kingdom",
                         "Netherlands", "Germany", "Belgium")],
-        "url": "https://alprojects.co/services/%s" % sv["slug"],
+        "url": ORIGIN + "/services/%s" % sv["slug"],
     }))
 
 
@@ -2160,13 +2163,13 @@ def contact_ld():
     return jsonld(_strip({
         "@context": "https://schema.org",
         "@type": "ContactPage",
-        "url": "https://alprojects.co/contacts",
+        "url": ORIGIN + "/contacts",
         "mainEntity": {
             "@type": "Organization",
     "vatID": "LT100012753216",
     "taxID": "305137109",
             "name": "ALPROJECTS, UAB",
-            "url": "https://alprojects.co/",
+            "url": ORIGIN + "/",
             "email": "info@alprojects.eu",
             "telephone": "+37063663744",
             "address": {
@@ -2193,7 +2196,7 @@ def breadcrumb_ld(trail):
         "@type": "BreadcrumbList",
         "itemListElement": [
             {"@type": "ListItem", "position": i + 1, "name": n,
-             "item": "https://alprojects.co" + u}
+             "item": ORIGIN + u}
             for i, (n, u) in enumerate(trail)
         ],
     })
@@ -2210,16 +2213,16 @@ def collection_ld(name, url, desc, items):
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": name,
-        "url": "https://alprojects.co" + url,
+        "url": ORIGIN + url,
         "description": desc,
         "isPartOf": {"@type": "WebSite", "name": "ALPROJECTS Group",
-                     "url": "https://alprojects.co/"},
+                     "url": ORIGIN + "/"},
         "mainEntity": {
             "@type": "ItemList",
             "numberOfItems": len(items),
             "itemListElement": [
                 {"@type": "ListItem", "position": i + 1, "name": n,
-                 "url": "https://alprojects.co" + u}
+                 "url": ORIGIN + u}
                 for i, (n, u) in enumerate(items)
             ],
         },
@@ -2231,12 +2234,12 @@ def webpage_ld(name, url, desc, kind="WebPage"):
         "@context": "https://schema.org",
         "@type": kind,
         "name": name,
-        "url": "https://alprojects.co" + url,
+        "url": ORIGIN + url,
         "description": desc,
         "isPartOf": {"@type": "WebSite", "name": "ALPROJECTS Group",
-                     "url": "https://alprojects.co/"},
+                     "url": ORIGIN + "/"},
         "publisher": {"@type": "Organization", "name": "ALPROJECTS Group",
-                      "url": "https://alprojects.co/"},
+                      "url": ORIGIN + "/"},
     })
 
 
@@ -2739,7 +2742,7 @@ SITEMAP = [
 def sitemap():
     urls = "\n".join(
         '  <url>\n'
-        '    <loc>https://alprojects.co%s</loc>\n'
+        '    <loc>' + ORIGIN + '%s</loc>\n'
         '    <lastmod>%s</lastmod>\n'
         '    <changefreq>%s</changefreq>\n'
         '    <priority>%s</priority>\n'
@@ -2771,12 +2774,47 @@ def _write_sitemap():
 _write_sitemap()
 
 
+# robots.txt carries one absolute URL and was the 46th place the domain was
+# written out. Generated, so it cannot be the file that still points at the old
+# host after a move.
+_ROBOTS = "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % ORIGIN
+_robots_path = os.path.join(ROOT, "robots.txt")
+if not os.path.exists(_robots_path) or io.open(_robots_path, encoding="utf-8").read() != _ROBOTS:
+    io.open(_robots_path, "w", encoding="utf-8").write(_ROBOTS)
+    print("wrote robots.txt")
+
+
+# The privacy policy names the WEBSITE in a sentence -- "personal data
+# collected through alprojects.co" -- not in a URL, so nothing above rewrites
+# it, and a sentence is copy, which means four translations. Say so rather than
+# leave it to be found: after a domain change this is the one string that has
+# to be rewritten by hand.
+#
+# It only looks for the phrase that names the site, because the same file
+# carries info@alprojects.eu three times and matching a bare domain made this
+# fire on the contact address every build. A warning that cries wolf is a
+# warning nobody reads.
+def _warn_if_prose_names_another_host():
+    host = ORIGIN.split("//")[-1]
+    txt = io.open(os.path.join(ROOT, "privacy.html"), encoding="utf-8").read()
+    for other in ("alprojects.co", "alprojects.eu"):
+        if other == host:
+            continue
+        # (?![a-z0-9-]) and not (?![\w.-]): the sentence ends "through
+        # alprojects.co." and the period is what the first version tripped on,
+        # so the note never printed during the drill that was meant to prove
+        # it. A guard that cannot fire is worse than no guard.
+        if re.search(r"(?<![@\w.])" + re.escape(other) + r"(?![a-z0-9-])", txt):
+            print("  NOTE privacy.html still names %s as the website in prose; "
+                  "the site is %s -- one sentence, four languages" % (other, host))
+
+
 # index.html and 404.html are hand-maintained rather than generated, so stamp
 # them in place -- otherwise they would be the pages that still serve stale CSS.
 for _name in ("index.html", "404.html"):
     _path = os.path.join(ROOT, _name)
     _before = io.open(_path, encoding="utf-8").read()
-    _after = fill_stamp(clean_urls(stamp(_before)), _name)
+    _after = origin_fix(fill_stamp(clean_urls(stamp(_before)), _name))
     if _after != _before:
         io.open(_path, "w", encoding="utf-8").write(_after)
         print("stamped %s" % _name)
@@ -2789,6 +2827,9 @@ for _name in ("index.html", "404.html"):
 # the one place the delegation trick does not fit (running the whole translation
 # build from here would run it twice in the documented two-command workflow).
 # Count them instead and say it out loud.
+_warn_if_prose_names_another_host()
+
+
 def _warn_if_alternates_missing():
     try:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

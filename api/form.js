@@ -32,7 +32,9 @@
      MAIL_PROVIDER   resend | postmark | dry-run
      MAIL_API_KEY    the provider's key
      MAIL_TO         where submissions go          e.g. info@alprojects.eu
-     MAIL_FROM       a sender the domain may use   e.g. forms@alprojects.co
+     MAIL_FROM       a sender the PROVIDER has verified, which need not be
+                     the site's own domain         e.g. forms@alprojects.co
+     SITE_ORIGIN     the origins allowed to post here, comma separated
    With MAIL_PROVIDER unset or "dry-run" the endpoint validates everything and
    reports what it would have sent without sending it. That is the state to
    deploy in first: it exercises the whole path, including attachments, before
@@ -56,10 +58,19 @@ const ALLOWED_EXT = [
   "pdf", "doc", "docx", "jpg", "jpeg", "png", "webp", "heic",
   "dwg", "dxf", "step", "stp", "igs", "iges", "zip", "txt",
 ];
-const ALLOWED_ORIGIN = [
-  "https://alprojects.co",
-  "https://www.alprojects.co",
-];
+/* Which origins may use this endpoint. From the environment, so moving the
+   site to another domain is a variable and not a code change:
+
+     SITE_ORIGIN = https://alprojects.eu,https://www.alprojects.eu
+
+   MAIL_FROM is a separate question and does not have to follow the site. The
+   sending domain is whatever the mail provider has verified -- forms@ on one
+   domain can post to info@ on another, and it keeps working after the website
+   moves. That is why the sender is worth verifying on the domain whose DNS is
+   in reach rather than on the one the site will end up on. */
+const ALLOWED_ORIGIN = (process.env.SITE_ORIGIN ||
+  "https://alprojects.co,https://www.alprojects.co")
+  .split(",").map((s) => s.trim()).filter(Boolean);
 
 /* The three forms, and which fields each one is allowed to send. A field not
    on its form's list is dropped rather than emailed: the endpoint is public,
@@ -290,7 +301,10 @@ export default async function handler(request) {
     to: process.env.MAIL_TO || "info@alprojects.eu",
     from: process.env.MAIL_FROM || "forms@alprojects.co",
     replyTo: email,
-    subject: headerSafe(form.subject + (name ? " — " + name : "") + " — alprojects.co"),
+    /* The host the submission actually came from, not a hard-coded one: the
+       office can tell which site sent it, and it stays true after a move. */
+    subject: headerSafe(form.subject + (name ? " — " + name : "") +
+                        " — " + (origin.replace(/^https?:\/\//, "") || "the website")),
     text: lines.join("\n"),
     attachments,
   });
