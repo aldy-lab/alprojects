@@ -26,11 +26,20 @@
   /* Careers application form. Set to a Formspree/Netlify/etc endpoint to receive
      applications directly; while empty the form opens the applicant's mail client
      with everything pre-filled, so it works either way. */
-  var CAREERS_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
+  /* The site's own endpoint, on the site's own domain: api/form.js.
+     Switched ON even though the mail key is not set yet, and that is safe
+     because of what the endpoint does when it is not configured -- it refuses,
+     and a refusal hands the whole form to the visitor's mail client with every
+     field filled in and the files named. Which is exactly what these forms do
+     today with no endpoint at all.
+     So nothing changes for a visitor until MAIL_PROVIDER, MAIL_API_KEY,
+     MAIL_TO and MAIL_FROM are set in the host, and when they are, the forms
+     start delivering with no deploy in between. */
+  var CAREERS_ENDPOINT = "/api/form?f=careers";
   /* Contact form on /contacts.html. Empty -> the form opens the visitor's
      mail client with every answer filled in, so an enquiry is never lost
      to a POST that goes nowhere. */
-  var CONTACT_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
+  var CONTACT_ENDPOINT = "/api/form?f=contact";
   /* "Meet the management" on /company.html. There is no such page
      yet and no names or photographs for one, so the button stays out of the
      DOM until this points somewhere real. */
@@ -283,14 +292,29 @@
     if (!row) return;
     var url = CAREERS_ENDPOINT || CONTACT_ENDPOINT || FORM_ENDPOINT;
     if (!url) return;
-    var name = PROCESSOR_NAME;
-    if (!name) {
-      try { name = new URL(url, location.href).hostname.replace(/^www\./, ""); }
-      catch (e) { name = ""; }
-    }
     var slot = row.querySelector("[data-processor-name]");
-    if (slot && name) slot.textContent = name;
-    row.hidden = false;
+
+    /* The endpoint is asked, rather than guessed at from its own hostname.
+       That guess used to work when the endpoint was a hosted service; now
+       that it is this site's own /api/form it would have printed
+       "alprojects.co receives what you send and passes it to us", and before
+       the mail key is set there is no processor at all -- the submission goes
+       no further than the visitor's own mail client. Both mistakes are in the
+       one sentence a reader checks to find out who sees their CV.
+
+       Failure means the line stays hidden. A disclosure that cannot be
+       verified must not be shown. */
+    function reveal(name) {
+      if (slot && name) slot.textContent = name;
+      row.hidden = false;
+    }
+    if (PROCESSOR_NAME) { reveal(PROCESSOR_NAME); return; }
+    fetch(url.split("?")[0], { headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (j && j.configured && j.processor) reveal(j.processor);
+      })
+      .catch(function () { /* stays hidden */ });
   })();
 
   /* The privacy policy has to agree with what actually loads, and the usual way
@@ -1464,7 +1488,20 @@
     var dz = document.getElementById(ids.zone);
     var fileInput = document.getElementById(ids.input);
     var fileList = document.getElementById(ids.list);
+    /* Per file, and in total. The total is the one that matters and it was
+       missing: four 8MB files each passed the per-file check, and the whole
+       application then failed at the endpoint after the applicant had filled
+       in every field -- the one thing this picker was written not to do.
+
+       MAX_TOTAL has to match what api/form.js accepts. It does not yet, and
+       that is on purpose: the endpoint's ceiling depends on the platform's own
+       request limit, and until that is measured the three endpoint constants
+       are empty and no file is uploaded at all -- the forms name their
+       attachments in the mail they open instead. Settle the ceiling before
+       switching them on, and change it in both files and in file_too_big in
+       all four languages. */
     var MAX = 10 * 1024 * 1024;
+    var MAX_TOTAL = 10 * 1024 * 1024;
 
     function renderFiles() {
       if (!fileList) return;
@@ -1493,11 +1530,15 @@
     if (dz && fileInput) {
       var takeFiles = function (list) {
         var over = [];
+        var total = picked.reduce(function (n, f) { return n + f.size; }, 0);
         [].slice.call(list).forEach(function (f) {
           if (f.size > MAX) { over.push(f.name); return; }
           /* the same file twice is a mis-click, not an intention */
           var dup = picked.some(function (x) { return x.name === f.name && x.size === f.size; });
-          if (!dup) picked.push(f);
+          if (dup) return;
+          if (total + f.size > MAX_TOTAL) { over.push(f.name); return; }
+          total += f.size;
+          picked.push(f);
         });
         if (over.length && noteEl) {
           noteEl.textContent = TXT.file_too_big + " " + over.join(", ");
@@ -1792,14 +1833,29 @@
               docs.reset();
               document.querySelectorAll(".apply-form .chip[aria-pressed=true]")
                 .forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
-            } else { fail(TXT.apply_fail); }
+            } else { handToMail(true); }
           })
-          .catch(function () { fail(TXT.apply_fail); });
+          .catch(function () { handToMail(true); });
         return;
       }
 
-      /* No endpoint configured: hand off to the applicant's mail client with a
-         pre-filled message, so the CV can be attached there. */
+      /* Hand off to the applicant's mail client with a pre-filled message,
+         so the CV can be attached there.
+
+         Reached two ways now: when no endpoint is configured, and when a
+         configured endpoint FAILED. The second one was missing. The
+         marketplace on the other project can afford a soft failure because
+         the enquiry is written to a table before anybody is emailed -- the
+         row survives whatever the post does. This site stores nothing by
+         design, so there is no row to fall back on, and "Could not send,
+         please email us instead" threw away everything the applicant had
+         just typed. It goes to their mail client instead, files named.
+
+         `failed` keeps apply_fail in use rather than letting four translated
+         strings go dead: after a failed post the note says what went wrong
+         first and what to attach second. It is also still true -- the mail
+         client opening IS "please email us instead". */
+      function handToMail(failed) {
       function line(label, v) { return label + ": " + (v || "—"); }
       var body = [
         line("Position", data.role),
@@ -1826,10 +1882,13 @@
         "&body=" + encodeURIComponent(body);
       /* mailto cannot carry an attachment, so say which files to attach rather
          than letting the applicant assume the ones they chose went with it. */
-      applyNote.textContent = picked.length
+      applyNote.textContent = (failed ? TXT.apply_fail + " " : "") + (picked.length
         ? TXT.apply_mail_files + " " + picked.map(function (f) { return f.name; }).join(", ")
-        : TXT.apply_mail;
+        : TXT.apply_mail);
+      applyNote.classList.toggle("is-error", !!failed);
       applyNote.classList.add("show");
+      }
+      handToMail();
     });
   }
 
@@ -1921,12 +1980,16 @@
               contactNote.classList.remove("is-error");
               f.reset();
               ctDocs.reset();
-            } else { fail(TXT.apply_fail); }
+            } else { handToMail(true); }
           })
-          .catch(function () { fail(TXT.apply_fail); });
+          .catch(function () { handToMail(true); });
         return;
       }
 
+      /* The same handoff on the contacts form, for the same reason: the
+         drawings and the scope somebody has just described are worth more
+         than an apology. */
+      function handToMail(failed) {
       function line(label, v) { return label + ": " + (v || "\u2014"); }
       var body = [
         line("Service group", data.group),
@@ -1948,18 +2011,20 @@
          letting the visitor assume the drawings went with the message --
          accepting a file and quietly losing it is the one thing this must
          never do. */
-      contactNote.textContent = ctDocs.picked.length
+      contactNote.textContent = (failed ? TXT.apply_fail + " " : "") + (ctDocs.picked.length
         ? TXT.contact_mail_files + " " + ctDocs.names()
-        : TXT.contact_mail;
-      contactNote.classList.remove("is-error");
+        : TXT.contact_mail);
+      contactNote.classList.toggle("is-error", !!failed);
       contactNote.classList.add("show");
+      }
+      handToMail();
     });
   }
 
   /* ---------- newsletter (no backend: opens mail client) ----------
      To wire a real endpoint later (e.g. Formspree/Buttondown), set
      FORM_ENDPOINT to the URL and the form will POST instead.       */
-  var FORM_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
+  var FORM_ENDPOINT = "/api/form?f=subscribe";
   var form = document.getElementById("newsletterForm");
   var note = document.getElementById("formNote");
   if (form) {

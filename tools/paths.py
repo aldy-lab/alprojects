@@ -10,6 +10,59 @@ builds have to apply the same fix, so it lives in one place.
 """
 import re
 
+# ------------------------------------------------------------------ the origin
+# The site's own scheme and host, in one place.
+#
+# It was written out 46 times across build-pages.py, index.html, robots.txt and
+# api/form.js -- canonicals, hreflang, og:url, eleven JSON-LD blocks, 160
+# sitemap entries. Changing the domain meant 46 edits, and a canonical or an
+# hreflang left pointing at the old host is exactly the kind of miss that
+# ships: the page renders, Google reads a self-reference to a domain that
+# redirects, and nothing anywhere says so.
+#
+# One line now. Everything that composes a URL asks for it, and origin_fix()
+# below rewrites the literals in the hand-authored pages at write time, so
+# index.html can keep reading like a normal HTML file.
+#
+# When the site moves to alprojects.eu: change this, rebuild, and check
+# THE MAIL, not the pages. That domain's SPF is "v=spf1 a mx ip4:79.98.28.183
+# ~all" -- the `a` mechanism authorises whatever the A record points at, so
+# moving the web A record to a host silently hands that host permission to send
+# mail as the domain, and removes it from the mail server. The ip4: term keeps
+# the real one working, so nothing breaks loudly. Drop the `a` when the A
+# record moves.
+ORIGIN = "https://alprojects.co"
+
+
+# Every host this site has been served from. origin_fix() normalises any of
+# them to ORIGIN, which is what makes the rewrite reversible: the first version
+# returned early when ORIGIN was the default and only ever rewrote in one
+# direction, so a domain drill rewrote index.html's eleven literals to the new
+# host and changing the constant back left them there. A one-way rewrite of a
+# hand-authored file is a trap, not a convenience.
+#
+# Scheme-qualified on purpose. The privacy policy names the website in a
+# sentence -- "data collected through alprojects.co" -- and the footer carries
+# info@alprojects.eu; neither has a scheme, so neither is touched here. That
+# sentence is copy in four languages, and build-pages.py prints a note when it
+# still names a host the site has left.
+KNOWN_ORIGINS = (
+    "https://alprojects.co",
+    "https://www.alprojects.co",
+    "https://alprojects.eu",
+    "https://www.alprojects.eu",
+)
+
+
+def origin_fix(html, origin=None):
+    """Any literal origin in hand-authored markup becomes the configured one.
+    Idempotent, reversible, and it never touches a relative path."""
+    origin = origin or ORIGIN
+    for known in KNOWN_ORIGINS:
+        if known != origin:
+            html = html.replace(known, origin)
+    return html
+
 
 def rootify_assets(html):
     """Relative asset paths -> root-relative, so they survive any directory.

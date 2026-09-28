@@ -47,7 +47,14 @@ from i18n_extract import unit_spans, meta_units, skip
 from paths import rootify_assets
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ORIGIN = "https://alprojects.co"
+# The same origin the page generator uses, and imported rather than repeated.
+# It was declared here as its own literal, and a drill -- change the domain in
+# one place and rebuild -- showed what that costs: og:image and the JSON-LD
+# followed the new host while every canonical, every hreflang and all 960
+# sitemap entries stayed on the old one, because THIS file writes those three
+# and had its own copy of the answer. Two constants with the same name in two
+# files is not one place.
+from paths import ORIGIN  # noqa: E402
 
 # Pages that make up the site, relative to the repo root.
 def source_pages():
