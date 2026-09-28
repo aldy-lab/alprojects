@@ -1809,14 +1809,29 @@
               docs.reset();
               document.querySelectorAll(".apply-form .chip[aria-pressed=true]")
                 .forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
-            } else { fail(TXT.apply_fail); }
+            } else { handToMail(true); }
           })
-          .catch(function () { fail(TXT.apply_fail); });
+          .catch(function () { handToMail(true); });
         return;
       }
 
-      /* No endpoint configured: hand off to the applicant's mail client with a
-         pre-filled message, so the CV can be attached there. */
+      /* Hand off to the applicant's mail client with a pre-filled message,
+         so the CV can be attached there.
+
+         Reached two ways now: when no endpoint is configured, and when a
+         configured endpoint FAILED. The second one was missing. The
+         marketplace on the other project can afford a soft failure because
+         the enquiry is written to a table before anybody is emailed -- the
+         row survives whatever the post does. This site stores nothing by
+         design, so there is no row to fall back on, and "Could not send,
+         please email us instead" threw away everything the applicant had
+         just typed. It goes to their mail client instead, files named.
+
+         `failed` keeps apply_fail in use rather than letting four translated
+         strings go dead: after a failed post the note says what went wrong
+         first and what to attach second. It is also still true -- the mail
+         client opening IS "please email us instead". */
+      function handToMail(failed) {
       function line(label, v) { return label + ": " + (v || "—"); }
       var body = [
         line("Position", data.role),
@@ -1843,10 +1858,13 @@
         "&body=" + encodeURIComponent(body);
       /* mailto cannot carry an attachment, so say which files to attach rather
          than letting the applicant assume the ones they chose went with it. */
-      applyNote.textContent = picked.length
+      applyNote.textContent = (failed ? TXT.apply_fail + " " : "") + (picked.length
         ? TXT.apply_mail_files + " " + picked.map(function (f) { return f.name; }).join(", ")
-        : TXT.apply_mail;
+        : TXT.apply_mail);
+      applyNote.classList.toggle("is-error", !!failed);
       applyNote.classList.add("show");
+      }
+      handToMail();
     });
   }
 
@@ -1938,12 +1956,16 @@
               contactNote.classList.remove("is-error");
               f.reset();
               ctDocs.reset();
-            } else { fail(TXT.apply_fail); }
+            } else { handToMail(true); }
           })
-          .catch(function () { fail(TXT.apply_fail); });
+          .catch(function () { handToMail(true); });
         return;
       }
 
+      /* The same handoff on the contacts form, for the same reason: the
+         drawings and the scope somebody has just described are worth more
+         than an apology. */
+      function handToMail(failed) {
       function line(label, v) { return label + ": " + (v || "\u2014"); }
       var body = [
         line("Service group", data.group),
@@ -1965,11 +1987,13 @@
          letting the visitor assume the drawings went with the message --
          accepting a file and quietly losing it is the one thing this must
          never do. */
-      contactNote.textContent = ctDocs.picked.length
+      contactNote.textContent = (failed ? TXT.apply_fail + " " : "") + (ctDocs.picked.length
         ? TXT.contact_mail_files + " " + ctDocs.names()
-        : TXT.contact_mail;
-      contactNote.classList.remove("is-error");
+        : TXT.contact_mail);
+      contactNote.classList.toggle("is-error", !!failed);
       contactNote.classList.add("show");
+      }
+      handToMail();
     });
   }
 
