@@ -214,7 +214,7 @@ async function send(mail) {
 
 const PROVIDER_NAMES = { resend: "Resend", postmark: "Postmark" };
 
-export default async function handler(request) {
+async function handle(request) {
   if (request.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: { allow: "POST" } });
   }
@@ -366,4 +366,103 @@ export default async function handler(request) {
     return json(result.unconfigured ? 503 : 502, { ok: false, error: "mail" });
   }
   return json(200, { ok: true, dryRun: result.dryRun || undefined });
+}
+
+
+/* ------------------------------------------------------------------
+   THE SIGNATURE, WHICH THE PLATFORM PICKS AND NOT THIS FILE
+   ------------------------------------------------------------------
+   Everything above is written against the Web standard: a Request in, a
+   Response out. That is the shape that gives multipart parsing for free
+   through request.formData(), and it is what the 19 tests exercise.
+
+   Vercel's Node runtime called it with (req, res) instead -- Node's own
+   IncomingMessage and ServerResponse. Which broke it in two different ways at
+   once, and the merge was the first time either could be seen:
+
+     POST -> 500, because request.headers.get() does not exist on an
+             IncomingMessage; its headers are a plain object.
+     GET  -> no answer at all, timing out after 25 seconds, because the
+             handler returned a Response and nothing ever wrote it to `res`.
+
+   So the boundary adapts and the logic does not. If a second argument turns
+   up that can end a response, the request is rebuilt as a Request, the
+   Response that comes back is written out, and the size guard runs before any
+   of it is buffered. Called with a single Request -- by a test, or by a
+   runtime that uses the Web signature -- it passes straight through.
+
+   Written this way rather than rewritten for (req, res) on purpose: hand-rolled
+   multipart parsing is the part of this file most likely to be subtly wrong,
+   and formData() is the platform's. */
+const BODY_LIMIT = MAX_BYTES + 512 * 1024;   // the fields, on top of the files
+
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    const parts = [];
+    let size = 0;
+    let over = false;
+    req.on("data", (c) => {
+      size += c.length;
+      if (size > BODY_LIMIT) {
+        /* Stop keeping it, keep reading it. The first version destroyed the
+           request here, which killed the connection before the 413 could be
+           written -- the client got ECONNRESET instead of an answer, and a
+           reset is the one response the browser cannot turn into "your
+           application did not send, here is your mail client".
+
+           Draining costs the rest of an oversized upload on the wire and
+           buys a real HTTP status. In practice the platform's own limit
+           stops most of these before this code runs at all. */
+        over = true;
+        parts.length = 0;
+        return;
+      }
+      if (!over) parts.push(c);
+    });
+    req.on("end", () => {
+      if (over) reject(Object.assign(new Error("too large"), { tooLarge: true }));
+      else resolve(Buffer.concat(parts));
+    });
+    req.on("error", reject);
+  });
+}
+
+export default async function handler(a, b) {
+  if (!b || typeof b.end !== "function") return handle(a);
+
+  const req = a, res = b;
+  const proto = req.headers["x-forwarded-proto"] || "https";
+  const host = req.headers["x-forwarded-host"] || req.headers.host || "localhost";
+  const url = proto + "://" + host + (req.url || "/");
+
+  let body = null;
+  if (req.method !== "GET" && req.method !== "HEAD" && req.method !== "OPTIONS") {
+    try {
+      body = await readBody(req);
+    } catch (e) {
+      res.statusCode = e && e.tooLarge ? 413 : 400;
+      res.setHeader("content-type", "application/json; charset=utf-8");
+      res.end(JSON.stringify({ ok: false, error: e && e.tooLarge ? "body too large" : "body" }));
+      return;
+    }
+  }
+
+  let out;
+  try {
+    out = await handle(new Request(url, {
+      method: req.method,
+      headers: req.headers,
+      body: body && body.length ? body : undefined,
+    }));
+  } catch (e) {
+    console.error("[form] handler threw:", e && e.stack || e);
+    res.statusCode = 500;
+    res.setHeader("content-type", "application/json; charset=utf-8");
+    res.end(JSON.stringify({ ok: false, error: "server" }));
+    return;
+  }
+
+  res.statusCode = out.status;
+  out.headers.forEach((v, k) => res.setHeader(k, v));
+  res.end(Buffer.from(await out.arrayBuffer()));
 }
