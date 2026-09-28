@@ -29,16 +29,17 @@
    every backup of it. MAIL_API_KEY is a Vercel environment variable.
 
    CONFIGURATION (Vercel project -> Settings -> Environment Variables)
-     MAIL_PROVIDER   resend | postmark | dry-run
+     MAIL_PROVIDER   resend | postmark | dry-run   (unset = not configured,
+                     and the endpoint then refuses rather than pretending)
      MAIL_API_KEY    the provider's key
      MAIL_TO         where submissions go          e.g. info@alprojects.eu
      MAIL_FROM       a sender the PROVIDER has verified, which need not be
                      the site's own domain         e.g. forms@alprojects.co
      SITE_ORIGIN     the origins allowed to post here, comma separated
-   With MAIL_PROVIDER unset or "dry-run" the endpoint validates everything and
-   reports what it would have sent without sending it. That is the state to
-   deploy in first: it exercises the whole path, including attachments, before
-   an address is involved.
+   With MAIL_PROVIDER=dry-run the endpoint validates everything and reports
+   what it would have sent without sending it -- the whole path, attachments
+   included, before an address is involved. With it UNSET the endpoint refuses,
+   which is what the forms need while the key is still missing.
    ============================================================ */
 
 const MAX_FILES = 6;
@@ -135,7 +136,25 @@ function throttled(key) {
 }
 
 async function send(mail) {
-  const provider = (process.env.MAIL_PROVIDER || "dry-run").toLowerCase();
+  /* An UNSET provider is "not configured", not "dry run", and the difference
+     is the whole safety of switching the three endpoints on before the mail
+     key exists.
+
+     It defaulted to dry-run, which answers 200. That would have put the form
+     in the worst state it can be in: the visitor is told the enquiry was sent,
+     the office never receives it, and nothing anywhere records that it
+     happened. Unset now means 503, the browser's failure branch opens the
+     applicant's mail client with every field filled in, and the submission
+     survives. Dry-run is still there, but only when it is asked for by name.
+
+     Which is what makes the endpoints safe to enable ahead of the key: with
+     no MAIL_PROVIDER the forms behave exactly as they do today, and the moment
+     the four variables are set in the host they start delivering, with no
+     deploy in between. */
+  const provider = (process.env.MAIL_PROVIDER || "").toLowerCase();
+  if (!provider) {
+    return { ok: false, error: "MAIL_PROVIDER is not set", unconfigured: true };
+  }
   if (provider === "dry-run") {
     console.log("[form] dry-run, would send:", JSON.stringify({
       to: mail.to, from: mail.from, subject: mail.subject,
@@ -193,10 +212,40 @@ async function send(mail) {
   return { ok: false, error: "unknown MAIL_PROVIDER: " + provider };
 }
 
+const PROVIDER_NAMES = { resend: "Resend", postmark: "Postmark" };
+
 export default async function handler(request) {
   if (request.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: { allow: "POST" } });
   }
+
+  /* A GET says whether a third party is in the path, and nothing else.
+     The privacy policy carries a line naming the processor that "receives
+     what you send through the forms, including any documents you attach".
+     It used to be revealed by the page whenever an endpoint was configured
+     and named after that endpoint's hostname -- which, now that the endpoint
+     is this site's own domain, would have printed "alprojects.co receives
+     what you send and passes it to us". Nonsense, and in the other direction
+     it would have claimed a processor before one existed: with no key set,
+     nothing leaves the visitor's own browser except to their own mail client.
+
+     So the page asks. No key, no line. Resend configured, the line names
+     Resend. The policy cannot drift from what the host is actually doing,
+     which is the way that particular disclosure goes wrong.
+
+     Answered BEFORE the origin check, and that is not an oversight: a browser
+     sends no Origin header on a same-origin GET, so the check would refuse
+     the page's own question. What it gives away is a boolean and a provider
+     name, which is precisely what the policy publishes on purpose. */
+  if (request.method === "GET") {
+    const p = (process.env.MAIL_PROVIDER || "").toLowerCase();
+    return json(200, {
+      ok: true,
+      configured: !!p && p !== "dry-run",
+      processor: PROVIDER_NAMES[p] || null,
+    });
+  }
+
   if (request.method !== "POST") return json(405, { ok: false, error: "post only" });
 
   /* Same-origin only. A form on another site cannot use this to mail the
@@ -311,7 +360,10 @@ export default async function handler(request) {
 
   if (!result.ok) {
     console.error("[form] send failed:", result.error);
-    return json(502, { ok: false, error: "mail" });
+    /* 503 rather than 502 when the mail is simply not configured yet: the
+       browser treats both the same -- any non-2xx hands the form to the mail
+       client -- but the log says which of the two it was. */
+    return json(result.unconfigured ? 503 : 502, { ok: false, error: "mail" });
   }
   return json(200, { ok: true, dryRun: result.dryRun || undefined });
 }

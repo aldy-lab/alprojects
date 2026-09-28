@@ -26,11 +26,20 @@
   /* Careers application form. Set to a Formspree/Netlify/etc endpoint to receive
      applications directly; while empty the form opens the applicant's mail client
      with everything pre-filled, so it works either way. */
-  var CAREERS_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
+  /* The site's own endpoint, on the site's own domain: api/form.js.
+     Switched ON even though the mail key is not set yet, and that is safe
+     because of what the endpoint does when it is not configured -- it refuses,
+     and a refusal hands the whole form to the visitor's mail client with every
+     field filled in and the files named. Which is exactly what these forms do
+     today with no endpoint at all.
+     So nothing changes for a visitor until MAIL_PROVIDER, MAIL_API_KEY,
+     MAIL_TO and MAIL_FROM are set in the host, and when they are, the forms
+     start delivering with no deploy in between. */
+  var CAREERS_ENDPOINT = "/api/form?f=careers";
   /* Contact form on /contacts.html. Empty -> the form opens the visitor's
      mail client with every answer filled in, so an enquiry is never lost
      to a POST that goes nowhere. */
-  var CONTACT_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
+  var CONTACT_ENDPOINT = "/api/form?f=contact";
   /* "Meet the management" on /company.html. There is no such page
      yet and no names or photographs for one, so the button stays out of the
      DOM until this points somewhere real. */
@@ -283,14 +292,29 @@
     if (!row) return;
     var url = CAREERS_ENDPOINT || CONTACT_ENDPOINT || FORM_ENDPOINT;
     if (!url) return;
-    var name = PROCESSOR_NAME;
-    if (!name) {
-      try { name = new URL(url, location.href).hostname.replace(/^www\./, ""); }
-      catch (e) { name = ""; }
-    }
     var slot = row.querySelector("[data-processor-name]");
-    if (slot && name) slot.textContent = name;
-    row.hidden = false;
+
+    /* The endpoint is asked, rather than guessed at from its own hostname.
+       That guess used to work when the endpoint was a hosted service; now
+       that it is this site's own /api/form it would have printed
+       "alprojects.co receives what you send and passes it to us", and before
+       the mail key is set there is no processor at all -- the submission goes
+       no further than the visitor's own mail client. Both mistakes are in the
+       one sentence a reader checks to find out who sees their CV.
+
+       Failure means the line stays hidden. A disclosure that cannot be
+       verified must not be shown. */
+    function reveal(name) {
+      if (slot && name) slot.textContent = name;
+      row.hidden = false;
+    }
+    if (PROCESSOR_NAME) { reveal(PROCESSOR_NAME); return; }
+    fetch(url.split("?")[0], { headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (j && j.configured && j.processor) reveal(j.processor);
+      })
+      .catch(function () { /* stays hidden */ });
   })();
 
   /* The privacy policy has to agree with what actually loads, and the usual way
@@ -2000,7 +2024,7 @@
   /* ---------- newsletter (no backend: opens mail client) ----------
      To wire a real endpoint later (e.g. Formspree/Buttondown), set
      FORM_ENDPOINT to the URL and the form will POST instead.       */
-  var FORM_ENDPOINT = ""; // e.g. "https://formspree.io/f/XXXXXXXX"
+  var FORM_ENDPOINT = "/api/form?f=subscribe";
   var form = document.getElementById("newsletterForm");
   var note = document.getElementById("formNote");
   if (form) {

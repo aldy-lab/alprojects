@@ -9,6 +9,7 @@
    the ones that would matter most if they regressed: a foreign origin cannot
    use the endpoint, a submission without the consent record is refused, and a
    field that is not on its form's list is dropped rather than emailed. */
+process.env.MAIL_PROVIDER = "dry-run";   // asked for by name; unset means refuse
 const { default: handler } = await import(new URL("../api/form.js", import.meta.url));
 const OK = "https://alprojects.co";
 let pass = 0, fail = 0;
@@ -38,7 +39,19 @@ async function t(label, r, want, check) {
   return body;
 }
 
-await t("GET is refused",            req("careers", base, [], OK, "GET"), 405);
+/* A GET is the privacy policy's question -- is a third party in the path --
+   and it answers with a boolean, a provider name, and nothing else. */
+delete process.env.MAIL_PROVIDER;
+await t("GET: not configured",        req("careers", base, [], OK, "GET"), 200,
+        b => b.configured === false && b.processor === null
+             && Object.keys(b).sort().join() === "configured,ok,processor");
+process.env.MAIL_PROVIDER = "resend";
+await t("GET: names the provider",    req("careers", base, [], OK, "GET"), 200,
+        b => b.configured === true && b.processor === "Resend");
+process.env.MAIL_PROVIDER = "dry-run";
+await t("GET: dry-run is not a processor", req("careers", base, [], OK, "GET"), 200,
+        b => b.configured === false);
+await t("PUT is refused",             req("careers", base, [], OK, "PUT"), 405);
 await t("foreign origin refused",    req("careers", base, [], "https://evil.example"), 403);
 await t("no origin refused",         req("careers", base, [], ""), 403);
 await t("unknown form refused",      req("nope", base), 400);
@@ -62,6 +75,13 @@ const okBody = await t("careers happy path", req("careers",
   OK, "POST", "9.9.9.9"), 200, b => b.ok && b.dryRun);
 
 await t("throttle on the second",    req("careers", base, [], OK, "POST", "9.9.9.9"), 429, b => b.error === "too soon");
+
+/* The state the site is deployed in before the mail key exists: the endpoint
+   must refuse, so the browser hands the form to the visitor's mail client
+   instead of telling them it was sent. */
+delete process.env.MAIL_PROVIDER;
+await t("unconfigured refuses",      req("subscribe", { consent: "yes", email: "a@b.co" }, [], OK, "POST", "9.9.9.77"), 503, b => !b.ok);
+process.env.MAIL_PROVIDER = "dry-run";
 
 console.log = origLog;
 const dry = logs.filter(l => l.startsWith("[form] dry-run")).pop() || "";
