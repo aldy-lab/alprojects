@@ -38,7 +38,7 @@ PUBLISHING
 
 import html as _html
 import re
-LANGS = ("en", "fr", "de", "it")
+LANGS = ("en", "fr", "de", "it", "ru")
 DEFAULT = "en"
 
 # <html lang>, og:locale
@@ -47,18 +47,47 @@ LOCALE = {
     "fr": ("fr", "fr_FR"),
     "de": ("de", "de_DE"),
     "it": ("it", "it_IT"),
+    "ru": ("ru", "ru_RU"),
 }
 # the switcher label, and the accessible name of the link
-LABEL = {"en": "EN", "fr": "FR", "de": "DE", "it": "IT"}
-LANG_NAME = {"en": "English", "fr": "Français", "de": "Deutsch", "it": "Italiano"}
+LABEL = {"en": "EN", "fr": "FR", "de": "DE", "it": "IT", "ru": "RU"}
+LANG_NAME = {"en": "English", "fr": "Français", "de": "Deutsch",
+             "it": "Italiano", "ru": "Русский"}
 
 # "Language" for the switcher's group label, per language
-LANG_GROUP = {"en": "Language", "fr": "Langue", "de": "Sprache", "it": "Lingua"}
+LANG_GROUP = {"en": "Language", "fr": "Langue", "de": "Sprache",
+              "it": "Lingua", "ru": "Язык"}
 
 # Flip to True once coverage reports 100% for that language. Anything False is
 # not written, not linked, and not in the sitemap -- so a partial translation
 # cannot reach a visitor.
-PUBLISH = {"en": True, "fr": True, "de": True, "it": True}
+PUBLISH = {"en": True, "fr": True, "de": True, "it": True, "ru": False}
+
+# A language may cover only part of the site.
+#
+# Russian exists for the careers page and nothing else. The crews this company
+# recruits are reached through Russian-language channels, and a job advert links
+# straight to the page -- so the one page that has to be readable by a welder in
+# his own language is the one that is, and the other forty stay in the four
+# languages the clients read.
+#
+# Absent from this table means "every page", which is how the other three work.
+#
+# Three things follow from it and are implemented rather than assumed:
+#   * the switcher offers RU only on the pages Russian covers, so it can never
+#     be a link to a page that does not exist;
+#   * hreflang likewise -- /ru/careers and /careers declare each other, and no
+#     other page claims a Russian alternate;
+#   * internal links inside a Russian page are NOT prefixed when the target has
+#     no Russian version, so the header and footer lead to the English pages
+#     instead of to forty 404s.
+PAGES = {"ru": ("careers.html",)}
+
+
+def covers(lang, rel):
+    """Does this language have this page?"""
+    pages = PAGES.get(lang)
+    return pages is None or rel in pages
 
 # Paths that exist once and are shared by every language: never prefixed.
 # 404.html is here because GitHub Pages serves the host's single /404.html for

@@ -93,14 +93,54 @@ def norm(s):
 LINK_RE = re.compile(r'((?:href|action)=")(/[^"#?]*)([^"]*)(")')
 
 
+def langs_for(rel):
+    """The published languages that actually have this page.
+
+    Every place that used to read `[l for l in LANGS if PUBLISH[l]]` reads this
+    instead. A language covering part of the site would otherwise be offered in
+    the switcher on all 41 pages and declared as an hreflang alternate on all
+    of them -- 40 links and 40 alternates to pages that do not exist."""
+    return [l for l in i18n.LANGS
+            if i18n.PUBLISH.get(l) and i18n.covers(l, rel)]
+
+
+def rel_for_path(path):
+    """The source page a site-internal path refers to.
+
+    /            -> index.html
+    /company     -> company.html
+    /news/       -> news/index.html
+    /404.html    -> 404.html
+    Needed because prefixing has to know whether the target exists in this
+    language, and the only handle on that is the source filename."""
+    if path in ("", "/"):
+        return "index.html"
+    p = path.strip("/")
+    if p.endswith(".html"):
+        return p
+    return p + "/index.html" if path.endswith("/") else p + ".html"
+
+
 def prefix_links(body, lang):
-    """Prefix site-internal paths with the language directory."""
+    """Prefix site-internal paths with the language directory -- but only for
+    pages this language actually has.
+
+    A partial language is the reason for the second half. Russian covers the
+    careers page; its header and footer link to twenty-seven other places, and
+    prefixing those would have produced /ru/company, /ru/services and so on --
+    every one a 404, on the one page whose whole job is to be read by somebody
+    who came to apply. Unprefixed, they lead to the English pages, which exist.
+
+    The four full languages are unaffected: covers() is true for every page, so
+    every link is prefixed exactly as before."""
     if lang == i18n.DEFAULT:
         return body
 
     def repl(m):
         pre, path, tail, post = m.groups()
         if path.startswith(i18n.SHARED_PREFIXES):
+            return m.group(0)
+        if not i18n.covers(lang, rel_for_path(path)):
             return m.group(0)
         if path == "/":
             return pre + "/" + lang + "/" + tail + post
@@ -131,7 +171,7 @@ def lang_url(lang, rel):
 # the switcher
 # ============================================================
 def switcher(lang, rel, extra_class=""):
-    langs = [l for l in i18n.LANGS if i18n.PUBLISH.get(l)]
+    langs = langs_for(rel)
     if len(langs) < 2:
         return ""            # nothing to switch between: render nothing
     out = []
@@ -165,7 +205,7 @@ def fill_switcher(body, lang, rel):
 # head: lang, canonical, alternates, og:locale
 # ============================================================
 def alternates(rel):
-    langs = [l for l in i18n.LANGS if i18n.PUBLISH.get(l)]
+    langs = langs_for(rel)
     if len(langs) < 2:
         return ""
     out = []
@@ -460,13 +500,16 @@ def save_lastmod():
 
 
 def sitemap(pages):
-    langs = [l for l in i18n.LANGS if i18n.PUBLISH.get(l)]
     rows = []
 
     for rel in pages:
         if rel == "404.html":
             continue
         lastmod = last_changed(rel)
+        # per page, because a language may cover only some of them: the careers
+        # page has a Russian version and nothing else does, so only that page's
+        # entries carry a Russian URL and a Russian alternate.
+        langs = langs_for(rel)
         for lg in langs:
             alts = "".join(
                 '\n    <xhtml:link rel="alternate" hreflang="%s" href="%s"/>'
@@ -499,6 +542,12 @@ def main():
                  "tag_mismatch": []}
         outputs = {}
         for rel in pages:
+            # A language covering part of the site translates only its own
+            # pages, and its coverage is counted over those pages only --
+            # otherwise Russian would report 24% and look unfinished when it is
+            # complete for everything it is meant to cover.
+            if not i18n.covers(lang, rel):
+                continue
             with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
                 src = fh.read()
             outputs[rel] = translate_page(src, lang, rel, stats)
