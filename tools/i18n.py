@@ -70,6 +70,26 @@ LANG_GROUP = {"en": "Language", "fr": "Langue", "de": "Sprache",
 # two before the Russian URL goes into a job advert.
 PUBLISH = {"en": True, "fr": True, "de": True, "it": True, "ru": True}
 
+# ============================================================
+# WHAT THE CLIENT EDITS, AND WHY IT IS NOT GATED LIKE THE REST
+# ============================================================
+# The CMS gives the client these collections: vacancies and news. He was
+# promised he can post a vacancy today without waiting for a translator, and
+# that the English does not have to stay in step with the other languages.
+#
+# Everything else -- page prose, headings, the forms, the footer -- is mine, and
+# there the 100% gate stays. An English sentence in the middle of a German page
+# is a defect when I wrote the German, and a fact of life when the client just
+# posted a vacancy at 18:00 on a Friday.
+#
+# So a unit whose English text comes from one of these collections falls back to
+# English on its own and does not withhold the language. Without this, one word
+# edited in the CMS drops all four languages below 100%, none of them are
+# rewritten, the previous files stay on disk, and the site ships English saying
+# one thing and four languages saying another -- with exit code 0. That was
+# measured, not assumed, before this was written.
+CLIENT_COLLECTIONS = ("positions", "articles")
+
 # A language may cover only part of the site.
 #
 # Russian exists for the careers page and nothing else. The crews this company
