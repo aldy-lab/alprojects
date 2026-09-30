@@ -42,6 +42,7 @@ import shutil
 from html.parser import HTMLParser
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import content
 import i18n
 from i18n_extract import unit_spans, meta_units, skip
 from paths import rootify_assets
@@ -274,6 +275,53 @@ _ISLAND = re.compile(r'(<script type="application/json" id="srv-data">)(.*?)(</s
                      re.S)
 
 
+# ============================================================
+# UNITS THE CLIENT CAN EDIT
+# ============================================================
+# i18n.CLIENT_COLLECTIONS says which collections the CMS hands to the client.
+# A unit is his when its English text carries a value out of one of them --
+# `in`, not `==`, because several of them are printed inside a longer line: a
+# news category lands in "05 &middot; 25 Jul 2026 &middot; Industry" and an seo
+# title inside "<title> ... ALPROJECTS Group". Edit the category and that whole
+# line loses its key, so the whole line has to be allowed to fall back.
+#
+# Longest value first: "Industry" is a substring of "Industry news", and the id
+# printed beside the unit should name the field that really produced it.
+_CLIENT_INDEX = None
+
+
+def _client_index():
+    global _CLIENT_INDEX
+    if _CLIENT_INDEX is None:
+        pairs = []
+        for name in i18n.CLIENT_COLLECTIONS:
+            for cid, text in content.flatten(content.load(name)).items():
+                if text.strip():
+                    pairs.append((text, "%s.%s" % (name, cid)))
+        pairs.sort(key=lambda pair: -len(pair[0]))
+        _CLIENT_INDEX = pairs
+    return _CLIENT_INDEX
+
+
+def client_ids(key):
+    """The content ids whose text this unit carries, longest match first."""
+    return [cid for text, cid in _client_index() if text in key]
+
+
+def note_missing(stats, key):
+    """Record an untranslated unit as blocking, or as the client's to fill.
+
+    His are kept separate so the gate can let the language through: he was
+    promised a vacancy can go up without waiting for a translator, and one
+    word edited in the CMS must not strand four languages with their old files
+    still on disk."""
+    ids = client_ids(key)
+    if ids:
+        stats["soft"][key] = ids
+    else:
+        stats["missing"].add(key)
+
+
 def _sub_units(frag, lang, stats):
     """Substitute every translatable unit inside one HTML fragment."""
     spans, attr_spans = unit_spans(frag)
@@ -289,7 +337,7 @@ def _sub_units(frag, lang, stats):
             continue
         dst = i18n.t(lang, key)
         if dst is None:
-            stats["missing"].add(key)
+            note_missing(stats, key)
             continue
         if tag_bag(key) != tag_bag(dst):
             stats["tag_mismatch"].append((key, dst, tag_bag(key), tag_bag(dst)))
@@ -316,7 +364,7 @@ def _translate_string(val, lang, stats):
         if dst is None:
             dst = i18n.t_clamped(lang, key)
         if dst is None:
-            stats["missing"].add(key)
+            note_missing(stats, key)
             return val
         return dst
     return _sub_units(val, lang, stats)
@@ -400,7 +448,7 @@ def translate_page(src, lang, rel, stats):
         if dst is None:
             dst = i18n.t_clamped(lang, key)
         if dst is None:
-            stats["missing"].add(key)
+            note_missing(stats, key)
             continue
         src_bag, dst_bag = tag_bag(key), tag_bag(dst)
         if src_bag != dst_bag:
@@ -548,7 +596,7 @@ def main():
     reports = {}
     for lang in i18n.LANGS:
         stats = {"units": set(), "missing": set(), "done": 0,
-                 "tag_mismatch": []}
+                 "tag_mismatch": [], "soft": {}}
         outputs = {}
         for rel in pages:
             # A language covering part of the site translates only its own
@@ -562,7 +610,11 @@ def main():
             outputs[rel] = translate_page(src, lang, rel, stats)
         total = len(stats["units"])
         missing = len(stats["missing"])
-        cov = 100.0 * (total - missing) / total if total else 100.0
+        soft = len(stats["soft"])
+        # Coverage counts BOTH buckets. The soft ones do not block the build,
+        # but a page with an English vacancy on it is not 100% translated and
+        # the number must not claim it is.
+        cov = 100.0 * (total - missing - soft) / total if total else 100.0
         reports[lang] = (cov, total, missing, stats)
 
         if lang == i18n.DEFAULT:
@@ -574,6 +626,9 @@ def main():
             print("  en  %d units  (source)" % total)
             continue
 
+        # The gate counts the blocking bucket only: stats["soft"] holds the
+        # units the client can edit, and those fall back to English one at a
+        # time rather than holding back the language. See note_missing().
         complete = (missing == 0 and not stats["tag_mismatch"])
         # Two separate gates: the translation has to be finished, AND somebody
         # has to have turned the language on. Checking PUBLISH here rather than
@@ -594,7 +649,9 @@ def main():
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             with open(dst, "w", encoding="utf-8") as fh:
                 fh.write(out)
-        print("  %s  %5.1f%%  %d files written" % (lang, cov, len(outputs)))
+        print("  %s  %5.1f%%  %d files written%s"
+              % (lang, cov, len(outputs),
+                 "  -- %d unit(s) in English, see below" % soft if soft else ""))
 
     # languages that are not published must not leave an old tree behind
     for lang in i18n.LANGS:
@@ -620,8 +677,52 @@ def main():
             for key, dst, a, b in stats["tag_mismatch"][:5]:
                 print("   src %s\n     %s\n   dst %s\n     %s" %
                       (a, key[:80], b, dst[:80]))
+
+    # The translator's work list. This is the whole point of separating the two
+    # buckets: the client edits English in the CMS, the site keeps building, and
+    # what he changed comes out here by content id -- a field to re-translate,
+    # not a page to go hunting through.
+    todo = {}
+    for lang in i18n.LANGS:
+        if lang == i18n.DEFAULT or not reports[lang][3]["soft"]:
+            continue
+        for key, ids in reports[lang][3]["soft"].items():
+            todo.setdefault((ids[0], key), []).append(lang)
+    if todo:
+        print("\nIN ENGLISH ON THE TRANSLATED PAGES -- %d field(s) to send out:"
+              % len(todo))
+        for (cid, key), langs in sorted(todo.items()):
+            print("   %-52s %s" % (cid, ",".join(langs)))
+            print("       %s" % key[:96].replace("\n", " "))
+        print("\n   These do not block a build: they are in %s, which the client\n"
+              "   edits himself. Send the list to the translator; until it comes\n"
+              "   back those units render in English on every other language."
+              % ", ".join(i18n.CLIENT_COLLECTIONS))
     return reports
 
 
+def failed(reports):
+    """The languages that are published, unfinished, and therefore not written.
+
+    This has to be an exit code, not a printed line. A withheld language leaves
+    its previous files on disk -- that is deliberate, so a half-translated tree
+    is never served -- but it means a deploy run straight after an incomplete
+    build ships the old translations beside the new English and nothing says so.
+    Once a GitHub Action does the deploying, the printed warning is read by
+    nobody. The client's own collections are not counted here: those fall back
+    per unit and are listed as work, not as a failure.
+    """
+    return [lang for lang in i18n.LANGS
+            if lang != i18n.DEFAULT and i18n.PUBLISH.get(lang)
+            and (reports[lang][2] or reports[lang][3]["tag_mismatch"])]
+
+
 if __name__ == "__main__":
-    main()
+    _reports = main()
+    _bad = failed(_reports)
+    if _bad and "--force" not in sys.argv:
+        print("\nBUILD FAILED -- %s published but not written. The site still has\n"
+              "the previous files for %s, so deploying now would ship them beside\n"
+              "the new English. Translate what is listed above, or pass --force."
+              % (", ".join(_bad), ", ".join(_bad)))
+        sys.exit(1)

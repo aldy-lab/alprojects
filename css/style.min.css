@@ -895,6 +895,24 @@ margin-bottom: 4px;
 .terminal .loadbar { margin-top: 16px; border: none; background: rgba(255,255,255,0.04); padding: 6px; gap: 3px; width: 100%; }
 .terminal .loadbar i { width: auto; flex: 1; height: 18px; }
 .cta-panel .btn-bracket { justify-self: end; background: rgba(16, 16, 26, 0.6); }
+body:has(.srv-shell) {
+--bg: #05060f;
+--bg-2: #05060f;
+}
+body:has(.srv-shell) .site-footer {
+background: transparent;
+border-top: 0;
+}
+body:has(.srv-shell) .srv-shell::before {
+inset: 0 0 -110px 0;
+background:
+linear-gradient(90deg, rgba(5,6,15,0.97) 0%, rgba(5,6,15,0.9) 42%, rgba(5,6,15,0.72) 100%),
+url("../assets/services-bg.webp") center / cover no-repeat;
+-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 72px,
+#000 calc(100% - 130px), transparent 100%);
+mask-image: linear-gradient(180deg, transparent 0, #000 72px,
+#000 calc(100% - 130px), transparent 100%);
+}
 .site-footer {
 background: var(--bg-2);
 border-top: 1px solid var(--line);

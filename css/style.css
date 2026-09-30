@@ -1201,6 +1201,72 @@ html.menu-open .site-header {
 .cta-panel .btn-bracket { justify-self: end; background: rgba(16, 16, 26, 0.6); }
 
 /* ============================================================
+   THE SERVICES PAGE IS ONE GROUND
+   ============================================================ */
+/* The deck used to fade its blue into --bg at its own bottom edge, and below
+   it the page showed three tones in eighty pixels: the deck at rgb(5,6,15),
+   a strip of bare body at rgb(7,7,8), then the footer at rgb(10,11,22). Two
+   of those steps are invisible in isolation and read as a seam stacked on a
+   seam -- measured off the rendered page, not guessed, because at this
+   darkness the eye registers the edge long before it can name the colours.
+   The deck's own vertical veil is untouched: it fades to var(--bg), and --bg
+   is redefined here, so it now lands on exactly the footer's colour instead of
+   on a neutral. Removing that veil was the first attempt and it made things
+   worse -- it was also what kept the background photograph dark at the deck's
+   bottom edge, so the seam moved rather than went, from blue-into-grey to
+   bright-photo-into-flat-footer. The veil was never the bug; the ground under
+   it was.
+
+   Scoped with :has() rather than a class from build-pages.py: the deck exists
+   on exactly one page, the rule stays in the stylesheet next to what it
+   explains, and no generated file has to change in five languages. A browser
+   without :has() renders what the site rendered yesterday. */
+body:has(.srv-shell) {
+  --bg: #05060f;
+  --bg-2: #05060f;
+}
+
+/* The last step was not a colour at all. The deck ends at 713 and the footer
+   starts at 814, and in those 101 pixels the body's own ambient wash shows --
+   the faint radial on body::before -- while under the opaque footer it does
+   not. One lit strip between two unlit ones, which is why it read as a band
+   with an edge at each end rather than as a gradient.
+   So the footer stops painting a ground here and lets the page's show through,
+   wash included. That is what makes the gradient run the whole page instead of
+   the top of it. The border-top goes with it: with one continuous ground it
+   would be the only division left on the page, and a division is the thing
+   being removed. Every other page keeps both. */
+body:has(.srv-shell) .site-footer {
+  background: transparent;
+  border-top: 0;
+}
+
+/* One edge was left, at the deck's own bottom: it paints an opaque ground and
+   hides the wash, the page below shows it, and the two differ by three levels
+   on a dead-straight horizontal -- which the eye finds even when it cannot
+   name the colours. So the veil runs on past the deck and fades out over the
+   gap instead of stopping on a line. -110px is the gap between the deck's
+   bottom and the footer; the pointer-events: none on the base rule is what
+   keeps this from covering anything clickable.
+
+   No vertical veil and no opaque ground on this layer: the mask does the
+   fading now, at both ends, so the photograph sits directly on the page's own
+   blue and the horizontal veil is the only thing over it. The first version
+   kept a 180deg layer here with all four stops at zero alpha -- a gradient
+   that did nothing, which is worse than no gradient because the next person
+   has to work out that it is inert. */
+body:has(.srv-shell) .srv-shell::before {
+  inset: 0 0 -110px 0;
+  background:
+    linear-gradient(90deg, rgba(5,6,15,0.97) 0%, rgba(5,6,15,0.9) 42%, rgba(5,6,15,0.72) 100%),
+    url("../assets/services-bg.webp") center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 72px,
+                                      #000 calc(100% - 130px), transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 72px,
+                              #000 calc(100% - 130px), transparent 100%);
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .site-footer {
