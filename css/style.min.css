@@ -35,9 +35,6 @@
 color-scheme: dark;
 --font: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
 --font-display: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
-}
-html[lang="ru"] {
---font: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
 --container: 1360px;
 --pad: 40px;
 --nav-h: 78px;
@@ -57,6 +54,9 @@ html[lang="ru"] {
 --z-measure: 290;
 --z-flag: 300;
 --z-viewer: 1000;
+}
+html[lang="ru"] {
+--font: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 ::selection { background: var(--accent); color: var(--black); }
