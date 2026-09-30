@@ -98,6 +98,17 @@
 
   --font: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-display: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* Poppins has no Cyrillic, upstream or anywhere -- so on the Russian page the
+   body face would resolve to the reader's system sans while every heading
+   stayed Montserrat: two typefaces on one page, and not ones we chose. Russian
+   therefore sets body text in Montserrat as well. It is already the brand's
+   display face, it carries the full alphabet, and one 21 KB file covers the
+   page. Keep this in sync with PAGES in tools/i18n.py: it applies by lang
+   attribute, so any page added to Russian inherits it. */
+html[lang="ru"] {
+  --font: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
   --container: 1360px;   /* TZ §2.1 */
   --pad: 40px;           /* TZ §2.1 */
   --nav-h: 78px;

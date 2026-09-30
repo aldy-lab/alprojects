@@ -7,8 +7,9 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://alprojects.eu/fr/careers"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://alprojects.eu/de/careers"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://alprojects.eu/it/careers"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alprojects.eu/ru/careers"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alprojects.eu/careers"/>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://alprojects.eu/fr/careers</loc>
@@ -16,8 +17,9 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://alprojects.eu/fr/careers"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://alprojects.eu/de/careers"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://alprojects.eu/it/careers"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alprojects.eu/ru/careers"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alprojects.eu/careers"/>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://alprojects.eu/de/careers</loc>
@@ -25,8 +27,9 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://alprojects.eu/fr/careers"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://alprojects.eu/de/careers"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://alprojects.eu/it/careers"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alprojects.eu/ru/careers"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alprojects.eu/careers"/>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://alprojects.eu/it/careers</loc>
@@ -34,8 +37,19 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://alprojects.eu/fr/careers"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://alprojects.eu/de/careers"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://alprojects.eu/it/careers"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alprojects.eu/ru/careers"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alprojects.eu/careers"/>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
+  </url>
+  <url>
+    <loc>https://alprojects.eu/ru/careers</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alprojects.eu/careers"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alprojects.eu/fr/careers"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alprojects.eu/de/careers"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://alprojects.eu/it/careers"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alprojects.eu/ru/careers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alprojects.eu/careers"/>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
     <loc>https://alprojects.eu/company</loc>

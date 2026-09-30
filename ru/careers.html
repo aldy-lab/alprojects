@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- Marks that scripting is available. The reveal animations start from
+       opacity:0, so without this a JS failure would leave the page blank. -->
+  <script>document.documentElement.className += " js";</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вакансии — ALPROJECTS Group</title>
+  <meta name="description" content="Работа в ALPROJECTS Group — сварка, монтаж трубопроводов, неразрушающий контроль, промышленный альпинизм и механомонтаж на промышленных и офшорных проектах по…">
+  <link rel="canonical" href="https://alprojects.eu/ru/careers">
+  <link rel="alternate" hreflang="en" href="https://alprojects.eu/careers">
+  <link rel="alternate" hreflang="fr" href="https://alprojects.eu/fr/careers">
+  <link rel="alternate" hreflang="de" href="https://alprojects.eu/de/careers">
+  <link rel="alternate" hreflang="it" href="https://alprojects.eu/it/careers">
+  <link rel="alternate" hreflang="ru" href="https://alprojects.eu/ru/careers">
+  <link rel="alternate" hreflang="x-default" href="https://alprojects.eu/careers">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#05060f">
+  <meta property="og:site_name" content="ALPROJECTS Group">
+  <meta property="og:title" content="Вакансии — ALPROJECTS Group">
+  <meta property="og:description" content="Работа в ALPROJECTS Group — сварка, монтаж трубопроводов, неразрушающий контроль, промышленный альпинизм и механомонтаж на промышленных и офшорных проектах по…">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://alprojects.eu/assets/og/careers.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://alprojects.eu/assets/og/careers.jpg">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-cyrillic.woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=3842f0da">
+  <link rel="stylesheet" href="/css/style.min.css?v=4da0029a">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://alprojects.eu/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Careers",
+        "item": "https://alprojects.eu/careers.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="logo" href="/" aria-label="ALPROJECTS Group — на главную">
+        <img src="/assets/logo.svg" alt="ALPROJECTS Group" width="144" height="30">
+      </a>
+
+      <nav class="main-nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="/"><span class="txt">Главная</span></a></li>
+          <li><a href="/company"><span class="txt">Компания</span></a></li>
+          <li><a href="/services"><span class="txt">Услуги</span></a></li>
+          <li><a href="/projects"><span class="txt">Проекты</span></a></li>
+          <li><a href="/ru/careers" class="active" aria-current="page"><span class="txt">Вакансии</span></a></li>
+          <li><a href="/contacts"><span class="txt">Контакты</span></a></li>
+          <li><a href="/news/"><span class="txt">Новости</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <!-- Filled in by tools/build-pages.py, once per language. Empty here so
+             a language that is not published yet cannot leave a dead link. -->
+        <div class="langs" data-langs role="group" aria-label="Язык"><a href="/careers" hreflang="en" lang="en"><span class="sr-only">English</span><span aria-hidden="true">EN</span></a><a href="/fr/careers" hreflang="fr" lang="fr"><span class="sr-only">Français</span><span aria-hidden="true">FR</span></a><a href="/de/careers" hreflang="de" lang="de"><span class="sr-only">Deutsch</span><span aria-hidden="true">DE</span></a><a href="/it/careers" hreflang="it" lang="it"><span class="sr-only">Italiano</span><span aria-hidden="true">IT</span></a><a href="/ru/careers" hreflang="ru" lang="ru" aria-current="true"><span class="sr-only">Русский</span><span aria-hidden="true">RU</span></a></div>
+        <div class="socials">
+          <!-- hrefs are filled in from the SOCIAL config at the top of js/main.js;
+               any profile left blank there is removed from the page automatically. -->
+          <a data-social="instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
+          <a data-social="linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+          <a data-social="facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
+        </div>
+        <!-- TODO(ALDY): set BOOKING_URL at the top of js/main.js to the client's real
+             Calendly link. Until then this button falls back to the contact section. -->
+        <a class="btn-outline" data-booking href="/contacts">Заказать звонок</a>
+        <button class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Мобильная навигация">
+    <a href="/">Главная</a>
+    <a href="/company">Компания</a>
+    <a href="/services">Услуги</a>
+    <a href="/projects">Проекты</a>
+    <a href="/ru/careers" class="active" aria-current="page">Вакансии</a>
+    <a href="/contacts">Контакты</a>
+    <a href="/news/">Новости</a>
+    <div class="langs langs-menu" data-langs role="group" aria-label="Язык"><a href="/careers" hreflang="en" lang="en"><span class="sr-only">English</span><span aria-hidden="true">EN</span></a><a href="/fr/careers" hreflang="fr" lang="fr"><span class="sr-only">Français</span><span aria-hidden="true">FR</span></a><a href="/de/careers" hreflang="de" lang="de"><span class="sr-only">Deutsch</span><span aria-hidden="true">DE</span></a><a href="/it/careers" hreflang="it" lang="it"><span class="sr-only">Italiano</span><span aria-hidden="true">IT</span></a><a href="/ru/careers" hreflang="ru" lang="ru" aria-current="true"><span class="sr-only">Русский</span><span aria-hidden="true">RU</span></a></div>
+    <a class="btn-solid menu-cta" data-booking href="/contacts">Заказать звонок</a>
+  </nav>
+
+  <main id="main" class="page">
+
+    <div class="container page-head">
+      <p class="eyebrow">Вакансии</p>
+      <h1 class="page-title">Работа в ALPROJECTS</h1>
+      <p class="page-lead">Мы выполняем механомонтаж, сварку, контроль качества и работы методом промышленного альпинизма на промышленных и офшорных проектах по всей Европе. Работа техническая, сертифицированная и в основном на объекте.</p>
+    </div>
+
+    <section class="container careers-block">
+      <h2 class="eyebrow">Открытые вакансии</h2>
+      <div class="sched">
+        <div class="sched-head" aria-hidden="true">
+          <div>№</div><div>Должность</div><div>Место работы</div><div>Договор</div><div></div>
+        </div>
+        <details class="sched-row" id="tig-welder" name="positions">
+          <summary class="sched-sum">
+            <div class="sched-n">01</div>
+            <div class="sched-role">Сварщик TIG с аттестацией</div>
+            <div class="sched-loc">Объекты по всей Европе</div>
+            <div class="sched-contract">По проекту</div>
+            <div class="sched-mark" aria-hidden="true"></div>
+          </summary>
+          <div class="sched-open">
+            <div class="sched-in">
+
+              <p class="sched-lead">Трубопроводы, корневые проходы и системы из нержавеющей стали на судостроительных и промышленных объектах. Сварка по аттестованной технологии, сборка под сварку проверяется до начала работ.</p>
+              <p class="position-label">Что требуется</p>
+              <ul class="position-needs">
+              <li>Действующая аттестация по TIG с подтверждающими документами</li>
+              <li>Опыт сварки трубопроводов и нержавеющей стали</li>
+              <li>Умение работать по технологической карте сварки и изометрической схеме</li>
+              <li>Готовность к разъездам и работе на объектах в нескольких странах</li>
+              <li>Английский на рабочем уровне, B1 и выше</li>
+              </ul>
+              <p class="sched-act"><a class="btn-solid" href="#apply" data-apply="Welding (TIG)">Откликнуться на вакансию</a></p>
+            </div>
+          </div>
+        </details>
+        <details class="sched-row" id="mig-mag-mma-welder" name="positions">
+          <summary class="sched-sum">
+            <div class="sched-n">02</div>
+            <div class="sched-role">Сварщик MIG / MAG / MMA</div>
+            <div class="sched-loc">Объекты по всей Европе</div>
+            <div class="sched-contract">По проекту</div>
+            <div class="sched-mark" aria-hidden="true"></div>
+          </summary>
+          <div class="sched-open">
+            <div class="sched-in">
+
+              <p class="sched-lead">Металлоконструкции, заполняющие и облицовочные проходы, изготовление в цеху и ремонтные работы на объекте. Листовой металл, профиль и опоры, в основном на судозаводах и промышленных предприятиях.</p>
+              <p class="position-label">Что требуется</p>
+              <ul class="position-needs">
+              <li>Действующая аттестация по MAG (135), сварке порошковой проволокой (136) или MMA (111)</li>
+              <li>Опыт работы с металлоконструкциями и листовым металлом</li>
+              <li>Умение читать чертежи и работать по технологической карте</li>
+              <li>Готовность к разъездам и работе на объектах в нескольких странах</li>
+              <li>Английский на рабочем уровне, B1 и выше</li>
+              </ul>
+              <p class="sched-act"><a class="btn-solid" href="#apply" data-apply="Welding (MIG/MAG)">Откликнуться на вакансию</a></p>
+            </div>
+          </div>
+        </details>
+        <details class="sched-row" id="pipe-fitter" name="positions">
+          <summary class="sched-sum">
+            <div class="sched-n">03</div>
+            <div class="sched-role">Монтажник трубопроводов</div>
+            <div class="sched-loc">Объекты по всей Европе</div>
+            <div class="sched-contract">По проекту</div>
+            <div class="sched-mark" aria-hidden="true"></div>
+          </summary>
+          <div class="sched-open">
+            <div class="sched-in">
+
+              <p class="sched-lead">Изготовление трубных катушек на сборочных столах, трассировка и монтаж систем целиком, сборка под сварку и выставление до прихода сварщика. Работаем по изометрическим схемам и 3D-моделям.</p>
+              <p class="position-label">Что требуется</p>
+              <ul class="position-needs">
+              <li>Опыт работы с технологическими, вспомогательными или машинно-отделенческими трубопроводами</li>
+              <li>Умение работать по изометрическим схемам и 3D-моделям</li>
+              <li>Сборка под сварку, выставление и контроль размеров до сварки</li>
+              <li>Готовность к разъездам и работе на объектах в нескольких странах</li>
+              <li>Английский на рабочем уровне, B1 и выше</li>
+              </ul>
+              <p class="sched-act"><a class="btn-solid" href="#apply" data-apply="Pipe fitting">Откликнуться на вакансию</a></p>
+            </div>
+          </div>
+        </details>
+        <details class="sched-row" id="site-supervisor" name="positions">
+          <summary class="sched-sum">
+            <div class="sched-n">04</div>
+            <div class="sched-role">Руководитель работ на объекте</div>
+            <div class="sched-loc">Объекты по всей Европе</div>
+            <div class="sched-contract">По проекту</div>
+            <div class="sched-mark" aria-hidden="true"></div>
+          </summary>
+          <div class="sched-open">
+            <div class="sched-in">
+
+              <p class="sched-lead">Вы руководите бригадой на объекте: планируете последовательность работ, держите график, следите за соблюдением правил безопасности и ежедневно работаете с заказчиком. Подчиняетесь нашему руководителю проекта, а не судозаводу.</p>
+              <p class="position-label">Что требуется</p>
+              <ul class="position-needs">
+              <li>Опыт руководства сварочными, трубопроводными или механомонтажными бригадами на объекте</li>
+              <li>Умение планировать последовательность работ и отчитываться заказчику о ходе</li>
+              <li>Уверенное знание правил безопасности и документации на объекте</li>
+              <li>Готовность к разъездам и работе на объектах в нескольких странах</li>
+              <li>Английский на рабочем уровне, немецкий будет преимуществом</li>
+              </ul>
+              <p class="sched-act"><a class="btn-solid" href="#apply" data-apply="Site supervision">Откликнуться на вакансию</a></p>
+            </div>
+          </div>
+        </details>
+        <details class="sched-row" id="hull-assembler" name="positions">
+          <summary class="sched-sum">
+            <div class="sched-n">05</div>
+            <div class="sched-role">Судосборщик</div>
+            <div class="sched-loc">Объекты по всей Европе</div>
+            <div class="sched-contract">По проекту</div>
+            <div class="sched-mark" aria-hidden="true"></div>
+          </summary>
+          <div class="sched-open">
+            <div class="sched-in">
+
+              <p class="sched-lead">Сборка секций и блоков корпуса на судозаводе. Установка листов и профиля, выставление, прихватка и подготовка стыков под сварку — на новостроях и в ремонте.</p>
+              <p class="position-label">Что требуется</p>
+              <ul class="position-needs">
+              <li>Опыт сборки корпуса на новостроях или в судоремонте</li>
+              <li>Умение читать судостроительные чертежи</li>
+              <li>Прихватка и уверенное владение инструментом для выставления</li>
+              <li>Готовность к разъездам и работе на объектах в нескольких странах</li>
+              <li>Английский на рабочем уровне, B1 и выше</li>
+              </ul>
+              <p class="sched-act"><a class="btn-solid" href="#apply" data-apply="Shipbuilding">Откликнуться на вакансию</a></p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- The handoff's closing block. Its copy is approved and names NDT
+         technicians, rope access teams and mechanical fitters -- all three are
+         already in DISCIPLINES below, so the page does not start claiming
+         anything it did not claim before. The handoff still lists confirming
+         them as an open question for the client. -->
+    <section class="container careers-block">
+      <h2 class="sub-head">Вашей специальности нет в списке?</h2>
+      <p class="careers-intro">Мы также берём специалистов по неразрушающему контролю, бригады промышленного альпинизма и слесарей-монтажников между проектами. Пришлите резюме и сертификаты — ответим, когда появится подходящий объём работ.</p>
+    </section>
+
+    <section class="container careers-block">
+      <h2 class="eyebrow">Мы регулярно набираем по этим специальностям</h2>
+      <p class="careers-intro">Даже когда вакансия не опубликована, мы держим аттестованных специалистов в базе и связываемся, когда появляется подходящий проект. Выберите специальность — она подставится в форму ниже.</p>
+      <div class="chips" id="discChips">
+            <button type="button" class="chip" data-discipline="Welding (TIG)" aria-pressed="false">Аргонодуговая сварка (TIG)</button>
+            <button type="button" class="chip" data-discipline="Welding (MIG/MAG)" aria-pressed="false">Полуавтоматическая сварка (MIG/MAG)</button>
+            <button type="button" class="chip" data-discipline="Pipe fitting" aria-pressed="false">Монтаж трубопроводов</button>
+            <button type="button" class="chip" data-discipline="Instrument pipe fitting" aria-pressed="false">Монтаж импульсных трубопроводов КИП</button>
+            <button type="button" class="chip" data-discipline="Mechanical installation" aria-pressed="false">Механомонтаж</button>
+            <button type="button" class="chip" data-discipline="Shipbuilding" aria-pressed="false">Судостроение</button>
+            <button type="button" class="chip" data-discipline="Ship repair" aria-pressed="false">Судоремонт</button>
+            <button type="button" class="chip" data-discipline="NDT inspection" aria-pressed="false">Неразрушающий контроль</button>
+            <button type="button" class="chip" data-discipline="Rope access" aria-pressed="false">Промышленный альпинизм</button>
+            <button type="button" class="chip" data-discipline="Quality control (QA/QC)" aria-pressed="false">Контроль качества (QA/QC)</button>
+            <button type="button" class="chip" data-discipline="Rigging" aria-pressed="false">Такелажные работы</button>
+            <button type="button" class="chip" data-discipline="Site supervision" aria-pressed="false">Руководство работами на объекте</button>
+      </div>
+    </section>
+
+    <div class="container" id="apply">
+      <div class="apply-panel">
+        <div class="apply-intro">
+          <p class="eyebrow">Отклик</p>
+          <h2>Пришлите свои данные</h2>
+          <p>Шесть полей обязательны. Остальное помогает нам подобрать вам объект быстрее, но форма отправится и без них.</p>
+          <p>Мы читаем каждую заявку и отвечаем в течение трёх рабочих дней, если есть проект под ваш профиль.</p>
+          <div class="apply-alt">
+            <p class="eyebrow">Не хотите заполнять форму?</p>
+            <a href="mailto:info@alprojects.eu?subject=Application">info@alprojects.eu</a>
+          </div>
+        </div>
+
+        <form id="applyForm" class="apply-form" novalidate>
+          <fieldset class="step">
+            <legend><span class="step-n">01</span> Кто вы</legend>
+            <div class="field">
+              <label for="apName">Имя и фамилия</label>
+              <input id="apName" name="name" type="text" required aria-required="true"
+                     autocomplete="name" placeholder="Имя и фамилия">
+            </div>
+            <div class="field">
+              <label for="apEmail">E-mail</label>
+              <input id="apEmail" name="email" type="email" required aria-required="true"
+                     autocomplete="email" placeholder="name@email.com">
+            </div>
+            <div class="field">
+              <label for="apPhone">Телефон или WhatsApp</label>
+              <input id="apPhone" name="phone" type="tel" required aria-required="true"
+                     autocomplete="tel" placeholder="+370 ...">
+            </div>
+            <div class="field">
+              <label for="apCountry">Страна проживания <span class="opt">(необязательно)</span></label>
+              <input id="apCountry" name="country" type="text" autocomplete="country-name"
+                     placeholder="Литва">
+            </div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-n">02</span> Специальность</legend>
+            <div class="field">
+              <label for="apRole">Специальность</label>
+              <select id="apRole" name="role" required aria-required="true">
+                <option value="">Выберите специальность</option>
+                <option>Аргонодуговая сварка (TIG)</option>
+                <option>Полуавтоматическая сварка (MIG/MAG)</option>
+                <option>Монтаж трубопроводов</option>
+                <option>Монтаж импульсных трубопроводов КИП</option>
+                <option>Механомонтаж</option>
+                <option>Судостроение</option>
+                <option>Судоремонт</option>
+                <option>Неразрушающий контроль</option>
+                <option>Промышленный альпинизм</option>
+                <option>Контроль качества (QA/QC)</option>
+                <option>Такелажные работы</option>
+                <option>Руководство работами на объекте</option>
+                <option>Другая</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="apYears">Стаж работы <span class="opt">(необязательно)</span></label>
+              <select id="apYears" name="years">
+                <option value="">Выберите</option>
+                <option>Менее 2 лет</option>
+                <option>От 2 до 5 лет</option>
+                <option>От 5 до 10 лет</option>
+                <option>Более 10 лет</option>
+              </select>
+            </div>
+            <div class="field field-wide">
+              <span class="label" id="certLabel">Имеющиеся сертификаты <span class="opt">(необязательно, отметьте все подходящие)</span></span>
+              <div class="chips" id="certChips" role="group" aria-labelledby="certLabel">
+            <button type="button" class="chip" data-cert="EN ISO 9606 (welder)" aria-pressed="false">EN ISO 9606 (сварщик)</button>
+            <button type="button" class="chip" data-cert="TIG 141" aria-pressed="false">TIG 141</button>
+            <button type="button" class="chip" data-cert="MIG/MAG 131/135" aria-pressed="false">MIG/MAG 131/135</button>
+            <button type="button" class="chip" data-cert="IRATA L1" aria-pressed="false">IRATA L1</button>
+            <button type="button" class="chip" data-cert="IRATA L2" aria-pressed="false">IRATA L2</button>
+            <button type="button" class="chip" data-cert="IRATA L3" aria-pressed="false">IRATA L3</button>
+            <button type="button" class="chip" data-cert="VCA / SCC" aria-pressed="false">VCA / SCC</button>
+            <button type="button" class="chip" data-cert="NDT VT" aria-pressed="false">ВИК</button>
+            <button type="button" class="chip" data-cert="NDT PT/MT" aria-pressed="false">ПВК / МК</button>
+            <button type="button" class="chip" data-cert="NDT UT" aria-pressed="false">УЗК</button>
+            <button type="button" class="chip" data-cert="GWO" aria-pressed="false">GWO</button>
+            <button type="button" class="chip" data-cert="Medical certificate" aria-pressed="false">Медицинская справка</button>
+              </div>
+              <p class="hint">Нет в списке? Укажите в поле для примечаний ниже.</p>
+            </div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-n">03</span> Готовность</legend>
+            <div class="field">
+              <label for="apFrom">Готов с</label>
+              <input id="apFrom" name="available" type="date" required aria-required="true">
+            </div>
+            <div class="field">
+              <span class="label" id="rotLabel">Предпочтительная вахта <span class="opt">(необязательно)</span></span>
+              <div class="chips" id="rotChips" role="group" aria-labelledby="rotLabel">
+            <button type="button" class="chip" data-rotation="8 / 2" aria-pressed="false">8 / 2</button>
+            <button type="button" class="chip" data-rotation="6 / 2" aria-pressed="false">6 / 2</button>
+            <button type="button" class="chip" data-rotation="4 / 2" aria-pressed="false">4 / 2</button>
+            <button type="button" class="chip" data-rotation="Continuous" aria-pressed="false">Без вахты, постоянно</button>
+            <button type="button" class="chip" data-rotation="Local, no rotation" aria-pressed="false">Местная работа, без вахты</button>
+              </div>
+            </div>
+            <div class="field field-wide">
+              <span class="label" id="ctryLabel">Страны, где вы можете работать <span class="opt">(необязательно)</span></span>
+              <div class="chips" id="ctryChips" role="group" aria-labelledby="ctryLabel">
+            <button type="button" class="chip" data-country="Norway" aria-pressed="false">Норвегия</button>
+            <button type="button" class="chip" data-country="Germany" aria-pressed="false">Германия</button>
+            <button type="button" class="chip" data-country="Netherlands" aria-pressed="false">Нидерланды</button>
+            <button type="button" class="chip" data-country="United Kingdom" aria-pressed="false">Великобритания</button>
+            <button type="button" class="chip" data-country="Lithuania" aria-pressed="false">Литва</button>
+            <button type="button" class="chip" data-country="Denmark" aria-pressed="false">Дания</button>
+            <button type="button" class="chip" data-country="Belgium" aria-pressed="false">Бельгия</button>
+            <button type="button" class="chip" data-country="Poland" aria-pressed="false">Польша</button>
+              </div>
+            </div>
+            <div class="field field-wide">
+              <label for="apMsg">Что-то ещё <span class="opt">(необязательно)</span></label>
+              <textarea id="apMsg" name="message" rows="4"
+                        placeholder="Номера сертификатов и сроки действия, проекты, на которых вы работали, когда можете начать."></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" id="docsStep">
+            <legend><span class="step-n">04</span> Документы</legend>
+            <!-- The drop zone is always here. What happens to the files depends on
+                 CAREERS_ENDPOINT: with one set they are uploaded with the form;
+                 without one js/main.js names them in the email it opens, so the
+                 applicant knows exactly what to attach. It never accepts a file
+                 and then quietly loses it. -->
+            <!-- A real <input> with a <label for> pointing at it, not a button
+                 calling input.click(). The scripted click opens the picker in
+                 Chrome and in headless WebKit but is at the mercy of each
+                 browser's user-gesture rules; a label is how the platform does
+                 it, needs no JavaScript at all, and cannot be blocked.
+
+                 The input comes first so the label can be styled from its
+                 focus state with a sibling selector -- it is visually hidden
+                 but still focusable, so the drop zone shows a focus ring when
+                 tabbed to. -->
+            <input type="file" id="apFiles" name="files" multiple class="sr-file"
+                   accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+            <label class="drop" id="dropZone" for="apFiles">
+              <b>Приложите резюме и сертификаты</b> <span>Выберите файлы или перетащите их сюда. PDF, JPG или PNG, до 10 МБ каждый.</span>
+            </label>
+            <ul class="files" id="fileList"></ul>
+            <p class="hint">Фотографии сертификатов, снятые на телефон, подойдут.</p>
+            <p class="hint" id="docsAlt">Вы также можете прислать их на <a href="mailto:info@alprojects.eu?subject=CV%20and%20certificates">info@alprojects.eu</a> или через <a href="https://wa.me/37063663744" target="_blank" rel="noopener">WhatsApp</a>.</p>
+          </fieldset>
+
+          <div class="field field-wide field-check">
+            <input id="apConsent" name="consent" type="checkbox" required aria-required="true">
+            <label for="apConsent">Я согласен, что ALPROJECTS, UAB хранит мои данные и документы в целях подбора персонала в течение 24 месяцев. Я могу в любой момент потребовать их удаления, написав на info@alprojects.eu. См. <a href="/privacy">политику конфиденциальности</a>.</label>
+          </div>
+          <!-- Spam trap: a real applicant never sees this, a bot fills it in. -->
+          <div class="hp" aria-hidden="true">
+            <label for="apCompany">Компания</label>
+            <input id="apCompany" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="field field-wide">
+            <button type="submit" class="btn-solid">Отправить заявку</button>
+            <p class="form-note" id="applyNote" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <!-- ============================================================
+         THE TITLE BLOCK
+         ============================================================
+         This was four borderless columns of links under wide-tracked uppercase
+         headings, closed by a bottom bar with the copyright left and the studio
+         credit right. That is the footer every site of this kind has, and two
+         sites built to it read as the same site with different paint however
+         different their content is.
+
+         A drawing has a title block: a ruled frame at the foot of the sheet
+         whose cells are named fields. The brand's own drafting supplement asks
+         for one -- "штамп с допусками и знаком проекции" -- and had it locked
+         inside Drawing mode, where only a visitor who presses B ever saw it.
+         It is the page's permanent foot now.
+
+         The information did not change: the same twenty-seven links, the same
+         registered details, the same newsletter form with the same ids the
+         script binds to. What changed is that the cells are drawn, the field
+         names sit inside them, and the strip along the bottom carries real
+         sheet data rather than a copyright line stretched across the width.
+         ============================================================ -->
+    <div class="container">
+      <div class="stamp">
+
+        <div class="stamp-cell stamp-wide">
+          <p class="stamp-field">Контакты</p>
+          <p class="stamp-org">ALPROJECTS, UAB</p>
+          <p class="addr">Šilutės pl. 2, LT-92298<br>Клайпеда, Литва</p>
+          <a class="big" href="mailto:info@alprojects.eu">info@alprojects.eu</a>
+          <a class="big" href="tel:+37063663744">+370 636 63 744</a>
+          <div class="socials">
+            <a data-social="instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
+            <a data-social="linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+            <a data-social="facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Numbered 01-12, the same index gesture the services page uses, so a
+             list of twelve reads as a schedule of items and not as a menu. -->
+        <div class="stamp-cell stamp-services">
+          <p class="stamp-field">Услуги</p>
+          <ol class="stamp-list">
+            <li><a href="/services/welding-services">Сварочные работы</a></li>
+            <li><a href="/services/pipe-fitting">Монтаж трубопроводов</a></li>
+            <li><a href="/services/mechanical-contracting">Механомонтаж</a></li>
+            <li><a href="/services/heavy-equipment-relocation">Перемещение тяжёлого оборудования</a></li>
+            <li><a href="/services/mobile-repair-teams">Мобильные ремонтные бригады</a></li>
+            <li><a href="/services/shipbuilding">Судостроение</a></li>
+            <li><a href="/services/ship-repair">Судоремонт</a></li>
+            <li><a href="/services/non-destructive-testing">Неразрушающий контроль</a></li>
+            <li><a href="/services/rope-access-services">Промышленный альпинизм</a></li>
+            <li><a href="/services/3d-laser-scanning">3D-лазерное сканирование</a></li>
+            <li><a href="/services/quality-control">Контроль качества (QA/QC)</a></li>
+            <li><a href="/services/rigging-technical-support">Такелаж и техническая поддержка</a></li>
+          </ol>
+        </div>
+
+        <div class="stamp-cell">
+          <p class="stamp-field">Компания</p>
+          <ul class="stamp-links">
+            <li><a href="/company">О компании</a></li>
+            <li><a href="/services">Наши услуги</a></li>
+            <li><a href="/#certifications">Аттестации</a></li>
+            <li><a href="/#downloads">Профиль компании (PDF)</a></li>
+            <li><a href="/ru/careers">Вакансии</a></li>
+            <li><a href="/news/">Новости</a></li>
+            <li><a href="/contacts">Контакты</a></li>
+            <li><a href="/privacy">Политика конфиденциальности</a></li>
+          </ul>
+        </div>
+
+        <!-- Keeps the .newsletter class: every rule that styles the subscribe
+             field, its button and its note hangs off it, and the form is
+             unchanged. My own rules in this cell are written with two classes
+             so they sit ABOVE `.newsletter p`, which is (0,1,1) and would
+             otherwise beat a single-class selector and put a 22px margin under
+             every field label in the block. -->
+        <div class="stamp-cell newsletter">
+          <p class="stamp-field">Рассылка</p>
+          <p class="stamp-note">Подпишитесь на новости компании и отчёты о проектах.</p>
+          <form id="newsletterForm" novalidate>
+            <label class="visually-hidden" for="nlEmail" style="position:absolute;left:-9999px">E-mail</label>
+            <input id="nlEmail" type="email" name="email" placeholder="Укажите e-mail" required aria-required="true" autocomplete="email">
+            <button type="submit" aria-label="Подписаться"><span class="arr">&#8593;</span></button>
+          </form>
+          <!-- GDPR Art. 4(11) and 7: consent has to be informed and given by an
+               affirmative act. Typing an address into a field is not one, so the
+               box is unticked by default and the form will not send without it.
+               Art. 13 wants the purpose stated at the point of collection, which
+               is what the sentence does. -->
+          <label class="nl-consent" for="nlConsent">
+            <input type="checkbox" id="nlConsent" name="consent" required aria-required="true">
+            <span>Подписываясь, вы соглашаетесь, что ALPROJECTS, UAB будет обрабатывать ваш адрес электронной почты для отправки новостей компании и отчётов о проектах. Вы можете отписаться в любой момент. См. <a href="/privacy">Политику конфиденциальности</a>.</span>
+          </label>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </div>
+
+        <!-- The strip along the foot of the block. SHEET and REV hold real
+             values: the page's own language and position in the sheet set, and
+             the date its content last actually changed, taken from the hash
+             manifest in tools/lastmod.json rather than from the build clock.
+             A revision field with a made-up revision in it would be the kind of
+             decoration the drawing language is supposed to replace. -->
+        <div class="stamp-meta">
+          <div class="stamp-mcell">
+            <p class="stamp-field">Лист</p>
+            <!-- BLOCK children, not inline ones. "EN &middot; 01" as a single value
+                 made forty translation units -- one per page -- out of something
+                 that is state, not copy, and would have printed EN on the German
+                 sheet. Splitting it into <span>s did not help: an inline tag is
+                 part of its unit by design, so the whole line stayed one unit.
+                 Two block children make two leaf units, and the extractor skips
+                 both by itself -- the number has no letters, and a bare language
+                 code is already on its skip list. i18n_build rewrites the code
+                 per locale, beside where it rewrites <html lang>. -->
+            <div class="stamp-v stamp-sheet">
+              <p class="stamp-lang">RU</p>
+              <p data-sheet>03</p>
+            </div>
+          </div>
+          <div class="stamp-mcell">
+            <p class="stamp-field">Масштаб</p>
+            <p class="stamp-v">1:1</p>
+          </div>
+          <div class="stamp-mcell">
+            <p class="stamp-field">Изм.</p>
+            <p class="stamp-v" data-rev>2026.09.28</p>
+          </div>
+          <div class="stamp-mcell stamp-proj">
+            <p class="stamp-field">Проекция</p>
+            <svg class="proj-mark" viewBox="0 0 54 22" aria-hidden="true"><use href="#i-proj"/></svg>
+          </div>
+          <div class="stamp-mcell stamp-legal">
+            <span>© 2019–2026 ALPROJECTS GROUP. Все права защищены.</span> <span class="legal-ids">Код предприятия 305137109 &middot; НДС LT100012753216</span> <a class="made-by" href="https://aldystudio.com" target="_blank" rel="noopener">Сделано <b>ALDY</b></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="i-x" d="M17.7 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L2 3h6.4l4.4 5.9L17.7 3zm-1.1 16.1h1.7L7.5 4.7H5.7l10.9 14.4z"/>
+      <path id="i-mail" d="M2 5.5c0-.8.7-1.5 1.5-1.5h17c.8 0 1.5.7 1.5 1.5v13c0 .8-.7 1.5-1.5 1.5h-17C2.7 20 2 19.3 2 18.5v-13zM4 7l8 5.5L20 7v-.9l-8 5.4-8-5.4V7z"/>
+      <path id="i-tel" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/>
+      <symbol id="i-ig" viewBox="0 0 24 24">
+        <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4.8"
+              style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="12" cy="12" r="3.9" style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="16.6" cy="7.4" r="1.05" style="fill:currentColor"/>
+      </symbol>
+      <symbol id="i-in" viewBox="0 0 24 24">
+        <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="3.6"
+              style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <circle cx="8.1" cy="8.4" r="1.05" style="fill:currentColor"/>
+        <path d="M8.1 11.1v5.7"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round"/>
+        <path d="M12 16.8v-5.7M12 13.8c0-1.5 1-2.5 2.35-2.5s2.35 1 2.35 2.5v3"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"/>
+      </symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.6" style="fill:none;stroke:currentColor;stroke-width:1.7"/>
+        <path d="M14.2 7.9h-1.1c-1.15 0-2.05.9-2.05 2.05v7.5"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"/>
+        <path d="M9.9 12.3h4.1"
+              style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round"/>
+      </symbol>
+      <!-- First-angle projection symbol (ISO 5456-2): a truncated cone in two
+           views. The side view is the frustum with its small end to the left;
+           the end view, two concentric circles whose diameters are the cone's
+           two ends, is placed to its RIGHT. Third angle puts the circles on the
+           left instead, and Lithuania builds to first angle -- getting this
+           backwards is the kind of detail the buyers this site is for read at a
+           glance, so it is drawn to the standard and not approximated.
+           Outline only, one hairline weight, colour from currentColor. -->
+      <symbol id="i-proj" viewBox="0 0 54 22">
+        <g fill="none" stroke="currentColor" stroke-width="1"
+           stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6.5 L3 15.5 L25 20 L25 2 Z"/>
+          <circle cx="41" cy="11" r="9"/>
+          <circle cx="41" cy="11" r="5"/>
+          <path d="M0.5 11 H2 M5 11 H6 M9 11 H23 M27 11 H29 M31 11 H32.5"
+                stroke-dasharray="none"/>
+          <path d="M41 0.5 V3 M41 6 V16 M41 19 V21.5"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="/js/main.min.js?v=9587764c"></script>
+</body>
+</html>
