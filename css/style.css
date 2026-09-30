@@ -98,17 +98,6 @@
 
   --font: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-display: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
-}
-
-/* Poppins has no Cyrillic, upstream or anywhere -- so on the Russian page the
-   body face would resolve to the reader's system sans while every heading
-   stayed Montserrat: two typefaces on one page, and not ones we chose. Russian
-   therefore sets body text in Montserrat as well. It is already the brand's
-   display face, it carries the full alphabet, and one 21 KB file covers the
-   page. Keep this in sync with PAGES in tools/i18n.py: it applies by lang
-   attribute, so any page added to Russian inherits it. */
-html[lang="ru"] {
-  --font: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
   --container: 1360px;   /* TZ §2.1 */
   --pad: 40px;           /* TZ §2.1 */
   --nav-h: 78px;
@@ -145,6 +134,23 @@ html[lang="ru"] {
   --z-measure: 290;   /* blueprint drag-to-measure overlay */
   --z-flag: 300;      /* blueprint badge, above its own overlay */
   --z-viewer: 1000;   /* photo viewer, above everything */
+}
+
+/* Poppins has no Cyrillic, upstream or anywhere -- so on the Russian page the
+   body face would resolve to the reader's system sans while every heading
+   stayed Montserrat: two typefaces on one page, and not ones we chose. Russian
+   therefore sets body text in Montserrat as well. It is already the brand's
+   display face, it carries the full alphabet, and one 21 KB file covers the
+   page. Keep this in sync with PAGES in tools/i18n.py: it applies by lang
+   attribute, so any page added to Russian inherits it.
+
+   It overrides one token and sits AFTER :root closes. The first attempt put it
+   in the middle of :root by closing the block early, which swept --container,
+   --pad, --nav-h and the rest of the ladder into a rule that only matches the
+   Russian page: every other page lost its gutter and its header height, and
+   the diff read as one added rule. */
+html[lang="ru"] {
+  --font: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
