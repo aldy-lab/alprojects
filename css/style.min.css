@@ -35,6 +35,9 @@
 color-scheme: dark;
 --font: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
 --font-display: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+html[lang="ru"] {
+--font: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
 --container: 1360px;
 --pad: 40px;
 --nav-h: 78px;

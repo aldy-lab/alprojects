@@ -232,6 +232,15 @@ def fix_head(body, lang, rel):
     body = re.sub(r'(<meta property="og:locale" content=")[^"]*(")',
                   lambda m: m.group(1) + i18n.LOCALE[lang][1] + m.group(2),
                   body, count=1)
+    # The page preloads the two latin subsets. Russian sets its body text in
+    # Montserrat (Poppins has no Cyrillic), so Poppins is never used on that
+    # page and the Cyrillic subset is the one the first paint waits for.
+    if lang == "ru":
+        body = body.replace(
+            '<link rel="preload" as="font" type="font/woff2" '
+            'href="/assets/fonts/poppins-latin.woff2" crossorigin>',
+            '<link rel="preload" as="font" type="font/woff2" '
+            'href="/assets/fonts/montserrat-cyrillic.woff2" crossorigin>')
     # drop any alternates from a previous run, then add this page's
     body = re.sub(r'^[ \t]*<link rel="alternate" hreflang="[^"]*"[^>]*>\n',
                   "", body, flags=re.M)
