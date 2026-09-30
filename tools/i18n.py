@@ -61,7 +61,14 @@ LANG_GROUP = {"en": "Language", "fr": "Langue", "de": "Sprache",
 # Flip to True once coverage reports 100% for that language. Anything False is
 # not written, not linked, and not in the sitemap -- so a partial translation
 # cannot reach a visitor.
-PUBLISH = {"en": True, "fr": True, "de": True, "it": True, "ru": False}
+#
+# ru is True so the page can be read on a preview -- nobody can sign off wording
+# they cannot see. Two strings in tools/lang_ru.py are drafts, not authorised
+# text: the application form's consent and the newsletter's. They name a 24
+# month retention period, a controller and a deletion route, and the site relies
+# on them to claim the box was ticked against a specific wording. Confirm those
+# two before the Russian URL goes into a job advert.
+PUBLISH = {"en": True, "fr": True, "de": True, "it": True, "ru": True}
 
 # A language may cover only part of the site.
 #
@@ -115,8 +122,12 @@ try:
     from lang_it import S as _IT
 except ImportError:
     _IT = {}
+try:
+    from lang_ru import S as _RU
+except ImportError:
+    _RU = {}
 
-S = {"fr": _FR, "de": _DE, "it": _IT}
+S = {"fr": _FR, "de": _DE, "it": _IT, "ru": _RU}
 
 
 def t(lang, unit):
