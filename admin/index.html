@@ -200,6 +200,12 @@ input,textarea,select{font-size:16px}   /* below 16 iOS zooms on focus */
 .tr .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .tr .en{color:var(--muted-2);font-size:12.5px;margin:7px 0 9px;white-space:pre-wrap;
         border-left:1px solid var(--line-2);padding-left:11px}
+.tr .en .lbl{display:block;margin-bottom:4px}
+/* The sentence the translation was made from, beside the one that replaced it.
+   Dimmer and marked with the accent, so which of the two is current is never
+   a guess -- they are two versions of the same line and the whole point is
+   telling them apart at a glance. */
+.tr .en.was{border-left-color:var(--accent-dim);color:var(--muted-3)}
 .tr textarea{width:100%;background:var(--sunk);border:1px solid var(--line-2);
   padding:10px 12px;line-height:1.6;resize:vertical;transition:var(--t)}
 .tr textarea:focus{outline:none;border-color:var(--accent);background:var(--panel-2)}

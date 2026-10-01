@@ -70,12 +70,18 @@
     tr_stale:    ["английский изменился", "English changed"],
     tr_unknown:  ["проверьте", "check this"],
     tr_machine:  ["машинный перевод", "machine translation"],
+    now_reads:   ["сейчас по-английски", "the English now"],
+    was_from:    ["перевод сделан с этого", "this translation was made from"],
+    keep_it:     ["Оставить этот перевод", "Keep this translation"],
+    translate_now: ["Перевести машиной", "Translate by machine"],
+    no_src:      ["с какого английского сделан — неизвестно",
+                  "which English it was made from is not known"],
     translating: ["Переводим…", "Translating…"],
     tr_failed:   ["Перевести не удалось, текст остался английским",
                   "Translation failed; the text stays in English"],
     auto_on:     ["Переводить автоматически", "Translate automatically"],
-    auto_hint:   ["При сохранении всё непереведённое и всё, где английский изменился, переводится машиной и помечается как машинный перевод.",
-                  "On save, anything untranslated or whose English has changed is machine translated and marked as such."],
+    auto_hint:   ["Если включить: при сохранении всё непереведённое и всё, где английский изменился, переводит машина и помечает как машинный перевод. Выключено — решаете по каждой строке кнопками ниже.",
+                  "If switched on: everything untranslated, and everything whose English has changed, is machine translated on save and marked as such. Off: decide line by line with the buttons below."],
     tr_checking: ["…", "…"],
     translation: ["Перевод", "Translation"],
     content:     ["Содержание", "Content"],
@@ -626,27 +632,14 @@
     return _choices[key];
   }
 
-  /* The same fingerprint content.py computes: sha1 of the UTF-8 text, first
-     ten hex characters. The store keeps that rather than the English itself,
-     so without this the page could not tell a fresh translation from one whose
-     English has since been edited -- and it showed "translated" for a field
-     the site was already serving in English. The client would have had no way
-     to know the line had fallen out.
-
-     crypto.subtle needs a secure context, which https and localhost both are.
-     If it is missing the row says "check this" rather than "translated":
-     erring toward look-at-it, never toward all-good. */
-  function fingerprint(text) {
-    if (!(window.crypto && crypto.subtle && window.TextEncoder))
-      return Promise.resolve(null);
-    return crypto.subtle.digest("SHA-1", new TextEncoder().encode(text))
-      .then(function (buf) {
-        var out = "";
-        new Uint8Array(buf).forEach(function (b) {
-          out += (b < 16 ? "0" : "") + b.toString(16);
-        });
-        return out.slice(0, 10);
-      }).catch(function () { return null; });
+  /* No fingerprint any more. The store keeps `src` -- the English a line was
+     translated from, stored whole -- so the comparison is a string equality
+     and the sentence can be SHOWN to the client, which a hash cannot be. That
+     deleted a sha1 implementation, an async path through the badge, and a
+     fourth badge state for "could not check". `en` is still read so a store
+     written by the previous version keeps working. */
+  function madeFrom(rec) {
+    return rec && (rec.src != null ? rec.src : null);
   }
 
   /* ------------------------------------------------------- translations */
@@ -716,52 +709,102 @@
       var id = state.name + "." + state.rec + "." + pair[0];
       var english = pair[1];
       var rec = store.data[id];
+      var src = madeFrom(rec);
+      var has = !!(rec && rec.t);
+      var stale = has && src !== null && src !== english;
+
       var tr = el("div", "tr");
       var top = el("div", "top");
       top.appendChild(el("span", "lbl", pair[0]));
-      /* Three states, three different jobs: write this, check this, nothing to
-         do. Decided by the fingerprint the build uses, computed here -- see
-         fingerprint(). An edit made in this session is caught by `src`
-         without waiting for the digest. */
-      var badge = el("span", "tag bad", t("tr_none"));
+      /* Three states, three different jobs: write this, decide about this,
+         nothing to do. A machine line gets its own badge rather than the
+         green: the site is not in English, and nobody has read it either. */
+      var badge = el("span", "tag");
+      if (!has) { badge.className = "tag bad"; badge.textContent = t("tr_none"); }
+      else if (stale) { badge.className = "tag warn"; badge.textContent = t("tr_stale"); }
+      else if (rec.by === "machine") { badge.className = "tag mach"; badge.textContent = t("tr_machine"); }
+      else { badge.className = "tag ok"; badge.textContent = t("tr_ok"); }
       top.appendChild(badge);
-      var setBadge = function (cls, key) {
-        badge.className = "tag " + cls;
-        badge.textContent = t(key);
-      };
-      var fresh = function () {
-        /* A machine line is finished as far as the site is concerned -- the
-           page will not be in English -- but it is not the same claim as a
-           line somebody read. Its own badge, so the two never look alike. */
-        setBadge(rec.by === "machine" ? "mach" : "ok",
-                 rec.by === "machine" ? "tr_machine" : "tr_ok");
-      };
-      if (!rec || !rec.t) setBadge("bad", "tr_none");
-      else if (rec.src != null && rec.src !== english) setBadge("warn", "tr_stale");
-      else {
-        setBadge("", "tr_checking");
-        fingerprint(english).then(function (h) {
-          if (h === null) setBadge("warn", "tr_unknown");
-          else if (rec.en && rec.en === h) fresh();
-          else setBadge("warn", "tr_stale");
-        });
-      }
       tr.appendChild(top);
-      tr.appendChild(el("div", "en", english));
+
+      /* When the English has moved, both sentences are on screen. That is the
+         whole decision: he can see that "...and plate work and so on" still
+         means what the translation says, and keep it -- or that it does not.
+         Guessing on his behalf is what I was told to stop doing. */
+      if (stale) {
+        var a = el("div", "en");
+        a.appendChild(el("span", "lbl", t("now_reads")));
+        a.appendChild(el("div", "", english));
+        tr.appendChild(a);
+        var bEl = el("div", "en was");
+        bEl.appendChild(el("span", "lbl", t("was_from")));
+        bEl.appendChild(el("div", "", src));
+        tr.appendChild(bEl);
+      } else {
+        tr.appendChild(el("div", "en", english));
+        if (has && src === null)
+          tr.appendChild(el("div", "hint", t("no_src")));
+      }
+
       var ta = el("textarea");
       ta.rows = Math.min(10, Math.max(2, Math.ceil(english.length / 70)));
       ta.value = (rec && rec.t) || "";
       ta.addEventListener("input", function () {
-        /* Touched by a person, so it stops being a machine line. `by` is
-           simply left off rather than set to "human": absent is what every
-           translation written before this feature existed looks like. */
-        store.data[id] = { en: (rec && rec.en) || "", t: ta.value, src: english };
+        /* Touched by a person, so it stops being a machine line and it is now
+           made from the English on screen. `by` is simply left off rather than
+           set to "human": absent is what every translation written before this
+           feature existed looks like. */
+        store.data[id] = { src: english, t: ta.value };
         store.dirty = true;
-        if (rec) rec.by = undefined;
-        setBadge("ok", "tr_ok");
-        markDirty();
+        badge.className = "tag ok";
+        badge.textContent = t("tr_ok");
       });
+      ta.addEventListener("input", markDirty);
       tr.appendChild(ta);
+
+      var acts = el("div", "list-item");
+      acts.style.marginTop = "9px";
+      if (stale) {
+        var keep = el("button", "btn btn-q", t("keep_it"));
+        keep.type = "button";
+        keep.addEventListener("click", function () {
+          /* Keeping it means saying "this still translates the new English",
+             so the record is re-stamped against what is on screen. Nothing
+             about the wording changes. */
+          store.data[id] = { src: english, t: rec.t };
+          store.dirty = true;
+          markDirty();
+          refreshTranslations();
+        });
+        acts.appendChild(keep);
+      }
+      if (!has || stale) {
+        var mt = el("button", "btn btn-q", t("translate_now"));
+        mt.type = "button";
+        mt.addEventListener("click", function () {
+          mt.disabled = true;
+          mt.textContent = t("translating");
+          api("?a=translate&to=" + state.lang.replace("t-", ""), {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ items: [{ id: id, text: english }] }),
+          }).then(function (r) {
+            mt.disabled = false;
+            mt.textContent = t("translate_now");
+            if (!r.ok || !r.out || !r.out[id]) {
+              acts.appendChild(el("span", "hint", t("tr_failed")));
+              return;
+            }
+            store.data[id] = { src: english, t: r.out[id], by: "machine" };
+            store.dirty = true;
+            markDirty();
+            refreshTranslations();
+          });
+        });
+        acts.appendChild(mt);
+      }
+      if (acts.children.length) tr.appendChild(acts);
+
       wrap.appendChild(tr);
     });
     return wrap;
@@ -775,24 +818,26 @@
     open(state.name);
   });
 
+  /* Off unless asked for. Automatic translation on save is the fast path and
+     it takes the decision away: the line is replaced before anybody has
+     looked at the two versions. The per-field buttons are the slow path and
+     the honest one, so they are the default and this is the shortcut. */
   function autoTranslate() {
-    try { return localStorage.getItem("cms_auto") !== "0"; } catch (e) { return true; }
+    try { return localStorage.getItem("cms_auto") === "1"; } catch (e) { return false; }
   }
 
   /* Everything in this record that would otherwise render in English: no
      translation at all, or one made from English that has since changed. The
      fingerprint decides, the same one the build uses. */
   function needsTranslation(storeData, rows) {
-    return Promise.all(rows.map(function (pair) {
+    return Promise.resolve(rows.map(function (pair) {
       var id = state.name + "." + state.rec + "." + pair[0];
       var rec = storeData[id];
       if (!rec || !rec.t) return { id: id, text: pair[1] };
-      if (rec.src != null && rec.src !== pair[1]) return { id: id, text: pair[1] };
-      return fingerprint(pair[1]).then(function (h) {
-        if (h !== null && rec.en === h) return null;     /* current, leave it */
-        return { id: id, text: pair[1] };
-      });
-    })).then(function (list) { return list.filter(Boolean); });
+      var src = madeFrom(rec);
+      if (src !== null && src !== pair[1]) return { id: id, text: pair[1] };
+      return null;
+    }).filter(Boolean));
   }
 
   /* Fill every language before anything is written. Order matters and it is
@@ -829,12 +874,11 @@
               body: JSON.stringify({ items: items }),
             }).then(function (r) {
               if (!r.ok || !r.out) { translateAll.failed = true; return; }
-              return Promise.all(Object.keys(r.out).map(function (id) {
+              Object.keys(r.out).forEach(function (id) {
                 var src = (items.filter(function (i) { return i.id === id; })[0] || {}).text;
-                return fingerprint(src || "").then(function (h) {
-                  store.data[id] = { en: h || "", t: r.out[id], by: "machine" };
-                });
-              })).then(function () { store.dirty = true; });
+                store.data[id] = { src: src, t: r.out[id], by: "machine" };
+              });
+              store.dirty = true;
             });
           });
         });
@@ -865,7 +909,10 @@
             var clean = {};
             Object.keys(st.data).forEach(function (key) {
               var r = st.data[key];
-              clean[key] = { en: r.en || "", t: r.t };
+              clean[key] = {};
+              if (r.src != null) clean[key].src = r.src;
+              else if (r.en) clean[key].en = r.en;   /* a store from before src */
+              clean[key].t = r.t;
               if (r.by) clean[key].by = r.by;
             });
             return post(l, clean, st.sha).then(function (rr) {

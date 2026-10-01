@@ -347,7 +347,15 @@ def client_store(lang):
             r = rec.get(cid)
             if not r or not r.get("t"):
                 continue
-            if r.get("en") == content.fingerprint(text):
+            # `src` is the English this line was translated from, stored whole.
+            # It used to be a fingerprint of it, which answered the same
+            # question and nothing else -- and the editor needs to SHOW the
+            # client the sentence a translation was made from so he can judge
+            # whether it still applies. A hash cannot be shown. `en` is still
+            # read so a store written by the previous version keeps working.
+            same = (r["src"] == text if r.get("src")
+                    else r.get("en") == content.fingerprint(text))
+            if same:
                 fresh[text] = r["t"]
                 # by:"machine" means the editor generated it and nobody has
                 # read it. It still goes on the page -- the point of generating
