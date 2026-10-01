@@ -44,17 +44,16 @@ def main():
                 if not english.strip():
                     continue
                 key = "%s.%s" % (name, cid)
-                fp = content.fingerprint(english)
                 have = out.get(key)
                 # Never overwrite a record that already matches: that one may
                 # have come from the editor, and the table's version is the
                 # older of the two.
-                if have and have.get("en") == fp and have.get("t"):
+                if have and have.get("src") == english and have.get("t"):
                     continue
                 t = i18n.t(lang, english)
                 if t is None:
                     continue
-                out[key] = collections.OrderedDict([("en", fp), ("t", t)])
+                out[key] = collections.OrderedDict([("src", english), ("t", t)])
                 added += 1
         ordered = collections.OrderedDict((k, out[k]) for k in sorted(out))
         os.makedirs(os.path.dirname(path), exist_ok=True)
