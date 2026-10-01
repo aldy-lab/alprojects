@@ -7,188 +7,297 @@
 <title>Редактор — ALPROJECTS</title>
 <link rel="stylesheet" href="/css/fonts.css">
 <style>
-/* The site's tokens, the ones a tool needs. Not an import of style.css: that
-   file is 8600 lines of a public site and this is a desk. Same ground, same
-   faces, same cool greys, so it does not feel like a different product. */
+/* The site's tokens, the ones a desk needs -- not an import of style.css,
+   which is 8600 lines about a public site. Same ground, same two faces, same
+   cool greys, so the editor reads as part of the same product.
+
+   The borrowed motifs are the ones that mean something here: the numbered
+   list (the order IS the publish order), the corner ticks on a panel, and the
+   title block along the bottom, which is where a drawing puts its state. */
 :root{
-  --bg:#07070b; --panel:#0c0d14; --panel-2:#101119; --line:#1e2029;
-  --line-strong:#2b2e3a; --text:#e8e9ee; --muted:#9a9db0; --muted-2:#6e7183;
-  --accent:#8fa6c8;            /* cool pale grey-blue, never warm */
-  --ok:#7ea893; --warn:#c8a16a; --bad:#c87f7f;
+  --bg:#07070b; --panel:#0b0c12; --panel-2:#0f1018; --sunk:#090a10;
+  --line:#1a1c25; --line-2:#242733; --line-3:#343845;
+  --text:#e9eaef; --muted:#9a9db0; --muted-2:#6b6e80; --muted-3:#4a4d5c;
+  --accent:#8fa6c8; --accent-dim:#51617a;
+  --ok:#7ea893; --warn:#b9a079; --bad:#c17e7e;
   --font:"Poppins","Segoe UI",system-ui,sans-serif;
   --display:"Montserrat","Segoe UI",system-ui,sans-serif;
-  --rail:248px;
+  --rail:252px; --bar:58px; --top:56px;
+  --t:170ms cubic-bezier(.22,1,.36,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{color-scheme:dark;overflow-x:clip}
 body{background:var(--bg);color:var(--text);font:400 15px/1.6 var(--font);
      -webkit-font-smoothing:antialiased}
 button,input,select,textarea{font:inherit;color:inherit}
-/* 16px minimum: anything smaller makes iOS Safari zoom the page on focus. */
-input,textarea,select{font-size:16px}
-a{color:var(--accent)}
+input,textarea,select{font-size:16px}   /* below 16 iOS zooms on focus */
+:focus-visible{outline:1px solid var(--accent);outline-offset:2px}
 
-.lbl{font:500 10px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;
+/* type helpers */
+.lbl{font:500 9.5px/1 var(--display);letter-spacing:.17em;text-transform:uppercase;
      color:var(--muted-2)}
-.btn{border:1px solid var(--line-strong);background:transparent;color:var(--text);
-     padding:9px 16px;min-height:40px;cursor:pointer;letter-spacing:.08em;
-     font:500 11px/1 var(--display);text-transform:uppercase;transition:.15s}
-.btn:hover{border-color:var(--accent);color:var(--accent)}
-.btn[disabled]{opacity:.4;cursor:default}
-.btn-go{background:var(--text);color:var(--bg);border-color:var(--text)}
-.btn-go:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-.btn-s{padding:5px 10px;min-height:32px;font-size:10px}
-@media (hover:none){.btn:hover{border-color:var(--line-strong);color:var(--text)}}
+.num{font:400 11px/1 var(--display);letter-spacing:.1em;color:var(--muted-3);
+     font-variant-numeric:tabular-nums}
 
-/* ---------- the gate ---------- */
-#gate{min-height:100dvh;display:grid;place-items:center;padding:24px}
-#gate form{width:min(380px,100%);border:1px solid var(--line);background:var(--panel);
-           padding:34px}
-#gate h1{font:300 23px/1.2 var(--display);letter-spacing:.02em;margin-bottom:6px}
-#gate p{color:var(--muted);font-size:13px;margin-bottom:24px}
-#gate input{width:100%;background:var(--panel-2);border:1px solid var(--line-strong);
-            padding:13px 14px;min-height:48px;margin-bottom:14px}
+/* buttons */
+.btn{border:1px solid var(--line-3);background:transparent;color:var(--muted);
+     padding:0 15px;height:36px;cursor:pointer;letter-spacing:.11em;
+     font:500 10px/1 var(--display);text-transform:uppercase;transition:var(--t);
+     display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.btn:hover{border-color:var(--accent-dim);color:var(--text)}
+.btn[disabled]{opacity:.35;cursor:default}
+.btn-go{background:var(--text);color:#06070a;border-color:var(--text)}
+.btn-go:hover{background:var(--accent);border-color:var(--accent);color:#06070a}
+.btn-q{border-color:transparent;padding:0 9px}
+.btn-q:hover{border-color:var(--line-3)}
+@media (hover:none){.btn:hover{border-color:var(--line-3);color:var(--muted)}}
+
+/* ============================================================
+   THE GATE
+   ============================================================ */
+#gate{min-height:100dvh;display:grid;place-items:center;padding:24px;
+      background:
+        radial-gradient(760px 420px at 18% 8%, rgba(18,41,75,.42), transparent 62%),
+        var(--bg)}
+#gate .card{width:min(392px,100%);border:1px solid var(--line-2);
+            background:var(--panel);padding:38px 34px 32px;position:relative}
+/* Corner ticks: the site marks a plate this way, and it is the cheapest way to
+   say "this is the same drawing" without adding a colour. */
+#gate .card::before,#gate .card::after{content:"";position:absolute;width:9px;height:9px;
+  border:1px solid var(--line-3)}
+#gate .card::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+#gate .card::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+#gate .mark{font:300 13px/1 var(--display);letter-spacing:.22em;color:var(--muted-2);
+            margin-bottom:26px}
+#gate h1{font:200 30px/1.1 var(--display);letter-spacing:.005em;margin-bottom:8px}
+#gate .sub{color:var(--muted);font-size:13px;margin-bottom:28px}
+#gate label{display:block;margin-bottom:8px}
+#gate input{width:100%;background:var(--sunk);border:1px solid var(--line-2);
+            padding:0 14px;height:48px;transition:var(--t)}
 #gate input:focus{outline:none;border-color:var(--accent)}
-#gate .btn{width:100%}
-.msg{margin-top:16px;font-size:13px;color:var(--bad);min-height:20px}
-.msg.ok{color:var(--ok)}
+#gate .btn{width:100%;height:48px;justify-content:center;margin-top:14px}
+#gate .langs{position:absolute;top:14px;right:14px;display:flex;gap:2px}
+.msg{margin-top:16px;font-size:13px;color:var(--bad);min-height:19px}
 
-/* ---------- the desk ---------- */
-#app{display:none;grid-template-columns:var(--rail) minmax(0,1fr);min-height:100dvh}
-#app.on{display:grid}
-#rail{border-right:1px solid var(--line);background:var(--panel);padding:22px 0;
-      position:sticky;top:0;height:100dvh;overflow:auto}
-#rail h2{padding:0 20px 10px;margin-top:20px}
-#rail h2:first-child{margin-top:0}
-#rail button{display:block;width:100%;text-align:left;background:none;border:0;
-             border-left:2px solid transparent;padding:9px 20px;min-height:40px;
-             color:var(--muted);cursor:pointer;font-size:14px}
-#rail button:hover{color:var(--text)}
-#rail button.on{color:var(--text);border-left-color:var(--accent);background:var(--panel-2)}
-#rail .foot{margin-top:28px;padding:18px 20px 0;border-top:1px solid var(--line)}
+/* language toggle, shared */
+.langs button{background:none;border:0;color:var(--muted-3);cursor:pointer;
+  font:500 10px/1 var(--display);letter-spacing:.12em;padding:8px 8px;transition:var(--t)}
+.langs button:hover{color:var(--muted)}
+.langs button.on{color:var(--text)}
 
-#main{padding:30px clamp(20px,3vw,44px) 90px;min-width:0}
-.head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;
-      border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:26px}
-.head h1{font:300 25px/1.2 var(--display);letter-spacing:.02em}
-.head .sp{flex:1}
+/* ============================================================
+   THE DESK
+   ============================================================ */
+#app{display:none}
+#app.on{display:block}
 
-.cols{display:grid;grid-template-columns:272px minmax(0,1fr);gap:28px;align-items:start}
-/* The list is short and the form is long, which left a tall empty column down
-   the left. Sticky turns that space into something: the list stays in reach
-   while a record is scrolled through, so switching between two vacancies does
-   not mean scrolling back up first. */
-.cols>.recs{position:sticky;top:26px}
-@media (max-width:900px){#app{grid-template-columns:1fr}#rail{position:static;height:auto}
-  .cols{grid-template-columns:1fr}}
+#top{position:fixed;inset:0 0 auto 0;height:var(--top);z-index:9;
+     background:var(--panel-2);border-bottom:1px solid var(--line-2);
+     display:flex;align-items:center;gap:18px;padding:0 18px}
+#top .mark{font:300 12px/1 var(--display);letter-spacing:.2em;color:var(--muted-2)}
+#top .mark b{color:var(--text);font-weight:400}
+#top .sp{flex:1}
 
-/* the record list */
+#body{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);
+      padding-top:var(--top);min-height:100dvh}
+
+#rail{border-right:1px solid var(--line);background:var(--panel);
+      position:sticky;top:var(--top);height:calc(100dvh - var(--top));
+      overflow:auto;padding:20px 0 28px}
+#rail h2{padding:18px 18px 9px}
+#rail h2:first-child{padding-top:0}
+#rail a{display:flex;align-items:center;gap:10px;text-decoration:none;
+        border-left:2px solid transparent;padding:0 18px;height:40px;
+        color:var(--muted);cursor:pointer;font-size:14px;transition:var(--t)}
+#rail a:hover{color:var(--text);background:rgba(255,255,255,.015)}
+#rail a.on{color:var(--text);border-left-color:var(--accent);background:var(--panel-2)}
+#rail a .n{margin-left:auto;font:400 11px/1 var(--display);color:var(--muted-3);
+           font-variant-numeric:tabular-nums}
+
+#main{padding:28px clamp(18px,2.6vw,40px) calc(var(--bar) + 44px);min-width:0}
+.head{margin-bottom:24px}
+.head .over{display:flex;align-items:baseline;gap:12px;margin-bottom:9px}
+.head h1{font:200 27px/1.15 var(--display);letter-spacing:.01em}
+.head .rule{height:1px;background:var(--line-2);margin-top:14px;position:relative}
+.head .rule::after{content:"";position:absolute;left:0;top:0;width:52px;height:1px;
+  background:var(--accent-dim)}
+
+.cols{display:grid;grid-template-columns:286px minmax(0,1fr);gap:26px;align-items:start}
+.cols>.recs{position:sticky;top:calc(var(--top) + 26px)}
+
+/* the ordered list of records. The number is the publish order -- it is the
+   thing the arrows change, so it is information, not decoration. */
 .recs{border:1px solid var(--line);background:var(--panel)}
-.rec{display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--line);
-     padding:8px 10px}
-.rec:last-child{border-bottom:0}
-.rec .nm{flex:1;min-width:0;text-align:left;background:none;border:0;color:var(--muted);
-         cursor:pointer;font-size:13px;padding:6px 2px;min-height:34px;
-         overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rec{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:8px;
+     border-bottom:1px solid var(--line);padding:0 10px 0 12px;min-height:46px;
+     transition:var(--t);position:relative}
+.rec:last-of-type{border-bottom:0}
+.rec:hover{background:rgba(255,255,255,.015)}
+.rec.on{background:var(--panel-2)}
+.rec.on::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--accent)}
+.rec .num{color:var(--muted-3)}
+.rec.on .num{color:var(--accent)}
+.rec .nm{text-align:left;background:none;border:0;color:var(--muted);cursor:pointer;
+         font-size:13.5px;padding:11px 0;min-height:44px;overflow:hidden;
+         text-overflow:ellipsis;white-space:nowrap;transition:var(--t)}
 .rec.on .nm{color:var(--text)}
-.rec .mv{background:none;border:1px solid transparent;color:var(--muted-2);cursor:pointer;
-         width:26px;height:26px;line-height:1;font-size:12px}
-.rec .mv:hover{color:var(--accent);border-color:var(--line-strong)}
-.recs .add{width:100%;border:0;border-top:1px solid var(--line-strong);background:none;
-           color:var(--accent);cursor:pointer;padding:12px;min-height:44px;
-           font:500 11px/1 var(--display);letter-spacing:.1em;text-transform:uppercase}
+.rec .acts{display:flex;gap:1px;opacity:0;transition:var(--t)}
+.rec:hover .acts,.rec.on .acts{opacity:1}
+.rec .mv{background:none;border:1px solid transparent;color:var(--muted-3);cursor:pointer;
+         width:26px;height:26px;line-height:1;font-size:11px;transition:var(--t)}
+.rec .mv:hover{color:var(--text);border-color:var(--line-3)}
+.rec .mv.rm:hover{color:var(--bad);border-color:var(--bad)}
+.rec .dot{width:5px;height:5px;border-radius:50%;background:var(--ok);flex:none}
+.rec .dot.off{background:var(--muted-3)}
+.recs .add{width:100%;border:0;border-top:1px solid var(--line-2);background:none;
+           color:var(--accent-dim);cursor:pointer;height:46px;transition:var(--t);
+           font:500 10px/1 var(--display);letter-spacing:.14em;text-transform:uppercase}
+.recs .add:hover{color:var(--accent);background:rgba(143,166,200,.04)}
 
-/* the fields */
-.fields{border:1px solid var(--line);background:var(--panel);padding:clamp(18px,2.4vw,30px)}
-.f{margin-bottom:20px}
+/* panels and fields */
+.panel{border:1px solid var(--line);background:var(--panel);
+       padding:clamp(18px,2.2vw,30px);position:relative}
+.panel+.panel{margin-top:22px}
+.panel>.cap{display:flex;align-items:center;gap:12px;margin:-4px 0 22px}
+.panel>.cap .rule{flex:1;height:1px;background:var(--line-2)}
+
+.f{margin-bottom:19px}
 .f>label{display:block;margin-bottom:7px}
-.f input[type=text],.f input[type=date],.f textarea,.f select{
-  width:100%;background:var(--panel-2);border:1px solid var(--line-strong);
-  padding:10px 12px;min-height:44px}
-.f textarea{min-height:96px;resize:vertical;line-height:1.55}
-.f input:focus,.f textarea:focus,.f select:focus{outline:none;border-color:var(--accent)}
-.f .hint{font-size:12px;color:var(--muted-2);margin-top:5px}
-.f.struct>label{color:var(--muted-2)}
+/* Every control inside a panel, not just the ones directly under .f: the
+   items of a list live in .group, and scoping this to .f left them with the
+   browser's own light-grey textarea on a dark panel. It looked like a
+   rendering fault and it was a selector that did not reach. */
+.panel input[type=text],.panel input[type=date],.panel select{
+  width:100%;background:var(--sunk);border:1px solid var(--line-2);
+  padding:0 13px;height:44px;transition:var(--t)}
+.panel textarea{width:100%;background:var(--sunk);border:1px solid var(--line-2);
+  padding:11px 13px;resize:vertical;line-height:1.6;transition:var(--t)}
+.f>textarea{min-height:98px}
+.panel input:focus,.panel textarea:focus,.panel select:focus{outline:none;
+  border-color:var(--accent);background:var(--panel-2)}
+.f .hint{font-size:12px;color:var(--muted-2);margin-top:6px;line-height:1.5}
+.f.struct>label{color:var(--muted-3)}
 .list-item{display:flex;gap:7px;align-items:flex-start;margin-bottom:7px}
-.list-item textarea{flex:1}
-.group{border-left:1px solid var(--line-strong);padding-left:16px;margin:16px 0 22px}
-.group>.lbl{margin-bottom:12px;display:block}
-.chk{display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer}
-/* accent-color, or the browser paints its own blue -- a saturated one, and on
-   this ground it becomes the brightest thing on the page. */
+.list-item>textarea,.list-item>.hint{flex:1}
+.list-row{display:grid;grid-template-columns:26px 1fr auto;gap:8px;align-items:start;
+          margin-bottom:7px}
+.list-row .num{padding-top:15px}
+.group{border-left:1px solid var(--line-2);padding-left:17px;margin:18px 0 24px}
+.group>.lbl{margin-bottom:13px;display:block}
+.chk{display:flex;align-items:center;gap:11px;min-height:44px;cursor:pointer}
 .chk input{width:20px;height:20px;accent-color:var(--accent)}
 
 /* translations */
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:20px}
-.tabs button{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);
-             padding:10px 15px;min-height:44px;cursor:pointer;
-             font:500 11px/1 var(--display);letter-spacing:.1em;text-transform:uppercase}
+.tabs{display:flex;border-bottom:1px solid var(--line-2);margin:-4px 0 20px}
+.tabs button{background:none;border:0;border-bottom:1px solid transparent;
+  color:var(--muted-3);padding:0 14px;height:42px;cursor:pointer;transition:var(--t);
+  font:500 10px/1 var(--display);letter-spacing:.14em}
+.tabs button:hover{color:var(--muted)}
 .tabs button.on{color:var(--text);border-bottom-color:var(--accent)}
-.tr{border-bottom:1px solid var(--line);padding:16px 0}
+.tr{border-bottom:1px solid var(--line);padding:15px 0}
 .tr:last-child{border-bottom:0}
-.tr .en{color:var(--muted);font-size:13px;margin:6px 0 9px;white-space:pre-wrap}
-.tag{font:500 9px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;
-     padding:4px 7px;border:1px solid currentColor;margin-left:9px;vertical-align:2px}
+.tr .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tr .en{color:var(--muted-2);font-size:12.5px;margin:7px 0 9px;white-space:pre-wrap;
+        border-left:1px solid var(--line-2);padding-left:11px}
+.tr textarea{width:100%;background:var(--sunk);border:1px solid var(--line-2);
+  padding:10px 12px;line-height:1.6;resize:vertical;transition:var(--t)}
+.tr textarea:focus{outline:none;border-color:var(--accent);background:var(--panel-2)}
+.tag{font:500 9px/1 var(--display);letter-spacing:.13em;text-transform:uppercase;
+     padding:4px 7px;border:1px solid currentColor}
 .tag.ok{color:var(--ok)}.tag.warn{color:var(--warn)}.tag.bad{color:var(--bad)}
 
-/* the save bar: it has to be reachable without finding the bottom of a long form */
-#bar{position:fixed;left:var(--rail);right:0;bottom:0;background:var(--panel-2);
-     border-top:1px solid var(--line-strong);padding:12px clamp(20px,3vw,44px);
-     display:flex;align-items:center;gap:16px;z-index:5}
-@media (max-width:900px){#bar{left:0}}
-#bar .state{flex:1;font-size:13px;color:var(--muted)}
-#bar .state.dirty{color:var(--warn)}
-#bar .state.bad{color:var(--bad)}
-#bar .state.ok{color:var(--ok)}
+/* the title block: where a drawing keeps its state, so that is where this
+   keeps "unsaved" and the buttons that resolve it */
+#bar{position:fixed;left:var(--rail);right:0;bottom:0;height:var(--bar);z-index:9;
+     background:var(--panel-2);border-top:1px solid var(--line-2);
+     display:none;align-items:stretch}
+#bar.on{display:flex}
+#bar .cell{display:flex;flex-direction:column;justify-content:center;gap:4px;
+           padding:0 18px;border-right:1px solid var(--line);min-width:0}
+#bar .cell .v{font:400 12px/1 var(--display);letter-spacing:.06em;color:var(--text);
+              white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bar .grow{flex:1;border-right:0}
+#bar .acts{display:flex;align-items:center;gap:9px;padding:0 18px}
+#bar .v.dirty{color:var(--warn)}#bar .v.bad{color:var(--bad)}#bar .v.ok{color:var(--ok)}
 
-/* ---------- touch, LAST ----------
-   A finger, not a mouse: 44px is the smallest target a thumb hits reliably,
-   and the reorder and delete controls sit next to each other, so a miss
-   deletes the record above the one that was meant.
+.empty{color:var(--muted-2);font-size:13px;padding:6px 0}
 
-   This block is at the end of the stylesheet and has to stay there. The first
-   version sat next to the other media query, above the rules it overrides --
-   same specificity, earlier in the file, so every declaration in it was inert
-   while the diff looked exactly right. The measurement is what caught it: the
-   buttons were still 26px. */
+/* ============================================================
+   TOUCH AND NARROW -- LAST IN THE FILE, and it has to stay last.
+   The first version of this block sat beside the other media query, above the
+   rules it overrides: same specificity, earlier in the file, so every
+   declaration in it was inert while the diff looked exactly right. The
+   buttons were still 26px. Measure, do not read.
+   ============================================================ */
+@media (max-width:960px){
+  #body{grid-template-columns:1fr}
+  #rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);
+        display:flex;flex-wrap:wrap;gap:2px;padding:10px}
+  #rail h2{display:none}
+  #rail a{border-left:0;border:1px solid var(--line-2);height:40px;padding:0 13px}
+  #rail a.on{border-color:var(--accent-dim)}
+  .cols{grid-template-columns:1fr}
+  .cols>.recs{position:static}
+  #bar{left:0}
+}
 @media (hover:none),(max-width:600px){
-  .rec{padding:4px 8px;gap:4px}
-  .rec .mv{width:44px;height:44px;font-size:15px}
-  .rec .nm{min-height:44px}
-  .btn,.btn-s,#rail button{min-height:44px}
-  .btn-s{padding:11px 14px}
+  .rec{grid-template-columns:28px 1fr auto;min-height:52px}
+  .rec .acts{opacity:1}
+  .rec .mv{width:44px;height:44px;font-size:14px}
+  .rec .nm{min-height:46px}
+  .btn,#rail a,.tabs button,.langs button{min-height:44px}
+  .langs button{padding:0 12px}
+  .btn{height:44px}
   .chk input{width:24px;height:24px}
+  #bar{height:auto;flex-wrap:wrap;padding:8px 0}
+  #bar .cell{border-right:0;padding:6px 14px}
+  #bar .acts{width:100%;padding:6px 14px}
+  #bar .acts .btn{flex:1;justify-content:center}
 }
 </style>
 </head>
 <body>
 
 <div id="gate">
-  <form id="login">
-    <h1>Редактор</h1>
-    <p>Содержимое сайта alprojects.eu</p>
-    <label class="lbl" for="pw">Пароль</label>
+  <form class="card" id="login">
+    <div class="langs" id="gate-langs"></div>
+    <div class="mark">ALPROJECTS</div>
+    <h1 data-t="gate_h1"></h1>
+    <p class="sub" data-t="gate_sub"></p>
+    <label class="lbl" for="pw" data-t="password"></label>
     <input id="pw" type="password" autocomplete="current-password" required>
-    <button class="btn btn-go" type="submit">Войти</button>
+    <button class="btn btn-go" type="submit" data-t="sign_in"></button>
     <div class="msg" id="gate-msg"></div>
   </form>
 </div>
 
 <div id="app">
-  <nav id="rail">
-    <h2 class="lbl">Ваше</h2>
-    <div id="rail-mine"></div>
-    <h2 class="lbl">Остальное</h2>
-    <div id="rail-rest"></div>
-    <div class="foot"><button class="btn btn-s" id="out">Выйти</button></div>
-  </nav>
-  <main id="main"></main>
-</div>
+  <header id="top">
+    <span class="mark">ALPROJECTS <b data-t="editor"></b></span>
+    <span class="sp"></span>
+    <div class="langs" id="ui-langs"></div>
+    <button class="btn btn-q" id="out" data-t="sign_out"></button>
+  </header>
 
-<div id="bar" style="display:none">
-  <span class="state" id="state"></span>
-  <button class="btn btn-s" id="revert">Отменить</button>
-  <button class="btn btn-go btn-s" id="save">Сохранить</button>
+  <div id="body">
+    <nav id="rail">
+      <h2 class="lbl" data-t="yours"></h2>
+      <div id="rail-mine"></div>
+      <h2 class="lbl" data-t="the_rest"></h2>
+      <div id="rail-rest"></div>
+    </nav>
+    <main id="main"></main>
+  </div>
+
+  <div id="bar">
+    <div class="cell"><span class="lbl" data-t="sheet"></span><span class="v" id="bar-sheet"></span></div>
+    <div class="cell grow"><span class="lbl" data-t="state"></span><span class="v" id="state"></span></div>
+    <div class="acts">
+      <button class="btn" id="revert" data-t="discard"></button>
+      <button class="btn btn-go" id="save" data-t="save"></button>
+    </div>
+  </div>
 </div>
 
 <script src="/admin/admin.js"></script>
