@@ -76,6 +76,8 @@
     translate_now: ["Перевести машиной", "Translate by machine"],
     no_src:      ["с какого английского сделан — неизвестно",
                   "which English it was made from is not known"],
+    stale_live:  ["Этот перевод сейчас на сайте. Если он подходит и к новому английскому — нажмите «Оставить», и пометка уйдёт.",
+                  "This translation is on the site. If it still fits the new English, press Keep and the flag goes away."],
     translating: ["Переводим…", "Translating…"],
     tr_failed:   ["Перевести не удалось, текст остался английским",
                   "Translation failed; the text stays in English"],
@@ -740,6 +742,11 @@
         bEl.appendChild(el("span", "lbl", t("was_from")));
         bEl.appendChild(el("div", "", src));
         tr.appendChild(bEl);
+        /* Say what doing nothing means. It used to mean an English line on the
+           page, and it no longer does -- the translation stays up and carries
+           a flag. Without this the badge reads like a warning that something
+           is broken on the site. */
+        tr.appendChild(el("div", "hint", t("stale_live")));
       } else {
         tr.appendChild(el("div", "en", english));
         if (has && src === null)

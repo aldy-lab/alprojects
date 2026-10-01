@@ -355,8 +355,23 @@ def client_store(lang):
             # read so a store written by the previous version keeps working.
             same = (r["src"] == text if r.get("src")
                     else r.get("en") == content.fingerprint(text))
+            # A translation whose English has moved STAYS ON THE PAGE, and is
+            # reported for checking. This was the other way round, and the
+            # argument for it was that a stale line can assert something no
+            # longer true -- real, and the wrong trade here. Every edit seen in
+            # practice has been small: a word appended, a phrase tightened, and
+            # the existing translation still says what the English says. The
+            # cost of the old default was an English sentence in the middle of a
+            # Russian page every time anybody touched anything, which is what
+            # the client sees and what he asked twice to have stopped.
+            #
+            # The risk that remains is an edit that inverts a meaning -- "open"
+            # becoming "closed" -- where the old translation would now be
+            # wrong rather than merely dated. That is why it is still counted,
+            # still printed under its own heading, and still badged in the
+            # editor: carried, not forgotten.
+            fresh[text] = r["t"]
             if same:
-                fresh[text] = r["t"]
                 # by:"machine" means the editor generated it and nobody has
                 # read it. It still goes on the page -- the point of generating
                 # it was that the alternative is an English line -- but it is
@@ -828,13 +843,16 @@ def main():
         for cid in client_store(lang)[2]:
             machine.setdefault(cid, []).append(lang)
     if stale:
-        print("\nTRANSLATED, THEN THE ENGLISH CHANGED -- %d field(s) to check:"
+        print("\nON THE PAGE, BUT MADE FROM OLDER ENGLISH -- %d field(s) to check:"
               % len(stale))
         for cid, langs in sorted(stale.items()):
             print("   %-52s %s" % (cid, ",".join(langs)))
-        print("\n   The translation on file was made from different English. It is\n"
-              "   not used -- a stale line can assert something that is no longer\n"
-              "   true, which on these pages is worse than an untranslated one.")
+        print("\n   These ARE published: the alternative is an English sentence in\n"
+              "   the middle of a translated page every time somebody edits\n"
+              "   anything. What to watch for is an edit that changed the meaning\n"
+              "   rather than the wording -- then the line on the page is wrong,\n"
+              "   not merely dated. The editor shows both sentences side by side\n"
+              "   so the decision can be made by somebody who reads the language.")
     if machine:
         print("\nMACHINE TRANSLATED, NOT READ BY ANYBODY -- %d field(s):"
               % len(machine))
