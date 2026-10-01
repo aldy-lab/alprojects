@@ -303,6 +303,69 @@ def _client_index():
     return _CLIENT_INDEX
 
 
+# ============================================================
+# TRANSLATIONS THE CLIENT CAN OWN
+# ============================================================
+# content/translations/<lang>.json holds, per content id, the translation and a
+# fingerprint of the English it was made from. It exists because the client
+# asked to be able to translate a vacancy into Russian, and the translations he
+# would be writing lived in tools/lang_ru.py -- a Python file, which is the one
+# thing this whole CMS is built to keep him out of. A translation is data; it
+# belongs in data.
+#
+# The fingerprint is what makes an edit tellable from an omission:
+#
+#   fingerprint matches   use it
+#   fingerprint differs   the English was edited after this was translated --
+#                         fall back to English and say so. A stale translation
+#                         can assert something that is no longer true, and on
+#                         a page selling inspection work that is worse than an
+#                         untranslated line.
+#   no record             never translated; English, and on the work list
+#
+# tools/lang_*.py is left alone rather than migrated. 15 of the 93 client
+# values also appear inside OTHER units -- "Shipbuilding" is a vacancy field
+# and also sits in "Shipbuilding sector - ALPROJECTS Group" -- so deleting them
+# from the string table would silently untranslate those. The two agree for
+# every string nobody has edited, and the id-keyed one wins, so the redundancy
+# costs nothing and the alternative was a list of exceptions.
+_STORE = {}
+
+
+def client_store(lang):
+    """English text -> translation, plus the ids whose English was edited."""
+    if lang not in _STORE:
+        fresh, stale = {}, {}
+        path = os.path.join(ROOT, "content", "translations", "%s.json" % lang)
+        try:
+            with io.open(path, encoding="utf-8") as fh:
+                rec = _json.load(fh)
+        except Exception:
+            rec = {}
+        for text, cid in _client_index():
+            r = rec.get(cid)
+            if not r or not r.get("t"):
+                continue
+            if r.get("en") == content.fingerprint(text):
+                fresh[text] = r["t"]
+            else:
+                stale[cid] = text
+        _STORE[lang] = (fresh, stale)
+    return _STORE[lang]
+
+
+def translate_unit(lang, key):
+    """The string table first, then what the client owns.
+
+    The table carries every unit on the site and is the normal answer. The
+    store only ever has client-collection fields, and it is consulted second so
+    that a page's own prose can never be overridden from the CMS."""
+    dst = i18n.t(lang, key)
+    if dst is not None:
+        return dst
+    return client_store(lang)[0].get(key)
+
+
 def client_ids(key):
     """The content ids whose text this unit carries, longest match first."""
     return [cid for text, cid in _client_index() if text in key]
@@ -335,7 +398,7 @@ def _sub_units(frag, lang, stats):
         stats["units"].add(key)
         if lang == i18n.DEFAULT:
             continue
-        dst = i18n.t(lang, key)
+        dst = translate_unit(lang, key)
         if dst is None:
             note_missing(stats, key)
             continue
@@ -360,7 +423,7 @@ def _translate_string(val, lang, stats):
         stats["units"].add(key)
         if lang == i18n.DEFAULT:
             return val
-        dst = i18n.t(lang, key)
+        dst = translate_unit(lang, key)
         if dst is None:
             dst = i18n.t_clamped(lang, key)
         if dst is None:
@@ -444,7 +507,7 @@ def translate_page(src, lang, rel, stats):
         stats["units"].add(key)
         if lang == i18n.DEFAULT:
             continue
-        dst = i18n.t(lang, key)
+        dst = translate_unit(lang, key)
         if dst is None:
             dst = i18n.t_clamped(lang, key)
         if dst is None:
@@ -734,6 +797,26 @@ def main():
               "   edits himself. Send the list to the translator; until it comes\n"
               "   back those units render in English on every other language."
               % ", ".join(i18n.CLIENT_COLLECTIONS))
+
+    # Told apart from the list above, because they are a different job. There a
+    # translator writes something new; here somebody already translated the
+    # field and then the English under it changed, so what is on file may now
+    # say something the English no longer says. The build will not print it as
+    # a translation and will not use it.
+    stale = {}
+    for lang in i18n.LANGS:
+        if lang == i18n.DEFAULT or not i18n.PUBLISH.get(lang):
+            continue
+        for cid in client_store(lang)[1]:
+            stale.setdefault(cid, []).append(lang)
+    if stale:
+        print("\nTRANSLATED, THEN THE ENGLISH CHANGED -- %d field(s) to check:"
+              % len(stale))
+        for cid, langs in sorted(stale.items()):
+            print("   %-52s %s" % (cid, ",".join(langs)))
+        print("\n   The translation on file was made from different English. It is\n"
+              "   not used -- a stale line can assert something that is no longer\n"
+              "   true, which on these pages is worse than an untranslated one.")
     return reports
 
 

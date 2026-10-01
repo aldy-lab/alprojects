@@ -55,6 +55,15 @@ const COLLECTIONS = {
   services:  "content/services.json",
   sectors:   "content/sectors.json",
   site:      "content/site.json",
+  /* The per-id translations for the collections he owns. A vacancy's Russian
+     used to live in tools/lang_ru.py, and a Python file is the one thing this
+     endpoint exists to keep him out of. These carry a fingerprint of the
+     English each line was made from, so the build can tell an edit from an
+     omission -- see client_store() in tools/i18n_build.py. */
+  "t-ru": "content/translations/ru.json",
+  "t-fr": "content/translations/fr.json",
+  "t-de": "content/translations/de.json",
+  "t-it": "content/translations/it.json",
 };
 
 const json = (status, body, headers) =>

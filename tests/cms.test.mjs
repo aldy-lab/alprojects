@@ -158,6 +158,30 @@ test("a good save commits to content/ on the production branch", async () => {
   assert.match(put.url, /\/contents\/content\/positions\.json$/);
 });
 
+test("a translation file has no _order and saves anyway", async () => {
+  const cookie = await signIn();
+  /* The shape check only applies to files that had an _order to begin with.
+     The translation stores are flat maps of id -> {en, t}; a rule written for
+     collections must not refuse them. */
+  globalThis.fetch = async (url, init) => {
+    calls.push({ url: String(url), method: (init && init.method) || "GET" });
+    if (init && init.method === "PUT")
+      return new Response(JSON.stringify({ content: { sha: "newsha" } }), { status: 200 });
+    return new Response(JSON.stringify({
+      content: Buffer.from(JSON.stringify({ "positions.one.title": { en: "abc", t: "Un" } })).toString("base64"),
+      sha: "oldsha",
+    }), { status: 200 });
+  };
+  calls = [];
+  const r = await handle(req("?a=save&f=t-ru", {
+    method: "POST", headers: { cookie },
+    body: { data: { "positions.one.title": { en: "abc", t: "Один" } }, sha: "oldsha" },
+  }), ENV);
+  assert.equal(r.status, 200);
+  assert.match(calls.find((c) => c.method === "PUT").url,
+               /\/contents\/content\/translations\/ru\.json$/);
+});
+
 test("GET cannot save, POST cannot be swapped for it", async () => {
   const cookie = await signIn();
   const r = await handle(req("?a=save&f=positions", { headers: { cookie } }), ENV);
