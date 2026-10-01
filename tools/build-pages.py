@@ -300,6 +300,15 @@ def fill_stamp(html, path):
     return html
 
 
+# Every page this run produced. A record removed from content/ stops being
+# built, but its file is already on disk and nothing was deleting it -- so a
+# news item the client takes down in the CMS keeps answering 200, keeps its
+# place in the sitemap and keeps being linked from the other languages. Found
+# while testing the CMS gate: an item added to try the build out stayed live
+# after the file that created it was reverted.
+WRITTEN = set()
+
+
 def write(path, html):
     if path.endswith(".html"):
         html = clean_urls(stamp(mark_nav(html, path)))
@@ -316,7 +325,33 @@ def write(path, html):
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     io.open(full, "w", encoding="utf-8").write(html)
+    WRITTEN.add(path.replace(os.sep, "/"))
     print("wrote %s (%d bytes)" % (path, len(html)))
+
+
+# The directories that hold exactly one page per record, and nothing else. The
+# site root is deliberately not here: index.html is stamped rather than written,
+# and a sweep that cannot tell the two apart would delete the home page.
+GENERATED_DIRS = ("news", "projects", "services", "sectors")
+
+
+def sweep_orphans():
+    """Delete generated pages whose record no longer exists."""
+    gone = []
+    for d in GENERATED_DIRS:
+        full = os.path.join(ROOT, d)
+        if not os.path.isdir(full):
+            continue
+        for name in sorted(os.listdir(full)):
+            if not name.endswith(".html"):
+                continue
+            rel = "%s/%s" % (d, name)
+            if rel not in WRITTEN:
+                os.remove(os.path.join(ROOT, rel))
+                gone.append(rel)
+    for rel in gone:
+        print("removed %s -- no record builds it any more" % rel)
+    return gone
 
 
 # ============================================================
@@ -2827,6 +2862,10 @@ for _name in ("index.html", "404.html"):
 # the one place the delegation trick does not fit (running the whole translation
 # build from here would run it twice in the documented two-command workflow).
 # Count them instead and say it out loud.
+# After every page is written, never before: the sweep decides by what this run
+# produced, so running it early would delete the pages still to come.
+sweep_orphans()
+
 _warn_if_prose_names_another_host()
 
 
