@@ -3,8 +3,8 @@
     "tig-welder",
     "mig-mag-mma-welder",
     "pipe-fitter",
-    "site-supervisor",
-    "hull-assembler"
+    "hull-assembler",
+    "site-supervisor"
   ],
   "tig-welder": {
     "_discipline": "Welding (TIG)",
