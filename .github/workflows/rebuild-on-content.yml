@@ -1,0 +1,75 @@
+# The CMS writes JSON. The site is HTML.
+#
+# The client edits content/*.json through the editor, which commits to main.
+# Nothing on Vercel turns that into pages -- Vercel serves static files, the
+# build is Python and runs here. Without this workflow the client saves a
+# vacancy, sees the commit land, and the site does not change. That is the
+# single most confusing failure a CMS can have, so it is the first thing wired
+# up after the build learned not to strand the other languages.
+#
+# The loop this would otherwise cause: this job pushes HTML back to main, which
+# is a push to main, which would start it again. The paths filter is the guard
+# -- the job only runs for commits that touch content/, and the commit it makes
+# never does. No bot-actor check needed, and none that can be forgotten.
+name: Rebuild the site when the content changes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'assets/**'
+  workflow_dispatch:
+
+# A second save while the first is still building would race to push. Queue
+# them instead of cancelling: every save has to reach the site, and the later
+# build already contains the earlier edit.
+concurrency:
+  group: rebuild-site
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Pillow only. tools/thumbs.py reads and resizes the photographs; the
+      # rest of the build is the standard library on purpose, so this stays a
+      # one-line install that cannot drift.
+      - name: Install Pillow
+        run: pip install --quiet pillow
+
+      - name: Build the pages
+        run: python3 tools/build-pages.py
+
+      # Exits 1 when a published language is incomplete -- and that has to stop
+      # the job here, before anything is pushed. A withheld language keeps its
+      # previous files, so pushing anyway would put the old translations beside
+      # the new English and the site would look fine while saying two different
+      # things. The client's own collections do not fail this: those fall back
+      # to English per field and are printed as a work list for the translator.
+      - name: Translate, and refuse to continue if a language is incomplete
+        run: python3 tools/i18n_build.py
+
+      - name: Commit the rebuilt pages
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing changed -- the edit produced no difference in the pages."
+            exit 0
+          fi
+          git config user.name  "alprojects-build"
+          git config user.email "build@alprojects.eu"
+          git add -A
+          git commit -m "Rebuild: $(git log -1 --pretty=%s ${{ github.sha }})
+
+          Pages regenerated from the content commit above. Written by the
+          rebuild workflow, not by hand."
+          git push
