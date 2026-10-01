@@ -66,6 +66,37 @@ const COLLECTIONS = {
   "t-it": "content/translations/it.json",
 };
 
+/* What may be uploaded, and how it is recognised. The extension is what the
+   file is called; the magic bytes are what it is. Both have to agree, because
+   a name is the client's and the bytes are the file's -- and the one that
+   decides what a browser does with it is the bytes. */
+const IMAGES = [
+  { ext: "jpg",  type: "image/jpeg", magic: [0xFF, 0xD8, 0xFF] },
+  { ext: "png",  type: "image/png",  magic: [0x89, 0x50, 0x4E, 0x47] },
+  { ext: "webp", type: "image/webp", magic: [0x52, 0x49, 0x46, 0x46] },
+];
+const IMAGE_LIMIT = 12 * 1024 * 1024;   /* a phone photograph, with room */
+
+function sniff(buf) {
+  for (const k of IMAGES)
+    if (k.magic.every(function (b, i) { return buf[i] === b; })) return k;
+  return null;
+}
+
+/* A name the client typed becomes a file name in the repository, so it is
+   rebuilt here from scratch rather than cleaned: lowercase, a-z 0-9 and the
+   hyphen, nothing else, and the extension comes from the bytes. There is no
+   input that produces a path -- no slash, no dot, no "..", no leading dash --
+   because none of those characters survive. */
+function safeStem(name) {
+  return String(name || "")
+    .replace(/\.[^.]*$/, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60) || "photo";
+}
+
 const json = (status, body, headers) =>
   new Response(JSON.stringify(body), {
     status,
@@ -212,6 +243,53 @@ export async function handle(request, env) {
   const name = url.searchParams.get("f") || "";
   const path = Object.prototype.hasOwnProperty.call(COLLECTIONS, name)
     ? COLLECTIONS[name] : null;
+
+  /* The photograph goes in as the client sent it -- original bytes, whatever
+     the phone produced. This function has no image library and no business
+     having one: tools/thumbs.py derives the 1200 and 900 webp on the next
+     build, reads the real pixel size off the result, and the record keeps
+     pointing at "uploads/<name>". See adopt_uploads(). */
+  if (action === "upload") {
+    if (request.method !== "POST") return json(405, { ok: false, error: "POST" });
+    const buf = Buffer.from(await request.arrayBuffer());
+    if (!buf.length) return json(400, { ok: false, error: "empty" });
+    if (buf.length > IMAGE_LIMIT)
+      return json(413, { ok: false, error: "больше 12 МБ" });
+    const kind = sniff(buf);
+    if (!kind)
+      return json(415, { ok: false, error: "только JPEG, PNG или WebP" });
+    const stem = safeStem(url.searchParams.get("name"));
+    const rel = "assets/uploads/" + stem + "." + kind.ext;
+
+    /* Overwriting somebody else's photograph by picking the same file name is
+       a quiet way to change a page nobody was editing, so an existing name
+       gets a suffix instead. */
+    let target = rel, n = 1;
+    while (n < 50) {
+      const probe = await gh(target, env);
+      if (probe.status === 404) break;
+      target = "assets/uploads/" + stem + "-" + (++n) + "." + kind.ext;
+    }
+
+    const put = await gh(target, env, {
+      method: "PUT",
+      headers: {
+        authorization: "Bearer " + env.GITHUB_TOKEN,
+        accept: "application/vnd.github+json",
+        "user-agent": "alprojects-cms",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        message: "Upload " + target.split("/").pop() + "\n\nSent from the editor at /admin.",
+        content: buf.toString("base64"),
+        branch: env.GITHUB_BRANCH || "main",
+      }),
+    });
+    if (!put.ok) return json(502, { ok: false, error: "github " + put.status });
+    /* The value the record wants, so the page can set the field without
+       knowing how any of this is laid out. */
+    return json(200, { ok: true, img: target.replace(/^assets\//, "") });
+  }
 
   if (action === "list" && request.method === "GET")
     return json(200, { ok: true, collections: Object.keys(COLLECTIONS) });

@@ -145,6 +145,63 @@ def news_variants(imgs, force=False, quiet=True):
     return made
 
 
+UPLOADS = os.path.join(ROOT, "assets", "uploads")
+DERIVED = os.path.join(ROOT, "assets", "projects")
+UPLOAD_WIDTH = 1200
+
+
+def adopt_uploads(records, quiet=True):
+    """Turn a photograph the client uploaded into the file the page wants.
+
+    The editor writes the original -- whatever the camera or the phone gave it,
+    JPEG or PNG or WebP -- to assets/uploads/, because the function that
+    receives it has no image library and no business having one. The templates
+    want `projects/<stem>-1200.webp` with the pixel size declared, and
+    news_variants() then derives the 900 from the name.
+
+    So a record's `_img` of "uploads/crane-lift.jpg" is resolved here, in the
+    build, to the derived path and the size read off the derived file. Nothing
+    is written back into content/: the client's value stays the one he chose,
+    and w/h stop being numbers somebody types. They were typed before, and the
+    one time they disagreed with the file the news cards served 600px images
+    into 626px boxes.
+
+    Never upscaled. A 700px photograph stays 700 and says so, rather than
+    being stretched to 1200 and advertised as 1200 -- which is the same lie
+    the -1200 name would be telling.
+    """
+    made = 0
+    for rec in records:
+        rel = rec.get("img") or ""
+        if not rel.startswith("uploads/"):
+            continue
+        src = os.path.join(ROOT, "assets", rel)
+        if not os.path.exists(src):
+            print("  !! %s names assets/%s and there is no such file"
+                  % (rec.get("slug", "?"), rel))
+            continue
+        stem = os.path.splitext(os.path.basename(rel))[0]
+        im = Image.open(src).convert("RGB")
+        width = min(UPLOAD_WIDTH, im.size[0])
+        name = "%s-%d.webp" % (stem, width)
+        dst = os.path.join(DERIVED, name)
+        if not os.path.exists(dst) \
+                or os.path.getmtime(dst) < os.path.getmtime(src):
+            os.makedirs(DERIVED, exist_ok=True)
+            if width != im.size[0]:
+                im = im.resize((width, int(round(width * im.size[1]
+                                                 / float(im.size[0])))),
+                               Image.LANCZOS)
+            im.save(dst, "WEBP", quality=QUALITY, method=6)
+            made += 1
+            if not quiet:
+                print("  wrote %s (%dx%d) from assets/%s"
+                      % (os.path.relpath(dst, ROOT), im.size[0], im.size[1], rel))
+        with Image.open(dst) as got:
+            rec["img"], rec["w"], rec["h"] = "projects/" + name, got.size[0], got.size[1]
+    return made
+
+
 if __name__ == "__main__":
     n = run(force="--force" in sys.argv, quiet=False)
     print("  %d card cover(s) written" % n)

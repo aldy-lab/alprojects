@@ -392,12 +392,59 @@
     }
     input.addEventListener("input", function () { parent[k] = input.value; markDirty(); });
     f.appendChild(input);
-    if (key === "_img")
-      f.appendChild(el("div", "hint",
-        "Путь внутри assets/. Новое фото пока загружает ALDY."));
+    if (key === "_img") f.appendChild(photoPicker(parent, k, input));
     var un = UNPRINTED[state.name + "." + key];
     if (un) f.appendChild(el("div", "hint", un));
     return f;
+  }
+
+  /* The photograph. It goes up as the original the phone produced; the build
+     derives the sizes the page needs and reads the real pixel dimensions off
+     the result, so the width and height fields are not something to type.
+     Which is why they are not offered: they were typed once, disagreed with
+     the file, and the news cards served 600px images into 626px boxes. */
+  function photoPicker(parent, k, pathInput) {
+    var wrap = el("div");
+    var row = el("div", "list-item");
+    var pick = el("button", "btn btn-s", "Загрузить фото");
+    pick.type = "button";
+    var file = el("input");
+    file.type = "file";
+    file.accept = "image/jpeg,image/png,image/webp";
+    file.style.display = "none";
+    var note = el("span", "hint");
+    note.style.flex = "1";
+    note.textContent = "JPEG, PNG или WebP, до 12 МБ. Размеры посчитает сборка.";
+
+    pick.addEventListener("click", function () { file.click(); });
+    file.addEventListener("change", function () {
+      var f = file.files && file.files[0];
+      if (!f) return;
+      pick.disabled = true;
+      note.textContent = "Загружаем " + f.name + "…";
+      /* The bytes, raw. No multipart and no base64 on the way up: the endpoint
+         sniffs the magic numbers, so the body is the file and nothing else. */
+      api("?a=upload&name=" + encodeURIComponent(f.name), {
+        method: "POST",
+        headers: { "content-type": "application/octet-stream" },
+        body: f,
+      }).then(function (r) {
+        pick.disabled = false;
+        file.value = "";
+        if (!r.ok) { note.textContent = "Не загрузилось: " + (r.error || "ошибка"); return; }
+        parent[k] = r.img;
+        pathInput.value = r.img;
+        note.textContent = "Загружено. Фото появится на сайте после сохранения.";
+        markDirty();
+      }).catch(function () {
+        pick.disabled = false;
+        note.textContent = "Не загрузилось: нет связи";
+      });
+    });
+
+    row.appendChild(pick); row.appendChild(note);
+    wrap.appendChild(row); wrap.appendChild(file);
+    return wrap;
   }
 
   /* Option lists, fetched once. Kept outside `state` because they belong to

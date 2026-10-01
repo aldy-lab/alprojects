@@ -973,6 +973,11 @@ def facts_html(facts):
 
 # Derived here rather than in the thumbs.run() call at the top of this file,
 # because that runs before the article table exists.
+# Before the variants, not after: a photograph the client uploaded is not yet
+# a -1200.webp, and news_variants() keys off that name. adopt_uploads rewrites
+# the record in place, so everything downstream sees the derived file and the
+# size read off it rather than a size somebody typed.
+thumbs.adopt_uploads(ARTICLES, quiet=False)
 thumbs.news_variants([_a["img"] for _a in ARTICLES])
 
 CARD_SIZES = "(max-width: 760px) 92vw, (max-width: 1440px) 44vw, 625px"

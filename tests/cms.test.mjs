@@ -182,6 +182,74 @@ test("a translation file has no _order and saves anyway", async () => {
                /\/contents\/content\/translations\/ru\.json$/);
 });
 
+test("an upload is judged by its bytes, and its name cannot become a path", async () => {
+  const cookie = await signIn();
+  const JPEG = Buffer.concat([Buffer.from([0xFF, 0xD8, 0xFF]), Buffer.alloc(40, 7)]);
+
+  /* 404 on the probe means "this name is free", which is the path a first
+     upload takes. */
+  globalThis.fetch = async (url, init) => {
+    calls.push({ url: String(url), method: (init && init.method) || "GET" });
+    if (init && init.method === "PUT")
+      return new Response(JSON.stringify({ content: { sha: "s" } }), { status: 200 });
+    return new Response("{}", { status: 404 });
+  };
+
+  /* A name that tries to be a path. Every one of them has to come out as a
+     file directly inside assets/uploads/ -- one slash after uploads, no dots
+     in the stem, and the extension decided by the magic bytes. */
+  for (const name of ["../../tools/build-pages.py", "/etc/passwd", "a/b/c.jpg",
+                      "..%2F..%2Fx", "....//x.jpg", ".bashrc", "-rf", "шеллкод.jpg"]) {
+    calls = [];
+    const r = await handle(new Request(
+      "https://alprojects.eu/api/cms?a=upload&name=" + encodeURIComponent(name),
+      { method: "POST", headers: { cookie }, body: JPEG }), ENV);
+    assert.equal(r.status, 200, name);
+    const got = (await r.json()).img;
+    assert.match(got, /^uploads\/[a-z0-9-]+\.jpg$/, name + " -> " + got);
+    const put = calls.find((c) => c.method === "PUT");
+    assert.match(put.url, /\/contents\/assets\/uploads\/[a-z0-9-]+\.jpg$/, name);
+  }
+
+  /* A .jpg name over PNG bytes is a PNG. */
+  calls = [];
+  const PNG = Buffer.concat([Buffer.from([0x89, 0x50, 0x4E, 0x47]), Buffer.alloc(40, 1)]);
+  let r = await handle(new Request("https://alprojects.eu/api/cms?a=upload&name=shot.jpg",
+    { method: "POST", headers: { cookie }, body: PNG }), ENV);
+  assert.match((await r.json()).img, /\.png$/);
+
+  /* Anything that is not one of the three is refused before it is stored. */
+  calls = [];
+  r = await handle(new Request("https://alprojects.eu/api/cms?a=upload&name=x.jpg",
+    { method: "POST", headers: { cookie }, body: Buffer.from("<?php echo 1; ?>") }), ENV);
+  assert.equal(r.status, 415);
+  assert.equal(calls.filter((c) => c.method === "PUT").length, 0);
+
+  /* And no session, no upload. */
+  r = await handle(new Request("https://alprojects.eu/api/cms?a=upload&name=x.jpg",
+    { method: "POST", body: JPEG }), ENV);
+  assert.equal(r.status, 401);
+});
+
+test("an upload does not overwrite a photograph that is already there", async () => {
+  const cookie = await signIn();
+  const JPEG = Buffer.concat([Buffer.from([0xFF, 0xD8, 0xFF]), Buffer.alloc(40, 7)]);
+  let seen = 0;
+  globalThis.fetch = async (url, init) => {
+    if (init && init.method === "PUT") {
+      calls.push({ url: String(url), method: "PUT" });
+      return new Response(JSON.stringify({ content: { sha: "s" } }), { status: 200 });
+    }
+    /* The first two names exist, the third does not. */
+    return new Response("{}", { status: ++seen <= 2 ? 200 : 404 });
+  };
+  calls = [];
+  const r = await handle(new Request("https://alprojects.eu/api/cms?a=upload&name=crane.jpg",
+    { method: "POST", headers: { cookie }, body: JPEG }), ENV);
+  assert.equal((await r.json()).img, "uploads/crane-3.jpg");
+  assert.match(calls.find((c) => c.method === "PUT").url, /crane-3\.jpg$/);
+});
+
 test("GET cannot save, POST cannot be swapped for it", async () => {
   const cookie = await signIn();
   const r = await handle(req("?a=save&f=positions", { headers: { cookie } }), ENV);
