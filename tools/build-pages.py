@@ -2812,7 +2812,11 @@ _write_sitemap()
 # robots.txt carries one absolute URL and was the 46th place the domain was
 # written out. Generated, so it cannot be the file that still points at the old
 # host after a move.
-_ROBOTS = "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % ORIGIN
+# /admin is the editor. It is behind a password and carries noindex, but a
+# crawler should not be spending requests on it either, and a URL that appears
+# in no index is one fewer thing for somebody to go looking at.
+_ROBOTS = ("User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: %s/sitemap.xml\n"
+           % ORIGIN)
 _robots_path = os.path.join(ROOT, "robots.txt")
 if not os.path.exists(_robots_path) or io.open(_robots_path, encoding="utf-8").read() != _ROBOTS:
     io.open(_robots_path, "w", encoding="utf-8").write(_ROBOTS)
@@ -2878,6 +2882,12 @@ def _warn_if_alternates_missing():
         missing = []
         for dirpath, dirnames, filenames in os.walk(ROOT):
             if ".git" in dirpath:
+                continue
+            # admin/ is the editor, not a page of the site. It is not in
+            # source_pages(), never translated, never in the sitemap -- so a
+            # warning that it has no hreflang is a warning about the right
+            # answer, and a warning that cries wolf is one nobody reads.
+            if os.path.relpath(dirpath, ROOT).split(os.sep)[0] == "admin":
                 continue
             for name in filenames:
                 if not name.endswith(".html"):
