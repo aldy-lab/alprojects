@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Редактор — ALPROJECTS</title>
+<link rel="stylesheet" href="/css/fonts.css">
+<style>
+/* The site's tokens, the ones a desk needs -- not an import of style.css,
+   which is 8600 lines about a public site. Same ground, same two faces, same
+   cool greys, so the editor reads as part of the same product.
+
+   The borrowed motifs are the ones that mean something here: the numbered
+   list (the order IS the publish order), the corner ticks on a panel, and the
+   title block along the bottom, which is where a drawing puts its state. */
+:root{
+  --bg:#07070b; --panel:#0b0c12; --panel-2:#0f1018; --sunk:#090a10;
+  --line:#1a1c25; --line-2:#242733; --line-3:#343845;
+  --text:#e9eaef; --muted:#9a9db0; --muted-2:#6b6e80; --muted-3:#4a4d5c;
+  --accent:#8fa6c8; --accent-dim:#51617a;
+  --ok:#7ea893; --warn:#b9a079; --bad:#c17e7e;
+  --font:"Poppins","Segoe UI",system-ui,sans-serif;
+  --display:"Montserrat","Segoe UI",system-ui,sans-serif;
+  --rail:252px; --bar:58px; --top:56px;
+  --t:170ms cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:dark;overflow-x:clip}
+body{background:var(--bg);color:var(--text);font:400 15px/1.6 var(--font);
+     -webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+input,textarea,select{font-size:16px}   /* below 16 iOS zooms on focus */
+:focus-visible{outline:1px solid var(--accent);outline-offset:2px}
+
+/* type helpers */
+.lbl{font:500 9.5px/1 var(--display);letter-spacing:.17em;text-transform:uppercase;
+     color:var(--muted-2)}
+.num{font:400 11px/1 var(--display);letter-spacing:.1em;color:var(--muted-3);
+     font-variant-numeric:tabular-nums}
+
+/* buttons */
+.btn{border:1px solid var(--line-3);background:transparent;color:var(--muted);
+     padding:0 15px;height:36px;cursor:pointer;letter-spacing:.11em;
+     font:500 10px/1 var(--display);text-transform:uppercase;transition:var(--t);
+     display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.btn:hover{border-color:var(--accent-dim);color:var(--text)}
+.btn[disabled]{opacity:.35;cursor:default}
+.btn-go{background:var(--text);color:#06070a;border-color:var(--text)}
+.btn-go:hover{background:var(--accent);border-color:var(--accent);color:#06070a}
+.btn-q{border-color:transparent;padding:0 9px}
+.btn-q:hover{border-color:var(--line-3)}
+@media (hover:none){.btn:hover{border-color:var(--line-3);color:var(--muted)}}
+
+/* ============================================================
+   THE GATE
+   ============================================================ */
+#gate{min-height:100dvh;display:grid;place-items:center;padding:24px;
+      background:
+        radial-gradient(760px 420px at 18% 8%, rgba(18,41,75,.42), transparent 62%),
+        var(--bg)}
+#gate .card{width:min(392px,100%);border:1px solid var(--line-2);
+            background:var(--panel);padding:38px 34px 32px;position:relative}
+/* Corner ticks: the site marks a plate this way, and it is the cheapest way to
+   say "this is the same drawing" without adding a colour. */
+#gate .card::before,#gate .card::after{content:"";position:absolute;width:9px;height:9px;
+  border:1px solid var(--line-3)}
+#gate .card::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+#gate .card::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+#gate .mark{font:300 13px/1 var(--display);letter-spacing:.22em;color:var(--muted-2);
+            margin-bottom:26px}
+#gate h1{font:200 30px/1.1 var(--display);letter-spacing:.005em;margin-bottom:8px}
+#gate .sub{color:var(--muted);font-size:13px;margin-bottom:28px}
+#gate label{display:block;margin-bottom:8px}
+#gate input{width:100%;background:var(--sunk);border:1px solid var(--line-2);
+            padding:0 14px;height:48px;transition:var(--t)}
+#gate input:focus{outline:none;border-color:var(--accent)}
+#gate .btn{width:100%;height:48px;justify-content:center;margin-top:14px}
+#gate .langs{position:absolute;top:14px;right:14px;display:flex;gap:2px}
+.msg{margin-top:16px;font-size:13px;color:var(--bad);min-height:19px}
+
+/* language toggle, shared */
+.langs button{background:none;border:0;color:var(--muted-3);cursor:pointer;
+  font:500 10px/1 var(--display);letter-spacing:.12em;padding:8px 8px;transition:var(--t)}
+.langs button:hover{color:var(--muted)}
+.langs button.on{color:var(--text)}
+
+/* ============================================================
+   THE DESK
+   ============================================================ */
+#app{display:none}
+#app.on{display:block}
+
+#top{position:fixed;inset:0 0 auto 0;height:var(--top);z-index:9;
+     background:var(--panel-2);border-bottom:1px solid var(--line-2);
+     display:flex;align-items:center;gap:18px;padding:0 18px}
+#top .mark{font:300 12px/1 var(--display);letter-spacing:.2em;color:var(--muted-2)}
+#top .mark b{color:var(--text);font-weight:400}
+#top .sp{flex:1}
+
+#body{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);
+      padding-top:var(--top);min-height:100dvh}
+
+#rail{border-right:1px solid var(--line);background:var(--panel);
+      position:sticky;top:var(--top);height:calc(100dvh - var(--top));
+      overflow:auto;padding:20px 0 28px}
+#rail h2{padding:18px 18px 9px}
+#rail h2:first-child{padding-top:0}
+#rail a{display:flex;align-items:center;gap:10px;text-decoration:none;
+        border-left:2px solid transparent;padding:0 18px;height:40px;
+        color:var(--muted);cursor:pointer;font-size:14px;transition:var(--t)}
+#rail a:hover{color:var(--text);background:rgba(255,255,255,.015)}
+#rail a.on{color:var(--text);border-left-color:var(--accent);background:var(--panel-2)}
+#rail a .n{margin-left:auto;font:400 11px/1 var(--display);color:var(--muted-3);
+           font-variant-numeric:tabular-nums}
+
+#main{padding:28px clamp(18px,2.6vw,40px) calc(var(--bar) + 44px);min-width:0}
+.head{margin-bottom:24px}
+.head .over{display:flex;align-items:baseline;gap:12px;margin-bottom:9px}
+.head h1{font:200 27px/1.15 var(--display);letter-spacing:.01em}
+.head .rule{height:1px;background:var(--line-2);margin-top:14px;position:relative}
+.head .rule::after{content:"";position:absolute;left:0;top:0;width:52px;height:1px;
+  background:var(--accent-dim)}
+
+.cols{display:grid;grid-template-columns:286px minmax(0,1fr);gap:26px;align-items:start}
+.cols>.recs{position:sticky;top:calc(var(--top) + 26px)}
+
+/* the ordered list of records. The number is the publish order -- it is the
+   thing the arrows change, so it is information, not decoration. */
+.recs{border:1px solid var(--line);background:var(--panel)}
+.rec{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:8px;
+     border-bottom:1px solid var(--line);padding:0 10px 0 12px;min-height:46px;
+     transition:var(--t);position:relative}
+.rec:last-of-type{border-bottom:0}
+.rec:hover{background:rgba(255,255,255,.015)}
+.rec.on{background:var(--panel-2)}
+.rec.on::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--accent)}
+.rec .num{color:var(--muted-3)}
+.rec.on .num{color:var(--accent)}
+.rec .nm{text-align:left;background:none;border:0;color:var(--muted);cursor:pointer;
+         font-size:13.5px;padding:11px 0;min-height:44px;overflow:hidden;
+         text-overflow:ellipsis;white-space:nowrap;transition:var(--t)}
+.rec.on .nm{color:var(--text)}
+.rec .acts{display:flex;gap:1px;opacity:0;transition:var(--t)}
+.rec:hover .acts,.rec.on .acts{opacity:1}
+.rec .mv{background:none;border:1px solid transparent;color:var(--muted-3);cursor:pointer;
+         width:26px;height:26px;line-height:1;font-size:11px;transition:var(--t)}
+.rec .mv:hover{color:var(--text);border-color:var(--line-3)}
+.rec .mv.rm:hover{color:var(--bad);border-color:var(--bad)}
+.rec .dot{width:5px;height:5px;border-radius:50%;background:var(--ok);flex:none}
+.rec .dot.off{background:var(--muted-3)}
+.recs .add{width:100%;border:0;border-top:1px solid var(--line-2);background:none;
+           color:var(--accent-dim);cursor:pointer;height:46px;transition:var(--t);
+           font:500 10px/1 var(--display);letter-spacing:.14em;text-transform:uppercase}
+.recs .add:hover{color:var(--accent);background:rgba(143,166,200,.04)}
+
+/* panels and fields */
+.panel{border:1px solid var(--line);background:var(--panel);
+       padding:clamp(18px,2.2vw,30px);position:relative}
+.panel+.panel{margin-top:22px}
+.panel>.cap{display:flex;align-items:center;gap:12px;margin:-4px 0 22px}
+.panel>.cap .rule{flex:1;height:1px;background:var(--line-2)}
+
+.f{margin-bottom:19px}
+.f>label{display:block;margin-bottom:7px}
+/* Every control inside a panel, not just the ones directly under .f: the
+   items of a list live in .group, and scoping this to .f left them with the
+   browser's own light-grey textarea on a dark panel. It looked like a
+   rendering fault and it was a selector that did not reach. */
+.panel input[type=text],.panel input[type=date],.panel select{
+  width:100%;background:var(--sunk);border:1px solid var(--line-2);
+  padding:0 13px;height:44px;transition:var(--t)}
+.panel textarea{width:100%;background:var(--sunk);border:1px solid var(--line-2);
+  padding:11px 13px;resize:vertical;line-height:1.6;transition:var(--t)}
+.f>textarea{min-height:98px}
+.panel input:focus,.panel textarea:focus,.panel select:focus{outline:none;
+  border-color:var(--accent);background:var(--panel-2)}
+.f .hint{font-size:12px;color:var(--muted-2);margin-top:6px;line-height:1.5}
+.f.struct>label{color:var(--muted-3)}
+.list-item{display:flex;gap:7px;align-items:flex-start;margin-bottom:7px}
+.list-item>textarea,.list-item>.hint{flex:1}
+.list-row{display:grid;grid-template-columns:26px 1fr auto;gap:8px;align-items:start;
+          margin-bottom:7px}
+.list-row .num{padding-top:15px}
+.group{border-left:1px solid var(--line-2);padding-left:17px;margin:18px 0 24px}
+.group>.lbl{margin-bottom:13px;display:block}
+.chk{display:flex;align-items:center;gap:11px;min-height:44px;cursor:pointer}
+.chk input{width:20px;height:20px;accent-color:var(--accent)}
+
+/* translations */
+.tabs{display:flex;border-bottom:1px solid var(--line-2);margin:-4px 0 20px}
+.tabs button{background:none;border:0;border-bottom:1px solid transparent;
+  color:var(--muted-3);padding:0 14px;height:42px;cursor:pointer;transition:var(--t);
+  font:500 10px/1 var(--display);letter-spacing:.14em}
+.tabs button:hover{color:var(--muted)}
+.tabs button.on{color:var(--text);border-bottom-color:var(--accent)}
+.tr{border-bottom:1px solid var(--line);padding:15px 0}
+.tr:last-child{border-bottom:0}
+.tr .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tr .en{color:var(--muted-2);font-size:12.5px;margin:7px 0 9px;white-space:pre-wrap;
+        border-left:1px solid var(--line-2);padding-left:11px}
+.tr textarea{width:100%;background:var(--sunk);border:1px solid var(--line-2);
+  padding:10px 12px;line-height:1.6;resize:vertical;transition:var(--t)}
+.tr textarea:focus{outline:none;border-color:var(--accent);background:var(--panel-2)}
+.tag{font:500 9px/1 var(--display);letter-spacing:.13em;text-transform:uppercase;
+     padding:4px 7px;border:1px solid currentColor}
+.tag.ok{color:var(--ok)}.tag.warn{color:var(--warn)}.tag.bad{color:var(--bad)}
+
+/* the title block: where a drawing keeps its state, so that is where this
+   keeps "unsaved" and the buttons that resolve it */
+#bar{position:fixed;left:var(--rail);right:0;bottom:0;height:var(--bar);z-index:9;
+     background:var(--panel-2);border-top:1px solid var(--line-2);
+     display:none;align-items:stretch}
+#bar.on{display:flex}
+#bar .cell{display:flex;flex-direction:column;justify-content:center;gap:4px;
+           padding:0 18px;border-right:1px solid var(--line);min-width:0}
+#bar .cell .v{font:400 12px/1 var(--display);letter-spacing:.06em;color:var(--text);
+              white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bar .grow{flex:1;border-right:0}
+#bar .acts{display:flex;align-items:center;gap:9px;padding:0 18px}
+#bar .v.dirty{color:var(--warn)}#bar .v.bad{color:var(--bad)}#bar .v.ok{color:var(--ok)}
+
+.empty{color:var(--muted-2);font-size:13px;padding:6px 0}
+
+/* ============================================================
+   TOUCH AND NARROW -- LAST IN THE FILE, and it has to stay last.
+   The first version of this block sat beside the other media query, above the
+   rules it overrides: same specificity, earlier in the file, so every
+   declaration in it was inert while the diff looked exactly right. The
+   buttons were still 26px. Measure, do not read.
+   ============================================================ */
+@media (max-width:960px){
+  #body{grid-template-columns:1fr}
+  #rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);
+        display:flex;flex-wrap:wrap;gap:2px;padding:10px}
+  #rail h2{display:none}
+  #rail a{border-left:0;border:1px solid var(--line-2);height:40px;padding:0 13px}
+  #rail a.on{border-color:var(--accent-dim)}
+  .cols{grid-template-columns:1fr}
+  .cols>.recs{position:static}
+  #bar{left:0}
+}
+@media (hover:none),(max-width:600px){
+  .rec{grid-template-columns:28px 1fr auto;min-height:52px}
+  .rec .acts{opacity:1}
+  .rec .mv{width:44px;height:44px;font-size:14px}
+  .rec .nm{min-height:46px}
+  .btn,#rail a,.tabs button,.langs button{min-height:44px}
+  .langs button{padding:0 12px}
+  .btn{height:44px}
+  .chk input{width:24px;height:24px}
+  #bar{height:auto;flex-wrap:wrap;padding:8px 0}
+  #bar .cell{border-right:0;padding:6px 14px}
+  #bar .acts{width:100%;padding:6px 14px}
+  #bar .acts .btn{flex:1;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <form class="card" id="login">
+    <div class="langs" id="gate-langs"></div>
+    <div class="mark">ALPROJECTS</div>
+    <h1 data-t="gate_h1"></h1>
+    <p class="sub" data-t="gate_sub"></p>
+    <label class="lbl" for="pw" data-t="password"></label>
+    <input id="pw" type="password" autocomplete="current-password" required>
+    <button class="btn btn-go" type="submit" data-t="sign_in"></button>
+    <div class="msg" id="gate-msg"></div>
+  </form>
+</div>
+
+<div id="app">
+  <header id="top">
+    <span class="mark">ALPROJECTS <b data-t="editor"></b></span>
+    <span class="sp"></span>
+    <div class="langs" id="ui-langs"></div>
+    <button class="btn btn-q" id="out" data-t="sign_out"></button>
+  </header>
+
+  <div id="body">
+    <nav id="rail">
+      <h2 class="lbl" data-t="yours"></h2>
+      <div id="rail-mine"></div>
+      <h2 class="lbl" data-t="the_rest"></h2>
+      <div id="rail-rest"></div>
+    </nav>
+    <main id="main"></main>
+  </div>
+
+  <div id="bar">
+    <div class="cell"><span class="lbl" data-t="sheet"></span><span class="v" id="bar-sheet"></span></div>
+    <div class="cell grow"><span class="lbl" data-t="state"></span><span class="v" id="state"></span></div>
+    <div class="acts">
+      <button class="btn" id="revert" data-t="discard"></button>
+      <button class="btn btn-go" id="save" data-t="save"></button>
+    </div>
+  </div>
+</div>
+
+<script src="/admin/admin.js"></script>
+</body>
+</html>
