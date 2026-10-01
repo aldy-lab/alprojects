@@ -549,8 +549,23 @@ def last_changed(rel):
     return _today
 
 
-def save_lastmod():
-    """Only earns its keep if it is written back and committed."""
+def save_lastmod(pages=None):
+    """Only earns its keep if it is written back and committed.
+
+    `pages` is the set of English pages that still exist. Entries for anything
+    else are dropped: a record deleted in the CMS otherwise leaves its hash and
+    date in here for good, and the file grows by one dead entry per deletion
+    until somebody notices. Called without the argument nothing is pruned, so a
+    partial build cannot empty the manifest."""
+    if pages is not None:
+        dead = [rel for rel in _seen if rel not in pages]
+        for rel in dead:
+            del _seen[rel]
+        if dead:
+            _dirty[0] = True
+            for rel in dead:
+                print("  dropped %s from lastmod.json -- page no longer exists"
+                      % rel)
     if _dirty[0]:
         with io.open(LASTMOD_DB, "w", encoding="utf-8") as fh:
             _json.dump(_seen, fh, indent=1, sort_keys=True)
@@ -653,6 +668,27 @@ def main():
               % (lang, cov, len(outputs),
                  "  -- %d unit(s) in English, see below" % soft if soft else ""))
 
+    # A page the English build no longer produces must not survive in the
+    # translated trees either. build-pages.py sweeps its own output; this is
+    # the same sweep one level down, and without it a news item the client
+    # deleted stays live in three languages while 404-ing in English.
+    for lang in i18n.LANGS:
+        if lang == i18n.DEFAULT:
+            continue
+        root = os.path.join(ROOT, lang)
+        if not os.path.isdir(root):
+            continue
+        keep = {os.path.join(root, rel) for rel in pages if i18n.covers(lang, rel)}
+        for dirpath, _dirs, names in os.walk(root):
+            for name in names:
+                if not name.endswith(".html"):
+                    continue
+                full = os.path.join(dirpath, name)
+                if full not in keep:
+                    os.remove(full)
+                    print("  %s  removed %s -- gone from the source"
+                          % (lang, os.path.relpath(full, ROOT)))
+
     # languages that are not published must not leave an old tree behind
     for lang in i18n.LANGS:
         if lang == i18n.DEFAULT:
@@ -664,7 +700,7 @@ def main():
 
     with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as fh:
         fh.write(sitemap(pages))
-    save_lastmod()
+    save_lastmod(set(pages))
 
     # what still needs writing
     for lang in i18n.LANGS:
