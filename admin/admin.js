@@ -186,10 +186,12 @@
         var first = a.querySelector("span");
         if (first) first.textContent = title(a.dataset.name);
       });
+    paintMsg();
+    if (gateSay.key) gateSay(gateSay.key, gateSay.extra);
   }
 
   var state = { name: null, data: null, sha: null, rec: null,
-                lang: "t-ru", tr: {}, dirty: false };
+                lang: "t-ru", tr: {}, dirty: false, msg: null };
 
   /* ------------------------------------------------------------ plumbing */
 
@@ -201,15 +203,36 @@
       });
   }
 
-  function say(text, kind) {
+  /* A message set from code is not in the markup, so paintStatic() cannot find
+     it. Both of these therefore remember WHICH string they are showing rather
+     than the text they showed: switching language with a message on screen
+     left it in the old language, which looks like half a toggle.
+     `extra` is the part that is not translatable -- a file name, an error from
+     the server -- and it is kept separate so the translated half can change
+     under it. */
+  function say(key, kind, extra) {
+    state.msg = key ? [key, kind || "", extra || ""] : null;
+    paintMsg();
+  }
+
+  function paintMsg() {
     var s = $("#state");
-    s.textContent = text || "";
-    s.className = "v" + (kind ? " " + kind : "");
+    if (!s) return;
+    if (!state.msg) { s.textContent = ""; s.className = "v"; return; }
+    s.textContent = t(state.msg[0]) + (state.msg[2] ? ": " + state.msg[2] : "");
+    s.className = "v" + (state.msg[1] ? " " + state.msg[1] : "");
+  }
+
+  function gateSay(key, extra) {
+    var m = $("#gate-msg");
+    gateSay.key = key || null;
+    gateSay.extra = extra || "";
+    m.textContent = key ? t(key) + (extra ? ": " + extra : "") : "";
   }
 
   function markDirty() {
     state.dirty = true;
-    say(t("unsaved"), "dirty");
+    say("unsaved", "dirty");
     $("#bar").classList.add("on");
   }
 
@@ -217,16 +240,15 @@
 
   $("#login").addEventListener("submit", function (e) {
     e.preventDefault();
-    var msg = $("#gate-msg");
-    msg.textContent = t("checking");
+    gateSay("checking");
     api("?a=login", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ password: $("#pw").value }),
     }).then(function (r) {
       if (r.ok) { $("#pw").value = ""; start(); return; }
-      msg.textContent = r.status === 503 ? t("not_set_up") : t("wrong_pw");
-    }).catch(function () { msg.textContent = t("no_network"); });
+      gateSay(r.status === 503 ? "not_set_up" : "wrong_pw");
+    }).catch(function () { gateSay("no_network"); });
   });
 
   $("#out").addEventListener("click", function () {
@@ -671,7 +693,7 @@
   $("#save").addEventListener("click", function () {
     var btn = $("#save");
     btn.disabled = true;
-    say(t("saving"));
+    say("saving");
 
     /* The record file first. If it fails nothing else is sent: a translation
        saved against content that did not save points at nothing. */
@@ -696,12 +718,12 @@
         }, Promise.resolve());
     }).then(function () {
       state.dirty = false;
-      say(t("saved_msg"), "ok");
+      say("saved_msg", "ok");
       btn.disabled = false;
     }).catch(function (r) {
       btn.disabled = false;
-      say(r && r.status === 409 ? t("conflict")
-                               : t("not_saved") + ": " + ((r && r.error) || ""), "bad");
+      if (r && r.status === 409) say("conflict", "bad");
+      else say("not_saved", "bad", (r && r.error) || "");
     });
   });
 
@@ -723,6 +745,6 @@
   paintStatic();
   api("?a=session").then(function (r) {
     if (r.signedIn) { start(); return; }
-    if (!r.configured) $("#gate-msg").textContent = t("not_set_up");
+    if (!r.configured) gateSay("not_set_up");
   });
 })();
