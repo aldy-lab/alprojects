@@ -180,6 +180,25 @@ async function gh(path, env, init) {
   return res;
 }
 
+/* The same leaves tools/content.py flatten() produces, so an id built here
+   means the same field it means everywhere else. Underscore keys are structure
+   and are skipped; a list is numbered from 1 because the ids end up in front
+   of a person. */
+function flatten(node, prefix, out) {
+  out = out || {};
+  if (Array.isArray(node)) {
+    node.forEach((v, i) => flatten(v, prefix + "." + (i + 1), out));
+  } else if (node && typeof node === "object") {
+    for (const k of Object.keys(node)) {
+      if (k.startsWith("_")) continue;
+      flatten(node[k], prefix ? prefix + "." + k : k, out);
+    }
+  } else if (typeof node === "string" && node.trim()) {
+    out[prefix] = node;
+  }
+  return out;
+}
+
 /* --------------------------------------------------------------- the shape */
 
 /* A save that breaks _order builds a site with a record nobody can reach, or
@@ -289,6 +308,138 @@ export async function handle(request, env) {
     /* The value the record wants, so the page can set the field without
        knowing how any of this is laid out. */
     return json(200, { ok: true, img: target.replace(/^assets\//, "") });
+  }
+
+  /* ---------------------------------------------------------- translate
+     Machine translation, asked for explicitly and marked as machine when it
+     lands. The client wanted an edit in English to reach the other languages
+     without waiting for anybody, and the alternative -- an English line in the
+     middle of a Russian page -- is the thing he was complaining about.
+     Two things keep it from being worse than that:
+       - content/glossary.json forces the trade terms. Left to itself a
+         translator model renders "TIG welding" as "сварка TIG"; a welder reads
+         "аргонодуговая сварка", and the certificate he holds says so. The
+         Russian half of that file is the terminology block from lang_ru.py,
+         where every choice is argued.
+       - the examples are real pairs out of the human translations already in
+         the repository, so the register comes from a translator rather than
+         from the model's idea of a register.
+     The editor stores what comes back with by:"machine", and the panel says so,
+     so a reviewed line and a generated one never look alike. */
+  if (action === "translate") {
+    if (request.method !== "POST") return json(405, { ok: false, error: "POST" });
+    if (!env.ANTHROPIC_API_KEY)
+      return json(503, { ok: false, error: "machine translation is not configured" });
+    const to = url.searchParams.get("to") || "";
+    const LANGS = { ru: "Russian", fr: "French", de: "German", it: "Italian" };
+    if (!LANGS[to]) return json(400, { ok: false, error: "unknown language" });
+
+    let body;
+    try { body = await request.json(); } catch { return json(400, { ok: false, error: "body" }); }
+    const items = (body && body.items || []).filter(
+      (i) => i && typeof i.id === "string" && typeof i.text === "string" && i.text.trim());
+    if (!items.length) return json(400, { ok: false, error: "nothing to translate" });
+    if (items.length > 60) return json(400, { ok: false, error: "too many at once" });
+
+    /* The glossary, and examples mined from what is already translated. Both
+       are best-effort: a missing glossary makes the result worse, not broken. */
+    let glossary = {}, never = [];
+    try {
+      const g = await gh("content/glossary.json", env);
+      if (g.ok) {
+        const doc = JSON.parse(Buffer.from((await g.json()).content, "base64").toString("utf8"));
+        glossary = (doc.terms && doc.terms[to]) || {};
+        never = doc._never_translate || [];
+      }
+    } catch { /* keep going without it */ }
+
+    const examples = [];
+    try {
+      const collection = items[0].id.split(".")[0];
+      if (Object.prototype.hasOwnProperty.call(COLLECTIONS, collection)) {
+        const [cRes, sRes] = await Promise.all([
+          gh(COLLECTIONS[collection], env),
+          gh("content/translations/" + to + ".json", env),
+        ]);
+        if (cRes.ok && sRes.ok) {
+          const flat = flatten(JSON.parse(
+            Buffer.from((await cRes.json()).content, "base64").toString("utf8")), collection);
+          const store = JSON.parse(
+            Buffer.from((await sRes.json()).content, "base64").toString("utf8"));
+          for (const id of Object.keys(store)) {
+            if (examples.length >= 12) break;
+            const rec = store[id];
+            if (rec && rec.t && flat[id] && rec.by !== "machine")
+              examples.push([flat[id], rec.t]);
+          }
+        }
+      }
+    } catch { /* examples are a help, not a requirement */ }
+
+    const rules = [
+      "You are translating the copy of an industrial-services website into " + LANGS[to] + ".",
+      "The company does welding, pipe fitting, mechanical installation, inspection and rope access on shipyards and industrial plants.",
+      "Register: the trade language actually used on site by welders, fitters and supervisors. Not marketing prose, not a literal word-for-word rendering.",
+      "Keep any inline HTML exactly as it appears, including attributes and the text inside <a> tags.",
+      "Keep numbers, dates, rotation ratios such as 8 / 2, email addresses and URLs unchanged.",
+      "Never translate these names, reproduce them letter for letter: " + never.join(", ") + ".",
+      "Where a term appears in the glossary, use the glossary wording and not your own.",
+    ].join("\n");
+
+    const glossaryText = Object.keys(glossary).length
+      ? "GLOSSARY (English -> required " + LANGS[to] + "):\n" +
+        Object.keys(glossary).map((k) => k + " -> " + glossary[k]).join("\n")
+      : "";
+    const exampleText = examples.length
+      ? "\n\nEXISTING TRANSLATIONS FROM THIS SITE, as the register to match:\n" +
+        examples.map((p) => p[0] + "\n-> " + p[1]).join("\n\n")
+      : "";
+
+    const ask =
+      "Translate each string. Reply with JSON only: an object whose keys are the ids " +
+      "given and whose values are the translations. No other text.\n\n" +
+      JSON.stringify(items.map((i) => ({ id: i.id, text: i.text })), null, 1);
+
+    let out;
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "x-api-key": env.ANTHROPIC_API_KEY,
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          model: env.ANTHROPIC_MODEL || "claude-sonnet-5",
+          max_tokens: 8000,
+          thinking: { type: "adaptive" },
+          system: rules + (glossaryText ? "\n\n" + glossaryText : "") + exampleText,
+          messages: [{ role: "user", content: ask }],
+        }),
+      });
+      if (!res.ok)
+        return json(502, { ok: false, error: "translator " + res.status });
+      const msg = await res.json();
+      const text = (msg.content || [])
+        .filter((b) => b.type === "text").map((b) => b.text).join("");
+      const m = text.match(/\{[\s\S]*\}/);
+      if (!m) return json(502, { ok: false, error: "the translator did not return JSON" });
+      out = JSON.parse(m[0]);
+    } catch (e) {
+      return json(502, { ok: false, error: "translator unreachable" });
+    }
+
+    /* Only ids that were asked for, and never an empty string: a blank would
+       be written into the store and blank that line on the site, which is a
+       worse outcome than the English it was meant to replace. */
+    const clean = {};
+    for (const i of items) {
+      const v = out[i.id];
+      if (typeof v === "string" && v.trim()) clean[i.id] = v.trim();
+    }
+    if (!Object.keys(clean).length)
+      return json(502, { ok: false, error: "the translator returned nothing usable" });
+    return json(200, { ok: true, out: clean, missing: items.length - Object.keys(clean).length });
   }
 
   if (action === "list" && request.method === "GET")

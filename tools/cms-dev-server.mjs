@@ -29,11 +29,31 @@ const ENV = {
   GITHUB_TOKEN: "development only",
   GITHUB_REPO: "local/working-tree",
   GITHUB_BRANCH: "main",
+  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || "stubbed-in-development",
 };
 
 const shaOf = (b) => crypto.createHash("sha1").update(b).digest("hex");
 
+/* The translator, stubbed. Pass a real ANTHROPIC_API_KEY in the environment to
+   let the call through and read what the model actually writes; without one it
+   answers with a marked placeholder, which is enough to test the whole chain:
+   the editor asks, the store is written with by:"machine", the build uses it
+   and reports it. The model's wording is the one thing this cannot check, and
+   the one thing a person has to look at anyway. */
+const realFetch = globalThis.fetch;
 globalThis.fetch = async (url, init) => {
+  if (String(url).startsWith("https://api.anthropic.com/")) {
+    if (process.env.ANTHROPIC_API_KEY) return realFetch(url, init);
+    const sent = JSON.parse(init.body);
+    const asked = JSON.parse(sent.messages[0].content.slice(
+      sent.messages[0].content.indexOf("[")));
+    const out = {};
+    for (const i of asked) out[i.id] = "[" + i.text + "]";
+    console.log("  (translator stubbed: " + asked.length + " string(s))");
+    return new Response(JSON.stringify({
+      content: [{ type: "text", text: JSON.stringify(out) }],
+    }), { status: 200 });
+  }
   const m = String(url).match(/\/contents\/([^?]+)/);
   if (!m) return new Response("{}", { status: 404 });
   const file = path.join(ROOT, decodeURIComponent(m[1]));

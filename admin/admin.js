@@ -69,6 +69,13 @@
     tr_none:     ["нет перевода", "not translated"],
     tr_stale:    ["английский изменился", "English changed"],
     tr_unknown:  ["проверьте", "check this"],
+    tr_machine:  ["машинный перевод", "machine translation"],
+    translating: ["Переводим…", "Translating…"],
+    tr_failed:   ["Перевести не удалось, текст остался английским",
+                  "Translation failed; the text stays in English"],
+    auto_on:     ["Переводить автоматически", "Translate automatically"],
+    auto_hint:   ["При сохранении всё непереведённое и всё, где английский изменился, переводится машиной и помечается как машинный перевод.",
+                  "On save, anything untranslated or whose English has changed is machine translated and marked as such."],
     tr_checking: ["…", "…"],
     translation: ["Перевод", "Translation"],
     content:     ["Содержание", "Content"],
@@ -236,6 +243,25 @@
     state.dirty = true;
     say("unsaved", "dirty");
     $("#bar").classList.add("on");
+    /* Editing the English changes what the translation panel is about, so the
+       panel has to follow -- otherwise it sits there showing the sentence
+       before the edit, next to a badge about that older sentence. Only that
+       node is rebuilt, never the form: a full render would take the caret out
+       of the field being typed in. Debounced, because this runs on every
+       keystroke. */
+    if (_panelTimer) clearTimeout(_panelTimer);
+    _panelTimer = setTimeout(refreshTranslations, 700);
+  }
+
+  var _panelTimer = null;
+
+  function refreshTranslations() {
+    _panelTimer = null;
+    var old = document.querySelector("#main .panel-tr");
+    if (!old || !state.rec || MINE.indexOf(state.name) < 0) return;
+    /* Do not steal the caret from a translation being typed in this panel. */
+    if (old.contains(document.activeElement)) return;
+    old.parentNode.replaceChild(translationPanel(), old);
   }
 
   /* ------------------------------------------------------------ the gate */
@@ -644,11 +670,21 @@
   }
 
   function translationPanel() {
-    var wrap = el("div", "panel");
+    var wrap = el("div", "panel panel-tr");
     var cap = el("div", "cap");
     cap.appendChild(el("span", "lbl", t("translation")));
     cap.appendChild(el("span", "rule"));
     wrap.appendChild(cap);
+
+    var auto = el("label", "chk");
+    var acb = el("input"); acb.type = "checkbox"; acb.checked = autoTranslate();
+    acb.addEventListener("change", function () {
+      try { localStorage.setItem("cms_auto", acb.checked ? "1" : "0"); } catch (e) {}
+    });
+    auto.appendChild(acb);
+    auto.appendChild(el("span", "lbl", t("auto_on")));
+    wrap.appendChild(auto);
+    wrap.appendChild(el("div", "hint", t("auto_hint")));
 
     var tabs = el("div", "tabs");
     TR_LANGS.forEach(function (p) {
@@ -693,13 +729,20 @@
         badge.className = "tag " + cls;
         badge.textContent = t(key);
       };
+      var fresh = function () {
+        /* A machine line is finished as far as the site is concerned -- the
+           page will not be in English -- but it is not the same claim as a
+           line somebody read. Its own badge, so the two never look alike. */
+        setBadge(rec.by === "machine" ? "mach" : "ok",
+                 rec.by === "machine" ? "tr_machine" : "tr_ok");
+      };
       if (!rec || !rec.t) setBadge("bad", "tr_none");
       else if (rec.src != null && rec.src !== english) setBadge("warn", "tr_stale");
       else {
         setBadge("", "tr_checking");
         fingerprint(english).then(function (h) {
           if (h === null) setBadge("warn", "tr_unknown");
-          else if (rec.en && rec.en === h) setBadge("ok", "tr_ok");
+          else if (rec.en && rec.en === h) fresh();
           else setBadge("warn", "tr_stale");
         });
       }
@@ -709,8 +752,13 @@
       ta.rows = Math.min(10, Math.max(2, Math.ceil(english.length / 70)));
       ta.value = (rec && rec.t) || "";
       ta.addEventListener("input", function () {
+        /* Touched by a person, so it stops being a machine line. `by` is
+           simply left off rather than set to "human": absent is what every
+           translation written before this feature existed looks like. */
         store.data[id] = { en: (rec && rec.en) || "", t: ta.value, src: english };
         store.dirty = true;
+        if (rec) rec.by = undefined;
+        setBadge("ok", "tr_ok");
         markDirty();
       });
       tr.appendChild(ta);
@@ -727,36 +775,119 @@
     open(state.name);
   });
 
+  function autoTranslate() {
+    try { return localStorage.getItem("cms_auto") !== "0"; } catch (e) { return true; }
+  }
+
+  /* Everything in this record that would otherwise render in English: no
+     translation at all, or one made from English that has since changed. The
+     fingerprint decides, the same one the build uses. */
+  function needsTranslation(storeData, rows) {
+    return Promise.all(rows.map(function (pair) {
+      var id = state.name + "." + state.rec + "." + pair[0];
+      var rec = storeData[id];
+      if (!rec || !rec.t) return { id: id, text: pair[1] };
+      if (rec.src != null && rec.src !== pair[1]) return { id: id, text: pair[1] };
+      return fingerprint(pair[1]).then(function (h) {
+        if (h !== null && rec.en === h) return null;     /* current, leave it */
+        return { id: id, text: pair[1] };
+      });
+    })).then(function (list) { return list.filter(Boolean); });
+  }
+
+  /* Fill every language before anything is written. Order matters and it is
+     the opposite of what it was: the stores are saved BEFORE the content file,
+     so the commit that starts the rebuild already has the translations beside
+     it. Saved the other way round there is a window -- a minute or two of a
+     Russian page with an English line on it, which is the thing this feature
+     exists to remove. */
+  function translateAll() {
+    if (!autoTranslate() || MINE.indexOf(state.name) < 0) return Promise.resolve();
+    var rows = leaves(state.data[state.rec], "", []).filter(function (pair) {
+      return !UNPRINTED[state.name + "." + pair[0].split(".")[0]];
+    });
+    if (!rows.length) return Promise.resolve();
+
+    return TR_LANGS.reduce(function (chain, pair) {
+      var code = pair[0];
+      return chain.then(function () {
+        var load = state.tr[code]
+          ? Promise.resolve(state.tr[code])
+          : api("?a=load&f=" + code).then(function (r) {
+              if (!r.ok) return null;
+              state.tr[code] = { data: r.data, sha: r.sha };
+              return state.tr[code];
+            });
+        return load.then(function (store) {
+          if (!store) return;
+          return needsTranslation(store.data, rows).then(function (items) {
+            if (!items.length) return;
+            say("translating", "dirty", pair[1]);
+            return api("?a=translate&to=" + code.replace("t-", ""), {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({ items: items }),
+            }).then(function (r) {
+              if (!r.ok || !r.out) { translateAll.failed = true; return; }
+              return Promise.all(Object.keys(r.out).map(function (id) {
+                var src = (items.filter(function (i) { return i.id === id; })[0] || {}).text;
+                return fingerprint(src || "").then(function (h) {
+                  store.data[id] = { en: h || "", t: r.out[id], by: "machine" };
+                });
+              })).then(function () { store.dirty = true; });
+            });
+          });
+        });
+      });
+    }, Promise.resolve());
+  }
+
   $("#save").addEventListener("click", function () {
     var btn = $("#save");
     btn.disabled = true;
     say("saving");
 
-    /* The record file first. If it fails nothing else is sent: a translation
-       saved against content that did not save points at nothing. */
-    post(state.name, state.data, state.sha).then(function (r) {
-      if (!r.ok) throw r;
-      state.sha = r.sha;
+    translateAll.failed = false;
+    /* Translate, then write the stores, then write the content LAST. The
+       content commit is what starts the rebuild, so by the time it lands the
+       translations are already beside it and no page is built with an English
+       line in it. The first version saved content first, on the reasoning that
+       a translation pointing at unsaved content points at nothing -- true, and
+       the lesser of the two problems: a store ahead of its content reads as
+       stale and falls back to English, which is exactly where it was anyway. */
+    translateAll().then(function () {
       return Object.keys(state.tr).filter(function (l) { return state.tr[l].dirty; })
         .reduce(function (chain, l) {
           return chain.then(function () {
-            var s = state.tr[l];
+            var st = state.tr[l];
             /* `src` is this page's bookkeeping and has no business in the file:
-               the build reads `en` and `t`, and nothing else. */
+               the build reads `en`, `t` and `by`, and nothing else. */
             var clean = {};
-            Object.keys(s.data).forEach(function (key) {
-              clean[key] = { en: s.data[key].en || "", t: s.data[key].t };
+            Object.keys(st.data).forEach(function (key) {
+              var r = st.data[key];
+              clean[key] = { en: r.en || "", t: r.t };
+              if (r.by) clean[key].by = r.by;
             });
-            return post(l, clean, s.sha).then(function (rr) {
+            return post(l, clean, st.sha).then(function (rr) {
               if (!rr.ok) throw rr;
-              s.sha = rr.sha; s.dirty = false;
+              st.sha = rr.sha; st.dirty = false;
             });
           });
         }, Promise.resolve());
     }).then(function () {
+      return post(state.name, state.data, state.sha).then(function (r) {
+        if (!r.ok) throw r;
+        state.sha = r.sha;
+      });
+    }).then(function () {
       state.dirty = false;
-      say("saved_msg", "ok");
+      /* A failed translation is not a failed save: the content went in and the
+         page will show English for those lines. Say which it is rather than
+         "saved" over the top of it. */
+      say(translateAll.failed ? "tr_failed" : "saved_msg",
+          translateAll.failed ? "warn" : "ok");
       btn.disabled = false;
+      render();
     }).catch(function (r) {
       btn.disabled = false;
       if (r && r.status === 409) say("conflict", "bad");
