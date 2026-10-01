@@ -250,6 +250,68 @@ test("an upload does not overwrite a photograph that is already there", async ()
   assert.match(calls.find((c) => c.method === "PUT").url, /crane-3\.jpg$/);
 });
 
+test("machine translation: refused when unconfigured, and no session means no", async () => {
+  const cookie = await signIn();
+  const body = { items: [{ id: "positions.one.title", text: "Certified TIG Welder" }] };
+  const call = (q, opts) => handle(new Request("https://alprojects.eu/api/cms?a=translate" + q,
+    Object.assign({ method: "POST", headers: { "content-type": "application/json" },
+                    body: JSON.stringify(body) }, opts || {})), opts && opts.env || ENV);
+
+  /* No key: say so rather than quietly leaving the field in English with no
+     explanation. */
+  let r = await call("&to=ru", { headers: { cookie, "content-type": "application/json" },
+                                env: Object.assign({}, ENV, { ANTHROPIC_API_KEY: undefined }) });
+  assert.equal(r.status, 503);
+
+  const withKey = Object.assign({}, ENV, { ANTHROPIC_API_KEY: "sk-test" });
+  r = await call("&to=xx", { headers: { cookie, "content-type": "application/json" }, env: withKey });
+  assert.equal(r.status, 400);
+  r = await call("&to=ru", { env: withKey });          /* no cookie */
+  assert.equal(r.status, 401);
+});
+
+test("machine translation: what comes back is filtered, not trusted", async () => {
+  const cookie = await signIn();
+  const withKey = Object.assign({}, ENV, { ANTHROPIC_API_KEY: "sk-test" });
+  const items = [{ id: "positions.one.title", text: "Certified TIG Welder" },
+                 { id: "positions.one.lead", text: "Piping and stainless steel." }];
+  const ask = (replyText, status) => {
+    globalThis.fetch = async (url, init) => {
+      if (String(url).startsWith("https://api.anthropic.com/"))
+        return new Response(JSON.stringify({ content: [{ type: "text", text: replyText }] }),
+                            { status: status || 200 });
+      return new Response(JSON.stringify({ content: b64(FILE), sha: "oldsha" }), { status: 200 });
+    };
+    return handle(new Request("https://alprojects.eu/api/cms?a=translate&to=ru",
+      { method: "POST", headers: { cookie, "content-type": "application/json" },
+        body: JSON.stringify({ items }) }), withKey);
+  };
+
+  /* The happy path, and only the ids that were asked for come back out. */
+  let r = await ask(JSON.stringify({
+    "positions.one.title": "Сварщик TIG с аттестацией",
+    "positions.one.lead": "Трубопроводы и нержавеющая сталь.",
+    "positions.one.invented": "это не просили",
+  }));
+  assert.equal(r.status, 200);
+  let out = (await r.json()).out;
+  assert.deepEqual(Object.keys(out).sort(), ["positions.one.lead", "positions.one.title"]);
+
+  /* An empty translation is dropped rather than stored: written to the store it
+     would blank that line on the site, which is worse than the English it was
+     meant to replace. */
+  r = await ask(JSON.stringify({ "positions.one.title": "   ",
+                                 "positions.one.lead": "Трубопроводы." }));
+  out = (await r.json()).out;
+  assert.deepEqual(Object.keys(out), ["positions.one.lead"]);
+
+  /* Prose instead of JSON, and nothing usable at all, are both refused. */
+  r = await ask("I am afraid I cannot do that.");
+  assert.equal(r.status, 502);
+  r = await ask(JSON.stringify({ "positions.one.title": "", "positions.one.lead": "" }));
+  assert.equal(r.status, 502);
+});
+
 test("GET cannot save, POST cannot be swapped for it", async () => {
   const cookie = await signIn();
   const r = await handle(req("?a=save&f=positions", { headers: { cookie } }), ENV);

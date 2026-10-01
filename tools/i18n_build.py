@@ -342,15 +342,23 @@ def client_store(lang):
                 rec = _json.load(fh)
         except Exception:
             rec = {}
+        machine = {}
         for text, cid in _client_index():
             r = rec.get(cid)
             if not r or not r.get("t"):
                 continue
             if r.get("en") == content.fingerprint(text):
                 fresh[text] = r["t"]
+                # by:"machine" means the editor generated it and nobody has
+                # read it. It still goes on the page -- the point of generating
+                # it was that the alternative is an English line -- but it is
+                # counted separately so there is a list to review. Marked
+                # unread, not marked wrong.
+                if r.get("by") == "machine":
+                    machine[cid] = text
             else:
                 stale[cid] = text
-        _STORE[lang] = (fresh, stale)
+        _STORE[lang] = (fresh, stale, machine)
     return _STORE[lang]
 
 
@@ -803,12 +811,14 @@ def main():
     # field and then the English under it changed, so what is on file may now
     # say something the English no longer says. The build will not print it as
     # a translation and will not use it.
-    stale = {}
+    stale, machine = {}, {}
     for lang in i18n.LANGS:
         if lang == i18n.DEFAULT or not i18n.PUBLISH.get(lang):
             continue
         for cid in client_store(lang)[1]:
             stale.setdefault(cid, []).append(lang)
+        for cid in client_store(lang)[2]:
+            machine.setdefault(cid, []).append(lang)
     if stale:
         print("\nTRANSLATED, THEN THE ENGLISH CHANGED -- %d field(s) to check:"
               % len(stale))
@@ -817,6 +827,15 @@ def main():
         print("\n   The translation on file was made from different English. It is\n"
               "   not used -- a stale line can assert something that is no longer\n"
               "   true, which on these pages is worse than an untranslated one.")
+    if machine:
+        print("\nMACHINE TRANSLATED, NOT READ BY ANYBODY -- %d field(s):"
+              % len(machine))
+        for cid, langs in sorted(machine.items()):
+            print("   %-52s %s" % (cid, ",".join(langs)))
+        print("\n   These are on the site. They were generated so the page would\n"
+              "   not carry an English line, and content/glossary.json forces the\n"
+              "   trade terms -- but nobody has read them. Opening the field in\n"
+              "   the editor and touching it clears the mark.")
     return reports
 
 
