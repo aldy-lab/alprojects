@@ -68,6 +68,8 @@
     tr_ok:       ["переведено", "translated"],
     tr_none:     ["нет перевода", "not translated"],
     tr_stale:    ["английский изменился", "English changed"],
+    tr_unknown:  ["проверьте", "check this"],
+    tr_checking: ["…", "…"],
     translation: ["Перевод", "Translation"],
     content:     ["Содержание", "Content"],
     not_chosen:  ["— не выбрано —", "— not chosen —"],
@@ -598,6 +600,29 @@
     return _choices[key];
   }
 
+  /* The same fingerprint content.py computes: sha1 of the UTF-8 text, first
+     ten hex characters. The store keeps that rather than the English itself,
+     so without this the page could not tell a fresh translation from one whose
+     English has since been edited -- and it showed "translated" for a field
+     the site was already serving in English. The client would have had no way
+     to know the line had fallen out.
+
+     crypto.subtle needs a secure context, which https and localhost both are.
+     If it is missing the row says "check this" rather than "translated":
+     erring toward look-at-it, never toward all-good. */
+  function fingerprint(text) {
+    if (!(window.crypto && crypto.subtle && window.TextEncoder))
+      return Promise.resolve(null);
+    return crypto.subtle.digest("SHA-1", new TextEncoder().encode(text))
+      .then(function (buf) {
+        var out = "";
+        new Uint8Array(buf).forEach(function (b) {
+          out += (b < 16 ? "0" : "") + b.toString(16);
+        });
+        return out.slice(0, 10);
+      }).catch(function () { return null; });
+  }
+
   /* ------------------------------------------------------- translations */
 
   /* The same leaves the build counts: every non-underscore string under this
@@ -658,14 +683,26 @@
       var tr = el("div", "tr");
       var top = el("div", "top");
       top.appendChild(el("span", "lbl", pair[0]));
-      /* Three states, three different jobs. The fingerprint is the build's;
-         this page can only say whether a record exists and whether the English
-         it last saw still matches, which is the same question more cheaply. */
-      var tag, cls;
-      if (!rec || !rec.t) { tag = t("tr_none"); cls = "bad"; }
-      else if (rec.src != null && rec.src !== english) { tag = t("tr_stale"); cls = "warn"; }
-      else { tag = t("tr_ok"); cls = "ok"; }
-      top.appendChild(el("span", "tag " + cls, tag));
+      /* Three states, three different jobs: write this, check this, nothing to
+         do. Decided by the fingerprint the build uses, computed here -- see
+         fingerprint(). An edit made in this session is caught by `src`
+         without waiting for the digest. */
+      var badge = el("span", "tag bad", t("tr_none"));
+      top.appendChild(badge);
+      var setBadge = function (cls, key) {
+        badge.className = "tag " + cls;
+        badge.textContent = t(key);
+      };
+      if (!rec || !rec.t) setBadge("bad", "tr_none");
+      else if (rec.src != null && rec.src !== english) setBadge("warn", "tr_stale");
+      else {
+        setBadge("", "tr_checking");
+        fingerprint(english).then(function (h) {
+          if (h === null) setBadge("warn", "tr_unknown");
+          else if (rec.en && rec.en === h) setBadge("ok", "tr_ok");
+          else setBadge("warn", "tr_stale");
+        });
+      }
       tr.appendChild(top);
       tr.appendChild(el("div", "en", english));
       var ta = el("textarea");
