@@ -183,6 +183,16 @@ async function send(mail) {
       }),
     });
     if (!r.ok) return { ok: false, error: "resend " + r.status + " " + (await r.text()).slice(0, 300) };
+    /* The provider's own id for the message, to the server log and nowhere
+       near the browser. It is the only thing that answers the one question
+       this endpoint cannot answer by itself -- "the form said sent and nothing
+       arrived" -- because it finds the exact message in the provider's
+       dashboard, with its delivery or its bounce. Without it that question
+       starts from scratch every time. */
+    let id = null;
+    try { id = (await r.json()).id || null; } catch { /* accepted, id unread */ }
+    console.log("[form] resend accepted" + (id ? " id=" + id : "") +
+                " to=" + mail.to + " attachments=" + mail.attachments.length);
     return { ok: true };
   }
 
