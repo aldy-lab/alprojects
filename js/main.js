@@ -35,6 +35,14 @@
      So nothing changes for a visitor until MAIL_PROVIDER, MAIL_API_KEY,
      MAIL_TO and MAIL_FROM are set in the host, and when they are, the forms
      start delivering with no deploy in between. */
+  /* Where form submissions land when the endpoint cannot send them and the
+     visitor's own mail program takes over. It has to be the same inbox the
+     endpoint delivers to (MAIL_TO in Vercel): otherwise applications that went
+     through arrive in one mailbox and the ones that fell back arrive in
+     another, and nobody notices the second one. The public address printed
+     on the site stays info@ -- this is only the destination of a submission. */
+  var FORMS_TO = "office@alprojects.eu";
+
   var CAREERS_ENDPOINT = "/api/form?f=careers";
   /* Contact form on /contacts.html. Empty -> the form opens the visitor's
      mail client with every answer filled in, so an enquiry is never lost
@@ -1918,7 +1926,7 @@
           : "(Please attach your CV and certificates to this email.)"
       ].join("\n");
       window.location.href =
-        "mailto:info@alprojects.eu?subject=" +
+        "mailto:" + FORMS_TO + "?subject=" +
         encodeURIComponent("Application — " + data.role) +
         "&body=" + encodeURIComponent(body);
       /* mailto cannot carry an attachment, so say which files to attach rather
@@ -2045,7 +2053,7 @@
         ctDocs.picked.length ? "(To attach: " + ctDocs.names() + ")" : ""
       ].join("\n");
       window.location.href =
-        "mailto:info@alprojects.eu?subject=" +
+        "mailto:" + FORMS_TO + "?subject=" +
         encodeURIComponent(data.topic + " \u2014 " + (data.company || data.last)) +
         "&body=" + encodeURIComponent(body);
       /* A mailto: cannot carry an attachment. Naming the files rather than
@@ -2109,7 +2117,7 @@
           });
       } else {
         window.location.href =
-          "mailto:info@alprojects.eu?subject=" +
+          "mailto:" + FORMS_TO + "?subject=" +
           encodeURIComponent("Newsletter subscription") +
           "&body=" +
           encodeURIComponent("Please subscribe this address to company updates: " + email);
