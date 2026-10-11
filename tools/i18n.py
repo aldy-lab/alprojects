@@ -90,6 +90,26 @@ PUBLISH = {"en": True, "fr": True, "de": True, "it": True, "ru": True}
 # measured, not assumed, before this was written.
 CLIENT_COLLECTIONS = ("positions", "articles")
 
+# Pages whose English changed ahead of the translator, by name and with the
+# reason. Untranslated units on these pages render in English and are listed,
+# instead of withholding the language -- which would stop the whole build,
+# the client's own editor saves included, until the translation came back.
+#
+# The case that put privacy.html here: the policy named GitHub as the host and
+# omitted the two companies that now handle form submissions. The French,
+# German and Italian pages carried that same false statement. Holding the
+# language back would have kept it there; this ships the corrected paragraphs
+# in English until the translator returns them. A legal text is the one place
+# English on a translated page is the lesser problem -- a wrong sentence about
+# who sees an applicant's CV is the greater one.
+#
+# Remove the entry when the translation is in. Never leave one here without a
+# date: an exception nobody remembers adding becomes the rule.
+PENDING_PAGES = {
+    "privacy.html": "2026-10-11 hosting and processors rewritten (Vercel, Resend); "
+                    "FR/DE/IT with the translator",
+}
+
 # A language may cover only part of the site.
 #
 # Russian exists for the careers page and nothing else. The crews this company

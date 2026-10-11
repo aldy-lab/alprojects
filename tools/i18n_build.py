@@ -412,6 +412,10 @@ def note_missing(stats, key):
     ids = client_ids(key)
     if ids:
         stats["soft"][key] = ids
+    elif stats.get("_rel") in i18n.PENDING_PAGES:
+        # A page whose English moved ahead of the translator on purpose; see
+        # i18n.PENDING_PAGES. English for now, listed, not blocking.
+        stats["pending"].setdefault(stats["_rel"], set()).add(key)
     else:
         stats["missing"].add(key)
 
@@ -705,7 +709,7 @@ def main():
     reports = {}
     for lang in i18n.LANGS:
         stats = {"units": set(), "missing": set(), "done": 0,
-                 "tag_mismatch": [], "soft": {}}
+                 "tag_mismatch": [], "soft": {}, "pending": {}}
         outputs = {}
         for rel in pages:
             # A language covering part of the site translates only its own
@@ -716,10 +720,13 @@ def main():
                 continue
             with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
                 src = fh.read()
+            stats["_rel"] = rel
             outputs[rel] = translate_page(src, lang, rel, stats)
         total = len(stats["units"])
         missing = len(stats["missing"])
-        soft = len(stats["soft"])
+        # Pending-page units count against coverage too: English on a translated
+        # page is not translated, whatever the reason it is allowed through.
+        soft = len(stats["soft"]) + sum(len(v) for v in stats["pending"].values())
         # Coverage counts BOTH buckets. The soft ones do not block the build,
         # but a page with an English vacancy on it is not 100% translated and
         # the number must not claim it is.
@@ -853,6 +860,17 @@ def main():
               "   rather than the wording -- then the line on the page is wrong,\n"
               "   not merely dated. The editor shows both sentences side by side\n"
               "   so the decision can be made by somebody who reads the language.")
+    for rel, why in sorted(i18n.PENDING_PAGES.items()):
+        langs = [l for l in i18n.LANGS if l != i18n.DEFAULT
+                 and reports[l][3]["pending"].get(rel)]
+        if langs:
+            n = max(len(reports[l][3]["pending"][rel]) for l in langs)
+            print("\nAWAITING THE TRANSLATOR -- %s, %d unit(s) in English on %s:"
+                  % (rel, n, ",".join(langs)))
+            print("   %s" % why)
+        else:
+            print("\nPENDING_PAGES still lists %s, but every language is translated."
+                  "\n   Remove the entry from tools/i18n.py." % rel)
     if machine:
         print("\nMACHINE TRANSLATED, NOT READ BY ANYBODY -- %d field(s):"
               % len(machine))
