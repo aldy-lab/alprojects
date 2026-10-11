@@ -1,0 +1,1250 @@
+{
+ "cert-iso-14001.webp": {
+  "avif": 8032,
+  "quality": 40,
+  "sha": "59783a8b84fe5af2",
+  "webp": 21340
+ },
+ "cert-iso-45001.webp": {
+  "avif": 8210,
+  "quality": 40,
+  "sha": "d65761fcf6633253",
+  "webp": 21626
+ },
+ "cert-iso-9001.webp": {
+  "avif": 7952,
+  "quality": 40,
+  "sha": "f925ebdbe3579eb1",
+  "webp": 21226
+ },
+ "cert-vca-ebn.webp": {
+  "avif": 9294,
+  "quality": 40,
+  "sha": "71b51685a93478d5",
+  "webp": 19888
+ },
+ "cta-bg.webp": {
+  "avif": 3817,
+  "quality": 40,
+  "sha": "47b4d1c1834aae50",
+  "webp": 13194
+ },
+ "downloads/company-profile-cover.webp": {
+  "avif": 7335,
+  "quality": 40,
+  "sha": "b596289c31f5a1ec",
+  "webp": 24894
+ },
+ "downloads/reference-projects-cover.webp": {
+  "avif": 9240,
+  "quality": 40,
+  "sha": "0806b0f23e687607",
+  "webp": 29794
+ },
+ "hero-site-1100.webp": {
+  "avif": 52748,
+  "quality": 50,
+  "sha": "270d020b988247cf",
+  "webp": 84796
+ },
+ "hero-site.webp": {
+  "avif": 82839,
+  "quality": 45,
+  "sha": "fd588bad7a63269c",
+  "webp": 164672
+ },
+ "icon-arrow.webp": {
+  "avif": 946,
+  "quality": 50,
+  "sha": "3d0e8cab9094ccaa",
+  "webp": 4148
+ },
+ "icon-chart.webp": {
+  "avif": 1102,
+  "quality": 45,
+  "sha": "4bbf121f2e71a435",
+  "webp": 6310
+ },
+ "icon-control.webp": {
+  "avif": 1524,
+  "quality": 50,
+  "sha": "e9e0a2f6ce04a9ed",
+  "webp": 7818
+ },
+ "icon-cubes.webp": {
+  "avif": 1791,
+  "quality": 50,
+  "sha": "51aef3b51c1872b7",
+  "webp": 12584
+ },
+ "icon-gears.webp": {
+  "avif": 2143,
+  "quality": 50,
+  "sha": "2128d12dd6ceb080",
+  "webp": 9214
+ },
+ "icon-shield.webp": {
+  "avif": 874,
+  "quality": 45,
+  "sha": "72eb7f37dd72b0dc",
+  "webp": 3296
+ },
+ "news-1.webp": {
+  "avif": 25104,
+  "quality": 45,
+  "sha": "bcc6e9d0acf96782",
+  "webp": 60786
+ },
+ "news-2-600.webp": {
+  "avif": 16882,
+  "quality": 45,
+  "sha": "b55c43b88dece3fa",
+  "webp": 54542
+ },
+ "news-2.webp": {
+  "avif": 40868,
+  "quality": 45,
+  "sha": "204535c1fec59048",
+  "webp": 81230
+ },
+ "news-3.webp": {
+  "avif": 19210,
+  "quality": 40,
+  "sha": "13d0638a0eba1df8",
+  "webp": 45744
+ },
+ "projects/cases/agitator-replacement/01-1200.webp": {
+  "avif": 26138,
+  "quality": 40,
+  "sha": "4b3b775b62c6d47a",
+  "webp": 66894
+ },
+ "projects/cases/agitator-replacement/01-600.webp": {
+  "avif": 7238,
+  "quality": 40,
+  "sha": "e95f74edb9bea9d6",
+  "webp": 22610
+ },
+ "projects/cases/agitator-replacement/02-1200.webp": {
+  "avif": 75783,
+  "quality": 40,
+  "sha": "db592baeb7c0c5f2",
+  "webp": 174328
+ },
+ "projects/cases/agitator-replacement/02-600.webp": {
+  "avif": 32840,
+  "quality": 45,
+  "sha": "f6951912c360d0de",
+  "webp": 59812
+ },
+ "projects/cases/agitator-replacement/03-1200.webp": {
+  "avif": 76424,
+  "quality": 45,
+  "sha": "735d186e0f2d1d7c",
+  "webp": 151240
+ },
+ "projects/cases/agitator-replacement/03-600.webp": {
+  "avif": 16226,
+  "quality": 45,
+  "sha": "ac521a994540c20d",
+  "webp": 45620
+ },
+ "projects/cases/agitator-replacement/card-600.webp": {
+  "avif": 8482,
+  "quality": 40,
+  "sha": "e33992148620da02",
+  "webp": 17682
+ },
+ "projects/cases/agitator-replacement/card-900.webp": {
+  "avif": 17054,
+  "quality": 40,
+  "sha": "2bac06299a51518a",
+  "webp": 34706
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/01-1200.webp": {
+  "avif": 60073,
+  "quality": 40,
+  "sha": "fec98845466c4ba0",
+  "webp": 176896
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/01-600.webp": {
+  "avif": 27675,
+  "quality": 45,
+  "sha": "3118d1ebdf6b5aa9",
+  "webp": 68474
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/02-1200.webp": {
+  "avif": 56934,
+  "quality": 45,
+  "sha": "f569f40ed476b2a1",
+  "webp": 144308
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/02-600.webp": {
+  "avif": 23270,
+  "quality": 50,
+  "sha": "4a862931944a37e4",
+  "webp": 50472
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/03-1200.webp": {
+  "avif": 24228,
+  "quality": 40,
+  "sha": "cde50033f179690c",
+  "webp": 66340
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/03-600.webp": {
+  "avif": 9340,
+  "quality": 40,
+  "sha": "bb2a3c6060249303",
+  "webp": 24956
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/04-1200.webp": {
+  "avif": 35320,
+  "quality": 40,
+  "sha": "3e0604aec7d30c4c",
+  "webp": 126180
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/04-600.webp": {
+  "avif": 13212,
+  "quality": 40,
+  "sha": "2cfec14a65281bef",
+  "webp": 37486
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/05-1200.webp": {
+  "avif": 72213,
+  "quality": 40,
+  "sha": "655aec9031220930",
+  "webp": 200182
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/05-600.webp": {
+  "avif": 39456,
+  "quality": 50,
+  "sha": "81223f766cb61aeb",
+  "webp": 80188
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/card-1200.webp": {
+  "avif": 45440,
+  "quality": 40,
+  "sha": "1104f156ffb95b8f",
+  "webp": 100510
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/card-600.webp": {
+  "avif": 21427,
+  "quality": 45,
+  "sha": "bcc0a77990c2ffcf",
+  "webp": 40224
+ },
+ "projects/cases/engine-room-piping-and-machinery-installation/card-900.webp": {
+  "avif": 30704,
+  "quality": 40,
+  "sha": "3a065dc1306f1872",
+  "webp": 67136
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/01-1200.webp": {
+  "avif": 131955,
+  "quality": 45,
+  "sha": "eac35a7ea21451a7",
+  "webp": 273766
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/01-600.webp": {
+  "avif": 49947,
+  "quality": 50,
+  "sha": "4177ef0432efd1d5",
+  "webp": 134700
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/02-1200.webp": {
+  "avif": 75893,
+  "quality": 40,
+  "sha": "05bda89552cfe404",
+  "webp": 227640
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/02-600.webp": {
+  "avif": 30273,
+  "quality": 45,
+  "sha": "81c26df463ab64f7",
+  "webp": 98150
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/03-1200.webp": {
+  "avif": 131878,
+  "quality": 45,
+  "sha": "7d2078b397e4b316",
+  "webp": 264720
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/03-600.webp": {
+  "avif": 51660,
+  "quality": 50,
+  "sha": "b608287a630d5b57",
+  "webp": 140968
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/04-1200.webp": {
+  "avif": 105007,
+  "quality": 45,
+  "sha": "79e35a27c06c3917",
+  "webp": 235032
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/04-600.webp": {
+  "avif": 42813,
+  "quality": 50,
+  "sha": "82fe04a7cd61e635",
+  "webp": 115596
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/05-1200.webp": {
+  "avif": 108999,
+  "quality": 45,
+  "sha": "69944d5a392d08ba",
+  "webp": 255188
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/05-600.webp": {
+  "avif": 50687,
+  "quality": 50,
+  "sha": "196c1e19df5c6efa",
+  "webp": 125342
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/06-1200.webp": {
+  "avif": 77658,
+  "quality": 40,
+  "sha": "a4f0ace318a7c985",
+  "webp": 244916
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/06-600.webp": {
+  "avif": 32974,
+  "quality": 45,
+  "sha": "7be79ae35e5a1495",
+  "webp": 106228
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/card-1200.webp": {
+  "avif": 96985,
+  "quality": 45,
+  "sha": "536cf7943b911b7e",
+  "webp": 198740
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/card-600.webp": {
+  "avif": 33603,
+  "quality": 50,
+  "sha": "c6e50e322fd0a4d6",
+  "webp": 62112
+ },
+ "projects/cases/fan-replacement-and-duct-adaptation/card-900.webp": {
+  "avif": 59050,
+  "quality": 45,
+  "sha": "1da39c477012169c",
+  "webp": 126588
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/01-1200.webp": {
+  "avif": 70343,
+  "quality": 40,
+  "sha": "0800b9ee4bfabb64",
+  "webp": 198994
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/01-600.webp": {
+  "avif": 32705,
+  "quality": 45,
+  "sha": "1ed9c1e416ccd850",
+  "webp": 80200
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/02-1200.webp": {
+  "avif": 41318,
+  "quality": 40,
+  "sha": "2fc526cabfa5bd4f",
+  "webp": 138606
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/02-600.webp": {
+  "avif": 17703,
+  "quality": 45,
+  "sha": "b23e467dee6b0a99",
+  "webp": 48340
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/03-1200.webp": {
+  "avif": 41556,
+  "quality": 40,
+  "sha": "4ee565a8ecb6bad6",
+  "webp": 113200
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/03-600.webp": {
+  "avif": 16296,
+  "quality": 40,
+  "sha": "f8860a41aec61172",
+  "webp": 46088
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/04-1200.webp": {
+  "avif": 59430,
+  "quality": 40,
+  "sha": "8144be2bc437014f",
+  "webp": 170954
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/04-600.webp": {
+  "avif": 21169,
+  "quality": 40,
+  "sha": "fa180829f8368eb2",
+  "webp": 66648
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/05-1200.webp": {
+  "avif": 41201,
+  "quality": 40,
+  "sha": "e0dcf1241962d6cb",
+  "webp": 111244
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/05-600.webp": {
+  "avif": 16367,
+  "quality": 40,
+  "sha": "71dc40843d4c8a85",
+  "webp": 47188
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/card-1200.webp": {
+  "avif": 53523,
+  "quality": 40,
+  "sha": "b02207a073ce34e2",
+  "webp": 118930
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/card-600.webp": {
+  "avif": 24048,
+  "quality": 45,
+  "sha": "d2b7e798418421fd",
+  "webp": 45510
+ },
+ "projects/cases/foundations-penetrations-and-equipment-installation/card-900.webp": {
+  "avif": 34865,
+  "quality": 40,
+  "sha": "48fbe89ccf1d22e0",
+  "webp": 79118
+ },
+ "projects/cases/grate-bar-replacement/01-1200.webp": {
+  "avif": 129180,
+  "quality": 45,
+  "sha": "e919fbffe5a0ea14",
+  "webp": 282130
+ },
+ "projects/cases/grate-bar-replacement/01-600.webp": {
+  "avif": 52609,
+  "quality": 50,
+  "sha": "b493ab170efb1d6b",
+  "webp": 137110
+ },
+ "projects/cases/grate-bar-replacement/02-1200.webp": {
+  "avif": 33024,
+  "quality": 40,
+  "sha": "43edb7f9deae5bd4",
+  "webp": 134714
+ },
+ "projects/cases/grate-bar-replacement/02-600.webp": {
+  "avif": 13225,
+  "quality": 40,
+  "sha": "eb613e2caf7263d0",
+  "webp": 51970
+ },
+ "projects/cases/grate-bar-replacement/03-1200.webp": {
+  "avif": 109933,
+  "quality": 45,
+  "sha": "f48d579f5224e397",
+  "webp": 256968
+ },
+ "projects/cases/grate-bar-replacement/03-600.webp": {
+  "avif": 46765,
+  "quality": 50,
+  "sha": "31a70f4016e34611",
+  "webp": 116744
+ },
+ "projects/cases/grate-bar-replacement/card-1200.webp": {
+  "avif": 98700,
+  "quality": 45,
+  "sha": "9390eed6b7a01afb",
+  "webp": 181850
+ },
+ "projects/cases/grate-bar-replacement/card-600.webp": {
+  "avif": 27676,
+  "quality": 45,
+  "sha": "a70d4b5d71dc3bc8",
+  "webp": 54352
+ },
+ "projects/cases/grate-bar-replacement/card-900.webp": {
+  "avif": 56567,
+  "quality": 45,
+  "sha": "01cf324886679ea3",
+  "webp": 109464
+ },
+ "projects/cases/large-bore-pipe-replacement/01-1200.webp": {
+  "avif": 69997,
+  "quality": 40,
+  "sha": "2077abf66449a7bf",
+  "webp": 251508
+ },
+ "projects/cases/large-bore-pipe-replacement/01-600.webp": {
+  "avif": 31136,
+  "quality": 45,
+  "sha": "bc1f82e2b599fd3f",
+  "webp": 97612
+ },
+ "projects/cases/large-bore-pipe-replacement/02-1200.webp": {
+  "avif": 161804,
+  "quality": 50,
+  "sha": "c819e17b7c9c3ed6",
+  "webp": 296350
+ },
+ "projects/cases/large-bore-pipe-replacement/02-600.webp": {
+  "avif": 67863,
+  "quality": 55,
+  "sha": "7c4b8e8e20170d96",
+  "webp": 158116
+ },
+ "projects/cases/large-bore-pipe-replacement/03-1200.webp": {
+  "avif": 30157,
+  "quality": 40,
+  "sha": "b98b3455f068a5d3",
+  "webp": 126206
+ },
+ "projects/cases/large-bore-pipe-replacement/03-600.webp": {
+  "avif": 18137,
+  "quality": 50,
+  "sha": "f524f94e8ef82dac",
+  "webp": 49064
+ },
+ "projects/cases/large-bore-pipe-replacement/04-1200.webp": {
+  "avif": 65291,
+  "quality": 40,
+  "sha": "ce4291b0855a47c7",
+  "webp": 230974
+ },
+ "projects/cases/large-bore-pipe-replacement/04-600.webp": {
+  "avif": 41228,
+  "quality": 50,
+  "sha": "ed9b117f17e5f003",
+  "webp": 107720
+ },
+ "projects/cases/large-bore-pipe-replacement/05-1200.webp": {
+  "avif": 58723,
+  "quality": 40,
+  "sha": "f7ae351aa017ca9c",
+  "webp": 212768
+ },
+ "projects/cases/large-bore-pipe-replacement/05-600.webp": {
+  "avif": 27422,
+  "quality": 45,
+  "sha": "2c6309760122eeb7",
+  "webp": 85032
+ },
+ "projects/cases/large-bore-pipe-replacement/card-1200.webp": {
+  "avif": 50227,
+  "quality": 40,
+  "sha": "7d04b82cc875ecc3",
+  "webp": 119406
+ },
+ "projects/cases/large-bore-pipe-replacement/card-600.webp": {
+  "avif": 16360,
+  "quality": 40,
+  "sha": "2142990614e55974",
+  "webp": 39094
+ },
+ "projects/cases/large-bore-pipe-replacement/card-900.webp": {
+  "avif": 31805,
+  "quality": 40,
+  "sha": "4935a0cfe23b04b4",
+  "webp": 76360
+ },
+ "projects/cases/offshore-rope-access-welding/01-1200.webp": {
+  "avif": 27392,
+  "quality": 40,
+  "sha": "3d2fe176b97e7a3e",
+  "webp": 164186
+ },
+ "projects/cases/offshore-rope-access-welding/01-600.webp": {
+  "avif": 9818,
+  "quality": 40,
+  "sha": "9eeb1af873cf44d8",
+  "webp": 58064
+ },
+ "projects/cases/offshore-rope-access-welding/02-1200.webp": {
+  "avif": 37806,
+  "quality": 40,
+  "sha": "ceb31c8ba27ee024",
+  "webp": 204608
+ },
+ "projects/cases/offshore-rope-access-welding/02-600.webp": {
+  "avif": 16320,
+  "quality": 45,
+  "sha": "47d292e4773cd75b",
+  "webp": 71238
+ },
+ "projects/cases/offshore-rope-access-welding/03-1200.webp": {
+  "avif": 29878,
+  "quality": 40,
+  "sha": "e9077d209ea21cb0",
+  "webp": 186924
+ },
+ "projects/cases/offshore-rope-access-welding/03-600.webp": {
+  "avif": 11688,
+  "quality": 40,
+  "sha": "edbbac2084990073",
+  "webp": 61572
+ },
+ "projects/cases/offshore-rope-access-welding/card-600.webp": {
+  "avif": 12923,
+  "quality": 40,
+  "sha": "a77aaf248d817134",
+  "webp": 30944
+ },
+ "projects/cases/offshore-rope-access-welding/card-900.webp": {
+  "avif": 22832,
+  "quality": 40,
+  "sha": "7a72ed0f2b450d08",
+  "webp": 55368
+ },
+ "projects/cases/tank-and-vessel-fabrication/01-1200.webp": {
+  "avif": 75616,
+  "quality": 40,
+  "sha": "dbb97d03bdfea41b",
+  "webp": 172134
+ },
+ "projects/cases/tank-and-vessel-fabrication/01-600.webp": {
+  "avif": 31483,
+  "quality": 45,
+  "sha": "1605cc2b861223ce",
+  "webp": 57462
+ },
+ "projects/cases/tank-and-vessel-fabrication/02-1200.webp": {
+  "avif": 38184,
+  "quality": 40,
+  "sha": "71feda4509cf82eb",
+  "webp": 76298
+ },
+ "projects/cases/tank-and-vessel-fabrication/02-600.webp": {
+  "avif": 15297,
+  "quality": 40,
+  "sha": "79974e3591fed90f",
+  "webp": 42628
+ },
+ "projects/cases/tank-and-vessel-fabrication/03-1200.webp": {
+  "avif": 33694,
+  "quality": 40,
+  "sha": "03d716f4c119ffa2",
+  "webp": 67040
+ },
+ "projects/cases/tank-and-vessel-fabrication/03-600.webp": {
+  "avif": 14468,
+  "quality": 40,
+  "sha": "59e955c0e942d64b",
+  "webp": 38808
+ },
+ "projects/cases/tank-and-vessel-fabrication/04-1200.webp": {
+  "avif": 30672,
+  "quality": 40,
+  "sha": "418f2f7f5d6f3915",
+  "webp": 60424
+ },
+ "projects/cases/tank-and-vessel-fabrication/04-600.webp": {
+  "avif": 12012,
+  "quality": 40,
+  "sha": "7ce64dff1e4a5887",
+  "webp": 31418
+ },
+ "projects/cases/tank-and-vessel-fabrication/05-1200.webp": {
+  "avif": 36471,
+  "quality": 40,
+  "sha": "5c6cd1b2d7b10983",
+  "webp": 79366
+ },
+ "projects/cases/tank-and-vessel-fabrication/05-600.webp": {
+  "avif": 13886,
+  "quality": 40,
+  "sha": "d66cee793d17a931",
+  "webp": 40590
+ },
+ "projects/cases/tank-and-vessel-fabrication/06-1200.webp": {
+  "avif": 38407,
+  "quality": 40,
+  "sha": "414138b9a99fbc84",
+  "webp": 85682
+ },
+ "projects/cases/tank-and-vessel-fabrication/06-600.webp": {
+  "avif": 16557,
+  "quality": 45,
+  "sha": "1e57018e030eac61",
+  "webp": 40162
+ },
+ "projects/cases/tank-and-vessel-fabrication/card-1200.webp": {
+  "avif": 86910,
+  "quality": 45,
+  "sha": "60eced453eaee170",
+  "webp": 154694
+ },
+ "projects/cases/tank-and-vessel-fabrication/card-600.webp": {
+  "avif": 27589,
+  "quality": 45,
+  "sha": "4275bd3ad8977c5b",
+  "webp": 51130
+ },
+ "projects/cases/tank-and-vessel-fabrication/card-900.webp": {
+  "avif": 54767,
+  "quality": 45,
+  "sha": "8ef2a226af096598",
+  "webp": 99600
+ },
+ "projects/cases/tank-internals-and-attachments/01-1200.webp": {
+  "avif": 318942,
+  "quality": 55,
+  "sha": "f8a4168c23cfef98",
+  "webp": 428802
+ },
+ "projects/cases/tank-internals-and-attachments/01-600.webp": {
+  "avif": 56321,
+  "quality": 50,
+  "sha": "9afac85a2a34a32f",
+  "webp": 87772
+ },
+ "projects/cases/tank-internals-and-attachments/02-1200.webp": {
+  "avif": 58392,
+  "quality": 40,
+  "sha": "4140b4fc4e47b834",
+  "webp": 134076
+ },
+ "projects/cases/tank-internals-and-attachments/02-600.webp": {
+  "avif": 16985,
+  "quality": 40,
+  "sha": "f08ac963da7ec653",
+  "webp": 49528
+ },
+ "projects/cases/tank-internals-and-attachments/03-1200.webp": {
+  "avif": 32739,
+  "quality": 40,
+  "sha": "4cbd6d944c52759c",
+  "webp": 73096
+ },
+ "projects/cases/tank-internals-and-attachments/03-600.webp": {
+  "avif": 14431,
+  "quality": 45,
+  "sha": "e5cb7e8415bd241b",
+  "webp": 36460
+ },
+ "projects/cases/tank-internals-and-attachments/card-1200.webp": {
+  "avif": 247316,
+  "quality": 55,
+  "sha": "c580ce8ef963e0aa",
+  "webp": 355074
+ },
+ "projects/cases/tank-internals-and-attachments/card-600.webp": {
+  "avif": 42896,
+  "quality": 50,
+  "sha": "c877aafb3f182ed9",
+  "webp": 76336
+ },
+ "projects/cases/tank-internals-and-attachments/card-900.webp": {
+  "avif": 141245,
+  "quality": 55,
+  "sha": "e739284178c5f1a4",
+  "webp": 199782
+ },
+ "projects/cases/valve-station-tie-in-piping/01-1200.webp": {
+  "avif": 179838,
+  "quality": 50,
+  "sha": "3e9d09b4760320ae",
+  "webp": 280986
+ },
+ "projects/cases/valve-station-tie-in-piping/01-600.webp": {
+  "avif": 61469,
+  "quality": 50,
+  "sha": "fa25f7eca5bef326",
+  "webp": 94386
+ },
+ "projects/cases/valve-station-tie-in-piping/02-1200.webp": {
+  "avif": 23148,
+  "quality": 40,
+  "sha": "deb3a2c94d2dd167",
+  "webp": 54912
+ },
+ "projects/cases/valve-station-tie-in-piping/02-600.webp": {
+  "avif": 7942,
+  "quality": 40,
+  "sha": "48ea3d4fe21a2fc1",
+  "webp": 24036
+ },
+ "projects/cases/valve-station-tie-in-piping/03-1200.webp": {
+  "avif": 180806,
+  "quality": 50,
+  "sha": "14f3eb2f15f6dd07",
+  "webp": 286272
+ },
+ "projects/cases/valve-station-tie-in-piping/03-600.webp": {
+  "avif": 63809,
+  "quality": 50,
+  "sha": "a2b58e596a3bec55",
+  "webp": 98610
+ },
+ "projects/cases/valve-station-tie-in-piping/card-1200.webp": {
+  "avif": 138773,
+  "quality": 50,
+  "sha": "f2f8149086e76471",
+  "webp": 226458
+ },
+ "projects/cases/valve-station-tie-in-piping/card-600.webp": {
+  "avif": 55185,
+  "quality": 55,
+  "sha": "233f3c3f7c24bc06",
+  "webp": 79446
+ },
+ "projects/cases/valve-station-tie-in-piping/card-900.webp": {
+  "avif": 92175,
+  "quality": 50,
+  "sha": "ead5f6e80ae10199",
+  "webp": 154946
+ },
+ "projects/engineer-drawings-1200.webp": {
+  "avif": 32698,
+  "quality": 40,
+  "sha": "b6165b0c5236f619",
+  "webp": 66318
+ },
+ "projects/engineer-drawings-600.webp": {
+  "avif": 12919,
+  "quality": 40,
+  "sha": "ed7ccdf6b22e2712",
+  "webp": 35802
+ },
+ "projects/engineer-drawings-900.webp": {
+  "avif": 21772,
+  "quality": 40,
+  "sha": "84011382d7510915",
+  "webp": 42932
+ },
+ "projects/europe-map-1200.webp": {
+  "avif": 17846,
+  "quality": 40,
+  "sha": "bf6a32bddab7fabf",
+  "webp": 38706
+ },
+ "projects/europe-map-600.webp": {
+  "avif": 13741,
+  "quality": 40,
+  "sha": "531597bc5ee52573",
+  "webp": 28634
+ },
+ "projects/facade-pipe-crane-1200.webp": {
+  "avif": 36486,
+  "quality": 40,
+  "sha": "9016ed72ca7b1539",
+  "webp": 84548
+ },
+ "projects/facade-pipe-crane-600.webp": {
+  "avif": 16498,
+  "quality": 45,
+  "sha": "87dc4f9c6263b2f9",
+  "webp": 39046
+ },
+ "projects/facade-tank-pipe-1200.webp": {
+  "avif": 29843,
+  "quality": 40,
+  "sha": "5bde352f692a8ee0",
+  "webp": 69222
+ },
+ "projects/facade-tank-pipe-600.webp": {
+  "avif": 11076,
+  "quality": 40,
+  "sha": "d26a7953e4fb39a6",
+  "webp": 31858
+ },
+ "projects/offshore-wide-1200-m.webp": {
+  "avif": 27458,
+  "quality": 50,
+  "sha": "fa2eb4159841c9e1",
+  "webp": 45222
+ },
+ "projects/offshore-wide-1200.webp": {
+  "avif": 65103,
+  "quality": 50,
+  "sha": "556401d1645329d0",
+  "webp": 111558
+ },
+ "projects/offshore-wide-600.webp": {
+  "avif": 19641,
+  "quality": 50,
+  "sha": "fa19e16cf8a00ac1",
+  "webp": 45704
+ },
+ "projects/piping-roof-crew-1200.webp": {
+  "avif": 49047,
+  "quality": 45,
+  "sha": "ea9cb553c5db4c1b",
+  "webp": 95638
+ },
+ "projects/piping-roof-crew-600.webp": {
+  "avif": 23960,
+  "quality": 50,
+  "sha": "87719db70ae1b7d6",
+  "webp": 47536
+ },
+ "projects/piping-roof-duct-1200.webp": {
+  "avif": 53469,
+  "quality": 45,
+  "sha": "eb8053575364769d",
+  "webp": 107048
+ },
+ "projects/piping-roof-duct-600.webp": {
+  "avif": 17558,
+  "quality": 45,
+  "sha": "07cb18774545a137",
+  "webp": 43062
+ },
+ "projects/sector-industry-1200.webp": {
+  "avif": 25580,
+  "quality": 40,
+  "sha": "810ce32b3df16fbc",
+  "webp": 54196
+ },
+ "projects/sector-industry-600.webp": {
+  "avif": 10274,
+  "quality": 40,
+  "sha": "40e60ce0a39315e1",
+  "webp": 29662
+ },
+ "projects/sector-industry-900.webp": {
+  "avif": 17041,
+  "quality": 40,
+  "sha": "d5008634502b3af5",
+  "webp": 34848
+ },
+ "projects/sector-industry-tig-600.webp": {
+  "avif": 26676,
+  "quality": 50,
+  "sha": "152484255cc2e5db",
+  "webp": 59194
+ },
+ "projects/sector-industry-tig-900.webp": {
+  "avif": 60916,
+  "quality": 50,
+  "sha": "9a431830e2fa1159",
+  "webp": 101134
+ },
+ "projects/sector-offshore-1200.webp": {
+  "avif": 95911,
+  "quality": 50,
+  "sha": "f6eeb33ca8bc11cb",
+  "webp": 167706
+ },
+ "projects/sector-offshore-600.webp": {
+  "avif": 39986,
+  "quality": 55,
+  "sha": "2c36a13669a636c9",
+  "webp": 58282
+ },
+ "projects/sector-offshore-900.webp": {
+  "avif": 65307,
+  "quality": 50,
+  "sha": "23eed299acf919a9",
+  "webp": 110412
+ },
+ "projects/sector-shipbuilding-1200.webp": {
+  "avif": 110119,
+  "quality": 50,
+  "sha": "9791429d4ee6d1cb",
+  "webp": 195788
+ },
+ "projects/sector-shipbuilding-600.webp": {
+  "avif": 48148,
+  "quality": 55,
+  "sha": "f647094f7a3fbbef",
+  "webp": 71616
+ },
+ "projects/sector-shipbuilding-900.webp": {
+  "avif": 85502,
+  "quality": 55,
+  "sha": "eb04b27164feb773",
+  "webp": 126522
+ },
+ "projects/sector-wind-1200.webp": {
+  "avif": 60307,
+  "quality": 45,
+  "sha": "6bb93566e5a61dc3",
+  "webp": 118214
+ },
+ "projects/sector-wind-600.webp": {
+  "avif": 27811,
+  "quality": 50,
+  "sha": "037e689c7ec33c08",
+  "webp": 61390
+ },
+ "projects/sector-wind-900.webp": {
+  "avif": 42736,
+  "quality": 45,
+  "sha": "d3c2d45eb0f106fc",
+  "webp": 85808
+ },
+ "projects/substation-sky-1200.webp": {
+  "avif": 30868,
+  "quality": 40,
+  "sha": "96c7f6102a84ea5b",
+  "webp": 68890
+ },
+ "projects/substation-sky-600.webp": {
+  "avif": 11275,
+  "quality": 40,
+  "sha": "acf5bec8051f7b76",
+  "webp": 31338
+ },
+ "projects/terminal-pumps-1200.webp": {
+  "avif": 60451,
+  "quality": 45,
+  "sha": "bf1a66d8e8294cc0",
+  "webp": 118592
+ },
+ "projects/terminal-pumps-600.webp": {
+  "avif": 24600,
+  "quality": 50,
+  "sha": "b9f87b66dd0ec6a6",
+  "webp": 50690
+ },
+ "projects/terminal-rack-tanks-1200.webp": {
+  "avif": 55999,
+  "quality": 45,
+  "sha": "ba8d7e0de246a516",
+  "webp": 116138
+ },
+ "projects/terminal-rack-tanks-600.webp": {
+  "avif": 22576,
+  "quality": 50,
+  "sha": "e716504a88e54c58",
+  "webp": 50354
+ },
+ "projects/terminal-rack-tanks-900.webp": {
+  "avif": 36295,
+  "quality": 45,
+  "sha": "16c3dfefd54d833d",
+  "webp": 74902
+ },
+ "projects/terminal-rack-trays-1200.webp": {
+  "avif": 38653,
+  "quality": 40,
+  "sha": "4c9d28cc6d08bbc4",
+  "webp": 94894
+ },
+ "projects/terminal-rack-trays-600.webp": {
+  "avif": 20656,
+  "quality": 50,
+  "sha": "8dc795b408dd7fd2",
+  "webp": 43810
+ },
+ "projects/terminal-tankfarm-1200.webp": {
+  "avif": 59137,
+  "quality": 45,
+  "sha": "be3027325e26bd5d",
+  "webp": 124288
+ },
+ "projects/terminal-tankfarm-600.webp": {
+  "avif": 23280,
+  "quality": 50,
+  "sha": "bfc300b6ee9ff43a",
+  "webp": 50662
+ },
+ "projects/terminal-valves-1200.webp": {
+  "avif": 87282,
+  "quality": 50,
+  "sha": "42b6c0930cebe8e7",
+  "webp": 144182
+ },
+ "projects/terminal-valves-600.webp": {
+  "avif": 31731,
+  "quality": 55,
+  "sha": "220f3f882ae3bb8d",
+  "webp": 60194
+ },
+ "projects/transformer-bushing-1200.webp": {
+  "avif": 62239,
+  "quality": 45,
+  "sha": "bc70ee767ad4e493",
+  "webp": 127204
+ },
+ "projects/transformer-bushing-600.webp": {
+  "avif": 24039,
+  "quality": 50,
+  "sha": "ad639f502000d7b2",
+  "webp": 49412
+ },
+ "projects/transformer-overhead-1200.webp": {
+  "avif": 59962,
+  "quality": 45,
+  "sha": "c418fa004ee4de44",
+  "webp": 112390
+ },
+ "projects/transformer-overhead-600.webp": {
+  "avif": 19418,
+  "quality": 45,
+  "sha": "f19623ef186e35fd",
+  "webp": 45668
+ },
+ "projects/transformer-overhead-900.webp": {
+  "avif": 36826,
+  "quality": 45,
+  "sha": "47e9533c3255d616",
+  "webp": 69374
+ },
+ "projects/transformer-plant-1200.webp": {
+  "avif": 35798,
+  "quality": 40,
+  "sha": "9b176b83e0f48b6b",
+  "webp": 79498
+ },
+ "projects/transformer-plant-600.webp": {
+  "avif": 16068,
+  "quality": 45,
+  "sha": "5f802cb59e5fb04c",
+  "webp": 36952
+ },
+ "projects/welding-tig-pipe-1200.webp": {
+  "avif": 91864,
+  "quality": 50,
+  "sha": "ff6f45b1c1301711",
+  "webp": 171776
+ },
+ "projects/welding-tig-pipe-600.webp": {
+  "avif": 21634,
+  "quality": 50,
+  "sha": "df425ccd6f7d575e",
+  "webp": 49952
+ },
+ "render-industrial.webp": {
+  "avif": 3581,
+  "quality": 45,
+  "sha": "1a896e8137c01517",
+  "webp": 14190
+ },
+ "render-offshore.webp": {
+  "avif": 2035,
+  "quality": 45,
+  "sha": "45a15cb50184c229",
+  "webp": 7864
+ },
+ "render-renewable.webp": {
+  "avif": 4059,
+  "quality": 40,
+  "sha": "4e57fa2615fb4680",
+  "webp": 19886
+ },
+ "render-ship.webp": {
+  "avif": 3309,
+  "quality": 40,
+  "sha": "7eabe6526dc00bf5",
+  "webp": 14672
+ },
+ "service-rope.webp": {
+  "avif": 67210,
+  "quality": 40,
+  "sha": "c6831d1218d4bd32",
+  "webp": 152260
+ },
+ "services-bg.webp": {
+  "avif": 4895,
+  "quality": 40,
+  "sha": "00a14ddf5ecc9af8",
+  "webp": 9546
+ },
+ "svc-mechanical-valve-station-1200x778.webp": {
+  "avif": 39614,
+  "quality": 40,
+  "sha": "c4b6d0f42a5e5559",
+  "webp": 91932
+ },
+ "svc-mechanical-valve-station-1500x973.webp": {
+  "avif": 58166,
+  "quality": 40,
+  "sha": "22302714f6bb6bcd",
+  "webp": 136744
+ },
+ "svc-mechanical-valve-station-1920x1245.webp": {
+  "avif": 80641,
+  "quality": 40,
+  "sha": "0296b1d4c5b69179",
+  "webp": 192928
+ },
+ "svc-mechanical-valve-station-mobile-1080x1350.webp": {
+  "avif": 45897,
+  "quality": 40,
+  "sha": "dc57b4ec0392947b",
+  "webp": 107600
+ },
+ "svc-ndt-weld-gauge-m.webp": {
+  "avif": 8257,
+  "quality": 40,
+  "sha": "3f61038ec2864399",
+  "webp": 22286
+ },
+ "svc-ndt-weld-gauge.webp": {
+  "avif": 20693,
+  "quality": 40,
+  "sha": "693de0f482d1a747",
+  "webp": 56702
+ },
+ "svc-pipe-fitting-photo-m.webp": {
+  "avif": 19889,
+  "quality": 40,
+  "sha": "eb3fffbd9ec2eb79",
+  "webp": 47020
+ },
+ "svc-pipe-fitting-photo.webp": {
+  "avif": 69003,
+  "quality": 45,
+  "sha": "cf61bf276934a13b",
+  "webp": 149094
+ },
+ "svc-rope-access.webp": {
+  "avif": 16047,
+  "quality": 40,
+  "sha": "34821fabc40a93b6",
+  "webp": 52562
+ },
+ "svc-welding-m.webp": {
+  "avif": 9373,
+  "quality": 40,
+  "sha": "b7c13b591edd8698",
+  "webp": 27450
+ },
+ "svc-welding.webp": {
+  "avif": 21305,
+  "quality": 40,
+  "sha": "d1af757d20753751",
+  "webp": 42834
+ },
+ "team-aleksandr.webp": {
+  "avif": 5283,
+  "quality": 40,
+  "sha": "4c674e2b4e91059e",
+  "webp": 24510
+ },
+ "team-alex.webp": {
+  "avif": 11207,
+  "quality": 40,
+  "sha": "0465a5f41e49779b",
+  "webp": 56544
+ },
+ "team-goda.webp": {
+  "avif": 5614,
+  "quality": 40,
+  "sha": "60c4a97f0f83bf94",
+  "webp": 29154
+ },
+ "team-sergej.webp": {
+  "avif": 9417,
+  "quality": 40,
+  "sha": "94ab4f0698f1be7a",
+  "webp": 43018
+ },
+ "team-viktor.webp": {
+  "avif": 4355,
+  "quality": 40,
+  "sha": "0562f0a17fa26583",
+  "webp": 22470
+ },
+ "tia-band.webp": {
+  "avif": 47688,
+  "quality": 45,
+  "sha": "498702f34f28ddbf",
+  "webp": 92050
+ },
+ "tia-hero.webp": {
+  "avif": 25311,
+  "quality": 40,
+  "sha": "7b3323f75fbfa2c0",
+  "webp": 54500
+ },
+ "tia-people.webp": {
+  "avif": 10807,
+  "quality": 40,
+  "sha": "54a7e33fca15394c",
+  "webp": 29484
+ }
+}
