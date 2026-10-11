@@ -2447,9 +2447,9 @@ color: var(--text);
 .sector-fact {
 display: block;
 margin-top: 6px;
-font-size: var(--tag);
-line-height: 1.45;
-letter-spacing: 0.06em;
+font-size: 13px;
+line-height: 1.5;
+letter-spacing: 0.01em;
 color: rgba(255, 255, 255, 0.6);
 }
 .sector-arrow {
@@ -3322,7 +3322,8 @@ border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.05);
 }
 .drop:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 .drop b { display: block; color: var(--white); font-weight: 500; margin-bottom: 6px; }
-.drop span { display: block; font-size: var(--tag); color: var(--muted-2); }
+.drop span { display: block; font-size: 13px; color: var(--muted-2);
+text-transform: none; letter-spacing: 0.01em; margin-top: 4px; }
 .files { list-style: none; margin: 14px 0 0; padding: 0; }
 .files li {
 display: flex; align-items: center; gap: 12px;
@@ -4961,7 +4962,7 @@ color: var(--text); white-space: nowrap;
 }
 .hero-proof span {
 font-size: var(--tag); letter-spacing: 0.14em; text-transform: uppercase;
-color: var(--muted);
+color: #9ea7ba;
 }
 @media (max-width: 700px) {
 .hero-proof { display: block; margin-top: 26px; max-width: none; }
@@ -6031,3 +6032,4 @@ max-width: none;
 .srv-dial { width: 58px; height: 58px; }
 .srv-arrow { width: 32px; height: 32px; }
 }
+picture[data-avif] { display: contents; }

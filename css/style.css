@@ -3195,9 +3195,11 @@ a.cert-card:hover img { border-color: var(--accent); }
 .sector-fact {
   display: block;
   margin-top: 6px;
-  font-size: var(--tag);               /* §4.2 */
-  line-height: 1.45;
-  letter-spacing: 0.06em;
+  /* A sentence, not a label: 12px with label tracking made a forty-word line
+     read like a stamp. 13px and near-normal tracking, the colour of §4.2 kept. */
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.6); /* §4.2 */
 }
 .sector-arrow {
@@ -4461,7 +4463,10 @@ body .calendly-overlay .calendly-popup {
 }
 .drop:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 .drop b { display: block; color: var(--white); font-weight: 500; margin-bottom: 6px; }
-.drop span { display: block; font-size: var(--tag); color: var(--muted-2); }
+/* The hint is a sentence; the form's label style -- capitals, wide tracking --
+   is inherited from <label> and suits "FULL NAME", not eighty characters. */
+.drop span { display: block; font-size: 13px; color: var(--muted-2);
+             text-transform: none; letter-spacing: 0.01em; margin-top: 4px; }
 .files { list-style: none; margin: 14px 0 0; padding: 0; }
 .files li {
   display: flex; align-items: center; gap: 12px;
@@ -6976,7 +6981,11 @@ html.menu-open .cta-bar, html.blueprint .cta-bar, html.lb-open .cta-bar { displa
 }
 .hero-proof span {
   font-size: var(--tag); letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--muted);
+  /* A step lighter than --muted. These captions sit on the brightest part of
+     the hero's blue wash, where --muted measured 4.2:1 -- under AA for 12px
+     text. #9ea7ba is 5.1:1 there and 8.3:1 on the plain ground: same cool
+     grey, read without effort. */
+  color: #9ea7ba;
 }
 @media (max-width: 700px) {
   .hero-proof { display: block; margin-top: 26px; max-width: none; }
@@ -8707,3 +8716,10 @@ html.blueprint .hero-iso { opacity: 1; }
   .srv-dial { width: 58px; height: 58px; }
   .srv-arrow { width: 32px; height: 32px; }
 }
+
+/* The <picture> the build wraps around an image to offer AVIF first (see
+   avif_pictures() in tools/build-pages.py). It must not exist for layout:
+   every rule that sizes, crops or positions a photograph was written for the
+   <img> as a direct child of its frame. Nothing else targets this selector,
+   so its place in the file does not matter. */
+picture[data-avif] { display: contents; }

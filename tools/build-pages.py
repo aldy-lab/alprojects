@@ -33,6 +33,7 @@ from paths import rootify, clean_urls, ORIGIN, origin_fix  # noqa: E402
 import minify  # noqa: E402
 import content  # noqa: E402    -- the site's copy, see tools/content.py
 import thumbs  # noqa: E402
+import avif  # noqa: E402
 import i18n  # noqa: E402    -- for the shared meta-description length rule
 
 # Everything that belongs to no collection -- page titles and meta
@@ -309,8 +310,63 @@ def fill_stamp(html, path):
 WRITTEN = set()
 
 
+# ============================================================
+# AVIF, BESIDE THE WEBP
+# ============================================================
+# Every <img> whose WebP files all have an AVIF next to them (tools/avif.py
+# decides, by a measured quality rail) is wrapped in a <picture> that offers
+# the AVIF first. The WebP stays as the <img>, so a browser without AVIF loses
+# nothing. On the heaviest photographs the AVIF is about half the bytes.
+#
+# The wrapper carries data-avif, and every build first REMOVES the wrappers it
+# made before deciding again. That is what keeps index.html honest: it is both
+# source and output, stamped in place, so a wrapper written once would
+# otherwise stay forever -- and a <source> pointing at an AVIF that has since
+# gone is not a fallback, it is a broken image. A <picture> written by hand
+# (the phone crop on slide 3) has no data-avif and is never touched.
+#
+# picture[data-avif] is display: contents in the CSS, so layout sees the <img>
+# exactly where it was. One script measured the image's parent for the sector
+# parallax; it steps over the wrapper now -- with display: contents the
+# wrapper has no box, and the parallax would have gone still without a word.
+_AVIF_WRAP = re.compile(r'<picture data-avif><source type="image/avif"[^>]*>(<img\b[^>]*>)</picture>')
+_IMG = re.compile(r'<img\b[^>]*>')
+_ASSET = re.compile(r'/assets/([^\s"\',]+?\.webp)')
+
+
+def avif_pictures(html):
+    html = _AVIF_WRAP.sub(r"\1", html)
+    out, pos = [], 0
+    for m in _IMG.finditer(html):
+        tag = m.group(0)
+        before = html[:m.start()]
+        if before.rfind("<picture") > before.rfind("</picture>"):
+            continue                      # inside a hand-written <picture>
+        srcset = re.search(r'\ssrcset="([^"]*)"', tag)
+        src = re.search(r'\ssrc="([^"]*)"', tag)
+        spec = srcset.group(1) if srcset else (src.group(1) if src else "")
+        webps = _ASSET.findall(spec)
+        if not webps:
+            continue
+        avifs = [avif.ensure(w) for w in webps]
+        if not all(avifs):
+            continue
+        av_spec = spec
+        for w, a in zip(webps, avifs):
+            av_spec = av_spec.replace("/assets/" + w, "/assets/" + a)
+        sizes = re.search(r'\ssizes="([^"]*)"', tag)
+        source = '<source type="image/avif" srcset="%s"%s>' % (
+            av_spec, ' sizes="%s"' % sizes.group(1) if sizes else "")
+        out.append(html[pos:m.start()])
+        out.append('<picture data-avif>%s%s</picture>' % (source, tag))
+        pos = m.end()
+    out.append(html[pos:])
+    return "".join(out)
+
+
 def write(path, html):
     if path.endswith(".html"):
+        html = avif_pictures(html)
         html = clean_urls(stamp(mark_nav(html, path)))
         # One length rule for every page, applied after the text is final --
         # see i18n.clamp_desc. The per-caller cuts (197 for a case lead, 152
@@ -2868,7 +2924,7 @@ def _warn_if_prose_names_another_host():
 for _name in ("index.html", "404.html"):
     _path = os.path.join(ROOT, _name)
     _before = io.open(_path, encoding="utf-8").read()
-    _after = origin_fix(fill_stamp(clean_urls(stamp(_before)), _name))
+    _after = origin_fix(fill_stamp(clean_urls(stamp(avif_pictures(_before))), _name))
     if _after != _before:
         io.open(_path, "w", encoding="utf-8").write(_after)
         print("stamped %s" % _name)
@@ -2884,6 +2940,7 @@ for _name in ("index.html", "404.html"):
 # After every page is written, never before: the sweep decides by what this run
 # produced, so running it early would delete the pages still to come.
 sweep_orphans()
+avif.save()
 
 _warn_if_prose_names_another_host()
 

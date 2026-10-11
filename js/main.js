@@ -1375,6 +1375,9 @@
       for (var i = 0; i < heroFrames.length; i++) {
         var img = heroFrames[i];
         var host = img.parentNode;
+        /* The build may wrap the image in <picture data-avif>, which is
+           display: contents and so has no box: measure the frame around it. */
+        if (host.tagName === "PICTURE") host = host.parentNode;
         var r = host.getBoundingClientRect();
         /* off screen: leave the last transform alone rather than writing one
            every frame for something nobody is looking at */
