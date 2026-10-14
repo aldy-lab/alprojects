@@ -8472,6 +8472,12 @@ html.blueprint .hero-iso { opacity: 1; }
 }
 .sheet-field.is-on { opacity: 1; }
 .sheet-field span {
+  /* flex: none, and no overflow clip. The clip was a backstop for long
+     labels, which the script now caps at 30 characters before they get here;
+     what it cost was a vertical-writing-mode box inside a flex row with
+     overflow: hidden, the combination Chrome has been known to size to
+     nothing -- a rule with no words beside it. */
+  flex: none;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-family: var(--font-display);
@@ -8479,8 +8485,7 @@ html.blueprint .hero-iso { opacity: 1; }
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gray-150);
-  max-height: 44vh;
-  overflow: hidden;
+  white-space: nowrap;
 }
 /* The rule the label is written against. */
 .sheet-field::before {
