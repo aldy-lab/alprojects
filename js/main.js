@@ -2220,8 +2220,16 @@
     var marks = document.querySelectorAll(".eyebrow");
     if (marks.length < 2) return;
     var field = document.createElement("div");
-    field.className = "sheet-field";
+    field.className = "sheet-field notranslate";
     field.setAttribute("aria-hidden", "true");
+    /* Out of the browser's page translator. The label is a copy of the
+       section's eyebrow, and the eyebrow is translated where it stands, so
+       the copy arrives in the reader's language already. Left translatable,
+       the two fought: the script found the translator's text, took it for not
+       its own, wrote the English back, and the translator translated it again
+       -- a simulated translator showed "RU RU OUR FOOTPRINT", and in the real
+       one the label could be caught empty between the two. */
+    field.setAttribute("translate", "no");
     var txt = document.createElement("span");
     field.appendChild(txt);
     document.body.appendChild(field);
@@ -2235,9 +2243,14 @@
       v = v.split("\u00b7")[0].trim();
       return v.length > 30 ? v.slice(0, 28).trim() + "\u2026" : v;
     };
+    /* Compared with what this script last wrote, never with what is on
+       screen: anything else in the page (a translator, an extension) may have
+       rewritten the node, and treating that as "changed" is the loop above. */
+    var current = null;
     var set = function (v) {
       v = v ? shorten(v) : "";
-      if (txt.textContent === v) return;
+      if (v === current) return;
+      current = v;
       txt.textContent = v;
       field.classList.toggle("is-on", !!v);
     };

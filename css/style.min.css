@@ -5899,6 +5899,7 @@ transition: opacity var(--dur-3) var(--ease);
 }
 .sheet-field.is-on { opacity: 1; }
 .sheet-field span {
+flex: none;
 writing-mode: vertical-rl;
 transform: rotate(180deg);
 font-family: var(--font-display);
@@ -5906,8 +5907,7 @@ font-size: var(--tag);
 letter-spacing: 0.22em;
 text-transform: uppercase;
 color: var(--gray-150);
-max-height: 44vh;
-overflow: hidden;
+white-space: nowrap;
 }
 .sheet-field::before {
 content: "";
